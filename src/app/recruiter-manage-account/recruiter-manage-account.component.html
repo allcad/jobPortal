@@ -1,0 +1,111 @@
+<section id="min_height">
+  <!--navigation top end-->
+  <!--contractor login-->
+  <div id="contractor-signup">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-100">
+          <div class="contractor_signup befourlogin_fontsize">
+            <h2 class="">youR <span class="text_pink">account</span></h2>
+            <ul class="breadcomb">
+              <li><a href="#" class="hover_text_pink">Home</a></li>
+              <li class="right_arrow text_pink">&gt;</li>
+              <li class="active">YOUR ACCOUNT</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-100">
+          <div class="signup_form_section">
+            <form (ngSubmit)="saveRecruiterAccount(saveRecruiterAccount)" #saveRecruiterAccount="ngForm">
+              <div class="row">
+                <div class="col-sm-100">
+                  <div class="manage_top_buttons">
+                    <ul>
+                      <li class="active"><a href="javascript:void(0);">Your Account</a></li>
+                      <li><a href="javascript:void(0);" [routerLink]="['../../recruiters/profile']">Your Profile</a></li>
+                      <li><a href="javascript:void(0);" [routerLink]="['../../recruiters/manage-user']">Manage Users</a></li>
+                      <li><a href="javascript:void(0);" [routerLink]="['../../recruiters/manage-password']">Manage Password</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="job_search_keywords">
+                <h2 class="">Personal Details</h2>
+              </div>
+              <div class="row">
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/recruiter-contractor-name.png" alt="" title="" class="img-responsive"></div>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="NAME" [(ngModel)]="name" name="name" [tooltip]="nameTooltip" required>
+                      <tooltip-content #nameTooltip>
+                        <span *ngIf="saveRecruiterAccount?.form && saveRecruiterAccount.form.controls && saveRecruiterAccount.form.controls.name?.valid" style="color: #C21F39">Name</span>
+                        <span [hidden]="!saveRecruiterAccount.form.controls.name?.hasError('required')" style="color: #C21F39">Name is required.</span>
+                        <!-- <span [hidden]="!saveRecruiterAccount.form.controls.name?.hasError('minlength')" style="color: #C21F39">Contractor First Name min length is 3.</span> -->
+                        <!-- <span [hidden]="!saveRecruiterAccount.form.controls.name?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
+                      </tooltip-content>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/recruiter-job-title.png" alt="" title="" class="img-responsive"></div>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="JOB TITLE" [(ngModel)]="jobTitle" name="jobTitle" [tooltip]="jobTitleTooltip" required>
+                      <tooltip-content #jobTitleTooltip>
+                        <span *ngIf="saveRecruiterAccount?.form && saveRecruiterAccount.form.controls && saveRecruiterAccount.form.controls.jobTitle?.valid " style="color: #C21F39">JOB TITLE</span>
+                        <span [hidden]="!saveRecruiterAccount.form.controls.jobTitle?.hasError('required')" style="color: #C21F39">JOB TITLE is required.</span>
+                        <!-- <span [hidden]="!saveRecruiterAccount.form.controls.jobTitle?.hasError('minlength')" style="color: #C21F39">Contractor First Name min length is 3.</span> -->
+                        <!-- <span [hidden]="!saveRecruiterAccount.form.controls.jobTitle?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
+                      </tooltip-content>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="job_search_keywords">
+                <h2 class="">Contact Details</h2>
+              </div>
+              <div class="row">
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/telephone-icon.png" alt="" title="" class="img-responsive"></div>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="TELEPHONE" [(ngModel)]="telePhone" name="telePhone" [tooltip]="telePhoneTooltip" required>
+                      <tooltip-content #telePhoneTooltip>
+                        <span *ngIf="saveRecruiterAccount?.form && saveRecruiterAccount.form.controls && saveRecruiterAccount.form.controls.telePhone?.valid" style="color: #C21F39">TELEPHONE</span>
+                        <span [hidden]="!saveRecruiterAccount.form.controls.telePhone?.hasError('required')" style="color: #C21F39">TELEPHONE is required.</span>
+                        <!-- <span [hidden]="!saveRecruiterAccount.form.controls.telePhone?.hasError('minlength')" style="color: #C21F39">Contractor First Name min length is 3.</span> -->
+                        <!-- <span [hidden]="!saveRecruiterAccount.form.controls.telePhone?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
+                      </tooltip-content>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="job_search_keywords">
+                <h2 class="">Account Details</h2>
+              </div>
+              <div class="total_number_users user_account_created">
+                <p><span>Super User :</span> Anurag Srivastava</p>
+                <p><span>Account Created : </span> 17 July 2014</p>
+              </div>
+              <div class="row">
+                <div class="col-sm-100">
+                  <div class="sign_up_right_side"> 
+                    <!-- <a href="#" class="btn-primary hover_text_pink hover_white_pluse width_180px">Update Profile -->
+                       <button class="btn-primary hover_text_pink hover_white_pluse width_180px" type="submit" >Update Profile
+                      <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i>
+                    <!-- </a>  -->
+                  </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--contractor login end-->
+  </div>
+</section>

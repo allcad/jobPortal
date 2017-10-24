@@ -1,0 +1,9 @@
+/*@import '../assets/css/style.css';*/
+
+.navigation_header ul li a {
+    padding: 12px 20px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 11.5px;
+    font-weight: inherit;
+}

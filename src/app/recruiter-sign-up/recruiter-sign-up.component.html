@@ -1,0 +1,152 @@
+<section>
+  <!--navigation top end-->
+  <!--contractor signup-->
+  <div id="contractor-signup">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-100">
+          <div class="contractor_signup befourlogin_fontsize">
+            <h2>Recruiter <span class="text_pink">Register</span></h2>
+            <ul class="breadcomb color_active">
+              <li><a href="#" class="hover_text_pink">Home</a></li>
+              <li class="right_arrow text_pink">&gt;</li>
+              <li><a href="#" class="hover_text_pink">Recruiter</a></li>
+              <li class="right_arrow text_pink">&gt;</li>
+              <li class="active">Register</li>
+            </ul>
+          </div>
+                   <div class="alert alert-success margin-tp18" *ngIf="succesMessageFlag">
+              <a href="javascript:void(0)" class="close" title="close">×</a>
+              You are sign up <strong>succesfully!</strong>
+          </div>
+                        <div class="alert alert-danger margin-tp18" *ngIf="ErrorMesageFlag">
+              <a href="javascript:void(0)" class="close" title="close">×</a>
+            <strong>Error!</strong>  You are already sign up with this Email!
+          </div>
+
+          <div class="signup_form_section">
+            <form  #user="ngForm" (ngSubmit)="onSignUp(user)">
+              <div class="row">
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/full-company-name.png" alt="Company Name" title="Company Name" class="img-responsive"></div>
+                      <input type="text" class="form-control" id="companyName" placeholder="Full Company Name" name="companyName" [(ngModel)]="companyName" required [tooltip]="compnyNameTooltip" >
+                      <tooltip-content #compnyNameTooltip >
+                         <span *ngIf="user?.form && user.form.controls && user.form.controls.companyName?.valid" style="color: #C21F39"> Company Name</span>
+                        <span [hidden]="!user.form.controls.companyName?.hasError('required')" style="color: #C21F39"> Company Name is required.</span>
+                 
+                      </tooltip-content>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/recruiter-user-name.png" alt="User Name" title="User Name" class="img-responsive"></div>
+                      <input type="text" class="form-control" id="contactName" placeholder="Contact Name" [(ngModel)]="contactName" name="contactName" required  [tooltip]="contactNameTooltip">
+                     <tooltip-content #contactNameTooltip>
+                         <span *ngIf="user?.form && user.form.controls && user.form.controls.contactName?.valid" style="color: #C21F39"> Contract Name</span>
+                        <span [hidden]="!user.form.controls.contactName?.hasError('required')" style="color: #C21F39"> Contract Name is required.</span>
+                 
+                      </tooltip-content>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/recruiter-job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
+                      <input type="text" class="form-control" id="JobTitle" placeholder=" Job Title" [(ngModel)]="JobTitle" name="JobTitle" required  [tooltip]="JobTitleTooltip" >
+                     <tooltip-content #JobTitleTooltip >
+                         <span *ngIf="user?.form && user.form.controls && user.form.controls.JobTitle?.valid " style="color: #C21F39"> Job Title</span>
+                        <span [hidden]="!user.form.controls.JobTitle?.hasError('required')" style="color: #C21F39"> Job Title is required.</span>
+                 
+                      </tooltip-content>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/recruiter-mobile-number.png" alt="Telephone Number" title="Telephone Number" class="img-responsive"></div>
+                      <input type="text" class="form-control" id="emailAddress" placeholder="Phone Number"  [(ngModel)]="phoneNo" name="phoneNo" required  pattern="[0-9]*" maxlength="15"  [tooltip]="TelephoneNoTooltip" >
+                     <tooltip-content #TelephoneNoTooltip >
+                         <span *ngIf="user?.form && user.form.controls && user.form.controls.phoneNo?.valid" style="color: #C21F39"> Phone  No</span>
+                        <span [hidden]="!user.form.controls.phoneNo?.hasError('required')" style="color: #C21F39"> Phone No is required.</span>
+                  
+                    <span [hidden]="!user.form.controls.phoneNo?.hasError('pattern')" style="color: #C21F39">Mobile No is not valid!</span>
+                      </tooltip-content>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/recruiter-mail-address.png" alt="Email" title="Email" class="img-responsive"></div>
+                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Business Email Address" [(ngModel)]="emailAddress" name="emailAddress" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [tooltip]="EmailAddresTooltip"  >
+                  <tooltip-content #EmailAddresTooltip >
+                         <span *ngIf="user?.form && user.form.controls && user.form.controls.emailAddress?.valid" style="color: #C21F39"> Email</span>
+                        <span [hidden]="!user.form.controls.emailAddress?.hasError('required')" style="color: #C21F39"> Email is required.</span>
+                  <span [hidden]="!user.form.controls.emailAddress?.hasError('pattern')" style="color: #C21F39">Email invalid!</span>
+                      </tooltip-content>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/recruiter-enter-password.png" alt="Enter Password" title="Password" class="img-responsive"></div>
+                      <input type="password" class="form-control" id="exampleInputEmail1" minlength="6" placeholder="Password" [(ngModel)]="passwordValue" name="passwordValue" required [tooltip]="passwodTooltip">
+                 <tooltip-content #passwodTooltip >
+                         <span *ngIf="user?.form && user.form.controls && user.form.controls.passwordValue?.valid " style="color: #C21F39"> Password</span>
+                        <span [hidden]="!user.form.controls.passwordValue?.hasError('required')" style="color: #C21F39"> Password is required.</span>
+                     <span [hidden]="!user.form.controls.passwordValue?.hasError('minlength')" style="color: #C21F39">Password min length 6</span>
+                      </tooltip-content>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/recruiter-key-skills.png" alt="Key Skills" title="Key Skills" class="img-responsive"></div>
+                      <input type="text" class="form-control" id="keySkill" placeholder="key Skill" [(ngModel)]="keySkill" name="keySkill" required  [tooltip]="keySkillTooltip">
+                             <tooltip-content #keySkillTooltip>
+                        <span *ngIf="user?.form && user.form.controls && user.form.controls.keySkill?.valid" style="color: #C21F39"> Key Skill </span>
+                        <span [hidden]="!user.form.controls.keySkill?.hasError('required')" style="color: #C21F39"> Key Skill is required! </span>
+                      </tooltip-content>
+                      <div class="input-group-addon passcode_img"><img src="./assets/images/passcode.png" alt="" class="img-responsive" data-toggle="tooltip" data-placement="top" title="You don't have a passcode? No Problem!"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-50">
+                  <div class="terms_of_uses margin_trems_10px">
+                    <input id="inlineCheckbox12" value="option12" type="checkbox" [(ngModel)]="termOfUse" name="termOfUse" required>
+                    <label for="inlineCheckbox12" class=""><span></span> I AGREE TO CONTRACTRECRUIT’S <a href="#" class="text_pink">TERMS OF USE</a> </label>
+                  </div>
+                </div>
+              </div>
+              <div class="recruiter_signup_center">
+                <button href="#" [disabled]="!user.form.valid" class="btn-primary hover_text_pink hover_white_pluse">SIGN UP <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></button></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="contractor-login">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-100">
+        <app-login-recruiter></app-login-recruiter>
+      </div>
+    </div>
+  </div>
+</div>

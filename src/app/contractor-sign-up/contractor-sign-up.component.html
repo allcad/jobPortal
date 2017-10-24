@@ -1,0 +1,246 @@
+<section id="min_height">
+  <!--navigation top end-->
+  <!--contractor signup-->
+  <div id="contractor-signup">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-100">
+          <div class="contractor_signup befourlogin_fontsize">
+            <h2>CONTRACTOR <span>signup</span></h2>
+            <ul class="breadcomb">
+              <li><a href="#">Home</a></li>
+              <li class="right_arrow">></li>
+              <li class="active">CONTRACTOR SIGN UP</li>
+            </ul>
+          </div>
+          
+          <div class="alert alert-success margin-tp18" *ngIf="succesMessageFlag">
+              <a href="javascript:void(0)" class="close" title="close">×</a>
+              You are sign up <strong>succesfully!</strong>
+          </div>
+               <div class="alert alert-danger margin-tp18" *ngIf="ErrorMesageFlag">
+              <a href="javascript:void(0)" class="close" title="close">×</a>
+            <strong>Error!</strong>  You are already sign up with this Email!
+          </div>
+          <div class="signup_form_section">
+            <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
+              <div class="row">
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/user-name.png" alt="User Name" title="User Name" class="img-responsive"></div>
+                      <input type="text" class="form-control" id="contractorFirstName" placeholder="Enter First Name" name="contractor_first_name" [(ngModel)]="contractor_first_name" pattern="[a-zA-Z][a-zA-Z ]+" required minlength="3" [tooltip]="firstNameTooltip">
+                      <tooltip-content #firstNameTooltip>
+                        <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_first_name?.valid " style="color: #C21F39"> Contractor First Name</span>
+                        <span [hidden]="!userForm.form.controls.contractor_first_name?.hasError('required')" style="color: #C21F39"> Contractor First Name is required.</span>
+                        <span [hidden]="!userForm.form.controls.contractor_first_name?.hasError('minlength')" style="color: #C21F39">Contractor First Name min length is 3.</span>
+                        <!-- <span [hidden]="!userForm.form.controls.contractor_first_name?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
+                      </tooltip-content>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/user-name.png" alt="User Name" title="User Name" class="img-responsive"></div>
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name" name="contractor_last_name" [(ngModel)]="contractor_last_name" required minlength="3" [tooltip]="lastNameTooltip">
+                      <tooltip-content #lastNameTooltip>
+                        <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_last_name?.valid" style="color: #C21F39"> Contractor Last Name</span>
+                        <span [hidden]="!userForm.form.controls.contractor_last_name?.hasError('required')" style="color: #C21F39"> Contractor last Name is required.</span>
+                        <span [hidden]="!userForm.form.controls.contractor_last_name?.hasError('minlength')" style="color: #C21F39">Contractor last Name min length is 3.</span>
+                        <!-- <span [hidden]="!userForm.form.controls.contractor_last_name?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
+                      </tooltip-content>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/mail-address.png" alt="Email" title="Email" class="img-responsive"></div>
+                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Email Address" name="contractor_email" [(ngModel)]="contractor_email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [tooltip]="emailTooltip">
+                      <tooltip-content #emailTooltip>
+                        <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_email?.valid " style="color: #C21F39">Contractor's Email</span>
+                        <span [hidden]="!userForm.form.controls.contractor_email?.hasError('required')" style="color: #C21F39"> Email is required.</span>
+                        <span [hidden]="!userForm.form.controls.contractor_email?.hasError('pattern')" style="color: #C21F39">Email invalid!</span>
+                      </tooltip-content>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/mobile-number.png" alt="Telephone Number" title="Telephone Number" class="img-responsive"></div>
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Mobile Number" name="contractor_tel_no" [(ngModel)]="contractor_tel_no" pattern="[0-9]*" maxlength="15" required [tooltip]="phoneTooltip">
+                      <tooltip-content #phoneTooltip>
+                        <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_tel_no?.valid " style="color: #C21F39">Contractor's Mobile No </span>
+                        <span [hidden]="!userForm.form.controls.contractor_tel_no?.hasError('required')" style="color: #C21F39"> Mobile No is required! </span>
+                        <span [hidden]="!userForm.form.controls.contractor_tel_no?.hasError('pattern')" style="color: #C21F39">Mobile No is not valid!</span>
+                        <!-- <span [hidden]="!userForm.form.controls.contractor_tel_no?.hasError('maxlength')" style="color: #C21F39">Phone No should be 10digit.</span> -->
+                      </tooltip-content>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/enter-password.png" alt="Enter Password" title="Password" class="img-responsive"></div>
+                      <input type="password" class="form-control" id="exampleInputEmail1" minlength="6" placeholder="Enter Password" name="contractor_current_password" [(ngModel)]="contractor_current_password" required [tooltip]="contpassword">
+                      <tooltip-content #contpassword>
+                        <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_current_password?.valid" style="color: #C21F39">Contractor's Password </span>
+                        <span [hidden]="!userForm.form.controls.contractor_current_password?.hasError('required')" style="color: #C21F39"> Password is required! </span>
+                        <span [hidden]="!userForm.form.controls.contractor_current_password?.hasError('minlength')" style="color: #C21F39">Password min length 6</span>
+                      </tooltip-content>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/upload-cv.png" alt="Upload CV" title="Upload CV" class="img-responsive"></div>
+                      <input type="file" class="form-control input-group-addon find_cv_from" id="uploadCV"  name="documents" placeholder="Upload CV" required [tooltip]="uploadCVTooltip" (change)="fileChangeEvent($event)">
+                      <tooltip-content #uploadCVTooltip>
+                        <span *ngIf=" !valid" style="color: #C21F39"> Upload CV </span>
+                        <!-- <span *ngIf="!valid && contractUploadCV" style="color: #C21F39"> Upload CV </span>     -->
+                      </tooltip-content>
+                      <!--                         <div class="input-group-addon find_cv_from"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Find CV From<img src="./assets/images/find-cv.png" alt="Find CV" title="Find CV"></a>
+                          <ul class="dropdown-menu">
+                            <li><a href="#"><img src="./assets/images/mail-box1.png" alt="OneDrive" title="OneDrive" class="img-responsive"></a> <a href="#"><img src="./assets/images/mail-box3.png" alt="GoogleDrive" title="GoogleDrive" class="img-responsive"></a> </li>
+                            <li> <a href="#"><img src="./assets/images/mail-box2.png" alt="Dropbox" title="Dropbox" class="img-responsive"></a> <a href="#"><img src="./assets/images/mail-box4.png" alt="LocalDrive" title="LocalDrive" class="img-responsive"></a> </li>
+                          </ul>
+                        </div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-100">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Current Job Title" name="contractor_job_title" [(ngModel)]="contractor_job_title" required [tooltip]="contractor_job_titleTooltip">
+                      <tooltip-content #contractor_job_titleTooltip>
+                        <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_job_title?.valid " style="color: #C21F39"> Job Title </span>
+                        <span [hidden]="!userForm.form.controls.contractor_job_title?.hasError('required')" style="color: #C21F39"> Job Title is required! </span>
+                      </tooltip-content>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-100">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/key-skills.png" alt="Key Skills" title="Key Skills" class="img-responsive"></div>
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Key Skills (Separated with commas)" name="contractor_key_skills"  auto-complete  [(ngModel)]="contractor_key_skills"  required  [tooltip]="keySkillTooltip" 
+                     >
+                             <tooltip-content #keySkillTooltip>
+                        <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_key_skills?.valid " style="color: #C21F39"> Key Skill </span>
+                        <span [hidden]="!userForm.form.controls.contractor_key_skills?.hasError('required')" style="color: #C21F39"> Key Skill is required! </span>
+                      </tooltip-content>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="current_rate_signup situation35">
+                <h2>ENTER YOUR CURRENT RATE</h2>
+                <!-- <img src="./assets/images/price-filter.png" alt="ads" title="ads" class="img-responsive">  -->
+                <ion-range-slider class="width_100" #sliderElement min="200" value="100" max="800" step="10" from="300">
+                </ion-range-slider>
+              </div>
+              <div class="current_rate_signup situation35">
+                <h2>CURRENT EMPLOYMENT SITUATION</h2>
+                <div class="checkbox-inline">
+                  <input #permanent type="radio" id="permanent" name="optradio" checked="checked" value="permanent" (change)="logRadio('permanant')">
+                  <label for="permanent" class="radio-inline"><span></span> PERMANENT </label>
+                  <input #inContract type="radio" id="permanent2" name="optradio" value="inContract" (change)="logRadio('in contract')">
+                  <label for="permanent2" class="radio-inline"><span></span> IN CONTRACT </label>
+                  <input #outOfContract type="radio" id="permanent3" name="optradio" value="outOfContract" (change)="logRadio('out of contract')">
+                  <label for="permanent3" class="radio-inline"><span></span> OUT OF CONTRACT </label>
+                </div>
+              </div>
+              <div class="current_rate_signup situation35">
+                <h2>CONTRACTOR SERVICES <span>Do you want to set up any of the following contractor services?</span></h2>
+                <div class="row">
+                  <div class="col-sm-50">
+                    <div class="service_box">
+                      <input type="checkbox" id="inlineCheckbox4" value="option4">
+                      <label for="inlineCheckbox4"><span></span> UMBRELLA COMPANY</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-50">
+                    <div class="service_box">
+                      <input type="checkbox" id="inlineCheckbox5" value="option5">
+                      <label for="inlineCheckbox5"><span></span> IT CONTRACTOR ACCOUNTANTS</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-50">
+                    <div class="service_box">
+                      <input type="checkbox" id="inlineCheckbox6" value="option6">
+                      <label for="inlineCheckbox6"><span></span> LIMITED COMPANY</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-50">
+                    <div class="service_box">
+                      <input type="checkbox" id="inlineCheckbox7" value="option7">
+                      <label for="inlineCheckbox7"><span></span> CONTRACTOR MORTGAGE</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-50">
+                    <div class="service_box">
+                      <input type="checkbox" id="inlineCheckbox8" value="option8">
+                      <label for="inlineCheckbox8"><span></span> BUSINESS BANK ACCOUNT</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-50">
+                    <div class="service_box">
+                      <input type="checkbox" id="inlineCheckbox9" value="option9">
+                      <label for="inlineCheckbox9"><span></span> IT CONTRACTOR INSURANCE</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-50">
+                    <div class="service_box">
+                      <input type="checkbox" id="inlineCheckbox10" value="option10">
+                      <label for="inlineCheckbox10"><span></span> WEALTH MANAGEMENT</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-50">
+                    <div class="service_box">
+                      <input type="checkbox" id="inlineCheckbox11" value="option11">
+                      <label for="inlineCheckbox11"><span></span> NONE OF THE ABOVE </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="current_rate_signup situation35">
+                <div class="terms_of_use">
+                  <input type="checkbox" id="inlineCheckbox12" value="option153" [(ngModel)]="contractor_agree_terms_status" name="termOfUse" required>
+                  <label for="inlineCheckbox12"><span></span> I AGREE TO CONTRACTRECRUIT’S <a href="#">TERMS OF USE</a> </label>
+                </div>
+                <button type="submit" [disabled]="!userForm.form.valid" class="btn-primary pull-right hover_white_pluse">SIGN UP <i class="fa fa-plus plus_blue" aria-hidden="true"></i></button>
+                <!--   <a href="#" class="btn-primary pull-right hover_white_pluse">SIGN UP <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> --></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="contractor-login">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-100">
+        <app-login></app-login>
+      </div>
+    </div>
+  </div>
+</div>
