@@ -7,36 +7,7 @@ import { CommonRequestService } from '../common-request.service';
   styleUrls: ['./contractor-view-profile.component.css']
 })
 export class ContractorViewProfileComponent implements OnInit {
-  profileUrl: string;
-  userName: string;
-  emailAddress;
-  securityClearance;
-  euDrivingLicence;
-  postCode;
-  dayRate1;
-  dayRate2;
-  availability: string;
-  webAddress: string;
-  stackOverWebAdd: string;
-  gitHubWebAdd: string;
-  linkedinWebAdd: string;
-  behanceWebAdd: string;
-  preferredJobTitle: string;
-  commutableValue: number;
-  rate1;dataUrl;
-skillData;
-  rate2;
-  dailyHourlyValue;profileData;
-  currentJobTitle: string;
-  summary: string;
-  certification: string;
-  qualification: string;
-  preferredJobTitleValue: string;
-  currentPassword;
-  newPassword;fileUploadForCV;
-fileUploadForCover;
-  confirmNewPassword;contractorProfileJson;inputUrl;responseData;succesMessageFlag =false;fileUpload;
-ErrorMesageFlag=false;
+ profileData; 
  constructor(public _commonRequestService: CommonRequestService,) { }
 
   ngOnInit() {
@@ -44,8 +15,16 @@ ErrorMesageFlag=false;
   }
 
 getProfileDta(){
-	 this.profileData =  this._commonRequestService.getDataWithoutObserval('contractor-profile-view-data');
-	 
-	console.log(this.profileData,"view_data");
+  var inputJson = {
+      "email":"johnsmith21@gmail.com",
+      "loginToken":"$2y$10$Wbps5L/ERbs.7sdCm.tAoO4tNWY6At/JtAibo6FhsoICKXUy4q7OS"
+    }
+	 let dataUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/profile/view";
+       this._commonRequestService.postData(dataUrl, inputJson).subscribe(
+        data => {
+          this.profileData = data.data;
+          this._commonRequestService.setDataWithoutObserval(this.profileData, "contractorProfileData")
+        }
+    );
 }
 }

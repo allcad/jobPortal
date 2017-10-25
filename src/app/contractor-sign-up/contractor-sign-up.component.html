@@ -13,14 +13,12 @@
               <li class="active">CONTRACTOR SIGN UP</li>
             </ul>
           </div>
-          
           <div class="alert alert-success margin-tp18" *ngIf="succesMessageFlag">
-              <a href="javascript:void(0)" class="close" title="close">×</a>
-              You are sign up <strong>succesfully!</strong>
+            <a href="javascript:void(0)" class="close" title="close">×</a> You are sign up <strong>succesfully!</strong>
           </div>
-               <div class="alert alert-danger margin-tp18" *ngIf="ErrorMesageFlag">
-              <a href="javascript:void(0)" class="close" title="close">×</a>
-            <strong>Error!</strong>  You are already sign up with this Email!
+          <div class="alert alert-danger margin-tp18" *ngIf="ErrorMesageFlag">
+            <a href="javascript:void(0)" class="close" title="close">×</a>
+            <strong>Error!</strong> {{validateMsg}}
           </div>
           <div class="signup_form_section">
             <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
@@ -101,7 +99,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/upload-cv.png" alt="Upload CV" title="Upload CV" class="img-responsive"></div>
-                      <input type="file" class="form-control input-group-addon find_cv_from" id="uploadCV"  name="documents" placeholder="Upload CV" required [tooltip]="uploadCVTooltip" (change)="fileChangeEvent($event)">
+                      <input type="file" class="form-control input-group-addon find_cv_from" id="uploadCV" name="documents" placeholder="Upload CV" required [tooltip]="uploadCVTooltip" (change)="fileChangeEvent($event)">
                       <tooltip-content #uploadCVTooltip>
                         <span *ngIf=" !valid" style="color: #C21F39"> Upload CV </span>
                         <!-- <span *ngIf="!valid && contractUploadCV" style="color: #C21F39"> Upload CV </span>     -->
@@ -135,9 +133,12 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/key-skills.png" alt="Key Skills" title="Key Skills" class="img-responsive"></div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Key Skills (Separated with commas)" name="contractor_key_skills"  auto-complete  [(ngModel)]="contractor_key_skills"  required  [tooltip]="keySkillTooltip" 
+                    <!--   <select class="form-control" [(ngModel)]="contractor_key_skills" required   [tooltip]="keySkillTooltip"> 
+                        <option *ngFor="let skill of skillData" [ngValue]="skill"> {{skill.skill_name}} </option>
+                      </select> -->
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Key Skills (Separated with commas)" name="contractor_key_skills"  auto-complete  [(ngModel)]="contractor_key_skills"  required  [tooltip]="keySkillTooltip" 
                      >
-                             <tooltip-content #keySkillTooltip>
+                      <tooltip-content #keySkillTooltip>
                         <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_key_skills?.valid " style="color: #C21F39"> Key Skill </span>
                         <span [hidden]="!userForm.form.controls.contractor_key_skills?.hasError('required')" style="color: #C21F39"> Key Skill is required! </span>
                       </tooltip-content>
@@ -148,7 +149,7 @@
               <div class="current_rate_signup situation35">
                 <h2>ENTER YOUR CURRENT RATE</h2>
                 <!-- <img src="./assets/images/price-filter.png" alt="ads" title="ads" class="img-responsive">  -->
-                <ion-range-slider class="width_100" #sliderElement min="200" value="100" max="800" step="10" from="300">
+                <ion-range-slider class="width_100" (onFinish)="getRangeSliderValue($event)" #sliderElement min="200" value="100" max="800" step="10" from="300">
                 </ion-range-slider>
               </div>
               <div class="current_rate_signup situation35">

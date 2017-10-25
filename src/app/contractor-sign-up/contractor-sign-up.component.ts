@@ -30,7 +30,7 @@ export class ContractorSignUpComponent implements OnInit {
  ErrorMesageFlag =false;
  contractor_agree_terms_status;
  contractor_services;
- keySkill;completeUrl;url;dataUrl;skillData=[];listSignUpData;inputUrl;fileUpload;succesMessageFlag=false;
+ keySkill;completeUrl;url;dataUrl;skillData=[];listSignUpData;inputUrl;fileUpload;succesMessageFlag=false;validateMsg;
 
 
  constructor(public _commonRequestService: CommonRequestService) { }
@@ -46,12 +46,12 @@ this.getKeySkillData()
         "contractor_email":this.contractor_email,
         "contractor_tel_no":this.contractor_tel_no,
         "contractor_current_password":this.contractor_current_password,
-          "contractor_rate":/*this.contractor_rate*/"200",
+          "contractor_rate":this.contractor_rate ? this.contractor_rate : "200",
         "fileForCv":JSON.stringify(this.fileUpload),
         "contractor_job_title":this.contractor_job_title,
         "contractor_key_skills":["1","3"],
-        "contractor_employment_situation":this.contractor_employment_situation,
-        "contractor_services": /*this.contractor_services*/["1","3"],
+        "contractor_employment_situation":this.contractor_employment_situation ? this.contractor_employment_situation : "permanant",
+        "contractor_services": this.contractor_services,
         "contractor_agree_terms_status" :this.contractor_agree_terms_status
 
       }
@@ -66,6 +66,7 @@ this.getKeySkillData()
           this.inputData={};
           }
           else{
+            this.validateMsg = this.listSignUpData.error[0];
              this.succesMessageFlag =false;
               this.ErrorMesageFlag =true;
           }
@@ -104,6 +105,11 @@ fileChangeEvent(fileInput: any) {
     console.log(this.fileUpload,"file_select")
 
     
+  }
+  getRangeSliderValue(event){
+this.contractor_rate =event.from;
+
+// console.log(this.contractor_rate,"data_range");
   }
 
 

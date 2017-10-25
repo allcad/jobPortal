@@ -41,6 +41,8 @@ inputData;min;max;getData;addNumber;number;number2;errorMessage;inputUrl;status;
           else{
              this.errorMsgFlag =true;
               this.succesLoginFlag =false;
+               //this.generate();
+               this.addNumber="";
           }
           this.inputLogin={};
           console.log("login_status: ", this.status);

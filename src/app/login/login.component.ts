@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 password="";email=""; inputLogin;
 valid;dataUrl;response;
 contractorviewProfileData;wsUrl;input;
-inputData;min;max;getData;addNumber;number;number2;errorMessage;inputUrl;status;succesLoginFlag=false;errorMsgFlag=false;
+inputData;min;max;addNumber;number;number2;errorMessage;inputUrl;status;succesLoginFlag=false;errorMsgFlag=false;
   constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -25,27 +25,25 @@ inputData;min;max;getData;addNumber;number;number2;errorMessage;inputUrl;status;
       this.inputLogin={
         "email":this.email,
         "password":this.password
-        // "loginToken":"$2y$10$Wbps5L/ERbs.7sdCm.tAoO4tNWY6At/JtAibo6FhsoICKXUy4q7OS",
+        
       }
+      var email = this.email;
             console.log( this.inputLogin,"login-conta")
   this.inputUrl= "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/signin" ;
        this._commonRequestService.postData(this.inputUrl, this.inputLogin).subscribe(
         data => {
-          this.getData = data;
-           if( this.getData.status === "TRUE" && this.getData.data.type === "contractor"){
+          console.log(data);
+           if( data.status === "TRUE"){
+          
                this.succesLoginFlag =true;
                   this.errorMsgFlag =false;
-                  // this.router.navigate(['contractors/view-profile']);
-                  // send data to next 
-                  this.getViewProfileDta();
-                     // this.router.navigate(['contractors/view-profile']);
-          }
+                  localStorage.setItem("loginDetail", JSON.stringify({"token": data.data.loginToken, "email": email}))
+                  this.router.navigate(['contractors/view-profile']);
+           }
           else{
              this.errorMsgFlag =true;
               this.succesLoginFlag =false;
           }
-          this.inputLogin={};
-          console.log("login_status: ", this.status);
         }
     )
       }else{
@@ -65,26 +63,26 @@ getRandamValue1(max,min){
     }
 
 
-  getViewProfileDta() {
-          this.input={
-        "email":this.email,
-        "password":this.password,
-        "loginToken":this.getData.data.loginToken,
-      }
-   this.wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/profile/view";
-       this._commonRequestService.postData(this.wsUrl,this.input).subscribe(
-        data => {
-          this.response = data;
-           this.contractorviewProfileData = data.data;
-           if( this.response.status === "TRUE"){
-               this.router.navigate(['contractors/view-profile']);
-               this._commonRequestService.setDataWithoutObserval( this.contractorviewProfileData,'contractor-profile-view-data');
-             // console.log("view_profile: ", this.contractorviewProfileData);
-           }
+  // getViewProfileDta() {
+  //         this.input={
+  //       "email":this.email,
+  //       "password":this.password,
+  //       "loginToken":data.data.loginToken,
+  //     }
+  //  this.wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/profile/view";
+  //      this._commonRequestService.postData(this.wsUrl,this.input).subscribe(
+  //       data => {
+  //         this.response = data;
+  //          this.contractorviewProfileData = data.data;
+  //          if( this.response.status === "TRUE"){
+  //              this.router.navigate(['contractors/view-profile']);
+  //              this._commonRequestService.setDataWithoutObserval( this.contractorviewProfileData,'contractor-profile-view-data');
+  //            // console.log("view_profile: ", this.contractorviewProfileData);
+  //          }
          
-        }
-    );
+  //       }
+  //   );
 
 
-  }
+ // }
 }

@@ -19,9 +19,14 @@ getData(url:string) {
 }
 
 postData(url,inputData){
-	this.inputUrl= url;
-	this.inputData =inputData
-	return this._http.post(this.inputUrl,this.inputData)
+	if(inputData.loginToken && inputData.email){
+		let token = JSON.parse(localStorage.getItem('loginDetail')).token;
+		let email  = JSON.parse(localStorage.getItem('loginDetail')).email;
+		inputData.loginToken = token;
+		inputData.email = email;
+
+	};
+	return this._http.post(url, inputData)
 	.map(
 		(response:Response)=>{
 			const data=response.json();

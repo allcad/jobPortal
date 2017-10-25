@@ -8,7 +8,7 @@
           </div>
                     <div class="alert alert-danger margin-tp18" *ngIf="errorMsgFlag">
               <a href="javascript:void(0)" class="close" title="close">×</a>
-             <strong>Error!</strong> You are  not Log in 
+             <strong>Error!</strong>  Your Email id is not Registered !!
           </div>
 <div class="login_form_section">
   <!--   <form (onSubmit)="onLogin(loginF)" #loginF="ngForm"> -->
@@ -16,13 +16,22 @@
     <div class="row">
       <div class="col-sm-50">
         <div class="form-group">
-          <input type="email" name="email" class="form-control" id="email" placeholder="Email*" [(ngModel)]="email" required>
+          <input type="email" name="email" class="form-control" id="email" placeholder="Email*" [(ngModel)]="email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"  [tooltip]="emailTooltip">
+              <tooltip-content #emailTooltip>
+                <span *ngIf="f?.form && f.form.controls && f.form.controls.email?.valid" style="color: white"> Email </span>
+                <span [hidden]="!f.form.controls.email?.hasError('required')" style="color: white"> Email  is required!</span>
+                 <span [hidden]="!f.form.controls.email?.hasError('pattern')" style="color:white">Email invalid!</span>
+              </tooltip-content>
         </div>
       </div>
       <div class="col-sm-50">
         <div class="form-group">
           <div class="input-group">
-            <input type="password" class="form-control" id="Password" placeholder="Password*" [(ngModel)]="password" name="password" required>
+            <input type="password" class="form-control" id="Password" placeholder="Password*" [(ngModel)]="password" name="password" required [tooltip]="passwordTooltip">
+              <tooltip-content #passwordTooltip>
+                <span *ngIf="f?.form && f.form.controls && f.form.controls.password?.valid" style="color:white"> Password </span>
+                <span [hidden]="!f.form.controls.password?.hasError('required')" style="color: white"> Password  is required!</span>
+              </tooltip-content>
           </div>
 <!--           <tooltip-content #Password>
             <span *ngIf="!valid && Password" style="color: #C21F39">Password</span>
