@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contractor-header.component.css']
 })
 export class ContractorHeaderComponent implements OnInit {
-
+  showMenu = false;
   constructor() { }
 
   ngOnInit() {
@@ -15,6 +15,10 @@ export class ContractorHeaderComponent implements OnInit {
 
   logout(){
   	
+  }
+
+  toggleMenu(){
+    this.showMenu = !this.showMenu;
   }
 
 }

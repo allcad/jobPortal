@@ -1,29 +1,29 @@
 <header id="after_login">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-14 col-sm-7 col-md-5">
-          <div class="tongal_icon_bar"> <a href="javascript:void(0)" id="inquery_now_home"> <img src="../assets/images/menu-bar.png" alt="menu" title="menu" class="img-responsive"> </a> </div>
-        </div>
-        <div class="col-xs-86 col-sm-93 col-md-95">
-          <div class="header_right_ads"> <a href="javascript:void(0)"> <img src="../assets/images/login-after-logo.png" alt="ads" title="ads" class="img-responsive"> </a> </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-14 col-sm-7 col-md-5" (click)="toggleMenu()">
+        <div class="tongal_icon_bar"> <a href="javascript:void(0)" id="inquery_now_home"> <img src="../assets/images/menu-bar.png" alt="menu" title="menu" class="img-responsive"> </a> </div>
+      </div>
+      <div class="col-xs-86 col-sm-93 col-md-95">
+        <div class="header_right_ads"> <a href="javascript:void(0)"> <img src="../assets/images/login-after-logo.png" alt="ads" title="ads" class="img-responsive"> </a> </div>
+      </div>
+    </div>
+    <div class="home_page_inquery" *ngIf="showMenu">
+      <div id="inquerymaindiv">
+        <div class="after_login_menu">
+          <ul>
+            <li [routerLink]="['../contractor/viewProfile']"><a href="javascript:void(0)">Profile</a> </li>
+            <li [routerLink]="['../contractor/jobSearch']"><a href="javascript:void(0)">Search</a></li>
+            <li [routerLink]="['../contractor/application']"><a href="javascript:void(0)">Applications</a></li>
+            <li [routerLink]="['../contractor/jobSavedSearch']"><a href="javascript:void(0)">Saved Search</a></li>
+            <li [routerLink]="['../contractor/hubHome']"><a href="javascript:void(0)"><b>Contract</b>Hub</a></li>
+            <li [routerLink]="['../contractor/viewProfile']"><a href="javascript:void(0)">Admin</a></li>
+            <li [routerLink]="['../public']"><a href="javascript:void(0)">Logout</a></li>
+          </ul>
         </div>
       </div>
-      <div class="home_page_inquery" style="display:none;">
-        <div id="inquerymaindiv" >
-          <div class="after_login_menu">
-            <ul>
-              <li><a href="javascript:void(0)">Profile</a></li>
-              <li><a href="javascript:void(0)">Search</a></li>
-              <li><a href="javascript:void(0)">Applications</a></li>
-              <li><a href="javascript:void(0)">Saved Search</a></li>
-              <li><a href="javascript:void(0)"><b>Contract</b>Hub</a></li>
-              <li><a href="javascript:void(0)">Admin</a></li>
-              <li><a href="javascript:void(0)">Logout</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="row">
+    </div>
+    <!-- <div class="row">
         <div style="padding: 50px">
             <button class="" [routerLink]="['../contractor/viewProfile']">Profile</button> 
             <button class=""  [routerLink]="['../contractor/jobSearch']">Search</button> 
@@ -37,6 +37,6 @@
         </div>
 
         
-      </div>
-    </div>
-  </header>
+      </div> -->
+  </div>
+</header>
