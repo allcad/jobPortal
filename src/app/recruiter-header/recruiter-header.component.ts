@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recruiter-header.component.css']
 })
 export class RecruiterHeaderComponent implements OnInit {
-
+	showMenu = false;
   constructor() { }
 
   ngOnInit() {

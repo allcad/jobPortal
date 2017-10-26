@@ -245,38 +245,32 @@
           <header id="after_login">
     <div class="container">
       <div class="row">
-        <div class="col-xs-14 col-sm-7 col-md-5">
+        <div class="col-xs-14 col-sm-7 col-md-5" (click)="showMenu = !showMenu">
           <div class="tongal_icon_bar"> <a href="javascript:void(0)" id="inquery_now_home"> <img src="../assets/images/menu-bar.png" alt="menu" title="menu" class="img-responsive"> </a> </div>
         </div>
         <div class="col-xs-86 col-sm-93 col-md-95">
           <div class="header_right_ads"> <a href="javascript:void(0)"> <img src="../assets/images/login-after-logo.png" alt="ads" title="ads" class="img-responsive"> </a> </div>
         </div>
       </div>
-      <div class="home_page_inquery" style="display:none;">
+      <div class="home_page_inquery" *ngIf="showMenu">
         <div id="inquerymaindiv" >
           <div class="after_login_menu">
             <ul>
-              <li><a href="javascript:void(0)">Profile</a></li>
-              <li><a href="javascript:void(0)">Search</a></li>
-              <li><a href="javascript:void(0)">Applications</a></li>
-              <li><a href="javascript:void(0)">Saved Search</a></li>
-              <li><a href="javascript:void(0)"><b>Contract</b>Hub</a></li>
-              <li><a href="javascript:void(0)">Admin</a></li>
-              <li><a href="javascript:void(0)">Logout</a></li>
+              <li> <a class="" [routerLink]="['/recruiter/about-recruiter']">Home</a></li> 
+           <li> <a class=""  [routerLink]="['/recruiter/advanced-search']">Search</a></li> 
+           <li> <a class=""  [routerLink]="['/recruiter/watchdog']">WatchDogs</a></li> 
+           <li> <a class=""  [routerLink]="['/recruiter/saved-search']">Saved Search</a></li> 
+           <li> <a class=""  [routerLink]="['/recruiter/watch-list']">Watch List</a></li> 
+           <li> <a class="" [routerLink]="['/recruiter/manage-jobs']">manage Jobs</a></li> 
+           <li> <a class="" [routerLink]="['/recruiter/job-posting']">post Jobs</a></li> 
+           <li> <a class=""  [routerLink]="['../public']">LogOut</a></li> 
             </ul>
           </div>
         </div>
       </div>
       <div class="row">
         <div style="padding: 50px">
-            <button class="" [routerLink]="['/recruiter/about-recruiter']">Home</button> 
-            <button class=""  [routerLink]="['/recruiter/advanced-search']">Search</button> 
-            <button class=""  [routerLink]="['/recruiter/watchdog']">WatchDogs</button> 
-            <button class=""  [routerLink]="['/recruiter/saved-search']">Saved Search</button> 
-            <button class=""  [routerLink]="['/recruiter/watch-list']">Watch List</button> 
-            <button class="" [routerLink]="['/recruiter/manage-jobs']">manage Jobs</button> 
-            <button class="" [routerLink]="['/recruiter/job-posting']">post Jobs</button> 
-            <button class=""  [routerLink]="['../public']">LogOut</button> 
+           
 
               
         </div>
