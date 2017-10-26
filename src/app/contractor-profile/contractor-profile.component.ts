@@ -82,7 +82,7 @@ ErrorMesageFlag=false;
       'rate_max' : this.rate2,
       'dailyHourlyValue': this.dailyHourlyValue,
       'currentJobTitle': this.currentJobTitle,
-      'skill&Experience': [{"skill_id": 1}],
+      'skill&Experience': this.selectedSkillArray,
       'summary': this.summary,
       'industrySector': ["1",],
       'certification': this.certification,
