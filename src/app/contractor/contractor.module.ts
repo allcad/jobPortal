@@ -10,14 +10,26 @@ import { ContractorRoutingModule } from './contractor-routing.module';
 //import {ContractorSignUpComponent } from '../contractor-sign-up/contractor-sign-up.component';
 import { ContractorProfileComponent } from '../contractor-profile/contractor-profile.component';
 import { ContractorViewProfileComponent } from '../contractor-view-profile/contractor-view-profile.component';
+import { ContractorJobSearchComponent } from '../contractor-job-search/contractor-job-search.component';
+import { ContractorApplicationsComponent } from '../contractor-applications/contractor-applications.component';
+import { ContractorJobSearchSavedComponent } from '../contractor-job-search-saved/contractor-job-search-saved.component';
+import { SharedModule } from '../shared/shared.module';
+
+// import { FindContractHubComponent } from '../find-contract-hub/find-contract-hub.component';
+
+
 //import { LoginComponent } from '../login/login.component';
 
 @NgModule({
   declarations: [
-   // ContractorSignUpComponent,
+   
 	ContractorProfileComponent,
 	ContractorViewProfileComponent,
-	//LoginComponent
+  ContractorJobSearchComponent,
+  ContractorApplicationsComponent,
+  ContractorJobSearchSavedComponent,
+  // FindContractHubComponent,
+	
   ],
   imports: [
    CommonModule,
@@ -26,7 +38,8 @@ import { ContractorViewProfileComponent } from '../contractor-view-profile/contr
 	TooltipModule,
 	HttpModule,
 	ContractorRoutingModule,
-	IonRangeSliderModule
+	IonRangeSliderModule,
+  SharedModule
   ],
   providers: []
 })

@@ -1,3 +1,204 @@
-<p>
-  contractor-job-search-saved works!
-</p>
+  <section id="min_height">
+  <!--navigation top end-->
+  <!--contractor login-->
+  <div id="contractor-signup">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-100">
+          <div class="contractor_signup befourlogin_fontsize">
+            <h2 class="font_capitalizs">Saved <span>SEARCH</span></h2>
+			<ul class="breadcomb">
+                <li><a href="javascript:void(0)">Home</a></li>
+                <li class="right_arrow">&gt;</li>
+                <li><a href="javascript:void(0)">Contractor </a></li>
+                <li class="right_arrow">&gt;</li>
+               
+                <li class="active">Saved Search</li>
+              </ul>
+			<div class="pull-right job_search">
+			  <a href="javascript:void(0)"  class="btn-primary hover_white_pluse width_180px ">Your Searches <i class="fa fa-angle-down plus_blue font_size_margin" aria-hidden="true"></i></a>
+			  <a href="javascript:void(0)"  [routerLink]="['../jobSearch']" class="btn-primary hover_white_pluse width_180px">Return to Search <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
+			</div>
+          </div>
+          <div class="signup_form_section">
+            <form>
+			<div class="job_search_keywords">
+                  <h2>name</h2>
+				  </div>
+              <div class="row">
+                <div class="col-sm-100">
+                  <div class="form-group responsive_margin35">
+				  <div class="input-group">
+				  <div class="input-group-addon"><img src="./savedsearch_files/save-search-name.png" alt="Saved Search Name" title="Saved Search Name" class="img-responsive"></div>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Saved Search Name">
+					<div class="input-group-addon upto_border_none responsive_width padding_left25">
+					<div class="service_box">
+					   <input id="inlineCheckbox4" value="option4" type="checkbox">
+                   <label for="inlineCheckbox4" class="padding_right_font"> Email me jobs like this <span></span></label>
+                       </div>
+					</div>
+                  </div>
+				  </div>
+                </div>
+              </div>
+			<div class="job_search_keywords">
+                  <h2>Keywords</h2>
+				  </div>
+              <div class="row">
+                <div class="col-sm-100">
+                  <div class="form-group">
+				  <div class="input-group">
+				  <div class="input-group-addon"><img src="./savedsearch_files/job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Job Title">
+                  </div>
+				  </div>
+                </div>
+              </div>
+			  <div class="row">
+                <div class="col-sm-100">
+                  <div class="form-group">
+				  <div class="input-group">
+				  <div class="input-group-addon"><img src="./savedsearch_files/Keywords.png" alt="Keywords" title="Keywords" class="img-responsive"></div>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Keywords (Boolean Search)">
+                  </div>
+				  </div>
+                </div>
+              </div>
+			  <div class="row">
+                <div class="col-sm-100">
+                  <div class="form-group">
+				  <div class="input-group">
+				  <div class="input-group-addon"><img src="./savedsearch_files/excluding.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Excluding these words (separate with commas)">
+                  </div>
+				  </div>
+                </div>
+              </div>
+			  <div class="job_search_keywords">
+                  <h2>Location &amp; Rates</h2>
+				  </div>
+              <div class="row">
+                <div class="col-sm-50">
+                  <div class="form-group">
+				  <div class="input-group">
+				  <div class="input-group-addon upto_border_none">Up to</div>
+				  <div class="select_option_arrow"></div>
+                    <select class="form-control background_drop_down">
+						<option value="">Miles</option>
+						<option value="1">1 mile</option>
+						<option value="5">5 miles</option>
+						<option value="10">10 miles</option>
+						<option value="20">20 miles</option>
+						<option value="30">30 miles</option>
+						<option value="40">40 miles</option>
+						<option value="50">50 miles</option>
+						<option value="100">100 miles</option>
+						<option value="1500">National</option>
+					</select>
+                  </div>
+				  </div>
+                </div>
+                <div class="col-sm-50">
+                   <div class="form-group">
+				  <div class="input-group">
+				  <div class="input-group-addon upto_border_none">From</div>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="City, Town, or PostCode">
+                  </div>
+				  </div>
+                </div>
+              </div>
+			  <div class="row">
+                <div class="col-sm-25 col-xs-50">
+                  <div class="form-group">
+				  <div class="input-group">
+				  <div class="input-group-addon upto_border_none">From</div>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Rate Min (£)">
+                  </div>
+				  </div>
+                </div>
+                <div class="col-sm-25 col-xs-50">
+                   <div class="form-group">
+				  <div class="input-group">
+				  <div class="input-group-addon upto_border_none">To</div>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Rate Max (£)">
+                  </div>
+				  </div>
+                </div>
+				<div class="col-sm-50">
+                   <div class="form-group">
+				  <div class="input-group">
+				
+				  <input value="1" id="prepaid" name="service_type" onchange="prepaidF()" checked="" type="radio">
+                        <label for="prepaid" class="radio-inline"><span></span> Daily Rate </label>
+					 
+					 <input value="2" id="postpaid" name="service_type" onchange="postpaidF()" type="radio">
+                        <label for="postpaid" class="radio-inline"><span></span>Hourly Rate </label>
+					
+					
+                  </div>
+				  </div>
+                </div>
+              </div>
+			  <div class="job_search_keywords">
+                  <h2>Contract Specification</h2>
+				  </div>
+			  <div class="row">
+                <div class="col-sm-50">
+                  <div class="form-group">
+				  <div class="input-group">
+				  <span class="form-control industry_sector">Industry Sector(S)</span>
+				  <div class="input-group-addon bordr_non"><img src="./savedsearch_files/inform.png" alt="Enter Password" title="Password" class="img-responsive"></div>
+                  </div>
+				   <ul class="form-control industry_min_heights padding_none contractor_profile min_height_335">
+						  <li class="active">All</li>
+						  <li>Aerospace/Defence/Military</li>
+						  <li>Automotive</li>
+						  <li>Banking/Financial Services</li>
+						  <li>Business Services/Vendors</li>
+						  <li>Charity/non-for-profit</li>
+						  <li>Consultancy</li>
+						  <li>Legal</li>
+			
+						</ul>
+				 
+				  </div>
+                </div>
+                <div class="col-sm-50">
+				<div class="job_referance_margen">
+                   <div class="form-group">
+				  <div class="input-group">
+				  <div class="input-group-addon"><img src="./savedsearch_files/reference-number.png" alt="Job Reference Number" title="Job Reference Number" class="img-responsive"></div>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Job Reference Number">
+                  </div>
+				  </div>
+				  <div class="form-group">
+				  <div class="input-group">
+				  <div class="input-group-addon"><img src="./savedsearch_files/show-contacts.png" alt="Show Contacts" title="Show Contacts" class="img-responsive"></div>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Show Contacts Posted Since:">
+                  </div>
+				  </div>
+				  </div>
+                </div>
+              </div>
+			  <div class="margin_top_30">
+			  <div class="row">
+			  <div class="col-sm-60">
+			   <div class="sign_up_left_side">
+		    <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse width_180px margin_bottom_10px">Save Search <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
+			<a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse width_180px">Delete Search <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
+		  </div>
+			  </div>
+			  <div class="col-sm-40">
+              <div class="sign_up_right_side">
+		    <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse width_180px">Run Search <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
+		  </div>
+		  </div>
+		  </div>
+		  </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+  </section>

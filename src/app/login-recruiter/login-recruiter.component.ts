@@ -31,9 +31,11 @@ inputData;min;max;getData;addNumber;number;number2;errorMessage;inputUrl;status;
   this.inputUrl= "http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/signin";
        this._commonRequestService.postData(this.inputUrl, this.inputLogin).subscribe(
         data => {
+          console.log("data--", data);
           this.getData = data;
            if( this.getData.status === "TRUE" && this.getData.data.type === "recuriter"){
              this.errorMsgFlag =false;
+             localStorage.setItem("loginDetail", JSON.stringify({"token": data.data.loginToken, "email": this.email}))
               this.succesLoginFlag =true;
               this.getViewProfileDta();
              
@@ -76,8 +78,9 @@ getRandamValue1(max,min){
         data => {
           this.response = data;
            this.recruiterviewProfileData = data.data;
-           if( this.response.status === "TRUE"){
-              this.router.navigate(['recruiters/profile']);
+            if( this.response.status === "TRUE"){
+             //if( this.response.status === "FALSE"){
+              this.router.navigate(['recruiter/profile']);
                this._commonRequestService.setDataWithoutObserval( this.recruiterviewProfileData,'recruiter-profile-view-data');
              console.log("view_profile: ", this.recruiterviewProfileData);
            }

@@ -141,38 +141,41 @@ ErrorMesageFlag=false;
 
 getProfileDta(){
    this.profileData =  this._commonRequestService.getDataWithoutObserval('recruiter-profile-view-data');
-this.companyName =this.profileData['companyDetails'].companyName;
-this.companySize =this.profileData['companyDetails'].companySize;
-this.addressName =this.profileData['companyDetails'].addressName;
-this.addressLine1 =this.profileData['companyDetails'].addressLine1;
-this.addressLine2 =this.profileData['companyDetails'].addressLine2;
-this.city =this.profileData['companyDetails'].city;
-this.country =this.profileData['companyDetails'].country;
-this.postCode =this.profileData['companyDetails'].postCode;
-this.telephone =this.profileData['companyDetails'].telephone;
-this.postalAddressLine1 =this.profileData['companyDetails'].postalAddressLine1;
-this.postalAddressLine2 =this.profileData['companyDetails'].postalAddressLine2;
-this.postalCity =this.profileData['companyDetails'].postalCity;
+   console.log("this.pro--", this.profileData);
+   if(this.profileData) {
+  this.companyName =this.profileData['companyDetails'].companyName;
+  this.companySize =this.profileData['companyDetails'].companySize;
+  this.addressName =this.profileData['companyDetails'].addressName;
+  this.addressLine1 =this.profileData['companyDetails'].addressLine1;
+  this.addressLine2 =this.profileData['companyDetails'].addressLine2;
+  this.city =this.profileData['companyDetails'].city;
+  this.country =this.profileData['companyDetails'].country;
+  this.postCode =this.profileData['companyDetails'].postCode;
+  this.telephone =this.profileData['companyDetails'].telephone;
+  this.postalAddressLine1 =this.profileData['companyDetails'].postalAddressLine1;
+  this.postalAddressLine2 =this.profileData['companyDetails'].postalAddressLine2;
+  this.postalCity =this.profileData['companyDetails'].postalCity;
 
-this.postalCountry =this.profileData['companyDetails'].postalCountry;
-this.postalPostCode =this.profileData['companyDetails'].postalPostCode;
-this.postalTelephone =this.profileData['companyDetails'].postalTelephone;
-this.fileArray =this.profileData['companyDetails'].fileArray;
-this.companyDescription= this.profileData.companyDescription;
-this.webAddress= this.profileData['companySocial'].webAddress;
-this.emailAddress= this.profileData['companySocial'].emailAddress;
+  this.postalCountry =this.profileData['companyDetails'].postalCountry;
+  this.postalPostCode =this.profileData['companyDetails'].postalPostCode;
+  this.postalTelephone =this.profileData['companyDetails'].postalTelephone;
+  this.fileArray =this.profileData['companyDetails'].fileArray;
+  this.companyDescription= this.profileData.companyDescription;
+  this.webAddress= this.profileData['companySocial'].webAddress;
+  this.emailAddress= this.profileData['companySocial'].emailAddress;
 
-this.rssUrl= this.profileData['companySocial'].rssData.rssUrl;
-this.fullUrlRssFeed= this.profileData['companySocial'].rssData.fullUrlRssFeed;
-this.rssDisplayFeed= this.profileData['companySocial'].rssData.rssDisplayFeed;
+  this.rssUrl= this.profileData['companySocial'].rssData.rssUrl;
+  this.fullUrlRssFeed= this.profileData['companySocial'].rssData.fullUrlRssFeed;
+  this.rssDisplayFeed= this.profileData['companySocial'].rssData.rssDisplayFeed;
 
-this.socialLinkName= this.profileData['companySocial'].twitterData.socialLinkName;
-this.fullUrlTwitterFeed= this.profileData['companySocial'].twitterData.fullUrlTwitterFeed;
-this.twitterDisplayFeed= this.profileData['companySocial'].twitterData.twitterDisplayFeed;
+  this.socialLinkName= this.profileData['companySocial'].twitterData.socialLinkName;
+  this.fullUrlTwitterFeed= this.profileData['companySocial'].twitterData.fullUrlTwitterFeed;
+  this.twitterDisplayFeed= this.profileData['companySocial'].twitterData.twitterDisplayFeed;
 
-this.linkedinUrl= this.profileData['companySocial'].linkedinData.linkedinUrl;
-this.fullUrlLinkedinFeed= this.profileData['companySocial'].linkedinData.fullUrlLinkedinFeed;
-this.linkedinDisplayFeed= this.profileData['companySocial'].linkedinData.linkedinDisplayFeed;
+  this.linkedinUrl= this.profileData['companySocial'].linkedinData.linkedinUrl;
+  this.fullUrlLinkedinFeed= this.profileData['companySocial'].linkedinData.fullUrlLinkedinFeed;
+  this.linkedinDisplayFeed= this.profileData['companySocial'].linkedinData.linkedinDisplayFeed;
+}
 
 // this.profileData.
   console.log(this.profileData,"view_data_recru");

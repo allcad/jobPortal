@@ -1,3 +1,164 @@
-<p>
-  contractor-job-search works!
-</p>
+ <section id="min_height">
+            <div id="contractor-signup">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-100">
+                            <div class="contractor_signup befourlogin_fontsize">
+                                <h2>Job <span>SEARCH</span></h2>
+                                <ul class="breadcomb">
+                                    <li><a href="http://beta.appnwebtechnologies.com/contractor/job-search.html#">Home</a></li>
+                                    <li class="right_arrow">&gt;</li>
+                                    <li><a href="http://beta.appnwebtechnologies.com/contractor/job-search.html#">Contractor </a></li>
+                                    <li class="right_arrow">&gt;</li>
+                                    <li class="active">Job Search</li>
+                                </ul>
+                                <div class="pull-right job_search">
+                                    <a href="http://beta.appnwebtechnologies.com/contractor/job-search.html#" class="btn-primary width_180px hover_white_pluse">Last Search <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
+                                    <a href="http://beta.appnwebtechnologies.com/contractor/job-search.html#" class="btn-primary width_180px hover_white_pluse">Reset Search <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                            <div class="signup_form_section">
+                                <form>
+                                    <div class="job_search_keywords">
+                                        <h2>Keywords</h2>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-100">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><img src="./jobsearch_files/job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
+                                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Job Title">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-100">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><img src="./jobsearch_files/Keywords.png" alt="Keywords" title="Keywords" class="img-responsive"></div>
+                                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Keywords (Boolean Search)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-100">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><img src="./jobsearch_files/excluding.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
+                                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Excluding these words (separate with commas)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="job_search_keywords">
+                                        <h2>Location &amp; Rates</h2>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-50">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon upto_border_none">Up to</div>
+                                                    <select class="form-control minimal background_drop_down">
+                                                        <option value="">Miles</option>
+                                                        <option value="1">1 mile</option>
+                                                        <option value="5">5 miles</option>
+                                                        <option value="10">10 miles</option>
+                                                        <option value="20">20 miles</option>
+                                                        <option value="30">30 miles</option>
+                                                        <option value="40">40 miles</option>
+                                                        <option value="50">50 miles</option>
+                                                        <option value="100">100 miles</option>
+                                                        <option value="1500">National</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-50">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon upto_border_none">From</div>
+                                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="City, Town, or PostCode">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-25 col-xs-50">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon upto_border_none">From</div>
+                                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Rate Min (£)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-25 col-xs-50">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon upto_border_none">To</div>
+                                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Rate Max (£)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-50">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <input value="1" id="prepaid" name="service_type" onchange="prepaidF()" checked="" type="radio">
+                                                    <label for="prepaid" class="radio-inline"><span></span> Daily Rate </label>
+                                                    <input value="2" id="postpaid" name="service_type" onchange="postpaidF()" type="radio">
+                                                    <label for="postpaid" class="radio-inline"><span></span> Hourly Rate </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="job_search_keywords">
+                                        <h2>Contract Specification</h2>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-50">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="form-control industry_sector">Industry Sector(S)</span>
+                                                    <div class="input-group-addon bordr_non"><img src="./jobsearch_files/inform.png" alt="Enter Password" title="Password" class="img-responsive"></div>
+                                                </div>
+                                                <ul class="form-control industry_min_heights padding_none contractor_profile min_height_335">
+                                                    <li class="active">All</li>
+                                                    <li>Aerospace/Defence/Military</li>
+                                                    <li>Automotive</li>
+                                                    <li>Banking/Financial Services</li>
+                                                    <li>Business Services/Vendors</li>
+                                                    <li>Charity/non-for-profit</li>
+                                                    <li>Consultancy</li>
+                                                    <li>Legal</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-50">
+                                            <div class="job_referance_margen">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon"><img src="./jobsearch_files/reference-number.png" alt="Job Reference Number" title="Job Reference Number" class="img-responsive"></div>
+                                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Job Reference Number">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon"><img src="./jobsearch_files/show-contacts.png" alt="Show Contacts" title="Show Contacts" class="img-responsive"></div>
+                                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Show Contacts Posted Since:">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sign_up_right_side">
+                                        <a href="http://beta.appnwebtechnologies.com/contractor/job-search.html#" class="btn-primary font_capitaliz hover_white_pluse">Search <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--contractor login end-->
+        </section>

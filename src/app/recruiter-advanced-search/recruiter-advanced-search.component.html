@@ -1,0 +1,320 @@
+<section id="min_height">
+            <!--navigation top end-->
+            <!--contractor login-->
+            <div id="contractor-signup">
+                <form>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-100">
+                                <div class="contractor_signup">
+                                    <h2 class="font_capitalizs">Advanced <span class="text_pink">SEARCH</span></h2>
+                                    <ul class="breadcomb">
+                                        <li><a href="#" class="hover_text_pink">Home</a></li>
+                                        <li class="right_arrow text_pink">&gt;</li>
+                                        <li><a href="#" class="hover_text_pink">Recruiter </a></li>
+                                        <li class="right_arrow text_pink">&gt;</li>
+                                        <li class="active">Advanced Search</li>
+                                    </ul>
+                                    <div class="pull-right job_search signup_form_section width_auto buttons_aligment">
+                                        <div class="input-group responsive_width_100 display_inline_div">
+                                            <div class="input-group-addon upto_border_none padding_right_38">Sort By</div>
+                                            <select class="form-control minimal background_drop_down box_padding_3 box_height_30 padding_left_none">
+                                                <option value="">Added (Descending)</option>
+                                                <option value="1">124536</option>
+                                                <option value="5">5124536</option>
+                                                <option value="10">10124536</option>
+                                                <option value="20">20124536</option>
+                                            </select>
+                                        </div>
+                                        <a href="javascript:void(0);" [routerLink]="['../saved-search']" class="btn-primary hover_text_pink hover_white_pluse">Last Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> <a href="#" class="btn-primary hover_text_pink hover_white_pluse">Reset Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
+                                </div>
+                                <div class="signup_form_section">
+                                    <div class="job_search_keywords">
+                                        <h2>Keywords</h2>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-100">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><img src="./assets/images/recruiter-job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
+                                                    <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Job Title">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-100">
+                                            <div class="form-group responsive_margin35">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><img src="./assets/images/recruiter-keywords.png" alt="Keywords" title="Keywords" class="img-responsive"></div>
+                                                    <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Keywords (Boolean Search)">
+                                                    <div class="input-group-addon upto_border_none responsive_width padding_left25">
+                                                        <div class="service_box">
+                                                            <input id="inlineCheckbox4" value="option4" type="checkbox">
+                                                            <label for="inlineCheckbox4" class="padding_right_font"> Use stemmed terms? <span></span></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-100">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><img src="./assets/images/recruiter-core-skills.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
+                                                    <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Core Skills (Separate with Commas)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-100">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><img src="./assets/images/recruiter-certification.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
+                                                    <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Certifications (Separate with Commas)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-100">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><img src="./assets/images/recruiter-these-word.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
+                                                    <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Don't Show Contractors With These Words">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-50">
+                                            <div class="job_search_keywords location_rates">
+                                                <h2>Location & Rates</h2>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-50">
+                                            <div class="mapping_radial">
+                                                <ul>
+                                                    <li><a href="javascript:void(0)" id="inquery_maping">Mapping</a></li>
+                                                    <li>|</li>
+                                                    <li><a href="javascript:void(0)" class="" id="inquery_now_homes">Radial</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mapping_view">
+                        <div id="mapping_view_page" style="display: none;">
+                            <div class="container">
+                                <div class="signup_form_section padding_top0">
+                                    <div class="close_mapping"><img src="./assets/images/location-close.png" alt="ads" title="ads" class="img-responsive"></div>
+                                    <div class="col-sm-9">
+                                        <div class="location_image_part"><img src="./assets/images/location-rate.png" alt="ads" title="ads" class="img-responsive"></div>
+                                    </div>
+                                    <div class="col-sm-88">
+                                        <div class="radial_description">
+                                            <p>This section allows you to find a Contractor in any location you want, at any rate that you desire. Mapping Search allows you to search contractors based on their designated commutable and relocatable areas. </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="home_page_inquerys">
+                        <div id="inquerymaindivs" style="display: none;">
+                            <div class="container">
+                                <div class="signup_form_section padding_top0">
+                                    <div class="close_inquerys"><img src="./assets/images/location-close.png" alt="ads" title="ads" class="img-responsive"></div>
+                                    <div class="col-sm-9">
+                                        <div class="location_image_part"><img src="./assets/images/location-rate.png" alt="ads" title="ads" class="img-responsive"></div>
+                                    </div>
+                                    <div class="col-sm-88">
+                                        <div class="radial_description">
+                                            <p>This section allows you to find a Contractor in any location you want, at any rate that you desire. Radial Search allows you to find all Contractors within a set radius of your chosen location. </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-100">
+                                <div class="signup_form_section padding_top0">
+                                    <div class="row">
+                                        <div class="col-sm-55 col-md-55">
+                                            <div class="form-group margin_top14">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><img src="./assets/images/recruiter-city-pastcode.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
+                                                    <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="City, Town Or Postcode">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-40 col-md-offset-5 col-md-40">
+                                            <div class="distanc_from_location">
+                                                <p>Distance From Location: <span class="text_pink">20 Miles</span></p>
+                                                <img src="./assets/images/distanc-from-location.png" alt="distanc-from-location" title="distanc-from-location" class="img-responsive"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-30 col-xs-100">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon upto_border_none max-width100">Preferred Rate</div>
+                                                    <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Rate Min (£)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-20 col-xs-100">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon upto_border_none max-width100">-</div>
+                                                    <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Rate Max (£)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-48 col-md-offset-2">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <input value="1" id="prepaid" name="service_type" onChange="prepaidF()" checked="" type="radio">
+                                                    <label for="prepaid" class="radio-inline margin_top_11"><span></span> Daily Rate </label>
+                                                    <input value="2" id="postpaid" name="service_type" onChange="postpaidF()" type="radio">
+                                                    <label for="postpaid" class="radio-inline margin_top_11"><span></span>Hourly Rate </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="job_search_keywords">
+                                        <h2>Availability</h2>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-68">
+                                            <div class="form-group">
+                                                <div class="input-group responsive_width_100 ">
+                                                    <div class="input-group-addon upto_border_none padding_right_38">Time left on current Contract</div>
+                                                    <select class="form-control minimal background_drop_down box_padding_3 box_height_30 padding_left_none">
+                                                        <option value="">All</option>
+                                                        <option value="1">124536</option>
+                                                        <option value="5">5124536</option>
+                                                        <option value="10">10124536</option>
+                                                        <option value="20">20124536</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-32">
+                                            <div class="input-group-addon upto_border_none responsive_width include_contractors">
+                                                <div class="service_box">
+                                                    <input id="inlineCheckbox2" value="option2" type="checkbox">
+                                                    <label for="inlineCheckbox2" class="padding_right_font">Include contractors whose
+                                                        <br> details are not yet live? <span></span></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-100">
+                                            <div class="form-group">
+                                                <div class="input-group responsive_width_100">
+                                                    <div class="input-group-addon upto_border_none">Show contractors updated Since</div>
+                                                    <select class="form-control minimal background_drop_down box_padding_3 box_height_30 padding_left_none">
+                                                        <option value="">All</option>
+                                                        <option value="1">124536</option>
+                                                        <option value="5">5124536</option>
+                                                        <option value="10">10124536</option>
+                                                        <option value="20">20124536</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="job_search_keywords">
+                                        <h2>Contract Specification</h2>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-50">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><img src="./assets/images/recruiter-contractor-name.png" alt="Job Reference Number" title="Job Reference Number" class="img-responsive"></div>
+                                                    <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Contractor Name">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-50">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><img src="./assets/images/recruiter-education.png" alt="Job Reference Number" title="Job Reference Number" class="img-responsive"></div>
+                                                    <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Education">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-50">
+                                            <div class="form-group">
+                                                <div class="input-group"> <span class="form-control industry_sector">Industry Sector(S)</span>
+                                                    <div class="input-group-addon bordr_non"><img src="./assets/images/inform.png" alt="" data-toggle="tooltip" data-placement="top" title="CTRL + click to select multiple sectors"></div>
+                                                </div>
+                                                <ul class="form-control industry_min_heights padding_none">
+                                                    <li class="active">All</li>
+                                                    <li>Accountancy</li>
+                                                    <li>Aerospace/Defence/Military</li>
+                                                    <li>Automotive</li>
+                                                    <li>Banking/Financial Services</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-50">
+                                            <div class="form-group">
+                                                <div class="input-group"> <span class="form-control industry_sector">Security Clearance</span>
+                                                    <div class="input-group-addon bordr_non"></div>
+                                                </div>
+                                                <ul class="form-control industry_min_heights padding_none">
+                                                    <li class="active">All</li>
+                                                    <li>BPSS</li>
+                                                    <li>CRB</li>
+                                                    <li>CTC</li>
+                                                    <li>DV</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-100">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon border_bottom_none"><img src="./assets/images/recruiter-driving-licence.png" alt="Enter Password" title="Password" class="img-responsive"></div>
+                                                    <label class="eu_driving_licence">Driving Licence?</label>
+                                                    <div class="input-group group_inline_rights">
+                                                        <input value="1" id="prepaid1" name="service_type3" checked="" type="radio">
+                                                        <label for="prepaid1" class="radio-inline"><span></span> Y </label>
+                                                        <input value="2" id="postpaid2" name="service_type3" type="radio">
+                                                        <label for="postpaid2" class="radio-inline"><span></span> N </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="margin_top_30">
+                                        <div class="row">
+                                            <div class="col-sm-60">
+                                                <label for="inlineCheckbox12" class="text_pink ">How do we moderate Permanent candidates? </label>
+                                            </div>
+                                            <div class="col-sm-40">
+                                                <div class="sign_up_right_side"> <a href="javascript:void(0);" [routerLink]="['../searchresult-loggedin']" class="btn-primary hover_text_pink hover_white_pluse width_180px">Search Now <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--contractor login end-->
+        </section>

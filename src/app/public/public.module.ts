@@ -19,7 +19,7 @@ import { AdSpaceComponent } from '../ad-space/ad-space.component';
 import { LatestNewsComponent } from '../latest-news/latest-news.component';
 import { LatestNewsListingComponent } from '../latest-news-listing/latest-news-listing.component';
 import { LatestNewsListingDetailsComponent } from '../latest-news-listing-details/latest-news-listing-details.component';
-import { FindContractHubComponent } from '../find-contract-hub/find-contract-hub.component';
+// import { FindContractHubComponent } from '../find-contract-hub/find-contract-hub.component';
 import { ContentBottomLeftAdsComponent } from '../content-bottom-left-ads/content-bottom-left-ads.component';
 import { ContentBottomRightAdsComponent } from '../content-bottom-right-ads/content-bottom-right-ads.component';
 import { ContractorServiceMenuListingComponent } from '../contractor-service-menu-listing/contractor-service-menu-listing.component';
@@ -27,6 +27,10 @@ import { ContractorServiceMenuListingComponent } from '../contractor-service-men
 
 import { ContractorSignUpComponent } from '../contractor-sign-up/contractor-sign-up.component';
 import { LoginComponent } from '../login/login.component';
+import { SharedModule } from '../shared/shared.module';
+
+import { RecruiterSignUpComponent } from '../recruiter-sign-up/recruiter-sign-up.component';
+import { LoginRecruiterComponent } from '../login-recruiter/login-recruiter.component';
 
 import { PublicRoutingModule } from './public-routing.module';
 @NgModule({
@@ -43,12 +47,14 @@ import { PublicRoutingModule } from './public-routing.module';
 	LatestNewsComponent,
 	LatestNewsListingComponent,
 	LatestNewsListingDetailsComponent,
-	FindContractHubComponent,
+	// FindContractHubComponent,
 	ContentBottomLeftAdsComponent,
 	ContentBottomRightAdsComponent,
 	ContractorServiceMenuListingComponent,
 	ContractorSignUpComponent,
-	LoginComponent
+	LoginComponent,
+	RecruiterSignUpComponent,
+	LoginRecruiterComponent
   ],
   imports: [
   	PublicRoutingModule,
@@ -57,7 +63,8 @@ import { PublicRoutingModule } from './public-routing.module';
 	TooltipModule,
 	HttpModule,
 	CommonModule,
-	IonRangeSliderModule
+	IonRangeSliderModule,
+	SharedModule
   ],
   providers: []
 })

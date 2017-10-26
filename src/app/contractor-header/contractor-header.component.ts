@@ -10,6 +10,11 @@ export class ContractorHeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  	
+  }
+
+  logout(){
+  	
   }
 
 }
