@@ -46,12 +46,12 @@ this.getKeySkillData()
         "contractor_email":this.contractor_email,
         "contractor_tel_no":this.contractor_tel_no,
         "contractor_current_password":this.contractor_current_password,
-          "contractor_rate":this.contractor_rate ? this.contractor_rate : "200",
+        "contractor_rate":this.contractor_rate ? this.contractor_rate : "200",
         "fileForCv":JSON.stringify(this.fileUpload),
         "contractor_job_title":this.contractor_job_title,
         "contractor_key_skills":["1","3"],
         "contractor_employment_situation":this.contractor_employment_situation ? this.contractor_employment_situation : "permanant",
-        "contractor_services": this.contractor_services,
+        "contractor_services": ["1"],
         "contractor_agree_terms_status" :this.contractor_agree_terms_status
 
       }
