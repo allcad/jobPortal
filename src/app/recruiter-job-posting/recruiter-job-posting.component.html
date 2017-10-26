@@ -2,7 +2,7 @@
             <!--navigation top end-->
             <!--contractor login-->
             <div id="contractor-signup" class="recruiter_job_posting_manage">
-                <form>
+                <form #recruiterJobPostingForm="ngForm" (ngSubmit)="onJobPostSave(recruiterJobPostingForm)">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-50">
@@ -38,7 +38,7 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-addon"><img src="./assets/images/recruiter-job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
-                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Job Title">
+                                               <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Job Title" name="jobPostingJobTitle" [(ngModel)]="jobPostingJobTitle">
                                             </div>
                                             <p class="characters_remaining"><span>40</span> characters remaining</p>
                                         </div>
@@ -49,7 +49,7 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-addon"><img src="./assets/images/duration.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
-                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Duration">
+                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Duration" name="jobPostingDuration" [(ngModel)]="jobPostingDuration">
                                             </div>
                                             <p class="characters_remaining"><span>20</span> characters remaining</p>
                                         </div>
@@ -58,7 +58,7 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-addon"><img src="./assets/images/start-date.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
-                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Start Date (dd/mm/yyyy)">
+                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Start Date (dd/mm/yyyy)" name="startDate" [(ngModel)]="startDate">
                                             </div>
                                         </div>
                                     </div>
@@ -68,7 +68,7 @@
                                         <div class="form-group">
                                             <div class="input-group responsive_width_100">
                                                 <div class="input-group-addon upto_border_none">Industry Sector</div>
-                                                <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none">
+                                                <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none" name="industrySector" [(ngModel)]="industrySector">
                                                     <option value="">Any</option>
                                                     <option value="1">124536</option>
                                                     <option value="5">5124536</option>
@@ -84,7 +84,7 @@
                                         <div class="form-group">
                                             <div class="input-group responsive_width_100">
                                                 <div class="input-group-addon upto_border_none padding_right_18px">Work Eligibility</div>
-                                                <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none responsive_padding_right20">
+                                                <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none responsive_padding_right20" name="workEligibility" [(ngModel)]="workEligibility">
                                                     <option value="">Applicants must be eligible to work in the EU</option>
                                                     <option value="1">124536</option>
                                                     <option value="5">5124536</option>
@@ -105,7 +105,7 @@
                                         <div class="form-group responsive_margin35">
                                             <div class="input-group">
                                                 <div class="input-group-addon"><img src="./assets/images/recruiter-city-pastcode.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
-                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="City, Town or PostCode">
+                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="City, Town or PostCode" name="cityTownValue" [(ngModel)]="cityTownValue">
                                             </div>
                                         </div>
                                     </div>
@@ -115,7 +115,7 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-addon upto_border_none max-width100">Preferred Rate</div>
-                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Rate Min (£)">
+                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Rate Min (£)" name="minRate" [(ngModel)]="minRate">
                                             </div>
                                         </div>
                                     </div>
@@ -123,7 +123,7 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-addon upto_border_none max-width100">-</div>
-                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Rate Max (£)">
+                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Rate Max (£)" name="maxRate" [(ngModel)]="maxRate">
                                             </div>
                                         </div>
                                     </div>
@@ -131,9 +131,9 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="daily_rate_part"></div>
-                                                <input value="1" id="prepaid" name="service_type" onChange="prepaidF()" checked="" type="radio">
+                                                <input value="daily" id="prepaid" name="service_type" onChange="prepaidF()" checked="" type="radio" [(ngModel)]="dailyHourlyValue">
                                                 <label for="prepaid" class="radio-inline radio-inline-part  margin_top_11"><span></span> Daily Rate </label>
-                                                <input value="2" id="postpaid" name="service_type" onChange="postpaidF()" type="radio">
+                                                <input value="hourly" id="postpaid" name="service_type" onChange="postpaidF()" type="radio" [(ngModel)]="dailyHourlyValue">
                                                 <label for="postpaid" class="radio-inline radio-inline-part margin_top_11"><span></span>Hourly Rate </label>
                                             </div>
                                         </div>
@@ -160,10 +160,10 @@
                                                 <div class="text_box_hide"> <a href="#"><i class="fa fa-angle-up" aria-hidden="true"></i></a> </div>
                                             </div>
                                             <div class="text_area_larg">
-                                                <textarea type="text" class="form-control" rows="10"> </textarea>
+                                                <textarea type="text" class="form-control" rows="10" name="jobSpecificationTitle" [(ngModel)]="jobSpecificationTitle"> </textarea>
                                             </div>
                                             <div class="textarea_footer">
-                                                <textarea class="form-control" rows="1">body</textarea>
+                                                <textarea class="form-control" rows="1" name="jobSpecificationBody" [(ngModel)]="jobSpecificationBody">body</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -178,7 +178,7 @@
                                         <div class="form-group">
                                             <div class="input-group responsive_width_100">
                                                 <div class="input-group-addon upto_border_none">Recruiter Name</div>
-                                                <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none">
+                                                <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none" name="recruiterName" [(ngModel)]="recruiterName">
                                                     <option value="">Anurag Srivastava</option>
                                                     <option value="1">124536</option>
                                                     <option value="5">5124536</option>
@@ -194,7 +194,7 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-addon"><img src="./assets/images/recruiter-templates-as-icon.png" alt="Job Reference Number" title="Job Reference Number" class="img-responsive"></div>
-                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Save Template As">
+                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Save Template As" name="saveTemplateAs" [(ngModel)]="saveTemplateAs">
                                             </div>
                                         </div>
                                     </div>
@@ -202,7 +202,7 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-addon"><img src="./assets/images/recruiter-templates-reference-icon.png" alt="Job Reference Number" title="Job Reference Number" class="img-responsive"></div>
-                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Job Reference">
+                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Job Reference" name="jobReference" [(ngModel)]="jobReference">
                                             </div>
                                         </div>
                                     </div>
@@ -214,8 +214,13 @@
                                         <div class="sign_up_left_side"> <a href="javascript:void(0);" [routerLink]="['../preview-job']" class="btn-primary hover_text_pink hover_white_pluse width_180px margin_bottom10xp">Preview <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
                                     </div>
                                     <div class="col-xs-50 col-sm-40">
-                                        <div class="sign_up_right_side"> <a href="#" class="btn-primary hover_text_pink hover_white_pluse width_180px">Post Job <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
+                                        <div class="sign_up_right_side"> 
+                                            <!-- <a href="#" class="btn-primary hover_text_pink hover_white_pluse width_180px">Post Job <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>  -->
+                                            <button type="submit" class="btn-primary hover_text_pink hover_white_pluse width_180px" [disabled]="!recruiterJobPostingForm.form.valid">Post Job <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></button>
+                                        </div>
                                     </div>
+
+                                    
                                 </div>
                             </div>
                         </div>
