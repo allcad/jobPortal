@@ -249,10 +249,86 @@
                   </div>
                 </div>
               </div>
+
+
+              <div *ngIf="showMultipleAddress">
+                <div *ngFor="let item of addMulAddArray">
+                  <div class="row">
+                    <div class="col-sm-100">
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-addon"><img src="./assets/images/address-name-icon.png" alt="" title="" class="img-responsive"></div>
+                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="ADDRESS LINE 1" [(ngModel)]="item.addresslLine1" name="postalAddressLine1">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-100">
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-addon"><img src="./assets/images/address-name-icon.png" alt="" title="" class="img-responsive"></div>
+                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="ADDRESS LINE 2" [(ngModel)]="item.addressLine2" name="postalAddressLine2">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-50">
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-addon"><img src="./assets/images/recruiter-city-pastcode.png" alt="" title="" class="img-responsive"></div>
+                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="CITY, TOWN" [(ngModel)]="item.city" name="postalCity">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-50">
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-addon"><img src="./assets/images/county-icon.png" alt="" title="" class="img-responsive"></div>
+                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="COUNTRY" [(ngModel)]="item.country" name="postalCountry">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-50">
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-addon"><img src="./assets/images/post-code-icon.png" alt="" title="" class="img-responsive"></div>
+                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="POST CODE" [(ngModel)]="item.postCode" name="postalPostCode">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-50">
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-addon"><img src="./assets/images/telephone-icon.png" alt="" title="" class="img-responsive"></div>
+                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="TELEPHONE" [(ngModel)]="item.telephone" name="postalTelephone">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="sign_up_right_side margin_top_-30px">
+                    <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="removeAddress(item)">Remove
+                      <i class="fa fa-minus plus_blue text_pink" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+
               <div class="row">
                 <div class="col-sm-100">
-                  <div class="sign_up_right_side margin_top_-30px"> <a href="#" class="btn-primary hover_text_pink hover_white_pluse width_180px">Remove<i class="fa fa-minus plus_blue text_pink" aria-hidden="true"></i></a>
-                    <p class="text_pink"><a href="#" class="text_pink"><i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i> Add Another Address</a></p>
+                  <div class="sign_up_right_side margin_top_-30px">
+                    <!-- <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px">Remove
+                      <i class="fa fa-minus plus_blue text_pink" aria-hidden="true"></i>
+                    </a> -->
+                    <p class="text_pink">
+                      <button href="javascript:void(0);" class="text_pink" (click)="addMultiplePhone()">
+                        <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i> Add Another Address
+                      </button>
+                    </p>
                   </div>
                 </div>
               </div>
