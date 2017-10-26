@@ -57,6 +57,23 @@ import {RecruiterModule} from './recruiter/recruiter.module';
 
 import {ContractorModule} from './contractor/contractor.module';
 
+import { AboutContractorComponent } from './about-contractor/about-contractor.component';
+import { ContractorAdviceArticleComponent } from './contractor-advice-article/contractor-advice-article.component';
+import { ContractorAdviceCategoryComponent } from './contractor-advice-category/contractor-advice-category.component';
+import { ContractorAccountComponent } from './contractor-account/contractor-account.component';
+import { ContractorApplicationsComponent } from './contractor-applications/contractor-applications.component';
+import { ContractorDirectoryComponent } from './contractor-directory/contractor-directory.component';
+import { ContractorHelpComponent } from './contractor-help/contractor-help.component';
+import { ContractorHomeComponent } from './contractor-home/contractor-home.component';
+import { ContractorRecuriterProfileComponent } from './contractor-recuriter-profile/contractor-recuriter-profile.component';
+import { ContractorSearchResultComponent } from './contractor-search-result/contractor-search-result.component';
+import { ContractorJobSearchSavedComponent } from './contractor-job-search-saved/contractor-job-search-saved.component';
+import { ContractorJobSearchComponent } from './contractor-job-search/contractor-job-search.component';
+import { ContractorLoginFullJobComponent } from './contractor-login-full-job/contractor-login-full-job.component';
+import { ContractorNewsArticleComponent } from './contractor-news-article/contractor-news-article.component';
+import { ContractorNewsCategoryComponent } from './contractor-news-category/contractor-news-category.component';
+import { TermUseComponent } from './term-use/term-use.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,7 +112,23 @@ import {ContractorModule} from './contractor/contractor.module';
     ContractorComponent,
     RecruiterComponent,
     ContractorHeaderComponent,
-    RecruiterHeaderComponent
+    RecruiterHeaderComponent,
+    AboutContractorComponent,
+    ContractorAdviceArticleComponent,
+    ContractorAdviceCategoryComponent,
+    ContractorAccountComponent,
+    ContractorApplicationsComponent,
+    ContractorDirectoryComponent,
+    ContractorHelpComponent,
+    ContractorHomeComponent,
+    ContractorRecuriterProfileComponent,
+    ContractorSearchResultComponent,
+    ContractorJobSearchSavedComponent,
+    ContractorJobSearchComponent,
+    ContractorLoginFullJobComponent,
+    ContractorNewsArticleComponent,
+    ContractorNewsCategoryComponent,
+    TermUseComponent
   ],
   imports: [
     BrowserModule,
