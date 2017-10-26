@@ -38,7 +38,7 @@ inputData;min;max;addNumber;number;number2;errorMessage;inputUrl;status;succesLo
                this.succesLoginFlag =true;
                   this.errorMsgFlag =false;
                   localStorage.setItem("loginDetail", JSON.stringify({"token": data.data.loginToken, "email": email}))
-                  this.router.navigate(['contractors/view-profile']);
+                  this.router.navigate(['../contractor/viewProfile']);
            }
           else{
              this.errorMsgFlag =true;

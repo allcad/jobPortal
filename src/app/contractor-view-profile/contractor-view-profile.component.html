@@ -14,7 +14,14 @@
               <li class="right_arrow">&gt;</li>
               <li class="active">View Profile </li>
             </ul>
-            <div class="pull-right job_search"> <a href="javascript:void(0);" class="btn-info hover_white_pluse">View Profile <i class="fa fa-plus plus_black" aria-hidden="true"></i></a> <a href="javascript:void(0);" class="btn-primary hover_white_pluse" [routerLink]="['../../contractors/profile']">Edit Profile <i class="fa fa-plus plus_blue " aria-hidden="true"></i></a> </div>
+            <div class="pull-right job_search"> 
+              <a href="javascript:void(0);" class="btn-info hover_white_pluse">View Profile 
+                <i class="fa fa-plus plus_black" aria-hidden="true"></i>
+              </a> 
+              <a href="javascript:void(0);" class="btn-primary hover_white_pluse" [routerLink]="['../EditProfile']">Edit Profile 
+                <i class="fa fa-plus plus_blue " aria-hidden="true"></i>
+              </a> 
+            </div>
           </div>
         </div>
       </div>
@@ -222,7 +229,7 @@
                       <div class="input-group"> <span class="form-control industry_sector">SummAry</span>
                         <div class="input-group-addon bordr_non"></div>
                       </div>
-                      <textarea [tooltip]="summary" class="form-control textares" rows="3">{{profileData?.summary}}
+                      <textarea [tooltip]="summary" class="form-control textares" rows="3" [disabled]="true">{{profileData?.summary}}
                       </textarea>
                        <tooltip-content #summary>
                       <span style="color: #C21F39">Summary</span>

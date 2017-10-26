@@ -28,7 +28,7 @@ import { FooterComponent } from './footer/footer.component';
 // import { ContentBottomLeftAdsComponent } from './content-bottom-left-ads/content-bottom-left-ads.component';
 // import { ContentBottomRightAdsComponent } from './content-bottom-right-ads/content-bottom-right-ads.component';
 // import { ContractorServiceMenuListingComponent } from './contractor-service-menu-listing/contractor-service-menu-listing.component';
-//import { ContractorSignUpComponent } from './contractor-sign-up/contractor-sign-up.component';
+// import { ContractorSignUpComponent } from './contractor-sign-up/contractor-sign-up.component';
 // import { LoginComponent } from './login/login.component';
 //import { RecruiterSignUpComponent } from './recruiter-sign-up/recruiter-sign-up.component';
 //import { ContentComponent } from './content/content.component';
@@ -80,8 +80,8 @@ import {ContractorModule} from './contractor/contractor.module';
     // ContentBottomLeftAdsComponent,
     // ContentBottomRightAdsComponent,
     // ContractorServiceMenuListingComponent,
-    //ContractorSignUpComponent,
-    //LoginComponent,
+    // ContractorSignUpComponent,
+    // LoginComponent,
     //RecruiterSignUpComponent,
     //ContentComponent,
     // ContractorProfileComponent,

@@ -6,6 +6,8 @@ import 'rxjs/add/operator/map';  // we need to import this now
 export class CommonRequestService {
 inputUrl;inputData;
 objectData={}
+
+
 	constructor(private _http:Http){
 
 	}
