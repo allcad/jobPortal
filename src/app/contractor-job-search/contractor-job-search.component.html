@@ -27,7 +27,7 @@
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-addon"><img src="./jobsearch_files/job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
-                                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Job Title">
+                                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Job Title" name="jobTitle" [(ngModel)]="jobTitle">
                                                 </div>
                                             </div>
                                         </div>
@@ -37,7 +37,7 @@
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-addon"><img src="./jobsearch_files/Keywords.png" alt="Keywords" title="Keywords" class="img-responsive"></div>
-                                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Keywords (Boolean Search)">
+                                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Keywords (Boolean Search)" name="keywords" [(ngModel)]="keywords">
                                                 </div>
                                             </div>
                                         </div>
@@ -47,7 +47,7 @@
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-addon"><img src="./jobsearch_files/excluding.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
-                                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Excluding these words (separate with commas)">
+                                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Excluding these words (separate with commas)" name="Excluding" [(ngModel)]="excluding">
                                                 </div>
                                             </div>
                                         </div>
@@ -60,7 +60,7 @@
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-addon upto_border_none">Up to</div>
-                                                    <select class="form-control minimal background_drop_down">
+                                                    <select class="form-control minimal background_drop_down" [(ngModel)]="distance" name="distance"> 
                                                         <option value="">Miles</option>
                                                         <option value="1">1 mile</option>
                                                         <option value="5">5 miles</option>
@@ -79,7 +79,7 @@
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-addon upto_border_none">From</div>
-                                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="City, Town, or PostCode">
+                                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="City, Town, or PostCode" name="from" [(ngModel)]="place">
                                                 </div>
                                             </div>
                                         </div>
@@ -89,7 +89,7 @@
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-addon upto_border_none">From</div>
-                                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Rate Min (£)">
+                                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Rate Min (£)" name="minRate" [(ngModel)]="minRate">
                                                 </div>
                                             </div>
                                         </div>
@@ -97,16 +97,16 @@
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-addon upto_border_none">To</div>
-                                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Rate Max (£)">
+                                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Rate Max (£)" name="maxRate" [(ngModel)]="maxRate">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-50">
                                             <div class="form-group">
                                                 <div class="input-group">
-                                                    <input value="1" id="prepaid" name="service_type" onchange="prepaidF()" checked="" type="radio">
+                                                    <input value="daily" id="prepaid" name="rateTypeDaily" onchange="prepaidF()" checked="" type="radio" [(ngModel)]="rateType">
                                                     <label for="prepaid" class="radio-inline"><span></span> Daily Rate </label>
-                                                    <input value="2" id="postpaid" name="service_type" onchange="postpaidF()" type="radio">
+                                                    <input value="hourly" id="postpaid" name="rateTypeHourly" onchange="postpaidF()" type="radio" [(ngModel)]="rateType">
                                                     <label for="postpaid" class="radio-inline"><span></span> Hourly Rate </label>
                                                 </div>
                                             </div>
@@ -139,20 +139,31 @@
                                                 <div class="form-group">
                                                     <div class="input-group">
                                                         <div class="input-group-addon"><img src="./jobsearch_files/reference-number.png" alt="Job Reference Number" title="Job Reference Number" class="img-responsive"></div>
-                                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Job Reference Number">
+                                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Job Reference Number" name="jobPreferenceNumber" [(ngModel)]="jobPreferenceNumber">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <div class="input-group-addon"><img src="./jobsearch_files/show-contacts.png" alt="Show Contacts" title="Show Contacts" class="img-responsive"></div>
-                                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Show Contacts Posted Since:">
+                                                        <div class="input-group-addon"><img src="./jobsearch_files/show-contacts.png" alt="Show Contracts Posted Since" title="Show Contracts Posted Since" class="img-responsive"></div>
+                                                        <!-- <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Show Contacts Posted Since:" name="contacts" [(ngModel)]="showContacts"> -->
+                                                        <select class="form-control minimal background_drop_down" [(ngModel)]="showContracts" name="showContracts"> 
+                                                        <option value="all">All time</option>
+                                                        <option value="24h">Last 24 hours</option>
+                                                        <option value="48h">Last 48 hours</option>
+                                                        <option value="7d">Last 7 days</option>
+                                                        <option value="10d">Last 10 days</option>
+                                                        <option value="14d">Last 14 days</option>
+                                                        <option value="30d">Last 30 days</option>
+                                                        <option value="60d">Last 60 days</option>
+                                                        
+                                                    </select>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="sign_up_right_side">
-                                        <a href="http://beta.appnwebtechnologies.com/contractor/job-search.html#" class="btn-primary font_capitaliz hover_white_pluse">Search <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
+                                    <div class="sign_up_right_side" (click)="searchJob()">
+                                        <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse" >Search<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
                                     </div>
                                 </form>
                             </div>

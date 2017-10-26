@@ -258,9 +258,21 @@
               <div class="job_search_keywords signup_form_section width_auto">
                 <h2>Skills & Experience</h2>
                 <div class="enter_your_skills">
-                  <label>Enter your skills:</label>
-                  <a href="javascript:void(0)"><img src="./assets/images/your-skills.png" alt="Enter your skills" title="Enter your skills"></a> </div>
-                <div class="add_sub_skills"> <a href="javascript:void(0)">PHP <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a> <a href="javascript:void(0)">java <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a> <a href="javascript:void(0)">JAVASCRIPT <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a> </div>
+                  <select class="form-control minimal background_drop_down" [(ngModel)]="selectedSkill" name="skills"  (change)="selectSkill()">
+                        <option value="">Select Skill</option>
+                        <option *ngFor="let skill of skillData" [value]="skill.skill_id">{{skill.skill_name}}</option>
+                      </select>
+                  <a href="javascript:void(0)" (click)="addSkill()"><img src="./assets/images/your-skills.png" alt="Enter your skills" title="Enter your skills"></a> 
+                  </div>
+                   
+
+                <div class="add_sub_skills"> 
+                  <a href="javascript:void(0)" *ngFor="let selectedSkill of selectedSkillArray; let i = index">
+                      {{selectedSkill.skill_name}}
+                   <img src="./assets/images/close-icon.png" alt="Close" title="Close" (click)="removeSelectedSkill(i)"></a> 
+
+
+                  <!-- <a href="javascript:void(0)">java <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a> <a href="javascript:void(0)">JAVASCRIPT <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a> --> </div>
               </div>
               <div class="signup_form_section summary_industry_box width_auto">
                 <div class="row">

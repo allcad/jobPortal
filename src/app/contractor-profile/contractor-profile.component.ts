@@ -8,6 +8,9 @@ import { CommonRequestService } from '../common-request.service';
   styleUrls: ['./contractor-profile.component.css']
 })
 export class ContractorProfileComponent implements OnInit {
+  selectedSkill;
+  selectedSkillArray = [];
+  selectedSkillObject;
   profileUrl: string;
   userName: string;
   emailAddress;
@@ -25,7 +28,7 @@ export class ContractorProfileComponent implements OnInit {
   preferredJobTitle: string;
   commutableValue: number;
   rate1;dataUrl;
-skillData;
+  skillData;
   rate2;
   dailyHourlyValue;profileData;
   currentJobTitle: string;
@@ -35,7 +38,7 @@ skillData;
   preferredJobTitleValue: string;commutable;
   currentPassword;
   newPassword;fileUploadForCV;
-fileUploadForCover;
+  fileUploadForCover;
   confirmNewPassword;contractorProfileJson;inputUrl;responseData;succesMessageFlag =false;fileUpload;
 ErrorMesageFlag=false;
  constructor(public _commonRequestService: CommonRequestService) { }
@@ -148,6 +151,33 @@ ErrorMesageFlag=false;
     );
 
 
+  }
+
+  selectSkill(){
+    if(this.selectedSkill){
+      this.selectedSkillObject = this.getSkillObjectById(this.selectedSkill);  
+    }
+    
+  }
+
+  addSkill(){
+    if(this.selectedSkillObject && this.selectedSkillArray.indexOf(this.selectedSkillObject) == -1){
+      this.selectedSkillArray.push(this.selectedSkillObject);
+      this.selectedSkill = "";
+    }
+    
+  }
+
+  removeSelectedSkill(index){
+    this.selectedSkillArray.splice(index, 1);
+  }
+
+  getSkillObjectById(skill_id){
+    for(var i=0; i<this.skillData.length; i++){
+      if(this.skillData[i].skill_id == skill_id){
+        return this.skillData[i];
+      }
+    }
   }
 
 
