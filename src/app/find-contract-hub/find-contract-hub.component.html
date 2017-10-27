@@ -105,9 +105,9 @@
       <div class="row">
         <div class="col-sm-33 col-md-33">
           <div class="services_header margin_bottom_10px"> <img src="./assets/images/contractor-services-icon.png" alt="" title=""> <span>CONTRACTOR SERVICES</span> <a href="http://beta.appnwebtechnologies.com/contractor/contractor-hub-home.html#"><img src="./assets/images/services-menu.png" alt="" title="" class="menu_bar"></a>
-        <div class="navigation_services" style="display:none;">
+        <div class="navigation_services" >
         <ul>
-          <li><a href="http://beta.appnwebtechnologies.com/contractor/contractor-hub-home.html#">Umbrella Companies</a></li>
+          <li><a href="javascript:void(0)">Umbrella Companies</a></li>
          <li><a href="http://beta.appnwebtechnologies.com/contractor/contractor-hub-home.html#">Insurance Providers</a></li>
           <li><a href="http://beta.appnwebtechnologies.com/contractor/contractor-hub-home.html#">IT Training</a></li>
            <li><a href="http://beta.appnwebtechnologies.com/contractor/contractor-hub-home.html#">Accountancy Services</a></li>
@@ -119,7 +119,7 @@
       </div>
        </div>
           <ul id="services-nav-menu" class="clearfix">
-            <li> <a href="http://beta.appnwebtechnologies.com/contractor/contractor-hub-home.html#" class="hover">
+            <li (click)="categoryClicked()"> <a href="javascript:void(0)" class="hover">
               <div class="icon"> <img src="./assets/images/umbrella-companies-hover.png" alt="" title="" class="menu_bar"> </div>
               <div class="content">
                 <h4>Umbrella Companies</h4>

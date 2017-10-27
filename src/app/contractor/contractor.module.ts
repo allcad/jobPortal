@@ -13,6 +13,7 @@ import { ContractorViewProfileComponent } from '../contractor-view-profile/contr
 import { ContractorJobSearchComponent } from '../contractor-job-search/contractor-job-search.component';
 import { ContractorApplicationsComponent } from '../contractor-applications/contractor-applications.component';
 import { ContractorJobSearchSavedComponent } from '../contractor-job-search-saved/contractor-job-search-saved.component';
+import { ContractorDirectoryComponent } from '../contractor-directory/contractor-directory.component';
 import { SharedModule } from '../shared/shared.module';
 
 // import { FindContractHubComponent } from '../find-contract-hub/find-contract-hub.component';
@@ -28,6 +29,7 @@ import { SharedModule } from '../shared/shared.module';
   ContractorJobSearchComponent,
   ContractorApplicationsComponent,
   ContractorJobSearchSavedComponent,
+  ContractorDirectoryComponent
   // FindContractHubComponent,
 	
   ],

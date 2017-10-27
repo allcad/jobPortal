@@ -9,7 +9,7 @@ import { ContractorJobSearchComponent } from '../contractor-job-search/contracto
 import { ContractorApplicationsComponent } from '../contractor-applications/contractor-applications.component';
 import { ContractorJobSearchSavedComponent } from '../contractor-job-search-saved/contractor-job-search-saved.component';
 import { FindContractHubComponent } from '../find-contract-hub/find-contract-hub.component';
-
+import { ContractorDirectoryComponent } from '../contractor-directory/contractor-directory.component';
 
 
 const contractorRoutes: Routes = [{
@@ -34,6 +34,9 @@ const contractorRoutes: Routes = [{
 {
     "path" :"hubHome",
     "component" :FindContractHubComponent
+}, {
+     "path" :"contractor-directory",
+    "component" :ContractorDirectoryComponent
 }]
 
 @NgModule({

@@ -62,7 +62,7 @@ import { ContractorAdviceArticleComponent } from './contractor-advice-article/co
 import { ContractorAdviceCategoryComponent } from './contractor-advice-category/contractor-advice-category.component';
 import { ContractorAccountComponent } from './contractor-account/contractor-account.component';
 // import { ContractorApplicationsComponent } from './contractor-applications/contractor-applications.component';
-import { ContractorDirectoryComponent } from './contractor-directory/contractor-directory.component';
+//import { ContractorDirectoryComponent } from './contractor-directory/contractor-directory.component';
 import { ContractorHelpComponent } from './contractor-help/contractor-help.component';
 import { ContractorHomeComponent } from './contractor-home/contractor-home.component';
 import { ContractorRecuriterProfileComponent } from './contractor-recuriter-profile/contractor-recuriter-profile.component';
@@ -118,7 +118,7 @@ import { TermUseComponent } from './term-use/term-use.component';
     ContractorAdviceCategoryComponent,
     ContractorAccountComponent,
     // ContractorApplicationsComponent,
-    ContractorDirectoryComponent,
+   // ContractorDirectoryComponent,
     ContractorHelpComponent,
     ContractorHomeComponent,
     ContractorRecuriterProfileComponent,
