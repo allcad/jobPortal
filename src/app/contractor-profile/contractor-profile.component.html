@@ -14,14 +14,13 @@
               <li class="right_arrow">&gt;</li>
               <li class="active">Profile </li>
             </ul>
-                      <div class="alert alert-success margin-tp18" *ngIf="succesMessageFlag">
+            <div class="alert alert-success margin-tp18" *ngIf="succesMessageFlag">
+              <a href="javascript:void(0)" class="close" title="close">×</a> You are sign up <strong>succesfully!</strong>
+            </div>
+            <div class="alert alert-danger margin-tp18" *ngIf="ErrorMesageFlag">
               <a href="javascript:void(0)" class="close" title="close">×</a>
-              You are sign up <strong>succesfully!</strong>
-          </div>
-               <div class="alert alert-danger margin-tp18" *ngIf="ErrorMesageFlag">
-              <a href="javascript:void(0)" class="close" title="close">×</a>
-            <strong>Error!</strong>  You are already sign up with this Email!
-          </div>
+              <strong>Error!</strong> You are already sign up with this Email!
+            </div>
             <div class="pull-right job_search"> <a href="javascript:void(0)" class="btn-primary hover_white_pluse" [routerLink]="['../viewProfile']">View Profile <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> <a href="javascript:void(0);" class="btn-info hover_white_pluse">Edit Profile <i class="fa fa-plus plus_black" aria-hidden="true"></i></a> </div>
           </div>
         </div>
@@ -34,14 +33,15 @@
                 <div class="profile_image">
                   <!-- <img src="./assets/images/profile-pik.png" alt="ads" title="ads" class="img-responsive">  -->
                   <div style="margin-bottom: 30px;">
-                  <img class="img-responsive" [src]="profileUrl ? profileUrl : './assets/images/profile-pik.png'" alt="ads">
-                </div>
-                 <!--  <a href="javascript:void(0);"><img src="./assets/images/camera.png" alt="camera" title="camera"></a>
+                    <img class="img-responsive" [src]="profileUrl ? profileUrl : './assets/images/profile-pik.png'" alt="ads">
+                  </div>
+                  <!--  <a href="javascript:void(0);"><img src="./assets/images/camera.png" alt="camera" title="camera"></a>
                   <input type="file" class="upload" (change)="contractorFileChangeEvent($event)" /> -->
                   <div class="fileUpload btn btn-primary">
-                      <span><img src="./assets/images/camera.png" alt="camera" title="camera"></span>
-                      <input type="file" class="upload" (change)="contractorFileChangeEvent($event)"/>
-                    </div>
+                    <span><img src="./assets/images/camera.png" alt="camera" title="camera"></span>
+                    <input type="file" class="upload" (change)="contractorFileChangeEvent($event)" />
+                  </div>
+                  <button (click)="uploadFile()">upload</button>
                 </div>
                 <div class="edit_icon"> <a href="javascript:void(0);"><img src="./assets/images/edit-icon.png" alt="Edit" title="Edit"></a> </div>
                 <div class="profile_form">
@@ -51,7 +51,7 @@
                       <input class="form-control" id="exampleInputEmail1" placeholder="User Name" type="text" [(ngModel)]="userName" name="userName" [tooltip]="userNameTooltip" [disabled]="true">
                       <tooltip-content #userNameTooltip>
                         <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.userName?.valid " style="color: #C21F39">User Name</span>
-                       <!--  <span [hidden]="!contractorProfile.form.controls.userName?.hasError('required')" style="color: #C21F39">User Name is required.</span> -->
+                        <!--  <span [hidden]="!contractorProfile.form.controls.userName?.hasError('required')" style="color: #C21F39">User Name is required.</span> -->
                         <!-- <span [hidden]="!contractorProfile.form.controls.userName?.hasError('minlength')" style="color: #C21F39">Contractor First Name min length is 3.</span> -->
                         <!-- <span [hidden]="!contractorProfile.form.controls.userName?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
                       </tooltip-content>
@@ -60,7 +60,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/mail-address.png" alt="Email" title="Email" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail1" placeholder="Email Address" type="email" [(ngModel)]="emailAddress" name="emailAddress" [tooltip]="emailAddressTooltip" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"  [disabled]="true">
+                      <input class="form-control" id="exampleInputEmail1" placeholder="Email Address" type="email" [(ngModel)]="emailAddress" name="emailAddress" [tooltip]="emailAddressTooltip" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [disabled]="true">
                       <tooltip-content #emailAddressTooltip>
                         <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.emailAddress?.valid " style="color: #C21F39">Email Address</span>
                         <!-- <span [hidden]="!contractorProfile.form.controls.emailAddress?.hasError('required')" style="color: #C21F39">Email Address is required.</span> -->
@@ -99,8 +99,8 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/post-code.png" alt="Post Code" title="Post Code" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail1" placeholder="Post Code" type="text" [(ngModel)]="postCode" name="postCode" [tooltip]="postCodeTooltip"> 
-                        <tooltip-content #postCodeTooltip>
+                      <input class="form-control" id="exampleInputEmail1" placeholder="Post Code" type="text" [(ngModel)]="postCode" name="postCode" [tooltip]="postCodeTooltip">
+                      <tooltip-content #postCodeTooltip>
                         <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.postCode?.valid" style="color: #C21F39">Post Code </span>
                         <span [hidden]="!contractorProfile.form.controls.postCode?.hasError('required')" style="color: #C21F39">Post Code is required.</span>
                       </tooltip-content>
@@ -110,29 +110,29 @@
                     <div class="col-xs-62">
                       <div class="input-group">
                         <div class="input-group-addon upto_border_none day_rate_align"><img src="./assets/images/day-rate.png" alt="Post Code" title="Post Code" class="img-responsive"> Day Rate</div>
-                        <input class="form-control" id="exampleInputEmail1" placeholder="" type="text" [(ngModel)]="dayRate1" name="dayRate1" [tooltip]="dayRate1Tolltop"> 
+                        <input class="form-control" id="exampleInputEmail1" placeholder="" type="text" [(ngModel)]="dayRate1" name="dayRate1" [tooltip]="dayRate1Tolltop">
                         <tooltip-content #dayRate1Tolltop>
-                        <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.dayRate1?.valid" style="color: #C21F39">Minimum </span>
-                        <span [hidden]="!contractorProfile.form.controls.dayRate1?.hasError('required')" style="color: #C21F39">Min Rate Required</span>
-                      </tooltip-content>
+                          <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.dayRate1?.valid" style="color: #C21F39">Minimum </span>
+                          <span [hidden]="!contractorProfile.form.controls.dayRate1?.hasError('required')" style="color: #C21F39">Min Rate Required</span>
+                        </tooltip-content>
                       </div>
                     </div>
                     <div class="col-xs-38">
                       <div class="input-group">
                         <div class="input-group-addon upto_border_none">-</div>
-                        <input class="form-control" id="exampleInputEmail1" placeholder="" type="text" [(ngModel)]="dayRate2" name="dayRate2" [tooltip]="dayRate2tooltip"> 
+                        <input class="form-control" id="exampleInputEmail1" placeholder="" type="text" [(ngModel)]="dayRate2" name="dayRate2" [tooltip]="dayRate2tooltip">
                         <tooltip-content #dayRate2tooltip>
-                        <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.dayRate2?.valid" style="color: #C21F39">Maximum </span>
-                        <span [hidden]="!contractorProfile.form.controls.dayRate2?.hasError('required')" style="color: #C21F39">Max Rate Required</span>
-                      </tooltip-content>
+                          <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.dayRate2?.valid" style="color: #C21F39">Maximum </span>
+                          <span [hidden]="!contractorProfile.form.controls.dayRate2?.hasError('required')" style="color: #C21F39">Max Rate Required</span>
+                        </tooltip-content>
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/availability.png" alt="Availability" title="Availability" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail1" placeholder="Availability" type="text" [(ngModel)]="availability" name="availability" [tooltip]="availabilityTooltip"> 
-                        <tooltip-content #availabilityTooltip>
+                      <input class="form-control" id="exampleInputEmail1" placeholder="Availability" type="text" [(ngModel)]="availability" name="availability" [tooltip]="availabilityTooltip">
+                      <tooltip-content #availabilityTooltip>
                         <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.availability?.valid" style="color: #C21F39">Availability </span>
                         <span [hidden]="!contractorProfile.form.controls.availability?.hasError('required')" style="color: #C21F39">Availability is Required</span>
                       </tooltip-content>
@@ -142,7 +142,7 @@
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/web-address.png" alt="Web Address" title="Web Address" class="img-responsive"></div>
                       <input class="form-control" id="exampleInputEmail1" placeholder="Enter Web Address" type="url" pattern="https?://.+" [(ngModel)]="webAddress" name="webAddress" [tooltip]="webAddressTooltip">
-                       <tooltip-content #webAddressTooltip>
+                      <tooltip-content #webAddressTooltip>
                         <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.webAddress?.valid " style="color: #C21F39">Web Address</span>
                         <span [hidden]="!contractorProfile.form.controls.webAddress?.hasError('pattern')" style="color: #C21F39">Web Address not valid!</span>
                       </tooltip-content>
@@ -152,7 +152,7 @@
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/stack-overflo.png" alt="Stack Overflow Web Address" title="Stack Overflow Web Address" class="img-responsive"></div>
                       <input class="form-control" id="exampleInputEmail1" placeholder="Stack Overflow Web Address" type="url" pattern="https?://.+" [(ngModel)]="stackOverWebAdd" name="stackOverWebAdd" [tooltip]="stackOverWebAddTooltip">
-                       <tooltip-content #stackOverWebAddTooltip>
+                      <tooltip-content #stackOverWebAddTooltip>
                         <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.stackOverWebAdd?.valid " style="color: #C21F39">StackOver WebAddress</span>
                         <span [hidden]="!contractorProfile.form.controls.stackOverWebAdd?.hasError('pattern')" style="color: #C21F39">StackOver WebAddress not valid!</span>
                       </tooltip-content>
@@ -162,7 +162,7 @@
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/GitHub-Web.png" alt="Enter GitHub Web Address" title="Enter GitHub Web Address" class="img-responsive"></div>
                       <input class="form-control" id="exampleInputEmail1" placeholder="Enter GitHub Web Address" type="url" pattern="https?://.+" [(ngModel)]="gitHubWebAdd" name="gitHubWebAdd" [tooltip]="gitHubWebAddTooltip">
-                       <tooltip-content #gitHubWebAddTooltip>
+                      <tooltip-content #gitHubWebAddTooltip>
                         <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.gitHubWebAdd?.valid " style="color: #C21F39">GitHub WebAddress</span>
                         <span [hidden]="!contractorProfile.form.controls.gitHubWebAdd?.hasError('pattern')" style="color: #C21F39"> GitHub address not valid!</span>
                       </tooltip-content>
@@ -172,7 +172,7 @@
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/Linkedin-Web.png" alt="Enter Linkedin Web Address" title="Enter Linkedin Web Address" class="img-responsive"></div>
                       <input class="form-control" id="exampleInputEmail1" placeholder="Enter Linkedin Web Address" type="url" pattern="https?://.+" [(ngModel)]="linkedinWebAdd" name="linkedinWebAdd" [tooltip]="linkedinWebAddTooltip">
-                       <tooltip-content #linkedinWebAddTooltip>
+                      <tooltip-content #linkedinWebAddTooltip>
                         <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.linkedinWebAdd?.valid " style="color: #C21F39">Linkedin WebAddress</span>
                         <span [hidden]="!contractorProfile.form.controls.linkedinWebAdd?.hasError('pattern')" style="color: #C21F39"> Linkedin  address not valid!</span>
                       </tooltip-content>
@@ -182,9 +182,9 @@
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/Behance-Web.png" alt="Enter Behance Web Address" title="Enter Behance Web Address" class="img-responsive"></div>
                       <input class="form-control" id="exampleInputEmail1" placeholder="Enter Behance Web Address" type="text" [(ngModel)]="behanceWebAdd" name="behanceWebAdd" [tooltip]="behanceWebAddTooltip">
-                       <tooltip-content #behanceWebAddTooltip>
+                      <tooltip-content #behanceWebAddTooltip>
                         <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.behanceWebAdd?.valid " style="color: #C21F39">Behance WebAddress</span>
-                     <span [hidden]="!contractorProfile.form.controls.behanceWebAdd?.hasError('pattern')" style="color: #C21F39"> behance WebAddress not valid!</span>
+                        <span [hidden]="!contractorProfile.form.controls.behanceWebAdd?.hasError('pattern')" style="color: #C21F39"> behance WebAddress not valid!</span>
                       </tooltip-content>
                     </div>
                   </div>
@@ -258,21 +258,17 @@
               <div class="job_search_keywords signup_form_section width_auto">
                 <h2>Skills & Experience</h2>
                 <div class="enter_your_skills">
-                  <select class="form-control minimal background_drop_down" [(ngModel)]="selectedSkill" name="skills"  (change)="selectSkill()">
-                        <option value="">Select Skill</option>
-                        <option *ngFor="let skill of skillData" [value]="skill.skill_id">{{skill.skill_name}}</option>
-                      </select>
-                  <a href="javascript:void(0)" (click)="addSkill()"><img src="./assets/images/your-skills.png" alt="Enter your skills" title="Enter your skills"></a> 
-                  </div>
-                   
-
-                <div class="add_sub_skills"> 
+                  <select class="form-control minimal background_drop_down" [(ngModel)]="selectedSkill" name="skills" (change)="selectSkill()">
+                    <option value="">Select Skill</option>
+                    <option *ngFor="let skill of skillData" [value]="skill.skill_id">{{skill.skill_name}}</option>
+                  </select>
+                  <a href="javascript:void(0)" (click)="addSkill()"><img src="./assets/images/your-skills.png" alt="Enter your skills" title="Enter your skills"></a>
+                </div>
+                <div class="add_sub_skills">
                   <a href="javascript:void(0)" *ngFor="let selectedSkill of selectedSkillArray; let i = index">
                       {{selectedSkill.skill_name}}
-                   <img src="./assets/images/close-icon.png" alt="Close" title="Close" (click)="removeSelectedSkill(i)"></a> 
-
-
-                  <!-- <a href="javascript:void(0)">java <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a> <a href="javascript:void(0)">JAVASCRIPT <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a> --> </div>
+                   <img src="./assets/images/close-icon.png" alt="Close" title="Close" (click)="removeSelectedSkill(i)"></a>
+                </div>
               </div>
               <div class="signup_form_section summary_industry_box width_auto">
                 <div class="row">
@@ -281,7 +277,7 @@
                       <div class="input-group"> <span class="form-control industry_sector">SummAry</span>
                         <div class="input-group-addon bordr_non"></div>
                       </div>
-                      <textarea class="form-control textares" rows="3" [(ngModel)]="summary" name="summary" ></textarea>
+                      <textarea class="form-control textares" rows="3" [(ngModel)]="summary" name="summary"></textarea>
                     </div>
                   </div>
                   <div class="col-sm-50">
@@ -333,10 +329,10 @@
                     <div class="form-group magin_bottomo768">
                       <div class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/upload-cv.png" alt="Upload CV" title="Upload CV" class="img-responsive"></div>
-                       <!--  <input class="form-control" id="exampleInputEmail1" placeholder="Upload CV(s)" type="text"> -->
-                       <input type="file" class="form-control input-group-addon find_cv_from" (change)="fileChangeEvent($event)"/>
+                        <!--  <input class="form-control" id="exampleInputEmail1" placeholder="Upload CV(s)" type="text"> -->
+                        <input type="file" class="form-control input-group-addon find_cv_from" (change)="fileChangeEvent($event)" />
                         <div class="input-group-addon find_cv_from"><a href="javascript:void(0)" class="dropdown-toggle padding_left_right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Browse From<img src="./assets/images/find-cv.png" alt="Browse From" title="Browse From"></a>
-   <!--                        <ul class="dropdown-menu">
+                          <!--                        <ul class="dropdown-menu">
                             <li><a href="javascript:void(0)"><img src="./assets/images/mail-box1.png" alt="OneDrive" title="OneDrive" class="img-responsive"></a> <a href="javascript:void(0)"><img src="./assets/images/mail-box3.png" alt="GoogleDrive" title="GoogleDrive" class="img-responsive"></a> </li>
                             <li> <a href="javascript:void(0)"><img src="./assets/images/mail-box2.png" alt="Dropbox" title="Dropbox" class="img-responsive"></a> <a href="javascript:void(0)"><img src="./assets/images/mail-box4.png" alt="LocalDrive" title="LocalDrive" class="img-responsive"></a> </li>
                           </ul> -->
@@ -354,9 +350,9 @@
                     <div class="form-group magin_bottomo768">
                       <div class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/upload-cv.png" alt="Upload CV" title="Upload CV" class="img-responsive"></div>
-                         <input type="file" class="form-control input-group-addon find_cv_from" (change)="fileChangeEvent($event)"/>
+                        <input type="file" class="form-control input-group-addon find_cv_from" (change)="fileChangeEvent($event)" />
                         <div class="input-group-addon find_cv_from"><a href="javascript:void(0)" class="dropdown-toggle padding_left_right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Browse From<img src="./assets/images/find-cv.png" alt="Browse From" title="Browse From"></a>
-<!--                           <ul class="dropdown-menu">
+                          <!--                           <ul class="dropdown-menu">
                             <li><a href="javascript:void(0)"><img src="./assets/images/mail-box1.png" alt="OneDrive" title="OneDrive" class="img-responsive"></a> <a href="javascript:void(0)"><img src="./assets/images/mail-box3.png" alt="GoogleDrive" title="GoogleDrive" class="img-responsive"></a> </li>
                             <li> <a href="javascript:void(0)"><img src="./assets/images/mail-box2.png" alt="Dropbox" title="Dropbox" class="img-responsive"></a> <a href="javascript:void(0)"><img src="./assets/images/mail-box4.png" alt="LocalDrive" title="LocalDrive" class="img-responsive"></a> </li>
                           </ul> -->
@@ -372,12 +368,12 @@
                 <div class="row">
                   <div class="col-sm-100">
                     <div class="save_change margin_left_blue10">
-                     <!-- <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse width_180px">Save Change  -->
-                      <button class="btn-primary hover_text_pink hover_white_pluse width_180px" type="submit" >Save Changes
-                      <i class="fa fa-plus plus_blue" aria-hidden="true"></i>
-                    </button>
-                    <!-- </a> --> 
-                  </div>
+                      <!-- <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse width_180px">Save Change  -->
+                      <button class="btn-primary hover_text_pink hover_white_pluse width_180px" type="submit">Save Changes
+                        <i class="fa fa-plus plus_blue" aria-hidden="true"></i>
+                      </button>
+                      <!-- </a> -->
+                    </div>
                   </div>
                 </div>
                 <div class="job_search_keywords">
@@ -388,11 +384,10 @@
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/account-pass.png" alt="Enter Password" title="Password" class="img-responsive"></div>
-                        <input class="form-control" id="exampleInputEmail1" placeholder="Enter Current Password" type="password" [(ngModel)]="currentPassword" name="currentPassword"
-                          [tooltip]="currentPassTooltip">
-                       <tooltip-content #currentPassTooltip>
-                        <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.currentPassword?.valid " style="color: #C21F39">Current Password</span>
-                      </tooltip-content>
+                        <input class="form-control" id="exampleInputEmail1" placeholder="Enter Current Password" type="password" [(ngModel)]="currentPassword" name="currentPassword" [tooltip]="currentPassTooltip">
+                        <tooltip-content #currentPassTooltip>
+                          <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.currentPassword?.valid " style="color: #C21F39">Current Password</span>
+                        </tooltip-content>
                       </div>
                     </div>
                   </div>
@@ -402,10 +397,10 @@
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/account-pass.png" alt="Enter Password" title="Password" class="img-responsive"></div>
-                        <input class="form-control" id="exampleInputEmail1" placeholder="Enter New Password" type="password" [(ngModel)]="newPassword" name="newPassword"     [tooltip]="newPasswordTooltip">
-                       <tooltip-content #newPasswordTooltip>
-                        <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.newPassword?.valid " style="color: #C21F39">New Password</span>
-                      </tooltip-content>
+                        <input class="form-control" id="exampleInputEmail1" placeholder="Enter New Password" type="password" [(ngModel)]="newPassword" name="newPassword" [tooltip]="newPasswordTooltip">
+                        <tooltip-content #newPasswordTooltip>
+                          <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.newPassword?.valid " style="color: #C21F39">New Password</span>
+                        </tooltip-content>
                       </div>
                     </div>
                   </div>
@@ -414,21 +409,21 @@
                       <div class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/account-pass.png" alt="Enter Password" title="Password" class="img-responsive"></div>
                         <input class="form-control" id="exampleInputEmail1" placeholder="Confirm New Password" type="password" [(ngModel)]="confirmNewPassword" name="confirmNewPassword" [tooltip]="confirmNewPasswordTooltip">
-                       <tooltip-content #confirmNewPasswordTooltip>
-                        <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.confirmNewPassword?.valid " style="color: #C21F39"> Password</span>
-                      </tooltip-content>
+                        <tooltip-content #confirmNewPasswordTooltip>
+                          <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.confirmNewPassword?.valid " style="color: #C21F39"> Password</span>
+                        </tooltip-content>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-sm-100">
-                    <div class="account_changes margin_left_blue10"> 
-                      <!-- <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse">Change --> 
-                         <button class="btn-primary font_capitaliz hover_white_pluse" type="button" (click)="accountDetailsSave()">Change
+                    <div class="account_changes margin_left_blue10">
+                      <!-- <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse">Change -->
+                      <button class="btn-primary font_capitaliz hover_white_pluse" type="button" (click)="accountDetailsSave()">Change
                         <i class="fa fa-plus plus_blue" aria-hidden="true"></i>
-                      <!-- </a> --> 
-                    </button>
+                        <!-- </a> -->
+                      </button>
                     </div>
                   </div>
                 </div>

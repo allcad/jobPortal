@@ -133,15 +133,22 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/key-skills.png" alt="Key Skills" title="Key Skills" class="img-responsive"></div>
-                    <!--   <select class="form-control" [(ngModel)]="contractor_key_skills" required   [tooltip]="keySkillTooltip"> 
-                        <option *ngFor="let skill of skillData" [ngValue]="skill"> {{skill.skill_name}} </option>
-                      </select> -->
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Key Skills (Separated with commas)" name="contractor_key_skills"  auto-complete  [(ngModel)]="contractor_key_skills"  required  [tooltip]="keySkillTooltip" 
-                     >
+                      <!-- <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Key Skills (Separated with commas)" name="contractor_key_skills" auto-complete [(ngModel)]="contractor_key_skills" required [tooltip]="keySkillTooltip">
                       <tooltip-content #keySkillTooltip>
                         <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_key_skills?.valid " style="color: #C21F39"> Key Skill </span>
                         <span [hidden]="!userForm.form.controls.contractor_key_skills?.hasError('required')" style="color: #C21F39"> Key Skill is required! </span>
-                      </tooltip-content>
+                      </tooltip-content> -->
+                      <div class="enter_your_skills">
+                        <select class="form-control minimal background_drop_down" [(ngModel)]="selectedSkill" name="skills" (change)="selectSkill()">
+                          <option value="">Select Skill</option>
+                          <option *ngFor="let skill of skillData" [value]="skill.skill_id">{{skill.skill_name}}</option>
+                        </select>
+                      </div>
+                      <div class="add_sub_skills">
+                        <a href="javascript:void(0)" *ngFor="let selectedSkill of selectedSkillArray; let i = index">
+                      {{selectedSkill.skill_name}}
+                   <img src="./assets/images/close-icon.png" alt="Close" title="Close" (click)="removeSelectedSkill(i)"></a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -166,20 +173,20 @@
               <div class="current_rate_signup situation35">
                 <h2>CONTRACTOR SERVICES <span>Do you want to set up any of the following contractor services?</span></h2>
                 <div class="row">
-                  <div class="col-sm-50">
+                  <div class="col-sm-50" *ngFor="let category of categoryData">
                     <div class="service_box">
-                      <input type="checkbox" id="inlineCheckbox4" value="option4">
-                      <label for="inlineCheckbox4"><span></span> UMBRELLA COMPANY</label>
+                      <input type="checkbox" id="{{category.contract_hub_category_name}}" [value]="category.contract_hub_category_id" name="{{category.contract_hub_category_name}}" (change)="category.checked=!category.checked">
+                      <label for="{{category.contract_hub_category_name}}"><span></span> {{category.contract_hub_category_name}}</label>
                     </div>
                   </div>
-                  <div class="col-sm-50">
+                  <!-- <div class="col-sm-50">
                     <div class="service_box">
                       <input type="checkbox" id="inlineCheckbox5" value="option5">
                       <label for="inlineCheckbox5"><span></span> IT CONTRACTOR ACCOUNTANTS</label>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                   <div class="col-sm-50">
                     <div class="service_box">
                       <input type="checkbox" id="inlineCheckbox6" value="option6">
@@ -220,7 +227,7 @@
                       <label for="inlineCheckbox11"><span></span> NONE OF THE ABOVE </label>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
               <div class="current_rate_signup situation35">
                 <div class="terms_of_use">

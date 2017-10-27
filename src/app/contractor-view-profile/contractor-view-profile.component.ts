@@ -22,6 +22,7 @@ getProfileDta(){
 	 let dataUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/profile/view";
        this._commonRequestService.postData(dataUrl, inputJson).subscribe(
         data => {
+          console.log("profile", data.data)
           this.profileData = data.data;
           this._commonRequestService.setDataWithoutObserval(this.profileData, "contractorProfileData")
         }

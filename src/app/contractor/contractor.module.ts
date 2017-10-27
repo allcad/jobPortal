@@ -15,7 +15,7 @@ import { ContractorApplicationsComponent } from '../contractor-applications/cont
 import { ContractorJobSearchSavedComponent } from '../contractor-job-search-saved/contractor-job-search-saved.component';
 import { ContractorDirectoryComponent } from '../contractor-directory/contractor-directory.component';
 import { SharedModule } from '../shared/shared.module';
-
+import { ContractorRecuriterProfileComponent } from '../contractor-recuriter-profile/contractor-recuriter-profile.component';
 // import { FindContractHubComponent } from '../find-contract-hub/find-contract-hub.component';
 
 
@@ -29,8 +29,8 @@ import { SharedModule } from '../shared/shared.module';
   ContractorJobSearchComponent,
   ContractorApplicationsComponent,
   ContractorJobSearchSavedComponent,
-  ContractorDirectoryComponent
-  // FindContractHubComponent,
+  ContractorDirectoryComponent,
+  ContractorRecuriterProfileComponent
 	
   ],
   imports: [

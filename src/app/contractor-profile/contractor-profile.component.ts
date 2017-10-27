@@ -41,6 +41,7 @@ export class ContractorProfileComponent implements OnInit {
   fileUploadForCover;
   confirmNewPassword;contractorProfileJson;inputUrl;responseData;succesMessageFlag =false;fileUpload;
 ErrorMesageFlag=false;
+fd;
  constructor(public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -50,20 +51,46 @@ ErrorMesageFlag=false;
 
   contractorFileChangeEvent(fileInput: any) {
     // var reader = new FileReader();
-    var readerByte = new FileReader();
-    readerByte.readAsArrayBuffer(fileInput.target.files[0]);
-    readerByte.onload = (event:any) => {
-       var arrayBuffer = readerByte.result;
-      var fileBytes = new Uint8Array(arrayBuffer);
-      console.log(fileBytes.toString());
-    }
+    // var readerByte = new FileReader();
+    // readerByte.readAsArrayBuffer(fileInput.target.files[0]);
+    // readerByte.onload = (event:any) => {
+    //    var arrayBuffer = readerByte.result;
+    //   var fileBytes = new Uint8Array(arrayBuffer);
+    //   console.log(fileBytes.toString());
+    // }
+
+    var file = fileInput.target.files[0];
+
+    this.fd = new FormData();
+    this.fd.append('contractorProfileUrl', file);
+                 // $http.post(uploadUrl, fd, {
+                 //     transformRequest: angular.identity,
+                 //     headers: {'Content-Type': undefined,'Process-Data': false}
+                 // })
+                 // .success(function(data){
+                 //    alert(data);
+                 // })
+                 // .error(function(){
+                 //    alert("Error");
+                 // })
+
+
+  }
+
+  uploadFile(){
+    this.inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/hub/getfilebyte";
+       this._commonRequestService.postData(this.inputUrl, this.fd).subscribe(
+        data => {
+          console.log(data);
+        }
+    ); 
   }
 
   saveContractorProfile(form: NgForm) {
       var inputdata = {
       "email":"you@gmail.com",
       "loginToken":"$2y$10$Wbps5L/ERbs.7sdCm.tAoO4tNWY6At/JtAibo6FhsoICKXUy4q7OS",
-      'contractorProfileUrl': "this.profileUrl",
+      'contractorProfileUrl': this.fd ? this.fd : null ,
       'userName': this.userName,
       'emailAddress': this.emailAddress,
       'securityClearance': this.securityClearance,
@@ -194,6 +221,7 @@ getProfileDta(){
    let dataUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/profile/view";
        this._commonRequestService.postData(dataUrl, inputJson).subscribe(
         data => {
+          console.log("profiledtaa",data.data)
           this.profileData = data.data;
           this.setProfileData();
           this._commonRequestService.setDataWithoutObserval(this.profileData, "contractorProfileData")

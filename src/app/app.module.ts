@@ -65,7 +65,7 @@ import { ContractorAccountComponent } from './contractor-account/contractor-acco
 //import { ContractorDirectoryComponent } from './contractor-directory/contractor-directory.component';
 import { ContractorHelpComponent } from './contractor-help/contractor-help.component';
 import { ContractorHomeComponent } from './contractor-home/contractor-home.component';
-import { ContractorRecuriterProfileComponent } from './contractor-recuriter-profile/contractor-recuriter-profile.component';
+//import { ContractorRecuriterProfileComponent } from './contractor-recuriter-profile/contractor-recuriter-profile.component';
 import { ContractorSearchResultComponent } from './contractor-search-result/contractor-search-result.component';
 // import { ContractorJobSearchSavedComponent } from './contractor-job-search-saved/contractor-job-search-saved.component';
 // import { ContractorJobSearchComponent } from './contractor-job-search/contractor-job-search.component';
@@ -122,7 +122,7 @@ import { CommonDataSharedService } from './commonDataSharedService';
    // ContractorDirectoryComponent,
     ContractorHelpComponent,
     ContractorHomeComponent,
-    ContractorRecuriterProfileComponent,
+    //ContractorRecuriterProfileComponent,
     ContractorSearchResultComponent,
     // ContractorJobSearchSavedComponent,
     // ContractorJobSearchComponent,
