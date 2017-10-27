@@ -262,7 +262,7 @@
            <li> <a class=""  [routerLink]="['/recruiter/saved-search']">Saved Search</a></li> 
            <li> <a class=""  [routerLink]="['/recruiter/watch-list']">Watch List</a></li> 
            <li> <a class="" [routerLink]="['/recruiter/manage-jobs']">manage Jobs</a></li> 
-           <li> <a class="" [routerLink]="['/recruiter/job-posting']">post Jobs</a></li> 
+           <li> <a class="" [routerLink]="['/recruiter/job-posting']" (click)="postJobs()">post Jobs</a></li> 
            <li> <a class=""  [routerLink]="['../public']">LogOut</a></li> 
             </ul>
           </div>

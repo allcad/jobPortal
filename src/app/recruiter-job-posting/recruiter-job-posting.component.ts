@@ -25,10 +25,66 @@ recruiterName = 0;
 saveTemplateAs;
 jobReference;
 input;
-
+jobPostingDetails;
+recruiterNameArray;
   constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
+    this.recruiterNameList();
+    var localStorageData = JSON.parse(localStorage.getItem('recruiterJobData'));
+    console.log("localStorageData--", localStorageData);
+    if(localStorageData && localStorageData.jobId) {
+      this.jobPostingData(localStorageData.jobId);
+    }
+  }
+
+   recruiterNameList() {
+     var input = {
+     "email":"test@test7.com",
+    "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu"
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/list";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+          this.recruiterNameArray = data.data;
+        }
+    );
+       return this.recruiterName;
+  }
+
+  jobPostingData(jobId) {
+     var input = {
+     "email":"test@test7.com",
+    "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu",
+    "jobid":jobId
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/view";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+         console.log("jobList--", data);
+         if(data && data.data) {
+           this.jobPostingDetails = data.data;
+           this.jobPostingJobTitle = this.jobPostingDetails.jobTitle;
+           this.jobPostingDuration = this.jobPostingDetails.duration;
+           this.startDate = this.jobPostingDetails.startDate;
+           this.industrySector = this.jobPostingDetails.industrySectorId;
+           this.workEligibility = this.jobPostingDetails.workEligibilityId;
+           this.cityTownValue = this.jobPostingDetails.cityTown;
+           this.minRate = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.minRate ? this.jobPostingDetails.prefereedRate.minRate : 0;
+           this.maxRate = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.maxRate ? this.jobPostingDetails.prefereedRate.maxRate : 0
+           this.dailyHourlyValue = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.dailyHourlyRate ? this.jobPostingDetails.prefereedRate.dailyHourlyRate : '';
+           this.jobSpecificationTitle = this.jobPostingDetails.jobSpecificationTitle;
+           this.jobSpecificationBody = this.jobPostingDetails.jobSpecification;
+           this.recruiterName = this.jobPostingDetails.recruiterNameId;
+           this.saveTemplateAs = this.jobPostingDetails.saveTempleteAs;
+           this.jobReference = this.jobPostingDetails.jobReference;
+         }
+        }
+    );
   }
 
   onJobPostSave(f:NgForm) {

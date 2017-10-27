@@ -12,4 +12,9 @@ export class RecruiterHeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  postJobs() {
+  	var obj = {'jobId' : ''};
+    localStorage.setItem('recruiterJobData', JSON.stringify(obj));
+  }
+
 }

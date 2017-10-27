@@ -63,6 +63,12 @@ addMulAddArray = [{'addresslLine1': 'line1', 'addressLine2': 'line2', 'city': 'c
     this.showMultipleAddress = true;
   }
 
+  removeFunction(myObjects,prop,valu){
+     return myObjects.filter(function (val) {
+          return val[prop] !== valu;
+      });
+    }
+
   removeAddress(index) {
     console.log("this.addMulAddArray", this.addMulAddArray)
     // var indexV = this.list.indexOf(index);

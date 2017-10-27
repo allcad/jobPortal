@@ -73,6 +73,7 @@ import { ContractorLoginFullJobComponent } from './contractor-login-full-job/con
 import { ContractorNewsArticleComponent } from './contractor-news-article/contractor-news-article.component';
 import { ContractorNewsCategoryComponent } from './contractor-news-category/contractor-news-category.component';
 import { TermUseComponent } from './term-use/term-use.component';
+import { CommonDataSharedService } from './commonDataSharedService';
 
 @NgModule({
   declarations: [
@@ -143,7 +144,7 @@ import { TermUseComponent } from './term-use/term-use.component';
     RecruiterModule,
     ContractorModule
   ],
-  providers: [CommonRequestService],
+  providers: [CommonRequestService, CommonDataSharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
