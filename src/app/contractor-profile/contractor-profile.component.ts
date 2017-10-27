@@ -49,12 +49,13 @@ ErrorMesageFlag=false;
   }
 
   contractorFileChangeEvent(fileInput: any) {
-     var reader = new FileReader();
+    // var reader = new FileReader();
     var readerByte = new FileReader();
-    reader.readAsDataURL(fileInput.target.files[0]);
-    reader.onload = (event:any) => {
-      var arrayBuffer = reader.result;
-      this.profileUrl = arrayBuffer;
+    readerByte.readAsArrayBuffer(fileInput.target.files[0]);
+    readerByte.onload = (event:any) => {
+       var arrayBuffer = readerByte.result;
+      var fileBytes = new Uint8Array(arrayBuffer);
+      console.log(fileBytes.toString());
     }
   }
 

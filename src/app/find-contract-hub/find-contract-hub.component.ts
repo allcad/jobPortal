@@ -7,7 +7,9 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./find-contract-hub.component.css']
 })
 export class FindContractHubComponent implements OnInit {
-
+  categoryData = [];
+  firstCategoryArray = [];
+  secondCategoryArray = [];
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes:ActivatedRoute ) { }
 
   ngOnInit() {
@@ -23,12 +25,31 @@ export class FindContractHubComponent implements OnInit {
        this._commonRequestService.postData(url, inputJson).subscribe(
         data => {
           console.log("categoryData", data.data)
+          this.categoryData = data.data;
+          if(this.categoryData.length >4){
+            for(var i =0;i< 4; i++){
+              this.firstCategoryArray.push(this.categoryData[i]);
+            }  
+            for(var i=4;i<this.categoryData.length; i++){
+              this.secondCategoryArray.push(this.categoryData[i])
+            }
+
+          }else{
+            this.firstCategoryArray = this.categoryData;
+          }
+          console.log("this.firstCategoryArray", this.firstCategoryArray);
+          console.log("this.secondCategoryArray", this.secondCategoryArray);
+
+
+          
         }
     );
   }
 
 
-  categoryClicked(){
+  categoryClicked(categoryData){
+    console.log("categoryData", categoryData);
+    this._commonRequestService.setDataWithoutObserval(categoryData.contract_hub_category_id, 'category_hub_id');
   	this._router.navigate(['../contractor-directory'], {relativeTo: this._routes})
   }
 

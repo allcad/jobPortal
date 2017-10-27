@@ -107,26 +107,30 @@
           <div class="services_header margin_bottom_10px"> <img src="./assets/images/contractor-services-icon.png" alt="" title=""> <span>CONTRACTOR SERVICES</span> <a href="http://beta.appnwebtechnologies.com/contractor/contractor-hub-home.html#"><img src="./assets/images/services-menu.png" alt="" title="" class="menu_bar"></a>
         <div class="navigation_services" >
         <ul>
-          <li><a href="javascript:void(0)">Umbrella Companies</a></li>
-         <li><a href="http://beta.appnwebtechnologies.com/contractor/contractor-hub-home.html#">Insurance Providers</a></li>
+          
+          <li *ngFor="let category of categoryData" (click)="categoryClicked(category)">
+            <a href="javascript:void(0)">{{category.contract_hub_category_name}}</a>
+          </li>
+         <!-- <li><a href="http://beta.appnwebtechnologies.com/contractor/contractor-hub-home.html#">Insurance Providers</a></li>
           <li><a href="http://beta.appnwebtechnologies.com/contractor/contractor-hub-home.html#">IT Training</a></li>
            <li><a href="http://beta.appnwebtechnologies.com/contractor/contractor-hub-home.html#">Accountancy Services</a></li>
             <li><a href="http://beta.appnwebtechnologies.com/contractor/contractor-hub-home.html#">Mortgage Solutions</a></li>
            <li><a href="http://beta.appnwebtechnologies.com/contractor/contractor-hub-home.html#">CV Writing and Help</a></li>
            <li><a href="http://beta.appnwebtechnologies.com/contractor/contractor-hub-home.html#">Working Abroad</a></li>
-            <li><a href="http://beta.appnwebtechnologies.com/contractor/contractor-hub-home.html#">MVL Advisors</a></li>
+            <li><a href="http://beta.appnwebtechnologies.com/contractor/contractor-hub-home.html#">MVL Advisors</a></li> -->
         </ul>
       </div>
        </div>
           <ul id="services-nav-menu" class="clearfix">
-            <li (click)="categoryClicked()"> <a href="javascript:void(0)" class="hover">
-              <div class="icon"> <img src="./assets/images/umbrella-companies-hover.png" alt="" title="" class="menu_bar"> </div>
+            <li *ngFor="let category of firstCategoryArray" (click)="categoryClicked(category)"> <a href="javascript:void(0)" class="hover">
+              <div class="icon"> <img [src]="category.contract_hub_small_icon" alt="" title="" class="menu_bar"> </div>
               <div class="content">
-                <h4>Umbrella Companies</h4>
-                <p>Search our recommended Umbrella companies to find the one that best suits you.</p>
+                <h4>{{category.contract_hub_category_name}}</h4>
+                <p>{{category.contract_hub_category_desc}}</p>
               </div>
-              </a> </li>
-            <li> <a href="http://beta.appnwebtechnologies.com/contractor/contractor-hub-home.html#" class="hover">
+              </a> 
+            </li>
+            <!-- <li> <a href="http://beta.appnwebtechnologies.com/contractor/contractor-hub-home.html#" class="hover">
               <div class="icon"> <img src="./assets/images/insurance-providers.png" alt="" title="" class="menu_bar"> </div>
               <div class="content">
                 <h4>Insurance Providers</h4>
@@ -146,22 +150,23 @@
                 <h4>Accountancy Services</h4>
                 <p>Need help setting up a company or dealing with your accounts? Find it here.</p>
               </div>
-              </a> </li>
+              </a> </li> -->
         <div class="ad_space margin_bottom_10px"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
-        <li> <a href="http://beta.appnwebtechnologies.com/contractor/contractor-hub-home.html#" class="hover">
-              <div class="icon"> <img src="./assets/images/mortgage-solutions.png" alt="" title="" class="menu_bar"> </div>
+        <li *ngFor="let category of secondCategoryArray" (click)="categoryClicked(category)"> <a href="" class="hover">
+              <div class="icon"> <img [src]="category.contract_hub_small_icon" alt="" title="" class="menu_bar"> </div>
               <div class="content">
-                <h4>Mortgage Solutions</h4>
-                <p>Make it easy by finding a mortgage solution designed  just for IT Contractors.</p>
+                <h4>{{category.contract_hub_category_name}}</h4>
+                <p>{{category.contract_hub_category_desc}}</p>
               </div>
-              </a> </li>
-        <li> <a href="http://beta.appnwebtechnologies.com/contractor/contractor-hub-home.html#" class="hover">
+              </a> 
+            </li>
+        <!-- <li> <a href="http://beta.appnwebtechnologies.com/contractor/contractor-hub-home.html#" class="hover">
               <div class="icon"> <img src="./assets/images/cv-writing.png" alt="" title="" class="menu_bar"> </div>
               <div class="content">
                 <h4>CV Writing &amp; Help</h4>
                 <p>Time to upgrade your CV and social profile, find someone who can really help.</p>
               </div>
-              </a> </li>
+              </a> </li> -->
           </ul>
       <div class="more_services_div"> <a href="http://beta.appnwebtechnologies.com/contractor/contractor-hub-home.html#" class="btn-primary hover_white_pluse">MORE SERVICES <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
         </div>
