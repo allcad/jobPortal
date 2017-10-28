@@ -22,8 +22,8 @@ getData(url:string) {
 
 postData(url,inputData){
 	if(inputData.loginToken && inputData.email){
-		let token = JSON.parse(localStorage.getItem('loginDetail')).token;
-		let email  = JSON.parse(localStorage.getItem('loginDetail')).email;
+		let token = (localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).token )? JSON.parse(localStorage.getItem('loginDetail')).token:  inputData.loginToken;
+		let email  = (localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).email) ? JSON.parse(localStorage.getItem('loginDetail')).email : inputData.email;
 		inputData.loginToken = token;
 		inputData.email = email;
 

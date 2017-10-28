@@ -9,7 +9,12 @@ import { ContractorJobSearchSavedComponent } from '../contractor-job-search-save
 import { FindContractHubComponent } from '../find-contract-hub/find-contract-hub.component';
 import { ContractorDirectoryComponent } from '../contractor-directory/contractor-directory.component';
 import { ContractorRecuriterProfileComponent } from '../contractor-recuriter-profile/contractor-recuriter-profile.component';
- 
+import { ContractorHubHomeComponent } from '../contractor-hub-home/contractor-hub-home.component';
+import { ContractorAdviceComponent } from '../contractor-advice/contractor-advice.component';
+import { ContractorAdviceArticleComponent } from '../contractor-advice-article/contractor-advice-article.component';
+import { ContractorAdviceCategoryComponent } from '../contractor-advice-category/contractor-advice-category.component';
+
+
 const contractorRoutes: Routes = [{
     "path": "profile",
     "component": ContractorProfileComponent
@@ -31,13 +36,16 @@ const contractorRoutes: Routes = [{
 },
 {
     "path" :"hubHome",
-    "component" :FindContractHubComponent
+    "component" :ContractorHubHomeComponent
 }, {
      "path" :"contractor-directory",
     "component" :ContractorDirectoryComponent
 }, {
     "path": "companyProfile",
     "component": ContractorRecuriterProfileComponent
+},{
+    "path": "advice",
+    "component": ContractorAdviceCategoryComponent
 }]
 
 @NgModule({

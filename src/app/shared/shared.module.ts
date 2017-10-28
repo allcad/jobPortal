@@ -8,9 +8,37 @@ import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 
 import { FindContractHubComponent } from '../find-contract-hub/find-contract-hub.component';
+import { ContractorServiceMenuListingComponent } from '../contractor-service-menu-listing/contractor-service-menu-listing.component';
+import { ContractorServicesComponent } from '../contractor-services/contractor-services.component';
+import { ContractorServiceListingComponent } from '../contractor-service-listing/contractor-service-listing.component';
+import { ContractorServiceListingDetailsComponent } from '../contractor-service-listing-details/contractor-service-listing-details.component';
+import { AdSpaceComponent } from '../ad-space/ad-space.component';
+import { LatestNewsComponent } from '../latest-news/latest-news.component';
+import { LatestNewsListingComponent } from '../latest-news-listing/latest-news-listing.component';
+import { LatestNewsListingDetailsComponent } from '../latest-news-listing-details/latest-news-listing-details.component';
+import { ContentBottomLeftAdsComponent } from '../content-bottom-left-ads/content-bottom-left-ads.component';
+import { ContentBottomRightAdsComponent } from '../content-bottom-right-ads/content-bottom-right-ads.component';
+import { SocialMediaComponent } from '../social-media/social-media.component';
+import { ContractorRecuriterProfileComponent } from '../contractor-recuriter-profile/contractor-recuriter-profile.component';
+import { ContractorDirectoryComponent } from '../contractor-directory/contractor-directory.component';
+
 @NgModule({
   declarations: [
    FindContractHubComponent,
+   ContractorServicesComponent,
+   ContractorServiceListingComponent,
+    ContractorServiceListingDetailsComponent,
+  AdSpaceComponent,
+  LatestNewsComponent,
+  LatestNewsListingComponent,
+  LatestNewsListingDetailsComponent,
+  ContractorServiceMenuListingComponent,
+  ContractorRecuriterProfileComponent,
+  ContractorDirectoryComponent,
+
+  ContentBottomLeftAdsComponent,
+  ContentBottomRightAdsComponent,
+  SocialMediaComponent,
   ],
   imports: [
     FormsModule,
@@ -21,6 +49,19 @@ CommonModule
   ],
   exports: [
 FindContractHubComponent,
+ContractorServicesComponent,
+   ContractorServiceListingComponent,
+    ContractorServiceListingDetailsComponent,
+  AdSpaceComponent,
+  LatestNewsComponent,
+  LatestNewsListingComponent,
+  LatestNewsListingDetailsComponent,
+  ContractorServiceMenuListingComponent,
+  ContentBottomLeftAdsComponent,
+  ContentBottomRightAdsComponent,
+  SocialMediaComponent,
+  ContractorRecuriterProfileComponent,
+  ContractorDirectoryComponent
   ],
   providers: [],
   bootstrap: []
