@@ -18,15 +18,14 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
-      "styles": [
-        "styles.css",        
+      "styles": [                     
         "../src/assets/css/bootstrap.css",
+        "../src/assets/css/contractor-lin.css",
+        "../src/assets/css/style.css",
         "../node_modules/font-awesome/css/font-awesome.css",
         "../src/assets/css/jquery.bxslider.css",
-        "../src/assets/css/style.css",
         "../node_modules/ion-rangeslider/css/ion.rangeSlider.css",
-         "../node_modules/ion-rangeslider/css/ion.rangeSlider.skinFlat.css",
-         "../src/assets/css/contractor-lin.css"
+        "../node_modules/ion-rangeslider/css/ion.rangeSlider.skinFlat.css"
       ],
       "scripts": [
         "../src/assets/js/jquery-1.11.1.min.js",
@@ -71,6 +70,7 @@
     "component": {}
   },
   "addons": [
-    "../node_modules/font-awesome/fonts/*.+(otf|eot|svg|ttf|woff|woff2)"
+    "../node_modules/font-awesome/fonts/*.+(otf|eot|svg|ttf|woff|woff2)",
+    "../src/assets/wm_fonts/*.+(otf|eot|svg|ttf|woff|woff2)"
   ]
 }
