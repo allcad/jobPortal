@@ -1510,6 +1510,579 @@ input[type="radio"]:checked + label span {
 	transition: all 0.5s ease 0s;
 }
 
+.popular_searches p{
+	margin-bottom:3px;
+	color:#666;
+}
+.popular_searches_box{
+	border:1px solid #333333;
+	padding:20px;
+	margin-bottom:5px;
+}
+.popular_searches_box:hover{
+	cursor:pointer;
+	-webkit-transition: all 0.5s ease 0s;
+	border:1px solid #fff;
+}
+.popular_searches_box:hover .popular_searches_box_icon{
+	background: rgba(0, 0, 0, 0) url("../images/search-now-icon-hover.png") no-repeat scroll center 0px;
+	-webkit-transition: all 0.5s ease 0s;
+}
+.popular_searches_box_icon{
+	background: rgba(0, 0, 0, 0) url("../images/popular-searches-icon.png") no-repeat scroll center 0px;
+	height:39px;
+}
+.popular_searches_box_contant{
+	text-align:center;
+}
+.popular_searches_box_contant h5{
+	margin-top:0px;
+	font-size:17px;
+	color:#999;
+	margin-bottom:0px;
+}
+.popular_searches_box_contant ul{ margin-bottom:0px;}
+.popular_searches_box_contant ul li{
+	display:inline;
+	color:#999;
+	 margin: 0 5px;
+}
+.popular_searches_box_contant ul li a{color:#00ccff;}
+.popular_searches_box_contant ul li a:hover{ text-decoration:none;}
+
+#upload_contractor{
+	margin:20px 0px;
+}
+.upload_cv_box{
+	border:1px solid #d2d2d2;
+	padding: 15px 10px 5px;
+}
+.upload_contant_part{ text-align:center;}
+.upload_contant_part h2{	
+	background: #000 none repeat scroll 0 0;
+    border-bottom: medium none;
+    color: #00ccff;
+    display: inline-block;
+    font-family: "FacilePro";
+    font-size: 22px;
+    margin-bottom: 25px;
+    margin-top: 0;
+    padding: 12px 30px 7px;
+}
+.upload_contant_part{
+	margin-bottom:30px;
+}
+.upload_contant_part a{
+	font-size:14px;
+	padding: 5px 10px 5px 30px;
+}
+.upload_contant_part a i{
+	font-size:20px;
+	vertical-align:middle;
+}
+.upload_contant_part a:hover i{
+	color:#fff;
+	-webkit-transition: all 0.5s ease 0s;
+}
+.upload_contant_part p{
+	font-size:16px;
+	margin-bottom:25px;
+	line-height:20px;
+}
+.upload_contant_footer p{ margin-bottom:0px; font-size:13px; color:#666;}
+.upload_contant_footer p a{ font-weight:bold;}
+.upload_contant_footer p a:hover{ 
+	text-decoration:none;
+	color:#666 !important;
+	-webkit-transition: all 0.5s ease 0s;
+}
+.upload_contant_footer .live_contracts{
+	text-align:right;
+	font-weight:bold;
+}
+.upload_contant_footer .live_contracts span{
+	color: #000;
+    display: inline-block;
+    font-size: 18px;
+    margin-top: -10px;
+}
+.upload_contant_part .hover_text_pink:hover i{
+	color:#fff !important;
+	-webkit-transition: all 0.5s ease 0s;
+}
+
+.services_header{
+	background:#000;
+	padding:10px 10px 6px;
+	margin-bottom:20px;
+	font-weight:bold;
+	position:relative;
+}
+.services_header img{ vertical-align:middle;}
+.services_header span{
+	color:#fff;
+	font-size:17px;
+	font-family: "FacilePro";
+	margin-left:10px;
+	vertical-align:middle;
+}
+.services_header .menu_bar{ float:right;}
+.services_listing{ margin-top:10px;}
+
+.contracting_right img{
+	border-top:1px solid #cccccc;
+	border-left:1px solid #cccccc;
+	border-right:1px solid #cccccc;
+}
+.contracting_contant {
+	background:#000;
+	  padding:17px 15px 7px;
+	  margin-bottom:20px;
+}
+.contracting_contant p{
+	color: #fff;
+    font-family: "francois_oneregular";
+    font-size: 19px;
+    line-height: 21px;
+    text-align: center;
+}
+.contracting_social a{
+	font-size:20px;
+	margin-right:15px;
+	color:#ff0066;
+}
+.contracting_social a:hover{
+	 opacity: 0.5;
+	  -webkit-transition: all 0.5s ease 0s;
+}
+.contracting_contant .worksmart_nev{ padding-top:6px;}
+
+#services-nav-menu {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+}
+
+#services-nav-menu li {
+    border: 1px solid #999999;
+    margin-bottom: 10px;
+}
+
+#services-nav-menu li .hover .icon {
+    float: left;
+    margin-top: 7px;
+    padding: 5%;
+    width: 25%;
+}
+#services-nav-menu li a .icon img{
+	height:42px;
+}
+#services-nav-menu li .hover .icon img {
+    display: block;
+    height:auto;
+    margin: 0 auto;
+    width: auto;
+    text-align: center;
+}
+
+#services-nav-menu li .hover .content {
+    color: #000000;
+    float: left;
+    padding: 5%;
+    width: 75%;
+}
+#services-nav-menu li .hover .content h4 {
+    margin-top: 0;
+    text-align: center;
+}
+#services-nav-menu li .hover .content p {
+    display: block;
+    margin-left: 15px;
+    width: 90%;
+}
+#services-nav-menu li a {
+    display: block;
+}
+#services-nav-menu li a::before, #services-nav-menu li a::after {
+    content: " ";
+    display: table;
+}
+#services-nav-menu li a::after {
+    clear: both;
+}
+#services-nav-menu li a .content h4 {
+    text-align: center;
+}
+#services-nav-menu li a .content p {
+    display: none;
+	line-height:18px;
+}
+#services-nav-menu li a .icon {
+    float: left;
+    padding: 5%;
+    width:25%;
+}
+
+#services-nav-menu li a .content {
+    color: #000000;
+    float: left;
+    padding: 5%;
+    width: 75%;
+}
+#services-nav-menu li a .content h4 {
+    font-family: "francois_oneregular";
+	font-size:20px;
+	font-weight:bold;
+    margin-top: 10px;
+}
+.navigation_services{
+	background: #000 none repeat scroll 0 0;
+    border-top: 1px solid #333;
+    display: none;
+    left: 0;
+    position: absolute;
+    top: 41px;
+    width: 100%;
+}
+.services_header:hover .navigation_services{
+	display:block;
+}
+.navigation_services ul li{
+	text-align:center;
+	 padding: 0 20px;
+}
+.navigation_services ul li a{
+	border-bottom: 1px solid #333333;
+    color: #fff;
+    display: inline-block;
+    font-size: 20px;
+    padding: 10px 0;
+    width: 100%;
+}
+.navigation_services ul{ margin-bottom:3px;}
+.navigation_services ul li a:hover{
+	text-decoration:none;
+	color:#03cdff;
+	 -webkit-transition: all 0.5s ease 0s;
+}
+.navigation_services ul li:last-child a{
+	border-bottom:none;
+}
+.our_contracthub_main{
+	border:1px solid #cccccc;
+	margin-bottom: 20px;
+}
+.header_contracthub{
+	padding:30px 50px;
+}
+.header_contracthub img{
+	border-right: 1px solid #ccc;
+    display: inline;
+    float: left;
+    margin-right: 30px;
+    padding-right: 30px;
+}
+.header_contracthub h4{
+	 display: inline;
+    font-family: "FacilePro";
+    font-size: 26px;
+	color:#000;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.header_contracthub h4 span{ color:#03cdff;}
+.header_contracthub p{
+	font-size: 16px;
+    margin: 40px 10px 20px;
+    text-align: center;
+}
+.contracthub_listine{
+	margin:0px 100px 37px;
+}
+.contracthub_icon{
+	border: 1px solid #ccc;
+    border-radius: 50%;
+    display: inline;
+    float: right;
+    padding: 20px;
+}
+.contracthub_listine a:hover{ text-decoration:none;}
+.contracthub_advice h4{
+	margin-top:0px;
+	 font-family: "francois_oneregular";
+	font-size:18px;
+	font-weight:bold;
+}
+.contracthub_listine:hover .contracthub_advice h4{ color:#03cdff;}
+.contracthub_listine:hover .contracthub_icon img{
+	filter: grayscale(100%);
+}
+.contracthub_footer {
+    background: #000 none repeat scroll 0 0;
+    padding: 5px;
+    text-align: center;
+}
+.contracthub_footer a{
+	color:#03cdff;
+	font-size:20px;
+	margin:0px 5px;
+}
+.services_header .view_all_button{
+	color:#03cdff;
+	text-transform:uppercase;
+	font-size:12px;
+	border:1px solid #333333;
+	padding:2px 10px;
+	float:right;
+}
+.services_header .view_all_button:hover{
+	background:#03cdff;
+	color:#fff;
+	text-decoration:none;
+	-webkit-transition: all 0.5s ease 0s;
+}
+.letest_news_box {
+    border: 1px solid #ccc;
+    position: relative;
+	padding-bottom:5px;
+	margin-bottom:20px;
+}
+.letest_news_box img{
+	height:165px;
+	width:100%;
+}
+.letest_news_box .book_mark a{
+	background:#000;
+	position:absolute;
+	z-index:9999;
+	right:0px;
+	padding:5px;
+}
+.letest_news_box .book_mark img{
+	height:16px;
+}
+.letest_news_box .book_mark a:hover img{
+	 filter: grayscale(100%);
+}
+.letest_news_box h5{
+	border-bottom: 1px solid #000;
+    color: #000;
+    font-family: "francois_oneregular";
+    font-size: 15px;
+    margin: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+.letest_news_box p{
+	font-size: 13px;
+    line-height: 15px;
+    margin: 0 20px 20px;
+}
+.letest_news_footer{
+	margin-left:20px;
+}
+.letest_news_footer a {
+    color: #03cdff;
+    font-size: 20px;
+    margin:0 10px 0  0;
+}
+.letest_news_footer a:hover{
+	color:#000;
+	-webkit-transition: all 0.5s ease 0s;
+}
+.letest_news_footer .news_read_more{
+	float:right;
+	 padding: 4px 10px;
+	font-size:11px;
+	color:#fff;
+}
+.letest_news_footer .news_read_more i{ margin-left:10px;} 
+.letest_news_footer .news_read_more:hover{ color:#03cdff;}
+.letest_news_footer .news_read_more:hover i{ color:#fff;}
+.big_tour_main{
+	border:1px solid #ccc;
+	padding:25px 15px 15px;
+	 margin-bottom: 60px;
+}
+.big_tour{
+	border-right: 1px solid;
+    padding-right: 25px;
+}
+.big_tour img{
+	margin-bottom:20px;
+}
+.big_partner_list ul li{
+	    margin-bottom: 35px;
+    margin-top: 5px;
+    text-align: center;
+}
+.big_partner_list ul li:last-child{
+	margin-bottom:0px;
+}
+.big_partner_list ul li img{
+	display:inline;
+}
+.contractor_footer_ad .green_logo{
+	text-align:center;
+	margin-top:0px;
+	margin-bottom:30px;
+}
+.contractor_footer_ad {
+    background: rgb(23, 23, 23) url("../images/contractor-footer-ad.png") no-repeat scroll 0 15px;
+    margin-bottom: 40px;
+    padding: 30px 0 0;
+}
+.contractor_footer_ad .green_logo img{ display:inline;} 
+.contractor_footer_ad a {
+    background: #fff none repeat scroll 0 0;
+    color: #000;
+    font-size: 12px;
+    padding:9px 5px 9px 20px;
+}
+.contractor_footer_ad a i {
+    color: #00cc33;
+    font-size: 16px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+.find_out_more{
+	display: inline-block;
+    margin: 10px 0;
+    text-align: center;
+    width: 100%;
+}
+.contractor_footer_ad .contract_right_part {
+    padding: 0 60px;
+}
+.contractor_footer_ad a:hover {
+    color: #00cc33;
+    text-decoration: none;
+    -webkit-transition: all 0.5s ease 0s;
+}
+.contractor_footer_ad .banner_find_out_more {
+    background: #000 none repeat scroll 0 0;
+    margin-top: 19px;
+    padding: 12px;
+}
+.contractor_footer_ad .banner_find_out_more p {
+    color: #00cc33;
+    font-family: "FacilePro";
+    font-size: 16px;
+    margin-bottom: 0;
+    margin-top: 4px;
+    text-align: center;
+}
+
+#brand-new h5{
+	 background: #000000 none repeat scroll 0 0;
+    color: #ffffff;
+    display: block;
+    font-family: "FacilePro",Georgia;
+    padding: 15px 20px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 5px;
+    -webkit-transform: rotate(25deg);
+    width: 130px;
+    z-index: 21;
+}
+.contracting_right .position_rotade {
+    left: 10%;
+    line-height: 47px;
+   -webkit-transform: rotate(-16deg);
+	position: absolute;
+    top: 20%;
+    font-size: 20px;
+}
+.contracting_right .position_rotade span{
+	padding: 11px 15px 6px;
+    background: #000000 none repeat scroll 0 0;
+    color: #00ccff;
+	font-size:21px;
+	font-family: "FacilePro",Georgia;
+}
+
+/************************ advice article css***********************/
+.full_job_section3{
+	margin-top:30px;
+}
+.job_article_img{
+	text-align:center;
+	margin-bottom:60px;
+}
+.job_article_img img{
+	display:inline;
+}
+.share_the_article {
+    margin-top: 20px;
+	text-align:center;
+}
+.advice_article_headding h2{
+	border-bottom: medium none;
+    font-family: "FacilePro",Georgia;
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 30px;
+    margin-bottom: 0;
+    padding-bottom: 5px;
+    text-align: center;
+}
+.advice_article_headding .date_content{
+	text-align:center;
+	font-size:13px;
+	margin-bottom:40px;
+	color:#999;
+	font-weight:bold;
+}
+.advice_article_headding .date_content span{
+	margin:0px 5px;
+	color:#03CDFF;
+}
+.advice_article_headding h4{
+	color: #03cdff;
+    display: inline-block;
+    font-family: "francois_oneregular";
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.share_the_article img{ margin-bottom:25px; width:100%;}
+.return_articles{
+	margin-bottom:50px;
+}
+.related_contracts .font_related_articles{
+	margin-bottom:15px;
+}
+.weekly_newsletter{
+	background:#000;
+	padding:20px 0px;
+	 margin-bottom: 30px;
+}
+.weekly_newsletter .more_sign_up{
+	 color: #fff;
+    font-family: "FacilePro",Georgia;
+    font-size: 20px;
+    line-height: 35px;
+    margin-bottom: 0;
+}
+.weekly_newsletter .more_sign_up span{
+	color:#03CDFF;
+}
+.mergin_bottom_none{
+	margin-bottom:0px !important;
+}
+.font_color_white{
+	color:#fff;
+	font-size:18px !important;
+	margin-left:15px;
+	vertical-align:middle;
+}
+.weekly_newsletter a:hover .font_color_white{
+	color:#000;
+	-webkit-transition: all 0.5s ease 0s;
+}
 .recruiter_signup .color_active li a {
     color: #999;
 }
@@ -1775,6 +2348,268 @@ input[type="radio"]:checked + label span {
     display: inline-block;
     margin-bottom: 10px;
 }
+
+/************************ Advice Category article css***********************/
+.padding_left_none{padding-left:0px;}
+.padding_right_none{ padding-right:0px;}
+.advice_category_slider .bx-wrapper .bx-viewport{
+	 background:url("../images/advice-category-banner-bg.png") no-repeat scroll center center / cover; 
+	  background-image:url("../images/advice-category-banner-bg.png"); 
+	  background-position:center;
+	  background-size:cover;
+	 
+ }
+.advice_category_slider .bxslider li h2{
+	text-align:center;
+	border-bottom:none;
+	padding-top:30px;
+	font-size:26px;
+	color:#00ccff;
+	font-family: "FacilePro",Georgia;
+	margin-bottom:25px;
+}
+.advice_category_slider .bx-wrapper .bx-pager{ display:none;}
+.advice_category_slider .bxslider li p{
+	color:#fff;
+	padding:0px 70px;
+}
+.advice_category_slider .bxslider li .letest_news_footer{
+	 display: inline-block;
+    margin-left: 0;
+    margin-top: 30px;
+    padding: 0 70px 45px;
+    width: 100%;
+}
+.advice_category_slider .bxslider li .letest_news_footer a{	font-size:25px;}
+.advice_category_slider .bxslider li .letest_news_footer .news_read_more{
+	background:#fff;
+	font-size:14px;
+	color:#000;
+}
+.advice_category_slider .bxslider li .letest_news_footer .news_read_more:hover{
+	color:#00ccff;
+	-webkit-transition: all 0.5s ease 0s;
+}
+.advice_category_slider .bxslider li .letest_news_footer .news_read_more:hover i{
+	color:#000;
+	-webkit-transition: all 0.5s ease 0s;
+}
+.advice_category_slider .bx-wrapper .bx-prev {
+    background: rgba(0, 0, 0, 0) url("../images/controls.png") no-repeat scroll -130px 1px;
+    left: 0;
+}
+.advice_category_slider .bx-wrapper .bx-controls-direction a {
+    height: 60px;
+    margin-top: -16px;
+    outline: 0 none;
+    position: absolute;
+    text-indent: -9999px;
+    top: 50%;
+    width: 40px;
+    z-index: 9999;
+}
+.advice_category_slider .bx-wrapper .bx-prev {
+    background: rgba(0, 0, 0, 0) url("../images/controls.png") no-repeat scroll -130px 1px;
+    left: 0;
+}
+.advice_category_slider .bx-wrapper .bx-prev:hover{background-position:-130px 1px;}
+.advice_category_slider .bx-wrapper .bx-next {
+    background: rgba(0, 0, 0, 0) url("../images/controls.png") no-repeat scroll -229px 1px;
+    right: 0;
+}
+.advice_category_slider .bx-wrapper .bx-next:hover{background-position:-229px 1px;}
+.advice_category_banner{
+	background:#000; 
+	margin-bottom:35px;
+}
+.featured_advice{
+	padding-top:50px;
+}
+.featured_advice p{
+	color:#666666;
+	text-align:center;
+	padding: 10px 40px 10px 0;
+}
+.advice_popular_categories h3{
+	color:#fff;
+	font-size:20px;
+	font-family: "FacilePro",Georgia;
+}
+.advice_popular_categories ul{ margin-bottom:0px;}
+.advice_popular_categories ul li{
+	border-bottom:1px solid #00ccff;
+}
+.advice_popular_categories ul li a{
+	color:#a3a3a3;
+	padding:5px 0px;
+	display:inline-block;
+	font-family: "francois_oneregular";
+	font-size:20px;
+}
+.advice_popular_categories ul li a:hover{
+	text-decoration:none;
+	color:#00ccff;
+	-webkit-transition: all 0.5s ease 0s;
+}
+.advice_popular_categories ul li:last-child {
+    border-bottom: medium none;
+}
+.margin_bottom_20{
+	margin-bottom:20px;
+}
+.advice_categories_search_area{
+	border-top:2px solid #fff;
+}
+.advice_categories_search_area .form-group {
+	padding: 15px 0;
+}
+.advice_categories_search_area .hover_white_pluse {
+	margin: 15px 0;
+}
+.advice_categories_search_area a:hover .font_color_white {
+    color: #000;
+    -webkit-transition: all 0.5s ease 0s;
+}
+.advice_categories_search_area .dropdown{
+	text-align:center;
+	border-left:1px solid #a5a5a5;
+	border-right:1px solid #a5a5a5;
+}
+.advice_categories_search_area .dropdown a{
+	padding:15px;
+	line-height: 35px;
+}
+.advice_categories_search_area .dropdown-menu li a{ line-height:20px; padding:10px 15px;}
+.advice_categories_search_area .advice_dropdown{
+	font-size:15px;
+	font-family: "FacilePro",Georgia;
+	background:none;
+	padding:0px;
+	color:#fff;
+}
+.advice_categories_search_area .dropdown-menu{
+	left:-1px;
+	 min-width: 101%;
+	  z-index: 9999999;
+	 border-radius:0px 0px 4px 4px;
+}
+.advice_categories_search_area .advice_dropdown:hover{ background:none !important;}
+.advice_categories_search_area .advice_dropdown:focus{ background:none !important;}
+.advice_categories_search_area .btn-default:active, .advice_categories_search_area .btn-default.active, .advice_categories_search_area .open > .dropdown-toggle.btn-default{ background:none !important; border:none !important;}
+.advice_categories_search_area .advice_dropdown .caret{
+	color:#00CCFF;
+	 border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px dashed;
+    margin-left: 5px;
+}
+.update_your_availability{
+	background: #000 none repeat scroll 0 0;
+    min-height: 313px;
+    padding: 20px;
+    text-align: center;
+}
+.update_your_availability img{
+	display:inline;
+	padding-bottom:10px;
+}
+.update_your_availability h5{
+	font-size:32px;
+	color:#fff;
+	margin-bottom: 15px;
+	font-family: "FacilePro",Georgia;
+}
+.update_your_availability p{
+	color:#fff;
+}
+.update_your_availability h5 span{ color:#00ccff;}
+.update_your_availability a{
+	background:#fff;
+	color:#000;
+	padding: 5px 10px 5px 20px;
+	margin-top:12px;
+}
+.update_your_availability a:hover{background:#fff;}
+.update_your_availability a:hover i{ color:#000; -webkit-transition: all 0.5s ease 0s;}
+.advice_categories_search_area .hover_white_pluse .transform_rotate{
+	transform: rotate(90deg);
+}
+
+/************************ News Category article css***********************/
+.advice_category_slider .bxslider li p {
+    color: #fff;
+    padding: 0 120px;
+}
+.featured_artical{ text-align:center;}
+.featured_artical p{padding:0px;}
+.featured_artical img{ display:inline; margin-bottom:10px;}
+.sign_up_contractrecruit h5{ 
+	font-size: 45px;
+    line-height: 29px;
+    margin-bottom: 9px;
+}
+.sign_up_contractrecruit h5 span{ font-size:25px;}
+.advice_categories_search_area .nav > li{
+	display:inline;
+}
+.advice_categories_search_area .nav > li > a{
+    color: #fff;
+    font-family: "FacilePro",Georgia;
+    font-size: 15px;
+    border-left: 1px solid #a5a5a5;
+    border-right: 1px solid #a5a5a5;
+    line-height: 35px;
+    padding: 18px 25px 10px;
+    text-align: center;
+	margin-right:-1px;
+	border-radius:0px;
+}
+
+
+.advice_categories_search_area .nav-tabs > li.active:before {
+position: absolute;
+  top: 54px;
+  right: inherit;
+  left:50%;
+  margin-left:-5px;
+  display: inline-block;
+  border-top: 14px solid transparent;
+  border-left: 14px solid #000;
+  border-right: 0 solid #000;
+  border-bottom: 14px solid transparent;
+  content: " ";
+   -webkit-transform:rotate(90deg);
+}
+
+.advice_categories_search_area .nav-tabs > li.active:after {
+  position: absolute;
+  top: 54px;
+  right: inherit;
+  left:50%;
+  margin-left:-5px;
+  display: inline-block;
+  border-top: 14px solid transparent;
+  border-left: 14px solid #000;
+  border-right: 0 solid #000;
+  border-bottom: 14px solid transparent;
+  content: " ";
+  -webkit-transform:rotate(90deg);
+}
+.advice_categories_search_area .nav-tabs > li > a:hover{
+		border-top:none;
+	border-bottom:none;
+	line-height:37px;
+}
+.advice_categories_search_area .nav-tabs > li.active > a, .advice_categories_search_area .nav-tabs > li.active > a:hover, .advice_categories_search_area .nav-tabs > li.active > a:focus{
+	background: rgba(0, 0, 0, 0) url("../images/tabing-active.png") no-repeat scroll 0px 1px;
+	border-top:none;
+	border-bottom:none;
+	color:#00ccff;
+	line-height:37px;
+	border-color: #a5a5a5 #a5a5a5 
+}
+
+
 #contractor_about_us {padding: 30px 0;}
 #contractor_about_us h2 { color: #fff;}
 .margin_top_7{ margin-top:-7px;}
@@ -1974,6 +2809,198 @@ input[type="radio"]:checked + label span {
 	padding-top:2px;
 }
 .characters_remaining span{ font-size:14px; color:#ff0066;}
+
+/************************ contractor directory css***********************/
+#services-nav-menu li a:hover{
+	text-decoration:none;
+}
+.directory_ads{
+	background:#000;
+}
+.directory_ads_header{
+	padding:10px;
+	 color: #fff;
+    font-family: "FacilePro";
+    font-size: 20px;
+}
+.directory_ads_header img{
+	margin-right:10px;
+}
+.directory_ads_header span{color: #00ccff;}
+.directory_ads_footer{
+	padding:15px;
+	text-align:center;
+}
+.directory_ads_footer a{
+	color:#fff;
+	font-size:22px;
+	margin:0px 7px;
+}
+.directory_ads_footer a:hover{
+	color: #00ccff;
+	-webkit--webkit-transition: all 0.5s ease 0s;
+}
+.directory_ads_contant img{ width:100%;}
+.directory_ads_contant{ position:relative;}
+.directory_ads_contant .position_rotade {
+   bottom: 40px;
+    font-size: 20px;
+    left: 10%;
+    line-height: 37px;
+    position: absolute;
+    -webkit-transform: rotate(-16deg);
+}
+.directory_ads_contant .position_rotade span {
+    background: #000000 none repeat scroll 0 0;
+    color: #00ccff;
+    font-family: "FacilePro",Georgia;
+    font-size: 18px;
+    padding: 11px 15px 6px;
+}
+.text_green{
+	color:#00cc33 !important;
+}
+.recommended_companies{ margin-bottom:20px;}
+.recommended_companies h2{
+	margin:0px;
+	border-bottom:none;
+	line-height:15px;
+	font-family: "francois_oneregular";
+	color:#000;
+	padding-bottom:15px;
+	font-size:23px;
+}
+.recommended_companies p{ margin-bottom:0px;}
+
+.contractor_directory_box{
+	border:1px solid #999999;
+	padding:10px;
+	margin-bottom:15px;
+	text-align:center;
+}
+.contractor_directory_box .left_side_icon{
+	height: 33px;
+	float:left;
+}
+.directory_box_contant{
+	padding-top:10px;
+}
+.directory_box_contant img{ margin-bottom:20px;}
+.directory_box_contant h2{
+	margin:0px;
+	border-bottom:none;
+	line-height:15px;
+	font-family: "francois_oneregular";
+	color:#000;
+	padding-bottom:10px;
+	font-size:19px;
+}
+.directory_box_contant h5{
+	font-weight:bold;
+	color:#000;
+}
+.directory_box_contant p{
+	padding:0px 25px;
+}
+.directory_box_contant a{
+	 display: inline-block;
+    font-family: "francois_oneregular";
+    text-transform: uppercase;
+    vertical-align: middle;
+	margin-top:5px;
+	margin-bottom:25px;
+}
+.directory_box_contant a i{
+	margin-left:5px;
+	vertical-align: middle;
+	font-size:18px !important;
+}
+.directory_box_contant a:hover{
+	color:#00cc33;
+	text-decoration: none;
+    -webkit-transition: all 0.5s ease 0s;
+}
+.directory_box_contant a:hover i{
+	color:#000 !important;
+    -webkit-transition: all 0.5s ease 0s;
+}
+.mobile_website_left{text-align:left;}
+.mobile_website_left img{ margin-right:10px;}
+.mobile_website_left span{ font-weight:bold;}
+.mobile_website_right{ text-align:right;}
+.mobile_website_right a{
+	 background: #000 none repeat scroll 0 0;
+    color: #fff;
+    display: inline-block;
+    font-size: 12px;
+    padding: 5px 10px;
+	 line-height: 19px;
+    vertical-align: middle;
+}
+.mobile_website_right a i{
+	   font-size: 18px !important;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+.mobile_website_right a:hover{
+	color:#00cc33;
+	text-decoration: none;
+    -webkit-transition: all 0.5s ease 0s;
+}
+.mobile_website_right a:hover i{
+	color:#fff !important;
+    -webkit-transition: all 0.5s ease 0s;
+}
+.directory_box_footer{
+	border-top:1px solid #00cc33;
+	padding-top:10px;
+	margin-top:25px;
+}
+.directory_box_footer a{
+	font-size:11px;
+	color:#666;
+	padding:0px 5px;
+	border-right:1px solid #00cc33;
+}
+.directory_box_footer a:hover{
+	-webkit-transition: all 0.5s ease 0s;
+	color:#00cc33;
+	text-decoration:none;
+}
+.directory_box_footer a:last-child{ border-right:none;}
+.readmore_viewfull .mobile_website_left ul{ margin-bottom:0px;}
+.readmore_viewfull .mobile_website_left ul li{
+	display:inline;
+	 margin-right: 15px;
+}
+.readmore_viewfull{
+	background: #fff none repeat scroll 0 0;
+    position: absolute;
+    z-index: 9999;
+}
+.readmore_viewfull .full_page_header {
+    float: left;
+    width: 94%;
+}
+.readmore_viewfull .full_page_header h2{
+	float:left;
+	font-size:25px;
+	margin-left:20px;
+}
+.readmore_viewfull .full_page_header img{
+	float:right;
+	margin-bottom:0px;
+}
+.readmore_viewfull .directory_box_contant h5{
+	text-align:left;
+	 padding: 0 55px;
+	 font-size:18px;
+}
+.readmore_viewfull .directory_box_contant p{
+	text-align:left;
+	 padding: 0 55px;
+}
+.readmore_viewfull .contractor_directory_box{ margin-bottom:0px;}
 
 /************************ recruiter job posting css***********************/
 .choose_template{ margin-top:-9px; float:right;}
@@ -2570,6 +3597,272 @@ input[type="radio"]:checked + label span {
     width: auto !important;
 	font-size:13px !important;
 }
+
+/************************ page 404 css***********************/
+.page_404_main{
+    margin: 0 auto;
+    vertical-align: middle;
+    width: 900px;
+}
+.table-cel{
+	 display: table-cell;
+	 vertical-align:middle;
+}
+.page_404_left img{ display:inline;}
+.page_404_right{ text-align:left;}
+.page_404_right h1{
+	color:#00ccff;
+	font-size:40px;
+	font-family: "FacilePro",Georgia;
+	border-bottom:none;
+	margin:0px;
+	padding-bottom: 0;
+}
+.page_404_right p{
+	color:#aaaaaa;
+	font-size:22px;
+	margin-bottom:0px;
+}
+.page_404_right p span{
+	color:#fff;
+	font-weight:bold;
+}
+.page_404_right p a{
+	color:#00ccff;
+}
+.page_404_right p a:hover{
+	text-decoration:none;
+	color:#666;
+	-webkit-transition: all 0.5s ease 0s;
+}
+
+/************************ terms of use css***********************/
+.manage_top_buttons ul {
+    margin:30px 0px;
+}
+.manage_top_buttons ul li {
+    display: inline-block;
+    margin-right: 15px;
+    text-align: center;
+    width: 15.29%;
+}
+.manage_top_buttons ul li:last-child {
+    margin-right: 0;
+}
+.manage_top_buttons ul li a {
+    border: 2px solid #cccccc;
+    color: #cccccc;
+    display: inline-block;
+    padding: 10px 0;
+    width: 100%;
+}
+.manage_top_buttons ul li a:hover {
+    border-color: #00ccff;
+    color: #000;
+    text-decoration: none;
+    transition: all 0.5s ease 0s;
+}
+.manage_top_buttons ul .active a {
+    border-color: #00ccff;
+    color: #000;
+    text-decoration: none;
+}
+.trems_use_main .panel-default > .panel-heading{
+	padding:0px;
+	background:#000;
+}
+.trems_use_main .panel-default > .panel-heading h4 a{
+	padding:10px 15px;
+	color:#fff;
+	display:inline-block;
+	width:100%;
+}
+.trems_use_main .panel-default > .panel-heading h4 a:hover{
+	text-decoration:none;
+	color:#00ccff;
+	transition: all 0.5s ease 0s;
+}
+.trems_use_main .panel{ background:none;}
+.trems_use_main .panel-body{border:1px solid #000;}
+.trems_use_main .panel-default > .panel-heading h4 a .glyphicon{ float:right; color:#00ccff}
+.trems_use_main .panel-default > .panel-heading h4 a:hover .glyphicon{
+	text-decoration:none;
+	color:#fff;
+	transition: all 0.5s ease 0s;
+}
+.panel-group .panel + .panel{ margin-top:10px !important;}
+.trems_use_main .panel-default > .panel-heading h4 .hover_text_pink:hover .glyphicon{
+	text-decoration:none;
+	color:#fff !important;
+	transition: all 0.5s ease 0s;
+}
+.our_company_detaills h4{
+	margin:0px;
+	color:#000;
+	font-size:14px;
+	font-weight:bold;
+	padding-bottom:15px;
+}
+.our_company_detaills{ position:relative;}
+.our_company_detaills p{
+	color:#aaa;
+	font-size:12px;
+	padding-left:190px;
+}
+.our_company_detaills p span{
+	position:absolute;
+	left:0px;
+	width:30%;
+	display:inline-block;
+	color:#00ccff;
+	font-size:13px;
+}
+.trems_use_main.signup_form_section{ padding-top:0px;}
+
+.not_found_loking{
+	background:#000;
+	padding:15px 0px;
+	margin:40px 0px;
+}
+.not_found_loking .not_found_loking_left{
+	font-size:18px;
+	color:#fff;
+	 padding-top: 40px;
+	font-family: "FacilePro",Georgia;
+}
+.not_found_loking .not_found_loking_right{
+	 text-align:center; 
+	 font-size:23px;
+	 font-family: "FacilePro",Georgia;
+}
+.not_found_loking .not_found_loking_right .color1{ color:#00cc33;}
+.not_found_loking .not_found_loking_right .color2{ color:#ff0099;}
+.not_found_loking .not_found_loking_right .color3{ color:#66cccc;}
+.not_found_loking .not_found_loking_right .color4{ color:#99cc00;}
+.not_found_loking .not_found_loking_right .color5{ color:#0099ff;}
+.not_found_loking .not_found_loking_right .color6{ color:#ff9900;}
+.not_found_loking .not_found_loking_right .color7{ color:#6699cc;}
+.not_found_loking .not_found_loking_right .color8{ color:#cc0000;}
+
+
+
+
+
+	  .navigation_header_part .worksmart_nev {  font-family: "HelveticaNeue";}
+	  .navigation_header_part .worksmart_nev strong{ color:#00cc33;}
+	    .navigation_header_part .worksmart_nev { padding-top:10px;}
+	  .payroll_banner_part { padding:95px 0; background:rgba(0, 0, 0, 0) url("../images/payroll_banner.jpg") no-repeat top;}
+	
+	  .our_payroll_hadding_text {
+    border: 10px solid #00ff33;
+   width:600px; margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+	
+	
+}
+ .our_payroll_hadding_text p{color:#fff; font-size:24px; text-transform:uppercase;   font-family: "FacilePro"; margin-bottom:0px;  }
+ .rate_text_row{ background:#000; padding:10px 0 25px; color:#fff;}
+ .rate_text_row h3{ font-size:20px; color:#fff;    margin:0; padding:17px 0 0; font-family:"francois_oneregular"; }
+ .take_text_hadding { text-align:right;}
+	 .rate_text_row  strong{color:#00cc33; font-family: "FacilePro"; } 
+	 .payroll_solutions_part { padding:50px 0 60px; width:100%; display:inline-block;}
+	  .payroll_solutions_part h3{ font-size:20px;font-family: "FacilePro"; margin:30px 0 0;  color:#000;}
+	  .payroll_solutions_part ul li { width:33.33%; float:left; text-align:center;}
+	  .payroll_solutions img { display:inline; height:120px;}
+	   .payroll_solutions_part h1{ margin:0; font-size:24px;font-family: "FacilePro"; border:none; text-align:center; color:#000;}
+	  	  .payroll_solutions_part ul { display:inline-block; width:100%; padding:45px 0 0 ; margin-bottom:0;}
+		  .btn_request_row { text-align:center; margin:65px 0 0;}
+		  
+	.btn_request_row a	      {
+	background: #000 none repeat scroll 0 0;
+    color: #fff;
+    display: inline-block;
+    font-size: 13px;
+    line-height: 21px;
+    padding: 7px 10px 7px 30px;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+    width: auto;
+	text-decoration:none;
+
+}
+		  .btn_request_row a:hover{ color: #00ff33; transition: all 0.5s ease 0s;}
+		  	  .btn_request_row a:hover .plus_color{ color: #fff; transition: all 0.5s ease 0s;}
+	.plus_color {
+    color: #00ff33;
+    font-size: 18px;
+	margin-left:20px;
+    vertical-align: middle;}
+	
+.payroll_solutions_first::after {
+   border-bottom: 60px solid #00ff33;
+    bottom: auto;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: -35px;
+    transform: skewY(178.8deg);
+    width: 100%;
+    z-index: -1;
+}
+
+.payroll_solutions_first1::before {
+   border-bottom: 60px solid #00ff33;
+    bottom: auto;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    bottom: -35px;
+    transform: skewY(178.8deg);
+    width: 100%;
+    z-index: -1;
+}
+.payroll_solutions_row{ position:relative;}
+
+   .solution_row { background:#000; padding:50px 0 42px;}
+   .solution_part h1{font-size:24px;font-family: "FacilePro"; border:none; text-align:center; color:#fff; margin:0 0 34px;}
+  .solution_row .btn_request_row a { background:#fff; color:#000; margin:20px 0 0;}
+  .solution_part { }
+  .solution_left { border:1px solid #3b3b3b; padding:25px; min-height:226px; }
+   .solution_left h3 { font-size:18px; color:#00cc33; font-family: "FacilePro"; text-align:center; margin-top:0;}
+      .solution_left p{ font-size:15px; color:#fff; line-height:19px;}
+	  .plus_color { font-size:18px;}
+	  .btn_request_row.btn_request_row1 a:hover{color:#00cc33; transition: all 0.5s ease 0s;}
+	   .btn_request_row.btn_request_row1 a:hover .plus_color{color:#000;  transition: all 0.5s ease 0s;}
+	   .get_payroll_part  .btn_request_row.btn_request_row1 a:hover .plus_color{ color:#fff;  transition: all 0.5s ease 0s;}
+	   .solution_center_part h4{font-size:24px;font-family: "FacilePro"; border:none; text-align:center; color:#333333; margin:0;  padding:108px 0 0;}
+
+   .payroll_solutions_get{ padding:56px 0 28px;}
+   .get_payroll_row h1{font-size:24px;font-family: "FacilePro"; border:none; text-align:center; color:#000; margin:0 0 20px;}
+  .get_payroll_row h3 {
+    font-family:"francois_oneregular";
+    font-size: 20px;
+    margin:  0  0 40px;
+}
+.get_payroll_part ul{ padding:0 52px;}
+.get_payroll_part ul li { list-style:number; font-size:52px; color:#00ff33; font-family: "francois_oneregular"; }
+.get_payroll_part h4{ font-size:15px; margin:0 0 5px; font-family: "HelveticaNeue"; font-weight:600; }
+.get_payroll_part p{ font-size:15px;font-family: "HelveticaNeue";} 
+.get_payroll_part .input-group { border:1px solid #ccc;}
+.get_payroll_part .input-group-addon { background:none; border:none;}
+.get_payroll_part .form-control{ border:none; background:none; box-shadow:none; height:30px; padding:2px 12px; font-size:13px;}
+.get_payroll_part .form-group{ margin-bottom:30px;}
+.get_payroll_part .img-responsive{ display:inline;}
+.get_payroll_part h5 sub{ font-size:16px;font-family: "FacilePro"; color:#cccccc; bottom:0; }
+.get_payroll_part h5 { font-size:30px; color:#000; font-weight:600; margin: 0;}
+.get_payroll_nav_text {
+    display: inline-block;
+	vertical-align:-moz-middle-with-baseline;
+	margin-top:-12px;
+}
+.get_payroll_nav_secound{ margin-top:0;}
+.get_payroll_part .btn_request_row {
+    margin: 32px 0 0;}
+	.get_payroll_left h3{ margin:0  0 22px;}
 
 /************************ responsive css***********************/
 @media(max-width:1024px){
