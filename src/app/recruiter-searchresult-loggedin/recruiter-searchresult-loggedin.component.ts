@@ -18,4 +18,8 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
 
   }
 
+  getRangeSliderValue(event){
+
+  }
+
 }

@@ -25,7 +25,8 @@
         "../src/assets/css/jquery.bxslider.css",
         "../src/assets/css/style.css",
         "../node_modules/ion-rangeslider/css/ion.rangeSlider.css",
-         "../node_modules/ion-rangeslider/css/ion.rangeSlider.skinFlat.css"
+         "../node_modules/ion-rangeslider/css/ion.rangeSlider.skinFlat.css",
+         "../src/assets/css/contractor-lin.css"
       ],
       "scripts": [
         "../src/assets/js/jquery-1.11.1.min.js",
