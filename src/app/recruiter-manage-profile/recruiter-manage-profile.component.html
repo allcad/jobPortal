@@ -252,13 +252,13 @@
 
 
               <div *ngIf="showMultipleAddress">
-                <div *ngFor="let item of addMulAddArray">
+                <div *ngFor="let item of addMulAddArray; let i=index">
                   <div class="row">
                     <div class="col-sm-100">
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon"><img src="./assets/images/address-name-icon.png" alt="" title="" class="img-responsive"></div>
-                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="ADDRESS LINE 1" [(ngModel)]="item.addresslLine1" name="postalAddressLine1">
+                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="ADDRESS LINE 1" [(ngModel)]="addMulAddArray[i].addresslLine1" name="postalAddressLine1">
                         </div>
                       </div>
                     </div>
@@ -268,7 +268,7 @@
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon"><img src="./assets/images/address-name-icon.png" alt="" title="" class="img-responsive"></div>
-                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="ADDRESS LINE 2" [(ngModel)]="item.addressLine2" name="postalAddressLine2">
+                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="ADDRESS LINE 2" [(ngModel)]="addMulAddArray[i].addressLine2" name="postalAddressLine2">
                         </div>
                       </div>
                     </div>
@@ -278,7 +278,7 @@
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon"><img src="./assets/images/recruiter-city-pastcode.png" alt="" title="" class="img-responsive"></div>
-                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="CITY, TOWN" [(ngModel)]="item.city" name="postalCity">
+                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="CITY, TOWN" [(ngModel)]="addMulAddArray[i].city" name="postalCity">
                         </div>
                       </div>
                     </div>
@@ -286,7 +286,7 @@
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon"><img src="./assets/images/county-icon.png" alt="" title="" class="img-responsive"></div>
-                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="COUNTRY" [(ngModel)]="item.country" name="postalCountry">
+                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="COUNTRY" [(ngModel)]="addMulAddArray[i].country" name="postalCountry">
                         </div>
                       </div>
                     </div>
@@ -296,7 +296,7 @@
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon"><img src="./assets/images/post-code-icon.png" alt="" title="" class="img-responsive"></div>
-                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="POST CODE" [(ngModel)]="item.postCode" name="postalPostCode">
+                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="POST CODE" [(ngModel)]="addMulAddArray[i].postCode" name="postalPostCode">
                         </div>
                       </div>
                     </div>
@@ -304,7 +304,7 @@
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon"><img src="./assets/images/telephone-icon.png" alt="" title="" class="img-responsive"></div>
-                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="TELEPHONE" [(ngModel)]="item.telephone" name="postalTelephone">
+                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="TELEPHONE" [(ngModel)]="addMulAddArray[i].telephone" name="postalTelephone">
                         </div>
                       </div>
                     </div>
@@ -325,9 +325,9 @@
                       <i class="fa fa-minus plus_blue text_pink" aria-hidden="true"></i>
                     </a> -->
                     <p class="text_pink">
-                      <button href="javascript:void(0);" class="text_pink" (click)="addMultiplePhone()">
+                      <a href="javascript:void(0);" class="text_pink" (click)="addMultiplePhone()">
                         <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i> Add Another Address
-                      </button>
+                      </a>
                     </p>
                   </div>
                 </div>

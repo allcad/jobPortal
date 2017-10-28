@@ -14,7 +14,7 @@
                                         <li class="active">Saved Search </li>
                                     </ul>
                                     <div class="pull-right job_search">
-                                        <p>Need Help? | <span>Watch our Video Guides</span></p> <a href="#" class="btn-primary hover_text_pink hover_white_pluse width_180px">Saved Search <i class="fa fa-angle-down plus_blue font_size_margin text_pink" aria-hidden="true"></i></a> </div>
+                                        <p>Need Help? | <span>Watch our Video Guides</span></p> <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px">Saved Search <i class="fa fa-angle-down plus_blue font_size_margin text_pink" aria-hidden="true"></i></a> </div>
                                 </div>
                                 <div class="signup_form_section">
                                     <div class="job_search_keywords">
@@ -25,10 +25,10 @@
                                             <div class="form-group responsive_margin35">
                                                 <div class="input-group">
                                                     <div class="input-group-addon"><img src="./assets/images/recruit-save-search-name.png" alt="Keywords" title="Keywords" class="img-responsive"></div>
-                                                    <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="SAVED SEARCH NAME">
+                                                    <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="SAVED SEARCH NAME" name="savedSearchName" [(ngModel)]="savedSearchName">
                                                     <div class="input-group-addon upto_border_none responsive_width padding_left25">
                                                         <div class="service_box">
-                                                            <input id="inlineCheckbox4" value="option4" type="checkbox">
+                                                            <input id="inlineCheckbox4" value="option4" type="checkbox" name="addToWatchDogCheck" [(ngModel)]="addToWatchDogCheck">
                                                             <label for="inlineCheckbox4" class="padding_right_font"> Add to Watchdogs <span></span></label>
                                                         </div>
                                                     </div>
@@ -44,7 +44,7 @@
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-addon"><img src="./assets/images/recruiter-job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
-                                                    <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="JOB TITLE">
+                                                    <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="JOB TITLE" name="jobTitle" [(ngModel)]="jobTitle">
                                                 </div>
                                             </div>
                                         </div>
@@ -54,10 +54,10 @@
                                             <div class="form-group responsive_margin35">
                                                 <div class="input-group">
                                                     <div class="input-group-addon"><img src="./assets/images/recruiter-keywords.png" alt="Keywords" title="Keywords" class="img-responsive"></div>
-                                                    <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="KEYWORDS (BOOLEAN SEARCH)">
+                                                    <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="KEYWORDS (BOOLEAN SEARCH)" name="keywordSearch" [(ngModel)]="keywordSearch">
                                                     <div class="input-group-addon upto_border_none responsive_width padding_left25">
                                                         <div class="service_box">
-                                                            <input id="inlineCheckbox1" value="option1" type="checkbox">
+                                                            <input id="inlineCheckbox1" value="option1" type="checkbox" name="stemmedTerms" [(ngModel)]="stemmedTerms">
                                                             <label for="inlineCheckbox1" class="padding_right_font"> Use Stemmed terms? <span></span></label>
                                                         </div>
                                                     </div>
@@ -70,7 +70,7 @@
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-addon"><img src="./assets/images/recruiter-core-skills1.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
-                                                    <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="CORE SKILLS (SEPARATE WITH COMMAS)">
+                                                    <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="CORE SKILLS (SEPARATE WITH COMMAS)" name="coreSkills" [(ngModel)]="coreSkills">
                                                 </div>
                                             </div>
                                         </div>
@@ -80,7 +80,7 @@
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-addon"><img src="./assets/images/recruiter-certification.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
-                                                    <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="CERTIFICATIONS (SEPARATE WITH COMMAS)">
+                                                    <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="CERTIFICATIONS (SEPARATE WITH COMMAS)" name="certificationValues" [(ngModel)]="certificationValues">
                                                 </div>
                                             </div>
                                         </div>
@@ -90,7 +90,7 @@
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-addon"><img src="./assets/images/recruiter-these-word1.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
-                                                    <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="DON'T SHOW CONTRACTORS WITH THESE WORDS">
+                                                    <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="DON'T SHOW CONTRACTORS WITH THESE WORDS" name="dontShowContractor" [(ngModel)]="dontShowContractor">
                                                 </div>
                                             </div>
                                         </div>
@@ -102,10 +102,10 @@
                                                 <div class="form-group responsive_margin35">
                                                     <div class="input-group">
                                                         <div class="input-group-addon"><img src="./assets/images/recruiter-city-pastcode.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
-                                                        <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="CITY, TOWN OR POSTCODE">
+                                                        <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="CITY, TOWN OR POSTCODE" name="cityTownValue" [(ngModel)]="cityTownValue">
                                                         <div class="input-group-addon upto_border_none responsive_width padding_left25">
                                                             <div class="service_box">
-                                                                <input id="inlineCheckbox2" value="option2" type="checkbox">
+                                                                <input id="inlineCheckbox2" value="option2" type="checkbox" name="includeRelocators" [(ngModel)]="includeRelocators">
                                                                 <label for="inlineCheckbox2" class="padding_right_font"> Include Relocators? <span></span></label>
                                                             </div>
                                                         </div>
@@ -118,7 +118,7 @@
                                                 <div class="form-group">
                                                     <div class="input-group">
                                                         <div class="input-group-addon upto_border_none max-width100">Rate preferred</div>
-                                                        <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="RATE MIN (£)">
+                                                        <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="RATE MIN (£)" name="minRate" [(ngModel)]="minRate">
                                                     </div>
                                                 </div>
                                             </div>
@@ -126,16 +126,16 @@
                                                 <div class="form-group">
                                                     <div class="input-group">
                                                         <div class="input-group-addon upto_border_none max-width100">To</div>
-                                                        <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="RATE MAX (£)">
+                                                        <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="RATE MAX (£)" name="maxRate" [(ngModel)]="maxRate">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-35 col-md-offset-2">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input value="1" id="prepaid" name="service_type" onChange="prepaidF()" checked="" type="radio">
+                                                        <input value="hourly" id="prepaid" name="service_type" onChange="prepaidF()" checked="" type="radio" [(ngModel)]="dailyHourlyValue">
                                                         <label for="prepaid" class="radio-inline margin_top_11"><span></span> Daily Rate </label>
-                                                        <input value="2" id="postpaid" name="service_type" onChange="postpaidF()" type="radio">
+                                                        <input value="daily" id="postpaid" name="service_type" onChange="postpaidF()" type="radio" [(ngModel)]="maxRate">
                                                         <label for="postpaid" class="radio-inline margin_top_11"><span></span>Hourly Rate </label>
                                                     </div>
                                                 </div>
@@ -149,7 +149,7 @@
                                                 <div class="form-group">
                                                     <div class="input-group responsive_width_100">
                                                         <div class="input-group-addon upto_border_none">Time left on current Contract</div>
-                                                        <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none">
+                                                        <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none" name="timeLeftOnCutCont" [(ngModel)]="timeLeftOnCutCont">
                                                             <option value="">ALL</option>
                                                             <option value="1">124536</option>
                                                             <option value="5">5124536</option>
@@ -162,7 +162,7 @@
                                             <div class="col-sm-32">
                                                 <div class="input-group-addon upto_border_none responsive_width include_contractors">
                                                     <div class="service_box">
-                                                        <input id="inlineCheckbox6" value="option6" type="checkbox">
+                                                        <input id="inlineCheckbox6" value="option6" type="checkbox" name="includeUnavailable" [(ngModel)]="includeUnavailable">
                                                         <label for="inlineCheckbox6" class="padding_right_font">Include Unavailable Contractors?<span></span></label>
                                                     </div>
                                                 </div>
@@ -173,7 +173,7 @@
                                                 <div class="form-group">
                                                     <div class="input-group responsive_width_100">
                                                         <div class="input-group-addon upto_border_none">Show contractors updated Since</div>
-                                                        <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none">
+                                                        <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none" name="showContractors" [(ngModel)]="showContractors">
                                                             <option value="">ALL</option>
                                                             <option value="1">124536</option>
                                                             <option value="5">5124536</option>
@@ -192,7 +192,7 @@
                                                 <div class="form-group">
                                                     <div class="input-group">
                                                         <div class="input-group-addon"><img src="./assets/images/recruiter-contractor-name.png" alt="Job Reference Number" title="Job Reference Number" class="img-responsive"></div>
-                                                        <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="CONTRACTOR NAME">
+                                                        <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="CONTRACTOR NAME" name="contractorName" [(ngModel)]="contractorName">
                                                     </div>
                                                 </div>
                                             </div>
@@ -200,7 +200,7 @@
                                                 <div class="form-group">
                                                     <div class="input-group">
                                                         <div class="input-group-addon"><img src="./assets/images/recruiter-education.png" alt="Job Reference Number" title="Job Reference Number" class="img-responsive"></div>
-                                                        <select class="form-control minimal background_drop_down box_height_30 box_padding_3">
+                                                        <select class="form-control minimal background_drop_down box_height_30 box_padding_3" name="educationValue" [(ngModel)]="educationValue">
                                                             <option value="">EDUCATION</option>
                                                             <option value="1">124536</option>
                                                             <option value="5">5124536</option>
@@ -248,9 +248,9 @@
                                                         <div class="input-group-addon border_bottom_none"><img src="./assets/images/recruiter-driving-licence.png" alt="Enter Password" title="Password" class="img-responsive"></div>
                                                         <label class="eu_driving_licence">Driving Licence?</label>
                                                         <div class="input-group group_inline_rights">
-                                                            <input value="1" id="prepaid1" name="service_type3" checked="" type="radio">
+                                                            <input value="yes" id="prepaid1" name="service_type3" checked="" type="radio" [(ngModel)]="drivingLicenceValue">
                                                             <label for="prepaid1" class="radio-inline"><span></span> Y </label>
-                                                            <input value="2" id="postpaid2" name="service_type3" type="radio">
+                                                            <input value="no" id="postpaid2" name="service_type3" type="radio" [(ngModel)]="drivingLicenceValue">
                                                             <label for="postpaid2" class="radio-inline"><span></span> N </label>
                                                         </div>
                                                     </div>
@@ -261,12 +261,12 @@
                                             <div class="row">
                                                 <div class="col-sm-60">
                                                     <div class="sign_up_left_side">
-                                                        <a href="#" class="btn-primary hover_text_pink hover_white_pluse width_180px margin_bottom10xp">Save Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
-                                                        <a href="#" class="btn-primary hover_text_pink hover_white_pluse width_180px">Delete Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                                                        <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px margin_bottom10xp" (click)="saveSearch()">Save Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                                                        <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px">Delete Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-40">
-                                                    <div class="sign_up_right_side"> <a href="#" class="btn-primary hover_text_pink hover_white_pluse width_180px">Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
+                                                    <div class="sign_up_right_side"> <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px">Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
                                                 </div>
                                             </div>
                                         </div>

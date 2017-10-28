@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recruiter-watchdog.component.css']
 })
 export class RecruiterWatchdogComponent implements OnInit {
+	list=[1,2,3]
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  getWatchDogsJob() {
+  	
   }
 
 }

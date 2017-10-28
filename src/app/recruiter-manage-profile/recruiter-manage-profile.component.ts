@@ -58,9 +58,11 @@ addMulAddArray = [{'addresslLine1': 'line1', 'addressLine2': 'line2', 'city': 'c
     // this.list.push(this.i);
     // console.log("this.list--", this.list);
     var newItem = 0;
+    console.log("this.addMulAddArray before", this.addMulAddArray)
     this.addMulAddArray.push({'addresslLine1': '', 'addressLine2': '', 'city': '', 'country': '', 'postCode': '', 'telephone': ''})
     newItem + 1;
     this.showMultipleAddress = true;
+    console.log("this.addMulAddArray afetr", this.addMulAddArray)
   }
 
   removeFunction(myObjects,prop,valu){
@@ -69,8 +71,10 @@ addMulAddArray = [{'addresslLine1': 'line1', 'addressLine2': 'line2', 'city': 'c
       });
     }
 
-  removeAddress(index) {
+  removeAddress(value) {
+    console.log("value--", value);
     console.log("this.addMulAddArray", this.addMulAddArray)
+    this.addMulAddArray = this.removeFunction(this.addMulAddArray,"addresslLine1",value.addresslLine1);
     // var indexV = this.list.indexOf(index);
     // this.list.splice(indexV, 1);
   }

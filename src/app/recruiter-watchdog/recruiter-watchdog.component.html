@@ -22,9 +22,9 @@
                         <div class="col-sm-50">
                             <div class="pazer">
                                 <span>Show</span>
-                                <a href="#" class="active">10</a>
-                                <a href="#">15</a>
-                                <a href="#">20</a>
+                                <a href="javascript:void(0);" class="active">10</a>
+                                <a href="javascript:void(0);">15</a>
+                                <a href="javascript:void(0);">20</a>
                                 <span>results per page</span>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
             </div>
             <!--contractor login end-->
             <div class="recruiter_watchdog_main">
-                <div class="watchdog_box">
+                <div class="watchdog_box" *ngFor="let item of list">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-100">
@@ -98,14 +98,14 @@
                                         <div class="col-sm-50">
                                             <div class="watchdog_mail_box recruiter_home_login">
                                                 <input class="form-control" id="exampleInputEmail1" placeholder="ENTER EMAIL ADDRESS" type="text">
-                                                <a href="#" class="btn-default background_pink">share <i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                <a href="javascript:void(0);" class="btn-default background_pink">share <i class="fa fa-plus" aria-hidden="true"></i></a>
                                             </div>
                                         </div>
                                         <div class="col-sm-50">
                                             <div class="watchdog_footer_icon">
-                                                <a href="#"><img src="./assets/images/play-icon.png" alt="Job" title="Job"> </a>
+                                                <a href="javascript:void(0);"><img src="./assets/images/play-icon.png" alt="Job" title="Job"> </a>
                                                 <a href="javascript:void(0);" [routerLink]="['../job-posting']"><img src="./assets/images/watchdog-edit-icon.png" alt="Job" title="Job"> </a>
-                                                <a href="#"><img src="./assets/images/delete-icon.png" alt="Job" title="Job"> </a>
+                                                <a href="javascript:void(0);"><img src="./assets/images/delete-icon.png" alt="Job" title="Job"> </a>
                                             </div>
                                         </div>
                                     </div>
@@ -114,7 +114,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="watchdog_box">
+                <!-- <div class="watchdog_box">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-100">
@@ -163,14 +163,14 @@
                                         <div class="col-sm-50">
                                             <div class="watchdog_mail_box">
                                                 <input class="form-control" id="exampleInputEmail1" placeholder="ENTER EMAIL ADDRESS" type="text">
-                                                <a href="#" class="btn-default background_pink">share <i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                <a href="javascript:void(0);" class="btn-default background_pink">share <i class="fa fa-plus" aria-hidden="true"></i></a>
                                             </div>
                                         </div>
                                         <div class="col-sm-50">
                                             <div class="watchdog_footer_icon">
-                                                <a href="#"><img src="./assets/images/play-icon.png" alt="Job" title="Job"> </a>
+                                                <a href="javascript:void(0);"><img src="./assets/images/play-icon.png" alt="Job" title="Job"> </a>
                                                 <a href="javascript:void(0);" [routerLink]="['../job-posting']"><img src="./assets/images/watchdog-edit-icon.png" alt="Job" title="Job"> </a>
-                                                <a href="#"><img src="./assets/images/delete-icon.png" alt="Job" title="Job"> </a>
+                                                <a href="javascript:void(0);"><img src="./assets/images/delete-icon.png" alt="Job" title="Job"> </a>
                                             </div>
                                         </div>
                                     </div>
@@ -228,14 +228,14 @@
                                         <div class="col-sm-50">
                                             <div class="watchdog_mail_box recruiter_home_login">
                                                 <input class="form-control" id="exampleInputEmail1" placeholder="ENTER EMAIL ADDRESS" type="text">
-                                                <a href="#" class="btn-default background_pink">share <i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                <a href="javascript:void(0);" class="btn-default background_pink">share <i class="fa fa-plus" aria-hidden="true"></i></a>
                                             </div>
                                         </div>
                                         <div class="col-sm-50">
                                             <div class="watchdog_footer_icon">
-                                                <a href="#"><img src="./assets/images/play-icon.png" alt="Job" title="Job"> </a>
+                                                <a href="javascript:void(0);"><img src="./assets/images/play-icon.png" alt="Job" title="Job"> </a>
                                                 <a href="javascript:void(0);" [routerLink]="['../job-posting']"><img src="./assets/images/watchdog-edit-icon.png" alt="Job" title="Job"> </a>
-                                                <a href="#"><img src="./assets/images/delete-icon.png" alt="Job" title="Job"> </a>
+                                                <a href="javascript:void(0);"><img src="./assets/images/delete-icon.png" alt="Job" title="Job"> </a>
                                             </div>
                                         </div>
                                     </div>
@@ -243,16 +243,16 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-33">
+                    <div class="col-sm-33" *ngFor="let item of list">
                         <div class="ad_space margin_top_25">
                             <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
                         </div>
                     </div>
-                    <div class="col-sm-34 margin_top_25">
+                    <!-- <div class="col-sm-34 margin_top_25">
                         <div class="ad_space">
                             <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
                         </div>
@@ -261,11 +261,11 @@
                         <div class="ad_space">
                             <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="recruiter_watchdog_main">
-                <div class="watchdog_box">
+                <div class="watchdog_box" *ngFor="let item of list">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-100">
@@ -314,14 +314,14 @@
                                         <div class="col-sm-50">
                                             <div class="watchdog_mail_box recruiter_home_login">
                                                 <input class="form-control" id="exampleInputEmail1" placeholder="ENTER EMAIL ADDRESS" type="text">
-                                                <a href="#" class="btn-default background_pink">share <i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                <a href="javascript:void(0);" class="btn-default background_pink">share <i class="fa fa-plus" aria-hidden="true"></i></a>
                                             </div>
                                         </div>
                                         <div class="col-sm-50">
                                             <div class="watchdog_footer_icon">
-                                                <a href="#"><img src="./assets/images/play-icon.png" alt="Job" title="Job"> </a>
+                                                <a href="javascript:void(0);"><img src="./assets/images/play-icon.png" alt="Job" title="Job"> </a>
                                                 <a href="javascript:void(0);" [routerLink]="['../job-posting']"><img src="./assets/images/watchdog-edit-icon.png" alt="Job" title="Job"> </a>
-                                                <a href="#"><img src="./assets/images/delete-icon.png" alt="Job" title="Job"> </a>
+                                                <a href="javascript:void(0);"><img src="./assets/images/delete-icon.png" alt="Job" title="Job"> </a>
                                             </div>
                                         </div>
                                     </div>
@@ -330,7 +330,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="watchdog_box">
+                <!-- <div class="watchdog_box">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-100">
@@ -379,14 +379,14 @@
                                         <div class="col-sm-50">
                                             <div class="watchdog_mail_box recruiter_home_login">
                                                 <input class="form-control" id="exampleInputEmail1" placeholder="ENTER EMAIL ADDRESS" type="text">
-                                                <a href="#" class="btn-default background_pink">share <i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                <a href="javascript:void(0);" class="btn-default background_pink">share <i class="fa fa-plus" aria-hidden="true"></i></a>
                                             </div>
                                         </div>
                                         <div class="col-sm-50">
                                             <div class="watchdog_footer_icon">
-                                                <a href="#"><img src="./assets/images/play-icon.png" alt="Job" title="Job"> </a>
+                                                <a href="javascript:void(0);"><img src="./assets/images/play-icon.png" alt="Job" title="Job"> </a>
                                                 <a href="javascript:void(0);" [routerLink]="['../job-posting']"><img src="./assets/images/watchdog-edit-icon.png" alt="Job" title="Job"> </a>
-                                                <a href="#"><img src="./assets/images/delete-icon.png" alt="Job" title="Job"> </a>
+                                                <a href="javascript:void(0);"><img src="./assets/images/delete-icon.png" alt="Job" title="Job"> </a>
                                             </div>
                                         </div>
                                     </div>
@@ -444,14 +444,14 @@
                                         <div class="col-sm-50">
                                             <div class="watchdog_mail_box recruiter_home_login">
                                                 <input class="form-control" id="exampleInputEmail1" placeholder="ENTER EMAIL ADDRESS" type="text">
-                                                <a href="#" class="btn-default background_pink">share <i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                <a href="javascript:void(0);" class="btn-default background_pink">share <i class="fa fa-plus" aria-hidden="true"></i></a>
                                             </div>
                                         </div>
                                         <div class="col-sm-50">
                                             <div class="watchdog_footer_icon">
-                                                <a href="#"><img src="./assets/images/play-icon.png" alt="Job" title="Job"> </a>
+                                                <a href="javascript:void(0);"><img src="./assets/images/play-icon.png" alt="Job" title="Job"> </a>
                                                 <a href="javascript:void(0);" [routerLink]="['../job-posting']"><img src="./assets/images/watchdog-edit-icon.png" alt="Job" title="Job"> </a>
-                                                <a href="#"><img src="./assets/images/delete-icon.png" alt="Job" title="Job"> </a>
+                                                <a href="javascript:void(0);"><img src="./assets/images/delete-icon.png" alt="Job" title="Job"> </a>
                                             </div>
                                         </div>
                                     </div>
@@ -459,9 +459,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="show_more_application">
-                <a href="#" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>SHOW MORE WATCHDOGS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>SHOW MORE WATCHDOGS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
             </div>
         </section>
