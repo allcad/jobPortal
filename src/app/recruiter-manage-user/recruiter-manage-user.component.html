@@ -131,9 +131,68 @@
                   </div>
                 </div>
               </div>
+
+             <div *ngFor="let item of addMulUserArray;let i=index">
+               <div class="row">
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/recruiter-contractor-name.png" alt="" title="" class="img-responsive"></div>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="New User Name" name="userName" [(ngModel)]="addMulUserArray[i].userName">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/recruiter-job-title.png" alt="" title="" class="img-responsive"></div>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Job Title" name="jobTitle" [(ngModel)]="addMulUserArray[i].jobTitle">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/password-manag.png" alt="" title="" class="img-responsive"></div>
+                      <input type="password" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Password" name="password" [(ngModel)]="addMulUserArray[i].password">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/password-manag.png" alt="" title="" class="img-responsive"></div>
+                      <input type="password" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Confirm Password" name="confirmPassword" [(ngModel)]="addMulUserArray[i].confirmPassword">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/recruiter-mail-address.png" alt="" title="" class="img-responsive"></div>
+                      <input type="email" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Email Address" name="email" [(ngModel)]="addMulUserArray[i].email">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/telephone-icon.png" alt="" title="" class="img-responsive"></div>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Telephone" name="telephone" [(ngModel)]="addMulUserArray[i].telephone">
+                    </div>
+                  </div>
+                </div>
+              </div>
+             </div> 
               <div class="row">
                 <div class="col-sm-100">
-                  <div class="sign_up_right_side"> <a href="#" class="btn-primary hover_text_pink hover_white_pluse width_180px">Add New User <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
+                  <div class="sign_up_right_side"> 
+                    <a href="javascript:void(0);" (click)="addAnotherUser()" class="btn-primary hover_text_pink hover_white_pluse width_180px">Add New User <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> 
+                  </div>
                 </div>
               </div>
             </form>

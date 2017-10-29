@@ -37,7 +37,8 @@ inputData;min;max;getData;addNumber;number;number2;errorMessage;inputUrl;status;
              this.errorMsgFlag =false;
              localStorage.setItem("loginDetail", JSON.stringify({"token": data.data.loginToken, "email": this.email}))
               this.succesLoginFlag =true;
-              this.getViewProfileDta();
+              this.router.navigate(['recruiter/profile']);
+              //this.getViewProfileDta();
              
           }
           else{
@@ -67,27 +68,27 @@ getRandamValue1(max,min){
     }
 
 
-  getViewProfileDta() {
-          this.input={
-        "email":this.email,
-        // "password":this.password,
-        "loginToken": this.getData.data.loginToken
-      }
-   this.wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/profile/view";
-       this._commonRequestService.postData(this.wsUrl,this.input).subscribe(
-        data => {
-          this.response = data;
-           this.recruiterviewProfileData = data.data;
-            if( this.response.status === "TRUE"){
-             //if( this.response.status === "FALSE"){
-              this.router.navigate(['recruiter/profile']);
-               this._commonRequestService.setDataWithoutObserval( this.recruiterviewProfileData,'recruiter-profile-view-data');
-             console.log("view_profile: ", this.recruiterviewProfileData);
-           }
+  // getViewProfileDta() {
+  //         this.input={
+  //       "email":this.email,
+  //       // "password":this.password,
+  //       "loginToken": this.getData.data.loginToken
+  //     }
+  //  this.wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/profile/view";
+  //      this._commonRequestService.postData(this.wsUrl,this.input).subscribe(
+  //       data => {
+  //         this.response = data;
+  //          this.recruiterviewProfileData = data.data;
+  //           if( this.response.status === "TRUE"){
+  //            //if( this.response.status === "FALSE"){
+  //             this.router.navigate(['recruiter/profile']);
+  //              this._commonRequestService.setDataWithoutObserval( this.recruiterviewProfileData,'recruiter-profile-view-data');
+  //            console.log("view_profile: ", this.recruiterviewProfileData);
+  //          }
          
-        }
-    );
+  //       }
+  //   );
 
 
-  }
+  // }
 }

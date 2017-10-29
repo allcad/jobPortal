@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common'; 
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
 
+import { SharedModule } from '../shared/shared.module';
+
 import { RecruiterRoutingModule } from './recruiter-routing.module'
 import { RecruiterManagePasswordComponent } from '../recruiter-manage-password/recruiter-manage-password.component';
 import { RecruiterManageAccountComponent } from '../recruiter-manage-account/recruiter-manage-account.component';
@@ -55,6 +57,7 @@ import { RecruiterWatchdogComponent } from '../recruiter-watchdog/recruiter-watc
    ToolTipModule,
 	TooltipModule,
 	HttpModule,
+	SharedModule,
 	RecruiterRoutingModule,
 	CommonModule,
 	IonRangeSliderModule

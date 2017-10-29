@@ -15,6 +15,27 @@ export class RecruiterManageAccountComponent implements OnInit {
   constructor(public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
+    this.recruiterAccountDetails();
+  }
+
+  recruiterAccountDetails() {
+     var input = {
+     "email":"test@test7.com",
+  "loginToken":":$2y$10$AUQhfigHBiNAzCG9aSYZe.WEbqDIBNVxl6aBoSHJs8.oEuPFWMkHm"
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/account";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+         console.log("recruiter account--", data);
+         if(data && data.data) {
+           this.name = data.data.personalDetails && data.data.personalDetails.name ? data.data.personalDetails.name : "";
+           this.jobTitle = data.data.personalDetails && data.data.personalDetails.jobTitle ? data.data.personalDetails.jobTitle : "";
+           this.telePhone = data.data.contactDetails && data.data.contactDetails.telephone ? data.data.contactDetails.telephone : "";
+         }
+        }
+    );
   }
 
   saveRecruiterAccount(form: NgForm) {

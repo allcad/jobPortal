@@ -125,12 +125,12 @@
 
 
 
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-sm-33" *ngFor="let i of list">
                         <div class="ad_space">
                             <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
                         </div>
-                    </div>
+                    </div> -->
                     <!-- <div class="col-sm-34">
                         <div class="ad_space">
                             <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
@@ -141,7 +141,8 @@
                             <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
                         </div>
                     </div> -->
-                </div>
+                <!-- </div> -->
+                <app-ad-space></app-ad-space>
                 <div class="row">
                     <div class=" col-md-33 col-sm-33" *ngFor="let item of secondArray">
                         <div class="my_applications_box">
@@ -284,12 +285,12 @@
                         </div>
                     </div> -->
                 </div>
-                <div class="row" *ngIf="secondArray.length > 0">
+                <!-- <div class="row" *ngIf="secondArray.length > 0">
                     <div class="col-sm-33" *ngFor="let i of list">
                         <div class="ad_space">
                             <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
                         </div>
-                    </div>
+                    </div> -->
                     <!-- <div class="col-sm-34">
                         <div class="ad_space">
                             <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
@@ -300,7 +301,8 @@
                             <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
                         </div>
                     </div> -->
-                </div>
+                <!-- </div> -->
+                <app-ad-space *ngIf="secondArray.length > 0"></app-ad-space>
                 <div class="row">
                     <div class=" col-md-33 col-sm-33" *ngFor="let item of thirdArray">
                         <div class="my_applications_box">

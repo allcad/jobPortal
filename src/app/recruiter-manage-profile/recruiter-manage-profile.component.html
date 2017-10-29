@@ -182,10 +182,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/telephone-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="TELEPHONE" [(ngModel)]="telephone" name="telephone" [tooltip]="telephoneTooltip" required>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="TELEPHONE" [(ngModel)]="telephone" name="telephone" [tooltip]="telephoneTooltip" required (change)="telephoneValidation(telephone)">
                       <tooltip-content #telephoneTooltip>
                         <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.telephone?.valid" style="color: #C21F39">TELEPHONE</span>
                         <span [hidden]="!saveRecruiterPage.form.controls.telephone?.hasError('required')" style="color: #C21F39">Telephone is required.</span>
+                         <span *ngIf="telephoneValidationFlag" style="color: #C21F39">Please Enter Valid Phone No.</span>
                         <!-- <span [hidden]="!saveRecruiterPage.form.controls.telephone?.hasError('minlength')" style="color: #C21F39">Contractor First Name min length is 3.</span> -->
                         <!-- <span [hidden]="!saveRecruiterPage.form.controls.telephone?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
                       </tooltip-content>
@@ -244,21 +245,25 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/telephone-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="TELEPHONE" [(ngModel)]="postalTelephone" name="postalTelephone">
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="TELEPHONE" [(ngModel)]="postalTelephone" name="postalTelephone" (change)="postalTelephoneValidation(postalTelephone)" [tooltip]="postalTelephoneTooltip">
+                      <tooltip-content #postalTelephoneTooltip>
+                        <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.postalTelephone?.valid" style="color: #C21F39">TELEPHONE</span>
+                         <span *ngIf="postalTelephoneValidationFlag" style="color: #C21F39">Please Enter Valid Phone No.</span>
+                      </tooltip-content>
                     </div>
                   </div>
                 </div>
               </div>
 
 
-              <div *ngIf="showMultipleAddress">
+              <!-- <div *ngIf="showMultipleAddress"> -->
                 <div *ngFor="let item of addMulAddArray; let i=index">
                   <div class="row">
                     <div class="col-sm-100">
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon"><img src="./assets/images/address-name-icon.png" alt="" title="" class="img-responsive"></div>
-                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="ADDRESS LINE 1" [(ngModel)]="addMulAddArray[i].addresslLine1" name="postalAddressLine1">
+                          <input type="text" class="form-control box_padding_3 box_height_30" placeholder="ADDRESS LINE 1" [(ngModel)]="addMulAddArray[i].addresslLine1" name="addMulAddArray[i].addressLine1Name">
                         </div>
                       </div>
                     </div>
@@ -268,7 +273,7 @@
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon"><img src="./assets/images/address-name-icon.png" alt="" title="" class="img-responsive"></div>
-                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="ADDRESS LINE 2" [(ngModel)]="addMulAddArray[i].addressLine2" name="postalAddressLine2">
+                          <input type="text" class="form-control box_padding_3 box_height_30" placeholder="ADDRESS LINE 2" [(ngModel)]="addMulAddArray[i].addressLine2" name="addMulAddArray[i].addressLine2Name">
                         </div>
                       </div>
                     </div>
@@ -278,7 +283,7 @@
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon"><img src="./assets/images/recruiter-city-pastcode.png" alt="" title="" class="img-responsive"></div>
-                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="CITY, TOWN" [(ngModel)]="addMulAddArray[i].city" name="postalCity">
+                          <input type="text" class="form-control box_padding_3 box_height_30" placeholder="CITY, TOWN" [(ngModel)]="addMulAddArray[i].city" name="addMulAddArray[i].cityName">
                         </div>
                       </div>
                     </div>
@@ -286,7 +291,7 @@
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon"><img src="./assets/images/county-icon.png" alt="" title="" class="img-responsive"></div>
-                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="COUNTRY" [(ngModel)]="addMulAddArray[i].country" name="postalCountry">
+                          <input type="text" class="form-control box_padding_3 box_height_30" placeholder="COUNTRY" [(ngModel)]="addMulAddArray[i].country" name="addMulAddArray[i].countryName">
                         </div>
                       </div>
                     </div>
@@ -296,7 +301,7 @@
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon"><img src="./assets/images/post-code-icon.png" alt="" title="" class="img-responsive"></div>
-                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="POST CODE" [(ngModel)]="addMulAddArray[i].postCode" name="postalPostCode">
+                          <input type="text" class="form-control box_padding_3 box_height_30" placeholder="POST CODE" [(ngModel)]="addMulAddArray[i].postCode" name="addMulAddArray[i].postName">
                         </div>
                       </div>
                     </div>
@@ -304,7 +309,11 @@
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon"><img src="./assets/images/telephone-icon.png" alt="" title="" class="img-responsive"></div>
-                          <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="TELEPHONE" [(ngModel)]="addMulAddArray[i].telephone" name="postalTelephone">
+                          <input type="text" class="form-control box_padding_3 box_height_30" placeholder="TELEPHONE" [(ngModel)]="addMulAddArray[i].telephone" name="addMulAddArray[i].telephone1" (change)="otherTelephoneValidation(addMulAddArray[i].telephone)" [tooltip]="otherTelephoneTooltip">
+                          <tooltip-content #otherTelephoneTooltip>
+                          <!-- <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.addMulAddArray[i].telephone1?.valid" style="color: #C21F39">TELEPHONE</span> -->
+                           <span *ngIf="otherTelephoneValidationFlag" style="color: #C21F39">Please Enter Valid Phone No.</span>
+                        </tooltip-content>
                         </div>
                       </div>
                     </div>
@@ -315,7 +324,7 @@
                     </a>
                   </div>
                 </div>
-              </div>
+              <!-- </div> -->
 
 
               <div class="row">
@@ -355,7 +364,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/web-address-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="WEB ADDRESS" [(ngModel)]="webAddress" name="webAddress">
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="WEB ADDRESS" [(ngModel)]="webAddress" name="webAddress" (change)="webAddressValidation(webAddress)" [tooltip]="webAddressTooltip">
+                      <tooltip-content #webAddressTooltip>
+                      <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.webAddress?.valid " style="color: #C21F39">WEB ADDRESS</span>
+                      <span *ngIf="webAddValidationFlag" style="color: #C21F39">Please Enter Valid Web Address</span>
+                    </tooltip-content>
                     </div>
                   </div>
                 </div>
@@ -363,7 +376,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/email-address-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="EMAIL ADDRESS" [(ngModel)]="emailAddress" name="EmailAddress">
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="EMAIL ADDRESS" [(ngModel)]="emailAddress" name="EmailAddress" (change)="emailAddressValidation(emailAddress)" [tooltip]="emailAddTooltip">
+                      <tooltip-content #emailAddTooltip>
+                      <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.EmailAddress?.valid " style="color: #C21F39">EMAIL ADDRESS</span>
+                      <span *ngIf="emailAddValidationFlag" style="color: #C21F39">Please Enter Valid Email Address</span>
+                    </tooltip-content>
                     </div>
                   </div>
                 </div>
@@ -373,7 +390,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/rss-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="RSS URL" [(ngModel)]="rssUrl" name="rssUrl">
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="RSS URL" [(ngModel)]="rssUrl" name="rssUrl" (change)="rssUrlValidation(rssUrl)" [tooltip]="rssUrlTooltip">
+                      <tooltip-content #rssUrlTooltip>
+                      <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.rssUrl?.valid " style="color: #C21F39">RSS URL</span>
+                      <span *ngIf="rssUrlValidationFlag" style="color: #C21F39">Please Enter Valid RSS URL</span>
+                    </tooltip-content>
                     </div>
                   </div>
                 </div>
@@ -381,7 +402,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/rss-feed-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="FULL URL TO YOUR RSS FEED" [(ngModel)]="fullUrlRssFeed" name="fullUrlRssFeed">
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="FULL URL TO YOUR RSS FEED" [(ngModel)]="fullUrlRssFeed" name="fullUrlRssFeed" (change)="rssFeedUrlValidation(fullUrlRssFeed)" [tooltip]="rssFeedUrlTooltip">
+                      <tooltip-content #rssFeedUrlTooltip>
+                      <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.fullUrlRssFeed?.valid " style="color: #C21F39">FULL URL TO YOUR RSS FEED</span>
+                      <span *ngIf="rssFeedUrlValidationFlag" style="color: #C21F39">Please Enter Valid RSS Feed URL</span>
+                    </tooltip-content>
                     </div>
                     <div class="feed_profile_page">
                       <p class="">Display feed on profile page?</p>
@@ -400,7 +425,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/link-icons.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="SOCIAL LINK NAME" [(ngModel)]="socialLinkName" name="socialLinkName">
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="SOCIAL LINK NAME" [(ngModel)]="socialLinkName" name="socialLinkName" (change)="socialLinkValidation(socialLinkName)" [tooltip]="socialLinkTooltip">
+                      <tooltip-content #socialLinkTooltip>
+                      <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.socialLinkName?.valid " style="color: #C21F39">FULL URL TO YOUR RSS FEED</span>
+                      <span *ngIf="socialLinkValidationFlag" style="color: #C21F39">Please Enter Valid Social Link</span>
+                    </tooltip-content>
                     </div>
                   </div>
                 </div>
@@ -408,7 +437,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/twitter-account-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="TWITTER ACCOUNT NAME" [(ngModel)]="fullUrlTwitterFeed" name="fullUrlTwitterFeed">
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="TWITTER ACCOUNT NAME" [(ngModel)]="fullUrlTwitterFeed" name="fullUrlTwitterFeed" (change)="twitterValidation(fullUrlTwitterFeed)" [tooltip]="twitterTooltip">
+                      <tooltip-content #twitterTooltip>
+                      <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.fullUrlTwitterFeed?.valid " style="color: #C21F39">TWITTER ACCOUNT NAME</span>
+                      <span *ngIf="twitterValidationFlag" style="color: #C21F39">Please Enter Valid Twitter Account</span>
+                    </tooltip-content>
                     </div>
                     <div class="feed_profile_page">
                       <p class="">Display feed on profile page?</p>
@@ -427,7 +460,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/link-icons.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="SOCIAL LINK NAME" [(ngModel)]="linkedinUrl" name="linkedinUrl">
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="SOCIAL LINK NAME" [(ngModel)]="linkedinUrl" name="linkedinUrl" (change)="linkedinValidation(linkedinUrl)" [tooltip]="linkedinTooltip">
+                      <tooltip-content #linkedinTooltip>
+                      <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.linkedinUrl?.valid " style="color: #C21F39">SOCIAL LINK NAME</span>
+                      <span *ngIf="linkedinValidationFlag" style="color: #C21F39">Please Enter Valid Social Link</span>
+                    </tooltip-content>
                     </div>
                   </div>
                 </div>
@@ -435,7 +472,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/twitter-account-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="TWITTER ACCOUNT NAME" [(ngModel)]="fullUrlLinkedinFeed" name="fullUrlLinkedinFeed">
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="TWITTER ACCOUNT NAME" [(ngModel)]="fullUrlLinkedinFeed" name="fullUrlLinkedinFeed" (change)="linkedinFeedValidation(fullUrlLinkedinFeed)" [tooltip]="fullLinkedinTooltip">
+                      <tooltip-content #fullLinkedinTooltip>
+                      <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.fullUrlLinkedinFeed?.valid " style="color: #C21F39">TWITTER ACCOUNT NAME</span>
+                      <span *ngIf="fullLinkedinValidationFlag" style="color: #C21F39">Please Enter Valid Twitter Account Name</span>
+                    </tooltip-content>
                     </div>
                     <div class="feed_profile_page">
                       <p class="">Display feed on profile page?</p>
@@ -449,10 +490,55 @@
                   </div>
                 </div>
               </div>
+
+              <div class="row" *ngFor="let item of addMulSocialArray;let i=index">
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/link-icons.png" alt="" title="" class="img-responsive"></div>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="SOCIAL LINK NAME" [(ngModel)]="addMulSocialArray[i].otherSocialLink" name="addMulSocialArray[i].otherSocialLink" [tooltip]="otherLinkedinTooltip">
+                      <tooltip-content #otherLinkedinTooltip>
+                      <!-- <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.linkedinUrl?.valid " style="color: #C21F39">SOCIAL LINK NAME</span> -->
+                      <span *ngIf="linkedinValidationFlag" style="color: #C21F39">Please Enter Valid Social Link</span>
+                    </tooltip-content>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/twitter-account-icon.png" alt="" title="" class="img-responsive"></div>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="TWITTER ACCOUNT NAME" [(ngModel)]="addMulSocialArray[i].otherSocialFeed" name="addMulSocialArray[i].otherSocialFeed" [tooltip]="otherFullLinkedinTooltip">
+                      <tooltip-content #otherFullLinkedinTooltip>
+                      <!-- <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.fullUrlLinkedinFeed?.valid " style="color: #C21F39">TWITTER ACCOUNT NAME</span> -->
+                      <span *ngIf="fullLinkedinValidationFlag" style="color: #C21F39">Please Enter Valid Twitter Account Name</span>
+                    </tooltip-content>
+                    </div>
+                    <div class="feed_profile_page">
+                      <p class="">Display feed on profile page?</p>
+                      <div class="input-group group_inline_rights">
+                        <input value="5" id="prepaid5" name="service_type3" checked="" type="radio" [(ngModel)]="addMulSocialArray[i].otherRadio" name="addMulSocialArray[i].otherRadio" value="linkedinYes">
+                        <label for="prepaid5" class="radio-inline"><span></span> Yes </label>
+                        <input value="6" id="postpaid6" name="service_type3" type="radio" [(ngModel)]="addMulSocialArray[i].otherRadio" name="addMulSocialArray[i].otherRadio" value="linkedinNo">
+                        <label for="postpaid6" class="radio-inline"><span></span> No </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="sign_up_right_side margin_top_-30px"> 
+                  <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="removeSocialLink(item)">Remove<i class="fa fa-minus plus_blue text_pink" aria-hidden="true"></i></a>
+                </div>
+              </div>
+
+
               <div class="row">
                 <div class="col-sm-100">
-                  <div class="sign_up_right_side margin_top_-30px"> <a href="#" class="btn-primary hover_text_pink hover_white_pluse width_180px">Remove<i class="fa fa-minus plus_blue text_pink" aria-hidden="true"></i></a>
-                    <p class="text_pink"><a href="#" class="text_pink"><i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i> Add Another Social Link</a></p>
+                  <div class="sign_up_right_side margin_top_-30px"> 
+                    <!-- <a href="#" class="btn-primary hover_text_pink hover_white_pluse width_180px">Remove<i class="fa fa-minus plus_blue text_pink" aria-hidden="true"></i></a> -->
+                    <p class="text_pink">
+                      <a href="javascript:void(0);" class="text_pink" (click)="addAnotherSocialLink()">
+                        <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i> Add Another Social Link</a>
+                    </p>
                   </div>
                 </div>
               </div>
