@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top-menu.component.css']
 })
 export class TopMenuComponent implements OnInit {
-
+	jobSearchFlag = false;
+	itRecruiterFlag = false;
+	itContractorFlag = false;
+	aboutContractRecruitFlag = false;
   constructor() { }
 
   ngOnInit() {
