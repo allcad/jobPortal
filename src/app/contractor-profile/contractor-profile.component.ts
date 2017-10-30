@@ -42,6 +42,8 @@ export class ContractorProfileComponent implements OnInit {
   confirmNewPassword;contractorProfileJson;inputUrl;responseData;succesMessageFlag =false;fileUpload;
 ErrorMesageFlag=false;
 fd;
+contratorCVList = [{id:1, result: null}];
+coverLetterList = [{id:1, result: null}];
  constructor(public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -271,6 +273,18 @@ getProfileDta(){
     console.log(this.fileUploadForCV,this.fileUploadForCover,"file_select2")
 
     
+  }
+
+  addAnotherCV(){
+    this.contratorCVList.push({id : this.contratorCVList.length+1, result: null})
+  }
+
+  removeElement(array, index){
+    array.splice(index,1);
+  }
+
+  addAnotherCoverLetter(){
+    this.coverLetterList.push({id : this.coverLetterList.length+1, result: null})
   }
 
 }

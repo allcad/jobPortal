@@ -13,7 +13,7 @@ distance;
 place;
 minRate;
 maxRate;
-rateType;
+rateType="daily";
 jobPreferenceNumber;
 showContracts;
   constructor() { }
@@ -36,6 +36,20 @@ showContracts;
   		showContact: this.showContracts
   	}
   	console.log(inputJson)
+  }
+
+  resetSearch(){
+    this.jobTitle = "";
+    this.keywords = "";
+    this.excluding ="";
+    this.distance = "";
+    this.place = "";
+    this.minRate = "";
+    this.maxRate = "";
+    this.rateType = "daily"
+    this.jobPreferenceNumber = "";
+    this.showContracts= "";
+
   }
 
 }

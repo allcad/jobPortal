@@ -13,7 +13,7 @@ import { ContractorHubHomeComponent } from '../contractor-hub-home/contractor-hu
 import { ContractorAdviceComponent } from '../contractor-advice/contractor-advice.component';
 import { ContractorAdviceArticleComponent } from '../contractor-advice-article/contractor-advice-article.component';
 import { ContractorAdviceCategoryComponent } from '../contractor-advice-category/contractor-advice-category.component';
-
+import { ContractorSearchResultComponent } from '../contractor-search-result/contractor-search-result.component';
 
 const contractorRoutes: Routes = [{
     "path": "profile",
@@ -46,6 +46,12 @@ const contractorRoutes: Routes = [{
 },{
     "path": "advice",
     "component": ContractorAdviceCategoryComponent
+},{
+    "path": "adviceDetail",
+    "component": ContractorAdviceArticleComponent
+},{
+    "path": "searchResult",
+    "component": ContractorSearchResultComponent
 }]
 
 @NgModule({

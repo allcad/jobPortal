@@ -11,6 +11,7 @@ import { ContractorRoutingModule } from './contractor-routing.module';
 import { ContractorProfileComponent } from '../contractor-profile/contractor-profile.component';
 import { ContractorViewProfileComponent } from '../contractor-view-profile/contractor-view-profile.component';
 import { ContractorJobSearchComponent } from '../contractor-job-search/contractor-job-search.component';
+import { ContractorSearchResultComponent } from '../contractor-search-result/contractor-search-result.component';
 import { ContractorApplicationsComponent } from '../contractor-applications/contractor-applications.component';
 import { ContractorJobSearchSavedComponent } from '../contractor-job-search-saved/contractor-job-search-saved.component';
 //import { ContractorDirectoryComponent } from '../contractor-directory/contractor-directory.component';
@@ -22,6 +23,9 @@ import { ContractorAdviceListingComponent } from '../contractor-advice-listing/c
 import { ContractorAdviceComponent } from '../contractor-advice/contractor-advice.component';
 import { ContractorAdviceArticleComponent } from '../contractor-advice-article/contractor-advice-article.component';
 import { ContractorAdviceCategoryComponent } from '../contractor-advice-category/contractor-advice-category.component';
+
+
+
 @NgModule({
   declarations: [
    
@@ -30,7 +34,7 @@ import { ContractorAdviceCategoryComponent } from '../contractor-advice-category
   ContractorJobSearchComponent,
   ContractorApplicationsComponent,
   ContractorJobSearchSavedComponent,
-  //ContractorDirectoryComponent,
+  ContractorSearchResultComponent,
   ContractorHubHomeComponent,
   ContractorAdviceMenuListingComponent,
   ContractorAdviceListingComponent,

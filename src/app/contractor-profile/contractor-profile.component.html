@@ -324,13 +324,13 @@
                 <div class="job_search_keywords">
                   <h2>CV &amp; COVER LETTER</h2>
                 </div>
-                <div class="row">
+                <div class="row" *ngFor="let CV of contratorCVList; let i = index">
                   <div class="col-md-59 col-sm-100">
                     <div class="form-group magin_bottomo768">
                       <div class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/upload-cv.png" alt="Upload CV" title="Upload CV" class="img-responsive"></div>
                         <!--  <input class="form-control" id="exampleInputEmail1" placeholder="Upload CV(s)" type="text"> -->
-                        <input type="file" class="form-control input-group-addon find_cv_from" (change)="fileChangeEvent($event)" />
+                        <input type="file" class="form-control input-group-addon find_cv_from" name="cv_{{i}}" (change)="fileChangeEvent($event)" />
                         <div class="input-group-addon find_cv_from"><a href="javascript:void(0)" class="dropdown-toggle padding_left_right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Browse From<img src="./assets/images/find-cv.png" alt="Browse From" title="Browse From"></a>
                           <!--                        <ul class="dropdown-menu">
                             <li><a href="javascript:void(0)"><img src="./assets/images/mail-box1.png" alt="OneDrive" title="OneDrive" class="img-responsive"></a> <a href="javascript:void(0)"><img src="./assets/images/mail-box3.png" alt="GoogleDrive" title="GoogleDrive" class="img-responsive"></a> </li>
@@ -341,11 +341,18 @@
                     </div>
                   </div>
                   <div class="col-md-41 col-sm-100">
-                    <div class="current_rate_signup margin_top_10 margin_left_blue10"> <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse">Edit <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse">Remove <i class="fa fa-minus plus_blue" aria-hidden="true"></i></a> </div>
-                    <div class="add_another_cv"> <a href="javascript:void(0)" class="pink_color"><i class="fa fa-plus" aria-hidden="true"></i> Add Another CV</a> </div>
+                    <div class="current_rate_signup margin_top_10 margin_left_blue10"> <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse">Edit <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> 
+                      <a href="javascript:void(0)" *ngIf="i!==0" class="btn-primary font_capitaliz hover_white_pluse" (click)="removeElement(contratorCVList, i)">Remove <i class="fa fa-minus plus_blue" aria-hidden="true"></i></a> </div>
                   </div>
                 </div>
                 <div class="row">
+                  <!-- <div class="col-md-59 col-sm-100"> -->
+                    <div class="col-md-41 col-sm-100">
+                      <div class="add_another_cv" (click)="addAnotherCV()"> <a href="javascript:void(0)" class="pink_color"><i class="fa fa-plus" aria-hidden="true"></i> Add Another CV</a> </div>
+                    </div>
+                  <!-- /div> -->
+                </div>
+                <div class="row" *ngFor="let coverLetter of coverLetterList; let i = index;">
                   <div class="col-md-59 col-sm-100">
                     <div class="form-group magin_bottomo768">
                       <div class="input-group">
@@ -361,8 +368,13 @@
                     </div>
                   </div>
                   <div class="col-md-41 col-sm-100">
-                    <div class="current_rate_signup margin_top_10 margin_left_blue10"> <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse">Edit <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse">Remove <i class="fa fa-minus plus_blue" aria-hidden="true"></i></a> </div>
-                    <div class="add_another_cv"> <a href="javascript:void(0)" class="pink_color"><i class="fa fa-plus" aria-hidden="true"></i> Add Another Cover Letter</a> </div>
+                    <div class="current_rate_signup margin_top_10 margin_left_blue10"> <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse">Edit <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> <a *ngIf="i!==0" href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse" (click)="removeElement(coverLetterList, i)">Remove <i class="fa fa-minus plus_blue" aria-hidden="true"></i></a> </div>
+                    
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-41 col-sm-100">
+                    <div class="add_another_cv" (click)="addAnotherCoverLetter()"> <a href="javascript:void(0)" class="pink_color"><i class="fa fa-plus" aria-hidden="true"></i> Add Another Cover Letter</a> </div>
                   </div>
                 </div>
                 <div class="row">

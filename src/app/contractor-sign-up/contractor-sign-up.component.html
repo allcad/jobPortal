@@ -70,11 +70,12 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/mobile-number.png" alt="Telephone Number" title="Telephone Number" class="img-responsive"></div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Mobile Number" name="contractor_tel_no" [(ngModel)]="contractor_tel_no" pattern="[0-9]*" maxlength="15" required [tooltip]="phoneTooltip">
+                      <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Enter Mobile Number" name="contractor_tel_no" [(ngModel)]="contractor_tel_no" pattern="[0-9]*"  required [tooltip]="phoneTooltip">
                       <tooltip-content #phoneTooltip>
                         <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_tel_no?.valid " style="color: #C21F39">Contractor's Mobile No </span>
                         <span [hidden]="!userForm.form.controls.contractor_tel_no?.hasError('required')" style="color: #C21F39"> Mobile No is required! </span>
                         <span [hidden]="!userForm.form.controls.contractor_tel_no?.hasError('pattern')" style="color: #C21F39">Mobile No is not valid!</span>
+                        <!-- <span *ngIf="userForm.form && userForm.form.controls && userForm.form.controls.contractor_tel_no && !userForm.form.controls.contractor_tel_no.valid && !userForm.form.controls.contractor_tel_no?.hasError('required') && !userForm.form.controls.contractor_tel_no?.hasError('pattern')">Mobile No is not valid!</span> -->
                         <!-- <span [hidden]="!userForm.form.controls.contractor_tel_no?.hasError('maxlength')" style="color: #C21F39">Phone No should be 10digit.</span> -->
                       </tooltip-content>
                     </div>

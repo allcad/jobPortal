@@ -43,7 +43,7 @@ import { ContractorAccountComponent } from './contractor-account/contractor-acco
 import { ContractorHelpComponent } from './contractor-help/contractor-help.component';
 
 
-import { ContractorSearchResultComponent } from './contractor-search-result/contractor-search-result.component';
+//import { ContractorSearchResultComponent } from './contractor-search-result/contractor-search-result.component';
 
 import { ContractorLoginFullJobComponent } from './contractor-login-full-job/contractor-login-full-job.component';
 import { ContractorNewsArticleComponent } from './contractor-news-article/contractor-news-article.component';
@@ -73,7 +73,7 @@ import { CommonDataSharedService } from './commonDataSharedService';
     ContractorHelpComponent,
     
     
-    ContractorSearchResultComponent,
+    // ContractorSearchResultComponent,
     
     ContractorLoginFullJobComponent,
     ContractorNewsArticleComponent,
