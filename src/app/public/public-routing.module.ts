@@ -7,6 +7,7 @@ import { RecruiterSignUpComponent } from '../recruiter-sign-up/recruiter-sign-up
 import { ContractorRecuriterProfileComponent } from '../contractor-recuriter-profile/contractor-recuriter-profile.component';
 import { ContractorDirectoryComponent } from '../contractor-directory/contractor-directory.component';
 import { LoginComponent } from '../login/login.component';
+import { LoginRecruiterComponent } from '../login-recruiter/login-recruiter.component';
 
 const publicRoutes: Routes = [
 {
@@ -18,6 +19,9 @@ const publicRoutes: Routes = [
 }, {
     "path": "recruiterRegister",
     "component": RecruiterSignUpComponent
+},{
+    "path": "recruiterLogin",
+    "component": LoginRecruiterComponent
 },{
     "path" :"contractor-directory",
     "component" :ContractorDirectoryComponent

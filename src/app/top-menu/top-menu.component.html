@@ -1,11 +1,10 @@
-
-          <div class="navigation_header">
-            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-            <nav style="height: 1px;" aria-expanded="false" id="bs-navbar" class="navbar-collapse collapse">
-              <ul class="nav navbar-nav category-navigation">
-                <li class="">
-                  <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);" (click)="jobSearchFlag = !jobSearchFlag">Job Search <span class="caret"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"> </a> 
-                  <div class="cntrct-hub-nav" *ngIf="jobSearchFlag">
+<div class="navigation_header">
+  <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+  <nav style="height: 1px;" aria-expanded="false" id="bs-navbar" class="navbar-collapse collapse">
+    <ul class="nav navbar-nav category-navigation">
+      <li class="">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);" (click)="jobSearchFlag = !jobSearchFlag">Job Search <span class="caret"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"> </a>
+        <!--  <div class="cntrct-hub-nav" *ngIf="jobSearchFlag">
                             <ul>
                                 <li class="hub-lst">
                                     <div class="lst-news">
@@ -15,17 +14,6 @@
                                             <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/contractors/register">Sign Up</a></li>
                                         </ul>
                                     </div>
-                                    <!--   <div class="mobile-app">
-                               <h2><a>Download Our App</a></h2>
-                                    <ul class="menu-cust-des ">
-                                    <li>
-                                    <div class="">
-                                    <div class="play-store"><span class="app-store"><a target="_blank" href="httpss://itunes.apple.com/us/app/contractrecruit/id929968453?ls=1&amp;mt=8"></a></span></div>
-                                    <div class="play-store"><span class="google-play"><a target="_blank" href="httpss://play.google.com/store/apps/details?id=com.contractor.android"></a></span></div>
-                                    </div>
-                                    </li>
-                                    
-                                </div> -->
                                 </li>
                                 <li class="hub-dir it-contractors-custom">
                                     <div class="cnt-hub-dir ">
@@ -60,151 +48,316 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div>
-                </li>
-                <li class="">
-                  <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);" (click)="itContractorFlag = !itContractorFlag">IT Contractors <span class="caret"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"></a>
-
-                  <div class="cntrct-hub-nav" *ngIf="itContractorFlag">
-                            <ul>
-                                <li class="hub-lst">
-                                    <div class="lst-news">
-                                        <h2><a>Join Us on ContractRecruit</a></h2>
-                                        <ul class="menu-cust-des">
-                                            <li><a class=navigation-menu href="#" routerLink="../contractorLogin">Login</a></li>
-                                            <li><a class=navigation-menu href="#" routerLink="../contractorLogin">Sign Up</a></li>
-                                        </ul>
-                                    </div>
-                                    <!--   <div class="mobile-app">
-                               <h2><a>Download Our App</a></h2>
-                                    <ul class="menu-cust-des ">
-                                    <li>
-                                    <div class="">
-                                    <div class="play-store"><span class="app-store"><a target="_blank" href="httpss://itunes.apple.com/us/app/contractrecruit/id929968453?ls=1&amp;mt=8"></a></span></div>
-                                    <div class="play-store"><span class="google-play"><a target="_blank" href="httpss://play.google.com/store/apps/details?id=com.contractor.android"></a></span></div>
-                                    </div>
-                                    </li>
-                                    
-                                </div> -->
-                                </li>
-                                <li class="hub-dir it-contractors-custom">
-                                    <div class="cnt-hub-dir ">
-                                        <h2><a>ContractHub</a></h2>
-                                        <ul class="menu-cust-des">
-                                            <li><a class=navigation-menu href="#" routerLink="../hubHome">ContractHub Home</a></li>
-                                            <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/news">IT Contractor News</a></li>
-                                            <li><a class=navigation-menu href="#" routerLink="../advice">IT Contractor Advice</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="contractor-services cnt-hub-dir">
-                                        <h2><a href="javascript:void(0);">Contractor Services</a></h2>
-                                        <ul class="menu-cust-des">
-                                            <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/directory.php?category_id=1">Umbrella Companies</a></li>
-                                            <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/directory.php?category_id=2">Contractor Insurance</a></li>
-                                            <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/directory.php?category_id=3">IT Training</a></li>
-                                            <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/directory.php?category_id=4">MVL</a></li>
-                                            <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/directory.php?category_id=5">CV Help</a></li>
-                                            <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/directory.php?category_id=6">Working Abroad</a></li>
-                                            <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/directory.php?category_id=7">IT Contractor Accountancy</a></li>
-                                            <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/directory.php?category_id=8">IT Contractor Mortgages</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="hub-advoice">
-                                    <div class="cnt-hub-advc">
-                                        <h2><a>Site Guides</a></h2>
-                                        <ul class="menu-cust-des">
-                                            <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/contractors/guides">How to Use ContractRecruit</a></li>
-                                            <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/faqs">IT Contractor FAQs</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                </li>
-                <li class="">
-                  <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);" (click)="itRecruiterFlag = !itRecruiterFlag">IT Recruiters <span class="caret pink"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"></a>
-                  <div class="cntrct-hub-nav" *ngIf="itRecruiterFlag">
-                            <ul>
-                                <li class="hub-lst">
-                                    <div class="lst-news">
-                                        <h2><a style="color: #FF0066;">Join Us on ContractRecruit</a></h2>
-                                        <ul class="menu-cust-des">
-                                            <li><a class=navigation-menu href="#" routerLink="../recruiterRegister">Login</a></li>
-                                            <li><a class=navigation-menu href="#" routerLink="../recruiterRegister">Sign Up</a></li>
-                                            <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/recruiters/benefits">Why Should I Sign Up?</a></li>
-                                        </ul>
-                                    </div>
-                                    <!--  <div class="mobile-app">
-                               <h2><a>Download Our App</a></h2>
-                                    <ul class="menu-cust-des">
-                                    <li>
-                                    <div class="">
-                                    <div class="play-store"><span class="app-store"><a target="_blank" href="httpss://itunes.apple.com/us/app/contractrecruit/id929968453?ls=1&amp;mt=8"></a></span></div>
-                                    <div class="play-store"><span class="google-play"><a target="_blank" href="httpss://play.google.com/store/apps/details?id=com.contractor.android"></a></span></div>
-                                    </div>
-        
-                                    </li>
-                                    
-                                </div> -->
-                                </li>
-                                <li class="hub-dir it-contractors-custom">
-                                    <div class="cnt-hub-dir ">
-                                        <h2><a style="color: #FF0066;">Search IT Contractors</a></h2>
-                                        <ul class="menu-cust-des">
-                                            <li><a class=navigation-menu href="#" routerLink="../advanced-search">Advanced Contractor Search</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="contractor-services cnt-hub-dir">
-                                        <h2><a style="color: #FF0066;">Quick Search</a></h2>
-                                        <ul class="menu-cust-des">
-                                            <li><a class=navigation-menu href="#" routerLink="../searchresult-loggedin">Contract Web Developers</a></li>
-                                            <li><a class=navigation-menu href="#" routerLink="../searchresult-loggedin">Contract Project Managers</a></li>
-                                            <li><a class=navigation-menu href="#" routerLink="../searchresult-loggedin">Contract Analysts</a></li>
-                                            <li><a class=navigation-menu href="#" routerLink="../searchresult-loggedin">Contract Designers</a></li>
-                                            <li><a class=navigation-menu href="#" routerLink="../searchresult-loggedin">Contract Software Developers</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="hub-advoice">
-                                    <div class="cnt-hub-advc">
-                                        <h2><a style="color: #FF0066;">Site Guides</a></h2>
-                                        <ul class="menu-cust-des">
-                                            <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/recruiters/guides">How to Use ContractRecruit</a></li>
-                                            <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/faqs">Recruiter FAQs</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                </li>
-                <li class="">
-                  <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);" (click)="aboutContractRecruitFlag = !aboutContractRecruitFlag">About ContractRecruit <span class="caret"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"></a>
-                  <div class="cntrct-hub-nav" *ngIf="aboutContractRecruitFlag">
-                            <ul>
-                                <li class="hub-lst">
-                                    <div class="lst-news">
-                                        <h2><a>About ContractRecruit</a></h2>
-                                        <ul class="menu-cust-des">
-                                            <li><a class=navigation-menu href="#" routerLink="../about-recruiter">What is ContractRecruit?</a></li>
-                                            <li><a class=navigation-menu href="#" routerLink="../about-recruiter">Who are we?</a></li>
-                                            <li><a class=navigation-menu href="#" routerLink="../about-recruiter">What do we do?</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="mobile-app">
-                                        <h2><a>Site Usage</a></h2>
-                                        <ul class="menu-cust-des">
-                                            <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/terms">Terms of Use</a></li>
-                                            <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/privacy-policy">Privacy Policy</a></li>
-                                            <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/sitemap">Site Map</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                </li>
+                 </div> -->
+        <ul class="navigation-dropdown">
+          <div class="dropdown-nav-wrap">
+            <li>
+              <h2 class="hidden-xs">IT Contract Search</h2>
+              <ul>
+                <li><a href="https://aws.contractrecruit.co.uk/contractors/advanced-job-search">Advanced Job Search</a></li>
+                <hr class="visible-xs">
+                <li><a href="https://aws.contractrecruit.co.uk/contractors/latest-contracts">View Newest Contracts</a></li>
+                <hr class="visible-xs">
+                <li><a href="https://aws.contractrecruit.co.uk/contractors/all-it-contracts">View all IT Contracts</a></li>
               </ul>
-            </nav>
+            </li>
+            <li class="hidden-xs">
+              <h2>Search IT Contract By Skill</h2>
+              <ul>
+                <li><a href="https://aws.contractrecruit.co.uk/contractors/php-contract-jobs">PHP Contract Jobs</a></li>
+                <hr class="visible-xs">
+                <li><a href="https://aws.contractrecruit.co.uk/contractors/java-contract-jobs">Java Contract Jobs</a></li>
+                <hr class="visible-xs">
+                <li><a href="https://aws.contractrecruit.co.uk/contractors/project-manager-contract-jobs">Project Manager Contract Jobs</a></li>
+                <hr class="visible-xs">
+                <li><a href="https://aws.contractrecruit.co.uk/contractors/business-analyst-contract-jobs">Business Analyst Contract Jobs</a></li>
+                <hr class="visible-xs">
+                <li><a href="https://aws.contractrecruit.co.uk/contractors/test-analyst-contract-jobs">Test Analyst Contract Jobs</a></li>
+                <hr class="visible-xs">
+                <li><a href="https://aws.contractrecruit.co.uk/contractors/sap-contract-jobs">SAP Contract Jobs</a></li>
+                <hr class="visible-xs">
+                <li><a href="https://aws.contractrecruit.co.uk/contractors/pmo-contract-jobs">PMO Contract Jobs</a></li>
+                <hr class="visible-xs">
+                <li><a href="https://aws.contractrecruit.co.uk/contractors/it-support-contract-jobs">IT Support Contract Jobs</a></li>
+                <hr class="visible-xs">
+                <li><a href="https://aws.contractrecruit.co.uk/contractors/all-it-contracts">View Contracts for all IT Skills</a></li>
+              </ul>
+            </li>
+            <li class="hidden-xs">
+              <h2>Search IT Contracts By Location</h2>
+              <ul>
+                <li><a href="https://aws.contractrecruit.co.uk/contractors/it-contracts-london">IT Contracts in London</a></li>
+                <hr class="visible-xs">
+                <li><a href="https://aws.contractrecruit.co.uk/contractors/it-contracts-leeds">IT Contracts in Leeds</a></li>
+                <hr class="visible-xs">
+                <li><a href="https://aws.contractrecruit.co.uk/contractors/it-contracts-manchester">IT Contracts in Manchester</a></li>
+                <hr class="visible-xs">
+                <li><a href="https://aws.contractrecruit.co.uk/contractors/it-contracts-glasgow">IT Contracts in Glasgow</a></li>
+                <hr class="visible-xs">
+                <li><a href="https://aws.contractrecruit.co.uk/contractors/it-contracts-bristol">IT Contracts in Bristol</a></li>
+                <hr class="visible-xs">
+                <li><a href="https://aws.contractrecruit.co.uk/contractors/it-contracts-edinburgh">IT Contracts in Edinburgh</a></li>
+                <hr class="visible-xs">
+                <li><a href="https://aws.contractrecruit.co.uk/contractors/all-it-contracts">View IT Contracts for all Locations</a></li>
+              </ul>
+            </li>
           </div>
-          <div class="worksmart_nev"><span>#</span>WorkSmart<span>PlayHard</span></div>
-       
+        </ul>
+      </li>
+      <li class="">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);" (click)="itContractorFlag = !itContractorFlag">IT Contractors <span class="caret"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"></a>
+        <!-- <ul class="navigation-dropdown" >
+          <div class="dropdown-nav-wrap" >
+          <ul>
+            <li class="hub-lst">
+              <div class="lst-news">
+                <h2><a>Join Us on ContractRecruit</a></h2>
+                <ul class="menu-cust-des">
+                  <li><a class=navigation-menu href="#" routerLink="../contractorLogin"
+
+>Login</a></li>
+                  <li><a class=navigation-menu href="#" routerLink="../contractorLogin">Sign Up</a></li>
+                </ul>
+              </div>
+              
+            </li>
+            <li class="hub-dir it-contractors-custom">
+              <div class="cnt-hub-dir ">
+                <h2><a>ContractHub</a></h2>
+                <ul class="menu-cust-des">
+                  <li><a class=navigation-menu href="#" routerLink="../hubHome">ContractHub Home</a></li>
+                  <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/news">IT Contractor News</a></li>
+                  <li><a class=navigation-menu href="#" routerLink="../advice">IT Contractor Advice</a></li>
+                </ul>
+              </div>
+              <div class="contractor-services cnt-hub-dir">
+                <h2><a href="javascript:void(0);">Contractor Services</a></h2>
+                <ul class="menu-cust-des">
+                  <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/directory.php?category_id=1">Umbrella Companies</a></li>
+                  <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/directory.php?category_id=2">Contractor Insurance</a></li>
+                  <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/directory.php?category_id=3">IT Training</a></li>
+                  <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/directory.php?category_id=4">MVL</a></li>
+                  <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/directory.php?category_id=5">CV Help</a></li>
+                  <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/directory.php?category_id=6">Working Abroad</a></li>
+                  <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/directory.php?category_id=7">IT Contractor Accountancy</a></li>
+                  <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/directory.php?category_id=8">IT Contractor Mortgages</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="hub-advoice">
+              <div class="cnt-hub-advc">
+                <h2><a>Site Guides</a></h2>
+                <ul class="menu-cust-des">
+                  <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/contractors/guides">How to Use ContractRecruit</a></li>
+                  <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/faqs">IT Contractor FAQs</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          </div>
+        </ul> -->
+
+        <ul class="navigation-dropdown">
+        <div class="dropdown-nav-wrap">
+            <li>
+                <h2 class="hidden-xs">Join Us on ContractRecruit</h2>
+                <ul>
+                    <li><a href="#" routerLink="../contractorLogin">Login</a></li>
+                    <hr class="visible-xs">
+                    <li><a href="#" routerLink="../contractorSignup">Sign Up</a></li>
+                    <hr class="visible-xs">
+                    <li class="visible-xs"><a href="#" routerLink="../hubHome">ContractHub Home</a></li>
+                    <hr class="visible-xs">
+                    <li class="visible-xs"><a href="https://aws.contractrecruit.co.uk/news">IT Contractor News</a></li>
+                    <hr class="visible-xs">
+                    <li class="visible-xs"><a href="#" routerLink="../advice">IT Contractor Advice</a></li>
+                    <hr class="visible-xs">
+                    <li class="visible-xs"><a href="https://aws.contractrecruit.co.uk/directory.php?category_id=1" class="visible-xs">Contractor Service</a></li>
+                </ul>
+            </li>
+            <li class="hidden-xs">
+                <h2 class="hidden-xs">ContractHub</h2>
+                <ul class="hidden-xs">
+                    <li><a href="https://aws.contractrecruit.co.uk/contractors/contract-hub">ContractHub Home</a></li>
+                    <hr class="visible-xs">
+                    <li><a href="https://aws.contractrecruit.co.uk/news">IT Contractor News</a></li>
+                    <hr class="visible-xs">
+                    <li><a href="https://aws.contractrecruit.co.uk/advice">IT Contractor Advice</a></li>
+                </ul>
+                <h2 class="hidden-xs">Contractor Services</h2>
+                <ul class="hidden-xs">
+                    <li><a href="https://aws.contractrecruit.co.uk/directory.php?category_id=1">Umbrella Companies</a></li>
+                    <hr class="visible-xs">
+                    <li><a href="https://aws.contractrecruit.co.uk/directory.php?category_id=2">Contractor Insurance</a></li>
+                    <hr class="visible-xs">
+                    <li><a href="https://aws.contractrecruit.co.uk/directory.php?category_id=3">IT Training</a></li>
+                    <hr class="visible-xs">
+                    <li><a href="https://aws.contractrecruit.co.uk/directory.php?category_id=4">MVL</a></li>
+                    <hr class="visible-xs">
+                    <li><a href="https://aws.contractrecruit.co.uk/directory.php?category_id=5">CV Help</a></li>
+                    <hr class="visible-xs">
+                    <li><a href="https://aws.contractrecruit.co.uk/directory.php?category_id=6">Working Abroad</a></li>
+                    <hr class="visible-xs">
+                    <li><a href="https://aws.contractrecruit.co.uk/directory.php?category_id=7">IT Contractor Accountancy</a></li>
+                    <hr class="visible-xs">
+                    <li><a href="https://aws.contractrecruit.co.uk/directory.php?category_id=8">IT Contractor Mortgages</a></li>
+                </ul>
+            </li>
+            <li class="hidden-xs">
+                <h2 class="hidden-xs">Site Guides</h2>
+                <ul class="hidden-xs">
+                    <li><a href="https://aws.contractrecruit.co.uk/contractors/guides">How to Use ContractRecruit</a></li>
+                    <hr class="visible-xs">
+                    <li><a href="https://aws.contractrecruit.co.uk/faqs">IT Contractor FAQs</a></li>
+                </ul>
+            </li>
+        </div>
+    </ul>
+
+
+
+
+
+
+      </li>
+      <li class="color-pink">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);" (click)="itRecruiterFlag = !itRecruiterFlag">IT Recruiters <span class="caret pink"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"></a>
+        <!-- <div class="cntrct-hub-nav" *ngIf="itRecruiterFlag">
+          <ul>
+            <li class="hub-lst">
+              <div class="lst-news">
+                <h2><a style="color: #FF0066;">Join Us on ContractRecruit</a></h2>
+                <ul class="menu-cust-des">
+                  <li><a class=navigation-menu href="#" routerLink="../recruiterRegister">Login</a></li>
+                  <li><a class=navigation-menu href="#" routerLink="../recruiterRegister">Sign Up</a></li>
+                  <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/recruiters/benefits">Why Should I Sign Up?</a></li>
+                </ul>
+              </div>
+              
+            </li>
+            <li class="hub-dir it-contractors-custom">
+              <div class="cnt-hub-dir ">
+                <h2><a style="color: #FF0066;">Search IT Contractors</a></h2>
+                <ul class="menu-cust-des">
+                  <li><a class=navigation-menu href="#" routerLink="../advanced-search">Advanced Contractor Search</a></li>
+                </ul>
+              </div>
+              <div class="contractor-services cnt-hub-dir">
+                <h2><a style="color: #FF0066;">Quick Search</a></h2>
+                <ul class="menu-cust-des">
+                  <li><a class=navigation-menu href="#" routerLink="../searchresult-loggedin">Contract Web Developers</a></li>
+                  <li><a class=navigation-menu href="#" routerLink="../searchresult-loggedin">Contract Project Managers</a></li>
+                  <li><a class=navigation-menu href="#" routerLink="../searchresult-loggedin">Contract Analysts</a></li>
+                  <li><a class=navigation-menu href="#" routerLink="../searchresult-loggedin">Contract Designers</a></li>
+                  <li><a class=navigation-menu href="#" routerLink="../searchresult-loggedin">Contract Software Developers</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="hub-advoice">
+              <div class="cnt-hub-advc">
+                <h2><a style="color: #FF0066;">Site Guides</a></h2>
+                <ul class="menu-cust-des">
+                  <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/recruiters/guides">How to Use ContractRecruit</a></li>
+                  <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/faqs">Recruiter FAQs</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div> -->
+        <ul class="navigation-dropdown">
+              <div class="dropdown-nav-wrap">
+                  <li>
+                      <h2 class="hidden-xs">Join Us on ContractRecruit</h2>
+                      <ul>
+                          <li><a href="#" routerLink="../recruiterLogin">Login</a></li>
+                          <hr class="visible-xs">
+                          <li><a href="#" routerLink="../recruiterRegister">Sign Up</a></li>
+                          <hr class="visible-xs">
+                          <li class="hidden-xs"><a href="#">Why Should I Sign Up</a></li>
+                          <li><a href="#">Why use <span class="stong">Contract</span>Recruit?</a></li>
+                          <hr class="visible-xs">
+                          <li class="visible-xs"><a href="#">Advanced Contractor Search</a></li>
+                      </ul>
+                  </li>
+                  <li class="hidden-xs">
+                      <h2 class="hidden-xs">Search IT Contractors</h2>
+                      <ul class="hidden-xs">
+                          <li><a href="#" routerLink="../advanced-search">Advanced Contractor Search</a></li>
+                      </ul>
+                      <h2 class="hidden-xs">Quick Search</h2>
+                      <ul class="hidden-xs">
+                          <li><a href="#" routerLink="../searchresult-loggedin">Contract Web Developers</a></li>
+                          <hr class="visible-xs">
+                          <li><a href="#" routerLink="../searchresult-loggedin">Contract Project Managers</a></li>
+                          <hr class="visible-xs">
+                          <li><a href="#" routerLink="../searchresult-loggedin">Contract Analysts</a></li>
+                          <hr class="visible-xs">
+                          <li><a href="#" routerLink="../searchresult-loggedin">Contract Designers</a></li>
+                          <hr class="visible-xs">
+                          <li><a href="#" routerLink="../searchresult-loggedin">Contract Software Developers</a></li>
+                      </ul>
+                  </li>
+                  <li class="hidden-xs">
+                      <h2>Site Guides</h2>
+                      <ul>
+                          <li><a href="https://aws.contractrecruit.co.uk/recruiters/guides">How to Use ContractRecruit</a></li>
+                          <hr class="visible-xs">
+                          <li><a href="https://aws.contractrecruit.co.uk/faqs">Recruiter FAQs</a></li>
+                      </ul>
+                  </li>
+              </div>
+          </ul>
+      </li>
+      <li class="">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);" (click)="aboutContractRecruitFlag = !aboutContractRecruitFlag">About ContractRecruit <span class="caret"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"></a>
+
+        <ul class="navigation-dropdown col-one">
+                                    <div class="dropdown-nav-wrap">
+                                        <li>
+                                            <h2 class="hidden-xs">About ContractRecruit</h2>
+                                            <ul>
+                                                <li><a href="#" routerLink="../about-recruiter">What is <span class="stong">Contract</span>Recruit?</a></li>
+                                                <hr class="visible-xs">
+                                                <li><a href="#" routerLink="../about-recruiter">Who are we?</a></li>
+                                                <hr class="visible-xs">
+                                                <li><a href="#" routerLink="../about-recruiter">What do we do?</a></li>
+                                            </ul>
+                                            <h2 class="hidden-xs">Site Usage</h2>
+                                            <ul class="hidden-xs">
+                                                <li><a href="https://aws.contractrecruit.co.uk/terms">Terms of Use</a></li>
+                                                <hr class="visible-xs">
+                                                <li><a href="https://aws.contractrecruit.co.uk/privacy-policy">Privacy Policy</a></li>
+                                                <hr class="visible-xs">
+                                                <li><a href="https://aws.contractrecruit.co.uk/sitemap">Site Map</a></li>
+                                            </ul>
+                                        </li>
+                                    </div>
+                                </ul>
+        
+      <!--   <div class="cntrct-hub-nav" *ngIf="aboutContractRecruitFlag">
+          <ul>
+            <li class="hub-lst">
+              <div class="lst-news">
+                <h2><a>About ContractRecruit</a></h2>
+                <ul class="menu-cust-des">
+                  <li><a class=navigation-menu href="#" routerLink="../about-recruiter">What is ContractRecruit?</a></li>
+                  <li><a class=navigation-menu href="#" routerLink="../about-recruiter">Who are we?</a></li>
+                  <li><a class=navigation-menu href="#" routerLink="../about-recruiter">What do we do?</a></li>
+                </ul>
+              </div>
+              <div class="mobile-app">
+                <h2><a>Site Usage</a></h2>
+                <ul class="menu-cust-des">
+                  <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/terms">Terms of Use</a></li>
+                  <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/privacy-policy">Privacy Policy</a></li>
+                  <li><a class=navigation-menu href="https://aws.contractrecruit.co.uk/sitemap">Site Map</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div> -->
+      </li>
+    </ul>
+  </nav>
+</div>
+<div class="worksmart_nev"><span>#</span>WorkSmart<span>PlayHard</span></div>
