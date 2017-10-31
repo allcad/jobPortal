@@ -3,6 +3,11 @@
             <!--contractor login-->
             <div id="contractor-signup">
                 <div class="container">
+                    <div *ngIf="jobPostFlag">
+                        <div class="alert alert-danger margin-tp18" *ngFor="let item of previewJobErrorMsg">
+                            <a href="javascript:void(0)" class="close" title="close">×</a> {{item}}
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-sm-100">
                             <div class="contractor_signup befourlogin_fontsize">
@@ -41,9 +46,9 @@
                                 <p><span>Ref: </span> {{previewDataList?.jobReference}}</p>
                             </div>
                         </div>
-                        <div class="col-md-25 col-sm-30">
+                        <!-- <div class="col-md-25 col-sm-30">
                             <div class="experis"> <img src="./assets/images/experis.png" alt="search" title="search" class="img-responsive"> </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="full_job_section2">
@@ -79,11 +84,11 @@
                                     <div class="row">
                                         <div class="col-sm-50 col-xs-50">
                                             <div class="margin_apply_bottom">
-                                                <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse">Edit Job <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                                                <a href="javascript:void(0);" [routerLink]="['../job-posting']" class="btn-primary hover_text_pink hover_white_pluse" (click)="goToJobPosting()">Edit Job <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
                                             </div>
                                         </div>
                                         <div class="col-sm-50 col-xs-50">
-                                            <div class="sign_up_right_side margin_apply_bottom"> <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse">Post Job <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
+                                            <div class="sign_up_right_side margin_apply_bottom"> <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse" (click)="saveJobPost()">Post Job <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
                                         </div>
                                     </div>
                                 </div>

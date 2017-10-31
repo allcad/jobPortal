@@ -28,6 +28,7 @@ input;
 jobPostingDetails;
 recruiterNameArray;
 jobPostFlag = false;
+jobPostingJobId = '';
   constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -35,7 +36,26 @@ jobPostFlag = false;
     var localStorageData = JSON.parse(localStorage.getItem('recruiterJobData'));
     console.log("localStorageData--", localStorageData);
     if(localStorageData && localStorageData.jobId) {
+      this.jobPostingJobId = localStorageData.jobId;
       this.jobPostingData(localStorageData.jobId);
+    }
+    var editJoblocalStorageData = JSON.parse(localStorage.getItem('editJobPost'));
+    console.log("editJoblocalStorageData", editJoblocalStorageData);
+    if(editJoblocalStorageData && editJoblocalStorageData.jobPreviewData) {
+      this.jobPostingJobTitle = editJoblocalStorageData.jobPreviewData.jobTitle;
+       this.jobPostingDuration = editJoblocalStorageData.jobPreviewData.duration;
+       this.startDate = editJoblocalStorageData.jobPreviewData.startDate;
+       this.industrySector = editJoblocalStorageData.jobPreviewData.industrySectorId;
+       this.workEligibility = editJoblocalStorageData.jobPreviewData.workEligibilityId;
+       this.cityTownValue = editJoblocalStorageData.jobPreviewData.cityTown;
+       this.minRate = editJoblocalStorageData.jobPreviewData && editJoblocalStorageData.jobPreviewData.prefereedRate && editJoblocalStorageData.jobPreviewData.prefereedRate.minRate ? editJoblocalStorageData.jobPreviewData.prefereedRate.minRate : 0;
+       this.maxRate = editJoblocalStorageData.jobPreviewData && editJoblocalStorageData.jobPreviewData.prefereedRate && editJoblocalStorageData.jobPreviewData.prefereedRate.maxRate ? editJoblocalStorageData.jobPreviewData.prefereedRate.maxRate : 0
+       this.dailyHourlyValue = editJoblocalStorageData.jobPreviewData && editJoblocalStorageData.jobPreviewData.prefereedRate && editJoblocalStorageData.jobPreviewData.prefereedRate.dailyHourlyRate ? editJoblocalStorageData.jobPreviewData.prefereedRate.dailyHourlyRate : '';
+       this.jobSpecificationTitle = editJoblocalStorageData.jobPreviewData.jobSpecificationTitle;
+       this.jobSpecificationBody = editJoblocalStorageData.jobPreviewData.jobSpecification;
+       this.recruiterName = editJoblocalStorageData.jobPreviewData.recruiterNameId;
+       this.saveTemplateAs = editJoblocalStorageData.jobPreviewData.saveTempleteAs;
+       this.jobReference = editJoblocalStorageData.jobPreviewData.jobReference;
     }
   }
 
@@ -132,6 +152,31 @@ jobPostFlag = false;
          
         }
     );
+  }
+
+  previewJob() {
+    var input={
+      "jobTitle": this.jobPostingJobTitle ? this.jobPostingJobTitle : '',
+      "duration": this.jobPostingDuration ? this.jobPostingDuration : '',
+      "startDate": this.startDate ? this.startDate : '',
+      "industrySectorId": this.industrySector ? this.industrySector : '0',
+      "workEligibilityId" : this.workEligibility ? this.workEligibility : '0',
+      "cityTown": this.cityTownValue ? this.cityTownValue : '',
+      "prefereedRate": {
+        "minRate": this.minRate ? this.minRate : '0',
+        "maxRate": this.maxRate ? this.maxRate : '0',
+        "dailyHourlyRate": this.dailyHourlyValue ? this.dailyHourlyValue : ''
+      },
+      "jobSpecification": this.jobSpecificationBody ? this.jobSpecificationBody : '',
+      "jobSpecificationTitle": this.jobSpecificationTitle ? this.jobSpecificationTitle : '',
+      "recruiterNameId": this.recruiterName ? this.recruiterName : '0',
+      "saveTempleteAs": this.saveTemplateAs ? this.saveTemplateAs : '',
+      "jobReference": this.jobReference ? this.jobReference : '',
+      "recuriter_job_is_featured": "0",
+      "jobId": this.jobPostingJobId ? this.jobPostingJobId : ''
+      }
+    var obj = {'jobPreviewData' : input};
+    localStorage.setItem('jobPostingData', JSON.stringify(obj));
   }
 
 }

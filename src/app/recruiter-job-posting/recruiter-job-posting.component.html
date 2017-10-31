@@ -41,7 +41,11 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-addon"><img src="./assets/images/recruiter-job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
-                                               <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Job Title" name="jobPostingJobTitle" [(ngModel)]="jobPostingJobTitle">
+                                               <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Job Title" name="jobPostingJobTitle" [(ngModel)]="jobPostingJobTitle" [tooltip]="jobTitleTooltip" required>
+                                               <tooltip-content #jobTitleTooltip>
+                                                <span *ngIf="recruiterJobPostingForm?.form && recruiterJobPostingForm.form.controls && recruiterJobPostingForm.form.controls.jobPostingJobTitle?.valid " style="color: #C21F39">Job Title</span>
+                                                <span [hidden]="!recruiterJobPostingForm.form.controls.jobPostingJobTitle?.hasError('required')" style="color: #C21F39">Job Title is required.</span>
+                                              </tooltip-content>
                                             </div>
                                             <p class="characters_remaining"><span>40</span> characters remaining</p>
                                         </div>
@@ -52,7 +56,11 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-addon"><img src="./assets/images/duration.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
-                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Duration" name="jobPostingDuration" [(ngModel)]="jobPostingDuration">
+                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Duration" name="jobPostingDuration" [(ngModel)]="jobPostingDuration" [tooltip]="jobPostingDurTooltip" required>
+                                                <tooltip-content #jobPostingDurTooltip>
+                                                <span *ngIf="recruiterJobPostingForm?.form && recruiterJobPostingForm.form.controls && recruiterJobPostingForm.form.controls.jobPostingDuration?.valid " style="color: #C21F39">Duration</span>
+                                                <span [hidden]="!recruiterJobPostingForm.form.controls.jobPostingDuration?.hasError('required')" style="color: #C21F39">Job Posting is required.</span>
+                                              </tooltip-content>
                                             </div>
                                             <p class="characters_remaining"><span>20</span> characters remaining</p>
                                         </div>
@@ -61,7 +69,11 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-addon"><img src="./assets/images/start-date.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
-                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Start Date (dd/mm/yyyy)" name="startDate" [(ngModel)]="startDate">
+                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Start Date (yyyy/mm/dd)" name="startDate" [(ngModel)]="startDate" [tooltip]="startDateTooltip" required>
+                                                <tooltip-content #startDateTooltip>
+                                                <span *ngIf="recruiterJobPostingForm?.form && recruiterJobPostingForm.form.controls && recruiterJobPostingForm.form.controls.startDate?.valid " style="color: #C21F39">Start Date</span>
+                                                <span [hidden]="!recruiterJobPostingForm.form.controls.startDate?.hasError('required')" style="color: #C21F39">Start Date is required.</span>
+                                              </tooltip-content>
                                             </div>
                                         </div>
                                     </div>
@@ -71,13 +83,17 @@
                                         <div class="form-group">
                                             <div class="input-group responsive_width_100">
                                                 <div class="input-group-addon upto_border_none">Industry Sector</div>
-                                                <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none" name="industrySector" [(ngModel)]="industrySector">
+                                                <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none" name="industrySector" [(ngModel)]="industrySector" [tooltip]="industrySectorTooltip" required>
                                                     <option value="">Any</option>
                                                     <option value="1">124536</option>
                                                     <option value="5">5124536</option>
                                                     <option value="10">10124536</option>
                                                     <option value="20">20124536</option>
                                                 </select>
+                                                <tooltip-content #industrySectorTooltip>
+                                                <span *ngIf="recruiterJobPostingForm?.form && recruiterJobPostingForm.form.controls && recruiterJobPostingForm.form.controls.industrySector?.valid " style="color: #C21F39">Industry Sector</span>
+                                                <span [hidden]="!recruiterJobPostingForm.form.controls.industrySector?.hasError('required')" style="color: #C21F39">Industry Sector is required.</span>
+                                              </tooltip-content>
                                             </div>
                                         </div>
                                     </div>
@@ -87,13 +103,17 @@
                                         <div class="form-group">
                                             <div class="input-group responsive_width_100">
                                                 <div class="input-group-addon upto_border_none padding_right_18px">Work Eligibility</div>
-                                                <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none responsive_padding_right20" name="workEligibility" [(ngModel)]="workEligibility">
+                                                <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none responsive_padding_right20" name="workEligibility" [(ngModel)]="workEligibility" [tooltip]="workEligibilityTooltip" required>
                                                     <option value="">Applicants must be eligible to work in the EU</option>
                                                     <option value="1">124536</option>
                                                     <option value="5">5124536</option>
                                                     <option value="10">10124536</option>
                                                     <option value="20">20124536</option>
                                                 </select>
+                                                <tooltip-content #workEligibilityTooltip>
+                                                <span *ngIf="recruiterJobPostingForm?.form && recruiterJobPostingForm.form.controls && recruiterJobPostingForm.form.controls.workEligibility?.valid " style="color: #C21F39">Work Eligibility</span>
+                                                <span [hidden]="!recruiterJobPostingForm.form.controls.workEligibility?.hasError('required')" style="color: #C21F39">Work Eligibility is required.</span>
+                                              </tooltip-content>
                                             </div>
                                         </div>
                                     </div>
@@ -134,9 +154,9 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="daily_rate_part"></div>
-                                                <input value="daily" id="prepaid" name="service_type" onChange="prepaidF()" checked="" type="radio" [(ngModel)]="dailyHourlyValue">
+                                                <input value="daily" id="prepaid" name="service_type" checked="" type="radio" [(ngModel)]="dailyHourlyValue">
                                                 <label for="prepaid" class="radio-inline radio-inline-part  margin_top_11"><span></span> Daily Rate </label>
-                                                <input value="hourly" id="postpaid" name="service_type" onChange="postpaidF()" type="radio" [(ngModel)]="dailyHourlyValue">
+                                                <input value="hourly" id="postpaid" name="service_type" type="radio" [(ngModel)]="dailyHourlyValue">
                                                 <label for="postpaid" class="radio-inline radio-inline-part margin_top_11"><span></span>Hourly Rate </label>
                                             </div>
                                         </div>
@@ -214,7 +234,7 @@
                             <div class="margin_top_30">
                                 <div class="row">
                                     <div class="col-xs-50 col-sm-60">
-                                        <div class="sign_up_left_side"> <a href="javascript:void(0);" [routerLink]="['../preview-job']" class="btn-primary hover_text_pink hover_white_pluse width_180px margin_bottom10xp">Preview <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
+                                        <div class="sign_up_left_side"> <a href="javascript:void(0);" [routerLink]="['../preview-job']" (click)="previewJob()" class="btn-primary hover_text_pink hover_white_pluse width_180px margin_bottom10xp">Preview <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
                                     </div>
                                     <div class="col-xs-50 col-sm-40">
                                         <div class="sign_up_right_side"> 

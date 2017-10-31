@@ -15,6 +15,9 @@ export class RecruiterHeaderComponent implements OnInit {
   postJobs() {
   	var obj = {'jobId' : ''};
     localStorage.setItem('recruiterJobData', JSON.stringify(obj));
+
+    var obj1 = {'jobPreviewData' : ''};
+    localStorage.setItem('editJobPost', JSON.stringify(obj1));
   }
 
 }

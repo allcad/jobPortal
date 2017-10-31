@@ -235,7 +235,7 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
   }
 
   saveRecruiterProfile(form : NgForm) {
-    var otherSocial = {};
+    var otherSocial = {}, otherAdd = {};
   //  alert(4)
   	 var inputprofileData = {
     "email":this.emailAddress,
@@ -258,6 +258,7 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
 			'postalPostCode': this.postalPostCode,
 			'postalTelephoneNo': this.postalTelephone,
 			'companyUrl': this.fileArray
+      //'otherAddress': []
 		},
 		'companyDescription': this.companyDescription,
 		'companySocial': {
@@ -279,7 +280,8 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
 				'linkedinDisplayFeed': this.linkedinDisplayFeed
 			},
 			'otherSocialData' : []
-		}
+		},
+    'otherAddress': []
 	};
   console.log("this.addMulAddArray before", this.addMulSocialArray);
   if(this.addMulSocialArray && this.addMulSocialArray.length > 0) {
@@ -291,6 +293,22 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
           'displayFeed': this.addMulSocialArray[i].otherRadio
         }
         inputprofileData.companySocial.otherSocialData.push(otherSocial);
+      }
+    }
+  }
+
+  if(this.addMulAddArray && this.addMulAddArray.length > 0) {
+    for(var i = 0; i<this.addMulAddArray.length; i++) {
+      if(this.addMulAddArray[i].addresslLine1) {
+        otherAdd = {
+          'addressLine1': this.addMulAddArray[i].addresslLine1,
+          'addressLine2': this.addMulAddArray[i].addressLine2,
+          'city': this.addMulAddArray[i].city,
+          'country': this.addMulAddArray[i].country,
+          'postCode': this.addMulAddArray[i].postCode,
+          'telephone': this.addMulAddArray[i].telephone
+        }
+        inputprofileData.otherAddress.push(otherAdd);
       }
     }
   }
@@ -374,6 +392,14 @@ getProfileDta(){
               }
             }
           }
+
+          // if(this.profileData['otherAddress'] && this.profileData['otherAddress'].otherSocialData && this.profileData['otherAddress'].otherSocialData.length > 0) {
+          //   for(var i = 0; i< this.profileData['otherAddress'].otherSocialData.length; i++) {
+          //     if(this.profileData['otherAddress'].otherSocialData[i].Url) {
+          //       this.addMulSocialArray.push({'otherSocialLink': this.profileData['otherAddress'].otherSocialData[i].Url, 'otherSocialFeed': this.profileData['otherAddress'].otherSocialData[i].fullUrl, 'otherRadio': this.profileData['otherAddress'].otherSocialData[i].displayFeed})
+          //     }
+          //   }
+          // }
 
           }
         }

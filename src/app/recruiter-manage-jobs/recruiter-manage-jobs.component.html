@@ -2,6 +2,9 @@
             <!--navigation top end-->
             <!--contractor login-->
             <div class="container">
+                <div class="alert alert-success margin-tp18" *ngIf="jobPostFlag">
+                <a href="javascript:void(0)" class="close" title="close">×</a> Post Job Save <strong>succesfully!</strong>
+              </div>
                 <div class="row">
                     <div class="col-sm-50">
                         <div class="contractor_signup recruiter_signup">
@@ -15,7 +18,7 @@
                     </div>
                     <div class="col-sm-50">
                         <div class="applied_posted">
-                            <p>You have posted <span class="text_pink">22</span> Jobs
+                            <p>You have posted <span class="text_pink">{{listingData.length}}</span> Jobs
                         </div>
                     </div>
                 </div>
@@ -24,9 +27,9 @@
                         <div class="col-sm-50">
                             <div class="pazer">
                                 <span>Show</span>
-                                <a href="javascript:void(0);" class="active">9</a>
-                                <a href="javascript:void(0);">12</a>
-                                <a href="javascript:void(0);">15</a>
+                                <a href="javascript:void(0);" class="active" (click)="onPageJobList('9')">9</a>
+                                <a href="javascript:void(0);" (click)="onPageJobList('12')">12</a>
+                                <a href="javascript:void(0);" (click)="onPageJobList('15')">15</a>
                                 <span>results per page</span>
                             </div>
                         </div>
@@ -160,8 +163,8 @@
                                 <p><span class="text_gray">Posted By     </span> {{item?.recruiterNameId}}</p>
                             </div>
                             <div class="manage_job_footer">
-                                <a href="javascript:void(0);" [routerLink]="['../preview-job']"><img src="./assets/images/job-view.png" alt="" title=""></a>
-                                <a href="javascript:void(0);"><img src="./assets/images/job-edit.png" alt="" title=""></a>
+                                <a href="javascript:void(0);" [routerLink]="['../preview-job']" (click)="passJobId(item?.jobid)"><img src="./assets/images/job-view.png" alt="" title=""></a>
+                                <a href="javascript:void(0);" [routerLink]="['../job-posting']" (click)="passJobId(item?.jobid)"><img src="./assets/images/job-edit.png" alt="" title=""></a>
                                 <a href="javascript:void(0);"><img src="./assets/images/job-referce.png" alt="" title=""></a>
                                 <a href="javascript:void(0);"><img src="./assets/images/job-delete.png" alt="" title=""></a>
                             </div>
@@ -320,8 +323,8 @@
                                 <p><span class="text_gray">Posted By     </span> {{item?.recruiterNameId}}</p>
                             </div>
                             <div class="manage_job_footer">
-                                <a href="javascript:void(0);" [routerLink]="['../preview-job']"><img src="./assets/images/job-view.png" alt="" title=""></a>
-                                <a href="javascript:void(0);"><img src="./assets/images/job-edit.png" alt="" title=""></a>
+                                <a href="javascript:void(0);" [routerLink]="['../preview-job']" (click)="passJobId(item?.jobid)"><img src="./assets/images/job-view.png" alt="" title=""></a>
+                                <a href="javascript:void(0);" [routerLink]="['../job-posting']" (click)="passJobId(item?.jobid)"><img src="./assets/images/job-edit.png" alt="" title=""></a>
                                 <a href="javascript:void(0);"><img src="./assets/images/job-referce.png" alt="" title=""></a>
                                 <a href="javascript:void(0);"><img src="./assets/images/job-delete.png" alt="" title=""></a>
                             </div>
@@ -376,6 +379,6 @@
                 </div>
             </div>
             <div class="show_more_application">
-                <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>SHOW MORE JOBS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="showMoreJobs()"><span>SHOW MORE JOBS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
             </div>
         </section>

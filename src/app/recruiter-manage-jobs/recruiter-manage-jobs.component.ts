@@ -15,13 +15,15 @@ export class RecruiterManageJobsComponent implements OnInit {
 	firstArray = [];
 	secondArray = [];
 	thirdArray = [];
-	list = [1,2,3]
+	currentPageNo = 9;
+  errorMsg = "";
+  errorMsgFlag = false;
 
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService) { }
 
   ngOnInit() {
-  	this.getManageJobsList();
+  	this.getManageJobsList(9);
   }
 
   passJobId(id) {
@@ -54,44 +56,76 @@ export class RecruiterManageJobsComponent implements OnInit {
        return this.recruiterName;
   }
 
-  getManageJobsList() {
-  	// this.input={
-   //      "email":this.email,
-   //      // "password":this.password,
-   //      "loginToken": this.getData.data.loginToken
-   //    }
+  getManageJobsList(pageLimit) {
+    console.log("pageLimit--", pageLimit);
    var input = {
    	"email":"test@test7.com",
 	"loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu",
    	"page":1,
-	"limit":6
+	"limit":pageLimit
    };
    console.log("input--", input);
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/list";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
          console.log("data from manage job list--", data);
-         this.listingData = data.data;
-         for(var i=0;i<3;i++) {
-         	if(this.listingData && this.listingData[i]) {
-         		this.firstArray[i] = this.listingData[i];
-         	}
-         };
-         for(var i=0; i<6; i++) {
-         	if(this.listingData && this.listingData[i+3]) {
-         		this.secondArray[i] = this.listingData[i+3];
-         	}
-         }
-         for(var i=0; i<this.listingData.length; i++) {
-         	if(this.listingData && this.listingData[i+9]) {
-         		this.thirdArray[i] = this.listingData[i+9];
-         	}
-         }
-         console.log("firstarray", this.firstArray);
-         console.log("secondArray", this.secondArray);
-         console.log("thirdArray", this.thirdArray);
+         if(data && data.status === "TRUE") {
+           this.errorMsgFlag = false;
+           this.listingData = data.data;
+           for(var i=0;i<3;i++) {
+           	if(this.listingData && this.listingData[i]) {
+           		this.firstArray[i] = this.listingData[i];
+           	}
+           };
+           for(var i=0; i<6; i++) {
+           	if(this.listingData && this.listingData[i+3]) {
+           		this.secondArray[i] = this.listingData[i+3];
+           	}
+           }
+           if(this.listingData.length > 9) {
+             this.thirdArray = [];
+             for(var i=0; i<this.listingData.length; i++) {
+               console.log("this.listingData[i+9]", this.listingData[i+9]);
+             	if(this.listingData && this.listingData[i+9]) {
+             		this.thirdArray[i] = this.listingData[i+9];
+             	}
+             }
+           } else {
+             this.thirdArray = [];
+           }
+           console.log("firstarray", this.firstArray);
+           console.log("secondArray", this.secondArray);
+           console.log("thirdArray", this.thirdArray);
+          } else {
+            if(data && data.error && data.error.length > 0) {
+            this.errorMsgFlag = true;
+              this.errorMsg = data.error[0];
+            }
+          }
         }
     );
+  }
+
+  onPageJobList(pageNo) {
+    this.currentPageNo = parseInt(pageNo);
+    this.firstArray = [];
+     this.secondArray = [];
+     this.secondArray = [];
+     this.listingData = [];
+    this.getManageJobsList(pageNo);
+  }
+
+  showMoreJobs() {
+    console.log("before", this.currentPageNo);
+    if(this.currentPageNo === 9) {
+      this.currentPageNo = this.currentPageNo + 9;
+    } else if(this.currentPageNo === 12) {
+      this.currentPageNo = this.currentPageNo + 12;
+    } else if(this.currentPageNo === 15) {
+      this.currentPageNo = this.currentPageNo + 15;
+    }
+    console.log("this.currentPageNo", this.currentPageNo);
+    this.getManageJobsList(this.currentPageNo);
   }
 
 }
