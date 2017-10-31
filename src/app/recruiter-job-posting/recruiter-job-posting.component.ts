@@ -27,6 +27,7 @@ jobReference;
 input;
 jobPostingDetails;
 recruiterNameArray;
+jobPostFlag = false;
   constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -65,6 +66,7 @@ recruiterNameArray;
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/view";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
+          this.jobPostFlag = false;
          console.log("jobList--", data);
          if(data && data.data) {
            this.jobPostingDetails = data.data;
@@ -109,16 +111,18 @@ recruiterNameArray;
 			"jobSpecificationTitle": this.jobSpecificationTitle,
 			"recruiterNameId": this.recruiterName,
 			"saveTempleteAs": this.saveTemplateAs,
-			"jobReference": this.jobReference
+			"jobReference": this.jobReference,
+      "recuriter_job_is_featured": "0"
 
       }
       var wsUrl;
-      alert(0);
+      //alert(0);
       console.log("this.input", this.input);
     wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/add";
        this._commonRequestService.postData(wsUrl,this.input).subscribe(
         data => {
         	console.log("data result", data);
+          this.jobPostFlag = true;
           // this.response = data;
           //  this.recruiterviewProfileData = data.data;
           //   if( this.response.status === "TRUE"){
