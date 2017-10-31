@@ -17,13 +17,13 @@ export class RecruiterManageProfileComponent implements OnInit {
   city: string;
   country: string;
   postCode;
-  telephone: number;
+  telephone = '';
   postalAddressLine1: string;
   postalAddressLine2: string;
   postalCity: string;
   postalCountry: string;
   postalPostCode;
-  postalTelephone: number;
+  postalTelephone = '';
   companyDescription: string;
   webAddress;
   emailAddress;
@@ -53,6 +53,15 @@ socialLinkValidationFlag = false;
 twitterValidationFlag = false;
 linkedinValidationFlag = false;
 fullLinkedinValidationFlag = false;
+sameAsPerAddFlag = false;
+// 'otherAddress' : [{
+//   'addressLine1': '',
+//   'addressLine2': '',
+//   'city': '',
+//   'country': '',
+//   'postCode': '',
+//   'telephone': ''
+// }]
 //list = [];
 //i = 0;
 addMulAddArray = [{'addresslLine1': 'line1', 'addressLine1Name': 'address1', 'addressLine2': 'line2', 'addressLine2Name': 'address2', 'city': 'city', 'cityName': 'cityN', 'country': 'cou', 'countryName': 'country1', 'postCode': '12', 'postName': 'postN', 'telephone': '134', 'telephone1': 'teleP'}]
@@ -100,6 +109,24 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
     console.log("value--", value);
     console.log("this.addMulSocialArray", this.addMulSocialArray)
     this.addMulSocialArray = this.removeFunction(this.addMulSocialArray,"otherSocialLink",value.otherSocialLink);
+  }
+
+  samePermanentAdd() {
+    if(this.sameAsPerAddFlag) {
+      this.postalAddressLine1 = this.addressLine1;
+      this.postalAddressLine2 = this.addressLine2;
+      this.postalCity = this.city;
+      this.postalCountry = this.country;
+      this.postalPostCode = this.postCode;
+      this.postalTelephone = this.telephone;
+    } else {
+      this.postalAddressLine1 = '';
+      this.postalAddressLine2 = '';
+      this.postalCity = '';
+      this.postalCountry = '';
+      this.postalPostCode = '';
+      this.postalTelephone = '';
+    }
   }
 
    recruiterFileChangeEvent(fileInput: any) {
@@ -208,11 +235,12 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
   }
 
   saveRecruiterProfile(form : NgForm) {
+    var otherSocial = {};
   //  alert(4)
   	 var inputprofileData = {
     "email":this.emailAddress,
     "loginToken":"$2y$10$AUQhfigHBiNAzCG9aSYZe.WEbqDIBNVxl6aBoSHJs8.oEuPFWMkHm",
-		companyDetails: {
+		'companyDetails': {
 			'companyName': this.companyName,
 			'companySize': this.companySize,
 			'companyAddress': this.addressName,
@@ -222,7 +250,7 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
 			'country': this.country,
 			'postCode': this.postCode,
 			'telephone': this.telephone,
-			'sameAsPermanentAddress': false,
+			'sameAsPermanentAddress': this.sameAsPerAddFlag.toString(),
 			'postalAddressLine1': this.postalAddressLine1,
 			'postalAddressLine2': this.postalAddressLine2,
 			'postalCity': this.postalCity,
@@ -231,8 +259,8 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
 			'postalTelephoneNo': this.postalTelephone,
 			'companyUrl': this.fileArray
 		},
-		companyDescription: this.companyDescription,
-		companySocial: {
+		'companyDescription': this.companyDescription,
+		'companySocial': {
 			'webAddress': this.webAddress,
 			'emailAddress': this.emailAddress,
 			'rssData' : {
@@ -250,13 +278,22 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
 				'fullUrlLinkedinFeed': this.fullUrlLinkedinFeed,
 				'linkedinDisplayFeed': this.linkedinDisplayFeed
 			},
-			'otherSocialData' : [{
-				'Url': '',
-				'fullUrl': '',
-				'displayFeed': 'otherYes'
-			}]
+			'otherSocialData' : []
 		}
 	};
+  console.log("this.addMulAddArray before", this.addMulSocialArray);
+  if(this.addMulSocialArray && this.addMulSocialArray.length > 0) {
+    for(var i = 0; i<this.addMulSocialArray.length; i++) {
+      if(this.addMulSocialArray[i].otherSocialLink) {
+        otherSocial = {
+          'Url': this.addMulSocialArray[i].otherSocialLink,
+          'fullUrl': this.addMulSocialArray[i].otherSocialFeed,
+          'displayFeed': this.addMulSocialArray[i].otherRadio
+        }
+        inputprofileData.companySocial.otherSocialData.push(otherSocial);
+      }
+    }
+  }
 	console.log("recruiterProfileJson", inputprofileData);
      this.inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/profile/submit";
        this._commonRequestService.postData(this.inputUrl, inputprofileData).subscribe(
@@ -276,8 +313,7 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
           // console.log("keySkill: ", this.listSignUpData);
         }
     ); 
-  }
-
+  };
 
 
 
@@ -305,6 +341,8 @@ getProfileDta(){
           this.country =this.profileData['companyDetails'] && this.profileData['companyDetails'].country ? this.profileData['companyDetails'].country : "";
           this.postCode =this.profileData['companyDetails'] && this.profileData['companyDetails'].postCode ? this.profileData['companyDetails'].postCode : "";
           this.telephone =this.profileData['companyDetails'] && this.profileData['companyDetails'].telephone ? this.profileData['companyDetails'].telephone : "";
+          this.sameAsPerAddFlag = this.profileData['companyDetails'] && this.profileData['companyDetails'].sameAsPermanentAddress === "true" ? true : false;
+
           this.postalAddressLine1 =this.profileData['companyDetails'] && this.profileData['companyDetails'].postalAddressLine1 ? this.profileData['companyDetails'].postalAddressLine1 : "";
           this.postalAddressLine2 =this.profileData['companyDetails'] && this.profileData['companyDetails'].postalAddressLine2 ? this.profileData['companyDetails'].postalAddressLine2 : "";
           this.postalCity =this.profileData['companyDetails'] && this.profileData['companyDetails'].postalCity ? this.profileData['companyDetails'].postalCity : "";
@@ -328,6 +366,15 @@ getProfileDta(){
           this.linkedinUrl= this.profileData['companySocial'] && this.profileData['companySocial'].linkedinData && this.profileData['companySocial'].linkedinData.linkedinUrl ? this.profileData['companySocial'].linkedinData.linkedinUrl : "";
           this.fullUrlLinkedinFeed= this.profileData['companySocial'] && this.profileData['companySocial'].linkedinData && this.profileData['companySocial'].linkedinData.fullUrlLinkedinFeed ? this.profileData['companySocial'].linkedinData.fullUrlLinkedinFeed : "";
           this.linkedinDisplayFeed= this.profileData['companySocial'] && this.profileData['companySocial'].linkedinData && this.profileData['companySocial'].linkedinData.linkedinDisplayFeed ? this.profileData['companySocial'].linkedinData.linkedinDisplayFeed : "";
+          
+          if(this.profileData['companySocial'] && this.profileData['companySocial'].otherSocialData && this.profileData['companySocial'].otherSocialData.length > 0) {
+            for(var i = 0; i< this.profileData['companySocial'].otherSocialData.length; i++) {
+              if(this.profileData['companySocial'].otherSocialData[i].Url) {
+                this.addMulSocialArray.push({'otherSocialLink': this.profileData['companySocial'].otherSocialData[i].Url, 'otherSocialFeed': this.profileData['companySocial'].otherSocialData[i].fullUrl, 'otherRadio': this.profileData['companySocial'].otherSocialData[i].displayFeed})
+              }
+            }
+          }
+
           }
         }
     );

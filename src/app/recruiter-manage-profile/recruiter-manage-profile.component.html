@@ -194,16 +194,20 @@
                   </div>
                 </div>
               </div>
-              <!-- <div class="row">
+              <div class="row">
                 <div class="col-sm-100">
                   <div class="form-group">
                     <div class="input-group">
-                      <div class="input-group-addon"><img src="./assets/images/address-name-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="ADDRESS LINE 1" [(ngModel)]="postalAddressLine1" name="postalAddressLine1">
+                      <!-- <div class="input-group-addon"><img src="./assets/images/address-name-icon.png" alt="" title="" class="img-responsive"></div>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="ADDRESS LINE 1" [(ngModel)]="postalAddressLine1" name="postalAddressLine1"> -->
+                      <div class="service_box">
+                          <input id="inlineCheckbox4" value="" type="checkbox" name="sameAsPerAddFlag" [(ngModel)]="sameAsPerAddFlag" (change)="samePermanentAdd()">
+                          <label for="inlineCheckbox4" class="padding_right_font">Postal Address is same as Permanent Address? <span></span></label>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div> -->
+              </div>
               <div class="row">
                 <div class="col-sm-100">
                   <div class="form-group">
@@ -271,6 +275,7 @@
                   <div class="row">
                     <div class="col-sm-100">
                       <div class="form-group">
+                        {{addMulAddArray[i].addresslLine1}}
                         <div class="input-group">
                           <div class="input-group-addon"><img src="./assets/images/address-name-icon.png" alt="" title="" class="img-responsive"></div>
                           <input type="text" class="form-control box_padding_3 box_height_30" placeholder="ADDRESS LINE 1" [(ngModel)]="addMulAddArray[i].addresslLine1" name="addMulAddArray[i].addressLine1Name">
@@ -437,7 +442,7 @@
                       <div class="input-group-addon"><img src="./assets/images/link-icons.png" alt="" title="" class="img-responsive"></div>
                       <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="SOCIAL LINK NAME" [(ngModel)]="socialLinkName" name="socialLinkName" (change)="socialLinkValidation(socialLinkName)" [tooltip]="socialLinkTooltip">
                       <tooltip-content #socialLinkTooltip>
-                      <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.socialLinkName?.valid " style="color: #C21F39">FULL URL TO YOUR RSS FEED</span>
+                      <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.socialLinkName?.valid " style="color: #C21F39">SOCIAL LINK NAME</span>
                       <span *ngIf="socialLinkValidationFlag" style="color: #C21F39">Please Enter Valid Social Link</span>
                     </tooltip-content>
                     </div>
@@ -527,9 +532,9 @@
                     <div class="feed_profile_page">
                       <p class="">Display feed on profile page?</p>
                       <div class="input-group group_inline_rights">
-                        <input value="5" id="prepaid5" name="service_type3" checked="" type="radio" [(ngModel)]="addMulSocialArray[i].otherRadio" name="addMulSocialArray[i].otherRadio" value="linkedinYes">
+                        <input value="addMulSocialArray[i].otherRadio" id="prepaid5" name="service_type3" checked="" type="radio" [(ngModel)]="addMulSocialArray[i].otherRadio" name="addMulSocialArray[i].otherRadio">
                         <label for="prepaid5" class="radio-inline"><span></span> Yes </label>
-                        <input value="6" id="postpaid6" name="service_type3" type="radio" [(ngModel)]="addMulSocialArray[i].otherRadio" name="addMulSocialArray[i].otherRadio" value="linkedinNo">
+                        <input value="addMulSocialArray[i].otherRadio" id="postpaid6" name="service_type3" type="radio" [(ngModel)]="addMulSocialArray[i].otherRadio" name="addMulSocialArray[i].otherRadio" >
                         <label for="postpaid6" class="radio-inline"><span></span> No </label>
                       </div>
                     </div>
