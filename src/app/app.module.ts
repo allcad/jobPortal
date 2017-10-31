@@ -50,7 +50,7 @@ import { ContractorNewsArticleComponent } from './contractor-news-article/contra
 import { ContractorNewsCategoryComponent } from './contractor-news-category/contractor-news-category.component';
 import { TermUseComponent } from './term-use/term-use.component';
 import { CommonDataSharedService } from './commonDataSharedService';
-
+import { ResolverService } from './resolver.service';
 
 @NgModule({
   declarations: [
@@ -93,7 +93,7 @@ import { CommonDataSharedService } from './commonDataSharedService';
     RecruiterModule,
     ContractorModule
   ],
-  providers: [CommonRequestService, CommonDataSharedService],
+  providers: [CommonRequestService, CommonDataSharedService, ResolverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

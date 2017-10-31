@@ -199,7 +199,13 @@
                 </div>
                 <div class="preferred_skip_submit"> <a href="javascript:void(0)" class="btn-info hover_white_pluse">Skip <i class="fa fa-angle-double-right plus_black" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-info hover_white_pluse">Submit <i class="fa fa-plus plus_black img_ioc" aria-hidden="true"></i></a> </div>
               </div>
-              <div class="profile_map"> <img src="./assets/images/map.png" alt="map" title="map" class="img-responsive"> </div>
+              <div class="profile_map">
+                <!-- <img src="./assets/images/map.png" alt="map" title="map" class="img-responsive"> -->
+                <agm-map [latitude]="lat" [longitude]="lng">
+                  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                  <agm-polygon [paths]="polygunPath" [editable]="true" [draggable]="true" ></agm-polygon>
+                </agm-map>
+              </div>
               <div class="signup_form_section width_auto">
                 <div class="row">
                   <div class="col-md-22 col-sm-50">
@@ -341,15 +347,15 @@
                     </div>
                   </div>
                   <div class="col-md-41 col-sm-100">
-                    <div class="current_rate_signup margin_top_10 margin_left_blue10"> <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse">Edit <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> 
+                    <div class="current_rate_signup margin_top_10 margin_left_blue10"> <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse">Edit <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
                       <a href="javascript:void(0)" *ngIf="i!==0" class="btn-primary font_capitaliz hover_white_pluse" (click)="removeElement(contratorCVList, i)">Remove <i class="fa fa-minus plus_blue" aria-hidden="true"></i></a> </div>
                   </div>
                 </div>
                 <div class="row">
                   <!-- <div class="col-md-59 col-sm-100"> -->
-                    <div class="col-md-41 col-sm-100">
-                      <div class="add_another_cv" (click)="addAnotherCV()"> <a href="javascript:void(0)" class="pink_color"><i class="fa fa-plus" aria-hidden="true"></i> Add Another CV</a> </div>
-                    </div>
+                  <div class="col-md-41 col-sm-100">
+                    <div class="add_another_cv" (click)="addAnotherCV()"> <a href="javascript:void(0)" class="pink_color"><i class="fa fa-plus" aria-hidden="true"></i> Add Another CV</a> </div>
+                  </div>
                   <!-- /div> -->
                 </div>
                 <div class="row" *ngFor="let coverLetter of coverLetterList; let i = index;">
@@ -369,7 +375,6 @@
                   </div>
                   <div class="col-md-41 col-sm-100">
                     <div class="current_rate_signup margin_top_10 margin_left_blue10"> <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse">Edit <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> <a *ngIf="i!==0" href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse" (click)="removeElement(coverLetterList, i)">Remove <i class="fa fa-minus plus_blue" aria-hidden="true"></i></a> </div>
-                    
                   </div>
                 </div>
                 <div class="row">

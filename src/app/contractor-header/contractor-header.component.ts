@@ -21,4 +21,8 @@ export class ContractorHeaderComponent implements OnInit {
     this.showMenu = !this.showMenu;
   }
 
+  logoutContractor(){
+    localStorage.removeItem("loginDetail");
+  }
+
 }

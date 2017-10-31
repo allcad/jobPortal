@@ -25,6 +25,7 @@ import { ContractorAdviceArticleComponent } from '../contractor-advice-article/c
 import { ContractorAdviceCategoryComponent } from '../contractor-advice-category/contractor-advice-category.component';
 
 
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,10 @@ import { ContractorAdviceCategoryComponent } from '../contractor-advice-category
 	HttpModule,
 	ContractorRoutingModule,
 	IonRangeSliderModule,
-  SharedModule
+  SharedModule,
+  AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCcc7ZyRGjRbAuDgsLSQGdTuFxvLW9FGiI'
+    })
   ],
   providers: []
 })

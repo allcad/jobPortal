@@ -15,7 +15,7 @@ export class ContractorRecuriterProfileComponent implements OnInit {
   }
 
   getJobList(){
-  	var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/list";
+  	var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/job/list";
   	var inputJson = {
   		"email" : "test@gmail.com",
   		"loginToken":"$2y$10$S.H5i.UJ5CkSBHjinFY.VuWZ2kR8pDEcZGNtRrb1/lNBBNcw7gFBK",
@@ -27,6 +27,23 @@ export class ContractorRecuriterProfileComponent implements OnInit {
         data => {
           this.jobList = data.data; 
           console.log("jobList", this.jobList);
+        }
+    );
+  }
+
+
+  applyJob(jobDetail){
+    console.log(jobDetail);
+    var url =" http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/job/apply";
+    var inputJson = {
+      "email" : "test@gmail.com",
+      "loginToken":"$2y$10$S.H5i.UJ5CkSBHjinFY.VuWZ2kR8pDEcZGNtRrb1/lNBBNcw7gFBK",
+      "jobid": jobDetail.jobid
+
+    }
+       this._commonRequestService.postData(url, inputJson).subscribe(
+        data => {
+          this.getJobList();
         }
     );
   }

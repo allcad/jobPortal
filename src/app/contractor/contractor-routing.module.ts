@@ -14,44 +14,58 @@ import { ContractorAdviceComponent } from '../contractor-advice/contractor-advic
 import { ContractorAdviceArticleComponent } from '../contractor-advice-article/contractor-advice-article.component';
 import { ContractorAdviceCategoryComponent } from '../contractor-advice-category/contractor-advice-category.component';
 import { ContractorSearchResultComponent } from '../contractor-search-result/contractor-search-result.component';
+import { ResolverService } from '../resolver.service';
+
 
 const contractorRoutes: Routes = [{
     "path": "profile",
-    "component": ContractorProfileComponent
+    "component": ContractorProfileComponent,
+    "resolve": {resolverData: ResolverService}
 }, {
     "path": "viewProfile",
-    "component": ContractorViewProfileComponent
+    "component": ContractorViewProfileComponent,
+    "resolve": {resolverData: ResolverService}
 },{
 	"path" :"EditProfile",
-	"component" :ContractorProfileComponent
+	"component" :ContractorProfileComponent,
+    "resolve": {resolverData: ResolverService}
 },{
 	"path" :"jobSearch",
-	"component" :ContractorJobSearchComponent
+	"component" :ContractorJobSearchComponent,
+    "resolve": {resolverData: ResolverService}
 },{
     "path" :"application",
-    "component" :ContractorApplicationsComponent
+    "component" :ContractorApplicationsComponent,
+    "resolve": {resolverData: ResolverService}
 },{
     "path" :"jobSavedSearch",
-    "component" :ContractorJobSearchSavedComponent
+    "component" :ContractorJobSearchSavedComponent,
+    "resolve": {resolverData: ResolverService}
 },
 {
     "path" :"hubHome",
-    "component" :ContractorHubHomeComponent
+    "component" :ContractorHubHomeComponent,
+    "resolve": {resolverData: ResolverService}
 }, {
      "path" :"contractor-directory",
-    "component" :ContractorDirectoryComponent
+    "component" :ContractorDirectoryComponent,
+    "resolve": {resolverData: ResolverService}
 }, {
     "path": "companyProfile",
-    "component": ContractorRecuriterProfileComponent
+    "component": ContractorRecuriterProfileComponent,
+    "resolve": {resolverData: ResolverService}
 },{
     "path": "advice",
-    "component": ContractorAdviceCategoryComponent
+    "component": ContractorAdviceCategoryComponent,
+    "resolve": {resolverData: ResolverService}
 },{
     "path": "adviceDetail",
-    "component": ContractorAdviceArticleComponent
+    "component": ContractorAdviceArticleComponent,
+    "resolve": {resolverData: ResolverService}
 },{
     "path": "searchResult",
-    "component": ContractorSearchResultComponent
+    "component": ContractorSearchResultComponent,
+    "resolve": {resolverData: ResolverService}
 }]
 
 @NgModule({

@@ -28,7 +28,7 @@
               
             </li>
             <li [routerLink]="['../contractor/viewProfile']"><a href="javascript:void(0)"><span class="icon-gears"></span><span class="nav-menu-heading">Admin</span></a></li>
-            <li [routerLink]="['../public']"><a href="javascript:void(0)"><span class="icon-lock"></span><span class="nav-menu-heading">Logout</span></a></li>
+            <li (click)="logoutContractor()" [routerLink]="['../public']"><a href="javascript:void(0)"><span class="icon-lock"></span><span class="nav-menu-heading">Logout</span></a></li>
           </ul>
         </div>
       </div>

@@ -8,6 +8,13 @@ import { CommonRequestService } from '../common-request.service';
   styleUrls: ['./contractor-profile.component.css']
 })
 export class ContractorProfileComponent implements OnInit {
+  lat: number = 26.9124;
+  lng: number = 75.7873;
+  polygunPath = [
+      { lng: this.lng + 0.3, lat: this.lat + 0.3 },
+      { lng: this.lng + 0.5, lat: this.lat + 0.3 },
+      { lng: this.lng + 0.9, lat: this.lat + 0.9 },
+  ];
   selectedSkill;
   selectedSkillArray = [];
   selectedSkillObject;
