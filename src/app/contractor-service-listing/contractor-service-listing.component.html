@@ -1,7 +1,7 @@
 <ul id="services-nav-menu" class="clearfix">
   <li *ngFor="let category of categoryData" (click)="categoryClicked(category)">
     <a href="javascript:void(0)" class="hover">
-      <div class="icon"> <img [src]="category.contract_hub_small_icon" alt="" title="" class="menu_bar"> </div>
+      <div class="icon"> <img [src]="category.contract_hub_small_icon" alt="" title="" class="menu_bar" style="height:57px; width:57px;"> </div>
       <div class="content">
         <h4>{{category.contract_hub_category_name}}</h4>
         <p>{{category.contract_hub_category_desc}}</p>

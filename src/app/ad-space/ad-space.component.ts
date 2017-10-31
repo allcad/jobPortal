@@ -16,14 +16,10 @@ export class AdSpaceComponent implements OnInit {
 
   getAdsList(){
   	var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/ads";
-    var inputJson = {
-      "email" : "test@gmail.com",
-      "loginToken":"$2y$10$S.H5i.UJ5CkSBHjinFY.VuWZ2kR8pDEcZGNtRrb1/lNBBNcw7gFBK"
-
-    }
-       this._commonRequestService.postData(url, inputJson).subscribe(
+      this._commonRequestService.getData(url).subscribe(
         data => {
-          console.log("addData", data)
+          this.addList = data.data;
+          
         }
     );
   }
