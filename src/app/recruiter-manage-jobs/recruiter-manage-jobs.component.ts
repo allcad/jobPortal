@@ -18,7 +18,7 @@ export class RecruiterManageJobsComponent implements OnInit {
 	currentPageNo = 9;
   errorMsg = "";
   errorMsgFlag = false;
-
+  jobPostFlag = false;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService) { }
 

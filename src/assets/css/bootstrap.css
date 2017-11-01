@@ -1,43 +1,62 @@
 /* Webfont: FacilePro */
-@font-face {
+/*@font-face {
     font-family: 'FacilePro';
-    src: url('../fonts/Facile Pro.eot'); /* IE9 Compat Modes */
-    src: url('../fonts/Facile Pro.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-         url('../fonts/Facile Pro.woff') format('woff'), /* Modern Browsers */
-         url('../fonts/Facile Pro.ttf') format('truetype'), /* Safari, Android, iOS */
-         url('../fonts/Facile Pro.svg#FacilePro') format('svg'); /* Legacy iOS */
+    src: url('./fonts/Facile Pro.eot'); 
+    src: url('./fonts/Facile Pro.eot?#iefix') format('embedded-opentype'),
+         url('./fonts/Facile Pro.woff') format('woff'),  
+         url('./fonts/Facile Pro.ttf') format('truetype'),
+         url('./fonts/Facile Pro.svg#FacilePro') format('svg'); 
     font-style: normal;
     font-weight: normal;
     text-rendering: optimizeLegibility;
-}
+}*/
 @font-face {
     font-family: 'MyriadPro-Regular';
-    src: url('../fonts/MyriadPro-Regular.woff');
-    src: url('../fonts/MyriadPro-Regular.eot') format('embedded-opentype');
+    src: url('MyriadPro-Regular.woff');
+    src: url('MyriadPro-Regular.eot') format('embedded-opentype');
     font-weight: normal;
     font-style: normal;
 
 }
 @font-face {
     font-family: 'francois_oneregular';
-    src: url('../fonts/francoisone-webfont.woff');
-	 src: url('../fonts/francoisone-webfont.woff2');
+    src: url('francoisone-webfont.woff');
+	 src: url('francoisone-webfont.woff2');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
+    font-family: 'HelveticaNeue';
+    src: url('helveticaneue_medium-webfont.woff2') format('woff2'),
+         url('helveticaneue_medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/*@font-face {
     font-family:'HelveticaNeue';
-    src: url('../fonts/fontie-package/HelveticaNeue Medium.eot');
-	src: url('../fonts/fontie-package/HelveticaNeue Medium.eot?#iefix') format('embedded-opentype'),
-		url('../fonts/fontie-package/HelveticaNeue Medium.woff2') format('woff2'),
-		url('../fonts/fontie-package/HelveticaNeue Medium.woff') format('woff'),
-		url('../fonts/fontie-package/HelveticaNeue Medium.svg#HelveticaNeue Medium') format('svg');
+    src: url('fontie-package/HelveticaNeue Medium.eot');
+	src: url('fontie-package/HelveticaNeue Medium.eot?#iefix') format('embedded-opentype'),
+		url('fontie-package/HelveticaNeue Medium.woff2') format('woff2'),
+		url('fontie-package/HelveticaNeue Medium.woff') format('woff'),
+		url('fontie-package/HelveticaNeue Medium.svg#HelveticaNeue Medium') format('svg');
     font-weight: 400;
     font-style: normal;
     font-stretch: normal;
     unicode-range: U+0020-02DC;
+}*/
+
+@font-face {
+    font-family: 'FacilePro';
+    src: url('facile_pro-webfont.woff2') format('woff2'),
+         url('facile_pro-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
 }
+
  html {
 	-ms-text-size-adjust:100%;
 	-webkit-text-size-adjust:100%

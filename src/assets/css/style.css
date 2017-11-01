@@ -4094,3 +4094,46 @@ position: absolute;
 label.text_pink{margin-bottom: 15px;} 
 }
 /************************ responsive css***********************/
+
+
+#inquerymaindiv .navigation-lists {
+    display: inline-flex;
+    list-style-type: none;
+    margin-top: 0px;
+    margin-bottom: -52px;
+    position: relative;
+    top: -30px;
+}
+#inquerymaindiv .after_login_menu ul li {
+    display: inline-block !important;
+    margin: 0 !important;
+}
+#inquerymaindiv .navigation-lists li {
+    padding: 24px;
+    margin: 15px;
+    display: inline-block;
+}
+
+#inquerymaindiv .navigation-lists li a span {
+    font-size: 45px;
+    color: #00ccff;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+#inquerymaindiv .navigation-lists li .nav-menu-heading {
+    position: relative;
+    top: 8px;
+    text-align: center;
+    display: block;
+    font-size: 13px;
+    color: #fff;
+}
+@media(max-width: 991px){
+	#inquerymaindiv .navigation-lists {
+    display: inline-block;
+}
+	#inquerymaindiv .navigation-lists li {
+    width: 135px;
+}
+}

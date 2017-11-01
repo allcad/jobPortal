@@ -71,6 +71,7 @@
   },
   "addons": [
     "../node_modules/font-awesome/fonts/*.+(otf|eot|svg|ttf|woff|woff2)",
-    "../src/assets/wm_fonts/*.+(otf|eot|svg|ttf|woff|woff2)"
+    "../src/assets/wm_fonts/*.+(otf|eot|svg|ttf|woff|woff2)",
+    "../src/assets/fonts/*.+(otf|eot|svg|ttf|woff|woff2)"
   ]
 }
