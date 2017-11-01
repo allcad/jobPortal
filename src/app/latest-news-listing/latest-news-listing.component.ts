@@ -16,9 +16,12 @@ export class LatestNewsListingComponent implements OnInit {
 
   getLatestNews(){
   	
-
+    var inputJson = {
+      page :1,
+      limit: 3
+    }
   	var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/articles";
-      this._commonRequestService.getData(url).subscribe(
+      this._commonRequestService.postData(url, inputJson).subscribe(
         data => {
           this.newsList = data.data;
           console.log("newsList", this.newsList);
