@@ -14,13 +14,13 @@
               <li class="right_arrow">&gt;</li>
               <li class="active">View Profile </li>
             </ul>
-            <div class="pull-right job_search"> 
+            <div class="pull-right job_search">
               <a href="javascript:void(0);" class="btn-info hover_white_pluse">View Profile 
                 <i class="fa fa-plus plus_black" aria-hidden="true"></i>
-              </a> 
+              </a>
               <a href="javascript:void(0);" class="btn-primary hover_white_pluse" [routerLink]="['../EditProfile']">Edit Profile 
                 <i class="fa fa-plus plus_blue " aria-hidden="true"></i>
-              </a> 
+              </a>
             </div>
           </div>
         </div>
@@ -35,7 +35,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon">
-                        <img class="img-responsive" [src]="profileData?.contractorProfileUrl ? profileData.contractorProfileUrl : './assets/images/profile-pik.png'">
+                        <img class="img-responsive" [src]="profileData?.contractorProfileUrl[0] ? profileData.contractorProfileUrl[0].attachment_url : './assets/images/profile-pik.png'">
                       </div>
                       <label [tooltip]="userName" class="form-control">{{profileData?.userName}}</label>
                       <tooltip-content #userName>
@@ -155,7 +155,12 @@
               </div>
             </div>
             <div class="col-md-70 col-sm-60">
-              <div class="view_profile_map"> <img src="./assets/images/map.png" alt="map" title="map" class="img-responsive"> </div>
+              <div class="view_profile_map">
+                <agm-map [latitude]="lat" [longitude]="lng">
+                  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                  <agm-polygon [paths]="polygonPath" [editable]="true" [draggable]="true"></agm-polygon>
+                </agm-map>
+              </div>
               <div class="signup_form_section width_auto">
                 <div class="row">
                   <div class="col-md-22 col-sm-50">
@@ -215,7 +220,7 @@
                 <h2>Skills & Experience</h2>
                 <div class="add_sub_skills">
                   <ul>
-                   <!--  <li *ngFor="let skill of skillExperience">
+                    <!--  <li *ngFor="let skill of skillExperience">
                       {{ skill }}
                     </li> -->
                   </ul>
@@ -231,9 +236,9 @@
                       </div>
                       <textarea [tooltip]="summary" class="form-control textares" rows="3" [disabled]="true">{{profileData?.summary}}
                       </textarea>
-                       <tooltip-content #summary>
-                      <span style="color: #C21F39">Summary</span>
-                    </tooltip-content>
+                      <tooltip-content #summary>
+                        <span style="color: #C21F39">Summary</span>
+                      </tooltip-content>
                     </div>
                   </div>
                   <div class="col-sm-50">
@@ -257,7 +262,7 @@
                   <div class="input-group">
                     <div class="input-group-addon"><img src="./assets/images/certification-icon.png" alt="Certification" title="Certification" class="img-responsive"></div>
                     <label [tooltip]="certification" class="form-control">{{profileData?.certification}}</label>
-                     <tooltip-content #certification>
+                    <tooltip-content #certification>
                       <span style="color: #C21F39">Certification</span>
                     </tooltip-content>
                   </div>
@@ -266,7 +271,7 @@
                   <div class="input-group">
                     <div class="input-group-addon"><img src="./assets/images/qualification-icon.png" alt="Qualification" title="Qualification" class="img-responsive"></div>
                     <label [tooltip]="qualification" class="form-control">{{profileData?.qualification}}</label>
-                     <tooltip-content #qualification>
+                    <tooltip-content #qualification>
                       <span style="color: #C21F39">Qualification</span>
                     </tooltip-content>
                   </div>
@@ -275,7 +280,7 @@
                   <div class="input-group">
                     <div class="input-group-addon"><img src="./assets/images/current-job-title.png" alt="Preferred Job" title="Preferred Job" class="img-responsive"></div>
                     <label [tooltip]="yourPreferredJobTitle" class="form-control">{{profileData?.yourPreferredJobTitle}}</label>
-                     <tooltip-content #yourPreferredJobTitle>
+                    <tooltip-content #yourPreferredJobTitle>
                       <span style="color: #C21F39">Preferred JobTitle</span>
                     </tooltip-content>
                   </div>
@@ -290,15 +295,15 @@
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/download-icon.png" alt="Download" title="Download" class="img-responsive"></div>
-                        <label [tooltip]="docFile" class="form-control">Chris Oldham CV 05062017.pdf</label>
-                         <tooltip-content #docFile>
-                      <span style="color: #C21F39">Docment</span>
-                    </tooltip-content>
+                        <label *ngIf="profileData" [tooltip]="docFile" class="form-control">{{profileData?.uploadCV[0]?.attachment_name}}</label>
+                        <tooltip-content #docFile>
+                          <span style="color: #C21F39">Docment</span>
+                        </tooltip-content>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-30 col-sm-38">
-                    <div class="current_rate_signup margin_top_10"> <a href="#" class="btn-primary font_capitaliz hover_white_pluse">Download <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
+                    <div class="current_rate_signup margin_top_10"> <a [href]="profileData?.uploadCV[0]?.attachment_url" [download]="profileData.uploadCV[0]?.attachment_name" class="btn-primary font_capitaliz hover_white_pluse">Download <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
                   </div>
                 </div>
               </div>

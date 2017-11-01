@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonRequestService } from '../common-request.service';
 
 @Component({
   selector: 'app-latest-news',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LatestNewsComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private _commonRequestService: CommonRequestService) { }
+  
   ngOnInit() {
+  	
   }
+
+  
 
 }

@@ -10,11 +10,7 @@ import { CommonRequestService } from '../common-request.service';
 export class ContractorProfileComponent implements OnInit {
   lat: number = 26.9124;
   lng: number = 75.7873;
-  polygunPath = [
-      { lng: this.lng + 0.3, lat: this.lat + 0.3 },
-      { lng: this.lng + 0.5, lat: this.lat + 0.3 },
-      { lng: this.lng + 0.9, lat: this.lat + 0.9 },
-  ];
+  polygonPath = [];
   selectedSkill;
   selectedSkillArray = [];
   selectedSkillObject;
@@ -49,6 +45,9 @@ export class ContractorProfileComponent implements OnInit {
   confirmNewPassword;contractorProfileJson;inputUrl;responseData;succesMessageFlag =false;fileUpload;
 ErrorMesageFlag=false;
 fd;
+imageFile;
+CVFile;
+coverLetterFile;
 contratorCVList = [{id:1, result: null}];
 coverLetterList = [{id:1, result: null}];
  constructor(public _commonRequestService: CommonRequestService) { }
@@ -58,44 +57,78 @@ coverLetterList = [{id:1, result: null}];
     this.getProfileDta()
   }
 
-  contractorFileChangeEvent(fileInput: any) {
-    // var reader = new FileReader();
-    // var readerByte = new FileReader();
-    // readerByte.readAsArrayBuffer(fileInput.target.files[0]);
-    // readerByte.onload = (event:any) => {
-    //    var arrayBuffer = readerByte.result;
-    //   var fileBytes = new Uint8Array(arrayBuffer);
-    //   console.log(fileBytes.toString());
-    // }
 
-    var file = fileInput.target.files[0];
+  drawPloygon(){
+    this.polygonPath = [
+      { lng: this.lng + 0.3, lat: this.lat + 0.3 },
+      { lng: this.lng + 0.5, lat: this.lat + 0.3 },
+      { lng: this.lng + 0.9, lat: this.lat + 0.9 },
+  ]
+  }
 
-    this.fd = new FormData();
-    this.fd.append('contractorProfileUrl', file);
-                 // $http.post(uploadUrl, fd, {
-                 //     transformRequest: angular.identity,
-                 //     headers: {'Content-Type': undefined,'Process-Data': false}
-                 // })
-                 // .success(function(data){
-                 //    alert(data);
-                 // })
-                 // .error(function(){
-                 //    alert("Error");
-                 // })
+  contractorImageFileChangeEvent(fileInput: any) {
+    var reader = new FileReader();
+    reader.onload = (event:any) => {
+      this.profileUrl = reader.result;
+    }
+
+    this.imageFile = fileInput.target.files[0];
+    reader.readAsDataURL(this.imageFile);
+
+    
+                
 
 
   }
-
-  uploadFile(){
-    this.inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/hub/getfilebyte";
-       this._commonRequestService.postData(this.inputUrl, this.fd).subscribe(
-        data => {
-          console.log(data);
-        }
-    ); 
+  contractorCoverLetterFileChangeEvent(fileInput: any){
+    this.coverLetterFile = fileInput.target.files[0];
   }
+
+  contractorCVFileChangeEvent(fileInput){
+    this.CVFile = fileInput.target.files[0];
+  }
+
+  // uploadFile(){
+  //   this.inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/hub/getfilebyte";
+  //      this._commonRequestService.postData(this.inputUrl, this.fd).subscribe(
+  //       data => {
+  //         console.log(data);
+  //       }
+  //   ); 
+  // }
 
   saveContractorProfile(form: NgForm) {
+    console.log(this.polygonPath);
+
+    this.fd = new FormData();
+    this.fd.append('email',"robin@yaho.com");
+    // this.fd.append('contractorProfileUrl',this.imageFile);
+    // this.fd.append('contractorProfileUrl',this.imageFile);
+    // this.fd.append('contractorProfileUrl',this.imageFile);
+    // this.fd.append('contractorProfileUrl',this.imageFile);
+    // this.fd.append('contractorProfileUrl',this.imageFile);
+    // this.fd.append('contractorProfileUrl',this.imageFile);
+    // this.fd.append('contractorProfileUrl',this.imageFile);
+    // this.fd.append('contractorProfileUrl',this.imageFile);
+    // this.fd.append('contractorProfileUrl',this.imageFile);
+    // this.fd.append('contractorProfileUrl',this.imageFile);
+    // this.fd.append('contractorProfileUrl',this.imageFile);
+    // this.fd.append('contractorProfileUrl',this.imageFile);
+    // this.fd.append('contractorProfileUrl',this.imageFile);
+    // this.fd.append('contractorProfileUrl',this.imageFile);
+
+    // this.fd.append('contractorProfileUrl',this.imageFile);
+
+    // this.fd.append('contractorProfileUrl',this.imageFile);
+
+    // this.fd.append('contractorProfileUrl',this.imageFile);
+
+    // this.fd.append('contractorProfileUrl',this.imageFile);
+
+
+
+
+
       var inputdata = {
       "email":"you@gmail.com",
       "loginToken":"$2y$10$Wbps5L/ERbs.7sdCm.tAoO4tNWY6At/JtAibo6FhsoICKXUy4q7OS",
@@ -128,7 +161,7 @@ coverLetterList = [{id:1, result: null}];
       'uploadCV':{},
       'uploadCoverLetter':{},
     }
-          console.log( inputdata,"fdf")
+          //console.log( inputdata,"fdf")
    this.inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/profile/submit";
        this._commonRequestService.postData(this.inputUrl, inputdata).subscribe(
         data => {

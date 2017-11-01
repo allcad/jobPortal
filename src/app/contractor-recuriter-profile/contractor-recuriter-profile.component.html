@@ -55,7 +55,7 @@
                 </div>
                 <div class="row">
                     <div class=" col-md-33 col-sm-33" *ngFor="let job of jobList">
-                        <div class="my_applications_box">
+                        <div class="my_applications_box" (click)="viewCompanyProfile()">
                             <div class="header_top">
                                 <img src="./assets/images/location-map.png" alt="ads" title="ads" class="img-responsive">
                                 <p><span>15</span> Miles from Home</p>
@@ -146,8 +146,8 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-100">
-                        <div class="show_more_application">
-                            <a href="javascript:void(0)" class="btn-primary width_280px  hover_white_pluse"><span>SHOW ALL JOBS</span> <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
+                        <div class="show_more_application" (click)="getAllJobs()">
+                            <a href="javascript:void(0)" class="btn-primary width_280px  hover_white_pluse"><span>{{showAll ? 'SHOW LESS JOBS' : 'SHOW ALL JOBS'}}</span> <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>

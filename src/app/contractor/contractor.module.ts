@@ -26,6 +26,7 @@ import { ContractorAdviceCategoryComponent } from '../contractor-advice-category
 
 
 import { AgmCoreModule } from '@agm/core';
+//import { LyResizingCroppingImagesModule } from 'angular2-resizing-cropping-image';
 
 @NgModule({
   declarations: [

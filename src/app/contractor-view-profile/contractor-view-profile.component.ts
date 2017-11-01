@@ -8,6 +8,11 @@ import { CommonRequestService } from '../common-request.service';
 })
 export class ContractorViewProfileComponent implements OnInit {
  profileData; 
+ lat: number = 26.9124;
+  lng: number = 75.7873;
+  polygonPath = [{ lng: this.lng + 0.3, lat: this.lat + 0.3 },
+      { lng: this.lng + 0.5, lat: this.lat + 0.3 },
+      { lng: this.lng + 0.9, lat: this.lat + 0.9 },];
  constructor(public _commonRequestService: CommonRequestService,) { }
 
   ngOnInit() {
