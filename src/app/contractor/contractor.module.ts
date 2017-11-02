@@ -23,7 +23,8 @@ import { ContractorAdviceListingComponent } from '../contractor-advice-listing/c
 import { ContractorAdviceComponent } from '../contractor-advice/contractor-advice.component';
 import { ContractorAdviceArticleComponent } from '../contractor-advice-article/contractor-advice-article.component';
 import { ContractorAdviceCategoryComponent } from '../contractor-advice-category/contractor-advice-category.component';
-
+import { ContractorNewsArticleComponent } from '../contractor-news-article/contractor-news-article.component';
+import { ContractorHelpComponent } from '../contractor-help/contractor-help.component';
 
 import { AgmCoreModule } from '@agm/core';
 //import { LyResizingCroppingImagesModule } from 'angular2-resizing-cropping-image';
@@ -42,7 +43,9 @@ import { AgmCoreModule } from '@agm/core';
   ContractorAdviceListingComponent,
   ContractorAdviceComponent,
   ContractorAdviceArticleComponent,
-  ContractorAdviceCategoryComponent
+  ContractorAdviceCategoryComponent,
+  ContractorNewsArticleComponent,
+  ContractorHelpComponent
 	
   ],
   imports: [

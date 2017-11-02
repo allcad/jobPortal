@@ -33,7 +33,8 @@ const publicRoutes: Routes = [
     "component": ContentComponent
 },{
     "path": "",
-    "component": ContentComponent
+    "redirectTo" : "home",
+    "pathMatch" : "full"
 }]
 
 @NgModule({

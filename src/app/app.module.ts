@@ -40,13 +40,13 @@ import { AboutContractorComponent } from './about-contractor/about-contractor.co
 
 import { ContractorAccountComponent } from './contractor-account/contractor-account.component';
 
-import { ContractorHelpComponent } from './contractor-help/contractor-help.component';
+
 
 
 //import { ContractorSearchResultComponent } from './contractor-search-result/contractor-search-result.component';
 
 import { ContractorLoginFullJobComponent } from './contractor-login-full-job/contractor-login-full-job.component';
-import { ContractorNewsArticleComponent } from './contractor-news-article/contractor-news-article.component';
+
 import { ContractorNewsCategoryComponent } from './contractor-news-category/contractor-news-category.component';
 import { TermUseComponent } from './term-use/term-use.component';
 import { CommonDataSharedService } from './commonDataSharedService';
@@ -70,13 +70,11 @@ import { ResolverService } from './resolver.service';
     AboutContractorComponent,
     ContractorAccountComponent,
    
-    ContractorHelpComponent,
     
     
     // ContractorSearchResultComponent,
     
     ContractorLoginFullJobComponent,
-    ContractorNewsArticleComponent,
     ContractorNewsCategoryComponent,
     TermUseComponent
   ],

@@ -1,9 +1,10 @@
 <div class="letest_news_box" *ngFor="let news of newsList">
-              <div class="book_mark"><a href="javascprit:void(0)"><img src="./assets/images/it-news.png"  alt="" title=""></a></div>
+              <div class="book_mark" (click)="goToNews()"><a href="javascprit:void(0)"><img src="./assets/images/it-news.png"  alt="" title=""></a></div>
               <img [src]="news.article_image" alt="" title="" class="img-responsive">
               <h5>{{news.article_title}}</h5>
               <p [innerHTML]="news.article_body"> </p>
-              <div class="letest_news_footer"> <a href="javascprit:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascprit:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascprit:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="#" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
+              <div class="letest_news_footer"> <a href="javascprit:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascprit:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascprit:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascprit:void(0)" 
+                (click)="goToNews()" class="btn-primary news_read_more" >READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
             </div>
            <!--  <div class="letest_news_box">
               <div class="book_mark"><a href="#"><img src="./assets/images/it-news.png" alt="" title=""></a></div>

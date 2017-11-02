@@ -14,8 +14,10 @@ import { ContractorAdviceComponent } from '../contractor-advice/contractor-advic
 import { ContractorAdviceArticleComponent } from '../contractor-advice-article/contractor-advice-article.component';
 import { ContractorAdviceCategoryComponent } from '../contractor-advice-category/contractor-advice-category.component';
 import { ContractorSearchResultComponent } from '../contractor-search-result/contractor-search-result.component';
-import { ResolverService } from '../resolver.service';
+import { ContractorNewsArticleComponent } from '../contractor-news-article/contractor-news-article.component';
+import { ContractorHelpComponent } from '../contractor-help/contractor-help.component';
 
+import { ResolverService } from '../resolver.service';
 
 const contractorRoutes: Routes = [{
     "path": "profile",
@@ -44,8 +46,7 @@ const contractorRoutes: Routes = [{
 },
 {
     "path" :"hubHome",
-    "component" :ContractorHubHomeComponent,
-    "resolve": {resolverData: ResolverService}
+    "component" :ContractorHubHomeComponent
 }, {
      "path" :"contractor-directory",
     "component" :ContractorDirectoryComponent,
@@ -65,6 +66,15 @@ const contractorRoutes: Routes = [{
 },{
     "path": "searchResult",
     "component": ContractorSearchResultComponent,
+    "resolve": {resolverData: ResolverService}
+},{
+    "path": "news",
+    "component" : ContractorNewsArticleComponent,
+    "resolve": {resolverData: ResolverService}
+},
+{
+    "path": "help",
+    "component" : ContractorHelpComponent,
     "resolve": {resolverData: ResolverService}
 }]
 

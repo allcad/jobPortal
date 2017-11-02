@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-latest-news-listing',
@@ -8,7 +10,7 @@ import { CommonRequestService } from '../common-request.service';
 })
 export class LatestNewsListingComponent implements OnInit {
 
-  constructor(private _commonRequestService: CommonRequestService) { }
+  constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
   newsList;
   ngOnInit() {
   	this.getLatestNews()
@@ -27,5 +29,9 @@ export class LatestNewsListingComponent implements OnInit {
           console.log("newsList", this.newsList);
         }
     );
+  }
+
+  goToNews(){
+    this._router.navigate(['../news'], {relativeTo: this._routes});
   }
 }
