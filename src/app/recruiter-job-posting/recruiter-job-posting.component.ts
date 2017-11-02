@@ -29,6 +29,7 @@ jobPostingDetails;
 recruiterNameArray;
 jobPostFlag = false;
 jobPostingJobId = '';
+editJobId = '';
   constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -56,6 +57,7 @@ jobPostingJobId = '';
        this.recruiterName = editJoblocalStorageData.jobPreviewData.recruiterNameId;
        this.saveTemplateAs = editJoblocalStorageData.jobPreviewData.saveTempleteAs;
        this.jobReference = editJoblocalStorageData.jobPreviewData.jobReference;
+       this.editJobId = editJoblocalStorageData.jobPreviewData.jobId;
     }
   }
 

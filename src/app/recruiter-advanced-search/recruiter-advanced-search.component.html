@@ -100,9 +100,9 @@
                                 <div class="col-sm-50">
                                     <div class="mapping_radial">
                                         <ul>
-                                            <li><a href="javascript:void(0)" id="inquery_maping">Mapping</a></li>
+                                            <li><a href="javascript:void(0)" id="inquery_maping" (click)="mappingClick()">Mapping</a></li>
                                             <li>|</li>
-                                            <li><a href="javascript:void(0)" class="" id="inquery_now_homes">Radial</a></li>
+                                            <li><a href="javascript:void(0)" class="" id="inquery_now_homes" (click)="radialClick()">Radial</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -150,7 +150,7 @@
                     <div class="col-sm-100">
                         <div class="signup_form_section padding_top0">
                             <div class="row">
-                                <div class="col-sm-55 col-md-55">
+                                <div class="col-sm-55 col-md-55" *ngIf="mappingFlag">
                                     <div class="form-group margin_top14">
                                         <div class="input-group">
                                             <div class="input-group-addon"><img src="./assets/images/recruiter-city-pastcode.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
@@ -158,14 +158,24 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-40 col-md-offset-5 col-md-40">
-                                    <div class="distanc_from_location">
-                                        <p>Distance From Location: <span class="text_pink">20 Miles</span></p>
-                                        <!-- <img src="./assets/images/distanc-from-location.png" alt="distanc-from-location" title="distanc-from-location" class="img-responsive">  -->
-                                        <ion-range-slider class="width_100" (onFinish)="getRangeSliderValue($event)" #sliderElement min="200" value="100" max="800" step="10" from="300">
-                                        </ion-range-slider>
+                                <span  *ngIf="radialFlag">
+                                    <div class="col-sm-55 col-md-55">
+                                    <div class="form-group margin_top14">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><img src="./assets/images/recruiter-city-pastcode.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
+                                            <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Current Location" name="currentLocation" [(ngModel)]="currentLocation">
+                                        </div>
                                     </div>
                                 </div>
+                                    <div class="col-sm-40 col-md-offset-5 col-md-40">
+                                        <div class="distanc_from_location">
+                                            <p>Distance From Location: <span class="text_pink">20 Miles</span></p>
+                                            <!-- <img src="./assets/images/distanc-from-location.png" alt="distanc-from-location" title="distanc-from-location" class="img-responsive">  -->
+                                            <ion-range-slider class="width_100" (onFinish)="getRangeSliderValue($event)" #sliderElement min="200" value="100" max="800" step="10" from="300">
+                                            </ion-range-slider>
+                                        </div>
+                                    </div>
+                                </span>
                             </div>
                             <div class="row">
                                 <div class="col-sm-30 col-xs-100">

@@ -19,6 +19,8 @@ export class RecruiterManageJobsComponent implements OnInit {
   errorMsg = "";
   errorMsgFlag = false;
   jobPostFlag = false;
+  pageNo = 1;
+  onPageClick = 9;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService) { }
 
@@ -107,24 +109,25 @@ export class RecruiterManageJobsComponent implements OnInit {
   }
 
   onPageJobList(pageNo) {
-    this.currentPageNo = parseInt(pageNo);
+    //this.currentPageNo = parseInt(pageNo);
+    this.onPageClick = parseInt(pageNo);
     this.firstArray = [];
      this.secondArray = [];
      this.secondArray = [];
      this.listingData = [];
+     this.pageNo = 1;
     this.getManageJobsList(pageNo);
   }
 
   showMoreJobs() {
-    console.log("before", this.currentPageNo);
-    if(this.currentPageNo === 9) {
-      this.currentPageNo = this.currentPageNo + 9;
-    } else if(this.currentPageNo === 12) {
-      this.currentPageNo = this.currentPageNo + 12;
-    } else if(this.currentPageNo === 15) {
-      this.currentPageNo = this.currentPageNo + 15;
-    }
-    console.log("this.currentPageNo", this.currentPageNo);
+    // console.log("before", this.currentPageNo);
+    // console.log("this.onPageClick", this.onPageClick);
+    //this.pageNo = 2;
+     //console.log("this.pageNo before", this.pageNo)
+    this.pageNo += 1;
+    //console.log("this.pageNo", this.pageNo)
+    this.currentPageNo = this.onPageClick * this.pageNo;
+    //console.log("this.currentPageNo", this.currentPageNo);
     this.getManageJobsList(this.currentPageNo);
   }
 

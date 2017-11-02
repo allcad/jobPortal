@@ -74,10 +74,11 @@
                       <div class="input-group-addon"><img src="./assets/images/company-size-icon.png" alt="" title="" class="img-responsive"></div>
                       <select class="form-control minimal background_drop_down box_padding_3 box_height_30" [(ngModel)]="companySize" name="companySize" [tooltip]="companySizeTooltip" required>
                         <option value="">COMPANY SIZE</option>
-                        <option value="1">124536</option>
+                        <option value="{{item?.sel_value}}" *ngFor="let item of companySizeArray">{{item?.display}}</option>
+                        <!-- <option value="1">124536</option>
                         <option value="5">5124536</option>
                         <option value="10">10124536</option>
-                        <option value="20">20124536</option>
+                        <option value="20">20124536</option> -->
                       </select>
                       <tooltip-content #companySizeTooltip>
                         <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.companySize?.valid " style="color: #C21F39">COMPANY SIZE</span>
@@ -152,7 +153,14 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/county-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="COUNTRY" [(ngModel)]="country" name="country" [tooltip]="countryTooltip" required>
+
+                      <select class="form-control minimal background_drop_down box_padding_3 box_height_30" [(ngModel)]="country" name="country" [tooltip]="countryTooltip" required>
+                        <option value="">COUNTRY</option>
+                        <option value="{{item?.id}}" *ngFor="let item of countryValueArray">{{item?.name}}</option>
+                      </select>
+
+
+                      <!-- <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="COUNTRY" [(ngModel)]="country" name="country" [tooltip]="countryTooltip" required> -->
                       <tooltip-content #countryTooltip>
                         <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.country?.valid " style="color: #C21F39">COUNTRY</span>
                         <span [hidden]="!saveRecruiterPage.form.controls.country?.hasError('required')" style="color: #C21F39">Country is required.</span>
@@ -241,7 +249,12 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/county-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="COUNTRY" [(ngModel)]="postalCountry" name="postalCountry">
+                      <!-- <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="COUNTRY" [(ngModel)]="postalCountry" name="postalCountry"> -->
+
+                      <select class="form-control minimal background_drop_down box_padding_3 box_height_30" [(ngModel)]="postalCountry" name="postalCountry">
+                        <option value="">COUNTRY</option>
+                        <option value="{{item?.id}}" *ngFor="let item of countryValueArray">{{item?.name}}</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -305,7 +318,13 @@
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon"><img src="./assets/images/county-icon.png" alt="" title="" class="img-responsive"></div>
-                          <input type="text" class="form-control box_padding_3 box_height_30" placeholder="COUNTRY" [(ngModel)]="addMulAddArray[i].country" name="addMulAddArray[i].countryName">
+                          <!-- <input type="text" class="form-control box_padding_3 box_height_30" placeholder="COUNTRY" [(ngModel)]="addMulAddArray[i].country" name="addMulAddArray[i].countryName"> -->
+                          
+                          <select class="form-control minimal background_drop_down box_padding_3 box_height_30" [(ngModel)]="addMulAddArray[i].country" name="addMulAddArray[i].countryName">
+                          <option value="">COUNTRY</option>
+                          <option value="{{item?.id}}" *ngFor="let item of countryValueArray">{{item?.name}}</option>
+                          </select>
+
                         </div>
                       </div>
                     </div>

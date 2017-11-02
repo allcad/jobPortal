@@ -22,6 +22,8 @@ showContractor = 0;
 contractorName: string;
 contractorEducation;
 drivingLicence;
+mappingFlag = true;
+radialFlag = false;
 
   constructor() { }
 
@@ -30,6 +32,16 @@ drivingLicence;
 
   getRangeSliderValue(e) {
   	
+  }
+
+  mappingClick() {
+  	this.mappingFlag = true;
+  	this.radialFlag = false;
+  }
+
+  radialClick() {
+  	this.radialFlag = true;
+  	this.mappingFlag = false;
   }
 
   resetSearch() {

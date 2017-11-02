@@ -65,6 +65,8 @@ otherAddress =  {
 errorMsg = "";
 //list = [];
 //i = 0;
+companySizeArray;
+countryValueArray;
 addMulAddArray = [{'addresslLine1': 'line1', 'addressLine1Name': 'address1', 'addressLine2': 'line2', 'addressLine2Name': 'address2', 'city': 'city', 'cityName': 'cityN', 'country': 'cou', 'countryName': 'country1', 'postCode': '12', 'postName': 'postN', 'telephone': '134', 'telephone1': 'teleP'}]
 addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio': ''}];
   constructor(public _commonRequestService: CommonRequestService) {
@@ -73,7 +75,43 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
    }
 
   ngOnInit() {
+    this.companySizeList();
+    this.countryList();
     this.getProfileDta()
+  }
+
+  companySizeList() {
+     var input = {
+     "email":"test@test7.com",
+    "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu"
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/company_sizes";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+          console.log("company size--", data);
+          this.companySizeArray = data.data;
+          //this.recruiterNameArray = data.data;
+        }
+    );
+  }
+
+  countryList() {
+     var input = {
+     "email":"test@test7.com",
+    "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu"
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/nationalities";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+          console.log("country size--", data);
+          this.countryValueArray = data.data;
+          //this.recruiterNameArray = data.data;
+        }
+    );
   }
 
   addMultiplePhone() {
@@ -248,14 +286,14 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
 			'addressLine1': this.addressLine1,
 			'addressLine2': this.addressLine2,
 			'city': this.city,
-			'country': this.country,
+			'country': this.country.toString(),
 			'postCode': this.postCode,
 			'telephone': this.telephone,
 			'sameAsPermanentAddress': this.sameAsPerAddFlag.toString(),
 			'postalAddressLine1': this.postalAddressLine1,
 			'postalAddressLine2': this.postalAddressLine2,
 			'postalCity': this.postalCity,
-			'postalCountry': this.postalCountry,
+			'postalCountry': this.postalCountry.toString(),
 			'postalPostCode': this.postalPostCode,
 			'postalTelephoneNo': this.postalTelephone,
 			'companyUrl': this.fileArray
@@ -305,7 +343,7 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
           'addressLine1': this.addMulAddArray[i].addresslLine1,
           'addressLine2': this.addMulAddArray[i].addressLine2,
           'city': this.addMulAddArray[i].city,
-          'country': this.addMulAddArray[i].country,
+          'country': this.addMulAddArray[i].country.toString(),
           'postCode': this.addMulAddArray[i].postCode,
           'telephone': this.addMulAddArray[i].telephone
         }
@@ -320,6 +358,7 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
        this._commonRequestService.postData(this.inputUrl, inputprofileData).subscribe(
         data => {
           this.responseData = data;
+          window.scroll(0,0);
           if(this.responseData.status === "TRUE"){
                   this.succesMessageFlag =true;
                   this.ErrorMesageFlag =false
