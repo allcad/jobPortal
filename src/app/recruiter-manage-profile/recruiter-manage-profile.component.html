@@ -71,7 +71,7 @@
                   </div>
                   <div class="form-group">
                     <div class="input-group">
-                      <div class="input-group-addon"><img src="./assets/images/company-size-icon.png" alt="" title="" class="img-responsive"></div>
+                      <div class="input-group-addon"><img src="./assets/images/company-size-icon.png" alt="" title="" class="img-responsive"></div>                      
                       <select class="form-control minimal background_drop_down box_padding_3 box_height_30" [(ngModel)]="companySize" name="companySize" [tooltip]="companySizeTooltip" required>
                         <option value="">COMPANY SIZE</option>
                         <option value="{{item?.sel_value}}" *ngFor="let item of companySizeArray">{{item?.display}}</option>

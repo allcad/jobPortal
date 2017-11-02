@@ -21,7 +21,7 @@ import { ContentBottomRightAdsComponent } from '../content-bottom-right-ads/cont
 import { SocialMediaComponent } from '../social-media/social-media.component';
 import { ContractorRecuriterProfileComponent } from '../contractor-recuriter-profile/contractor-recuriter-profile.component';
 import { ContractorDirectoryComponent } from '../contractor-directory/contractor-directory.component';
-
+import { CountdownPipe } from '../countdown.pipe';
 @NgModule({
   declarations: [
    FindContractHubComponent,
@@ -39,6 +39,7 @@ import { ContractorDirectoryComponent } from '../contractor-directory/contractor
   ContentBottomLeftAdsComponent,
   ContentBottomRightAdsComponent,
   SocialMediaComponent,
+  CountdownPipe
   ],
   imports: [
     FormsModule,
@@ -61,7 +62,8 @@ ContractorServicesComponent,
   ContentBottomRightAdsComponent,
   SocialMediaComponent,
   ContractorRecuriterProfileComponent,
-  ContractorDirectoryComponent
+  ContractorDirectoryComponent,
+  CountdownPipe
   ],
   providers: [],
   bootstrap: []

@@ -10,7 +10,7 @@ import { CommonRequestService } from '../common-request.service';
 export class RecruiterManageProfileComponent implements OnInit {
   recruiterProfileUrl: string;
   companyName: string;
-  companySize;
+  companySize = "100";
   addressName: string;
   addressLine1: string;
   addressLine2: string;

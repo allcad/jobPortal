@@ -41,13 +41,13 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-addon"><img src="./assets/images/recruiter-job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
-                                               <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Job Title" name="jobPostingJobTitle" [(ngModel)]="jobPostingJobTitle" [tooltip]="jobTitleTooltip" required>
+                                               <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Job Title" name="jobPostingJobTitle" [(ngModel)]="jobPostingJobTitle" [tooltip]="jobTitleTooltip" required [maxlength]="40" #jobT (keyup)="jobText = jobT.value">
                                                <tooltip-content #jobTitleTooltip>
                                                 <span *ngIf="recruiterJobPostingForm?.form && recruiterJobPostingForm.form.controls && recruiterJobPostingForm.form.controls.jobPostingJobTitle?.valid " style="color: #C21F39">Job Title</span>
                                                 <span [hidden]="!recruiterJobPostingForm.form.controls.jobPostingJobTitle?.hasError('required')" style="color: #C21F39">Job Title is required.</span>
                                               </tooltip-content>
                                             </div>
-                                            <p class="characters_remaining"><span>40</span> characters remaining</p>
+                                            <p class="characters_remaining"><span *ngIf="jobText">{{jobText | countdown:40}}</span><span *ngIf="!jobText">40</span> characters remaining</p>
                                         </div>
                                     </div>
                                 </div>
@@ -56,13 +56,13 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-addon"><img src="./assets/images/duration.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
-                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Duration" name="jobPostingDuration" [(ngModel)]="jobPostingDuration" [tooltip]="jobPostingDurTooltip" required>
+                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Duration" name="jobPostingDuration" [(ngModel)]="jobPostingDuration" [tooltip]="jobPostingDurTooltip" required [maxlength]="20" #jobD (keyup)="jobDt = jobD.value">
                                                 <tooltip-content #jobPostingDurTooltip>
                                                 <span *ngIf="recruiterJobPostingForm?.form && recruiterJobPostingForm.form.controls && recruiterJobPostingForm.form.controls.jobPostingDuration?.valid " style="color: #C21F39">Duration</span>
                                                 <span [hidden]="!recruiterJobPostingForm.form.controls.jobPostingDuration?.hasError('required')" style="color: #C21F39">Job Posting is required.</span>
                                               </tooltip-content>
                                             </div>
-                                            <p class="characters_remaining"><span>20</span> characters remaining</p>
+                                            <p class="characters_remaining"><span *ngIf="jobDt">{{jobDt | countdown:20}}</span><span *ngIf="!jobDt">20</span> characters remaining</p>
                                         </div>
                                     </div>
                                     <div class="col-sm-50">
