@@ -13,15 +13,15 @@ export class RecruiterJobPostingComponent implements OnInit {
 jobPostingJobTitle: string;
 jobPostingDuration;
 startDate;
-industrySector = 0;
-workEligibility = 0;
+industrySector = "0";
+workEligibility = "0";
 cityTownValue;
 minRate: number;
 maxRate: number;
 dailyHourlyValue;
 jobSpecificationTitle: any;
 jobSpecificationBody: any;
-recruiterName = 0;
+recruiterName = "0";
 saveTemplateAs;
 jobReference;
 input;
@@ -30,10 +30,12 @@ recruiterNameArray;
 jobPostFlag = false;
 jobPostingJobId = '';
 editJobId = '';
+industryDataArray;
   constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
     this.recruiterNameList();
+    this.getIndustry();
     var localStorageData = JSON.parse(localStorage.getItem('recruiterJobData'));
     console.log("localStorageData--", localStorageData);
     if(localStorageData && localStorageData.jobId) {
@@ -59,6 +61,23 @@ editJobId = '';
        this.jobReference = editJoblocalStorageData.jobPreviewData.jobReference;
        this.editJobId = editJoblocalStorageData.jobPreviewData.jobId;
     }
+  }
+
+  getIndustry() {
+     var input = {
+     "email":"test@test7.com",
+    "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu"
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/industries";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+          console.log("industryArrayData--", data);
+          this.industryDataArray = data.data;
+          //this.recruiterNameArray = data.data;
+        }
+    );
   }
 
    recruiterNameList() {
@@ -144,14 +163,23 @@ editJobId = '';
        this._commonRequestService.postData(wsUrl,this.input).subscribe(
         data => {
         	console.log("data result", data);
+          window.scroll(0,0);
           this.jobPostFlag = true;
-          // this.response = data;
-          //  this.recruiterviewProfileData = data.data;
-          //   if( this.response.status === "TRUE"){
-          //    //if( this.response.status === "FALSE"){
-          //     this.router.navigate(['recruiter/profile']);
-          //  }
-         
+          this.jobPostingDetails = "";
+           this.jobPostingJobTitle = "";
+           this.jobPostingDuration = "";
+           this.startDate = "";
+           this.industrySector = "0";
+           this.workEligibility = "0";
+           this.cityTownValue = "";
+           this.minRate = 0;
+           this.maxRate = 0;
+           this.dailyHourlyValue = "";
+           this.jobSpecificationTitle = "";
+           this.jobSpecificationBody = "";
+           this.recruiterName = "0";
+           this.saveTemplateAs = "";
+           this.jobReference = "";
         }
     );
   }
