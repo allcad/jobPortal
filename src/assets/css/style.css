@@ -21,6 +21,17 @@ p{ color:#000;}
 	display:inline;
 }
 .navigation_header ul li a img{ display:none;}
+.blue_text_color {
+    color: #00ccff !important;
+}
+.btn-primary {
+	background-color: #000 !important;
+	border-color: #000 !important;
+}
+.btn-default {
+	border-color: #00ccff !important;
+	color: #fff !important;
+}
 /********* after login *******/
 #after_login{
 	padding:20px 0px;

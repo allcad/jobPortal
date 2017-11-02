@@ -1,5 +1,5 @@
 <ul id="services-nav-menu" class="clearfix">
-  <li *ngFor="let category of categoryData" (click)="categoryClicked(category)">
+  <li *ngFor="let category of categoryData | slice:0:4" (click)="categoryClicked(category)">
     <a href="javascript:void(0)" class="hover">
       <div class="icon"> <img [src]="category.contract_hub_small_icon" alt="" title="" class="menu_bar" style="height:57px; width:57px;"> </div>
       <div class="content">
