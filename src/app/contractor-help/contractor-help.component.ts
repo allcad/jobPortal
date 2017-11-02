@@ -8,6 +8,7 @@ import { CommonRequestService } from '../common-request.service';
 })
 export class ContractorHelpComponent implements OnInit {
 	helpCategoryList;
+  helpData;
    constructor(private _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -27,6 +28,7 @@ export class ContractorHelpComponent implements OnInit {
 
 
   getHelpByCategoryId(categoryId){
+    this.helpData = [];
   	let input = {
   		 category:categoryId,
 		"page":1,
@@ -35,8 +37,10 @@ export class ContractorHelpComponent implements OnInit {
   	let url ="http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/help_article_by_category";
       this._commonRequestService.postData(url, input).subscribe(
         data => {
-          this.helpCategoryList = data.data;
-          console.log("this.helpCategoryList", this.helpCategoryList)
+           this.helpData = data.data;
+           console.log(this.helpData);
+        }, err=>{
+          console.log("err", err);
         }
     );
   }

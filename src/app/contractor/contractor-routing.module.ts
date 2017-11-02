@@ -76,6 +76,10 @@ const contractorRoutes: Routes = [{
     "path": "help",
     "component" : ContractorHelpComponent,
     "resolve": {resolverData: ResolverService}
+},{
+    "path": "news_category",
+    "component" : ContractorHelpComponent,
+    "resolve": {resolverData: ResolverService}
 }]
 
 @NgModule({
