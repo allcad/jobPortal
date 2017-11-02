@@ -297,7 +297,7 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
       }
     }
   }
-
+  console.log("this.addMulAddArray", this.addMulAddArray);
   if(this.addMulAddArray && this.addMulAddArray.length > 0) {
     for(var i = 0; i<this.addMulAddArray.length; i++) {
       if(this.addMulAddArray[i].addresslLine1) {
@@ -397,13 +397,14 @@ getProfileDta(){
             }
           }
 
-          // if(this.profileData['otherAddress'] && this.profileData['otherAddress'].otherSocialData && this.profileData['otherAddress'].otherSocialData.length > 0) {
-          //   for(var i = 0; i< this.profileData['otherAddress'].otherSocialData.length; i++) {
-          //     if(this.profileData['otherAddress'].otherSocialData[i].Url) {
-          //       this.addMulSocialArray.push({'otherSocialLink': this.profileData['otherAddress'].otherSocialData[i].Url, 'otherSocialFeed': this.profileData['otherAddress'].otherSocialData[i].fullUrl, 'otherRadio': this.profileData['otherAddress'].otherSocialData[i].displayFeed})
-          //     }
-          //   }
-          // }
+          if(this.profileData['otherAddress'] && this.profileData['otherAddress'].length > 0) {
+            for(var i = 0; i< this.profileData['otherAddress'].length; i++) {
+              if(this.profileData['otherAddress'][i].addressLine1) {
+                var newItem = i;
+                this.addMulAddArray.push({'addresslLine1': this.profileData['otherAddress'][i].addressLine1, 'addressLine1Name': 'address1'+newItem, 'addressLine2': this.profileData['otherAddress'][i].addressLine2, 'addressLine2Name': 'address2'+newItem, 'city': this.profileData['otherAddress'][i].city, 'cityName': 'cityN'+newItem, 'country': this.profileData['otherAddress'][i].country, 'countryName': 'country1'+newItem, 'postCode': this.profileData['otherAddress'][i].postCode, 'postName': 'postN'+newItem, 'telephone': this.profileData['otherAddress'][i].telephone, 'telephone1': 'teleP'+newItem})
+              }
+            }
+          }
 
           }
         }

@@ -21,6 +21,7 @@ import { RecruiterViewApplicationsComponent } from '../recruiter-view-applicatio
 import { RecruiterViewProfileComponent } from '../recruiter-view-profile/recruiter-view-profile.component';
 import { RecruiterWatchListComponent } from '../recruiter-watch-list/recruiter-watch-list.component';
 import { RecruiterWatchdogComponent } from '../recruiter-watchdog/recruiter-watchdog.component';
+import { RecruiterTermsComponent } from '../recruiter-terms/recruiter-terms.component';
 
 
 const recruiterRoutes: Routes = [{
@@ -74,6 +75,9 @@ const recruiterRoutes: Routes = [{
 }, {
     "path": "watchdog",
     "component": RecruiterWatchdogComponent
+}, {
+    "path": "recruiter-terms",
+    "component": RecruiterTermsComponent
 }]
 
 @NgModule({
