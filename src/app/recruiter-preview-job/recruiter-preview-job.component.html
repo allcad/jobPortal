@@ -11,9 +11,9 @@
                     <div class="row">
                         <div class="col-sm-100">
                             <div class="contractor_signup befourlogin_fontsize">
-                                <h2 class="">JOB Preview - <span class="text_pink">senior web designer</span></h2>
+                                <h2 class="">JOB Preview - <span class="text_pink">{{previewDataList?.jobTitle}}</span></h2>
                                 <ul class="breadcomb margin_left_10px">
-                                    <li><a href="#" class="hover_text_pink">Home</a></li>
+                                    <li><a href="javascript:void(0)" class="hover_text_pink">Home</a></li>
                                     <li class="right_arrow text_pink">&gt;</li>
                                     <li><a href="javascript:void(0);" class="hover_text_pink">JOB POSTING </a></li>
                                     <li class="right_arrow text_pink">&gt;</li>
@@ -58,6 +58,7 @@
                         </div>
                         <div class="col-md-60 col-sm-50 col-md-offset-1">
                             <div class="job_full_details">
+                                <h2>{{previewDataList?.jobSpecificationTitle}}</h2>
                                 {{previewDataList?.jobSpecification}}
                                <!--  <p> The person hired for the position of Network Engineer will be responsible for the support of the global UTM and remote access environment. In this role the analyst will support Check Point UTMs, Cisco ASA Firewalls, Cisco ASA VPNs and Juniper SSL gateways.</p> -->
                                 <!-- <ul>

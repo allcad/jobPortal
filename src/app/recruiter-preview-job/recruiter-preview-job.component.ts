@@ -59,6 +59,7 @@ export class RecruiterPreviewJobComponent implements OnInit {
   }
 
   saveJobPost() {
+    console.log('this.previewDataList--', this.previewDataList);
     if(this.previewDataList) {
       var input={
         "email":"test@test7.com",
@@ -74,8 +75,8 @@ export class RecruiterPreviewJobComponent implements OnInit {
           "maxRate": this.previewDataList.prefereedRate.maxRate ? this.previewDataList.prefereedRate.maxRate: '',
           "dailyHourlyRate": this.previewDataList.prefereedRate.dailyHourlyRate ? this.previewDataList.prefereedRate.dailyHourlyRate: ''
         },
-        "jobSpecification": this.previewDataList.jobSpecification ? this.previewDataList.jobSpecification: '',
-        "jobSpecificationTitle": this.previewDataList.jobSpecificationTitle ? this.previewDataList.jobSpecificationTitle: '',
+        "jobSpecification": this.previewDataList.jobSpecificationTitle ? this.previewDataList.jobSpecificationTitle: "",
+        "jobSpecificationTitle": this.previewDataList.jobSpecification !== "" ? this.previewDataList.jobSpecification: this.previewDataList.jobTitle,
         "recruiterNameId": this.previewDataList.recruiterNameId ? this.previewDataList.recruiterNameId: '',
         "saveTempleteAs": this.previewDataList.saveTempleteAs ? this.previewDataList.saveTempleteAs: '',
         "jobReference": this.previewDataList.jobReference ? this.previewDataList.jobReference: '',

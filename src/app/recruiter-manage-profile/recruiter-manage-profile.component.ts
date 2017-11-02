@@ -62,6 +62,7 @@ otherAddress =  {
   'postCode': '',
   'telephone': ''
 };
+errorMsg = "";
 //list = [];
 //i = 0;
 addMulAddArray = [{'addresslLine1': 'line1', 'addressLine1Name': 'address1', 'addressLine2': 'line2', 'addressLine2Name': 'address2', 'city': 'city', 'cityName': 'cityN', 'country': 'cou', 'countryName': 'country1', 'postCode': '12', 'postName': 'postN', 'telephone': '134', 'telephone1': 'teleP'}]
@@ -323,11 +324,12 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
                   this.succesMessageFlag =true;
                   this.ErrorMesageFlag =false
           this.profileData={};
+          this.errorMsg = "";
           }
           else{
              this.succesMessageFlag =false;
               this.ErrorMesageFlag =true;
-              // this.responseData.status=""
+              this.errorMsg = this.responseData.error[0];
           }
     
           // console.log("keySkill: ", this.listSignUpData);
@@ -369,9 +371,9 @@ getProfileDta(){
 
           this.postalCountry =this.profileData['companyDetails'] && this.profileData['companyDetails'].postalCountry ? this.profileData['companyDetails'].postalCountry : "";
           this.postalPostCode =this.profileData['companyDetails'] && this.profileData['companyDetails'].postalPostCode ? this.profileData['companyDetails'].postalPostCode : "";
-          this.postalTelephone =this.profileData['companyDetails'] && this.profileData['companyDetails'].postalTelephone ? this.profileData['companyDetails'].postalTelephone : ""; 
+          this.postalTelephone =this.profileData['companyDetails'] && this.profileData['companyDetails'].postalTelephoneNo ? this.profileData['companyDetails'].postalTelephoneNo : ""; 
           this.fileArray =this.profileData['companyDetails'] && this.profileData['companyDetails'].fileArray ? this.profileData['companyDetails'].fileArray : "";
-          this.companyDescription= this.profileData.companyDescription;
+          this.companyDescription= this.profileData && this.profileData.companyDescription ? this.profileData.companyDescription : "";
           this.webAddress= this.profileData['companySocial'] && this.profileData['companySocial'].webAddress ? this.profileData['companySocial'].webAddress : "";
           this.emailAddress= this.profileData['companySocial'] && this.profileData['companySocial'].emailAddress ? this.profileData['companySocial'].emailAddress : "";
 
