@@ -76,7 +76,8 @@ import { ResolverService } from './resolver.service';
     
     ContractorLoginFullJobComponent,
     ContractorNewsCategoryComponent,
-    TermUseComponent
+    TermUseComponent,
+    //RecruiterTermsComponent
   ],
   imports: [
     BrowserModule,
