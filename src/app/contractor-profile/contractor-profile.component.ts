@@ -105,7 +105,7 @@ securityClearenceData = [];
     console.log(this.polygonPath);
 
     this.fd = new FormData();
-    this.fd.append('token',(localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).token )? JSON.parse(localStorage.getItem('loginDetail')).token:  "nsakdlallas1232mk123b2k1390iq2ekq");
+    this.fd.append('loginToken',(localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).token )? JSON.parse(localStorage.getItem('loginDetail')).token:  "nsakdlallas1232mk123b2k1390iq2ekq");
     this.fd.append('email',(localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).email )? JSON.parse(localStorage.getItem('loginDetail')).email:  "test@gmail.com");
     this.fd.append('contractorProfileUrl',this.imageFile);
     this.fd.append('userName',this.userName);
@@ -132,11 +132,11 @@ securityClearenceData = [];
 
     this.fd.append('currentJobTitle',this.currentJobTitle);
 
-    this.fd.append('skill&Experience',this.selectedSkillArray);
+    this.fd.append('skill&Experience',JSON.stringify(this.selectedSkillArray));
 
     this.fd.append('summary',this.summary);
 
-    this.fd.append('industrySector',this.industrySector);
+    this.fd.append('industrySector',JSON.stringify(this.industrySector));
 
     this.fd.append('certification',this.certification);
     this.fd.append('qualification',this.qualification);

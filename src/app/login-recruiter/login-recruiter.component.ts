@@ -35,7 +35,7 @@ inputData;min;max;getData;addNumber;number;number2;errorMessage;inputUrl;status;
           this.getData = data;
            if( this.getData.status === "TRUE" && this.getData.data.type === "recuriter"){
              this.errorMsgFlag =false;
-             localStorage.setItem("loginDetail", JSON.stringify({"token": data.data.loginToken, "email": this.email}))
+             localStorage.setItem("loginDetail", JSON.stringify({"token": data.data.loginToken, "email": data.data.email}))
               this.succesLoginFlag =true;
               this.router.navigate(['recruiter/profile']);
               //this.getViewProfileDta();
