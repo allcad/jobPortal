@@ -62,6 +62,8 @@ otherAddress =  {
   'postCode': '',
   'telephone': ''
 };
+profileUrl;
+imageFile;
 errorMsg = "";
 //list = [];
 //i = 0;
@@ -169,19 +171,28 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
   }
 
    recruiterFileChangeEvent(fileInput: any) {
-     var reader = new FileReader();
-    var readerByte = new FileReader();
-    reader.readAsDataURL(fileInput.target.files[0]);
+    //  var reader = new FileReader();
+    // var readerByte = new FileReader();
+    // reader.readAsDataURL(fileInput.target.files[0]);
+    // reader.onload = (event:any) => {
+    //   var arrayBuffer = reader.result;
+    //   this.recruiterProfileUrl = arrayBuffer;
+    // }
+    // readerByte.onload = (event:any) => {
+    //   var arrayBuffer = readerByte.result;  
+    //   var fileBytes = new Uint8Array(arrayBuffer);
+    //   this.fileArray = fileBytes;     
+    // }
+    // readerByte.readAsArrayBuffer(fileInput.target.files[0]);
+
+    var reader = new FileReader();
     reader.onload = (event:any) => {
-      var arrayBuffer = reader.result;
-      this.recruiterProfileUrl = arrayBuffer;
+      this.profileUrl = reader.result;
     }
-    readerByte.onload = (event:any) => {
-      var arrayBuffer = readerByte.result;  
-      var fileBytes = new Uint8Array(arrayBuffer);
-      this.fileArray = fileBytes;     
-    }
-    readerByte.readAsArrayBuffer(fileInput.target.files[0]);
+
+    this.imageFile = fileInput.target.files[0];
+    reader.readAsDataURL(this.imageFile);
+    console.log("this.imageFile", this.imageFile);
   }
 
   telephoneValidation(value) {
@@ -296,7 +307,7 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
 			'postalCountry': this.postalCountry.toString(),
 			'postalPostCode': this.postalPostCode,
 			'postalTelephoneNo': this.postalTelephone,
-			'companyUrl': this.fileArray
+			'companyUrl': this.imageFile
       //'otherAddress': []
 		},
 		'companyDescription': this.companyDescription,
@@ -403,7 +414,7 @@ getProfileDta(){
           this.postCode =this.profileData['companyDetails'] && this.profileData['companyDetails'].postCode ? this.profileData['companyDetails'].postCode : "";
           this.telephone =this.profileData['companyDetails'] && this.profileData['companyDetails'].telephone ? this.profileData['companyDetails'].telephone : "";
           this.sameAsPerAddFlag = this.profileData['companyDetails'] && this.profileData['companyDetails'].sameAsPermanentAddress === "true" ? true : false;
-
+          this.profileUrl = this.profileData['companyDetails'] && this.profileData['companyDetails'].companyUrl ? this.profileData['companyDetails'].companyUrl : "";
           this.postalAddressLine1 =this.profileData['companyDetails'] && this.profileData['companyDetails'].postalAddressLine1 ? this.profileData['companyDetails'].postalAddressLine1 : "";
           this.postalAddressLine2 =this.profileData['companyDetails'] && this.profileData['companyDetails'].postalAddressLine2 ? this.profileData['companyDetails'].postalAddressLine2 : "";
           this.postalCity =this.profileData['companyDetails'] && this.profileData['companyDetails'].postalCity ? this.profileData['companyDetails'].postalCity : "";

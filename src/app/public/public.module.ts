@@ -27,6 +27,7 @@ import { LoginRecruiterComponent } from '../login-recruiter/login-recruiter.comp
 import { PublicRoutingModule } from './public-routing.module';
 import { AboutContractorComponent } from '../about-contractor/about-contractor.component';
 import { TermUseComponent } from '../term-use/term-use.component';
+import { RecruiterTermsComponent } from '../recruiter-terms/recruiter-terms.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { TermUseComponent } from '../term-use/term-use.component';
 	ContractorSignUpComponent,
 	LoginComponent,
 	RecruiterSignUpComponent,
-	LoginRecruiterComponent
+	LoginRecruiterComponent,
+	RecruiterTermsComponent
   ],
   imports: [
   	PublicRoutingModule,
