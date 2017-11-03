@@ -395,7 +395,7 @@ getProfileDta(){
             this.profileData = data.data;
             this.companyName =this.profileData['companyDetails'] && this.profileData['companyDetails'].companyName ? this.profileData['companyDetails'].companyName : "";
           this.companySize =this.profileData['companyDetails'] && this.profileData['companyDetails'].companySize ? this.profileData['companyDetails'].companySize : "";
-          this.addressName =this.profileData['companyDetails'] && this.profileData['companyDetails'].addressName ? this.profileData['companyDetails'].addressName : "";
+          this.addressName =this.profileData['companyDetails'] && this.profileData['companyDetails'].companyAddress ? this.profileData['companyDetails'].companyAddress : "";
           this.addressLine1 =this.profileData['companyDetails'] && this.profileData['companyDetails'].addressLine1 ? this.profileData['companyDetails'].addressLine1 : "";
           this.addressLine2 =this.profileData['companyDetails'] && this.profileData['companyDetails'].addressLine2 ? this.profileData['companyDetails'].addressLine2 : "";
           this.city =this.profileData['companyDetails'] && this.profileData['companyDetails'].city ? this.profileData['companyDetails'].city : "";
