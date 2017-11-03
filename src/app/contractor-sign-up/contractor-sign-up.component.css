@@ -1,3 +1,46 @@
 .margin-tp18{
 	margin-top: 18px;
 }
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    
+   
+   
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    clear: none !important;
+     display:inherit !important;
+     width:auto !important; 
+     margin-left:auto !important;
+    margin-bottom:auto !important;
+    float:none !important;
+}
+
+.fileUpload span {
+    background: #00ccff none repeat scroll 0 0;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 10px 12px 2px;
+    margin-top: -7px;
+    display: inline-block;
+}
+.fileUpload span img {
+    display: inline;
+    margin-left: 5px;
+    vertical-align: middle;
+}

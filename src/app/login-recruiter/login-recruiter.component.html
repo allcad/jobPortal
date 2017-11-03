@@ -30,8 +30,8 @@
       </div>
       <div class="col-sm-50">
         <div class="form-group">
-          <div class="input-group">
-            <input type="password" class="form-control" id="Password" placeholder="Password*" [(ngModel)]="password" name="password" required [tooltip]="passwordTooltip">
+          <div class="input-group" style="width: 100%;">
+            <input type="password" style="width: 100%;" class="form-control" id="Password" placeholder="Password*" [(ngModel)]="password" name="password" required [tooltip]="passwordTooltip">
               <tooltip-content #passwordTooltip>
                 <span *ngIf="f?.form && f.form.controls && f.form.controls.password?.valid" style="color:white"> Password </span>
                 <span [hidden]="!f.form.controls.password?.hasError('required')" style="color: white"> Password  is required!</span>
@@ -46,7 +46,7 @@
       </div>
     </div>
     <div class="row">
-      <div>
+      <div style="float: left;">
         <div class="form-group"> <span class="add_value">{{number}} + {{number2}} =</span></div>
       
       </div>

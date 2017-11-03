@@ -98,9 +98,15 @@
                 </div>
                 <div class="col-sm-50">
                   <div class="form-group">
-                    <div class="input-group">
-                      <div class="input-group-addon"><img src="./assets/images/upload-cv.png" alt="Upload CV" title="Upload CV" class="img-responsive"></div>
-                      <input type="file" class="form-control input-group-addon find_cv_from" id="uploadCV" name="documents" placeholder="Upload CV" required [tooltip]="uploadCVTooltip" (change)="fileChangeEvent($event)">
+                    <div class="input-group" style="border-bottom: 1px solid #000; padding-bottom: 4px;">
+                      <div class="input-group-addon" style="border-bottom: 0;"><img src="./assets/images/upload-cv.png" alt="Upload CV" title="Upload CV" class="img-responsive"></div>
+                      <div class="fileUpload btn btn-primary" style="float: right;">
+                          <span>Find CV From
+                            <img alt="search now" src="./assets/images/find-cv.png" title="search now">
+                          </span>
+                          <input type="file" class="upload" />
+                      </div>
+                      <!-- <input type="file" class="form-control input-group-addon find_cv_from" id="uploadCV" name="documents" placeholder="Upload CV" required [tooltip]="uploadCVTooltip" (change)="fileChangeEvent($event)"> -->
                       <tooltip-content #uploadCVTooltip>
                         <span *ngIf=" !valid" style="color: #C21F39"> Upload CV </span>
                         <!-- <span *ngIf="!valid && contractUploadCV" style="color: #C21F39"> Upload CV </span>     -->
