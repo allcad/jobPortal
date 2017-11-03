@@ -13,6 +13,7 @@ export class RecruiterPreviewJobComponent implements OnInit {
   previewDataList:any;
   previewJobErrorMsg;
   jobPostFlag = false;
+  uniqueJobId;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService) { }
 
@@ -26,6 +27,7 @@ export class RecruiterPreviewJobComponent implements OnInit {
   	var localStorageData = JSON.parse(localStorage.getItem('recruiterJobData'));
   	console.log("localStorageData--", localStorageData);
   	if(localStorageData && localStorageData.jobId) {
+      this.uniqueJobId = localStorageData.jobId;
   		this.jobList(localStorageData.jobId);
   	}
     var jobPostingLocalStorage = JSON.parse(localStorage.getItem('jobPostingData'));
@@ -54,14 +56,17 @@ export class RecruiterPreviewJobComponent implements OnInit {
   }
 
   goToJobPosting() {
-    var obj = {'jobPreviewData' : this.previewDataList};
-    localStorage.setItem('editJobPost', JSON.stringify(obj));
+    if(!this.uniqueJobId) {
+      var obj = {'jobPreviewData' : this.previewDataList};
+      localStorage.setItem('editJobPost', JSON.stringify(obj));
+    }
   }
 
   saveJobPost() {
     console.log('this.previewDataList--', this.previewDataList);
+    var input;
     if(this.previewDataList) {
-      var input={
+      input={
         "email":"test@test7.com",
         "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu",
         "jobTitle": this.previewDataList.jobTitle ? this.previewDataList.jobTitle: '',
@@ -84,21 +89,40 @@ export class RecruiterPreviewJobComponent implements OnInit {
 
         }
         var wsUrl;
-        console.log("this.input", input);
-      wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/add";
-         this._commonRequestService.postData(wsUrl,input).subscribe(
-          data => {
-            console.log("data result", data);
-            if(data && data.status === "TRUE") {
-              this.jobPostFlag = false;
-              this.router.navigate(['/recruiter/manage-jobs']);
-            } else if(data && data.error){
-              this.previewJobErrorMsg = data.error;
-              this.jobPostFlag = true;
+        if(!this.uniqueJobId) {
+          console.log("this.input", input);
+           wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/add";
+           this._commonRequestService.postData(wsUrl,input).subscribe(
+            data => {
+              console.log("data result", data);
+              if(data && data.status === "TRUE") {
+                this.jobPostFlag = false;
+                this.router.navigate(['/recruiter/manage-jobs']);
+              } else if(data && data.error){
+                this.previewJobErrorMsg = data.error;
+                this.jobPostFlag = true;
+              }
+              //this.jobPostFlag = true;
             }
-            //this.jobPostFlag = true;
-          }
-      );
+        );
+      } else {
+        input['jobid'] = this.uniqueJobId;
+        wsUrl=" http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/submit/edit";
+        console.log("input with job id-", input);
+           this._commonRequestService.postData(wsUrl,input).subscribe(
+            data => {
+              console.log("data result", data);
+              if(data && data.status === "TRUE") {
+                this.jobPostFlag = false;
+                this.router.navigate(['/recruiter/manage-jobs']);
+              } else if(data && data.error){
+                this.previewJobErrorMsg = data.error;
+                this.jobPostFlag = true;
+              }
+              //this.jobPostFlag = true;
+            }
+        );
+      }
     }
   }
 
