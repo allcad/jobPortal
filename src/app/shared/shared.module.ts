@@ -21,6 +21,9 @@ import { ContentBottomRightAdsComponent } from '../content-bottom-right-ads/cont
 import { SocialMediaComponent } from '../social-media/social-media.component';
 import { ContractorRecuriterProfileComponent } from '../contractor-recuriter-profile/contractor-recuriter-profile.component';
 import { ContractorDirectoryComponent } from '../contractor-directory/contractor-directory.component';
+import { ContractorNewsArticleComponent } from '../contractor-news-article/contractor-news-article.component';
+import { ContractorNewsCategoryComponent } from '../contractor-news-category/contractor-news-category.component';
+
 import { CountdownPipe } from '../countdown.pipe';
 @NgModule({
   declarations: [
@@ -35,11 +38,12 @@ import { CountdownPipe } from '../countdown.pipe';
   ContractorServiceMenuListingComponent,
   ContractorRecuriterProfileComponent,
   ContractorDirectoryComponent,
-
+  ContractorNewsArticleComponent,
   ContentBottomLeftAdsComponent,
   ContentBottomRightAdsComponent,
   SocialMediaComponent,
-  CountdownPipe
+  CountdownPipe,
+  ContractorNewsCategoryComponent
   ],
   imports: [
     FormsModule,
@@ -63,7 +67,9 @@ ContractorServicesComponent,
   SocialMediaComponent,
   ContractorRecuriterProfileComponent,
   ContractorDirectoryComponent,
-  CountdownPipe
+  CountdownPipe,
+  ContractorNewsArticleComponent,
+  ContractorNewsCategoryComponent
   ],
   providers: [],
   bootstrap: []

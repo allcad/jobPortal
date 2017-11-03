@@ -25,6 +25,8 @@ import { RecruiterSignUpComponent } from '../recruiter-sign-up/recruiter-sign-up
 import { LoginRecruiterComponent } from '../login-recruiter/login-recruiter.component';
 
 import { PublicRoutingModule } from './public-routing.module';
+import { AboutContractorComponent } from '../about-contractor/about-contractor.component';
+import { TermUseComponent } from '../term-use/term-use.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { PublicRoutingModule } from './public-routing.module';
    	SearchComponent,
 	UploadCvComponent,
 	FindContractorComponent,
-	
+	AboutContractorComponent,
+	TermUseComponent,
 	// FindContractHubComponent,
 	
 	ContractorSignUpComponent,

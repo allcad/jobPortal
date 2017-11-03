@@ -42,7 +42,7 @@ export class ContractorProfileComponent implements OnInit {
   currentPassword;
   newPassword;fileUploadForCV;
   fileUploadForCover;
-  confirmNewPassword;contractorProfileJson;inputUrl;responseData;succesMessageFlag =false;fileUpload;
+  confirmNewPassword;contractorProfileJson;inputUrl;responseData;succesMessageFlag =false;fileUpload;industrySector;
 ErrorMesageFlag=false;
 fd;
 imageFile;
@@ -50,10 +50,14 @@ CVFile;
 coverLetterFile;
 contratorCVList = [{id:1, result: null}];
 coverLetterList = [{id:1, result: null}];
+industrySectorData = [];
+securityClearenceData = [];
  constructor(public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
-    this.getKeySkillData()
+    this.getKeySkillData();
+    this.getIndustrySector();
+    this.getSecurityClearenceData();
     this.getProfileDta()
   }
 
@@ -101,69 +105,85 @@ coverLetterList = [{id:1, result: null}];
     console.log(this.polygonPath);
 
     this.fd = new FormData();
-    this.fd.append('email',"robin@yaho.com");
-    // this.fd.append('contractorProfileUrl',this.imageFile);
-    // this.fd.append('contractorProfileUrl',this.imageFile);
-    // this.fd.append('contractorProfileUrl',this.imageFile);
-    // this.fd.append('contractorProfileUrl',this.imageFile);
-    // this.fd.append('contractorProfileUrl',this.imageFile);
-    // this.fd.append('contractorProfileUrl',this.imageFile);
-    // this.fd.append('contractorProfileUrl',this.imageFile);
-    // this.fd.append('contractorProfileUrl',this.imageFile);
-    // this.fd.append('contractorProfileUrl',this.imageFile);
-    // this.fd.append('contractorProfileUrl',this.imageFile);
-    // this.fd.append('contractorProfileUrl',this.imageFile);
-    // this.fd.append('contractorProfileUrl',this.imageFile);
-    // this.fd.append('contractorProfileUrl',this.imageFile);
-    // this.fd.append('contractorProfileUrl',this.imageFile);
+    this.fd.append('token',(localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).token )? JSON.parse(localStorage.getItem('loginDetail')).token:  "nsakdlallas1232mk123b2k1390iq2ekq");
+    this.fd.append('email',(localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).email )? JSON.parse(localStorage.getItem('loginDetail')).email:  "test@gmail.com");
+    this.fd.append('contractorProfileUrl',this.imageFile);
+    this.fd.append('userName',this.userName);
+    this.fd.append('emailAddress',this.emailAddress);
+    this.fd.append('securityClearance',this.securityClearance);
+    this.fd.append('euDrivingLicence',parseInt(this.euDrivingLicence));
+    this.fd.append('postCode',this.postCode);
+    this.fd.append('dayRate_min',this.dayRate1);
+    this.fd.append('dayRate_max',this.dayRate2);
+    this.fd.append('availability',this.availability);
+    this.fd.append('webAddress',this.webAddress);
+    this.fd.append('stackOverWebAddress',this.stackOverWebAdd);
+    this.fd.append('gitHubWebAddress',this.gitHubWebAdd);
+    this.fd.append('linkedinWebAddress',this.linkedinWebAdd);
+    this.fd.append('behanceWebAddress',this.behanceWebAdd);
 
-    // this.fd.append('contractorProfileUrl',this.imageFile);
+    this.fd.append('yourPreferredJobTitle',this.preferredJobTitleValue);
+    this.fd.append('commutable',this.commutable);
+    this.fd.append('rate_min',this.rate1);
 
-    // this.fd.append('contractorProfileUrl',this.imageFile);
+    this.fd.append('rate_max',this.rate2);
 
-    // this.fd.append('contractorProfileUrl',this.imageFile);
+    this.fd.append('dailyHourlyValue',this.dailyHourlyValue);
 
-    // this.fd.append('contractorProfileUrl',this.imageFile);
+    this.fd.append('currentJobTitle',this.currentJobTitle);
+
+    this.fd.append('skill&Experience',this.selectedSkillArray);
+
+    this.fd.append('summary',this.summary);
+
+    this.fd.append('industrySector',this.industrySector);
+
+    this.fd.append('certification',this.certification);
+    this.fd.append('qualification',this.qualification);
+    this.fd.append('uploadCV',this.CVFile);
+    this.fd.append('uploadCoverLetter',this.coverLetterFile);
 
 
 
 
 
-      var inputdata = {
-      "email":"you@gmail.com",
-      "loginToken":"$2y$10$Wbps5L/ERbs.7sdCm.tAoO4tNWY6At/JtAibo6FhsoICKXUy4q7OS",
-      'contractorProfileUrl': this.fd ? this.fd : null ,
-      'userName': this.userName,
-      'emailAddress': this.emailAddress,
-      'securityClearance': this.securityClearance,
-      'euDrivingLicence': parseInt(this.euDrivingLicence), 
-      'postCode': this.postCode,
-      'dayRate_min': this.dayRate1,
-      'dayRate_max': this.dayRate2,
-      'availability': this.availability,
-      'webAddress': this.webAddress,
-      'stackOverWebAddress': this.stackOverWebAdd,
-      'gitHubWebAddress': this.gitHubWebAdd,
-      'linkedinWebAddress': this.linkedinWebAdd,
-      'behanceWebAddress': this.behanceWebAdd,
-      'yourPreferredJobTitle': this.preferredJobTitleValue,
-      'commutable': this.commutable,
-      'rate_min' : this.rate1,
-      'rate_max' : this.rate2,
-      'dailyHourlyValue': this.dailyHourlyValue,
-      'currentJobTitle': this.currentJobTitle,
-      'skill&Experience': this.selectedSkillArray,
-      'summary': this.summary,
-      'industrySector': ["1",],
-      'certification': this.certification,
-      'qualification': this.qualification,
-     //'preferredJobTitle': this.preferredJobTitleValue,
-      'uploadCV':{},
-      'uploadCoverLetter':{},
-    }
+
+
+    //   var inputdata = {
+    //   "email":"you@gmail.com",
+    //   "loginToken":"$2y$10$Wbps5L/ERbs.7sdCm.tAoO4tNWY6At/JtAibo6FhsoICKXUy4q7OS",
+    //   'contractorProfileUrl': this.fd ? this.fd : null ,
+    //   'userName': this.userName,
+    //   'emailAddress': this.emailAddress,
+    //   'securityClearance': this.securityClearance,
+    //   'euDrivingLicence': parseInt(this.euDrivingLicence), 
+    //   'postCode': this.postCode,
+    //   'dayRate_min': this.dayRate1,
+    //   'dayRate_max': this.dayRate2,
+    //   'availability': this.availability,
+    //   'webAddress': this.webAddress,
+    //   'stackOverWebAddress': this.stackOverWebAdd,
+    //   'gitHubWebAddress': this.gitHubWebAdd,
+    //   'linkedinWebAddress': this.linkedinWebAdd,
+    //   'behanceWebAddress': this.behanceWebAdd,
+    //   'yourPreferredJobTitle': this.preferredJobTitleValue,
+    //   'commutable': this.commutable,
+    //   'rate_min' : this.rate1,
+    //   'rate_max' : this.rate2,
+    //   'dailyHourlyValue': this.dailyHourlyValue,
+    //   'currentJobTitle': this.currentJobTitle,
+    //   'skill&Experience': this.selectedSkillArray,
+    //   'summary': this.summary,
+    //   'industrySector': ["1",],
+    //   'certification': this.certification,
+    //   'qualification': this.qualification,
+    //  //'preferredJobTitle': this.preferredJobTitleValue,
+    //   'uploadCV':{},
+    //   'uploadCoverLetter':{},
+    // }
           //console.log( inputdata,"fdf")
    this.inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/profile/submit";
-       this._commonRequestService.postData(this.inputUrl, inputdata).subscribe(
+       this._commonRequestService.postData(this.inputUrl, this.fd).subscribe(
         data => {
           this.responseData = data;
           if(this.responseData.status === "TRUE"){
@@ -300,6 +320,7 @@ getProfileDta(){
     this.qualification= this.profileData.qualification;  
     this.fileUploadForCV= this.profileData.uploadCV;
     this.fileUploadForCover= this.profileData.uploadCoverLetter;
+    this.industrySector = this.profileData.industrySector;
   }
 
 
@@ -327,5 +348,24 @@ getProfileDta(){
     this.coverLetterList.push({id : this.coverLetterList.length+1, result: null})
   }
 
+  getIndustrySector(){
+    this.dataUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/industries";
+       this._commonRequestService.getData(this.dataUrl).subscribe(
+        data => {
+          this.industrySectorData = data.data;
+       
+        }
+    );
+  }
+
+  getSecurityClearenceData(){
+    this.dataUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/security_clearance";
+       this._commonRequestService.getData(this.dataUrl).subscribe(
+        data => {
+          this.securityClearenceData = data.data;
+       
+        }
+    );
+  }
+
 }
-//

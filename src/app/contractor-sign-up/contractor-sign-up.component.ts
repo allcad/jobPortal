@@ -1,6 +1,7 @@
 import { Component, OnInit,NgModule } from '@angular/core';
 import { FormsModule,NgForm } from '@angular/forms';
 import { CommonRequestService } from '../common-request.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 // import { Http,Response } from '@angular/http';
 
@@ -37,7 +38,7 @@ export class ContractorSignUpComponent implements OnInit {
  selectedSkillObject;
  selectedSkillArray=[];
  selectedSkillIdArray = [];
- constructor(public _commonRequestService: CommonRequestService) { }
+ constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
 ngOnInit() {
 this.getKeySkillData();
@@ -170,6 +171,8 @@ fileChangeEvent(fileInput: any) {
       }
     }
   }
-
+  clickTermsUse(){
+    this._router.navigate(['../terms_use'], {relativeTo: this._routes});
+  }
 
 }

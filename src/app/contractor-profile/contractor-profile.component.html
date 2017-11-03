@@ -73,10 +73,14 @@
                       <div class="input-group-addon"><img src="./assets/images/security-clearance.png" alt="Enter Password" title="Password" class="img-responsive"></div>
                       <select class="form-control minimal background_drop_down" [(ngModel)]="securityClearance" name="securityClearance" [tooltip]="securityClearanceTooltip" required>
                         <option value="">Security Clearance?</option>
-                        <option value="1">124536</option>
+                        <option *ngFor="let item of securityClearenceData" value="{{item.id}}">
+                            {{item.name}}
+                        </option>
+
+                       <!--  <option value="1">124536</option>
                         <option value="5">5124536</option>
                         <option value="10">10124536</option>
-                        <option value="20">20124536</option>
+                        <option value="20">20124536</option> -->
                       </select>
                       <tooltip-content #securityClearanceTooltip>
                         <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.securityClearance?.valid" style="color: #C21F39">Security Clearance</span>
@@ -292,7 +296,11 @@
                         <div class="input-group-addon bordr_non"></div>
                       </div>
                       <ul class="form-control industry_min_heights padding_none contractor_profile">
-                        <li class="active">Accountancy</li>
+                       
+                        <select name="industrySector" [(ngModel)]="industrySector" multiple="true">
+                          <option *ngFor="let industry of industrySectorData" value="{{industry.id}}">{{industry.industry}}</option>
+                        </select>
+                        <!-- <li class="active">Accountancy</li>
                         <li>Aerospace</li>
                         <li>Automotive</li>
                         <li>Banking</li>
@@ -300,7 +308,7 @@
                         <li>Media</li>
                         <li>Energy</li>
                         <li>Legal</li>
-                        <li>Insurance</li>
+                        <li>Insurance</li> -->
                       </ul>
                     </div>
                   </div>

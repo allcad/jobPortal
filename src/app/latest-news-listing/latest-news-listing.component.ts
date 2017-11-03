@@ -34,4 +34,5 @@ export class LatestNewsListingComponent implements OnInit {
   goToNews(){
     this._router.navigate(['../news'], {relativeTo: this._routes});
   }
+  
 }

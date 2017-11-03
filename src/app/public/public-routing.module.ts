@@ -8,6 +8,10 @@ import { ContractorRecuriterProfileComponent } from '../contractor-recuriter-pro
 import { ContractorDirectoryComponent } from '../contractor-directory/contractor-directory.component';
 import { LoginComponent } from '../login/login.component';
 import { LoginRecruiterComponent } from '../login-recruiter/login-recruiter.component';
+import { ContractorNewsArticleComponent } from '../contractor-news-article/contractor-news-article.component';
+import { ContractorNewsCategoryComponent } from '../contractor-news-category/contractor-news-category.component';
+import { AboutContractorComponent } from '../about-contractor/about-contractor.component';
+import { TermUseComponent } from '../term-use/term-use.component';
 
 const publicRoutes: Routes = [
 {
@@ -31,6 +35,18 @@ const publicRoutes: Routes = [
 },{
     "path": "home",
     "component": ContentComponent
+},{
+    "path": "news",
+    "component" : ContractorNewsArticleComponent
+},{
+    "path": "news_category",
+    "component" : ContractorNewsCategoryComponent
+},{
+    "path": "aboutContractor",
+    "component" : AboutContractorComponent
+},{
+    "path": "terms_use",
+    "component" : TermUseComponent
 },{
     "path": "",
     "redirectTo" : "home",

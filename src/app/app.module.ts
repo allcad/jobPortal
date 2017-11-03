@@ -35,7 +35,7 @@ import {RecruiterModule} from './recruiter/recruiter.module';
 
 import {ContractorModule} from './contractor/contractor.module';
 
-import { AboutContractorComponent } from './about-contractor/about-contractor.component';
+
 //import { ContractorAdviceArticleComponent } from './contractor-advice-article/contractor-advice-article.component';
 
 import { ContractorAccountComponent } from './contractor-account/contractor-account.component';
@@ -47,8 +47,8 @@ import { ContractorAccountComponent } from './contractor-account/contractor-acco
 
 import { ContractorLoginFullJobComponent } from './contractor-login-full-job/contractor-login-full-job.component';
 
-import { ContractorNewsCategoryComponent } from './contractor-news-category/contractor-news-category.component';
-import { TermUseComponent } from './term-use/term-use.component';
+
+
 import { CommonDataSharedService } from './commonDataSharedService';
 import { ResolverService } from './resolver.service';
 
@@ -67,7 +67,7 @@ import { ResolverService } from './resolver.service';
     RecruiterComponent,
     ContractorHeaderComponent,
     RecruiterHeaderComponent,
-    AboutContractorComponent,
+    //AboutContractorComponent,
     ContractorAccountComponent,
    
     
@@ -75,8 +75,8 @@ import { ResolverService } from './resolver.service';
     // ContractorSearchResultComponent,
     
     ContractorLoginFullJobComponent,
-    ContractorNewsCategoryComponent,
-    TermUseComponent,
+    //ContractorNewsCategoryComponent,
+    //TermUseComponent,
     //RecruiterTermsComponent
   ],
   imports: [

@@ -16,7 +16,7 @@ import { ContractorAdviceCategoryComponent } from '../contractor-advice-category
 import { ContractorSearchResultComponent } from '../contractor-search-result/contractor-search-result.component';
 import { ContractorNewsArticleComponent } from '../contractor-news-article/contractor-news-article.component';
 import { ContractorHelpComponent } from '../contractor-help/contractor-help.component';
-
+import { ContractorNewsCategoryComponent } from '../contractor-news-category/contractor-news-category.component';
 import { ResolverService } from '../resolver.service';
 
 const contractorRoutes: Routes = [{
@@ -78,7 +78,7 @@ const contractorRoutes: Routes = [{
     "resolve": {resolverData: ResolverService}
 },{
     "path": "news_category",
-    "component" : ContractorHelpComponent,
+    "component" : ContractorNewsCategoryComponent,
     "resolve": {resolverData: ResolverService}
 }]
 

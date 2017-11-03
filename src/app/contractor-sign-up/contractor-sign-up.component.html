@@ -8,7 +8,7 @@
           <div class="contractor_signup befourlogin_fontsize">
             <h2>CONTRACTOR <span>signup</span></h2>
             <ul class="breadcomb">
-              <li><a href="#">Home</a></li>
+              <li routerLink="../home"><a href="javascript:void(0)">Home</a></li>
               <li class="right_arrow">></li>
               <li class="active">CONTRACTOR SIGN UP</li>
             </ul>
@@ -233,7 +233,7 @@
               <div class="current_rate_signup situation35">
                 <div class="terms_of_use">
                   <input type="checkbox" id="inlineCheckbox12" value="option153" [(ngModel)]="contractor_agree_terms_status" name="termOfUse" required>
-                  <label for="inlineCheckbox12"><span></span> I AGREE TO CONTRACTRECRUIT’S <a href="#">TERMS OF USE</a> </label>
+                  <label for="inlineCheckbox12"><span></span> I AGREE TO CONTRACTRECRUIT’S <a (click)="clickTermsUse()" href="javascript:void(0)">TERMS OF USE</a> </label>
                 </div>
                 <button type="submit" [disabled]="!userForm.form.valid" class="btn-primary pull-right hover_white_pluse">SIGN UP <i class="fa fa-plus plus_blue" aria-hidden="true"></i></button>
                 <!--   <a href="#" class="btn-primary pull-right hover_white_pluse">SIGN UP <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> --></div>

@@ -16,7 +16,7 @@ export class LatestNewsComponent implements OnInit {
   }
 
   viewAllNews(){
-  	this._router.navigate(['../news'], {relativeTo: this._routes});
+  	this._router.navigate(['../news_category'], {relativeTo: this._routes});
   }
 
   
