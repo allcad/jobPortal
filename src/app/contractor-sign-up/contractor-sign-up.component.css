@@ -44,3 +44,87 @@
     margin-left: 5px;
     vertical-align: middle;
 }
+
+.optn {
+    font-size: 13px !important;    
+    padding-bottom: 0px;
+    padding-top: 0px;    
+    padding-right: 24px;
+    padding-left: 10px;
+    border-radius: 5px;
+    font-weight: normal;
+    border: 1px solid #00ccff;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    background-image: url(dropdownarrow.png);
+ 	background-repeat: none;
+ 	background-repeat: no-repeat;
+    background-position: right;
+    margin-left: 2px;
+     color:#aaaaaa !important;
+    width: 120px;
+}
+
+#ext.rg_row {
+    width: 570px;
+    margin-bottom: 90px;
+}
+
+.rg_row {
+    padding-bottom: 40px;
+}
+.rg-msn-reg .showdate.rest_data_show {
+    margin-top: 24px;
+}
+.showdate {
+    font-family: helveticaN;
+    font-size: 12px;
+    font-weight: 600;
+    float: left;
+    padding-right: 20px;
+ 
+}
+#datepicker {
+    border: none;
+}
+.rg-msn-reg .rg_row > img {
+    margin-top: 20px;
+}
+.ui-datepicker-trigger {
+    cursor: pointer;
+}
+.ui-datepicker-trigger {
+    display: inline;
+    float: left;
+}
+.rg-msn-reg .text-438 {
+    margin-top: 24px;
+    padding-right: 36px;
+    word-spacing: 1px;
+}
+.text-00 {
+    
+    font-size: 11px;
+    font-weight: 600;
+    float: left;
+ 
+}
+.active2 {
+    color: #656565;
+}
+.r_s1 {
+    
+    
+    font-size: 12px;
+    
+    display: block;
+    font-weight: 600;
+}
+
+.current_rate_signup input[type="radio"] + label span {
+    background: rgba(0, 0, 0, 0) url("uncheck_box.png") no-repeat scroll 0 center;
+}
+
+.current_rate_signup input[type="radio"]:checked + label span {
+  background: rgba(0, 0, 0, 0) url("check_box.png") no-repeat scroll 0 center;
+}

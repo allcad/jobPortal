@@ -101,7 +101,7 @@
                     <div class="input-group" style="border-bottom: 1px solid #000; padding-bottom: 4px;">
                       <div class="input-group-addon" style="border-bottom: 0;"><img src="./assets/images/upload-cv.png" alt="Upload CV" title="Upload CV" class="img-responsive"></div>
                       <div class="fileUpload btn btn-primary" style="float: right;">
-                        <span>Find CV From
+                        <span>Find CV
                             <img alt="search now" src="./assets/images/find-cv.png" title="search now">
                           </span>
                         <input type="file" class="upload" />
@@ -178,9 +178,9 @@
                 </div>
               </div>
               <div id="per" class="rgnote89" *ngIf="contractor_employment_situation == 'permanant'">
-                <div class="text-00 clear" style="margin-top:37px;"> NOTICE PERIOD?</div>
+                <div class="text-00 clear" style="margin-top:34px;"> NOTICE PERIOD? &nbsp;</div><br/>
                 <div>
-                  <select class="optn rgnopt" name="notice_period" style="margin-top:30px;">
+                  <select class="optn rgnopt" name="notice_period" style="margin-top:10px;">
                     <option value="Immediate" *ngFor="let item of noticePeriodList">{{item.name}}</option>
                     <!-- <option value="7 DAYS"> 7 DAYS</option>
                     <option value="2 WEEKS">2 WEEKS</option>
@@ -191,32 +191,31 @@
                 </div>
               </div>
               <div class="rg_row" id="ext" style="display: block;" *ngIf="contractor_employment_situation == 'in contract'">
-                <div class="showdate rest_data_show show_ui_picker">{{dateSelected | date: 'short'}}</div>
-                <input type="date" [(ngModel)]="dateSelected" name="contract_end_date" id="datepicker" size="16" value="21/11/2017" class="hasDatepicker" style="">
-                <div class="text-00 text-438" style="padding-left:48px;">MAKE MY DETAILS LIVE FROM?</div>
+                <div class="showdate rest_data_show show_ui_picker" style="float: right;">{{dateSelected | date: 'short'}}</div>
+                <div class="text-00 clear imtn">Contract End Date :</div> <input type="date" [(ngModel)]="dateSelected" name="contract_end_date" id="datepicker" size="16" value="21/11/2017" class="hasDatepicker" style="">
+                <div class="text-00 text-438" style="padding-left:48px;float: right;">MAKE MY DETAILS LIVE FROM?</div>
                 <div>
-                  <select class="optn text-ipn-opntn" name="details_live">
+                  <select class="optn text-ipn-opntn" name="details_live" style="float:right;">
                     <option value="Immediate" *ngFor="let item of noticePeriodList">{{item.name}}</option>
                   </select>
                 </div>
                 <br>
-                <div class="text-00 clear imtn" style="margin-top:44px;"> NOTICE PERIOD?</div>
-                <div>
-                  <select class="optn tstximtm" name="contract_notice_period" style="margin-top:36px;">
+                <div class="text-00 clear imtn" style="margin-top:10px;float: left;"> NOTICE PERIOD?</div>
+                <div style="    float: left;
+    margin-left: 30px;
+    margin-top: -6px;">
+                  <select class="optn tstximtm" name="contract_notice_period" style="margin-top:10px;">
                      <option value="Immediate" *ngFor="let item of noticePeriodList">{{item.name}}</option>
                   </select>
                 </div>
-                <div id="happynotice" class="text-00" style="margin-top:44px; margin-left:19px; padding-right:0px; margin-right:0px"> HAPPY TO USE YOUR NOTICE PERIOD?</div>
-                <div class="slct r_s1" style=" width:50px; float:right; margin-top:44px;margin-right:-6px; ">
-                  YES
-                  <span></span>
-                  <input type="radio" name="happy_notice" value="Yes">
-                </div>
-                <br>
-                <div class="slct r_s1 active2" style=" width:50px; float:right; margin-top:72px; margin-right:-51px;">
-                  NO
-                  <span></span>
-                  <input type="radio" name="happy_notice" value="No" checked="checked">
+                <div id="happynotice" class="text-00" style="padding-right:0px; margin-right:0px;float: right;margin-top: 10px;"> HAPPY TO USE YOUR NOTICE PERIOD?</div>
+                <div class="slct r_s1" style=" width:50px; float:right;clear: both;">
+                 <label for="happynoticeyes" class="current_rate_signup"> YES <span></span> </label>
+                  <input class="happynotice" type="radio" id="happynoticeyes" name="happy_notice" value="Yes">
+                </div>                
+                <div class="slct r_s1 active2" style=" width:50px; float:right;">
+                  <label for="happynoticeno" class="current_rate_signup"> <span></span> NO</label>
+                  <input class="happynotice" type="radio" id="happynoticeno" name="happy_notice" value="No" checked="checked">
                 </div>
               </div>
               <div class="current_rate_signup situation35">
