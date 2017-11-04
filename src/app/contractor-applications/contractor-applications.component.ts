@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-contractor-applications',
@@ -8,7 +10,7 @@ import { CommonRequestService } from '../common-request.service';
 })
 export class ContractorApplicationsComponent implements OnInit {
 	appliedJobList = [];
-  constructor(private _commonRequestService: CommonRequestService) { }
+  constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
   	this.getAppliedjobList();
@@ -29,6 +31,13 @@ export class ContractorApplicationsComponent implements OnInit {
         }
     );
 
+  }
+
+
+  viewCompany(job){
+    this._commonRequestService.setDataWithoutObserval(job.company_id, "viewCompanyId");
+    localStorage.setItem("viewCompanyId", job.company_id);
+    this._router.navigate(['../companyProfile'], {relativeTo: this._routes});
   }
 
 }

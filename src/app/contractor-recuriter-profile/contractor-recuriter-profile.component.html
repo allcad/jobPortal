@@ -28,11 +28,11 @@
                         </div>
                         <div class="col-sm-75 col-md-80">
                             <div class="web_email_content">
-                                <p><span>Website</span> https://www.experis.co.uk/</p>
-                                <p><span>Email</span> John@experis.co.uk</p>
-                                <p><span>Size</span> &lt;10 Employees</p>
-                                <p><span>Location</span> London</p>
-                                <p><span>Size</span> <span class="text_manage">Manpower is the global leader in contingent and permanent recruitment workforce solutions. They provide the agility businesses need with a continuum of staffing solutions. They have built a deeper talent pool to provide our clients access to the people they need, faster. They effectively assess and develop skills, keeping their associates ahead of the curve, so they can get the jobs done each time, every time.</span></p>
+                                <p><span>Website</span> {{companyDetail?.companySocial.webAddress}}/</p>
+                                <p><span>Email</span> {{companyDetail?.companySocial.emailAddress}}</p>
+                                <p><span>Size</span> &lt;{{companyDetail?.companyDetails.companySize}} Employees</p>
+                                <p><span>Location</span> {{companyDetail?.companyDetails.companyAddress}}</p>
+                                <p><span>Description</span> {{companyDetail?.companyDescription}}<span class="text_manage"></span></p>
                             </div>
                         </div>
                     </div>

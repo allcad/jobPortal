@@ -12,31 +12,34 @@ export class ContractorRecuriterProfileComponent implements OnInit {
   pageNo = 1;
   pageSize = 3;
   showAll = false;
+  companyDetail;
   constructor(private _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
-    this.companyId = JSON.parse(localStorage.getItem("companyId"));
-    if(this.companyId){
-     // this.getCompanyProfile(this.companyId)
+    this.companyId = this._commonRequestService.getDataWithoutObserval("viewCompanyId");
+    if(!this.companyId){
+     this.companyId = localStorage.getItem("viewCompanyId");
     }
+    this.getCompanyProfile(this.companyId);
+
   	this.getJobList();
   }
 
-  // getCompanyProfile(companyId){
-  //   var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/job/view";
-  //   var inputJson = {
-  //     "email" : "test@gmail.com",
-  //     "loginToken":"$2y$10$S.H5i.UJ5CkSBHjinFY.VuWZ2kR8pDEcZGNtRrb1/lNBBNcw7gFBK",
-  //     "jobid": companyId
+  getCompanyProfile(companyId){
+    var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/company_detail";
+    var inputJson = {
+      "email" : "test@gmail.com",
+      "loginToken":"$2y$10$S.H5i.UJ5CkSBHjinFY.VuWZ2kR8pDEcZGNtRrb1/lNBBNcw7gFBK",
+      "company_id": companyId
 
-  //   }
-  //      this._commonRequestService.postData(url, inputJson).subscribe(
-  //       data => {
-  //         this.jobList = data.data; 
-  //         console.log("jobList", this.jobList);
-  //       }
-  //   );
-  // }
+    }
+       this._commonRequestService.postData(url, inputJson).subscribe(
+        data => {
+          this.companyDetail = data.data; 
+          console.log("companyDetail", this.companyDetail);
+        }
+    );
+  }
 
   getJobList(){
   	var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/job/list";
@@ -74,8 +77,8 @@ export class ContractorRecuriterProfileComponent implements OnInit {
 
 
   applyJob(jobDetail){
-    console.log(jobDetail);
-    var url =" http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/job/apply";
+    if(jobDetail.applied !== 1){
+      var url =" http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/job/apply";
     var inputJson = {
       "email" : "test@gmail.com",
       "loginToken":"$2y$10$S.H5i.UJ5CkSBHjinFY.VuWZ2kR8pDEcZGNtRrb1/lNBBNcw7gFBK",
@@ -87,6 +90,8 @@ export class ContractorRecuriterProfileComponent implements OnInit {
           this.getJobList();
         }
     );
+    }
+    
   }
 
 }

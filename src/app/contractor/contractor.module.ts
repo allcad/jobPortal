@@ -25,7 +25,7 @@ import { ContractorAdviceArticleComponent } from '../contractor-advice-article/c
 import { ContractorAdviceCategoryComponent } from '../contractor-advice-category/contractor-advice-category.component';
 // import { ContractorNewsArticleComponent } from '../contractor-news-article/contractor-news-article.component';
 import { ContractorHelpComponent } from '../contractor-help/contractor-help.component';
-
+import { AboutContractorComponent } from '../about-contractor/about-contractor.component';
 import { AgmCoreModule } from '@agm/core';
 //import { LyResizingCroppingImagesModule } from 'angular2-resizing-cropping-image';
 
@@ -44,7 +44,7 @@ import { AgmCoreModule } from '@agm/core';
   ContractorAdviceComponent,
   ContractorAdviceArticleComponent,
   ContractorAdviceCategoryComponent,
- // ContractorNewsArticleComponent,
+  AboutContractorComponent,
   ContractorHelpComponent
 	
   ],

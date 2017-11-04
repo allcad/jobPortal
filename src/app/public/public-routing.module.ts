@@ -10,7 +10,7 @@ import { LoginComponent } from '../login/login.component';
 import { LoginRecruiterComponent } from '../login-recruiter/login-recruiter.component';
 import { ContractorNewsArticleComponent } from '../contractor-news-article/contractor-news-article.component';
 import { ContractorNewsCategoryComponent } from '../contractor-news-category/contractor-news-category.component';
-import { AboutContractorComponent } from '../about-contractor/about-contractor.component';
+//import { AboutContractorComponent } from '../about-contractor/about-contractor.component';
 import { TermUseComponent } from '../term-use/term-use.component';
 import { RecruiterTermsComponent } from '../recruiter-terms/recruiter-terms.component';
 
@@ -42,9 +42,6 @@ const publicRoutes: Routes = [
 },{
     "path": "news_category",
     "component" : ContractorNewsCategoryComponent
-},{
-    "path": "aboutContractor",
-    "component" : AboutContractorComponent
 },{
     "path": "terms_use",
     "component" : TermUseComponent

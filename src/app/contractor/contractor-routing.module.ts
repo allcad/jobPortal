@@ -17,6 +17,7 @@ import { ContractorSearchResultComponent } from '../contractor-search-result/con
 import { ContractorNewsArticleComponent } from '../contractor-news-article/contractor-news-article.component';
 import { ContractorHelpComponent } from '../contractor-help/contractor-help.component';
 import { ContractorNewsCategoryComponent } from '../contractor-news-category/contractor-news-category.component';
+import { AboutContractorComponent } from '../about-contractor/about-contractor.component';
 import { ResolverService } from '../resolver.service';
 
 const contractorRoutes: Routes = [{
@@ -80,6 +81,10 @@ const contractorRoutes: Routes = [{
     "path": "news_category",
     "component" : ContractorNewsCategoryComponent,
     "resolve": {resolverData: ResolverService}
+},{
+    "path": "about",
+    "component" : AboutContractorComponent,
+    "resolve" : {resolverData: ResolverService}
 }]
 
 @NgModule({
