@@ -22,7 +22,7 @@ export class ContractorSignUpComponent implements OnInit {
  contractor_current_password;
  contractor_job_title;
  contractor_key_skills;
- fileForCV:any;contractor_employment_situation:any;contractService:any;
+ fileForCV:any;contractor_employment_situation:any="permanant";contractService:any;
  contractor_rate;checkAgree;
  valid;
  fileForCv;
@@ -39,11 +39,13 @@ export class ContractorSignUpComponent implements OnInit {
  selectedSkillArray=[];
  selectedSkillIdArray = [];
  CVFile = null;
+ noticePeriodList = [];
  constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
 ngOnInit() {
 this.getKeySkillData();
 this.getContractorServices();
+this.getNoticePeriodData()
 }
 
     onFormSubmit(userForm:NgForm){
@@ -192,6 +194,16 @@ fileChangeEvent(fileInput: any) {
   }
   clickTermsUse(){
     this._router.navigate(['../terms_use'], {relativeTo: this._routes});
+  }
+
+  getNoticePeriodData(){
+    var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/get/notice_period";
+      this._commonRequestService.getData(url).subscribe(
+        data => {
+          this.noticePeriodList = data.data;
+          
+        }
+    );
   }
 
 }
