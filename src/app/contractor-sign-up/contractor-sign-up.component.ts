@@ -38,6 +38,7 @@ export class ContractorSignUpComponent implements OnInit {
  selectedSkillObject;
  selectedSkillArray=[];
  selectedSkillIdArray = [];
+ CVFile = null;
  constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
 ngOnInit() {
@@ -46,24 +47,42 @@ this.getContractorServices();
 }
 
     onFormSubmit(userForm:NgForm){
-      this.inputData={
-        "contractor_first_name" :this.contractor_first_name,
-        "contractor_last_name":this.contractor_last_name,
-        "contractor_email":this.contractor_email,
-        "contractor_tel_no":this.contractor_tel_no,
-        "contractor_current_password":this.contractor_current_password,
-        "contractor_rate":this.contractor_rate ? this.contractor_rate : "200",
-        "fileForCv":this.fd ,
-        "contractor_job_title":this.contractor_job_title,
-        "contractor_key_skills":this.selectedSkillIdArray,
-        "contractor_employment_situation":this.contractor_employment_situation ? this.contractor_employment_situation : "permanant",
-        "contractor_services": this.getSelecetdContractorServices(),
-        "contractor_agree_terms_status" :this.contractor_agree_terms_status
 
-      }
+    this.fd = new FormData();
+    this.fd.append('loginToken',(localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).token )? JSON.parse(localStorage.getItem('loginDetail')).token:  "nsakdlallas1232mk123b2k1390iq2ekq");
+    this.fd.append('email',(localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).email )? JSON.parse(localStorage.getItem('loginDetail')).email:  "test@gmail.com");
+    this.fd.append('contractor_first_name',this.contractor_first_name);
+    this.fd.append('contractor_last_name',this.contractor_last_name);
+    this.fd.append('contractor_email',this.contractor_email);
+    this.fd.append('contractor_tel_no',this.contractor_tel_no);
+    this.fd.append('contractor_current_password',this.contractor_current_password);
+    this.fd.append('contractor_rate',this.contractor_rate ? this.contractor_rate : "200");
+    this.fd.append('fileForCv',this.CVFile);
+    this.fd.append('contractor_job_title',this.contractor_job_title);
+    this.fd.append('contractor_key_skills',JSON.stringify(this.selectedSkillIdArray));
+    this.fd.append('contractor_employment_situation',this.contractor_employment_situation ? this.contractor_employment_situation : "permanant");
+    this.fd.append('contractor_services',JSON.stringify(this.getSelecetdContractorServices()));
+    this.fd.append('contractor_agree_terms_status',this.contractor_agree_terms_status);
+
+
+      // this.inputData={
+      //   "contractor_first_name" :this.contractor_first_name,
+      //   "contractor_last_name":this.contractor_last_name,
+      //   "contractor_email":this.contractor_email,
+      //   "contractor_tel_no":this.contractor_tel_no,
+      //   "contractor_current_password":this.contractor_current_password,
+      //   "contractor_rate":this.contractor_rate ? this.contractor_rate : "200",
+      //   "fileForCv":this.fd ,
+      //   "contractor_job_title":this.contractor_job_title,
+      //   "contractor_key_skills":this.selectedSkillIdArray,
+      //   "contractor_employment_situation":this.contractor_employment_situation ? this.contractor_employment_situation : "permanant",
+      //   "contractor_services": this.getSelecetdContractorServices(),
+      //   "contractor_agree_terms_status" :this.contractor_agree_terms_status
+
+      // }
       console.log( this.inputData,"fdf")
    this.inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/signup";
-       this._commonRequestService.postData(this.inputUrl, this.inputData).subscribe(
+       this._commonRequestService.postData(this.inputUrl, this.fd).subscribe(
         data => {
           this.listSignUpData = data;
           if(this.listSignUpData.status === "TRUE"){
@@ -104,9 +123,9 @@ this.getContractorServices();
 
   
 fileChangeEvent(fileInput: any) {
-    var file = fileInput.target.files[0];
-    this.fd = new FormData();
-    this.fd.append('fileForCv', file);
+    this.CVFile = fileInput.target.files[0];
+    //this.fd = new FormData();
+    //this.fd.append('fileForCv', file);
 
     
   }

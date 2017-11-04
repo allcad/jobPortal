@@ -1,6 +1,7 @@
 import { Component, OnInit,NgModule } from '@angular/core';
 import {FormsModule, NgForm} from '@angular/forms';
 import { CommonRequestService } from '../common-request.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-contractor-profile',
@@ -52,7 +53,7 @@ contratorCVList = [{id:1, result: null}];
 coverLetterList = [{id:1, result: null}];
 industrySectorData = [];
 securityClearenceData = [];
- constructor(public _commonRequestService: CommonRequestService) { }
+ constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
     this.getKeySkillData();
@@ -299,7 +300,7 @@ getProfileDta(){
    this.profileUrl= this.profileData.profileUrl;
    this.emailAddress= this.profileData.emailAddress;
    this.securityClearance= this.profileData.securityClearance;
-   this.euDrivingLicence= this.profileData.euDrivingLicence;
+   this.euDrivingLicence= this.profileData.euDrivingLicence.toString();
    this.postCode= this.profileData.postCode;
    this.dayRate1 = this.profileData.dayRate_min;
    this.dayRate2 = this.profileData.dayRate_max;
@@ -321,6 +322,7 @@ getProfileDta(){
     this.fileUploadForCV= this.profileData.uploadCV;
     this.fileUploadForCover= this.profileData.uploadCoverLetter;
     this.industrySector = this.profileData.industrySector;
+    this.selectedSkillArray = this.profileData['skill&Experience'];
   }
 
 
@@ -366,6 +368,24 @@ getProfileDta(){
        
         }
     );
+  }
+
+
+  closeAccount(){
+    let input = {
+      "email" : "test@gmail.com",
+      "loginToken" : "ndckajs546JGkknk"
+    }
+
+
+    let dataUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/account_close";
+       this._commonRequestService.postData(dataUrl, input).subscribe(
+        data => {
+          this._router.navigate(['../../public/home'], {'relativeTo': this._routes});
+       
+        }
+    );
+    
   }
 
 }

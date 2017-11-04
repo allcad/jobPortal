@@ -7,7 +7,10 @@ import { CommonRequestService } from '../common-request.service';
   styleUrls: ['./contractor-view-profile.component.css']
 })
 export class ContractorViewProfileComponent implements OnInit {
- profileData; 
+ profileData;
+ industrySectorData = [];
+ skillArray = [];
+ securityClearenceData; 
  lat: number = 26.9124;
   lng: number = 75.7873;
   polygonPath = [{ lng: this.lng + 0.3, lat: this.lat + 0.3 },
@@ -16,6 +19,8 @@ export class ContractorViewProfileComponent implements OnInit {
  constructor(public _commonRequestService: CommonRequestService,) { }
 
   ngOnInit() {
+  this.getSecurityClearenceData();
+  this.getIndustrySectorData();
   this.getProfileDta();
   }
 
@@ -29,8 +34,52 @@ getProfileDta(){
         data => {
           console.log("profile", data.data)
           this.profileData = data.data;
+          this.skillArray  = this.profileData['skill&Experience'];
+          console.log("this.skillArray", this.skillArray);
           this._commonRequestService.setDataWithoutObserval(this.profileData, "contractorProfileData")
         }
     );
 }
+
+getSecurityClearenceData(){
+    let URL ="http://dev.contractrecruit.co.uk/contractor_admin/api/get/security_clearance";
+       this._commonRequestService.getData(URL).subscribe(
+        data => {
+          this.securityClearenceData = data.data;
+       
+        }
+    );
+  }
+
+  getSecurityClearnceName(profileData){
+    if(profileData.securityClearance){
+      for(let i=0; i<this.securityClearenceData.length; i++){
+        if(profileData.securityClearance == this.securityClearenceData[i].id){
+          return this.securityClearenceData[i].name;
+        }
+      }
+      return "";
+    }
+  }
+
+  getIndustrySectorData(){
+    let URL ="http://dev.contractrecruit.co.uk/contractor_admin/api/get/industries";
+       this._commonRequestService.getData(URL).subscribe(
+        data => {
+          this.industrySectorData = data.data;
+       
+        }
+    );
+  }
+
+  getIndustrySectorName(industrySector){
+    if(industrySector){
+      for(let i=0; i<this.industrySectorData.length; i++){
+        if(industrySector == this.industrySectorData[i].id){
+          return this.industrySectorData[i].industry;
+        }
+      }
+      return "";
+    }
+  }
 }
