@@ -218,11 +218,12 @@
                                                         <div class="input-group-addon bordr_non"><img src="./assets/images/inform.png" alt="Enter Password" title="Password" class="img-responsive"></div>
                                                     </div>
                                                     <ul class="form-control industry_min_heights padding_none">
-                                                        <li class="active">All</li>
-                                                        <li>Accountancy</li>
+                                                        <!-- <li class="active">All</li> -->
+                                                        <!-- <li>Accountancy</li>
                                                         <li>Aerospace/Defence/Military</li>
                                                         <li>Automotive</li>
-                                                        <li>Banking/Financial Services</li>
+                                                        <li>Banking/Financial Services</li> -->
+                                                        <li *ngFor="let item of industryArrayData">{{item?.industry}}</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -232,11 +233,12 @@
                                                         <div class="input-group-addon bordr_non"></div>
                                                     </div>
                                                     <ul class="form-control industry_min_heights padding_none">
-                                                        <li class="active">All</li>
+                                                        <!-- <li class="active">All</li>
                                                         <li>BPSS</li>
                                                         <li>CRB</li>
                                                         <li>CTC</li>
-                                                        <li>DV</li>
+                                                        <li>DV</li> -->
+                                                        <li *ngFor="let item of securityClearanceArray">{{item?.name}}</li>
                                                     </ul>
                                                 </div>
                                             </div>

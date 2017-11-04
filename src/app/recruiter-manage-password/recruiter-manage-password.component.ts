@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm} from '@angular/forms';
 import { CommonRequestService } from '../common-request.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recruiter-manage-password',
@@ -11,7 +12,7 @@ export class RecruiterManagePasswordComponent implements OnInit {
   oldPassword;
   newPassword;
   confirmPassword;
-  constructor(public _commonRequestService: CommonRequestService) { }
+  constructor(public _commonRequestService: CommonRequestService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -28,9 +29,12 @@ export class RecruiterManagePasswordComponent implements OnInit {
        this._commonRequestService.postData(wsUrl,recruiterPasswordJson).subscribe(
         data => {
          console.log("recruiter password--", data);
-         this.oldPassword = "";
-         this.newPassword = "";
-         this.confirmPassword = "";
+         if(data && data.status === "TRUE") {
+           this.router.navigate(['../recruiterLogin']);
+           this.oldPassword = "";
+           this.newPassword = "";
+           this.confirmPassword = "";
+         }
         }
     );
   }

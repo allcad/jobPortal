@@ -9,7 +9,6 @@ import { RecruiterManageProfileComponent } from '../recruiter-manage-profile/rec
 import { RecruiterManageUserComponent } from '../recruiter-manage-user/recruiter-manage-user.component';
 //import { RecruiterSignUpComponent } from '../recruiter-sign-up/recruiter-sign-up.component';
 
-import { AboutRecruiterComponent } from '../about-recruiter/about-recruiter.component';
 import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/recruiter-advanced-search.component';
 import { RecruiterHelpComponent } from '../recruiter-help/recruiter-help.component';
 import { RecruiterJobPostingComponent } from '../recruiter-job-posting/recruiter-job-posting.component';
@@ -39,10 +38,7 @@ const recruiterRoutes: Routes = [{
 }, /*{
     "path": "register",
     "component": RecruiterSignUpComponent
-}*/{
-    "path": "about-recruiter",
-    "component": AboutRecruiterComponent
-}, {
+}*/ {
     "path": "advanced-search",
     "component": RecruiterAdvancedSearchComponent
 }, {

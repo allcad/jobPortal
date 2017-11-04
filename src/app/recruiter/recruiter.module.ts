@@ -16,7 +16,7 @@ import { RecruiterManageUserComponent } from '../recruiter-manage-user/recruiter
 //import { LoginRecruiterComponent } from '../login-recruiter/login-recruiter.component';
 //import { RecruiterSignUpComponent } from '../recruiter-sign-up/recruiter-sign-up.component';
 
-import { AboutRecruiterComponent } from '../about-recruiter/about-recruiter.component';
+//import { AboutRecruiterComponent } from '../about-recruiter/about-recruiter.component';
 import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/recruiter-advanced-search.component';
 import { RecruiterHelpComponent } from '../recruiter-help/recruiter-help.component';
 import { RecruiterJobPostingComponent } from '../recruiter-job-posting/recruiter-job-posting.component';
@@ -38,7 +38,7 @@ import { ViewContractorProfileComponent } from '../view-contractor-profile/view-
 	RecruiterManageUserComponent,
 	//LoginRecruiterComponent,
 	//RecruiterSignUpComponent,
-	AboutRecruiterComponent,
+	//AboutRecruiterComponent,
 	RecruiterAdvancedSearchComponent,
 	RecruiterHelpComponent,
 	RecruiterJobPostingComponent,

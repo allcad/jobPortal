@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonRequestService } from '../common-request.service';
 
 @Component({
   selector: 'app-recruiter-saved-search',
@@ -25,9 +26,47 @@ export class RecruiterSavedSearchComponent implements OnInit {
   contractorName;
   educationValue;
   drivingLicenceValue;
-  constructor() { }
+  securityClearanceArray;
+  industryArrayData;
+  constructor(public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
+    this.getSecurityClearance();
+    this.getIndustry();
+  }
+
+  getSecurityClearance() {
+     var input = {
+     "email":"test@test7.com",
+    "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu"
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/security_clearance";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+          console.log("securityClearanceArray--", data);
+          this.securityClearanceArray = data.data;
+          //this.recruiterNameArray = data.data;
+        }
+    );
+  }
+
+  getIndustry() {
+     var input = {
+     "email":"test@test7.com",
+    "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu"
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/industries";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+          console.log("industryArrayData--", data);
+          this.industryArrayData = data.data;
+          //this.recruiterNameArray = data.data;
+        }
+    );
   }
 
   saveSearch() {

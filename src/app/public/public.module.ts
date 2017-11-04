@@ -28,6 +28,16 @@ import { PublicRoutingModule } from './public-routing.module';
 // import { AboutContractorComponent } from '../about-contractor/about-contractor.component';
 import { TermUseComponent } from '../term-use/term-use.component';
 import { RecruiterTermsComponent } from '../recruiter-terms/recruiter-terms.component';
+import { AboutRecruiterComponent } from '../about-recruiter/about-recruiter.component';
+
+import { ContactPageComponent } from '../contact-page/contact-page.component';
+import { RecruiterGuidesPageComponent } from '../recruiter-guides-page/recruiter-guides-page.component';
+import { FaqComponent } from '../faq/faq.component';
+import { PrivacyPolicyComponent } from '../privacy-policy/privacy-policy.component';
+import { SiteMapComponent } from '../site-map/site-map.component';
+import { BenefitsComponent } from '../benefits/benefits.component';
+import { SiteMaintenanceComponent } from '../site-maintenance/site-maintenance.component';
+import { NotFoundPageComponent } from '../not-found-page/not-found-page.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +53,16 @@ import { RecruiterTermsComponent } from '../recruiter-terms/recruiter-terms.comp
 	LoginComponent,
 	RecruiterSignUpComponent,
 	LoginRecruiterComponent,
-	RecruiterTermsComponent
+	RecruiterTermsComponent,
+	AboutRecruiterComponent,
+	ContactPageComponent,
+    RecruiterGuidesPageComponent,
+    FaqComponent,
+    PrivacyPolicyComponent,
+    SiteMapComponent,
+    BenefitsComponent,
+    SiteMaintenanceComponent,
+    NotFoundPageComponent,
   ],
   imports: [
   	PublicRoutingModule,

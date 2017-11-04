@@ -50,4 +50,34 @@ export class RecruiterManageUserComponent implements OnInit {
     );
   }
 
+  makeSuperUser() {
+    var saveJson = {
+      "email":"test@test7.com",
+      "loginToken":"$2y$10$qIXhfBp1FO4l8bfXilrWo.mgeDm2YiznM49TGdC00qeTP8.psEeFC",
+      "recuriter_id":8
+    }
+    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/make/super/user";
+       this._commonRequestService.postData(wsUrl,saveJson).subscribe(
+        data => {
+         console.log("manage super user--", data);
+         window.scroll(0,0);
+        }
+    );
+  }
+
+  deleteUser() {
+    var saveJson = {
+      "email":"test@test7.com",
+      "loginToken":"$2y$10$qIXhfBp1FO4l8bfXilrWo.mgeDm2YiznM49TGdC00qeTP8.psEeFC",
+      "recuriter_id":8
+    }
+    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/super/user/delete";
+       this._commonRequestService.postData(wsUrl,saveJson).subscribe(
+        data => {
+         console.log("delete--", data);
+         window.scroll(0,0);
+        }
+    );
+  }
+
 }

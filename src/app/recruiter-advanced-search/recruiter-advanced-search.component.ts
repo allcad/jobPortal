@@ -27,6 +27,7 @@ mappingFlag = true;
 radialFlag = false;
 securityClearanceArray;
 industryArrayData;
+currentLocation;
 
   constructor(public _commonRequestService: CommonRequestService) { }
 
@@ -100,6 +101,32 @@ industryArrayData;
 	this.contractorName = "";
 	this.contractorEducation = "";
 	this.drivingLicence = '';
+  this.currentLocation = '';
+  }
+
+  saveAdvanceSearch() {
+    var saveJson = {
+      'jobTitle': this.jobTitle,
+      'keywords': this.keyWordSearch,
+      'stemmedTerms': this.stemmedTermsCheck,
+      'coreSkills': this.coreSkills,
+      'certification': this.certifications,
+      'dontShowContractor': this.dontShowContractor,
+      'cityTown': this.cityTown,
+      'currentLocation': this.currentLocation,
+      'distanceFrom': '',
+      'minRate': this.preferredMinRate,
+      'maxRate': this.preferredMaxRate,
+      'dailyHourlyRate': this.dailyHourlyRate,
+      'timeLeft': this.timeLeft,
+      'includeContractor': this.includeContractor,
+      'showContractor': this.showContractor,
+      'contractorName': this.contractorName,
+      'education': this.contractorEducation,
+      'industrySector': '',
+      'securityClearance': '',
+      'drivingLicence': this.drivingLicence
+    }
   }
 
 }

@@ -13,6 +13,8 @@ import { ContractorNewsCategoryComponent } from '../contractor-news-category/con
 //import { AboutContractorComponent } from '../about-contractor/about-contractor.component';
 import { TermUseComponent } from '../term-use/term-use.component';
 import { RecruiterTermsComponent } from '../recruiter-terms/recruiter-terms.component';
+import { AboutRecruiterComponent } from '../about-recruiter/about-recruiter.component';
+import { ContactPageComponent } from '../contact-page/contact-page.component';
 
 const publicRoutes: Routes = [
 {
@@ -48,6 +50,12 @@ const publicRoutes: Routes = [
 }, {
     "path": "recruiter-terms",
     "component": RecruiterTermsComponent
+},{
+    "path": "about-recruiter",
+    "component": AboutRecruiterComponent
+}, {
+    "path": "contact-us",
+    "component": ContactPageComponent
 },{
     "path": "",
     "redirectTo" : "home",
