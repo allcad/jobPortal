@@ -68,8 +68,9 @@
                                     <div class="col-sm-50">
                                         <div class="form-group">
                                             <div class="input-group">
+                                                
                                                 <div class="input-group-addon"><img src="./assets/images/start-date.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
-                                                <input type="date" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Start Date (yyyy/mm/dd)" name="startDate" [(ngModel)]="startDate" [tooltip]="startDateTooltip" required>
+                                                <input type="date" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Start Date (yyyy-mm-dd)" name="startDate" [(ngModel)]="startDate" [tooltip]="startDateTooltip" required>
                                                 <tooltip-content #startDateTooltip>
                                                 <span *ngIf="recruiterJobPostingForm?.form && recruiterJobPostingForm.form.controls && recruiterJobPostingForm.form.controls.startDate?.valid " style="color: #C21F39">Start Date</span>
                                                 <span [hidden]="!recruiterJobPostingForm.form.controls.startDate?.hasError('required')" style="color: #C21F39">Start Date is required.</span>

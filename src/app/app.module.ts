@@ -52,6 +52,7 @@ import { ContractorLoginFullJobComponent } from './contractor-login-full-job/con
 import { CommonDataSharedService } from './commonDataSharedService';
 import { ResolverService } from './resolver.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,6 +76,10 @@ import { ResolverService } from './resolver.service';
     // ContractorSearchResultComponent,
     
     ContractorLoginFullJobComponent,
+   
+    
+    
+    
     //ContractorNewsCategoryComponent,
     //TermUseComponent,
     //RecruiterTermsComponent

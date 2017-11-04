@@ -21,7 +21,7 @@ import { RecruiterViewApplicationsComponent } from '../recruiter-view-applicatio
 import { RecruiterViewProfileComponent } from '../recruiter-view-profile/recruiter-view-profile.component';
 import { RecruiterWatchListComponent } from '../recruiter-watch-list/recruiter-watch-list.component';
 import { RecruiterWatchdogComponent } from '../recruiter-watchdog/recruiter-watchdog.component';
-
+import { ViewContractorProfileComponent } from '../view-contractor-profile/view-contractor-profile.component';
 
 
 const recruiterRoutes: Routes = [{
@@ -69,6 +69,9 @@ const recruiterRoutes: Routes = [{
 }, {
     "path": "view-profile",
     "component": RecruiterViewProfileComponent
+},{
+    "path": "view-contractor-profile",
+    "component": ViewContractorProfileComponent
 }, {
     "path": "watch-list",
     "component": RecruiterWatchListComponent

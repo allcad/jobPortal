@@ -397,10 +397,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/web-address-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="WEB ADDRESS" [(ngModel)]="webAddress" name="webAddress" (change)="webAddressValidation(webAddress)" [tooltip]="webAddressTooltip">
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="WEB ADDRESS" [(ngModel)]="webAddress" name="webAddress" (change)="webAddressValidation(webAddress)" [tooltip]="webAddressTooltip" required>
                       <tooltip-content #webAddressTooltip>
                       <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.webAddress?.valid " style="color: #C21F39">WEB ADDRESS</span>
                       <span *ngIf="webAddValidationFlag" style="color: #C21F39">Please Enter Valid Web Address</span>
+                      <span [hidden]="!saveRecruiterPage.form.controls.webAddress?.hasError('required')" style="color: #C21F39">Company Url is required.</span>
                     </tooltip-content>
                     </div>
                   </div>
@@ -409,10 +410,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/email-address-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="EMAIL ADDRESS" [(ngModel)]="emailAddress" name="EmailAddress" (change)="emailAddressValidation(emailAddress)" [tooltip]="emailAddTooltip">
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="EMAIL ADDRESS" [(ngModel)]="emailAddress" name="EmailAddress" (change)="emailAddressValidation(emailAddress)" [tooltip]="emailAddTooltip" required>
                       <tooltip-content #emailAddTooltip>
                       <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.EmailAddress?.valid " style="color: #C21F39">EMAIL ADDRESS</span>
                       <span *ngIf="emailAddValidationFlag" style="color: #C21F39">Please Enter Valid Email Address</span>
+                      <span [hidden]="!saveRecruiterPage.form.controls.emailAddress?.hasError('required')" style="color: #C21F39">Company Email is required.</span>
                     </tooltip-content>
                     </div>
                   </div>

@@ -307,7 +307,7 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
 			'postalCountry': this.postalCountry.toString(),
 			'postalPostCode': this.postalPostCode,
 			'postalTelephoneNo': this.postalTelephone,
-			'companyUrl': this.imageFile
+			'companyUrl': this.imageFile ? this.imageFile : './assets/images/big-tour.png'
       //'otherAddress': []
 		},
 		'companyDescription': this.companyDescription,
@@ -454,6 +454,7 @@ getProfileDta(){
                 this.addMulAddArray.push({'addresslLine1': this.profileData['otherAddress'][i].addressLine1, 'addressLine1Name': 'address1'+newItem, 'addressLine2': this.profileData['otherAddress'][i].addressLine2, 'addressLine2Name': 'address2'+newItem, 'city': this.profileData['otherAddress'][i].city, 'cityName': 'cityN'+newItem, 'country': this.profileData['otherAddress'][i].country, 'countryName': 'country1'+newItem, 'postCode': this.profileData['otherAddress'][i].postCode, 'postName': 'postN'+newItem, 'telephone': this.profileData['otherAddress'][i].telephone, 'telephone1': 'teleP'+newItem})
               }
             }
+            console.log('this.addMulAddArray--', this.addMulAddArray);
           }
 
           }
