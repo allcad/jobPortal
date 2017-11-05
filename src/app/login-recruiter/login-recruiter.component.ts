@@ -37,7 +37,7 @@ inputData;min;max;getData;addNumber;number;number2;errorMessage;inputUrl;status;
              this.errorMsgFlag =false;
              localStorage.setItem("loginDetail", JSON.stringify({"token": data.data.loginToken, "email": data.data.email}))
               this.succesLoginFlag =true;
-              this.router.navigate(['recruiter/profile']);
+              this.router.navigate(['/recruiter/profile']);
               //this.getViewProfileDta();
              
           }

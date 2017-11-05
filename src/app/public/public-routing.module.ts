@@ -16,6 +16,7 @@ import { RecruiterTermsComponent } from '../recruiter-terms/recruiter-terms.comp
 import { AboutRecruiterComponent } from '../about-recruiter/about-recruiter.component';
 import { ContactPageComponent } from '../contact-page/contact-page.component';
 import { NotFoundPageComponent } from '../not-found-page/not-found-page.component';
+import { FaqComponent } from '../faq/faq.component';
 
 const publicRoutes: Routes = [
 {
@@ -57,6 +58,9 @@ const publicRoutes: Routes = [
 }, {
     "path": "contact-us",
     "component": ContactPageComponent
+}, {
+    "path": "faq",
+    "component": FaqComponent
 },{
     "path": "",
     "redirectTo" : "home",

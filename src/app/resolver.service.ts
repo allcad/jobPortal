@@ -24,13 +24,13 @@ export class ResolverService implements Resolve<any> {
       }
     }
 
-    if(currentRoute && currentRoute[1] && currentRoute[1]== "recruiter"){
-      if(localStorageData && localStorageData.role==="recruiter"){
-        return true;
-      }else{
-        this.router.navigate(['/public/home'], {relativeTo: this.routes});
-      }
-    }
+    // else if(currentRoute && currentRoute[1] && currentRoute[1]== "recruiter"){
+    //   if(localStorageData && localStorageData.role==="recruiter"){
+    //     return true;
+    //   }else{
+    //     this.router.navigate(['/public/home'], {relativeTo: this.routes});
+    //   }
+    // }
 
 }
 }
