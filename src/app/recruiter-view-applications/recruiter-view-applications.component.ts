@@ -72,17 +72,17 @@ export class RecruiterViewApplicationsComponent implements OnInit {
            // 		this.secondArray[i] = this.listingData[i+3];
            // 	}
            // }
-           // if(this.listingData.length > 9) {
-           //   this.thirdArray = [];
-           //   for(var i=0; i<this.listingData.length; i++) {
-           //     console.log("this.listingData[i+9]", this.listingData[i+9]);
-           //   	if(this.listingData && this.listingData[i+9]) {
-           //   		this.thirdArray[i] = this.listingData[i+9];
-           //   	}
-           //   }
-           // } else {
-           //   this.thirdArray = [];
-           // }
+           if(this.listingData.length > 4) {
+             this.secondArray = [];
+             for(var i=0; i<this.listingData.length; i++) {
+               console.log("this.listingData[i+4]", this.listingData[i+4]);
+             	if(this.listingData && this.listingData[i+4]) {
+             		this.secondArray[i] = this.listingData[i+4];
+             	}
+             }
+           } else {
+             this.secondArray = [];
+           }
            // console.log("firstarray", this.firstArray);
            // console.log("secondArray", this.secondArray);
            // console.log("thirdArray", this.thirdArray);
@@ -100,7 +100,6 @@ export class RecruiterViewApplicationsComponent implements OnInit {
     //this.currentPageNo = parseInt(pageNo);
     this.onPageClick = parseInt(pageNo);
     this.firstArray = [];
-     this.secondArray = [];
      this.secondArray = [];
      this.listingData = [];
      this.pageNo = 1;

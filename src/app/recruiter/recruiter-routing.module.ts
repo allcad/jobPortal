@@ -21,59 +21,76 @@ import { RecruiterViewProfileComponent } from '../recruiter-view-profile/recruit
 import { RecruiterWatchListComponent } from '../recruiter-watch-list/recruiter-watch-list.component';
 import { RecruiterWatchdogComponent } from '../recruiter-watchdog/recruiter-watchdog.component';
 import { ViewContractorProfileComponent } from '../view-contractor-profile/view-contractor-profile.component';
+import { ResolverService } from '../resolver.service';
 
 
 const recruiterRoutes: Routes = [{
     "path": "manage-password",
-    "component": RecruiterManagePasswordComponent
+    "component": RecruiterManagePasswordComponent,
+    "resolve": {resolverData: ResolverService}
 }, {
     "path": "manage-account",
-    "component": RecruiterManageAccountComponent
+    "component": RecruiterManageAccountComponent,
+    "resolve": {resolverData: ResolverService}
 }, {
     "path": "profile",
-    "component": RecruiterManageProfileComponent
+    "component": RecruiterManageProfileComponent,
+    "resolve": {resolverData: ResolverService}
 }, {
     "path": "manage-user",
-    "component": RecruiterManageUserComponent
+    "component": RecruiterManageUserComponent,
+    "resolve": {resolverData: ResolverService}
 }, /*{
     "path": "register",
     "component": RecruiterSignUpComponent
 }*/ {
     "path": "advanced-search",
-    "component": RecruiterAdvancedSearchComponent
+    "component": RecruiterAdvancedSearchComponent,
+    "resolve": {resolverData: ResolverService}
 }, {
     "path": "help",
-    "component": RecruiterHelpComponent
+    "component": RecruiterHelpComponent,
+    "resolve": {resolverData: ResolverService}
 }, {
     "path": "job-posting",
-    "component": RecruiterJobPostingComponent
+    "component": RecruiterJobPostingComponent,
+    "resolve": {resolverData: ResolverService}
 }, {
     "path": "manage-jobs",
-    "component": RecruiterManageJobsComponent
+    "component": RecruiterManageJobsComponent,
+    "resolve": {resolverData: ResolverService}
 }, {
     "path": "preview-job",
-    "component": RecruiterPreviewJobComponent
+    "component": RecruiterPreviewJobComponent,
+    "resolve": {resolverData: ResolverService}
 }, {
     "path": "saved-search",
-    "component": RecruiterSavedSearchComponent
+    "component": RecruiterSavedSearchComponent,
+    "resolve": {resolverData: ResolverService}
 }, {
     "path": "searchresult-loggedin",
-    "component": RecruiterSearchresultLoggedinComponent
+    "component": RecruiterSearchresultLoggedinComponent,
+    "resolve": {resolverData: ResolverService}
 }, {
     "path": "view-applications",
-    "component": RecruiterViewApplicationsComponent
+    "component": RecruiterViewApplicationsComponent,
+    "resolve": {resolverData: ResolverService}
 }, {
     "path": "view-profile",
-    "component": RecruiterViewProfileComponent
+    "component": RecruiterViewProfileComponent,
+    "resolve": {resolverData: ResolverService}
 },{
     "path": "view-contractor-profile",
-    "component": ViewContractorProfileComponent
+    "component": ViewContractorProfileComponent,
+    "resolve": {resolverData: ResolverService}
 }, {
     "path": "watch-list",
-    "component": RecruiterWatchListComponent
+    "component": RecruiterWatchListComponent,
+    "resolve": {resolverData: ResolverService}
 }, {
     "path": "watchdog",
-    "component": RecruiterWatchdogComponent
+    "component": RecruiterWatchdogComponent,
+    "resolve": {resolverData: ResolverService}
 }]
 
 @NgModule({

@@ -15,6 +15,7 @@ import { TermUseComponent } from '../term-use/term-use.component';
 import { RecruiterTermsComponent } from '../recruiter-terms/recruiter-terms.component';
 import { AboutRecruiterComponent } from '../about-recruiter/about-recruiter.component';
 import { ContactPageComponent } from '../contact-page/contact-page.component';
+import { NotFoundPageComponent } from '../not-found-page/not-found-page.component';
 
 const publicRoutes: Routes = [
 {
@@ -60,6 +61,12 @@ const publicRoutes: Routes = [
     "path": "",
     "redirectTo" : "home",
     "pathMatch" : "full"
+}, {
+    "path": '404', 
+    "component": NotFoundPageComponent
+},{
+    "path": '**', 
+    "redirectTo": '/404'
 }]
 
 @NgModule({
