@@ -12,7 +12,7 @@ export class RecruiterSignUpComponent implements OnInit {
   companyName = "";
   contactName="";
   valid;listSignUpData;ErrorMesageFlag=false;
-  inputData; JobTitle; phoneNo; emailAddress; passwordValue; keySkill; termOfUse; inputUrl; status; succesMessageFlag = false;
+  inputData; JobTitle; phoneNo; emailAddress; passwordValue; keySkill; termOfUse = false; inputUrl; status; succesMessageFlag = false;
   constructor(public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -34,10 +34,16 @@ export class RecruiterSignUpComponent implements OnInit {
        this._commonRequestService.postData(this.inputUrl, this.inputData).subscribe(
         data => {
           this.listSignUpData = data;
-    if(this.listSignUpData.status === "TRUE"){
-                  this.succesMessageFlag =true;
-                  this.ErrorMesageFlag =false
-          this.inputData={};
+          if(this.listSignUpData.status === "TRUE"){
+            this.succesMessageFlag =true;
+            this.ErrorMesageFlag =false
+            this.companyName = "";
+            this.contactName = "",
+            this.emailAddress = "";
+            this.JobTitle = "";
+            this.phoneNo = "";
+            this.passwordValue = "";
+            this.termOfUse = false;
           }
           else{
              this.succesMessageFlag =false;
