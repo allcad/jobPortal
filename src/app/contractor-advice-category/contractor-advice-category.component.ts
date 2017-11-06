@@ -11,6 +11,13 @@ export class ContractorAdviceCategoryComponent implements OnInit {
 	adviceCategoryData = [];
 	articleList = [];
 	selectedAdviceCategory;
+  config : SwiperOptions = {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            spaceBetween: 30
+        }
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes:ActivatedRoute ) { }
 
   ngOnInit() {

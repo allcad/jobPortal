@@ -25,14 +25,16 @@
         "../node_modules/font-awesome/css/font-awesome.css",
         "../src/assets/css/jquery.bxslider.css",
         "../node_modules/ion-rangeslider/css/ion.rangeSlider.css",
-        "../node_modules/ion-rangeslider/css/ion.rangeSlider.skinFlat.css"
+        "../node_modules/ion-rangeslider/css/ion.rangeSlider.skinFlat.css",
+        "../node_modules/swiper/dist/css/swiper.css"  
       ],
       "scripts": [
         "../src/assets/js/jquery-1.11.1.min.js",
         "../src/assets/js/bootstrap.min.js",
         "../src/assets/js/jquery.bxslider.js",
         "../src/assets/js/jquery.mixitup.min.js",
-        "../node_modules/ion-rangeslider/js/ion.rangeSlider.min.js"
+        "../node_modules/ion-rangeslider/js/ion.rangeSlider.min.js",
+        "../node_modules/swiper/dist/js/swiper.js" 
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

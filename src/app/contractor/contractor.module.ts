@@ -29,6 +29,7 @@ import { AboutContractorComponent } from '../about-contractor/about-contractor.c
 import { AgmCoreModule } from '@agm/core';
 //import { LyResizingCroppingImagesModule } from 'angular2-resizing-cropping-image';
 
+
 @NgModule({
   declarations: [
    
@@ -60,6 +61,7 @@ import { AgmCoreModule } from '@agm/core';
   AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCcc7ZyRGjRbAuDgsLSQGdTuFxvLW9FGiI'
     })
+
   ],
   providers: []
 })

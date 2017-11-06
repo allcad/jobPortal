@@ -25,6 +25,8 @@ import { ContractorNewsArticleComponent } from '../contractor-news-article/contr
 import { ContractorNewsCategoryComponent } from '../contractor-news-category/contractor-news-category.component';
 
 import { CountdownPipe } from '../countdown.pipe';
+import { SwiperModule } from 'angular2-useful-swiper';
+
 @NgModule({
   declarations: [
    FindContractHubComponent,
@@ -50,7 +52,8 @@ import { CountdownPipe } from '../countdown.pipe';
 ToolTipModule,
 TooltipModule,
 HttpModule,
-CommonModule
+CommonModule,
+SwiperModule
   ],
   exports: [
 FindContractHubComponent,
@@ -69,7 +72,8 @@ ContractorServicesComponent,
   ContractorDirectoryComponent,
   CountdownPipe,
   ContractorNewsArticleComponent,
-  ContractorNewsCategoryComponent
+  ContractorNewsCategoryComponent,
+  SwiperModule
   ],
   providers: [],
   bootstrap: []

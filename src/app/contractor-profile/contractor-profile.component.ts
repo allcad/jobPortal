@@ -297,7 +297,7 @@ getProfileDta(){
 
   setProfileData(){
     this.userName = this.profileData.userName;
-   this.profileUrl= this.profileData.profileUrl;
+   this.profileUrl= this.profileData && this.profileData.contractorProfileUrl[0] ? this.profileData.contractorProfileUrl[0].attachment_url + '/'+  this.profileData.contractorProfileUrl[0].attachment_name : "";   
    this.emailAddress= this.profileData.emailAddress;
    this.securityClearance= this.profileData.securityClearance;
    this.euDrivingLicence= this.profileData.euDrivingLicence.toString();
