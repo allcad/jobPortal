@@ -69,6 +69,18 @@ errorMsg = "";
 //i = 0;
 companySizeArray;
 countryValueArray;
+companyNameFlag = false;
+companySizeFlag = false;
+addressNameFlag = false;
+addressLine1Flag = false;
+addressLine2Flag = false;
+cityFlag = false;
+countryFlag = false;
+postCodeFlag = false;
+telephoneFlag = false;
+companyDescFlag = false;
+companyUrlFlag = false;
+companyEmailFlag = false;
 addMulAddArray = [{'addresslLine1': 'line1', 'addressLine1Name': 'address1', 'addressLine2': 'line2', 'addressLine2Name': 'address2', 'city': 'city', 'cityName': 'cityN', 'country': 'cou', 'countryName': 'country1', 'postCode': '12', 'postName': 'postN', 'telephone': '134', 'telephone1': 'teleP'}]
 addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio': ''}];
   constructor(public _commonRequestService: CommonRequestService) {
@@ -80,6 +92,102 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
     this.companySizeList();
     this.countryList();
     this.getProfileDta()
+  }
+
+  emailAddressBlur() {
+    if(this.emailAddress) {
+      this.companyEmailFlag = false;
+    } else {
+      this.companyEmailFlag = true;
+    }
+  }
+
+  webAddressBlur() {
+    if(this.webAddress) {
+      this.companyUrlFlag = false;
+    } else {
+      this.companyUrlFlag = true;
+    }
+  }
+
+  companyDescBlur() {
+    if(this.companyDescription) {
+      this.companyDescFlag = false;
+    } else {
+      this.companyDescFlag = true;
+    }
+  }
+
+  telephoneBlur() {
+    if(this.telephone) {
+      this.telephoneFlag = false;
+    } else {
+      this.telephoneFlag = true;
+    }
+  }
+
+  addressLine2Blur() {
+    if(this.addressLine2) {
+      this.addressLine2Flag = false;
+    } else {
+      this.addressLine2Flag = true;
+    }
+  }
+
+  postCodeBlur() {
+    if(this.postCode) {
+      this.postCodeFlag = false;
+    } else {
+      this.postCodeFlag = true;
+    }
+  }
+
+  countryBlur() {
+    if(this.country) {
+      this.countryFlag = false;
+    } else {
+      this.countryFlag = true;
+    }
+  }
+
+  cityBlur() {
+    if(this.city) {
+      this.cityFlag = false;
+    } else {
+      this.cityFlag = true;
+    }
+  }
+
+  addressLine1Blur() {
+    if(this.addressLine1) {
+      this.addressLine1Flag = false;
+    } else {
+      this.addressLine1Flag = true;
+    }
+  }
+
+  companyNameBlur() {
+    if(this.companyName) {
+      this.companyNameFlag = false;
+    } else {
+      this.companyNameFlag = true;
+    }
+  }
+
+  companySizeBlur() {
+    if(this.companySize) {
+      this.companySizeFlag = false;
+    } else {
+      this.companySizeFlag = true;
+    }
+  }
+
+  addressNameBlur() {
+    if(this.addressName) {
+      this.addressNameFlag = false;
+    } else {
+      this.addressNameFlag = true;
+    }
   }
 
   companySizeList() {

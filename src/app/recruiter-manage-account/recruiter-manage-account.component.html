@@ -39,7 +39,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/recruiter-contractor-name.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="NAME" [(ngModel)]="name" name="name" [tooltip]="nameTooltip" required>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="NAME" [(ngModel)]="name" name="name" [tooltip]="nameTooltip" required (blur)="nameBlur()">
                       <tooltip-content #nameTooltip>
                         <span *ngIf="saveRecruiterAccount?.form && saveRecruiterAccount.form.controls && saveRecruiterAccount.form.controls.name?.valid" style="color: #C21F39">Name</span>
                         <span [hidden]="!saveRecruiterAccount.form.controls.name?.hasError('required')" style="color: #C21F39">Name is required.</span>
@@ -47,13 +47,14 @@
                         <!-- <span [hidden]="!saveRecruiterAccount.form.controls.name?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
                       </tooltip-content>
                     </div>
+                    <span style="color:red" *ngIf="nameFlag">Name is required.</span>
                   </div>
                 </div>
                 <div class="col-sm-50">
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/recruiter-job-title.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="JOB TITLE" [(ngModel)]="jobTitle" name="jobTitle" [tooltip]="jobTitleTooltip" required>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="JOB TITLE" [(ngModel)]="jobTitle" name="jobTitle" [tooltip]="jobTitleTooltip" required (blur)="jobTitleBlur()">
                       <tooltip-content #jobTitleTooltip>
                         <span *ngIf="saveRecruiterAccount?.form && saveRecruiterAccount.form.controls && saveRecruiterAccount.form.controls.jobTitle?.valid " style="color: #C21F39">JOB TITLE</span>
                         <span [hidden]="!saveRecruiterAccount.form.controls.jobTitle?.hasError('required')" style="color: #C21F39">JOB TITLE is required.</span>
@@ -61,6 +62,7 @@
                         <!-- <span [hidden]="!saveRecruiterAccount.form.controls.jobTitle?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
                       </tooltip-content>
                     </div>
+                    <span style="color:red" *ngIf="jobTitleFlag">JOB TITLE is required.</span>
                   </div>
                 </div>
               </div>
@@ -72,7 +74,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/telephone-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="TELEPHONE" [(ngModel)]="telePhone" name="telePhone" [tooltip]="telePhoneTooltip" required>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="TELEPHONE" [(ngModel)]="telePhone" name="telePhone" [tooltip]="telePhoneTooltip" required (blur)="telephoneBlur()">
                       <tooltip-content #telePhoneTooltip>
                         <span *ngIf="saveRecruiterAccount?.form && saveRecruiterAccount.form.controls && saveRecruiterAccount.form.controls.telePhone?.valid" style="color: #C21F39">TELEPHONE</span>
                         <span [hidden]="!saveRecruiterAccount.form.controls.telePhone?.hasError('required')" style="color: #C21F39">TELEPHONE is required.</span>
@@ -80,6 +82,7 @@
                         <!-- <span [hidden]="!saveRecruiterAccount.form.controls.telePhone?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
                       </tooltip-content>
                     </div>
+                    <span style="color:red" *ngIf="telephoneFlag">TELEPHONE is required.</span>
                   </div>
                 </div>
               </div>

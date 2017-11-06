@@ -12,9 +12,36 @@ export class RecruiterManagePasswordComponent implements OnInit {
   oldPassword;
   newPassword;
   confirmPassword;
+  oldPasswordFlag = false;
+  newPasswordFlag = false;
+  confirmPasswordFlag = false;
   constructor(public _commonRequestService: CommonRequestService, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  oldPasswordBlur() {
+    if(this.oldPassword) {
+      this.oldPasswordFlag = false;
+    } else {
+      this.oldPasswordFlag = true;
+    }
+  }
+
+  newPasswordBlur() {
+    if(this.newPassword) {
+      this.newPasswordFlag = false;
+    } else {
+      this.newPasswordFlag = true;
+    }
+  }
+
+  confirmPasswordBlur() {
+    if(this.confirmPassword) {
+      this.confirmPasswordFlag = false;
+    } else {
+      this.confirmPasswordFlag = true;
+    }
   }
 
   savePassword(form: NgForm) {

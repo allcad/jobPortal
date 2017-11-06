@@ -11,11 +11,38 @@ export class RecruiterManageAccountComponent implements OnInit {
   name: string;
   jobTitle: string;
   telePhone: number;
+  nameFlag = false;
+  jobTitleFlag = false;
+  telephoneFlag = false;
 
   constructor(public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
     this.recruiterAccountDetails();
+  }
+
+  nameBlur() {
+    if(this.name) {
+      this.nameFlag = false;
+    } else {
+      this.nameFlag = true;
+    }
+  }
+
+  jobTitleBlur() {
+    if(this.jobTitle) {
+      this.jobTitleFlag = false;
+    } else {
+      this.jobTitleFlag = true;
+    }
+  }
+
+  telephoneBlur() {
+    if(this.telePhone) {
+      this.telephoneFlag = false;
+    } else {
+      this.telephoneFlag = true;
+    }
   }
 
   recruiterAccountDetails() {

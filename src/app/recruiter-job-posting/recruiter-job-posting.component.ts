@@ -32,6 +32,11 @@ jobPostingJobId = '';
 editJobId = '';
 industryDataArray;
 postJobSuccessMsg = '';
+jobPostingTiteFlag = false;
+jobPostingDurationFlag = false;
+startDateFlag = false;
+industrySectorFlag = false;
+workEliFlag = false;
   constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -61,6 +66,46 @@ postJobSuccessMsg = '';
        this.saveTemplateAs = editJoblocalStorageData.jobPreviewData.saveTempleteAs;
        this.jobReference = editJoblocalStorageData.jobPreviewData.jobReference;
        this.editJobId = editJoblocalStorageData.jobPreviewData.jobId;
+    }
+  }
+
+  jobPostingTitleBlur() {
+    if(this.jobPostingJobTitle) {
+      this.jobPostingTiteFlag = false;
+    } else {
+      this.jobPostingTiteFlag = true;
+    }
+  }
+
+  jobPostingDurationBlur() {
+    if(this.jobPostingDuration) {
+      this.jobPostingDurationFlag = false;
+    } else {
+      this.jobPostingDurationFlag = true;
+    }
+  }
+
+  startDateBlur() {
+    if(this.startDate) {
+      this.startDateFlag = false;
+    } else {
+      this.startDateFlag = true;
+    }
+  }
+
+  industrySectorBlur() {
+    if(this.industrySector) {
+      this.industrySectorFlag = false;
+    } else {
+      this.industrySectorFlag = true;
+    }
+  }
+
+  workEliBlur() {
+    if(this.workEligibility) {
+      this.workEliFlag = false;
+    } else {
+      this.workEliFlag = true;
     }
   }
 

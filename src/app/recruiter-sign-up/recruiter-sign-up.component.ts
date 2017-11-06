@@ -12,10 +12,73 @@ export class RecruiterSignUpComponent implements OnInit {
   companyName = "";
   contactName="";
   valid;listSignUpData;ErrorMesageFlag=false;
+  companyNameFlag = false;
+  contactNameFlag = false;
+  jobTitleFlag = false;
+  phoneNoFlag = false;
+  emailFlag = false;
+  passwordFlag = false;
+  keySkillFlag = false;
   inputData; JobTitle; phoneNo; emailAddress; passwordValue; keySkill; termOfUse = false; inputUrl; status; succesMessageFlag = false;
   constructor(public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
+  }
+
+  companyNameBlur() {
+    if(this.companyName) {
+      this.companyNameFlag = false;
+    } else {
+      this.companyNameFlag = true;
+    }
+  }
+
+  contactNameBlur() {
+    if(this.contactName) {
+      this.contactNameFlag = false;
+    } else {
+      this.contactNameFlag = true;
+    }
+  }
+
+  jobTitleBlur() {
+    if(this.JobTitle) {
+      this.jobTitleFlag = false;
+    } else {
+      this.jobTitleFlag = true;
+    }
+  }
+
+  phoneNoBlur() {
+    if(this.phoneNo) {
+      this.phoneNoFlag = false;
+    } else {
+      this.phoneNoFlag = true;
+    }
+  }
+
+  emailBlur() {
+    if(this.emailAddress) {
+      this.emailFlag = false;
+    } else {
+      this.emailFlag = true;
+    }
+  }
+
+  passwordBlur() {
+    if(this.passwordValue) {
+      this.passwordFlag = false;
+    } else {
+      this.passwordFlag = true;
+    }
+  }
+
+  keySillBlur() {
+    if(this.keySkill) {
+      this.keySkillFlag = false;
+    } else {
+      this.keySkillFlag = true;
+    }
   }
 
    onSignUp(userForm:NgForm){
@@ -29,7 +92,7 @@ export class RecruiterSignUpComponent implements OnInit {
               "keySkill":["1","2"],
               "recuriter_tems_status":this.termOfUse
       }
-      console.log( this.inputData,"fdf")
+      console.log( this.inputData,"fdf");
    this.inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/signup";
        this._commonRequestService.postData(this.inputUrl, this.inputData).subscribe(
         data => {

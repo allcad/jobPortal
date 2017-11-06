@@ -16,11 +16,13 @@ export class RecruiterManageUserComponent implements OnInit {
   telephoneV;
   manageUserMsg;
   showMessage = false;
+  subUserArray;
   constructor(public _commonRequestService: CommonRequestService) {
   	//this.addMulUserArray.splice(0,1);
    }
 
   ngOnInit() {
+    this.makeSubUser();
   }
 
   addAnotherUser() {
@@ -50,11 +52,27 @@ export class RecruiterManageUserComponent implements OnInit {
     );
   }
 
-  makeSuperUser() {
+  makeSubUser() {
+    var saveJson = {
+      "email":"test@test7.com",
+      "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu"
+    }
+
+    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/list/sub_user";
+       this._commonRequestService.postData(wsUrl,saveJson).subscribe(
+        data => {
+         console.log("manage sub user--", data);
+         this.subUserArray = data.data;
+         window.scroll(0,0);
+        }
+    );
+  }
+
+  makeSuperUser(id) {
     var saveJson = {
       "email":"test@test7.com",
       "loginToken":"$2y$10$qIXhfBp1FO4l8bfXilrWo.mgeDm2YiznM49TGdC00qeTP8.psEeFC",
-      "recuriter_id":8
+      "recuriter_id":id
     }
     var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/make/super/user";
        this._commonRequestService.postData(wsUrl,saveJson).subscribe(
@@ -65,11 +83,11 @@ export class RecruiterManageUserComponent implements OnInit {
     );
   }
 
-  deleteUser() {
+  deleteUser(id) {
     var saveJson = {
       "email":"test@test7.com",
       "loginToken":"$2y$10$qIXhfBp1FO4l8bfXilrWo.mgeDm2YiznM49TGdC00qeTP8.psEeFC",
-      "recuriter_id":8
+      "recuriter_id":id
     }
     var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/super/user/delete";
        this._commonRequestService.postData(wsUrl,saveJson).subscribe(
