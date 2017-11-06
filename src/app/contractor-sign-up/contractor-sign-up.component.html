@@ -119,10 +119,23 @@
                         </div> -->
                     </div>
                   </div>
+                  <div style="margin-top: -35px;text-align: right;font-family: arial;">
+                            <a style="font-family: FacilePro; font-size:11px;color:#FF0066;">.DOC</a>
+                            <a style="font-family: FacilePro; font-size:11px;color:#999999;">, </a>
+                            <a style="font-family: FacilePro; font-size:11px;color:#FF0066;">.DOCX</a>
+                            <a style="font-family: FacilePro; font-size:11px;color:#999999;">, </a>
+                            <a style="font-family: FacilePro; font-size:11px;color:#FF0066;">.PDF</a>
+                            <a style="font-family: FacilePro; font-size:11px;color:#999999;">, </a>
+                            <a style="font-family: FacilePro; font-size:11px;color:#FF0066;">.RTF</a>
+                            <a style="font-family: FacilePro; font-size:11px;color:#999999;"> or</a>
+                            <a style="font-family: FacilePro; font-size:11px;color:#FF0066;"> .ODT</a>
+                            <a style="font-family: FacilePro; font-size:11px;color:#999999;"> only</a>
+                        </div>
+
                 </div>
               </div>
               <div class="row">
-                <div class="col-sm-100">
+                <div class="col-sm-50">
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
@@ -130,6 +143,18 @@
                       <tooltip-content #contractor_job_titleTooltip>
                         <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_job_title?.valid " style="color: #C21F39"> Job Title </span>
                         <span [hidden]="!userForm.form.controls.contractor_job_title?.hasError('required')" style="color: #C21F39"> Job Title is required! </span>
+                      </tooltip-content>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Postal Code" name="contractor_job_title" [(ngModel)]="contractor_job_title" required [tooltip]="contractor_job_titleTooltip">
+                      <tooltip-content #contractor_job_titleTooltip>
+                        <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_job_title?.valid " style="color: #C21F39"> Postal Code </span>
+                        <span [hidden]="!userForm.form.controls.contractor_job_title?.hasError('required')" style="color: #C21F39"> Postal Code is required! </span>
                       </tooltip-content>
                     </div>
                   </div>
@@ -151,11 +176,11 @@
                           <option *ngFor="let skill of skillData" [value]="skill.skill_id">{{skill.skill_name}}</option>
                         </select>
                       </div>
-                      <div class="add_sub_skills">
+                      <!-- <div class="add_sub_skills">
                         <a href="javascript:void(0)" *ngFor="let selectedSkill of selectedSkillArray; let i = index">
                       {{selectedSkill.skill_name}}
                    <img src="./assets/images/close-icon.png" alt="Close" title="Close" (click)="removeSelectedSkill(i)"></a>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -191,15 +216,17 @@
                 </div>
               </div>
               <div class="rg_row" id="ext" style="display: block;" *ngIf="contractor_employment_situation == 'in contract'">
-                <div class="showdate rest_data_show show_ui_picker" style="float: right;">{{dateSelected | date: 'short'}}</div>
-                <div class="text-00 clear imtn">Contract End Date :</div> <input type="date" [(ngModel)]="dateSelected" name="contract_end_date" id="datepicker" size="16" value="21/11/2017" class="hasDatepicker" style="">
-                <div class="text-00 text-438" style="padding-left:48px;float: right;">MAKE MY DETAILS LIVE FROM?</div>
+                <div class="showdate rest_data_show show_ui_picker" style="float: right; display: none;">{{dateSelected | date: 'short'}}</div>
+                <div class="text-00 clear imtn">Contract End Date :</div> 
+                  <input type="date" [(ngModel)]="dateSelected" name="contract_end_date" id="datepicker" size="16" value="21/11/2017" class="hasDatepicker" style="float: left;">
+                <div class="text-00 text-438" style="padding-left:0;float: left;">MAKE MY DETAILS LIVE FROM?</div>
                 <div>
-                  <select class="optn text-ipn-opntn" name="details_live" style="float:right;">
+                  <select class="optn text-ipn-opntn" name="details_live" style="float:right; margin-top: -20px;">
                     <option value="Immediate" *ngFor="let item of noticePeriodList">{{item.name}}</option>
                   </select>
                 </div>
                 <br>
+                <div style="margin-top: 32px"></div>
                 <div class="text-00 clear imtn" style="margin-top:10px;float: left;"> NOTICE PERIOD?</div>
                 <div style="    float: left;
     margin-left: 30px;
@@ -208,15 +235,18 @@
                      <option value="Immediate" *ngFor="let item of noticePeriodList">{{item.name}}</option>
                   </select>
                 </div>
-                <div id="happynotice" class="text-00" style="padding-right:0px; margin-right:0px;float: right;margin-top: 10px;"> HAPPY TO USE YOUR NOTICE PERIOD?</div>
-                <div class="slct r_s1" style=" width:50px; float:right;clear: both;">
-                 <label for="happynoticeyes" class="current_rate_signup"> YES <span></span> </label>
-                  <input class="happynotice" type="radio" id="happynoticeyes" name="happy_notice" value="Yes">
-                </div>                
-                <div class="slct r_s1 active2" style=" width:50px; float:right;">
-                  <label for="happynoticeno" class="current_rate_signup"> <span></span> NO</label>
-                  <input class="happynotice" type="radio" id="happynoticeno" name="happy_notice" value="No" checked="checked">
+                <div id="happynotice" class="text-00" style="padding-right:0px; margin-left:19px;float: left;margin-top: 10px; height: 25px;"> HAPPY TO USE YOUR NOTICE PERIOD?</div>
+                <div class="current_rate_signup checkbox-inline" style=" width:70px; margin-top: 10px; float:right;">
+                  <input checked="checked" id="permanent" name="optradio" type="radio" value="permanent">
+                  <label class="radio-inline" for="permanent"><span></span> Yes </label>
                 </div>
+                <br>
+                <div class="current_rate_signup checkbox-inline" style=" width:70px; float:right;">
+                  <input checked="checked" id="permanent" name="optradio" type="radio" value="permanent">
+                  <label class="radio-inline" for="permanent"><span></span> No </label>
+                </div>
+
+               
               </div>
               <div class="current_rate_signup situation35">
                 <h2>CONTRACTOR SERVICES <span>Do you want to set up any of the following contractor services?</span></h2>

@@ -15,4 +15,8 @@ export class TopMenuComponent implements OnInit {
   ngOnInit() {
   }
 
+  removeClass() {
+    document.querySelector(".navigation-dropdown")
+  }
+
 }
