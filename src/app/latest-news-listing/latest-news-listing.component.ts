@@ -31,7 +31,9 @@ export class LatestNewsListingComponent implements OnInit {
     );
   }
 
-  goToNews(){
+  goToNews(news){
+    this._commonRequestService.setDataWithoutObserval(news._id, "newsId");
+    localStorage.setItem("newsId", news._id);
     this._router.navigate(['../news'], {relativeTo: this._routes});
   }
   

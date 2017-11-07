@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ContractorAdviceCategoryComponent implements OnInit {
 	adviceCategoryData = [];
 	articleList = [];
+  latestAdviceArticleList = [];
 	selectedAdviceCategory;
   config : SwiperOptions = {
             pagination: '.swiper-pagination',
@@ -26,6 +27,7 @@ export class ContractorAdviceCategoryComponent implements OnInit {
        this.getPostByCategory();
      }
   	this.getadviceCategory();
+    this.getLatestAdviceArticle();
   }
 
    getadviceCategory(){
@@ -65,6 +67,20 @@ export class ContractorAdviceCategoryComponent implements OnInit {
           
         }
     );
+  }
+
+  getLatestAdviceArticle(){
+    let input = {
+      page: 1,
+      limit : -1
+    }
+  var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/post/page/advice/article/all";
+      this._commonRequestService.postData(url, input).subscribe(
+        data => {
+          this.latestAdviceArticleList = data.data;
+          console.log(this.latestAdviceArticleList);
+        }
+    );    
   }
 
 

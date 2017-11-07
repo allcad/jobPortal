@@ -8,10 +8,10 @@
                         </div>
                         <div class="col-md-56 col-sm-50 col-md-offset-1">
                             <div class="job_full_details advice_article_headding">
-                                <h2>IT Jobs Going abroad a concern for it contractors </h2>
-                                <p class="date_content"><span>1ST OCTOBER 2016</span> | <span>CONTRACTRECRUIT</span></p>
-                                <p> The offshoring of any jobs here in the UK should ignite concerns among all workers, those employed directly and contractors alike. However, the latest news from Lloyds Bank could well raise hackles among those involved in IT with the announcement that they will despatching around 90 IT jobs to India.</p>
-                                <p>Those 90 IT jobs were among 625 Lloyds plans to eliminate. Last week, the bank announced that a strategic review back in 2014 said that some 9,000 jobs would disappear from the UK operation.</p>
+                                <h2>{{articleData?.article_title}} </h2>
+                                <p class="date_content"><span>{{articleData?.article_create_at | date: 'dd/MM/yyyy'}}</span> | <span>{{articleData?.article_author_name}}</span></p>
+                                <p [innerHTML]="articleData?.article_body"> </p>
+                                <!-- <p>Those 90 IT jobs were among 625 Lloyds plans to eliminate. Last week, the bank announced that a strategic review back in 2014 said that some 9,000 jobs would disappear from the UK operation.</p>
                                 <p>The latest announcement by Lloyds Bank has been slammed by the trade union Unite. Speaking on behalf of the union, John Morgan-Evans said, “It is alarming that Lloyds is continuing to offshore IT roles in the name of driving down cost.”</p>
                                 <p> “This simply means that the bank wants to pay an IT worker in India less for the same work carried out in the UK,” the Unite official added.
                                 </p>
@@ -19,16 +19,16 @@
 in India less for the same work carried out in the UK</h4>
                                 <p>Note the reference to an “IT worker in India.” Whether or not British IT contractors have any solidarity or not with their fellow Indian IT workers, there is no doubt that jobs being sent offshore could very well affect them.</p>
                                 <p>How the job cuts announced by Lloyds Bank will affect those who take on IT jobs on a contract basis is unclear. However, the financial sector – which includes banking – has provided rich pickings for British IT contractors of late. This has been because of the sector’s inability to recruit suitable IT staff because of the gap between skills and employers’ requirements. However, if these jobs disappear too far offshore, there will then be fewer opportunities for our own IT contractors in this country.</p>
-                                <p>The news of Lloyds Bank sending off jobs abroad comes during uncertain times. The uncertainty caused by the forthcoming EU Referendum, is reportedly making companies think twice about hiring, a factor which affects IT contractors. </p>
+                                <p>The news of Lloyds Bank sending off jobs abroad comes during uncertain times. The uncertainty caused by the forthcoming EU Referendum, is reportedly making companies think twice about hiring, a factor which affects IT contractors. </p> -->
                                 <div class="contant_footer">
                                     <div class="row">
                                         <div class="col-sm-32 col-xs-100">
                                             <div class="full_job_social_icon">
-                                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                                <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
                                             </div>
                                         </div>
                                         <div class="col-sm-68 col-xs-100">
-                                            <div class="sign_up_right_side return_articles"> <a href="#" class="btn-primary font_capitaliz hover_white_pluse">RETURN TO ALL ARTICLES <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
+                                            <div class="sign_up_right_side return_articles" (click)="returnToAll()"> <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse">RETURN TO ALL ARTICLES <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
                                         </div>
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@ in India less for the same work carried out in the UK</h4>
                             <div class="share_the_job share_the_article">
                                 <img src="./assets/images/advice-article.png" alt="ads" title="ads" class="img-responsive">
                                 <label>Share this article</label>
-                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
                             </div>
                             <div class="return_search_results">
                                 <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
@@ -60,7 +60,7 @@ in India less for the same work carried out in the UK</h4>
                                 </div>
                             </div>
                             <div class="col-md-16 col-sm-23">
-                                <a href="#" type="submit" class="btn btn-default font_capitaliz hover_white_pluse">SIGN UP NOW <i class="fa fa-plus font_color_white" aria-hidden="true"></i></a>
+                                <a href="javascript:void(0)" type="submit" class="btn btn-default font_capitaliz hover_white_pluse">SIGN UP NOW <i class="fa fa-plus font_color_white" aria-hidden="true"></i></a>
                             </div>
                         </div>
                     </form>
@@ -72,36 +72,36 @@ in India less for the same work carried out in the UK</h4>
                     <div class="row">
                         <div class=" col-md-33 col-sm-33">
                             <div class="letest_news_box">
-                                <div class="book_mark"><a href="#"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+                                <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
                                 <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
                                 <h5>IT Jobs going abroad a concern for Contractors</h5>
                                 <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
-                                <div class="letest_news_footer"> <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="#" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
+                                <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
                             </div>
                         </div>
                         <div class="col-md-34 col-sm-34">
                             <div class="letest_news_box">
-                                <div class="book_mark"><a href="#"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+                                <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
                                 <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
                                 <h5>IT Jobs going abroad a concern for Contractors</h5>
                                 <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
-                                <div class="letest_news_footer"> <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="#" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
+                                <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
                             </div>
                         </div>
                         <div class="col-md-33 col-sm-33">
                             <div class="letest_news_box">
-                                <div class="book_mark"><a href="#"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+                                <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
                                 <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
                                 <h5>IT Jobs going abroad a concern for Contractors</h5>
                                 <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
-                                <div class="letest_news_footer"> <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="#" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
+                                <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-100">
-                        <div class="show_more_application"> <a href="#" class="btn-primary hover_white_pluse"><span>SEE MORE ARTICLES</span> <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
+                        <div class="show_more_application"> <a href="javascript:void(0)" class="btn-primary hover_white_pluse"><span>SEE MORE ARTICLES</span> <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
                     </div>
                 </div>
             </div>
@@ -130,7 +130,7 @@ in India less for the same work carried out in the UK</h4>
                         <div class="col-sm-100">
                             <div class="banner_find_out_more">
                                 <p>Take Home upto <span>85% of your pay</span> on time every time with ContractRecruit Payroll Solutions</p>
-                                <a href="#" class="pull-right">FIND OUT MORE <i class="fa fa-plus" aria-hidden="true"></i></a> </div>
+                                <a href="javascript:void(0)" class="pull-right">FIND OUT MORE <i class="fa fa-plus" aria-hidden="true"></i></a> </div>
                         </div>
                     </div>
                 </div>

@@ -18,7 +18,7 @@ export class ContractorAdviceListingComponent implements OnInit {
   getLatestArticle(){
   	let input = {
   		page: 1,
-  		limit : -1
+  		limit : 3
   	}
 	var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/post/page/advice/article/all";
       this._commonRequestService.postData(url, input).subscribe(
