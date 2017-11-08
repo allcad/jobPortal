@@ -83,6 +83,7 @@ companyUrlFlag = false;
 companyEmailFlag = false;
 addMulAddArray = [{'addresslLine1': 'line1', 'addressLine1Name': 'address1', 'addressLine2': 'line2', 'addressLine2Name': 'address2', 'city': 'city', 'cityName': 'cityN', 'country': 'cou', 'countryName': 'country1', 'postCode': '12', 'postName': 'postN', 'telephone': '134', 'telephone1': 'teleP'}]
 addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio': ''}];
+fd;
   constructor(public _commonRequestService: CommonRequestService) {
     this.addMulAddArray.splice(0,1);
     this.addMulSocialArray.splice(0,1);
@@ -395,52 +396,93 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
   saveRecruiterProfile(form : NgForm) {
     var otherSocial = {}, otherAdd = {};
   //  alert(4)
-  	 var inputprofileData = {
-    "email":this.emailAddress,
-    "loginToken":"$2y$10$AUQhfigHBiNAzCG9aSYZe.WEbqDIBNVxl6aBoSHJs8.oEuPFWMkHm",
-		'companyDetails': {
-			'companyName': this.companyName,
-			'companySize': this.companySize,
-			'companyAddress': this.addressName,
-			'addressLine1': this.addressLine1,
-			'addressLine2': this.addressLine2,
-			'city': this.city,
-			'country': this.country.toString(),
-			'postCode': this.postCode,
-			'telephone': this.telephone,
-			'sameAsPermanentAddress': this.sameAsPerAddFlag.toString(),
-			'postalAddressLine1': this.postalAddressLine1,
-			'postalAddressLine2': this.postalAddressLine2,
-			'postalCity': this.postalCity,
-			'postalCountry': this.postalCountry.toString(),
-			'postalPostCode': this.postalPostCode,
-			'postalTelephoneNo': this.postalTelephone,
-			'companyUrl': this.imageFile ? this.imageFile : './assets/images/big-tour.png'
-      //'otherAddress': []
-		},
-		'companyDescription': this.companyDescription,
-		'companySocial': {
-			'webAddress': this.webAddress,
-			'emailAddress': this.emailAddress,
-			'rssData' : {
-				'rssUrl': this.rssUrl,
-				'fullUrlRssFeed': this.fullUrlRssFeed,
-				'rssDisplayFeed': this.rssDisplayFeed
-			},
-			'twitterData' : {
-				'twitterUrl': this.socialLinkName,
-				'fullUrlTwitterFeed': this.fullUrlTwitterFeed,
-				'twitterDisplayFeed': this.twitterDisplayFeed
-			},
-			'linkedinData' : {
-				'linkedinUrl': this.linkedinUrl,
-				'fullUrlLinkedinFeed': this.fullUrlLinkedinFeed,
-				'linkedinDisplayFeed': this.linkedinDisplayFeed
-			},
-			'otherSocialData' : []
-		},
-    'otherAddress': []
-	};
+  this.fd = new FormData();
+  
+  let companyDetail = {
+      'companyName': this.companyName,
+      'companySize': this.companySize,
+      'companyAddress': this.addressName,
+      'addressLine1': this.addressLine1,
+      'addressLine2': this.addressLine2,
+      'city': this.city,
+      'country': this.country.toString(),
+      'postCode': this.postCode,
+      'telephone': this.telephone,
+      'sameAsPermanentAddress': this.sameAsPerAddFlag.toString(),
+      'postalAddressLine1': this.postalAddressLine1,
+      'postalAddressLine2': this.postalAddressLine2,
+      'postalCity': this.postalCity,
+      'postalCountry': this.postalCountry.toString(),
+      'postalPostCode': this.postalPostCode,
+      'postalTelephoneNo': this.postalTelephone,
+      'companyUrl': this.imageFile ? this.imageFile : './assets/images/big-tour.png'
+    };
+ //  	 var inputprofileData = {
+ //    "email":this.emailAddress,
+ //    "loginToken":"$2y$10$AUQhfigHBiNAzCG9aSYZe.WEbqDIBNVxl6aBoSHJs8.oEuPFWMkHm",
+	// 	'companyDetails': {
+	// 		'companyName': this.companyName,
+	// 		'companySize': this.companySize,
+	// 		'companyAddress': this.addressName,
+	// 		'addressLine1': this.addressLine1,
+	// 		'addressLine2': this.addressLine2,
+	// 		'city': this.city,
+	// 		'country': this.country.toString(),
+	// 		'postCode': this.postCode,
+	// 		'telephone': this.telephone,
+	// 		'sameAsPermanentAddress': this.sameAsPerAddFlag.toString(),
+	// 		'postalAddressLine1': this.postalAddressLine1,
+	// 		'postalAddressLine2': this.postalAddressLine2,
+	// 		'postalCity': this.postalCity,
+	// 		'postalCountry': this.postalCountry.toString(),
+	// 		'postalPostCode': this.postalPostCode,
+	// 		'postalTelephoneNo': this.postalTelephone,
+	// 		'companyUrl': this.imageFile ? this.imageFile : './assets/images/big-tour.png'
+	// 	},
+	// 	'companyDescription': this.companyDescription,
+	// 	'companySocial': {
+	// 		'webAddress': this.webAddress,
+	// 		'emailAddress': this.emailAddress,
+	// 		'rssData' : {
+	// 			'rssUrl': this.rssUrl,
+	// 			'fullUrlRssFeed': this.fullUrlRssFeed,
+	// 			'rssDisplayFeed': this.rssDisplayFeed
+	// 		},
+	// 		'twitterData' : {
+	// 			'twitterUrl': this.socialLinkName,
+	// 			'fullUrlTwitterFeed': this.fullUrlTwitterFeed,
+	// 			'twitterDisplayFeed': this.twitterDisplayFeed
+	// 		},
+	// 		'linkedinData' : {
+	// 			'linkedinUrl': this.linkedinUrl,
+	// 			'fullUrlLinkedinFeed': this.fullUrlLinkedinFeed,
+	// 			'linkedinDisplayFeed': this.linkedinDisplayFeed
+	// 		},
+	// 		'otherSocialData' : []
+	// 	},
+ //    'otherAddress': []
+	// };
+  let companySocial = {
+      'webAddress': this.webAddress,
+      'emailAddress': this.emailAddress,
+      'rssData' : {
+        'rssUrl': this.rssUrl,
+        'fullUrlRssFeed': this.fullUrlRssFeed,
+        'rssDisplayFeed': this.rssDisplayFeed
+      },
+      'twitterData' : {
+        'twitterUrl': this.socialLinkName,
+        'fullUrlTwitterFeed': this.fullUrlTwitterFeed,
+        'twitterDisplayFeed': this.twitterDisplayFeed
+      },
+      'linkedinData' : {
+        'linkedinUrl': this.linkedinUrl,
+        'fullUrlLinkedinFeed': this.fullUrlLinkedinFeed,
+        'linkedinDisplayFeed': this.linkedinDisplayFeed
+      },
+      'otherSocialData' : []
+    };
+    let otherAddressDataObj = {'otherAddress': []};
   console.log("this.addMulAddArray before", this.addMulSocialArray);
   if(this.addMulSocialArray && this.addMulSocialArray.length > 0) {
     for(var i = 0; i<this.addMulSocialArray.length; i++) {
@@ -450,7 +492,7 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
           'fullUrl': this.addMulSocialArray[i].otherSocialFeed,
           'displayFeed': this.addMulSocialArray[i].otherRadio
         }
-        inputprofileData.companySocial.otherSocialData.push(otherSocial);
+        companySocial.otherSocialData.push(otherSocial);
       }
     }
   }
@@ -466,15 +508,26 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
           'postCode': this.addMulAddArray[i].postCode,
           'telephone': this.addMulAddArray[i].telephone
         }
-        inputprofileData.otherAddress.push(otherAdd);
+        otherAddressDataObj.otherAddress.push(otherAdd);
       } 
     }
   } else {
-    inputprofileData.otherAddress.push(this.otherAddress);
+    otherAddressDataObj.otherAddress.push(this.otherAddress);
   }
-	console.log("recruiterProfileJson", inputprofileData);
+
+  this.fd.append('loginToken',(localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).token )? JSON.parse(localStorage.getItem('loginDetail')).token:  "nsakdlallas1232mk123b2k1390iq2ekq");
+  this.fd.append('email',(localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).email )? JSON.parse(localStorage.getItem('loginDetail')).email:  "test@gmail.com");
+  this.fd.append('companyDetails', companyDetail);
+  this.fd.append('companyDescription',this.companyDescription);
+  this.fd.append('companySocial', companySocial);
+  this.fd.append('otherAddress',otherAddressDataObj.otherAddress );
+	console.log("recruiterProfileJson", this.fd);
+  console.log("companyDetail--", companyDetail);
+  console.log("this.companyDescription--", this.companyDescription);
+  console.log("companySocial--", companySocial);
+  console.log("otherAddress--", otherAddressDataObj.otherAddress);
      this.inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/profile/submit";
-       this._commonRequestService.postData(this.inputUrl, inputprofileData).subscribe(
+       this._commonRequestService.postData(this.inputUrl, this.fd).subscribe(
         data => {
           this.responseData = data;
           window.scroll(0,0);
