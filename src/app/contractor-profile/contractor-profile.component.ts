@@ -1,7 +1,8 @@
-import { Component, OnInit,NgModule } from '@angular/core';
+import { Component, OnInit,NgModule, ViewChild, ElementRef } from '@angular/core';
 import {FormsModule, NgForm} from '@angular/forms';
 import { CommonRequestService } from '../common-request.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import {ImageCropperComponent, CropperSettings} from 'ng2-img-cropper';
 
 @Component({
   selector: 'app-contractor-profile',
@@ -53,13 +54,29 @@ contratorCVList = [{id:1, result: null}];
 coverLetterList = [{id:1, result: null}];
 industrySectorData = [];
 securityClearenceData = [];
+// cropperActive = true;
+// cropperSettings;
+// data;
+// @ViewChild('cropper') cropperEle;
+
  constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
+    // console.log("cropper", this.cropperEle);
+    // this.cropperActive = false;
     this.getKeySkillData();
     this.getIndustrySector();
     this.getSecurityClearenceData();
-    this.getProfileDta()
+    this.getProfileDta();
+    // this.cropperSettings = new CropperSettings();
+    // this.cropperSettings.width = 100;
+    // this.cropperSettings.height = 100;
+    // this.cropperSettings.croppedWidth = 100;
+    // this.cropperSettings.croppedHeight = 100;
+    // this.cropperSettings.canvasWidth = 400;
+    // this.cropperSettings.canvasHeight = 300;
+    // this.cropperSettings.noFileInput = true;
+    // this.data = {};
   }
 
 
@@ -73,8 +90,11 @@ securityClearenceData = [];
 
   contractorImageFileChangeEvent(fileInput: any) {
     var reader = new FileReader();
-    reader.onload = (event:any) => {
+    var that = this;
+    reader.onload = (loadEvent:any) => {
       this.profileUrl = reader.result;
+      // that.cropperActive = true;
+      // that.cropperEle.setImage(loadEvent.target.result);
     }
 
     this.imageFile = fileInput.target.files[0];

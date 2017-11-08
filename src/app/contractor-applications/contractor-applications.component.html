@@ -12,7 +12,9 @@
               <li class="right_arrow">&gt;</li>
               <li class="active">APPLICATIONS</li>
             </ul>
-            <div class="pull-right applied_jobs">You have applied to <span>22</span> job(s)</div>
+            <div *ngIf="appliedJobList?.length > 0" class="pull-right applied_jobs">You have applied to <span>{{appliedJobList?.length}}</span> job(s)</div>
+
+            <div *ngIf="appliedJobList?.length==0 " class="pull-right applied_jobs">You have applied to <span>0</span> job</div>
           </div>
           <div class="pull-right application_sort_by"> <a href="http://beta.appnwebtechnologies.com/contractor/contractor-applications.html#" class="dropdown-toggle btn-primary font_capitaliz hover_white_pluse" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <i class="fa fa-sort-desc  plus_blue" aria-hidden="true"></i>
               </a>

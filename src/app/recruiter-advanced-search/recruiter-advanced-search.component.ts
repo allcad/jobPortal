@@ -28,12 +28,50 @@ radialFlag = false;
 securityClearanceArray;
 industryArrayData;
 currentLocation;
+timeLeftData;
+sortByData;
 
   constructor(public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
     this.getSecurityClearance();
     this.getIndustry();
+    this.getTimeLeftData();
+    this.getSortByData();
+  }
+
+  getTimeLeftData() {
+     var input = {
+     "email":"test@test7.com",
+    "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu"
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/time_slot";
+       this._commonRequestService.getData(wsUrl).subscribe(
+        data => {
+          console.log("timeLeftData--", data);
+          this.timeLeftData = data.data;
+          //this.recruiterNameArray = data.data;
+        }
+    );
+  }
+
+  getSortByData() {
+     var input = {
+     "email":"test@test7.com",
+    "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu"
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/short_by";
+       this._commonRequestService.getData(wsUrl).subscribe(
+        data => {
+          console.log("sort by--", data);
+          this.sortByData = data.data;
+          //this.recruiterNameArray = data.data;
+        }
+    );
   }
 
   getSecurityClearance() {

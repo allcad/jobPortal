@@ -31,17 +31,19 @@
             <div class="col-md-30 col-sm-40">
               <div class="profile_left_part signup_form_section width_auto">
                 <div class="profile_image">
-                  <!-- <img src="./assets/images/profile-pik.png" alt="ads" title="ads" class="img-responsive">  -->
-                  <div style="margin-bottom: 30px;">
-                    <img class="img-responsive" [src]="profileUrl ? profileUrl : './assets/images/profile-pik.png'" alt="ads">
+                  <div >
+                    <div style="margin-bottom: 30px;">
+                      <img class="img-responsive" [src]="profileUrl ? profileUrl : './assets/images/profile-pik.png'" alt="ads">
+                    </div>
+                    <div class="fileUpload btn btn-primary">
+                      <span><img src="./assets/images/camera.png" alt="camera" title="camera"></span>
+                      <input type="file" class="upload" (change)="contractorImageFileChangeEvent($event)" />
+                    </div>
                   </div>
-                  <!--  <a href="javascript:void(0);"><img src="./assets/images/camera.png" alt="camera" title="camera"></a>
-                  <input type="file" class="upload" (change)="contractorFileChangeEvent($event)" /> -->
-                  <div class="fileUpload btn btn-primary">
-                    <span><img src="./assets/images/camera.png" alt="camera" title="camera"></span>
-                    <input type="file" class="upload" (change)="contractorImageFileChangeEvent($event)" />
-                  </div>
-                  <!-- <button (click)="uploadFile()">upload</button> -->
+                  <!-- <div>
+                    <img-cropper #cropper  [image]="data" [settings]="cropperSettings">
+                    </img-cropper>
+                  </div> -->
                 </div>
                 <div class="edit_icon"> <a href="javascript:void(0);"><img src="./assets/images/edit-icon.png" alt="Edit" title="Edit"></a> </div>
                 <div class="profile_form">
@@ -74,10 +76,9 @@
                       <select class="form-control minimal background_drop_down" [(ngModel)]="securityClearance" name="securityClearance" [tooltip]="securityClearanceTooltip" required>
                         <option value="">Security Clearance?</option>
                         <option *ngFor="let item of securityClearenceData" value="{{item.id}}">
-                            {{item.name}}
+                          {{item.name}}
                         </option>
-
-                       <!--  <option value="1">124536</option>
+                        <!--  <option value="1">124536</option>
                         <option value="5">5124536</option>
                         <option value="10">10124536</option>
                         <option value="20">20124536</option> -->
@@ -207,7 +208,7 @@
                 <!-- <img src="./assets/images/map.png" alt="map" title="map" class="img-responsive"> -->
                 <agm-map [latitude]="lat" [longitude]="lng">
                   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-                  <agm-polygon [paths]="polygonPath" [editable]="true" [draggable]="true" ></agm-polygon>
+                  <agm-polygon [paths]="polygonPath" [editable]="true" [draggable]="true"></agm-polygon>
                 </agm-map>
               </div>
               <div class="signup_form_section width_auto">
@@ -296,7 +297,6 @@
                         <div class="input-group-addon bordr_non"></div>
                       </div>
                       <ul class="form-control industry_min_heights padding_none contractor_profile">
-                       
                         <select name="industrySector" [(ngModel)]="industrySector" multiple="true">
                           <option *ngFor="let industry of industrySectorData" value="{{industry.id}}">{{industry.industry}}</option>
                         </select>
@@ -371,8 +371,7 @@
                     <div class="form-group magin_bottomo768">
                       <div class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/upload-cv.png" alt="Upload CV" title="Upload CV" class="img-responsive"></div>
-                        <input type="file" class="form-control input-group-addon find_cv_from" 
-                        (change)="contractorCoverLetterFileChangeEvent($event)"  />
+                        <input type="file" class="form-control input-group-addon find_cv_from" (change)="contractorCoverLetterFileChangeEvent($event)" />
                         <div class="input-group-addon find_cv_from"><a href="javascript:void(0)" class="dropdown-toggle padding_left_right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Browse From<img src="./assets/images/find-cv.png" alt="Browse From" title="Browse From"></a>
                           <!--                           <ul class="dropdown-menu">
                             <li><a href="javascript:void(0)"><img src="./assets/images/mail-box1.png" alt="OneDrive" title="OneDrive" class="img-responsive"></a> <a href="javascript:void(0)"><img src="./assets/images/mail-box3.png" alt="GoogleDrive" title="GoogleDrive" class="img-responsive"></a> </li>

@@ -19,11 +19,12 @@
                                 <div class="input-group responsive_width_100 display_inline_div">
                                     <div class="input-group-addon upto_border_none padding_right_38">Sort By</div>
                                     <select class="form-control minimal background_drop_down box_padding_3 box_height_30 padding_left_none">
-                                        <option value="">Added (Descending)</option>
-                                        <option value="1">124536</option>
+                                        <!-- <option value="">Sort By</option> -->
+                                        <option value="{{item?.short_text}}" *ngFor="let item of sortByData">{{item?.short_name}}</option>
+                                        <!-- <option value="1">124536</option>
                                         <option value="5">5124536</option>
                                         <option value="10">10124536</option>
-                                        <option value="20">20124536</option>
+                                        <option value="20">20124536</option> -->
                                     </select>
                                 </div>
                                 <a href="javascript:void(0);" [routerLink]="['../saved-search']" class="btn-primary hover_text_pink hover_white_pluse">Last Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> 
@@ -214,11 +215,11 @@
                                         <div class="input-group responsive_width_100 ">
                                             <div class="input-group-addon upto_border_none padding_right_38">Time left on current Contract</div>
                                             <select class="form-control minimal background_drop_down box_padding_3 box_height_30 padding_left_none" name="timeLeft" [(ngModel)]="timeLeft">
-                                                <option value="">All</option>
-                                                <option value="1">124536</option>
-                                                <option value="5">5124536</option>
+                                                <option value="">Time left on current Contract</option>
+                                                <option value="{{item?.id}}" *ngFor="let item of timeLeftData">{{item?.name}}</option>
+                                                <!-- <option value="5">5124536</option>
                                                 <option value="10">10124536</option>
-                                                <option value="20">20124536</option>
+                                                <option value="20">20124536</option> -->
                                             </select>
                                         </div>
                                     </div>
@@ -239,11 +240,12 @@
                                         <div class="input-group responsive_width_100">
                                             <div class="input-group-addon upto_border_none">Show contractors updated Since</div>
                                             <select class="form-control minimal background_drop_down box_padding_3 box_height_30 padding_left_none" name="showContractor" [(ngModel)]="showContractor">
-                                                <option value="">All</option>
-                                                <option value="1">124536</option>
+                                                <option value="">Show contractors updated Since</option>
+                                                <option value="{{item?.id}}" *ngFor="let item of timeLeftData">{{item?.name}}</option>
+                                                <!-- <option value="1">124536</option>
                                                 <option value="5">5124536</option>
                                                 <option value="10">10124536</option>
-                                                <option value="20">20124536</option>
+                                                <option value="20">20124536</option> -->
                                             </select>
                                         </div>
                                     </div>
