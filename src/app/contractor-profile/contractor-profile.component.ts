@@ -10,8 +10,8 @@ import {ImageCropperComponent, CropperSettings} from 'ng2-img-cropper';
   styleUrls: ['./contractor-profile.component.css']
 })
 export class ContractorProfileComponent implements OnInit {
-  lat: number = 26.9124;
-  lng: number = 75.7873;
+  lat: number = 57.653484;
+  lng: number = -3.335724;
   polygonPath = [];
   selectedSkill;
   selectedSkillArray = [];

@@ -398,6 +398,7 @@ fd;
   //  alert(4)
   this.fd = new FormData();
   
+
   let companyDetail = {
       'companyName': this.companyName,
       'companySize': this.companySize,
@@ -414,8 +415,8 @@ fd;
       'postalCity': this.postalCity,
       'postalCountry': this.postalCountry.toString(),
       'postalPostCode': this.postalPostCode,
-      'postalTelephoneNo': this.postalTelephone,
-      'companyUrl': this.imageFile ? this.imageFile : './assets/images/big-tour.png'
+      'postalTelephoneNo': this.postalTelephone,      
+      'companyUrl':  {"url":this.webAddress}
     };
  //  	 var inputprofileData = {
  //    "email":this.emailAddress,
@@ -517,10 +518,11 @@ fd;
 
   this.fd.append('loginToken',(localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).token )? JSON.parse(localStorage.getItem('loginDetail')).token:  "nsakdlallas1232mk123b2k1390iq2ekq");
   this.fd.append('email',(localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).email )? JSON.parse(localStorage.getItem('loginDetail')).email:  "test@gmail.com");
-  this.fd.append('companyDetails', companyDetail);
+  this.fd.append('companyDetails', JSON.stringify(companyDetail));
   this.fd.append('companyDescription',this.companyDescription);
-  this.fd.append('companySocial', companySocial);
-  this.fd.append('otherAddress',otherAddressDataObj.otherAddress );
+  this.fd.append('companySocial', JSON.stringify(companySocial));
+  this.fd.append('otherAddress',JSON.stringify(otherAddressDataObj.otherAddress ));
+  this.fd.append('ProfileUrl', this.imageFile ? this.imageFile : {});
 	console.log("recruiterProfileJson", this.fd);
   console.log("companyDetail--", companyDetail);
   console.log("this.companyDescription--", this.companyDescription);

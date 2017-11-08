@@ -11,8 +11,8 @@ export class ContractorViewProfileComponent implements OnInit {
  industrySectorData = [];
  skillArray = [];
  securityClearenceData; 
- lat: number = 26.9124;
-  lng: number = 75.7873;
+ lat: number = 57.653484;
+  lng: number =-3.335724;
   polygonPath = [{ lng: this.lng + 0.3, lat: this.lat + 0.3 },
       { lng: this.lng + 0.5, lat: this.lat + 0.3 },
       { lng: this.lng + 0.9, lat: this.lat + 0.9 },];

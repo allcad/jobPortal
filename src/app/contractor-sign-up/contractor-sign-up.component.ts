@@ -137,12 +137,12 @@ fileChangeEvent(fileInput: any) {
 
 
   getContractorServices(){
-   var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/hub/category";
+   var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/get/cont_services";
     var inputJson = {
       "email" : "test@gmail.com",
       "loginToken":"$2y$10$S.H5i.UJ5CkSBHjinFY.VuWZ2kR8pDEcZGNtRrb1/lNBBNcw7gFBK"
     }
-       this._commonRequestService.postData(url, inputJson).subscribe(
+       this._commonRequestService.getData(url).subscribe(
         data => {
           console.log("categoryData", data.data)
           this.categoryData = data.data;
@@ -156,7 +156,7 @@ fileChangeEvent(fileInput: any) {
      var selectedArray = [];
      for(var i=0; i<this.categoryData.length; i++){
        if(this.categoryData[i].checked){
-         selectedArray.push(this.categoryData[i].contract_hub_category_id.toString())
+         selectedArray.push(this.categoryData[i].id.toString())
        }
      }
      console.log("selectedArray", selectedArray);

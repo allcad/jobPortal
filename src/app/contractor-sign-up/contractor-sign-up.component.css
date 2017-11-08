@@ -8,14 +8,15 @@
     padding: 0;
     font-size: 20px;
     cursor: pointer;
-    
+    width: 100%;
+    text-align: right;
    
    
 }
 .fileUpload input.upload {
     position: absolute;
     top: 0;
-    left: -270px;
+    left: -82px;
     margin: 0;
     padding: 0;
     font-size: 20px;
@@ -28,6 +29,8 @@
      margin-left:auto !important;
     margin-bottom:auto !important;
     float:none !important;
+    font-size: 13px;
+    margin-top: 6px;
 }
 
 .fileUpload span {

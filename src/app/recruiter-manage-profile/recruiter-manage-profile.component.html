@@ -46,7 +46,7 @@
                   <div class="profile_image background_pink">
                     <!-- <img src="./assets/images/profile-pik.png" alt="ads" title="ads" class="img-responsive">  -->
                     <div style="margin-bottom: 30px;">
-                      <img class="img-responsive" [src]="profileUrl ? profileUrl : './assets/images/profile-pik.png'" alt="ads">
+                      <img class="img-responsive" [src]="profileData?.profileimage[0] ? profileData.profileimage[0].attachment_url +'/' +  profileData.profileimage[0].attachment_name : './assets/images/profile-pik.png'" alt="ads">
                     </div>
                     <!-- <a href="javascript:void(0);"></a> -->
                     <!-- <input type="file" class="upload" (change)="recruiterFileChangeEvent($event)" /> -->
@@ -54,6 +54,9 @@
                       <span><img src="./assets/images/camera.png" alt="camera" title="camera"></span>
                       <input type="file" class="upload" (change)="recruiterFileChangeEvent($event)" />
                     </div>
+
+                    
+                    
                   </div>
                 </div>
                 <div class="col-sm-60">

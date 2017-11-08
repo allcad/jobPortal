@@ -100,7 +100,7 @@
                   <div class="form-group">
                     <div class="input-group" style="border-bottom: 1px solid #000; padding-bottom: 4px;">
                       <div class="input-group-addon" style="border-bottom: 0;"><img src="./assets/images/upload-cv.png" alt="Upload CV" title="Upload CV" class="img-responsive"></div>
-                      <div class="fileUpload btn btn-primary" style="float: right;">
+                      <div class="fileUpload">
                         <span>Find CV
                             <img alt="search now" src="./assets/images/find-cv.png" title="search now">
                           </span>
@@ -237,13 +237,13 @@
                 </div>
                 <div id="happynotice" class="text-00" style="padding-right:0px; margin-left:19px;float: left;margin-top: 10px; height: 25px;"> HAPPY TO USE YOUR NOTICE PERIOD?</div>
                 <div class="current_rate_signup checkbox-inline" style=" width:70px; margin-top: 10px; float:right;">
-                  <input checked="checked" id="permanent" name="optradio" type="radio" value="permanent">
-                  <label class="radio-inline" for="permanent"><span></span> Yes </label>
+                  <input checked="checked" id="permanentyes" name="optradio" type="radio" value="permanentyes">
+                  <label class="radio-inline" for="permanentyes"><span></span> Yes </label>
                 </div>
                 <br>
                 <div class="current_rate_signup checkbox-inline" style=" width:70px; float:right;">
-                  <input checked="checked" id="permanent" name="optradio" type="radio" value="permanent">
-                  <label class="radio-inline" for="permanent"><span></span> No </label>
+                  <input checked="checked" id="permanentno" name="optradio" type="radio" value="permanentno">
+                  <label class="radio-inline" for="permanentno"><span></span> No </label>
                 </div>
 
                
@@ -253,8 +253,8 @@
                 <div class="row">
                   <div class="col-sm-50" *ngFor="let category of categoryData">
                     <div class="service_box">
-                      <input type="checkbox" id="{{category.contract_hub_category_name}}" [value]="category.contract_hub_category_id" name="{{category.contract_hub_category_name}}" (change)="category.checked=!category.checked">
-                      <label for="{{category.contract_hub_category_name}}"><span></span> {{category.contract_hub_category_name}}</label>
+                      <input type="radio" id="{{category.name}}" [value]="category.id" name="{{category.name}}" (change)="category.checked=!category.checked">
+                      <label for="{{category.name}}"><span></span> {{category.name}}</label>
                     </div>
                   </div>
                   <!-- <div class="col-sm-50">

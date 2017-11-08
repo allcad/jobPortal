@@ -16,7 +16,8 @@ export class TopMenuComponent implements OnInit {
   }
 
   removeClass() {
-    document.querySelector(".navigation-dropdown")
+    //document.querySelector(".navigation-dropdown")['style']['display'] = 'none';
+    //console.log("dropDownClass", document.querySelector(".navigation-dropdown"));
   }
 
 }
