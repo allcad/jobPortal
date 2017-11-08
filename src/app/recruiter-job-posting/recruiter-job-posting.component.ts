@@ -37,11 +37,13 @@ jobPostingDurationFlag = false;
 startDateFlag = false;
 industrySectorFlag = false;
 workEliFlag = false;
+templateData;
   constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
     this.recruiterNameList();
     this.getIndustry();
+    this.getTemplateData();
     var localStorageData = JSON.parse(localStorage.getItem('recruiterJobData'));
     console.log("localStorageData--", localStorageData);
     if(localStorageData && localStorageData.jobId) {
@@ -67,6 +69,39 @@ workEliFlag = false;
        this.jobReference = editJoblocalStorageData.jobPreviewData.jobReference;
        this.editJobId = editJoblocalStorageData.jobPreviewData.jobId;
     }
+  }
+
+  // getTemplateData() {
+  //    var input = {
+  //    "email":"test@test7.com",
+  //   "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu"
+
+  //  };
+  //  console.log("input--", input);
+  //  var wsUrl="http://dev.contractrecruit.co.uk/contractor_site/api/post/recruiter/job/template_list";
+  //      this._commonRequestService.postData(wsUrl, input).subscribe(
+  //       data => {
+  //         console.log("templateData--", data);
+  //         this.templateData = data.data;
+  //         //this.recruiterNameArray = data.data;
+  //       }
+  //   );
+  // }
+
+  getTemplateData() {
+     var input = {
+     "email":"test@test7.com",
+    "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu"
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_site/api/post/recruiter/job/template_list";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+          console.log("templateData--", data);
+        }
+    );
+       return this.recruiterName;
   }
 
   jobPostingTitleBlur() {

@@ -17,6 +17,7 @@ export class RecruiterManageUserComponent implements OnInit {
   manageUserMsg;
   showMessage = false;
   subUserArray;
+  totalNumberOfUser;
   constructor(public _commonRequestService: CommonRequestService) {
   	//this.addMulUserArray.splice(0,1);
    }
@@ -63,6 +64,7 @@ export class RecruiterManageUserComponent implements OnInit {
         data => {
          console.log("manage sub user--", data);
          this.subUserArray = data.data;
+         this.totalNumberOfUser = this.subUserArray.length + 1;
          window.scroll(0,0);
         }
     );

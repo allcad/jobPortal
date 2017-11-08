@@ -21,17 +21,36 @@ export class RecruiterManageJobsComponent implements OnInit {
   jobPostFlag = false;
   pageNo = 1;
   onPageClick = 9;
+  sortByData;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService) { }
 
   ngOnInit() {
   	this.getManageJobsList(9);
+    this.getSortByData();
   }
 
   passJobId(id) {
   	//this._commonDataSharedService.manageJobsJobId.next(id);
   	var obj = {'jobId' : id};
     localStorage.setItem('recruiterJobData', JSON.stringify(obj));
+  }
+
+  getSortByData() {
+     var input = {
+     "email":"test@test7.com",
+    "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu"
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/short_by";
+       this._commonRequestService.getData(wsUrl).subscribe(
+        data => {
+          console.log("sort by--", data);
+          this.sortByData = data.data;
+          //this.recruiterNameArray = data.data;
+        }
+    );
   }
 
   recruiterList(recruiterId) {

@@ -40,10 +40,11 @@
                                         <div class="input-group-addon upto_border_none">Sort By:</div>
                                         <select class="form-control minimal background_drop_down box_height_30 box_padding_3">
                                             <option value="">SHOW LIVE JOBS</option>
-                                            <option value="1">124536</option>
+                                            <option value="{{item?.short_text}}" *ngFor="let item of sortByData">{{item?.short_name}}</option>
+                                            <!-- <option value="1">124536</option>
                                             <option value="5">5124536</option>
                                             <option value="10">10124536</option>
-                                            <option value="20">20124536</option>
+                                            <option value="20">20124536</option> -->
                                         </select>
                                     </div>
                                 </div>

@@ -567,6 +567,8 @@ getProfileDta(){
           console.log("profiledta--", data);
           if(data && data.data) {
             this.profileData = data.data;
+            var companySocialData = JSON.parse(this.profileData['companySocial']);
+            console.log("comapny social--", JSON.parse(this.profileData['companySocial']));
             this.companyName =this.profileData['companyDetails'] && this.profileData['companyDetails'].companyName ? this.profileData['companyDetails'].companyName : "";
           this.companySize =this.profileData['companyDetails'] && this.profileData['companyDetails'].companySize ? this.profileData['companyDetails'].companySize : "";
           this.addressName =this.profileData['companyDetails'] && this.profileData['companyDetails'].companyAddress ? this.profileData['companyDetails'].companyAddress : "";
@@ -587,25 +589,25 @@ getProfileDta(){
           this.postalTelephone =this.profileData['companyDetails'] && this.profileData['companyDetails'].postalTelephoneNo ? this.profileData['companyDetails'].postalTelephoneNo : ""; 
           this.fileArray =this.profileData['companyDetails'] && this.profileData['companyDetails'].fileArray ? this.profileData['companyDetails'].fileArray : "";
           this.companyDescription= this.profileData && this.profileData.companyDescription ? this.profileData.companyDescription : "";
-          this.webAddress= this.profileData['companySocial'] && this.profileData['companySocial'].webAddress ? this.profileData['companySocial'].webAddress : "";
-          this.emailAddress= this.profileData['companySocial'] && this.profileData['companySocial'].emailAddress ? this.profileData['companySocial'].emailAddress : "";
+          this.webAddress= companySocialData && companySocialData.webAddress ? companySocialData.webAddress : "";
+          this.emailAddress= companySocialData && companySocialData.emailAddress ? companySocialData.emailAddress : "";
 
-          this.rssUrl= this.profileData['companySocial'] && this.profileData['companySocial'].rssData && this.profileData['companySocial'].rssData.rssUrl ? this.profileData['companySocial'].rssData.rssUrl : "";
-          this.fullUrlRssFeed= this.profileData['companySocial'] && this.profileData['companySocial'].rssData && this.profileData['companySocial'].rssData.fullUrlRssFeed ? this.profileData['companySocial'].rssData.fullUrlRssFeed : "";
-          this.rssDisplayFeed= this.profileData['companySocial'] && this.profileData['companySocial'].rssData && this.profileData['companySocial'].rssData.rssDisplayFeed ? this.profileData['companySocial'].rssData.rssDisplayFeed : "";
+          this.rssUrl= companySocialData && companySocialData.rssData && companySocialData.rssData.rssUrl ? companySocialData.rssData.rssUrl : "";
+          this.fullUrlRssFeed= companySocialData && companySocialData.rssData && companySocialData.rssData.fullUrlRssFeed ? companySocialData.rssData.fullUrlRssFeed : "";
+          this.rssDisplayFeed= companySocialData && companySocialData.rssData && companySocialData.rssData.rssDisplayFeed ? companySocialData.rssData.rssDisplayFeed : "";
 
-          this.socialLinkName= this.profileData['companySocial'] && this.profileData['companySocial'].twitterData && this.profileData['companySocial'].twitterData.socialLinkName ? this.profileData['companySocial'].twitterData.socialLinkName : "";
-          this.fullUrlTwitterFeed= this.profileData['companySocial'] && this.profileData['companySocial'].twitterData && this.profileData['companySocial'].twitterData.fullUrlTwitterFeed ? this.profileData['companySocial'].twitterData.fullUrlTwitterFeed : "";
-          this.twitterDisplayFeed= this.profileData['companySocial'] && this.profileData['companySocial'].twitterData && this.profileData['companySocial'].twitterData.twitterDisplayFeed ? this.profileData['companySocial'].twitterData.twitterDisplayFeed : "";
+          this.socialLinkName= companySocialData && companySocialData.twitterData && companySocialData.twitterData.socialLinkName ? companySocialData.twitterData.socialLinkName : "";
+          this.fullUrlTwitterFeed= companySocialData && companySocialData.twitterData && companySocialData.twitterData.fullUrlTwitterFeed ? companySocialData.twitterData.fullUrlTwitterFeed : "";
+          this.twitterDisplayFeed= companySocialData && companySocialData.twitterData && companySocialData.twitterData.twitterDisplayFeed ? companySocialData.twitterData.twitterDisplayFeed : "";
 
-          this.linkedinUrl= this.profileData['companySocial'] && this.profileData['companySocial'].linkedinData && this.profileData['companySocial'].linkedinData.linkedinUrl ? this.profileData['companySocial'].linkedinData.linkedinUrl : "";
-          this.fullUrlLinkedinFeed= this.profileData['companySocial'] && this.profileData['companySocial'].linkedinData && this.profileData['companySocial'].linkedinData.fullUrlLinkedinFeed ? this.profileData['companySocial'].linkedinData.fullUrlLinkedinFeed : "";
-          this.linkedinDisplayFeed= this.profileData['companySocial'] && this.profileData['companySocial'].linkedinData && this.profileData['companySocial'].linkedinData.linkedinDisplayFeed ? this.profileData['companySocial'].linkedinData.linkedinDisplayFeed : "";
+          this.linkedinUrl= companySocialData && companySocialData.linkedinData && companySocialData.linkedinData.linkedinUrl ? companySocialData.linkedinData.linkedinUrl : "";
+          this.fullUrlLinkedinFeed= companySocialData && companySocialData.linkedinData && companySocialData.linkedinData.fullUrlLinkedinFeed ? companySocialData.linkedinData.fullUrlLinkedinFeed : "";
+          this.linkedinDisplayFeed= companySocialData && companySocialData.linkedinData && companySocialData.linkedinData.linkedinDisplayFeed ? companySocialData.linkedinData.linkedinDisplayFeed : "";
           
-          if(this.profileData['companySocial'] && this.profileData['companySocial'].otherSocialData && this.profileData['companySocial'].otherSocialData.length > 0) {
-            for(var i = 0; i< this.profileData['companySocial'].otherSocialData.length; i++) {
-              if(this.profileData['companySocial'].otherSocialData[i].Url) {
-                this.addMulSocialArray.push({'otherSocialLink': this.profileData['companySocial'].otherSocialData[i].Url, 'otherSocialFeed': this.profileData['companySocial'].otherSocialData[i].fullUrl, 'otherRadio': this.profileData['companySocial'].otherSocialData[i].displayFeed})
+          if(companySocialData && companySocialData.otherSocialData && companySocialData.otherSocialData.length > 0) {
+            for(var i = 0; i< companySocialData.otherSocialData.length; i++) {
+              if(companySocialData.otherSocialData[i].Url) {
+                this.addMulSocialArray.push({'otherSocialLink': companySocialData.otherSocialData[i].Url, 'otherSocialFeed': companySocialData.otherSocialData[i].fullUrl, 'otherRadio': companySocialData.otherSocialData[i].displayFeed})
               }
             }
           }
