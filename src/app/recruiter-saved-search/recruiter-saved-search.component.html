@@ -4,6 +4,10 @@
             <div id="contractor-signup">
                 <form>
                     <div class="container">
+                        <div class="alert alert-success margin-tp18" *ngIf="succesMessageFlag">
+                          <a href="javascript:void(0)" class="close" title="close">×</a>
+                          Saved <strong>succesfully!</strong>
+                      </div>
                         <div class="row">
                             <div class="col-sm-100">
                                 <div class="contractor_signup recruiter_signup">
@@ -14,7 +18,17 @@
                                         <li class="active">Saved Search </li>
                                     </ul>
                                     <div class="pull-right job_search">
-                                        <p>Need Help? | <span>Watch our Video Guides</span></p> <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px">Saved Search <i class="fa fa-angle-down plus_blue font_size_margin text_pink" aria-hidden="true"></i></a> </div>
+                                        <p>Need Help? | <span>Watch our Video Guides</span></p> <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="getSaveSearchList()">Saved Search <i class="fa fa-angle-down plus_blue font_size_margin text_pink" aria-hidden="true"></i></a> </div>
+                                </div>
+                                <div class="col-sm-50" *ngIf="searchListDataFlag">
+                                    <div class="form-group">
+                                        <div class="input-group"> <span class="form-control industry_sector">Saved Search List</span>
+                                            <!-- <div class="input-group-addon bordr_non"><img src="./assets/images/inform.png" alt="Enter Password" title="Password" class="img-responsive"></div> -->
+                                        </div>
+                                        <ul class="form-control industry_min_heights padding_none">
+                                            <li *ngFor="let item of searchListData" (click)="getSaveSearchDetails(item?.id)">{{item?.recuriter_saved_search_name}}</li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div class="signup_form_section">
                                     <div class="job_search_keywords">
@@ -133,9 +147,9 @@
                                             <div class="col-sm-35 col-md-offset-2">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input value="hourly" id="prepaid" name="service_type" onChange="prepaidF()" checked="" type="radio" [(ngModel)]="dailyHourlyValue">
+                                                        <input value="hourly" id="prepaid" name="service_type" checked="" type="radio" [(ngModel)]="dailyHourlyValue">
                                                         <label for="prepaid" class="radio-inline margin_top_11"><span></span> Daily Rate </label>
-                                                        <input value="daily" id="postpaid" name="service_type" onChange="postpaidF()" type="radio" [(ngModel)]="maxRate">
+                                                        <input value="daily" id="postpaid" name="service_type" type="radio" [(ngModel)]="dailyHourlyValue">
                                                         <label for="postpaid" class="radio-inline margin_top_11"><span></span>Hourly Rate </label>
                                                     </div>
                                                 </div>
@@ -150,11 +164,12 @@
                                                     <div class="input-group responsive_width_100">
                                                         <div class="input-group-addon upto_border_none">Time left on current Contract</div>
                                                         <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none" name="timeLeftOnCutCont" [(ngModel)]="timeLeftOnCutCont">
-                                                            <option value="">ALL</option>
-                                                            <option value="1">124536</option>
+                                                            <option value="">Time left on current Contract</option>
+                                                            <option value="{{item?.id}}" *ngFor="let item of timeLeftData">{{item?.name}}</option>
+                                                            <!-- <option value="1">124536</option>
                                                             <option value="5">5124536</option>
                                                             <option value="10">10124536</option>
-                                                            <option value="20">20124536</option>
+                                                            <option value="20">20124536</option> -->
                                                         </select>
                                                     </div>
                                                 </div>
@@ -174,11 +189,13 @@
                                                     <div class="input-group responsive_width_100">
                                                         <div class="input-group-addon upto_border_none">Show contractors updated Since</div>
                                                         <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none" name="showContractors" [(ngModel)]="showContractors">
-                                                            <option value="">ALL</option>
+                                                            <!-- <option value="">ALL</option>
                                                             <option value="1">124536</option>
                                                             <option value="5">5124536</option>
                                                             <option value="10">10124536</option>
-                                                            <option value="20">20124536</option>
+                                                            <option value="20">20124536</option> -->
+                                                            <option value="">Show contractors updated Since</option>
+                                                            <option value="{{item?.id}}" *ngFor="let item of timeLeftData">{{item?.name}}</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -202,10 +219,11 @@
                                                         <div class="input-group-addon"><img src="./assets/images/recruiter-education.png" alt="Job Reference Number" title="Job Reference Number" class="img-responsive"></div>
                                                         <select class="form-control minimal background_drop_down box_height_30 box_padding_3" name="educationValue" [(ngModel)]="educationValue">
                                                             <option value="">EDUCATION</option>
-                                                            <option value="1">124536</option>
+                                                            <option value="{{item?.id}}" *ngFor="let item of educationData">{{item?.name}}</option>
+                                                            <!-- <option value="1">124536</option>
                                                             <option value="5">5124536</option>
                                                             <option value="10">10124536</option>
-                                                            <option value="20">20124536</option>
+                                                            <option value="20">20124536</option> -->
                                                         </select>
                                                     </div>
                                                 </div>
@@ -264,7 +282,7 @@
                                                 <div class="col-sm-60">
                                                     <div class="sign_up_left_side">
                                                         <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px margin_bottom10xp" (click)="saveSearch()">Save Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
-                                                        <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px">Delete Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                                                        <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="saveSearchDelete()">Delete Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-40">
