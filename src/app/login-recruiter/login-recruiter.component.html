@@ -13,7 +13,12 @@
 
         <div class="col-sm-100">
 
-          <div class="errorbox"><b>The following error(s) occured:</b><br> <li>Please enter a Username.</li><li>Please enter a password.</li><li>Incorrect captcha code.</li><li>Your Email/password are incorrect or your account has not been activated yet.</li></div>
+          <div class="errorbox" *ngIf="emailNameFlag || emailNamePatternFlag || passwordReqFlag || humanKnowFlag"><b>The following error(s) occured:</b><br> 
+            <li *ngIf="emailNameFlag">Email  is required!</li>
+            <li *ngIf="emailNamePatternFlag">Please Enter valid email.</li>
+            <li *ngIf="passwordReqFlag">Please enter a password.</li>
+            <li *ngIf="humanKnowFlag">Are you human field is required.</li>
+          </div>
           
           <div id="contractor_about_us" class="contractor_login contractor_signup">
             <h2>Recruiter <span class="text_pink">lOGIN</span></h2>

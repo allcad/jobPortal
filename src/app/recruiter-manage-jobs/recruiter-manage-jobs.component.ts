@@ -93,15 +93,21 @@ export class RecruiterManageJobsComponent implements OnInit {
          if(data && data.status === "TRUE") {
            this.errorMsgFlag = false;
            this.listingData = data.data;
-           for(var i=0;i<3;i++) {
-           	if(this.listingData && this.listingData[i]) {
-           		this.firstArray[i] = this.listingData[i];
-           	}
-           };
-           for(var i=0; i<6; i++) {
-           	if(this.listingData && this.listingData[i+3]) {
-           		this.secondArray[i] = this.listingData[i+3];
-           	}
+             for(var i=0;i<3;i++) {
+             	if(this.listingData && this.listingData[i]) {
+             		this.firstArray[i] = this.listingData[i];
+             	}
+             };
+             
+           if(this.listingData.length > 3) {
+             this.secondArray = [];
+             for(var i=0; i<6; i++) {
+             	if(this.listingData && this.listingData[i+3]) {
+             		this.secondArray[i] = this.listingData[i+3];
+             	}
+             }
+           } else {
+             this.secondArray = [];
            }
            if(this.listingData.length > 9) {
              this.thirdArray = [];
@@ -148,6 +154,57 @@ export class RecruiterManageJobsComponent implements OnInit {
     this.currentPageNo = this.onPageClick * this.pageNo;
     //console.log("this.currentPageNo", this.currentPageNo);
     this.getManageJobsList(this.currentPageNo);
+  }
+
+  refreshJob(jobId) {
+     var input = {
+     "email":"test@test7.com",
+    "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu",
+    "jobid":jobId
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/view";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+          //this.jobPostFlag = false;
+         console.log("jobList--", data);
+         // if(data && data.data) {
+         //   this.jobPostingDetails = data.data;
+         //   this.jobPostingJobTitle = this.jobPostingDetails.jobTitle;
+         //   this.jobPostingDuration = this.jobPostingDetails.duration;
+         //   this.startDate = (this.jobPostingDetails.startDate).split(' ')[0];
+         //   this.industrySector = this.jobPostingDetails.industrySectorId;
+         //   this.workEligibility = this.jobPostingDetails.workEligibilityId;
+         //   this.cityTownValue = this.jobPostingDetails.cityTown;
+         //   this.minRate = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.minRate ? this.jobPostingDetails.prefereedRate.minRate : 0;
+         //   this.maxRate = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.maxRate ? this.jobPostingDetails.prefereedRate.maxRate : 0
+         //   this.dailyHourlyValue = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.dailyHourlyRate ? this.jobPostingDetails.prefereedRate.dailyHourlyRate : '';
+         //   this.jobSpecificationTitle = this.jobPostingDetails.jobSpecificationTitle;
+         //   this.jobSpecificationBody = this.jobPostingDetails.jobSpecification;
+         //   this.recruiterName = this.jobPostingDetails.recruiterNameId;
+         //   this.saveTemplateAs = this.jobPostingDetails.saveTempleteAs;
+         //   this.jobReference = this.jobPostingDetails.jobReference;
+         // }
+        }
+    );
+  }
+
+  deleteJob(id) {
+     var input = {
+     "email":"test@test7.com",
+  "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu",
+  "jobid":id
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/delete";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+         console.log("delete--", data);
+         this.getManageJobsList(this.currentPageNo);
+        }
+    );
   }
 
 }

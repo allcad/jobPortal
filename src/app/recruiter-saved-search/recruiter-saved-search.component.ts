@@ -24,7 +24,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
   includeUnavailable = false;
   showContractors;
   contractorName;
-  educationValue = "";
+  educationValue;
   drivingLicenceValue;
   securityClearanceArray;
   industryArrayData;
@@ -124,6 +124,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
         data => {
           console.log("delete data--", data);
           this.getSaveSearchList();
+          this.resetFields();
           //this.industryArrayData = data.data;
           //this.recruiterNameArray = data.data;
         }
@@ -145,6 +146,27 @@ export class RecruiterSavedSearchComponent implements OnInit {
           console.log("save search details--", data);
           //this.industryArrayData = data.data;
           //this.recruiterNameArray = data.data;
+          if(data && data.data) {
+            this.savedSearchName = data.data.recuriter_saved_search_name;
+            this.addToWatchDogCheck = data.data.recuriter_search_add_to_watchdog === 1 ? true : false;
+            this.jobTitle = data.data.recuriter_search_job_title;
+            this.keywordSearch = data.data.recuriter_search_keywords;
+            this.stemmedTerms = data.data.recuriter_search_stemmed_terms === 1 ? true : false;
+            this.coreSkills = data.data.recuriter_search_core_skills;
+            this.certificationValues = data.data.recuriter_search_core_skills;
+            this.dontShowContractor = data.data.recuriter_search_certifications;
+            this.cityTownValue = data.data.recuriter_search_location;
+            this.includeRelocators = data.data.recuriter_search_include_relocators === 1 ? true : false;
+            this.minRate = data.data.recuriter_search_by_rate_min;
+            this.maxRate = data.data.recuriter_search_by_rate_max;
+            this.dailyHourlyValue = data.data.recuriter_search_by_rate_type;
+            this.timeLeftOnCutCont = data.data.recuriter_search_by_time_left;
+            this.includeUnavailable = data.data.recuriter_search_by_updated_contractor_since;
+            this.showContractors = data.data.recuriter_search_dont_show_to_contractor;
+            this.contractorName = data.data.recuriter_search_by_contract_name;
+            this.educationValue = data.data.recuriter_search_by_education;
+            this.drivingLicenceValue = data.data.recuriter_search_by_driving_license === 1 ? 'yes' : 'no';
+          }
         }
     );
   }

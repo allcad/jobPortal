@@ -14,35 +14,12 @@ export class RecruiterManageAccountComponent implements OnInit {
   nameFlag = false;
   jobTitleFlag = false;
   telephoneFlag = false;
+  allErrorFlag = false;
 
   constructor(public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
     this.recruiterAccountDetails();
-  }
-
-  nameBlur() {
-    if(this.name) {
-      this.nameFlag = false;
-    } else {
-      this.nameFlag = true;
-    }
-  }
-
-  jobTitleBlur() {
-    if(this.jobTitle) {
-      this.jobTitleFlag = false;
-    } else {
-      this.jobTitleFlag = true;
-    }
-  }
-
-  telephoneBlur() {
-    if(this.telePhone) {
-      this.telephoneFlag = false;
-    } else {
-      this.telephoneFlag = true;
-    }
   }
 
   recruiterAccountDetails() {
@@ -65,17 +42,44 @@ export class RecruiterManageAccountComponent implements OnInit {
     );
   }
 
-  saveRecruiterAccount(form: NgForm) {
-  	var recruiterAccountJson = {
-		personalDetails: {
-			'name': this.name,
-			'jobTitle': this.jobTitle
-		},
-		contactDetails: {
-			'telephone': this.telePhone
-		}
-	}
-	console.log("recruiterAccountJson--", recruiterAccountJson);
+  saveRecruiterAccountForm(form: NgForm) {
+
+    if(this.name) {
+      this.nameFlag = false;
+    } else {
+      this.nameFlag = true;
+    }
+
+    if(this.jobTitle) {
+      this.jobTitleFlag = false;
+    } else {
+      this.jobTitleFlag = true;
+    }
+
+    if(this.telePhone) {
+      this.telephoneFlag = false;
+    } else {
+      this.telephoneFlag = true;
+    }
+
+    if(this.nameFlag || this.jobTitleFlag || this.telephoneFlag) {
+      this.allErrorFlag = true;
+    } else {
+      this.allErrorFlag = false;
+    }
+
+    if(!this.allErrorFlag) {
+    	var recruiterAccountJson = {
+  		personalDetails: {
+  			'name': this.name,
+  			'jobTitle': this.jobTitle
+  		},
+  		contactDetails: {
+  			'telephone': this.telePhone
+  		}
+  	}
+  	console.log("recruiterAccountJson--", recruiterAccountJson);
+    }
   }
 
 }

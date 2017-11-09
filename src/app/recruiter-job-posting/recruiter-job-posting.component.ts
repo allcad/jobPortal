@@ -38,6 +38,7 @@ startDateFlag = false;
 industrySectorFlag = false;
 workEliFlag = false;
 templateData;
+allErrorFlag = false;
   constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -101,48 +102,9 @@ templateData;
           console.log("templateData--", data);
         }
     );
-       return this.recruiterName;
   }
 
-  jobPostingTitleBlur() {
-    if(this.jobPostingJobTitle) {
-      this.jobPostingTiteFlag = false;
-    } else {
-      this.jobPostingTiteFlag = true;
-    }
-  }
-
-  jobPostingDurationBlur() {
-    if(this.jobPostingDuration) {
-      this.jobPostingDurationFlag = false;
-    } else {
-      this.jobPostingDurationFlag = true;
-    }
-  }
-
-  startDateBlur() {
-    if(this.startDate) {
-      this.startDateFlag = false;
-    } else {
-      this.startDateFlag = true;
-    }
-  }
-
-  industrySectorBlur() {
-    if(this.industrySector) {
-      this.industrySectorFlag = false;
-    } else {
-      this.industrySectorFlag = true;
-    }
-  }
-
-  workEliBlur() {
-    if(this.workEligibility) {
-      this.workEliFlag = false;
-    } else {
-      this.workEliFlag = true;
-    }
-  }
+  
 
   getIndustry() {
      var input = {
@@ -231,69 +193,108 @@ templateData;
   }
 
   onJobPostSave(f:NgForm) {
-  	this.input={
-        //"email":this.email,
-        // "password":this.password,
-        //"loginToken": this.getData.data.loginToken,
-			"email":"test@test7.com",
-			"loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu",
-			"jobTitle": this.jobPostingJobTitle,
-			"duration": this.jobPostingDuration,
-			"startDate": this.startDate,
-			"industrySectorId": this.industrySector,
-			"workEligibilityId" : this.workEligibility,
-			"cityTown": this.cityTownValue,
-			"prefereedRate": {
-				"minRate": this.minRate,
-				"maxRate": this.maxRate,
-				"dailyHourlyRate": this.dailyHourlyValue
-			},
-			"jobSpecification": this.jobSpecificationBody,
-			"jobSpecificationTitle": this.jobSpecificationTitle,
-			"recruiterNameId": this.recruiterName,
-			"saveTempleteAs": this.saveTemplateAs,
-			"jobReference": this.jobReference,
-      "recuriter_job_is_featured": "0"
+    window.scroll(0,0);
+    if(this.jobPostingJobTitle) {
+      this.jobPostingTiteFlag = false;
+    } else {
+      this.jobPostingTiteFlag = true;
+    }
 
-      }
-      var wsUrl;
-      //alert(0);
-      if(!this.jobPostingJobId) {
-      console.log("this.input", this.input);
-        wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/add";
-           this._commonRequestService.postData(wsUrl,this.input).subscribe(
-            data => {
-            	console.log("data result", data);
-              window.scroll(0,0);
-              this.resetData();
-              this.postJobSuccessMsg = 'Post Job Save succesfully!';
-               var obj = {'jobId' : ''};
-              localStorage.setItem('recruiterJobData', JSON.stringify(obj));
+    if(this.jobPostingDuration) {
+      this.jobPostingDurationFlag = false;
+    } else {
+      this.jobPostingDurationFlag = true;
+    }
 
-              var obj1 = {'jobPreviewData' : ''};
-              localStorage.setItem('editJobPost', JSON.stringify(obj1));
-              }
-        );
-      } else {
-        this.input.jobid = this.jobPostingJobId;
-        wsUrl=" http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/submit/edit";
-        console.log("input with job id-", this.input);
-           this._commonRequestService.postData(wsUrl,this.input).subscribe(
-            data => {
-              console.log("data result", data);
-              if(data && data.status === "TRUE") {
-                 window.scroll(0,0);
+    if(this.startDate) {
+      this.startDateFlag = false;
+    } else {
+      this.startDateFlag = true;
+    }
+
+    if(this.industrySector !== "0") {
+      this.industrySectorFlag = false;
+    } else {
+      this.industrySectorFlag = true;
+    }
+
+    if(this.workEligibility !== "0") {
+      this.workEliFlag = false;
+    } else {
+      this.workEliFlag = true;
+    }
+
+    if(this.jobPostingDurationFlag || this.jobPostingTiteFlag || this.startDateFlag || this.industrySectorFlag || this.workEliFlag) {
+      this.allErrorFlag = true;
+    } else {
+      this.allErrorFlag = false;
+    }
+
+    if(!this.allErrorFlag) {
+    	this.input={
+          //"email":this.email,
+          // "password":this.password,
+          //"loginToken": this.getData.data.loginToken,
+  			"email":"test@test7.com",
+  			"loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu",
+  			"jobTitle": this.jobPostingJobTitle,
+  			"duration": this.jobPostingDuration,
+  			"startDate": this.startDate,
+  			"industrySectorId": this.industrySector,
+  			"workEligibilityId" : this.workEligibility,
+  			"cityTown": this.cityTownValue,
+  			"prefereedRate": {
+  				"minRate": this.minRate,
+  				"maxRate": this.maxRate,
+  				"dailyHourlyRate": this.dailyHourlyValue
+  			},
+  			"jobSpecification": this.jobSpecificationBody,
+  			"jobSpecificationTitle": this.jobSpecificationTitle,
+  			"recruiterNameId": this.recruiterName,
+  			"saveTempleteAs": this.saveTemplateAs,
+  			"jobReference": this.jobReference,
+        "recuriter_job_is_featured": "0"
+
+        }
+        var wsUrl;
+        //alert(0);
+        if(!this.jobPostingJobId) {
+        console.log("this.input", this.input);
+          wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/add";
+             this._commonRequestService.postData(wsUrl,this.input).subscribe(
+              data => {
+              	console.log("data result", data);
+                window.scroll(0,0);
                 this.resetData();
-                this.postJobSuccessMsg = 'Post Job Update succesfully!'
-                //this.jobPostFlag = false;
-                //this.router.navigate(['/recruiter/manage-jobs']);
-              } else if(data && data.error){
-                //this.previewJobErrorMsg = data.error;
+                this.postJobSuccessMsg = 'Post Job Save succesfully!';
+                 var obj = {'jobId' : ''};
+                localStorage.setItem('recruiterJobData', JSON.stringify(obj));
+
+                var obj1 = {'jobPreviewData' : ''};
+                localStorage.setItem('editJobPost', JSON.stringify(obj1));
+                }
+          );
+        } else {
+          this.input.jobid = this.jobPostingJobId;
+          wsUrl=" http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/submit/edit";
+          console.log("input with job id-", this.input);
+             this._commonRequestService.postData(wsUrl,this.input).subscribe(
+              data => {
+                console.log("data result", data);
+                if(data && data.status === "TRUE") {
+                   window.scroll(0,0);
+                  this.resetData();
+                  this.postJobSuccessMsg = 'Post Job Update succesfully!'
+                  //this.jobPostFlag = false;
+                  //this.router.navigate(['/recruiter/manage-jobs']);
+                } else if(data && data.error){
+                  //this.previewJobErrorMsg = data.error;
+                  //this.jobPostFlag = true;
+                }
                 //this.jobPostFlag = true;
               }
-              //this.jobPostFlag = true;
-            }
-        );
+          );
+        }
       }
   }
 

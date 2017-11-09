@@ -14,6 +14,11 @@ valid;input;response;
 recruiterviewProfileData;
 wsUrl;
 inputData;min;max;getData;addNumber;number;number2;errorMessage;inputUrl;status;succesLoginFlag=false;errorMsgFlag=false;
+  emailNameFlag = false;
+emailNamePatternFlag = false;
+passwordReqFlag = false;
+humanKnowFlag = false;
+saveFlag = false;
   constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -21,14 +26,46 @@ inputData;min;max;getData;addNumber;number;number2;errorMessage;inputUrl;status;
   }
 
     onLogin(f:NgForm){
+      var emailRefex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      if(this.email) {
+        this.emailNameFlag = false;
+      } else {
+        this.emailNameFlag = true;
+      }
+
+      if(emailRefex.test(this.email)) {
+        this.emailNamePatternFlag = false;
+      } else {
+        this.emailNamePatternFlag = true;
+      }
+
+      if(this.password) {
+        this.passwordReqFlag = false;
+      } else {
+        this.passwordReqFlag = true;
+      }
+
+      if(this.addNumber) {
+        this.humanKnowFlag = false;
+      } else {
+        this.humanKnowFlag = true;
+      }
+
+      if(this.emailNameFlag || this.emailNamePatternFlag || this.passwordReqFlag || this.passwordReqFlag) {
+        this.saveFlag = true;
+      } else {
+        this.saveFlag = false;
+      }
+
+      if(!this.saveFlag) {
        if(parseInt(this.addNumber) === (this.number + this.number2)){
            this.errorMessage="";
-      this.inputLogin={
-        "email":this.email,
-        "password":this.password
-      }
+        this.inputLogin={
+          "email":this.email,
+          "password":this.password
+        }
             console.log( this.inputLogin,"login-recru")
-  this.inputUrl= "http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/signin";
+        this.inputUrl= "http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/signin";
        this._commonRequestService.postData(this.inputUrl, this.inputLogin).subscribe(
         data => {
           console.log("data--", data);
@@ -52,8 +89,9 @@ inputData;min;max;getData;addNumber;number;number2;errorMessage;inputUrl;status;
         }
     )
       }else{
-         this.errorMessage ="please enter valid number!"
+         //this.errorMessage ="please enter valid number!"
        }
+     }
 }
 
 getRandamValue(max,min){

@@ -81,6 +81,7 @@ telephoneFlag = false;
 companyDescFlag = false;
 companyUrlFlag = false;
 companyEmailFlag = false;
+allErrorMsgFlag = false;
 addMulAddArray = [{'addresslLine1': 'line1', 'addressLine1Name': 'address1', 'addressLine2': 'line2', 'addressLine2Name': 'address2', 'city': 'city', 'cityName': 'cityN', 'country': 'cou', 'countryName': 'country1', 'postCode': '12', 'postName': 'postN', 'telephone': '134', 'telephone1': 'teleP'}]
 addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio': ''}];
 fd;
@@ -93,102 +94,6 @@ fd;
     this.companySizeList();
     this.countryList();
     this.getProfileDta()
-  }
-
-  emailAddressBlur() {
-    if(this.emailAddress) {
-      this.companyEmailFlag = false;
-    } else {
-      this.companyEmailFlag = true;
-    }
-  }
-
-  webAddressBlur() {
-    if(this.webAddress) {
-      this.companyUrlFlag = false;
-    } else {
-      this.companyUrlFlag = true;
-    }
-  }
-
-  companyDescBlur() {
-    if(this.companyDescription) {
-      this.companyDescFlag = false;
-    } else {
-      this.companyDescFlag = true;
-    }
-  }
-
-  telephoneBlur() {
-    if(this.telephone) {
-      this.telephoneFlag = false;
-    } else {
-      this.telephoneFlag = true;
-    }
-  }
-
-  addressLine2Blur() {
-    if(this.addressLine2) {
-      this.addressLine2Flag = false;
-    } else {
-      this.addressLine2Flag = true;
-    }
-  }
-
-  postCodeBlur() {
-    if(this.postCode) {
-      this.postCodeFlag = false;
-    } else {
-      this.postCodeFlag = true;
-    }
-  }
-
-  countryBlur() {
-    if(this.country) {
-      this.countryFlag = false;
-    } else {
-      this.countryFlag = true;
-    }
-  }
-
-  cityBlur() {
-    if(this.city) {
-      this.cityFlag = false;
-    } else {
-      this.cityFlag = true;
-    }
-  }
-
-  addressLine1Blur() {
-    if(this.addressLine1) {
-      this.addressLine1Flag = false;
-    } else {
-      this.addressLine1Flag = true;
-    }
-  }
-
-  companyNameBlur() {
-    if(this.companyName) {
-      this.companyNameFlag = false;
-    } else {
-      this.companyNameFlag = true;
-    }
-  }
-
-  companySizeBlur() {
-    if(this.companySize) {
-      this.companySizeFlag = false;
-    } else {
-      this.companySizeFlag = true;
-    }
-  }
-
-  addressNameBlur() {
-    if(this.addressName) {
-      this.addressNameFlag = false;
-    } else {
-      this.addressNameFlag = true;
-    }
   }
 
   companySizeList() {
@@ -394,11 +299,91 @@ fd;
   }
 
   saveRecruiterProfile(form : NgForm) {
+    window.scroll(0,0);
+    if(this.emailAddress) {
+      this.companyEmailFlag = false;
+    } else {
+      this.companyEmailFlag = true;
+    }
+
+    if(this.webAddress) {
+      this.companyUrlFlag = false;
+    } else {
+      this.companyUrlFlag = true;
+    }
+
+    if(this.companyDescription) {
+      this.companyDescFlag = false;
+    } else {
+      this.companyDescFlag = true;
+    }
+
+    if(this.telephone) {
+      this.telephoneFlag = false;
+    } else {
+      this.telephoneFlag = true;
+    }
+
+    if(this.addressLine2) {
+      this.addressLine2Flag = false;
+    } else {
+      this.addressLine2Flag = true;
+    }
+
+    if(this.postCode) {
+      this.postCodeFlag = false;
+    } else {
+      this.postCodeFlag = true;
+    }
+
+    if(this.country) {
+      this.countryFlag = false;
+    } else {
+      this.countryFlag = true;
+    }
+
+    if(this.city) {
+      this.cityFlag = false;
+    } else {
+      this.cityFlag = true;
+    }
+
+    if(this.addressLine1) {
+      this.addressLine1Flag = false;
+    } else {
+      this.addressLine1Flag = true;
+    }
+
+    if(this.companyName) {
+      this.companyNameFlag = false;
+    } else {
+      this.companyNameFlag = true;
+    }
+
+    if(this.companySize !== "100") {
+      this.companySizeFlag = false;
+    } else {
+      this.companySizeFlag = true;
+    }
+
+    if(this.addressName) {
+      this.addressNameFlag = false;
+    } else {
+      this.addressNameFlag = true;
+    }
+
     var otherSocial = {}, otherAdd = {};
   //  alert(4)
   this.fd = new FormData();
   
-
+  if(this.companyNameFlag || this.companySizeFlag || this.addressNameFlag || this.addressLine1Flag 
+    || this.addressLine2Flag || this.cityFlag || this.countryFlag || this.postCodeFlag || this.telephoneFlag 
+    || this.companyDescFlag || this.companyUrlFlag || this.companyEmailFlag) {
+    this.allErrorMsgFlag = true;
+  } else {
+    this.allErrorMsgFlag = false;
+  }
+  if(!this.allErrorMsgFlag) {
   let companyDetail = {
       'companyName': this.companyName,
       'companySize': this.companySize,
@@ -418,51 +403,7 @@ fd;
       'postalTelephoneNo': this.postalTelephone,      
       'companyUrl':  {"url":this.webAddress}
     };
- //  	 var inputprofileData = {
- //    "email":this.emailAddress,
- //    "loginToken":"$2y$10$AUQhfigHBiNAzCG9aSYZe.WEbqDIBNVxl6aBoSHJs8.oEuPFWMkHm",
-	// 	'companyDetails': {
-	// 		'companyName': this.companyName,
-	// 		'companySize': this.companySize,
-	// 		'companyAddress': this.addressName,
-	// 		'addressLine1': this.addressLine1,
-	// 		'addressLine2': this.addressLine2,
-	// 		'city': this.city,
-	// 		'country': this.country.toString(),
-	// 		'postCode': this.postCode,
-	// 		'telephone': this.telephone,
-	// 		'sameAsPermanentAddress': this.sameAsPerAddFlag.toString(),
-	// 		'postalAddressLine1': this.postalAddressLine1,
-	// 		'postalAddressLine2': this.postalAddressLine2,
-	// 		'postalCity': this.postalCity,
-	// 		'postalCountry': this.postalCountry.toString(),
-	// 		'postalPostCode': this.postalPostCode,
-	// 		'postalTelephoneNo': this.postalTelephone,
-	// 		'companyUrl': this.imageFile ? this.imageFile : './assets/images/big-tour.png'
-	// 	},
-	// 	'companyDescription': this.companyDescription,
-	// 	'companySocial': {
-	// 		'webAddress': this.webAddress,
-	// 		'emailAddress': this.emailAddress,
-	// 		'rssData' : {
-	// 			'rssUrl': this.rssUrl,
-	// 			'fullUrlRssFeed': this.fullUrlRssFeed,
-	// 			'rssDisplayFeed': this.rssDisplayFeed
-	// 		},
-	// 		'twitterData' : {
-	// 			'twitterUrl': this.socialLinkName,
-	// 			'fullUrlTwitterFeed': this.fullUrlTwitterFeed,
-	// 			'twitterDisplayFeed': this.twitterDisplayFeed
-	// 		},
-	// 		'linkedinData' : {
-	// 			'linkedinUrl': this.linkedinUrl,
-	// 			'fullUrlLinkedinFeed': this.fullUrlLinkedinFeed,
-	// 			'linkedinDisplayFeed': this.linkedinDisplayFeed
-	// 		},
-	// 		'otherSocialData' : []
-	// 	},
- //    'otherAddress': []
-	// };
+    
   let companySocial = {
       'webAddress': this.webAddress,
       'emailAddress': this.emailAddress,
@@ -548,6 +489,7 @@ fd;
           // console.log("keySkill: ", this.listSignUpData);
         }
     ); 
+   }
   };
 
 

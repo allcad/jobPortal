@@ -15,55 +15,59 @@ export class RecruiterManagePasswordComponent implements OnInit {
   oldPasswordFlag = false;
   newPasswordFlag = false;
   confirmPasswordFlag = false;
+  allErrorMessageFlag = false;
   constructor(public _commonRequestService: CommonRequestService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  oldPasswordBlur() {
+  savePassword(form: NgForm) {
     if(this.oldPassword) {
       this.oldPasswordFlag = false;
     } else {
       this.oldPasswordFlag = true;
     }
-  }
 
-  newPasswordBlur() {
     if(this.newPassword) {
       this.newPasswordFlag = false;
     } else {
       this.newPasswordFlag = true;
     }
-  }
 
-  confirmPasswordBlur() {
     if(this.confirmPassword) {
       this.confirmPasswordFlag = false;
     } else {
       this.confirmPasswordFlag = true;
     }
-  }
 
-  savePassword(form: NgForm) {
-  	var recruiterPasswordJson = {
-      "email":"test@test7.com",
-      "loginToken":"$2y$10$DTSQAfFihO1F3OSQv.najuvalS6q57RU.NzsyPBVHi9tgpQmcl14y",
-  		'oldPassword': this.oldPassword,
-  		'newPassword': this.newPassword,
-  		'confirmPassword': this.confirmPassword
-  	}
-    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/password";
-       this._commonRequestService.postData(wsUrl,recruiterPasswordJson).subscribe(
-        data => {
-         console.log("recruiter password--", data);
-         if(data && data.status === "TRUE") {
-           this.router.navigate(['../recruiterLogin']);
-           this.oldPassword = "";
-           this.newPassword = "";
-           this.confirmPassword = "";
-         }
-        }
-    );
+    if(this.oldPasswordFlag || this.newPasswordFlag || this.confirmPasswordFlag) {
+      this.allErrorMessageFlag = true;
+    } else {
+      this.allErrorMessageFlag = false;
+    }
+
+    if(!this.allErrorMessageFlag) {
+
+    	var recruiterPasswordJson = {
+        "email":"test@test7.com",
+        "loginToken":"$2y$10$DTSQAfFihO1F3OSQv.najuvalS6q57RU.NzsyPBVHi9tgpQmcl14y",
+    		'oldPassword': this.oldPassword,
+    		'newPassword': this.newPassword,
+    		'confirmPassword': this.confirmPassword
+    	}
+      var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/password";
+         this._commonRequestService.postData(wsUrl,recruiterPasswordJson).subscribe(
+          data => {
+           console.log("recruiter password--", data);
+           if(data && data.status === "TRUE") {
+             this.router.navigate(['../recruiterLogin']);
+             this.oldPassword = "";
+             this.newPassword = "";
+             this.confirmPassword = "";
+           }
+          }
+      );
+    }
   }
 
 }
