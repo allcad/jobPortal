@@ -78,6 +78,7 @@ seletecSearchId;
         data => {
           console.log("data", data);
           this.resetForm();
+          this.getListOfSavedSearch();
        
         }
     );
