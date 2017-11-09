@@ -18,18 +18,34 @@
                                         <li class="active">Saved Search </li>
                                     </ul>
                                     <div class="pull-right job_search">
-                                        <p>Need Help? | <span>Watch our Video Guides</span></p> <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="getSaveSearchList()">Saved Search <i class="fa fa-angle-down plus_blue font_size_margin text_pink" aria-hidden="true"></i></a> </div>
-                                </div>
-                                <div class="col-sm-50" *ngIf="searchListDataFlag">
-                                    <div class="form-group">
-                                        <div class="input-group"> <span class="form-control industry_sector">Saved Search List</span>
-                                            <!-- <div class="input-group-addon bordr_non"><img src="./assets/images/inform.png" alt="Enter Password" title="Password" class="img-responsive"></div> -->
+                                        <p>Need Help? | <span>Watch our Video Guides</span></p> 
+                                        <div style="display: inline;">
+                                        <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="getSaveSearchList()">Saved Search <i class="fa fa-angle-down plus_blue font_size_margin text_pink" aria-hidden="true"></i></a>
+
+                                        <div class="form-group">
+                                            <!--<div class="input-group"> <span class="form-control industry_sector">Saved Search List</span>
+                                                 <div class="input-group-addon bordr_non"><img src="./assets/images/inform.png" alt="Enter Password" title="Password" class="img-responsive"></div> 
+                                            </div>-->
+                                            <ul class="form-control industry_min_heights padding_none">
+                                                <li *ngFor="let item of searchListData" (click)="getSaveSearchDetails(item?.id)">{{item?.recuriter_saved_search_name}}</li>
+                                            </ul>
                                         </div>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <!-- <div class="col-sm-50" *ngIf="searchListDataFlag">
+                                    <div class="form-group">
+                                        <div class="input-group"> <span class="form-control industry_sector">Saved Search List</span> -->
+                                            <!-- <div class="input-group-addon bordr_non"><img src="./assets/images/inform.png" alt="Enter Password" title="Password" class="img-responsive"></div> -->
+                                        <!-- </div>
                                         <ul class="form-control industry_min_heights padding_none">
                                             <li *ngFor="let item of searchListData" (click)="getSaveSearchDetails(item?.id)">{{item?.recuriter_saved_search_name}}</li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="signup_form_section">
                                     <div class="job_search_keywords">
                                         <h2>Name</h2>

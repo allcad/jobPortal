@@ -99,8 +99,8 @@ seletecSearchId;
 	this.industrySector = [];
   }
 
-  searchSelect(){
-  	console.log(this.seletecSearchId);
+  searchSelect(id){
+    this.seletecSearchId = id;
 
   	let input = {
   		"email": "johnsmith21@gmail.com",

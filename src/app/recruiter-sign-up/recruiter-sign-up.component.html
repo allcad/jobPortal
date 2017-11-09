@@ -60,7 +60,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/recruiter-job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
-                      <input type="text" class="form-control" id="JobTitle" placeholder=" Job Title" [(ngModel)]="JobTitle" name="JobTitle" required  [tooltip]="JobTitleTooltip" (blur)="jobTitleBlur()">
+                      <input type="text" class="form-control" id="JobTitle" placeholder="Contact Job Title" [(ngModel)]="JobTitle" name="JobTitle" required  [tooltip]="JobTitleTooltip" (blur)="jobTitleBlur()">
                      <tooltip-content #JobTitleTooltip >
                          <span *ngIf="user?.form && user.form.controls && user.form.controls.JobTitle?.valid " style="color: #C21F39"> Job Title</span>
                         <span [hidden]="!user.form.controls.JobTitle?.hasError('required')" style="color: #C21F39"> Job Title is required.</span>
@@ -104,8 +104,8 @@
                 <div class="col-sm-50">
                   <div class="form-group">
                     <div class="input-group">
-                      <div class="input-group-addon"><img src="./assets/images/recruiter-enter-password.png" alt="Enter Password" title="Password" class="img-responsive"></div>
-                      <input type="password" class="form-control" id="exampleInputEmail1" minlength="6" placeholder="Password" [(ngModel)]="passwordValue" name="passwordValue" required [tooltip]="passwodTooltip" (blur)="passwordBlur()">
+                      <div class="input-group-addon"><img src="./assets/images/recruiter-mail-address.png" alt="Enter Password" title="Password" class="img-responsive"></div>
+                      <input type="email" class="form-control" id="exampleInputEmail1" minlength="6" placeholder="Verify Email Address" [(ngModel)]="passwordValue" name="passwordValue" required [tooltip]="passwodTooltip" (blur)="passwordBlur()">
                  <tooltip-content #passwodTooltip >
                          <span *ngIf="user?.form && user.form.controls && user.form.controls.passwordValue?.valid " style="color: #C21F39"> Password</span>
                         <span [hidden]="!user.form.controls.passwordValue?.hasError('required')" style="color: #C21F39"> Password is required.</span>
@@ -116,17 +116,61 @@
                   </div>
                 </div>
               </div>
+
+
+
+              <div class="row">
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/recruiter-mail-address.png" alt="Email" title="Email" class="img-responsive"></div>
+                      <input type="password" class="form-control" id="exampleInputEmail1" placeholder="password" [(ngModel)]="emailAddress" name="emailAddress" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [tooltip]="EmailAddresTooltip" (blur)="emailBlur()" >
+                  <tooltip-content #EmailAddresTooltip >
+                         <span *ngIf="user?.form && user.form.controls && user.form.controls.emailAddress?.valid" style="color: #C21F39"> Email</span>
+                        <span [hidden]="!user.form.controls.emailAddress?.hasError('required')" style="color: #C21F39"> Email is required.</span>
+                  <span [hidden]="!user.form.controls.emailAddress?.hasError('pattern')" style="color: #C21F39">Email invalid!</span>
+                      </tooltip-content>
+                    </div>
+                    <span style="color:red" *ngIf="emailFlag">Email is required.</span>
+                  </div>
+                </div>
+                <div class="col-sm-50">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><img src="./assets/images/recruiter-enter-password.png" alt="Enter Password" title="Password" class="img-responsive"></div>
+                      <input type="password" class="form-control" id="exampleInputEmail1" minlength="6" placeholder="Verify Password" [(ngModel)]="passwordValue" name="passwordValue" required [tooltip]="passwodTooltip" (blur)="passwordBlur()">
+                 <tooltip-content #passwodTooltip >
+                         <span *ngIf="user?.form && user.form.controls && user.form.controls.passwordValue?.valid " style="color: #C21F39"> Password</span>
+                        <span [hidden]="!user.form.controls.passwordValue?.hasError('required')" style="color: #C21F39"> Password is required.</span>
+                     <span [hidden]="!user.form.controls.passwordValue?.hasError('minlength')" style="color: #C21F39">Password min length 6</span>
+                      </tooltip-content>
+                    </div>
+                    <span style="color:red" *ngIf="passwordFlag">Password is required.</span>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+
+
               <div class="row">
                 <div class="col-sm-50">
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/recruiter-key-skills.png" alt="Key Skills" title="Key Skills" class="img-responsive"></div>
-                      <input type="text" class="form-control" id="keySkill" placeholder="key Skill" [(ngModel)]="keySkill" name="keySkill" required  [tooltip]="keySkillTooltip" (blur)="keySillBlur()">
+                      <input type="text" class="form-control" id="keySkill" placeholder="Passcode" [(ngModel)]="keySkill" name="keySkill" required  [tooltip]="keySkillTooltip" (blur)="keySillBlur()">
                              <tooltip-content #keySkillTooltip>
                         <span *ngIf="user?.form && user.form.controls && user.form.controls.keySkill?.valid" style="color: #C21F39"> Key Skill </span>
                         <span [hidden]="!user.form.controls.keySkill?.hasError('required')" style="color: #C21F39"> Key Skill is required! </span>
                       </tooltip-content>
-                      <div class="input-group-addon passcode_img"><img src="./assets/images/passcode.png" alt="" class="img-responsive" data-toggle="tooltip" data-placement="top" title="You don't have a passcode? No Problem!"></div>
+                      <div class="input-group-addon passcode_img">
+                        <img src="./assets/images/passcode.png" alt="" class="img-responsive" data-toggle="tooltip" data-placement="top" title="You don't have a passcode? No Problem!">
+                        <b class="popup">You don't have a passcode? No <br>Problem! Just drop an email to<br> <a href="mailto:passcode@contractrecruit.co.uk" class="text_pink">passcode@contractrecruit.co.uk</a><br> with your full name, work email and<br> telephone number and we promise<br> to get one to you within 24 hrs!<b></b></b>
+                      </div>
                     </div>
                     <span style="color:red" *ngIf="keySkillFlag">Key Skill is required.</span>
                   </div>

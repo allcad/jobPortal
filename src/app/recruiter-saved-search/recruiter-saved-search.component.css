@@ -1,0 +1,9 @@
+.industry_min_heights {
+    border: 1px solid #ccc !important;
+    width: 170px;
+    float: right;
+}
+.form-group {
+    overflow: hidden;
+    margin-top: 2px;
+}

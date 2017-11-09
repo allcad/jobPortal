@@ -15,15 +15,31 @@
               <li class="active">Saved Search</li>
             </ul>
             <div class="pull-right job_search">
-              <a href="javascript:void(0)" class="btn-primary hover_white_pluse width_180px ">Your Searches <i class="fa fa-angle-down plus_blue font_size_margin" aria-hidden="true"></i></a>
+              <a href="javascript:void(0)" [routerLink]="['../jobSearch']" class="btn-primary hover_white_pluse width_180px">Return to Search <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
+
+              <div style="display: inline;">
+                                        <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="getSaveSearchList()">Saved Search <i class="fa fa-angle-down plus_blue font_size_margin text_pink" aria-hidden="true"></i></a>
+
+                                        <div class="form-group">
+                                            <!--<div class="input-group"> <span class="form-control industry_sector">Saved Search List</span>
+                                                 <div class="input-group-addon bordr_non"><img src="./assets/images/inform.png" alt="Enter Password" title="Password" class="img-responsive"></div> 
+                                            </div>-->
+                                            <ul class="form-control industry_min_heights padding_none">
+                                                <li *ngFor="let search of savedSearchList" (click)="searchSelect(search?.contractor_search_id)">{{search?.contractor_search_name}}</li>
+                                            </ul>
+                                        </div>
+
+                                        </div>
+                                        
+        <!--       <a href="javascript:void(0)" class="btn-primary hover_white_pluse width_180px ">Your Searches <i class="fa fa-angle-down plus_blue font_size_margin" aria-hidden="true"></i></a>
 
               <select name="searchList" (change)="searchSelect()" [(ngModel)]="seletecSearchId">
               	<option selected="true" disabled>Saved Search</option>
               	<option *ngFor="let search of savedSearchList" [value]="search.contractor_search_id"> {{search.contractor_search_name}}</option>
-              </select>
+              </select> -->
 
 
-              <a href="javascript:void(0)" [routerLink]="['../jobSearch']" class="btn-primary hover_white_pluse width_180px">Return to Search <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
+              
             </div>
           </div>
           <div class="signup_form_section">

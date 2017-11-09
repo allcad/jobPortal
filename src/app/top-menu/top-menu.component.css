@@ -35,7 +35,7 @@
 
 
 .navigation_header ul li a {
-    padding: 12px 20px;
+    padding: 11px 20px;
     color: #fff;
     font-family: inherit;
     font-family: 'Myriad Pro';
@@ -169,4 +169,9 @@ hr {
 
 .navbar-nav>li:hover .navigation-dropdown{
     display: block;
+}
+
+
+.navbar-collapse{
+    padding-left: 16px !important;
 }
