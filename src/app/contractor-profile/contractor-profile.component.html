@@ -223,11 +223,8 @@
                     <div class="form-group">
                       <div class="input-group width_100_commutable">
                         <select class="form-control minimal background_drop_down" [(ngModel)]="commutable" name="commutableValue">
-                          <option value="">Commutable</option>
-                          <option value="1">124536</option>
-                          <option value="5">5124536</option>
-                          <option value="10">10124536</option>
-                          <option value="20">20124536</option>
+                          <option value="commutable">Commutable</option>
+                          <option value="relocatable">Relocatable</option>
                         </select>
                       </div>
                     </div>
@@ -316,15 +313,7 @@
                         <select name="industrySector" [(ngModel)]="industrySector" multiple="true">
                           <option *ngFor="let industry of industrySectorData" value="{{industry.id}}">{{industry.industry}}</option>
                         </select>
-                        <!-- <li class="active">Accountancy</li>
-                        <li>Aerospace</li>
-                        <li>Automotive</li>
-                        <li>Banking</li>
-                        <li>Consultancy</li>
-                        <li>Media</li>
-                        <li>Energy</li>
-                        <li>Legal</li>
-                        <li>Insurance</li> -->
+                       
                       </ul>
                     </div>
                   </div>

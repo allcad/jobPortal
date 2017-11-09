@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonRequestService } from '../common-request.service';
 
 @Component({
   selector: 'app-contractor-job-search',
@@ -16,7 +17,7 @@ maxRate;
 rateType="daily";
 jobPreferenceNumber;
 showContracts;
-  constructor() { }
+  constructor(private _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
   }
@@ -35,7 +36,14 @@ showContracts;
   		jobPreferenceNumber : this.jobPreferenceNumber,
   		showContact: this.showContracts
   	}
-  	console.log(inputJson)
+  	console.log(inputJson);
+    var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/save_search";
+      this._commonRequestService.postData(url, inputJson).subscribe(
+        data => {
+          console.log("searchData", data);
+          
+        }
+    );
   }
 
   resetSearch(){

@@ -151,7 +151,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Postal Code" name="contractor_job_title" [(ngModel)]="contractor_job_title" required [tooltip]="contractor_job_titleTooltip">
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Postal Code" name="contractor_job_title" [(ngModel)]="contractor_post_code" required [tooltip]="contractor_job_titleTooltip">
                       <tooltip-content #contractor_job_titleTooltip>
                         <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_job_title?.valid " style="color: #C21F39"> Postal Code </span>
                         <span [hidden]="!userForm.form.controls.contractor_job_title?.hasError('required')" style="color: #C21F39"> Postal Code is required! </span>
