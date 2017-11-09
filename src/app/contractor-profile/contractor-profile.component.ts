@@ -161,7 +161,7 @@ securityClearenceData = [];
 
     this.fd.append('certification',this.certification);
     this.fd.append('qualification',this.qualification);
-    this.fd.append('uploadCV',this.CVFile);
+    this.fd.append('uploadCV[]',JSON.stringify([this.CVFile, this.CVFile]));
     this.fd.append('uploadCoverLetter',this.coverLetterFile);
 
 
