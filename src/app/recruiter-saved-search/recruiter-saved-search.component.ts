@@ -116,13 +116,14 @@ export class RecruiterSavedSearchComponent implements OnInit {
      var input = {
      "email": "johnsmith21@gmail.com",
       "loginToken": "$2y$10$U2wRqqX16ZU5/bno9773M.79k5Pag7h9njwxC7Bk6aqgB1NyElP0m",
-      "contractor_search_id":this.recentRecruiterSaveId
+      "id":this.recentRecruiterSaveId
    };
    console.log("input--", input);
-   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/save_search/delete";
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/save_search/delete";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
           console.log("delete data--", data);
+          this.getSaveSearchList();
           //this.industryArrayData = data.data;
           //this.recruiterNameArray = data.data;
         }
@@ -133,12 +134,12 @@ export class RecruiterSavedSearchComponent implements OnInit {
      var input = {
      "email":"test@test7.com",
     "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu",
-    "contractor_search_id":id
+    "id":id
    };
    this.recentRecruiterSaveId = id;
    console.log("this.recentRecruiterSaveId--", this.recentRecruiterSaveId)
    console.log("input--", input);
-   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/save_search/detail ";
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/save_search/detail";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
           console.log("save search details--", data);
