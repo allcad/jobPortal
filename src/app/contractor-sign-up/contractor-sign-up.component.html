@@ -21,13 +21,30 @@
             <strong>Error!</strong> {{validateMsg}}
           </div>
           <div class="signup_form_section">
+            <div class="errorbox" *ngIf="userForm && userForm.form && userForm.form.controls && userForm.form.invalid && userForm.submitted"><b>The following error(s) occured:</b>
+              <br>
+              <li *ngIf="userForm.form.controls.contractor_first_name?.hasError('required')">First name required</li>
+              <li *ngIf="userForm.form.controls.contractor_first_name?.hasError('pattern')">Valid first name required</li>
+              <li *ngIf="userForm.form.controls.contractor_last_name?.hasError('required')">Last name required</li>
+              <li *ngIf="userForm.form.controls.contractor_email?.hasError('required')">Email required</li>
+              <li *ngIf="userForm.form.controls.contractor_email?.hasError('pattern')">Valid Email required</li>
+              <li *ngIf="userForm.form.controls.contractor_tel_no?.hasError('required')">Phone number required</li>
+              <li *ngIf="userForm.form.controls.contractor_tel_no?.hasError('pattern')">Valid phone number required</li>
+              <li *ngIf="userForm.form.controls.contractor_current_password?.hasError('required')">Password required</li>
+              <li *ngIf="userForm.form.controls.contractor_job_title?.hasError('required')">Job title required</li>
+              
+              <li *ngIf="userForm.form.controls.contractor_postal_title?.hasError('required')">Postal code required</li>
+              <li *ngIf="userForm.form.controls.termOfUse?.hasError('required')">Accept Terms of Use</li>
+
+
+            </div>
             <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
               <div class="row">
                 <div class="col-sm-50">
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/user-name.png" alt="User Name" title="User Name" class="img-responsive"></div>
-                      <input type="text" class="form-control" id="contractorFirstName" placeholder="Enter First Name" name="contractor_first_name" [(ngModel)]="contractor_first_name" pattern="[a-zA-Z][a-zA-Z ]+" required minlength="3" [tooltip]="firstNameTooltip">
+                      <input type="text" class="form-control" id="contractorFirstName" placeholder="Enter First Name" name="contractor_first_name" [(ngModel)]="contractor_first_name" pattern="[a-zA-Z][a-zA-Z ]+" required [tooltip]="firstNameTooltip">
                       <tooltip-content #firstNameTooltip>
                         <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_first_name?.valid " style="color: #C21F39"> Contractor First Name</span>
                         <span [hidden]="!userForm.form.controls.contractor_first_name?.hasError('required')" style="color: #C21F39"> Contractor First Name is required.</span>
@@ -41,7 +58,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/user-name.png" alt="User Name" title="User Name" class="img-responsive"></div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name" name="contractor_last_name" [(ngModel)]="contractor_last_name" required minlength="3" [tooltip]="lastNameTooltip">
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name" name="contractor_last_name" [(ngModel)]="contractor_last_name" required [tooltip]="lastNameTooltip">
                       <tooltip-content #lastNameTooltip>
                         <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_last_name?.valid" style="color: #C21F39"> Contractor Last Name</span>
                         <span [hidden]="!userForm.form.controls.contractor_last_name?.hasError('required')" style="color: #C21F39"> Contractor last Name is required.</span>
@@ -87,11 +104,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/enter-password.png" alt="Enter Password" title="Password" class="img-responsive"></div>
-                      <input type="password" class="form-control" id="exampleInputEmail1" minlength="6" placeholder="Enter Password" name="contractor_current_password" [(ngModel)]="contractor_current_password" required [tooltip]="contpassword">
+                      <input type="password" class="form-control" id="exampleInputEmail1" placeholder="Enter Password" name="contractor_current_password" [(ngModel)]="contractor_current_password" required [tooltip]="contpassword">
                       <tooltip-content #contpassword>
                         <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_current_password?.valid" style="color: #C21F39">Contractor's Password </span>
                         <span [hidden]="!userForm.form.controls.contractor_current_password?.hasError('required')" style="color: #C21F39"> Password is required! </span>
-                        <span [hidden]="!userForm.form.controls.contractor_current_password?.hasError('minlength')" style="color: #C21F39">Password min length 6</span>
+                        <!-- <span [hidden]="!userForm.form.controls.contractor_current_password?.hasError('minlength')" style="color: #C21F39">Password min length 6</span> -->
                       </tooltip-content>
                     </div>
                   </div>
@@ -104,7 +121,7 @@
                         <span>Find CV
                             <img alt="search now" src="./assets/images/find-cv.png" title="search now">
                           </span>
-                        <input type="file" class="upload" />
+                        <input type="file" class="upload"  (change)="fileChangeEvent($event)"/>
                       </div>
                       <!-- <input type="file" class="form-control input-group-addon find_cv_from" id="uploadCV" name="documents" placeholder="Upload CV" required [tooltip]="uploadCVTooltip" (change)="fileChangeEvent($event)"> -->
                       <tooltip-content #uploadCVTooltip>
@@ -120,18 +137,17 @@
                     </div>
                   </div>
                   <div style="margin-top: -35px;text-align: right;font-family: arial;">
-                            <a style="font-family: FacilePro; font-size:11px;color:#FF0066;">.DOC</a>
-                            <a style="font-family: FacilePro; font-size:11px;color:#999999;">, </a>
-                            <a style="font-family: FacilePro; font-size:11px;color:#FF0066;">.DOCX</a>
-                            <a style="font-family: FacilePro; font-size:11px;color:#999999;">, </a>
-                            <a style="font-family: FacilePro; font-size:11px;color:#FF0066;">.PDF</a>
-                            <a style="font-family: FacilePro; font-size:11px;color:#999999;">, </a>
-                            <a style="font-family: FacilePro; font-size:11px;color:#FF0066;">.RTF</a>
-                            <a style="font-family: FacilePro; font-size:11px;color:#999999;"> or</a>
-                            <a style="font-family: FacilePro; font-size:11px;color:#FF0066;"> .ODT</a>
-                            <a style="font-family: FacilePro; font-size:11px;color:#999999;"> only</a>
-                        </div>
-
+                    <a style="font-family: FacilePro; font-size:11px;color:#FF0066;">.DOC</a>
+                    <a style="font-family: FacilePro; font-size:11px;color:#999999;">, </a>
+                    <a style="font-family: FacilePro; font-size:11px;color:#FF0066;">.DOCX</a>
+                    <a style="font-family: FacilePro; font-size:11px;color:#999999;">, </a>
+                    <a style="font-family: FacilePro; font-size:11px;color:#FF0066;">.PDF</a>
+                    <a style="font-family: FacilePro; font-size:11px;color:#999999;">, </a>
+                    <a style="font-family: FacilePro; font-size:11px;color:#FF0066;">.RTF</a>
+                    <a style="font-family: FacilePro; font-size:11px;color:#999999;"> or</a>
+                    <a style="font-family: FacilePro; font-size:11px;color:#FF0066;"> .ODT</a>
+                    <a style="font-family: FacilePro; font-size:11px;color:#999999;"> only</a>
+                  </div>
                 </div>
               </div>
               <div class="row">
@@ -151,11 +167,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Postal Code" name="contractor_job_title" [(ngModel)]="contractor_post_code" required [tooltip]="contractor_job_titleTooltip">
-                      <tooltip-content #contractor_job_titleTooltip>
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Postal Code" name="contractor_postal_title" [(ngModel)]="contractor_post_code" required>
+                      <!-- <tooltip-content #contractor_job_titleTooltip>
                         <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_job_title?.valid " style="color: #C21F39"> Postal Code </span>
                         <span [hidden]="!userForm.form.controls.contractor_job_title?.hasError('required')" style="color: #C21F39"> Postal Code is required! </span>
-                      </tooltip-content>
+                      </tooltip-content> -->
                     </div>
                   </div>
                 </div>
@@ -176,11 +192,11 @@
                           <option *ngFor="let skill of skillData" [value]="skill.skill_id">{{skill.skill_name}}</option>
                         </select>
                       </div>
-                      <!-- <div class="add_sub_skills">
+                      <div class="add_sub_skills">
                         <a href="javascript:void(0)" *ngFor="let selectedSkill of selectedSkillArray; let i = index">
                       {{selectedSkill.skill_name}}
                    <img src="./assets/images/close-icon.png" alt="Close" title="Close" (click)="removeSelectedSkill(i)"></a>
-                      </div> -->
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -188,7 +204,7 @@
               <div class="current_rate_signup situation35">
                 <h2>ENTER YOUR CURRENT RATE</h2>
                 <!-- <img src="./assets/images/price-filter.png" alt="ads" title="ads" class="img-responsive">  -->
-                <ion-range-slider class="width_100" (onFinish)="getRangeSliderValue($event)" #sliderElement min="200" value="100" max="800" step="10" from="300"> 
+                <ion-range-slider class="width_100" (onFinish)="getRangeSliderValue($event)" #sliderElement min="200" value="100" max="800" step="10" from="300">
                 </ion-range-slider>
               </div>
               <div class="current_rate_signup situation35">
@@ -203,10 +219,11 @@
                 </div>
               </div>
               <div id="per" class="rgnote89" *ngIf="contractor_employment_situation == 'permanant'">
-                <div class="text-00 clear" style="margin-top:34px;"> NOTICE PERIOD? &nbsp;</div><br/>
+                <div class="text-00 clear" style="margin-top:34px;"> NOTICE PERIOD? &nbsp;</div>
+                <br/>
                 <div>
                   <select class="optn rgnopt" name="notice_period" style="margin-top:10px;">
-                    <option value="Immediate" *ngFor="let item of noticePeriodList">{{item.name}}</option>
+                    <option [value]="item.id" *ngFor="let item of noticePeriodList">{{item.name}}</option>
                     <!-- <option value="7 DAYS"> 7 DAYS</option>
                     <option value="2 WEEKS">2 WEEKS</option>
                     <option value="1 MONTH">1 MONTH</option>
@@ -217,12 +234,12 @@
               </div>
               <div class="rg_row" id="ext" style="display: block;" *ngIf="contractor_employment_situation == 'in contract'">
                 <div class="showdate rest_data_show show_ui_picker" style="float: right; display: none;">{{dateSelected | date: 'short'}}</div>
-                <div class="text-00 clear imtn">Contract End Date :</div> 
-                  <input type="date" [(ngModel)]="dateSelected" name="contract_end_date" id="datepicker" size="16" value="21/11/2017" class="hasDatepicker" style="float: left;">
+                <div class="text-00 clear imtn">Contract End Date :</div>
+                <input type="date" [(ngModel)]="contractEndDate" name="contract_end_date" id="datepicker"  class="hasDatepicker" style="float: left;">
                 <div class="text-00 text-438" style="padding-left:0;float: left;">MAKE MY DETAILS LIVE FROM?</div>
                 <div>
-                  <select class="optn text-ipn-opntn" name="details_live" style="float:right; margin-top: -20px;">
-                    <option value="Immediate" *ngFor="let item of noticePeriodList">{{item.name}}</option>
+                  <select class="optn text-ipn-opntn" name="details_live" style="float:right; margin-top: -20px;" [(ngModel)]="detailsLiveFrom">
+                    <option [value]="item.id" *ngFor="let item of noticePeriodList">{{item.name}}</option>
                   </select>
                 </div>
                 <br>
@@ -231,22 +248,20 @@
                 <div style="    float: left;
     margin-left: 30px;
     margin-top: -6px;">
-                  <select class="optn tstximtm" name="contract_notice_period" style="margin-top:10px;">
-                     <option value="Immediate" *ngFor="let item of noticePeriodList">{{item.name}}</option>
+                  <select class="optn tstximtm" name="contract_notice_period" style="margin-top:10px;" [ngModel]="noticePeriod">
+                    <option [value]="item.id" *ngFor="let item of noticePeriodList">{{item.name}}</option>
                   </select>
                 </div>
                 <div id="happynotice" class="text-00" style="padding-right:0px; margin-left:19px;float: left;margin-top: 10px; height: 25px;"> HAPPY TO USE YOUR NOTICE PERIOD?</div>
                 <div class="current_rate_signup checkbox-inline" style=" width:70px; margin-top: 10px; float:right;">
-                  <input checked="checked" id="permanentyes" name="optradio" type="radio" value="permanentyes">
+                  <input checked="checked" id="permanentyes" name="useNoticePeriod" [ngModel]="useNoticePeriod" type="radio" value="yes">
                   <label class="radio-inline" for="permanentyes"><span></span> Yes </label>
                 </div>
                 <br>
                 <div class="current_rate_signup checkbox-inline" style=" width:70px; float:right;">
-                  <input checked="checked" id="permanentno" name="optradio" type="radio" value="permanentno">
+                  <input checked="checked" [ngModel]="useNoticePeriod" id="permanentno" name="useNoticePeriod" type="radio" value="no">
                   <label class="radio-inline" for="permanentno"><span></span> No </label>
                 </div>
-
-               
               </div>
               <div class="current_rate_signup situation35">
                 <h2>CONTRACTOR SERVICES <span>Do you want to set up any of the following contractor services?</span></h2>
@@ -312,7 +327,7 @@
                   <input type="checkbox" id="inlineCheckbox12" value="option153" [(ngModel)]="contractor_agree_terms_status" name="termOfUse" required>
                   <label for="inlineCheckbox12"><span></span> I AGREE TO CONTRACTRECRUIT’S <a (click)="clickTermsUse()" href="javascript:void(0)">TERMS OF USE</a> </label>
                 </div>
-                <button type="submit" [disabled]="!userForm.form.valid" class="btn-primary pull-right hover_white_pluse">SIGN UP <i class="fa fa-plus plus_blue" aria-hidden="true"></i></button>
+                <button type="submit" class="btn-primary pull-right hover_white_pluse">SIGN UP <i class="fa fa-plus plus_blue" aria-hidden="true"></i></button>
                 <!--   <a href="#" class="btn-primary pull-right hover_white_pluse">SIGN UP <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> --></div>
             </form>
           </div>

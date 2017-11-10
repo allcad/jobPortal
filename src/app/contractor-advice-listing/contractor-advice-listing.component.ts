@@ -29,4 +29,10 @@ export class ContractorAdviceListingComponent implements OnInit {
     );  	
   }
 
+  readMore(item){
+    console.log(item);
+    localStorage.setItem("adviceArticleId", item.id);
+    this._commonRequestService.setDataWithoutObserval(item.id, "adviceArticleId");
+  }
+
 }

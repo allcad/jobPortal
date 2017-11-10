@@ -21,6 +21,14 @@
             <strong>Error!</strong> Your Email id is not Registered !!
           </div>
           <div class="login_form_section">
+            <div class="errorbox" *ngIf="f && f.form && f.form.controls && f.form.invalid && f.submitted"><b>The following error(s) occured:</b>
+              <br>
+              <li *ngIf="f.form.controls.email?.hasError('required')">Email Required</li>
+              <li *ngIf="f.form.controls.email?.hasError('pattern')">Email not valid</li>
+              <li *ngIf="f.form.controls.password?.hasError('required')">Password Required</li>
+              <li *ngIf="f.form.controls.addNumber?.hasError('required')">Total Required</li>
+            </div>
+
             <form #f="ngForm" (ngSubmit)="onLogin(f)">
               <div class="row">
                 <div class="col-sm-50">
@@ -28,8 +36,9 @@
                     <input type="email" name="email" class="form-control" id="email" placeholder="Email*" [(ngModel)]="email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [tooltip]="emailTooltip">
                     <tooltip-content #emailTooltip>
                       <span *ngIf="f?.form && f.form.controls && f.form.controls.email?.valid" style="color: white"> Email </span>
-                      <span [hidden]="!f.form.controls.email?.hasError('required')" style="color: white"> Email  is required!</span>
-                      <span [hidden]="!f.form.controls.email?.hasError('pattern')" style="color:white">Email invalid!</span>
+                      <span *ngIf="!f.form.controls.email?.hasError('required')" style="color: white"> Email  is required!</span>
+                      <span *ngIf="!f.form.controls.email?.hasError('pattern')" style="color:white">Email invalid!</span>
+                      <span *ngIf="f.form.controls.password?.hasError('required')">Password Required</span>
                     </tooltip-content>
                   </div>
                 </div>
@@ -54,7 +63,7 @@
                     <input type="text" class="form-control" id="exampleInputEmail1" placeholder="ARE YOU HUMAN ? *" [(ngModel)]="addNumber" name="addNumber" required>
                   </div>
                 </div>
-                <span *ngIf="!valid && addNumber " style="color: #C21F39">{{errorMessage}} </span>
+                <!-- <span *ngIf="!valid && addNumber " style="color: #C21F39">{{errorMessage}} </span> -->
                 <div class="col-sm-50" style="text-align: right;">
                   <button type="submit" class="form-group form_login btn-default"> login <i class="fa fa-plus" aria-hidden="true"></i> </button>
                 </div>

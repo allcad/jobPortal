@@ -209,7 +209,7 @@
                   <label for="exampleInputEmail1">What are your preferred job titles?</label>
                   <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter job title" [(ngModel)]="preferredJobTitle" name="preferredJobTitle">
                 </div>
-                <div class="preferred_skip_submit"> <a href="javascript:void(0)" class="btn-info hover_white_pluse">Skip <i class="fa fa-angle-double-right plus_black" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-info hover_white_pluse">Submit <i class="fa fa-plus plus_black img_ioc" aria-hidden="true"></i></a> </div>
+                <div class="preferred_skip_submit"> <a href="javascript:void(0)" class="btn-info hover_white_pluse">Skip <i class="fa fa-angle-double-right plus_black" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-info hover_white_pluse" (click)="savePreferredJobTitle()">Submit <i class="fa fa-plus plus_black img_ioc" aria-hidden="true"></i></a> </div>
               </div>
               <div class="profile_map">
                 <!-- <img src="./assets/images/map.png" alt="map" title="map" class="img-responsive"> -->

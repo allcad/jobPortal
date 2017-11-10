@@ -1,10 +1,10 @@
 <div class="letest_news_box margin_bottom_10px" *ngFor="let latest of latestArticleList; let i= index">
   
-  	<div class="book_mark" routerLink="../adviceDetail"><a href="javascript:void(0)"><img src="./assets/images/artical-message.png" alt="" title=""></a></div>
+  	<div class="book_mark" ><a href="javascript:void(0)"><img src="./assets/images/artical-message.png" alt="" title=""></a></div>
   <img [src]="latest.image" alt="" onError="this.src='./assets/images/advice-article-default.png'"  title="" class="img-responsive">
   <h5>{{latest.title}}</h5>
   <p [innerHTML]="latest.description"></p>
-  <div class="letest_news_footer"> <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a routerLink="../adviceDetail" href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
+  <div class="letest_news_footer"> <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a (click)="readMore(latest)" routerLink="../adviceDetail" href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
 
 
   

@@ -20,8 +20,7 @@ inputData;min;max;addNumber;number;number2;errorMessage;inputUrl;status;succesLo
   }
 
     onLogin(f:NgForm){
-       if(parseInt(this.addNumber) === (this.number + this.number2)){
-           this.errorMessage="";
+      if(f.valid && parseInt(this.addNumber) === (this.number + this.number2)){
       this.inputLogin={
         "email":this.email,
         "password":this.password
@@ -46,8 +45,9 @@ inputData;min;max;addNumber;number;number2;errorMessage;inputUrl;status;succesLo
           }
         }
     )
+       
       }else{
-         this.errorMessage ="please enter valid number!"
+         window.scroll(0,0);
        }
 }
 

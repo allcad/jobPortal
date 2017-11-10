@@ -163,46 +163,8 @@ securityClearenceData = [];
     this.fd.append('qualification',this.qualification);
     this.fd.append('uploadCV[]',JSON.stringify([this.CVFile, this.CVFile]));
     this.fd.append('uploadCoverLetter',this.coverLetterFile);
-
-
-
-
-
-
-
-    //   var inputdata = {
-    //   "email":"you@gmail.com",
-    //   "loginToken":"$2y$10$Wbps5L/ERbs.7sdCm.tAoO4tNWY6At/JtAibo6FhsoICKXUy4q7OS",
-    //   'contractorProfileUrl': this.fd ? this.fd : null ,
-    //   'userName': this.userName,
-    //   'emailAddress': this.emailAddress,
-    //   'securityClearance': this.securityClearance,
-    //   'euDrivingLicence': parseInt(this.euDrivingLicence), 
-    //   'postCode': this.postCode,
-    //   'dayRate_min': this.dayRate1,
-    //   'dayRate_max': this.dayRate2,
-    //   'availability': this.availability,
-    //   'webAddress': this.webAddress,
-    //   'stackOverWebAddress': this.stackOverWebAdd,
-    //   'gitHubWebAddress': this.gitHubWebAdd,
-    //   'linkedinWebAddress': this.linkedinWebAdd,
-    //   'behanceWebAddress': this.behanceWebAdd,
-    //   'yourPreferredJobTitle': this.preferredJobTitleValue,
-    //   'commutable': this.commutable,
-    //   'rate_min' : this.rate1,
-    //   'rate_max' : this.rate2,
-    //   'dailyHourlyValue': this.dailyHourlyValue,
-    //   'currentJobTitle': this.currentJobTitle,
-    //   'skill&Experience': this.selectedSkillArray,
-    //   'summary': this.summary,
-    //   'industrySector': ["1",],
-    //   'certification': this.certification,
-    //   'qualification': this.qualification,
-    //  //'preferredJobTitle': this.preferredJobTitleValue,
-    //   'uploadCV':{},
-    //   'uploadCoverLetter':{},
-    // }
-          //console.log( inputdata,"fdf")
+    this.fd.append('longitude', this.lat);
+    this.fd.append('latitude', this.lng);
    this.inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/profile/submit";
        this._commonRequestService.postData(this.inputUrl, this.fd).subscribe(
         data => {
@@ -405,6 +367,27 @@ getProfileDta(){
        
         }
     );
+    
+  }
+
+  savePreferredJobTitle(){
+    console.log(this.preferredJobTitle);
+    if(this.savePreferredJobTitle){
+      let input = {
+      "email" : "test@gmail.com",
+      "loginToken" : "ndckajs546JGkknk",
+      "yourPreferredJobTitle" : this.preferredJobTitleValue
+    }
+
+
+    let dataUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/profile/preferred_job_title";
+       this._commonRequestService.postData(dataUrl, input).subscribe(
+        data => {
+         console.log("preferredJobTitleSaved");   
+         this.preferredJobTitle = "";
+       }
+    );
+    }
     
   }
 
