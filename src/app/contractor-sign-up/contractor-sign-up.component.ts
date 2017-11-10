@@ -45,6 +45,7 @@ export class ContractorSignUpComponent implements OnInit {
  contractEndDate = "";
  useNoticePeriod = "no";
  detailsLiveFrom = "1";
+ contractor_post_code = "";
  constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
 ngOnInit() {

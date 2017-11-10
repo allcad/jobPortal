@@ -150,4 +150,12 @@ seletecSearchId;
   	
   }
 
+  getSaveSearchList(){
+
+  }
+
+  runSearch(){
+    
+  }
+
 }

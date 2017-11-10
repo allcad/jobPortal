@@ -27,6 +27,7 @@ p{ color:#000;}
 .btn-primary {
 	background-color: #000 !important;
 	border-color: #000 !important;
+	text-transform: capitalize !important;
 }
 .btn-default {
 	border-color: #00ccff !important;
