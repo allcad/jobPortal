@@ -28,12 +28,9 @@
                             <div class="col-sm-50">
                                 <div class="signup_form_section width_auto choose_templates">
                                     <label>Choose Template:</label>
-                                    <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none java_developer">
-                                        <option value="">JAVA DEVELOPER</option>
-                                        <option value="1">124536</option>
-                                        <option value="5">5124536</option>
-                                        <option value="10">10124536</option>
-                                        <option value="20">20124536</option>
+                                    <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none java_developer" (change)="renderTemplateDate()" [(ngModel)]="currentTemplate" name="currentTemplate">
+                                        <option value="">Choose Template</option>
+                                        <option value="{{item?.id}}" *ngFor="let item of templateData">{{item?.template_name}}</option>                                        
                                     </select>
                                 </div>
                             </div>
@@ -117,11 +114,10 @@
                                             <div class="input-group responsive_width_100">
                                                 <div class="input-group-addon upto_border_none padding_right_18px">Work Eligibility</div>
                                                 <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none responsive_padding_right20" name="workEligibility" [(ngModel)]="workEligibility" [tooltip]="workEligibilityTooltip" required>
-                                                    <option value="0">Applicants must be eligible to work in the EU</option>
-                                                    <option value="1">124536</option>
-                                                    <option value="5">5124536</option>
-                                                    <option value="10">10124536</option>
-                                                    <option value="20">20124536</option>
+                                                    <option value="0">Choose Work Eligibility</option>
+                                                    <option value="eu_only">Applicants must be eligible to work in the EU</option>
+                                                    <option value="visa_welcomed">Applicants who require a visa welcomed</option>
+                                                    <option value="visa_considered">Applicants who require a visa considered</option>
                                                 </select>
                                                 <tooltip-content #workEligibilityTooltip>
                                                 <span *ngIf="recruiterJobPostingForm?.form && recruiterJobPostingForm.form.controls && recruiterJobPostingForm.form.controls.workEligibility?.valid " style="color: #C21F39">Work Eligibility</span>

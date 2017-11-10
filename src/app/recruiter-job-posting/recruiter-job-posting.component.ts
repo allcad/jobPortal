@@ -39,6 +39,8 @@ industrySectorFlag = false;
 workEliFlag = false;
 templateData;
 allErrorFlag = false;
+renderTemmplateData;
+currentTemplate = "";
   constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -96,10 +98,45 @@ allErrorFlag = false;
 
    };
    console.log("input--", input);
-   var wsUrl="http://dev.contractrecruit.co.uk/contractor_site/api/post/recruiter/job/template_list";
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/template_list";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
+          this.templateData = data.data;
           console.log("templateData--", data);
+        }
+    );
+  }
+
+  renderTemplateDate() {
+    var input = {
+     "email":"test@test7.com",
+    "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu",
+    "templateId": this.currentTemplate
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/template_by_id";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+          this.renderTemmplateData = data.data;
+          console.log("templateData--", data);
+
+       this.jobPostingJobTitle = this.renderTemmplateData.job_title;
+       this.jobPostingDuration = this.renderTemmplateData.duration;
+       this.startDate = this.renderTemmplateData.date_added ? this.renderTemmplateData.date_added.split(' ')[0] : '';
+       this.industrySector = this.renderTemmplateData.industry;
+       this.workEligibility = this.renderTemmplateData.WorkEligibility;
+       this.cityTownValue = this.renderTemmplateData.show_location;
+       this.minRate = this.renderTemmplateData && this.renderTemmplateData.rate_from  ? this.renderTemmplateData.rate_from : 0;
+       this.maxRate = this.renderTemmplateData && this.renderTemmplateData.rate_to  ? this.renderTemmplateData.rate_to : 0
+       this.dailyHourlyValue = this.renderTemmplateData && this.renderTemmplateData.rate_type ? this.renderTemmplateData.rate_type : '';
+       this.jobSpecificationTitle = this.renderTemmplateData.job_title;
+       this.jobSpecificationBody = this.renderTemmplateData.job_description;
+       this.recruiterName = this.renderTemmplateData.recruiterNameId;
+       this.saveTemplateAs = this.renderTemmplateData.template_name;
+       this.jobReference = this.renderTemmplateData.jobReference;
+       this.editJobId = this.renderTemmplateData.id;
+       this.recruiterName = this.renderTemmplateData.consultant_id;
+
         }
     );
   }

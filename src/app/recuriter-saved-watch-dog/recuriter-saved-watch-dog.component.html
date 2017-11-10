@@ -11,21 +11,19 @@
                         <div class="row">
                             <div class="col-sm-100">
                                 <div class="contractor_signup recruiter_signup">
-                                    <h2 class="font_capitalizs">SAVED <span class="text_pink">SEARCH</span></h2>
+                                    <h2 class="font_capitalizs">SAVED <span class="text_pink">Watch Dogs</span></h2>
                                     <ul class="breadcomb">
                                         <li><a href="#">Home</a></li>
                                         <li class="right_arrow text_pink">&gt;</li>
-                                        <li class="active">Saved Search </li>
+                                        <li class="active">Saved Watch Dogs </li>
                                     </ul>
-                                    <div class="pull-right job_search">
+                                    <!-- div class="pull-right job_search">
                                         <p>Need Help? | <span>Watch our Video Guides</span></p> 
                                         <div style="display: inline;">
-                                        <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="getSaveSearchList(); showSaveSearchList=!showSaveSearchList">Saved Search <i class="fa fa-angle-down plus_blue font_size_margin text_pink" aria-hidden="true"></i></a>
+                                        <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="getSaveSearchList(); showSaveSearchList=!showSaveSearchList">Saved Watch Dogs <i class="fa fa-angle-down plus_blue font_size_margin text_pink" aria-hidden="true"></i></a>
 
                                         <div class="form-group" *ngIf="showSaveSearchList">
-                                            <!--<div class="input-group"> <span class="form-control industry_sector">Saved Search List</span>
-                                                 <div class="input-group-addon bordr_non"><img src="./assets/images/inform.png" alt="Enter Password" title="Password" class="img-responsive"></div> 
-                                            </div>-->
+                                           
                                             <ul class="form-control industry_min_heights padding_none">
                                                 <li *ngFor="let item of searchListData" (click)="getSaveSearchDetails(item?.id); showSaveSearchList=!showSaveSearchList">{{item?.recuriter_saved_search_name}}</li>
                                             </ul>
@@ -34,7 +32,7 @@
                                         </div>
 
 
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <!-- <div class="col-sm-50" *ngIf="searchListDataFlag">
                                     <div class="form-group">
@@ -55,13 +53,13 @@
                                             <div class="form-group responsive_margin35">
                                                 <div class="input-group">
                                                     <div class="input-group-addon"><img src="./assets/images/recruit-save-search-name.png" alt="Keywords" title="Keywords" class="img-responsive"></div>
-                                                    <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="SAVED SEARCH NAME" name="savedSearchName" [(ngModel)]="savedSearchName">
-                                                    <div class="input-group-addon upto_border_none responsive_width padding_left25">
+                                                    <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="SAVED WATCG DOG NAME" name="savedSearchName" [(ngModel)]="savedSearchName">
+                                                    <!-- <div class="input-group-addon upto_border_none responsive_width padding_left25">
                                                         <div class="service_box">
                                                             <input id="inlineCheckbox4" value="option4" type="checkbox" name="addToWatchDogCheck" [(ngModel)]="addToWatchDogCheck">
                                                             <label for="inlineCheckbox4" class="padding_right_font"> Add to Watchdogs <span></span></label>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -301,13 +299,13 @@
                                             <div class="row">
                                                 <div class="col-sm-60">
                                                     <div class="sign_up_left_side">
-                                                        <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px margin_bottom10xp" (click)="saveSearch()">Save Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
-                                                        <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="saveSearchDelete()">Delete Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                                                        <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px margin_bottom10xp" (click)="saveSearch()">Save Watch Dog <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                                                        <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="saveSearchDelete()">Delete Watch Dog <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-40">
+                                                <!-- <div class="col-sm-40">
                                                     <div class="sign_up_right_side"> <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px">Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
-                                                </div>
+                                                </div> -->
                                             </div>
                                         </div>
                                     </div>

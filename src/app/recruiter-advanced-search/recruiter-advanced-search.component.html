@@ -215,7 +215,7 @@
                                         <div class="input-group responsive_width_100 ">
                                             <div class="input-group-addon upto_border_none padding_right_38">Time left on current Contract</div>
                                             <select class="form-control minimal background_drop_down box_padding_3 box_height_30 padding_left_none" name="timeLeft" [(ngModel)]="timeLeft">
-                                                <option value="">Time left on current Contract</option>
+                                                <option value="0">Time left on current Contract</option>
                                                 <option value="{{item?.id}}" *ngFor="let item of timeLeftData">{{item?.name}}</option>
                                                 <!-- <option value="5">5124536</option>
                                                 <option value="10">10124536</option>
@@ -240,7 +240,7 @@
                                         <div class="input-group responsive_width_100">
                                             <div class="input-group-addon upto_border_none">Show contractors updated Since</div>
                                             <select class="form-control minimal background_drop_down box_padding_3 box_height_30 padding_left_none" name="showContractor" [(ngModel)]="showContractor">
-                                                <option value="">Show contractors updated Since</option>
+                                                <option value="0">Show contractors updated Since</option>
                                                 <option value="{{item?.id}}" *ngFor="let item of timeLeftData">{{item?.name}}</option>
                                                 <!-- <option value="1">124536</option>
                                                 <option value="5">5124536</option>

@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
-
 @Component({
-  selector: 'app-recruiter-saved-search',
-  templateUrl: './recruiter-saved-search.component.html',
-  styleUrls: ['./recruiter-saved-search.component.css']
+  selector: 'app-recuriter-saved-watch-dog',
+  templateUrl: './recuriter-saved-watch-dog.component.html',
+  styleUrls: ['./recuriter-saved-watch-dog.component.css']
 })
-export class RecruiterSavedSearchComponent implements OnInit {
+export class RecuriterSavedWatchDogComponent implements OnInit {
   savedSearchName: string;
   addToWatchDogCheck= false;
   jobTitle: string;
@@ -43,6 +42,12 @@ export class RecruiterSavedSearchComponent implements OnInit {
     this.getIndustry();
     this.getTimeLeftData();
     this.getEducationData();
+    var localStorageData = JSON.parse(localStorage.getItem('watchDogData'));
+    console.log("localStorageData--", localStorageData);
+    if(localStorageData && localStorageData.watchDogData && localStorageData.watchDogData.watchDogId) {
+      this.getSaveSearchDetails(localStorageData.watchDogData.watchDogId);
+    }
+
   }
 
   getTimeLeftData() {
@@ -120,7 +125,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
       "id":this.recentRecruiterSaveId
    };
    console.log("input--", input);
-   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/save_search/delete";
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/watchdogs/delete";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
           console.log("delete data--", data);
@@ -141,32 +146,32 @@ export class RecruiterSavedSearchComponent implements OnInit {
    this.recentRecruiterSaveId = id;
    console.log("this.recentRecruiterSaveId--", this.recentRecruiterSaveId)
    console.log("input--", input);
-   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/save_search/detail";
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/watchdogs/detail";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
           console.log("save search details--", data);
           //this.industryArrayData = data.data;
           //this.recruiterNameArray = data.data;
-          if(data && data.data) {
-            this.savedSearchName = data.data.recuriter_saved_search_name;
-            this.addToWatchDogCheck = data.data.recuriter_search_add_to_watchdog === 1 ? true : false;
-            this.jobTitle = data.data.recuriter_search_job_title;
-            this.keywordSearch = data.data.recuriter_search_keywords;
-            this.stemmedTerms = data.data.recuriter_search_stemmed_terms === 1 ? true : false;
-            this.coreSkills = data.data.recuriter_search_core_skills;
-            this.certificationValues = data.data.recuriter_search_core_skills;
-            this.dontShowContractor = data.data.recuriter_search_certifications;
-            this.cityTownValue = data.data.recuriter_search_location;
-            this.includeRelocators = data.data.recuriter_search_include_relocators === 1 ? true : false;
-            this.minRate = data.data.recuriter_search_by_rate_min;
-            this.maxRate = data.data.recuriter_search_by_rate_max;
-            this.dailyHourlyValue = data.data.recuriter_search_by_rate_type;
-            this.timeLeftOnCutCont = data.data.recuriter_search_by_time_left;
-            this.includeUnavailable = data.data.recuriter_search_by_updated_contractor_since;
-            this.showContractors = data.data.recuriter_search_dont_show_to_contractor;
-            this.contractorName = data.data.recuriter_search_by_contract_name;
-            this.educationValue = data.data.recuriter_search_by_education;
-            this.drivingLicenceValue = data.data.recuriter_search_by_driving_license === 1 ? 'yes' : 'no';
+          if(data && data.data && data.data.params) {
+            this.savedSearchName = data.data.name;
+            this.addToWatchDogCheck = data.data.params.recuriter_search_add_to_watchdog === 1 ? true : false;
+            this.jobTitle = data.data.params.recuriter_search_job_title;
+            this.keywordSearch = data.data.params.recuriter_search_keywords;
+            this.stemmedTerms = data.data.params.recuriter_search_stemmed_terms === 1 ? true : false;
+            this.coreSkills = data.data.params.recuriter_search_core_skills;
+            this.certificationValues = data.data.params.recuriter_search_core_skills;
+            this.dontShowContractor = data.data.params.recuriter_search_certifications;
+            this.cityTownValue = data.data.params.recuriter_search_location;
+            this.includeRelocators = data.data.params.recuriter_search_include_relocators === 1 ? true : false;
+            this.minRate = data.data.params.recuriter_search_by_rate_min;
+            this.maxRate = data.data.params.recuriter_search_by_rate_max;
+            this.dailyHourlyValue = data.data.params.recuriter_search_by_rate_type;
+            this.timeLeftOnCutCont = data.data.params.recuriter_search_by_time_left;
+            this.includeUnavailable = data.data.params.recuriter_search_by_updated_contractor_since;
+            this.showContractors = data.data.params.recuriter_search_dont_show_to_contractor;
+            this.contractorName = data.data.params.recuriter_search_by_contract_name;
+            this.educationValue = data.data.params.recuriter_search_by_education;
+            this.drivingLicenceValue = data.data.params.recuriter_search_by_driving_license === 1 ? 'yes' : 'no';
           }
         }
     );
@@ -219,8 +224,11 @@ export class RecruiterSavedSearchComponent implements OnInit {
     var savedSearchSaveJson = {
       "email":"test@test8.com",
       "loginToken":"$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y",
-      "recuriter_saved_search_name":this.savedSearchName,
-      "recuriter_search_add_to_watchdog":this.addToWatchDogCheck === true ? 1 : 2,
+      "id": this.recentRecruiterSaveId,
+      "detail":{
+        "name":this.savedSearchName,
+        "params":{          
+      "recuriter_search_add_to_watchdog":1,
       "recuriter_search_job_title":this.jobTitle,
       "recuriter_search_keywords":this.keywordSearch,
       "recuriter_search_stemmed_terms":this.stemmedTerms === true ? 1 : 2,
@@ -239,12 +247,14 @@ export class RecruiterSavedSearchComponent implements OnInit {
       "recuriter_search_by_education":this.educationValue,
       "recuriter_search_by_industry":["1", "2"],
       "recuriter_search_by_security_clearance":["1", "2"],
-      "recuriter_search_by_driving_license":this.drivingLicenceValue == 'yes' ? 1 : 2
+      "recuriter_search_by_driving_license":this.drivingLicenceValue == 'yes' ? 1 : 2,      
+        }
+      }
 
     }
     console.log("savedSearchSaveJson", savedSearchSaveJson);
 
-    var inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/save_search";
+    var inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/watchdogs/edit";
        this._commonRequestService.postData(inputUrl, savedSearchSaveJson).subscribe(
         data => {
           this.responseData = data;

@@ -33,8 +33,8 @@
                                 <div class="form-group">
                                     <div class="input-group responsive_width_100">
                                         <div class="input-group-addon upto_border_none">Sort By:</div>
-                                        <select class="form-control minimal background_drop_down box_height_30 box_padding_3" (change)="getWatchDogListData(10)" [(ngModel)]="currentSortBy" name="currentSortBy">
-                                            <option value="{{i}}" *ngFor="let item of sortByData; let i=index;">{{item.short_name}}</option>
+                                        <select class="form-control minimal background_drop_down box_height_30 box_padding_3" (change)="getWatchDogListData(onPageClick)" [(ngModel)]="currentSortBy" name="currentSortBy">
+                                            <option value="{{item.id}}" *ngFor="let item of sortByData;">{{item.text}}</option>
                                             
                                         </select>
                                     </div>
@@ -102,7 +102,7 @@
                                             <div class="watchdog_footer_icon">
                                                 <a href="javascript:void(0);"><img src="./assets/images/play-icon.png" alt="Job" title="Job"> </a>
                                                 <!-- [routerLink]="['../job-posting']"-->
-                                                <a href="javascript:void(0);" (click)="editJob(item['params']['jobId'])"><img src="./assets/images/watchdog-edit-icon.png" alt="Job" title="Job"> </a>
+                                                <a href="javascript:void(0);" (click)="editJob(item?.id)"><img src="./assets/images/watchdog-edit-icon.png" alt="Job" title="Job"> </a>
                                                 <a href="javascript:void(0);" (click)="deleteWatchDog(item?.id)"><img src="./assets/images/delete-icon.png" alt="Job" title="Job"> </a>
                                             </div>
                                         </div>

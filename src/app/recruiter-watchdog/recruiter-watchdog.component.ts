@@ -26,7 +26,7 @@ export class RecruiterWatchdogComponent implements OnInit {
   }
 
   getSortByData() {
-   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/short_by";
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/watchdogs_sort_by";
        this._commonRequestService.getData(wsUrl).subscribe(
         data => {
          console.log("short by--", data);
@@ -44,7 +44,9 @@ export class RecruiterWatchdogComponent implements OnInit {
      var input = {
      "email":"test@test7.com",
   "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu",
-    "sort_by_id":this.currentSortBy
+    "sort_by_id":this.currentSortBy,
+    "page":this.pageNo,
+    "limit":this.onPageClick
    };
    console.log("input--", input);
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/watchdogs/list";
@@ -95,10 +97,10 @@ export class RecruiterWatchdogComponent implements OnInit {
   //        this.getWatchDogListData();
   //       }
   //   );
-  var input = {"jobId": id ? id : ''};
-  var obj = {'jobPreviewData' : input};
-  localStorage.setItem('jobPostingData', JSON.stringify(obj));
-  this.router.navigate(['./recruiter/job-posting']);
+  var input = {"watchDogId": id ? id : ''};
+  var obj = {'watchDogData' : input};
+  localStorage.setItem('watchDogData', JSON.stringify(obj));
+  this.router.navigate(['./recruiter/saved-watch-dog']);
 
   }
 
