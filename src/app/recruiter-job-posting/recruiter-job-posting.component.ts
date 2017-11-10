@@ -41,6 +41,9 @@ templateData;
 allErrorFlag = false;
 renderTemmplateData;
 currentTemplate = "";
+cityFlag = false;
+minRateFlag = false;
+maxRateFlag = false;
   constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -243,6 +246,24 @@ currentTemplate = "";
       this.jobPostingDurationFlag = true;
     }
 
+    if(this.cityTownValue) {
+      this.cityFlag = false;
+    } else {
+      this.cityFlag = true;
+    }
+
+    if(this.minRate) {
+      this.minRateFlag = false;
+    } else {
+      this.minRateFlag = true;
+    }
+
+    if(this.maxRate) {
+      this.maxRateFlag = false;
+    } else {
+      this.maxRateFlag = true;
+    }
+
     if(this.startDate) {
       this.startDateFlag = false;
     } else {
@@ -261,7 +282,8 @@ currentTemplate = "";
       this.workEliFlag = true;
     }
 
-    if(this.jobPostingDurationFlag || this.jobPostingTiteFlag || this.startDateFlag || this.industrySectorFlag || this.workEliFlag) {
+    if(this.jobPostingDurationFlag || this.jobPostingTiteFlag || this.startDateFlag || 
+      this.industrySectorFlag || this.workEliFlag || this.cityFlag || this.maxRateFlag || this.minRateFlag) {
       this.allErrorFlag = true;
     } else {
       this.allErrorFlag = false;
@@ -302,13 +324,15 @@ currentTemplate = "";
               data => {
               	console.log("data result", data);
                 window.scroll(0,0);
-                this.resetData();
-                this.postJobSuccessMsg = 'Post Job Save succesfully!';
-                 var obj = {'jobId' : ''};
-                localStorage.setItem('recruiterJobData', JSON.stringify(obj));
+                if(data && data.status === "TRUE") {
+                  this.resetData();
+                  this.postJobSuccessMsg = 'Post Job Save succesfully!';
+                   var obj = {'jobId' : ''};
+                  localStorage.setItem('recruiterJobData', JSON.stringify(obj));
 
-                var obj1 = {'jobPreviewData' : ''};
-                localStorage.setItem('editJobPost', JSON.stringify(obj1));
+                  var obj1 = {'jobPreviewData' : ''};
+                  localStorage.setItem('editJobPost', JSON.stringify(obj1));
+                }
                 }
           );
         } else {

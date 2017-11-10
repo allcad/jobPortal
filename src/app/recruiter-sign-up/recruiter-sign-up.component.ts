@@ -19,103 +19,149 @@ export class RecruiterSignUpComponent implements OnInit {
   emailFlag = false;
   passwordFlag = false;
   keySkillFlag = false;
+  verifyPasswordValue;
+  verifyPasswordValueFlag = false;
+  allErrorMsgFlag = false;
+  validPhoneNoFlag = false;
+  phoneNoMaxLengthFlag = false;
+  validEmailFlag = false;
+  verifyEmailFlag = false;
+  verifyEmailReqFlag = false;
+  verifyEmailAddress;
   inputData; JobTitle; phoneNo; emailAddress; passwordValue; keySkill; termOfUse = false; inputUrl; status; succesMessageFlag = false;
   constructor(public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
   }
 
-  companyNameBlur() {
+  
+
+   onSignUp(userForm:NgForm){
+     var phoneRegex = /[0-9]*/;
+     var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+     if(this.phoneNo && phoneRegex.test(this.phoneNo)) {
+        this.validPhoneNoFlag = false;
+      } else {
+        this.validPhoneNoFlag = true;
+      }
+
+      if(this.emailAddress && emailRegex.test(this.emailAddress)) {
+        this.validEmailFlag = false;
+      } else {
+        this.validEmailFlag = true;
+      }
+
+      if(this.verifyEmailAddress && emailRegex.test(this.verifyEmailAddress)) {
+        this.verifyEmailFlag = false;
+      } else {
+        this.verifyEmailFlag = true;
+      }
+
+      if(this.phoneNo && this.phoneNo.length > 15) {
+        this.phoneNoMaxLengthFlag = true;
+      } else {
+        this.phoneNoMaxLengthFlag = false;
+      }
+
     if(this.companyName) {
       this.companyNameFlag = false;
     } else {
       this.companyNameFlag = true;
     }
-  }
 
-  contactNameBlur() {
     if(this.contactName) {
       this.contactNameFlag = false;
     } else {
       this.contactNameFlag = true;
     }
-  }
 
-  jobTitleBlur() {
     if(this.JobTitle) {
       this.jobTitleFlag = false;
     } else {
       this.jobTitleFlag = true;
     }
-  }
 
-  phoneNoBlur() {
     if(this.phoneNo) {
       this.phoneNoFlag = false;
     } else {
       this.phoneNoFlag = true;
     }
-  }
 
-  emailBlur() {
     if(this.emailAddress) {
       this.emailFlag = false;
     } else {
       this.emailFlag = true;
     }
-  }
 
-  passwordBlur() {
+    if(this.verifyEmailAddress) {
+      this.verifyEmailReqFlag = false;
+    } else {
+      this.verifyEmailReqFlag = true;
+    }
+
     if(this.passwordValue) {
       this.passwordFlag = false;
     } else {
       this.passwordFlag = true;
     }
-  }
 
-  keySillBlur() {
     if(this.keySkill) {
       this.keySkillFlag = false;
     } else {
       this.keySkillFlag = true;
     }
-  }
 
-   onSignUp(userForm:NgForm){
-      this.inputData={
-              "recuriter_company_name":this.companyName,
-              "recuriter_contact_name":this.contactName,
-              "recuriter_business_email":this.emailAddress,
-              "recuriter_contact_job_title":this.JobTitle,
-              "recuriter_phone_number":this.phoneNo,
-              "recuriter_new_password":this.passwordValue,
-              "keySkill":["1","2"],
-              "recuriter_tems_status":this.termOfUse
-      }
-      console.log( this.inputData,"fdf");
-   this.inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/signup";
-       this._commonRequestService.postData(this.inputUrl, this.inputData).subscribe(
-        data => {
-          this.listSignUpData = data;
-          if(this.listSignUpData.status === "TRUE"){
-            this.succesMessageFlag =true;
-            this.ErrorMesageFlag =false
-            this.companyName = "";
-            this.contactName = "",
-            this.emailAddress = "";
-            this.JobTitle = "";
-            this.phoneNo = "";
-            this.passwordValue = "";
-            this.termOfUse = false;
-          }
-          else{
-             this.succesMessageFlag =false;
-              this.ErrorMesageFlag =true;
-          }
-          console.log("rercu_sign: ", this.status);
+    if(this.verifyPasswordValue) {
+      this.verifyPasswordValueFlag = false;
+    } else {
+      this.verifyPasswordValueFlag = true;
+    }
+
+    if(this.companyNameFlag || this.contactNameFlag || this.phoneNoFlag || this.jobTitleFlag 
+      || this.emailFlag || this.passwordFlag || this.verifyPasswordValueFlag || this.keySkillFlag || this.validPhoneNoFlag
+      || this.phoneNoMaxLengthFlag || this.verifyEmailReqFlag || this.verifyEmailFlag || this.verifyEmailFlag) {
+      this.allErrorMsgFlag = true;
+    } else {
+      this.allErrorMsgFlag = false;
+    }
+
+      if(!this.allErrorMsgFlag) {
+        this.inputData={
+          "recuriter_company_name":this.companyName,
+          "recuriter_contact_name":this.contactName,
+          "recuriter_business_email":this.emailAddress,
+          "recuriter_contact_job_title":this.JobTitle,
+          "recuriter_phone_number":this.phoneNo,
+          "recuriter_new_password":this.passwordValue,
+          "keySkill":["1","2"],
+          "recuriter_tems_status":this.termOfUse
         }
-    );     
-
-}
+        console.log( this.inputData,"fdf");
+     this.inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/signup";
+         this._commonRequestService.postData(this.inputUrl, this.inputData).subscribe(
+          data => {
+            window.scroll(0,0);
+            this.listSignUpData = data;
+            if(this.listSignUpData.status === "TRUE"){
+              this.succesMessageFlag =true;
+              this.ErrorMesageFlag =false
+              this.companyName = "";
+              this.contactName = "",
+              this.emailAddress = "";
+              this.JobTitle = "";
+              this.phoneNo = "";
+              this.passwordValue = "";
+              this.termOfUse = false;
+            }
+            else{
+               this.succesMessageFlag =false;
+                this.ErrorMesageFlag =true;
+            }
+            console.log("rercu_sign: ", this.status);
+          }
+      );     
+    }
+  }
 
 }

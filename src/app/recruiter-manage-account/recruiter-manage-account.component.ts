@@ -10,11 +10,13 @@ import { CommonRequestService } from '../common-request.service';
 export class RecruiterManageAccountComponent implements OnInit {
   name: string;
   jobTitle: string;
-  telePhone: number;
+  telePhone;
   nameFlag = false;
   jobTitleFlag = false;
   telephoneFlag = false;
   allErrorFlag = false;
+  manageAccountFlag = false;
+  telephoneValidFlag = false;
 
   constructor(public _commonRequestService: CommonRequestService) { }
 
@@ -62,7 +64,13 @@ export class RecruiterManageAccountComponent implements OnInit {
       this.telephoneFlag = true;
     }
 
-    if(this.nameFlag || this.jobTitleFlag || this.telephoneFlag) {
+    if(!this.telePhone.match(/^\d{10}$/)) {
+      this.telephoneValidFlag = true;
+    } else {
+      this.telephoneValidFlag = false;
+    }
+
+    if(this.nameFlag || this.jobTitleFlag || this.telephoneFlag || this.telephoneValidFlag) {
       this.allErrorFlag = true;
     } else {
       this.allErrorFlag = false;

@@ -4,7 +4,7 @@
   <div id="contractor-signup">
     <div class="container">
 
-      <div class="errorbox" *ngIf="companyNameFlag || companySizeFlag || addressNameFlag || addressLine1Flag || addressLine2Flag || cityFlag || countryFlag || postCodeFlag || telephoneFlag || companyDescFlag || companyUrlFlag || companyEmailFlag"><b>The following error(s) occured:</b><br> 
+      <div class="errorbox" *ngIf="companyNameFlag || companySizeFlag || addressNameFlag || addressLine1Flag || addressLine2Flag || cityFlag || countryFlag || postCodeFlag || telephoneFlag || companyDescFlag || companyUrlFlag || companyEmailFlag || telephoneValidationFlag || emailAddValidationFlag || webAddValidationFlag"><b>The following error(s) occured:</b><br> 
           <li *ngIf="companyNameFlag">Company Name is required.</li>
           <li *ngIf="companySizeFlag">Company Size is required.</li>
           <li *ngIf="addressNameFlag">Address Name is required.</li>
@@ -17,6 +17,9 @@
           <li *ngIf="companyDescFlag">Company Description is required.</li>
           <li *ngIf="companyUrlFlag">Company Url is required.</li>
           <li *ngIf="companyEmailFlag">Company Email is required.</li>
+          <li *ngIf="telephoneValidationFlag">Please enter valid phone no.</li>
+          <li *ngIf="emailAddValidationFlag">Please enter valid email address.</li>
+          <li *ngIf="webAddValidationFlag">Please enter valid web address.</li>
       </div>
 
 
@@ -63,7 +66,7 @@
                   <div class="profile_image background_pink">
                     <!-- <img src="./assets/images/profile-pik.png" alt="ads" title="ads" class="img-responsive">  -->
                     <div style="margin-bottom: 30px;">
-                      <img class="img-responsive" [src]="profileData?.profileimage[0] ? profileData.profileimage[0].attachment_url +'/' +  profileData.profileimage[0].attachment_name : './assets/images/profile-pik.png'" alt="ads">
+                      <img class="img-responsive" [src]="profileData?.profileimage[0] ? profileData?.profileimage[0]?.attachment_url +'/' +  profileData?.profileimage[0]?.attachment_name : './assets/images/profile-pik.png'" alt="ads">
                     </div>
                     <!-- <a href="javascript:void(0);"></a> -->
                     <!-- <input type="file" class="upload" (change)="recruiterFileChangeEvent($event)" /> -->
@@ -80,46 +83,41 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/company-name-icons.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Company Name" [(ngModel)]="companyName" name="companyName" [tooltip]="companyNameTooltip" required>
-                      <tooltip-content #companyNameTooltip>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Company Name" [(ngModel)]="companyName" name="companyName" required>
+                      <!-- <tooltip-content #companyNameTooltip>
                         <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.companyName?.valid " style="color: #C21F39">COMPANY NAME</span>
                         <span [hidden]="!saveRecruiterPage.form.controls.companyName?.hasError('required')" style="color: #C21F39">Company Name is required.</span>
-                        <!-- <span [hidden]="!saveRecruiterPage.form.controls.companyName?.hasError('minlength')" style="color: #C21F39">Contractor First Name min length is 3.</span> -->
-                        <!-- <span [hidden]="!saveRecruiterPage.form.controls.companyName?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
-                      </tooltip-content>
+                      </tooltip-content> -->
                     </div>
                     <!-- <span style="color:red" *ngIf="companyNameFlag">Company Name is required.</span> -->
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/company-size-icon.png" alt="" title="" class="img-responsive"></div>                      
-                      <select class="form-control minimal background_drop_down box_padding_3 box_height_30" [(ngModel)]="companySize" name="companySize" [tooltip]="companySizeTooltip" required>
-                        <option value="100">Company Size</option>
+                      <select class="form-control minimal background_drop_down box_padding_3 box_height_30" [(ngModel)]="companySize" name="companySize" required>
+                        <option value="">Company Size</option>
                         <option value="{{item?.sel_value}}" *ngFor="let item of companySizeArray">{{item?.display}}</option>
                         <!-- <option value="1">124536</option>
                         <option value="5">5124536</option>
                         <option value="10">10124536</option>
                         <option value="20">20124536</option> -->
                       </select>
-                      <tooltip-content #companySizeTooltip>
+                      <!-- <tooltip-content #companySizeTooltip>
                         <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.companySize?.valid " style="color: #C21F39">COMPANY SIZE</span>
                         <span [hidden]="!saveRecruiterPage.form.controls.companySize?.hasError('required')" style="color: #C21F39">Company Size is required.</span>
-                        <!-- <span [hidden]="!saveRecruiterPage.form.controls.companySize?.hasError('minlength')" style="color: #C21F39">Contractor First Name min length is 3.</span> -->
-                        <!-- <span [hidden]="!saveRecruiterPage.form.controls.companySize?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
-                      </tooltip-content>
+                       
+                      </tooltip-content> -->
                     </div>
                     <!-- <span style="color:red" *ngIf="companySizeFlag">Company Size is required.</span> -->
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/address-name-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Address Name" [(ngModel)]="addressName" name="addressName" [tooltip]="addressNameTooltip" required>
-                      <tooltip-content #addressNameTooltip>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Address Name" [(ngModel)]="addressName" name="addressName" required>
+                      <!-- <tooltip-content #addressNameTooltip>
                         <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.addressName?.valid " style="color: #C21F39">ADDRESS NAME</span>
                         <span [hidden]="!saveRecruiterPage.form.controls.addressName?.hasError('required')" style="color: #C21F39">Address Name is required.</span>
-                        <!-- <span [hidden]="!saveRecruiterPage.form.controls.addressName?.hasError('minlength')" style="color: #C21F39">Contractor First Name min length is 3.</span> -->
-                        <!-- <span [hidden]="!saveRecruiterPage.form.controls.addressName?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
-                      </tooltip-content>
+                      </tooltip-content> -->
                     </div>
                     <!-- <span style="color:red" *ngIf="addressNameFlag">Address Name is required.</span> -->
                   </div>
@@ -130,13 +128,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/address-name-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Address Line 1" [(ngModel)]="addressLine1" name="addressLine1" [tooltip]="addressLine1Tooltip" required>
-                      <tooltip-content #addressLine1Tooltip>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Address Line 1" [(ngModel)]="addressLine1" name="addressLine1" required>
+                     <!--  <tooltip-content #addressLine1Tooltip>
                         <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.addressLine1?.valid " style="color: #C21F39">ADDRESS LINE 1</span>
                         <span [hidden]="!saveRecruiterPage.form.controls.addressLine1?.hasError('required')" style="color: #C21F39">Address Line 1 is required.</span>
-                        <!-- <span [hidden]="!saveRecruiterPage.form.controls.addressLine1?.hasError('minlength')" style="color: #C21F39">Contractor First Name min length is 3.</span> -->
-                        <!-- <span [hidden]="!saveRecruiterPage.form.controls.addressLine1?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
-                      </tooltip-content>
+                      </tooltip-content> -->
                     </div>
                     <!-- <span style="color:red" *ngIf="addressLine1Flag">Address Line 1 is required.</span> -->
                   </div>
@@ -147,13 +143,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/address-name-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Address Line 2" [(ngModel)]="addressLine2" name="addressLine2" [tooltip]="addressLine2Tooltip" required>
-                      <tooltip-content #addressLine2Tooltip>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Address Line 2" [(ngModel)]="addressLine2" name="addressLine2" required>
+                      <!-- <tooltip-content #addressLine2Tooltip>
                         <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.addressLine2?.valid " style="color: #C21F39">ADDRESS LINE 2</span>
                         <span [hidden]="!saveRecruiterPage.form.controls.addressLine2?.hasError('required')" style="color: #C21F39">Address Line 2 is required.</span>
-                        <!-- <span [hidden]="!saveRecruiterPage.form.controls.addressLine2?.hasError('minlength')" style="color: #C21F39">Contractor First Name min length is 3.</span> -->
-                        <!-- <span [hidden]="!saveRecruiterPage.form.controls.addressLine2?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
-                      </tooltip-content>
+                      </tooltip-content> -->
                     </div>
                     <!-- <span style="color:red" *ngIf="addressLine2Flag">Address Line 2 is required.</span> -->
                   </div>
@@ -164,13 +158,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/recruiter-city-pastcode.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="City, Town" [(ngModel)]="city" name="city" [tooltip]="cityTooltip" required>
-                      <tooltip-content #cityTooltip>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="City, Town" [(ngModel)]="city" name="city" required>
+                      <!-- <tooltip-content #cityTooltip>
                         <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.city?.valid" style="color: #C21F39">CITY</span>
                         <span [hidden]="!saveRecruiterPage.form.controls.city?.hasError('required')" style="color: #C21F39">City is required.</span>
-                        <!-- <span [hidden]="!saveRecruiterPage.form.controls.city?.hasError('minlength')" style="color: #C21F39">Contractor First Name min length is 3.</span> -->
-                        <!-- <span [hidden]="!saveRecruiterPage.form.controls.city?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
-                      </tooltip-content>
+                      </tooltip-content> -->
                     </div>
                   </div>
                   <!-- <span style="color:red" *ngIf="cityFlag">City is required.</span> -->
@@ -180,19 +172,14 @@
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/county-icon.png" alt="" title="" class="img-responsive"></div>
 
-                      <select class="form-control minimal background_drop_down box_padding_3 box_height_30" [(ngModel)]="country" name="country" [tooltip]="countryTooltip" required>
+                      <select class="form-control minimal background_drop_down box_padding_3 box_height_30" [(ngModel)]="country" name="country" required>
                         <option value="">Country</option>
                         <option value="{{item?.id}}" *ngFor="let item of countryValueArray">{{item?.name}}</option>
                       </select>
 
 
                       <!-- <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="COUNTRY" [(ngModel)]="country" name="country" [tooltip]="countryTooltip" required> -->
-                      <tooltip-content #countryTooltip>
-                        <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.country?.valid " style="color: #C21F39">COUNTRY</span>
-                        <span [hidden]="!saveRecruiterPage.form.controls.country?.hasError('required')" style="color: #C21F39">Country is required.</span>
-                        <!-- <span [hidden]="!saveRecruiterPage.form.controls.country?.hasError('minlength')" style="color: #C21F39">Contractor First Name min length is 3.</span> -->
-                        <!-- <span [hidden]="!saveRecruiterPage.form.controls.country?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
-                      </tooltip-content>
+                     
                     </div>
                     <!-- <span style="color:red" *ngIf="countryFlag">Country is required.</span> -->
                   </div>
@@ -203,13 +190,8 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/post-code-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Post Code" [(ngModel)]="postCode" name="postCode" [tooltip]="postCodeTooltip" required>
-                      <tooltip-content #postCodeTooltip>
-                        <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.postCode?.valid " style="color: #C21F39">POST CODE</span>
-                        <span [hidden]="!saveRecruiterPage.form.controls.postCode?.hasError('required')" style="color: #C21F39">Post Code is required.</span>
-                        <!-- <span [hidden]="!saveRecruiterPage.form.controls.postCode?.hasError('minlength')" style="color: #C21F39">Contractor First Name min length is 3.</span> -->
-                        <!-- <span [hidden]="!saveRecruiterPage.form.controls.postCode?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
-                      </tooltip-content>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Post Code" [(ngModel)]="postCode" name="postCode" required>
+                      
                     </div>
                     <!-- <span style="color:red" *ngIf="postCodeFlag">Post Code is required.</span> -->
                   </div>
@@ -218,14 +200,8 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/telephone-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Telephone" [(ngModel)]="telephone" name="telephone" [tooltip]="telephoneTooltip" required (change)="telephoneValidation(telephone)">
-                      <tooltip-content #telephoneTooltip>
-                        <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.telephone?.valid" style="color: #C21F39">TELEPHONE</span>
-                        <span [hidden]="!saveRecruiterPage.form.controls.telephone?.hasError('required')" style="color: #C21F39">Telephone is required.</span>
-                         <span *ngIf="telephoneValidationFlag" style="color: #C21F39">Please Enter Valid Phone No.</span>
-                        <!-- <span [hidden]="!saveRecruiterPage.form.controls.telephone?.hasError('minlength')" style="color: #C21F39">Contractor First Name min length is 3.</span> -->
-                        <!-- <span [hidden]="!saveRecruiterPage.form.controls.telephone?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
-                      </tooltip-content>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Telephone" [(ngModel)]="telephone" name="telephone" required>
+                      
                     </div>
                     <!-- <span style="color:red" *ngIf="telephoneFlag">Telephone is required.</span> -->
                   </div>
@@ -301,11 +277,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/telephone-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Telephone" [(ngModel)]="postalTelephone" name="postalTelephone" (change)="postalTelephoneValidation(postalTelephone)" [tooltip]="postalTelephoneTooltip">
-                      <tooltip-content #postalTelephoneTooltip>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Telephone" [(ngModel)]="postalTelephone" name="postalTelephone" (change)="postalTelephoneValidation(postalTelephone)">
+                      <!-- <tooltip-content #postalTelephoneTooltip>
                         <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.postalTelephone?.valid" style="color: #C21F39">TELEPHONE</span>
                          <span *ngIf="postalTelephoneValidationFlag" style="color: #C21F39">Please Enter Valid Phone No.</span>
-                      </tooltip-content>
+                      </tooltip-content> -->
                     </div>
                   </div>
                 </div>
@@ -371,11 +347,10 @@
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon"><img src="./assets/images/telephone-icon.png" alt="" title="" class="img-responsive"></div>
-                          <input type="text" class="form-control box_padding_3 box_height_30" placeholder="Telephone" [(ngModel)]="addMulAddArray[i].telephone" name="addMulAddArray[i].telephone1" (change)="otherTelephoneValidation(addMulAddArray[i].telephone)" [tooltip]="otherTelephoneTooltip">
-                          <tooltip-content #otherTelephoneTooltip>
-                          <!-- <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.addMulAddArray[i].telephone1?.valid" style="color: #C21F39">TELEPHONE</span> -->
+                          <input type="text" class="form-control box_padding_3 box_height_30" placeholder="Telephone" [(ngModel)]="addMulAddArray[i].telephone" name="addMulAddArray[i].telephone1" (change)="otherTelephoneValidation(addMulAddArray[i].telephone)">
+                          <!-- <tooltip-content #otherTelephoneTooltip>
                            <span *ngIf="otherTelephoneValidationFlag" style="color: #C21F39">Please Enter Valid Phone No.</span>
-                        </tooltip-content>
+                        </tooltip-content> -->
                         </div>
                       </div>
                     </div>
@@ -408,14 +383,12 @@
               </div>
               <div class="form-group company_description">
                 <div class="input-group">
-                  <textarea class="form-control box_padding_3 box_height_30" placeholder="Company Description" rows="8" [(ngModel)]="companyDescription" name="companyDescription" [tooltip]="companyDescTooltip" required>
+                  <textarea class="form-control box_padding_3 box_height_30" placeholder="Company Description" rows="8" [(ngModel)]="companyDescription" name="companyDescription" required>
                   </textarea>
-                  <tooltip-content #companyDescTooltip>
+                  <!-- <tooltip-content #companyDescTooltip>
                     <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.companyDescription?.valid " style="color: #C21F39">COMPANY DESCRIPTION</span>
                     <span [hidden]="!saveRecruiterPage.form.controls.companyDescription?.hasError('required')" style="color: #C21F39">Company Description is required.</span>
-                    <!-- <span [hidden]="!saveRecruiterPage.form.controls.companyDescription?.hasError('minlength')" style="color: #C21F39">Contractor First Name min length is 3.</span> -->
-                    <!-- <span [hidden]="!saveRecruiterPage.form.controls.companyDescription?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
-                  </tooltip-content>
+                  </tooltip-content> -->
                 </div>
                 <!-- <span style="color:red" *ngIf="companyDescFlag">Company Description is required.</span> -->
               </div>
@@ -427,12 +400,12 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/web-address-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Web Address" [(ngModel)]="webAddress" name="webAddress" (change)="webAddressValidation(webAddress)" [tooltip]="webAddressTooltip" required>
-                      <tooltip-content #webAddressTooltip>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Web Address" [(ngModel)]="webAddress" name="webAddress" required>
+                      <!-- <tooltip-content #webAddressTooltip>
                       <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.webAddress?.valid " style="color: #C21F39">WEB ADDRESS</span>
                       <span *ngIf="webAddValidationFlag" style="color: #C21F39">Please Enter Valid Web Address</span>
                       <span [hidden]="!saveRecruiterPage.form.controls.webAddress?.hasError('required')" style="color: #C21F39">Company Url is required.</span>
-                    </tooltip-content>
+                    </tooltip-content> -->
                     </div>
                     <!-- <span style="color:red" *ngIf="companyUrlFlag">Company Url is required.</span> -->
                   </div>
@@ -441,12 +414,12 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/email-address-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Email Address" [(ngModel)]="emailAddress" name="EmailAddress" (change)="emailAddressValidation(emailAddress)" [tooltip]="emailAddTooltip" required>
-                      <tooltip-content #emailAddTooltip>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Email Address" [(ngModel)]="emailAddress" name="EmailAddress" required>
+                      <!-- <tooltip-content #emailAddTooltip>
                       <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.EmailAddress?.valid " style="color: #C21F39">EMAIL ADDRESS</span>
                       <span *ngIf="emailAddValidationFlag" style="color: #C21F39">Please Enter Valid Email Address</span>
                       <span [hidden]="!saveRecruiterPage.form.controls.emailAddress?.hasError('required')" style="color: #C21F39">Company Email is required.</span>
-                    </tooltip-content>
+                    </tooltip-content> -->
                     </div>
                     <!-- <span style="color:red" *ngIf="companyEmailFlag">Company Email is required.</span> -->
                   </div>
@@ -457,11 +430,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/rss-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Rss Url" [(ngModel)]="rssUrl" name="rssUrl" (change)="rssUrlValidation(rssUrl)" [tooltip]="rssUrlTooltip">
-                      <tooltip-content #rssUrlTooltip>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Rss Url" [(ngModel)]="rssUrl" name="rssUrl" (change)="rssUrlValidation(rssUrl)">
+                      <!-- <tooltip-content #rssUrlTooltip>
                       <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.rssUrl?.valid " style="color: #C21F39">RSS URL</span>
                       <span *ngIf="rssUrlValidationFlag" style="color: #C21F39">Please Enter Valid RSS URL</span>
-                    </tooltip-content>
+                    </tooltip-content> -->
                     </div>
                   </div>
                 </div>
@@ -469,11 +442,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/rss-feed-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Full Url To Your Rss Feed" [(ngModel)]="fullUrlRssFeed" name="fullUrlRssFeed" (change)="rssFeedUrlValidation(fullUrlRssFeed)" [tooltip]="rssFeedUrlTooltip">
-                      <tooltip-content #rssFeedUrlTooltip>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Full Url To Your Rss Feed" [(ngModel)]="fullUrlRssFeed" name="fullUrlRssFeed" (change)="rssFeedUrlValidation(fullUrlRssFeed)">
+                      <!-- <tooltip-content #rssFeedUrlTooltip>
                       <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.fullUrlRssFeed?.valid " style="color: #C21F39">FULL URL TO YOUR RSS FEED</span>
                       <span *ngIf="rssFeedUrlValidationFlag" style="color: #C21F39">Please Enter Valid RSS Feed URL</span>
-                    </tooltip-content>
+                    </tooltip-content> -->
                     </div>
                     <div class="feed_profile_page">
                       <p class="">Display feed on profile page?</p>
@@ -492,11 +465,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/link-icons.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Social Link Name" [(ngModel)]="socialLinkName" name="socialLinkName" (change)="socialLinkValidation(socialLinkName)" [tooltip]="socialLinkTooltip">
-                      <tooltip-content #socialLinkTooltip>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Social Link Name" [(ngModel)]="socialLinkName" name="socialLinkName" (change)="socialLinkValidation(socialLinkName)">
+                      <!-- <tooltip-content #socialLinkTooltip>
                       <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.socialLinkName?.valid " style="color: #C21F39">SOCIAL LINK NAME</span>
                       <span *ngIf="socialLinkValidationFlag" style="color: #C21F39">Please Enter Valid Social Link</span>
-                    </tooltip-content>
+                    </tooltip-content> -->
                     </div>
                   </div>
                 </div>
@@ -504,11 +477,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/twitter-account-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Twitter Account Name" [(ngModel)]="fullUrlTwitterFeed" name="fullUrlTwitterFeed" (change)="twitterValidation(fullUrlTwitterFeed)" [tooltip]="twitterTooltip">
-                      <tooltip-content #twitterTooltip>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Twitter Account Name" [(ngModel)]="fullUrlTwitterFeed" name="fullUrlTwitterFeed" (change)="twitterValidation(fullUrlTwitterFeed)">
+                      <!-- <tooltip-content #twitterTooltip>
                       <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.fullUrlTwitterFeed?.valid " style="color: #C21F39">TWITTER ACCOUNT NAME</span>
                       <span *ngIf="twitterValidationFlag" style="color: #C21F39">Please Enter Valid Twitter Account</span>
-                    </tooltip-content>
+                    </tooltip-content> -->
                     </div>
                     <div class="feed_profile_page">
                       <p class="">Display feed on profile page?</p>
@@ -527,11 +500,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/link-icons.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Social Link Name" [(ngModel)]="linkedinUrl" name="linkedinUrl" (change)="linkedinValidation(linkedinUrl)" [tooltip]="linkedinTooltip">
-                      <tooltip-content #linkedinTooltip>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Social Link Name" [(ngModel)]="linkedinUrl" name="linkedinUrl" (change)="linkedinValidation(linkedinUrl)">
+                      <!-- <tooltip-content #linkedinTooltip>
                       <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.linkedinUrl?.valid " style="color: #C21F39">SOCIAL LINK NAME</span>
                       <span *ngIf="linkedinValidationFlag" style="color: #C21F39">Please Enter Valid Social Link</span>
-                    </tooltip-content>
+                    </tooltip-content> -->
                     </div>
                   </div>
                 </div>
@@ -539,11 +512,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/twitter-account-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Twitter Account Name" [(ngModel)]="fullUrlLinkedinFeed" name="fullUrlLinkedinFeed" (change)="linkedinFeedValidation(fullUrlLinkedinFeed)" [tooltip]="fullLinkedinTooltip">
-                      <tooltip-content #fullLinkedinTooltip>
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Twitter Account Name" [(ngModel)]="fullUrlLinkedinFeed" name="fullUrlLinkedinFeed" (change)="linkedinFeedValidation(fullUrlLinkedinFeed)">
+                      <!-- <tooltip-content #fullLinkedinTooltip>
                       <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.fullUrlLinkedinFeed?.valid " style="color: #C21F39">TWITTER ACCOUNT NAME</span>
                       <span *ngIf="fullLinkedinValidationFlag" style="color: #C21F39">Please Enter Valid Twitter Account Name</span>
-                    </tooltip-content>
+                    </tooltip-content> -->
                     </div>
                     <div class="feed_profile_page">
                       <p class="">Display feed on profile page?</p>
@@ -563,11 +536,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/link-icons.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Scsial Link Name" [(ngModel)]="addMulSocialArray[i].otherSocialLink" name="addMulSocialArray[i].otherSocialLink" [tooltip]="otherLinkedinTooltip">
-                      <tooltip-content #otherLinkedinTooltip>
-                      <!-- <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.linkedinUrl?.valid " style="color: #C21F39">SOCIAL LINK NAME</span> -->
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Scsial Link Name" [(ngModel)]="addMulSocialArray[i].otherSocialLink" name="addMulSocialArray[i].otherSocialLink">
+                      <!-- <tooltip-content #otherLinkedinTooltip>
+                     
                       <span *ngIf="linkedinValidationFlag" style="color: #C21F39">Please Enter Valid Social Link</span>
-                    </tooltip-content>
+                    </tooltip-content> -->
                     </div>
                   </div>
                 </div>
@@ -575,11 +548,10 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/twitter-account-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Twitter Account Name" [(ngModel)]="addMulSocialArray[i].otherSocialFeed" name="addMulSocialArray[i].otherSocialFeed" [tooltip]="otherFullLinkedinTooltip">
-                      <tooltip-content #otherFullLinkedinTooltip>
-                      <!-- <span *ngIf="saveRecruiterPage?.form && saveRecruiterPage.form.controls && saveRecruiterPage.form.controls.fullUrlLinkedinFeed?.valid " style="color: #C21F39">TWITTER ACCOUNT NAME</span> -->
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Twitter Account Name" [(ngModel)]="addMulSocialArray[i].otherSocialFeed" name="addMulSocialArray[i].otherSocialFeed">
+                     <!--  <tooltip-content #otherFullLinkedinTooltip>
                       <span *ngIf="fullLinkedinValidationFlag" style="color: #C21F39">Please Enter Valid Twitter Account Name</span>
-                    </tooltip-content>
+                    </tooltip-content> -->
                     </div>
                     <div class="feed_profile_page">
                       <p class="">Display feed on profile page?</p>

@@ -10,7 +10,7 @@ import { CommonRequestService } from '../common-request.service';
 export class RecruiterManageProfileComponent implements OnInit {
   recruiterProfileUrl: string;
   companyName: string;
-  companySize = "100";
+  companySize = "";
   addressName: string;
   addressLine1: string;
   addressLine2: string;
@@ -209,13 +209,13 @@ fd;
     console.log("this.imageFile", this.imageFile);
   }
 
-  telephoneValidation(value) {
-    if(!value.match(/^\d{10}$/)) {
-      this.telephoneValidationFlag = true;
-    } else {
-      this.telephoneValidationFlag = false;
-    }
-  }
+  // telephoneValidation(value) {
+  //   if(!value.match(/^\d{10}$/)) {
+  //     this.telephoneValidationFlag = true;
+  //   } else {
+  //     this.telephoneValidationFlag = false;
+  //   }
+  // }
 
   postalTelephoneValidation(value) {
     if(!value.match(/^\d{10}$/)) {
@@ -234,21 +234,21 @@ fd;
     }
   }
 
-  webAddressValidation(value) {
-    if(!value.match(/^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/)) {
-      this.webAddValidationFlag = true;
-    } else {
-      this.webAddValidationFlag = false;
-    }
-  }
+  // webAddressValidation(value) {
+  //   if(!value.match(/^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/)) {
+  //     this.webAddValidationFlag = true;
+  //   } else {
+  //     this.webAddValidationFlag = false;
+  //   }
+  // }
 
-  emailAddressValidation(value) {
-    if(!value.match(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)) {
-      this.emailAddValidationFlag = true;
-    } else {
-      this.emailAddValidationFlag = false;
-    }
-  }
+  // emailAddressValidation(value) {
+  //   if(!value.match(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)) {
+  //     this.emailAddValidationFlag = true;
+  //   } else {
+  //     this.emailAddValidationFlag = false;
+  //   }
+  // }
 
   rssUrlValidation(value) {
     if(!value.match(/^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/)) {
@@ -306,6 +306,24 @@ fd;
       this.companyEmailFlag = true;
     }
 
+    if(!this.emailAddress.match(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)) {
+      this.emailAddValidationFlag = true;
+    } else {
+      this.emailAddValidationFlag = false;
+    }
+
+    if(!this.telephone.match(/^\d{10}$/)) {
+      this.telephoneValidationFlag = true;
+    } else {
+      this.telephoneValidationFlag = false;
+    }
+
+    if(!this.webAddress.match(/^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/)) {
+      this.webAddValidationFlag = true;
+    } else {
+      this.webAddValidationFlag = false;
+    }
+
     if(this.webAddress) {
       this.companyUrlFlag = false;
     } else {
@@ -360,7 +378,7 @@ fd;
       this.companyNameFlag = true;
     }
 
-    if(this.companySize !== "100") {
+    if(this.companySize !== "") {
       this.companySizeFlag = false;
     } else {
       this.companySizeFlag = true;
@@ -378,7 +396,8 @@ fd;
   
   if(this.companyNameFlag || this.companySizeFlag || this.addressNameFlag || this.addressLine1Flag 
     || this.addressLine2Flag || this.cityFlag || this.countryFlag || this.postCodeFlag || this.telephoneFlag 
-    || this.companyDescFlag || this.companyUrlFlag || this.companyEmailFlag) {
+    || this.companyDescFlag || this.companyUrlFlag || this.companyEmailFlag || this.telephoneValidationFlag
+    || this.emailAddValidationFlag || this.webAddValidationFlag) {
     this.allErrorMsgFlag = true;
   } else {
     this.allErrorMsgFlag = false;
@@ -507,10 +526,13 @@ getProfileDta(){
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
           console.log("profiledta--", data);
+          var companySocialData;
           if(data && data.data) {
             this.profileData = data.data;
-            var companySocialData = JSON.parse(this.profileData['companySocial']);
-            console.log("comapny social--", JSON.parse(this.profileData['companySocial']));
+            if(this.profileData['companySocial'] !== []) {
+              console.log("comapny social--", this.profileData['companySocial']);
+              companySocialData = JSON.parse(this.profileData['companySocial']);
+            }
             this.companyName =this.profileData['companyDetails'] && this.profileData['companyDetails'].companyName ? this.profileData['companyDetails'].companyName : "";
           this.companySize =this.profileData['companyDetails'] && this.profileData['companyDetails'].companySize ? this.profileData['companyDetails'].companySize : "";
           this.addressName =this.profileData['companyDetails'] && this.profileData['companyDetails'].companyAddress ? this.profileData['companyDetails'].companyAddress : "";
