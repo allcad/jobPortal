@@ -41,7 +41,7 @@ export class ContractorSignUpComponent implements OnInit {
  CVFile = null;
  noticePeriodList = [];
  submitClicked=false;
- noticePeriod ="1";
+ noticePeriod ="immediate";
  contractEndDate = "";
  useNoticePeriod = "no";
  detailsLiveFrom = "1";
@@ -55,13 +55,6 @@ this.getNoticePeriodData()
 }
 
     onFormSubmit(userForm){
-
-      console.log("noticePeriod", this.noticePeriod);
-      console.log("liveDetail", this.detailsLiveFrom);
-      console.log("contractorEndDate", this.contractEndDate);
-      console.log("useNoticePeriod", this.useNoticePeriod);
-
-
     if(userForm.valid){
       this.fd = new FormData();
     this.fd.append('loginToken',(localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).token )? JSON.parse(localStorage.getItem('loginDetail')).token:  "nsakdlallas1232mk123b2k1390iq2ekq");
@@ -78,11 +71,14 @@ this.getNoticePeriodData()
     this.fd.append('contractor_employment_situation',this.contractor_employment_situation ? this.contractor_employment_situation : "permanant");
     this.fd.append('contractor_services',JSON.stringify(this.getSelecetdContractorServices()));
     this.fd.append('contractor_agree_terms_status',this.contractor_agree_terms_status);
-    this.fd.append('contract_end_date', this.contractEndDate);
-    this.fd.append('details_live', this.detailsLiveFrom);
-    this.fd.append('notice_period', this.noticePeriod);
-    this.fd.append('happy_notice', this.useNoticePeriod);
-    this.fd.append('details_live_date', this.detailsLiveFrom);
+    this.fd.append('contract_end_date', (this.contractor_employment_situation == 'in contract' && this.contractEndDate) ? this.contractEndDate : "" );
+    this.fd.append('details_live', (this.contractor_employment_situation == 'in contract' && this.detailsLiveFrom) ? this.detailsLiveFrom : "");
+    this.fd.append('notice_period', ((this.contractor_employment_situation == 'in contract' || this.contractor_employment_situation == "permanant") && this.detailsLiveFrom) ?  this.noticePeriod : "");
+    this.fd.append('happy_notice', (this.contractor_employment_situation == 'in contract' && this.useNoticePeriod) ? this.useNoticePeriod : "");
+    this.fd.append('longitude', -3.335724);
+    this.fd.append('latitude', 57.653484);
+   
+   // this.fd.append('details_live_date',(this.contractor_employment_situation == 'in contract' && this.detailsLiveFrom) ? this.detailsLiveFrom ? null);
    this.inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/signup";
        this._commonRequestService.postData(this.inputUrl, this.fd).subscribe(
         data => {

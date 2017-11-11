@@ -222,8 +222,8 @@
                 <div class="text-00 clear" style="margin-top:34px;"> NOTICE PERIOD? &nbsp;</div>
                 <br/>
                 <div>
-                  <select class="optn rgnopt" name="notice_period" style="margin-top:10px;">
-                    <option [value]="item.id" *ngFor="let item of noticePeriodList">{{item.name}}</option>
+                  <select class="optn rgnopt" name="notice_period" style="margin-top:10px;" [(ngModel)]="noticePeriod">
+                    <option [value]="item.name" *ngFor="let item of noticePeriodList">{{item.name}}</option>
                     <!-- <option value="7 DAYS"> 7 DAYS</option>
                     <option value="2 WEEKS">2 WEEKS</option>
                     <option value="1 MONTH">1 MONTH</option>
@@ -249,17 +249,17 @@
     margin-left: 30px;
     margin-top: -6px;">
                   <select class="optn tstximtm" name="contract_notice_period" style="margin-top:10px;" [ngModel]="noticePeriod">
-                    <option [value]="item.id" *ngFor="let item of noticePeriodList">{{item.name}}</option>
+                    <option [value]="item.name" *ngFor="let item of noticePeriodList">{{item.name}}</option>
                   </select>
                 </div>
                 <div id="happynotice" class="text-00" style="padding-right:0px; margin-left:19px;float: left;margin-top: 10px; height: 25px;"> HAPPY TO USE YOUR NOTICE PERIOD?</div>
                 <div class="current_rate_signup checkbox-inline" style=" width:70px; margin-top: 10px; float:right;">
-                  <input checked="checked" id="permanentyes" name="useNoticePeriod" [ngModel]="useNoticePeriod" type="radio" value="yes">
+                  <input checked="checked" id="permanentyes" name="useNoticePeriod" [(ngModel)]="useNoticePeriod" type="radio" value="yes">
                   <label class="radio-inline" for="permanentyes"><span></span> Yes </label>
                 </div>
                 <br>
                 <div class="current_rate_signup checkbox-inline" style=" width:70px; float:right;">
-                  <input checked="checked" [ngModel]="useNoticePeriod" id="permanentno" name="useNoticePeriod" type="radio" value="no">
+                  <input checked="checked" [(ngModel)]="useNoticePeriod" id="permanentno" name="useNoticePeriod" type="radio" value="no">
                   <label class="radio-inline" for="permanentno"><span></span> No </label>
                 </div>
               </div>
