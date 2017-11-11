@@ -99,7 +99,7 @@ export class RecruiterPreviewJobComponent implements OnInit {
                 this.jobPostFlag = false;
                 this.router.navigate(['/recruiter/manage-jobs']);
               } else if(data && data.error){
-                this.previewJobErrorMsg = data.error;
+                this.previewJobErrorMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
                 this.jobPostFlag = true;
               }
               //this.jobPostFlag = true;
@@ -116,7 +116,7 @@ export class RecruiterPreviewJobComponent implements OnInit {
                 this.jobPostFlag = false;
                 this.router.navigate(['/recruiter/manage-jobs']);
               } else if(data && data.error){
-                this.previewJobErrorMsg = data.error;
+                this.previewJobErrorMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
                 this.jobPostFlag = true;
               }
               //this.jobPostFlag = true;

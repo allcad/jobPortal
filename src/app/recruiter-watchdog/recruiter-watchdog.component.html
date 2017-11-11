@@ -19,7 +19,7 @@
                 </div>
                 <div class="pager_section">
                     <div class="row">
-                        <div class="col-sm-50">
+                        <div class="col-sm-50" *ngIf="watchListDataArr.length !== 0">
                             <div class="pazer">
                                 <span>Show</span>
                                 <a href="javascript:void(0);" [ngClass]="10===onPageClick ? 'active':''" (click)="onPageJobList('10')">10</a>
@@ -28,7 +28,7 @@
                                 <span>results per page</span>
                             </div>
                         </div>
-                        <div class="col-sm-50">
+                        <div class="col-sm-50" *ngIf="watchListDataArr.length !== 0">
                             <div class="signup_form_section sort_by_watchdog choose_template">
                                 <div class="form-group">
                                     <div class="input-group responsive_width_100">
@@ -52,7 +52,7 @@
                             <div class="col-sm-100">
                                 <div class="watchdog_headding">
                                     <img src="./assets/images/job-watchdog.png" alt="Job" title="Job">
-                                    <h2>ASP.NET</h2>
+                                    <h2>{{item?.name}}</h2>
                                 </div>
                                 <div class="watchdog_search_box">
                                     <div class="row">
@@ -262,9 +262,9 @@
                     </div>
                 </div>
             </div> -->
-            <app-ad-space></app-ad-space>
+            <app-ad-space *ngIf="watchListDataArr.length !== 0"></app-ad-space>
             
             <div class="show_more_application">
-                <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>SHOW MORE WATCHDOGS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                <a *ngIf="watchListDataArr.length > 10" href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>SHOW MORE WATCHDOGS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
             </div>
         </section>

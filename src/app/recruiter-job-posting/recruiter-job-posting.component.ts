@@ -44,6 +44,7 @@ currentTemplate = "";
 cityFlag = false;
 minRateFlag = false;
 maxRateFlag = false;
+jobSpecificationFlag = false;
   constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -114,7 +115,7 @@ maxRateFlag = false;
     var input = {
      "email":"test@test7.com",
     "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu",
-    "templateId": this.currentTemplate
+    "templateId": this.currentTemplate ? this.currentTemplate : ''
    };
    console.log("input--", input);
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/template_by_id";
@@ -282,8 +283,15 @@ maxRateFlag = false;
       this.workEliFlag = true;
     }
 
+    if(this.jobSpecificationTitle && this.jobSpecificationBody) {
+      this.jobSpecificationFlag = false;
+    } else {
+      this.jobSpecificationFlag = true;
+    }
+
     if(this.jobPostingDurationFlag || this.jobPostingTiteFlag || this.startDateFlag || 
-      this.industrySectorFlag || this.workEliFlag || this.cityFlag || this.maxRateFlag || this.minRateFlag) {
+      this.industrySectorFlag || this.workEliFlag || this.cityFlag || this.maxRateFlag || this.minRateFlag
+      || this.jobSpecificationFlag) {
       this.allErrorFlag = true;
     } else {
       this.allErrorFlag = false;
@@ -332,6 +340,8 @@ maxRateFlag = false;
 
                   var obj1 = {'jobPreviewData' : ''};
                   localStorage.setItem('editJobPost', JSON.stringify(obj1));
+                } else {
+                  this.postJobSuccessMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
                 }
                 }
           );

@@ -278,13 +278,13 @@
                                         <div class="input-group"> <span class="form-control industry_sector">Industry Sector(S)</span>
                                             <div class="input-group-addon bordr_non"><img src="./assets/images/inform.png" alt="" data-toggle="tooltip" data-placement="top" title="CTRL + click to select multiple sectors"></div>
                                         </div>
-                                        <ul class="form-control industry_min_heights padding_none">
-                                            <!-- <li class="active">All</li>
-                                            <li>Accountancy</li>
-                                            <li>Aerospace/Defence/Military</li>
-                                            <li>Automotive</li> -->
+                                        <select class="form-control industry_min_heights padding_none" name="industrySectorValue" [(ngModel)]="industrySectorValue" multiple>
+                                            <option value="">Industry Sector(S)</option>
+                                            <option value="{{item?.id}}" *ngFor="let item of industryArrayData">{{item?.industry}}</option>
+                                        </select>
+                                        <!-- <ul class="form-control industry_min_heights padding_none">
                                             <li *ngFor="let item of industryArrayData">{{item?.industry}}</li>
-                                        </ul>
+                                        </ul> -->
                                     </div>
                                 </div>
                                 <div class="col-sm-50">
@@ -292,13 +292,13 @@
                                         <div class="input-group"> <span class="form-control industry_sector">Security Clearance</span>
                                             <div class="input-group-addon bordr_non"></div>
                                         </div>
-                                        <ul class="form-control industry_min_heights padding_none">
-                                            <!-- <li class="active">All</li>
-                                            <li>BPSS</li>
-                                            <li>CRB</li>
-                                            <li>CTC</li> -->
+                                        <select class="form-control industry_min_heights padding_none" name="securityClearValue" [(ngModel)]="securityClearValue" multiple>
+                                            <option value="">Security Clearance</option>
+                                            <option value="{{item?.id}}" *ngFor="let item of securityClearanceArray">{{item?.name}}</option>
+                                        </select>
+                                        <!-- <ul class="form-control industry_min_heights padding_none">
                                             <li *ngFor="let item of securityClearanceArray">{{item?.name}}</li>
-                                        </ul>
+                                        </ul> -->
                                     </div>
                                 </div>
                             </div>

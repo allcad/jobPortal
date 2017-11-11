@@ -30,6 +30,8 @@ industryArrayData;
 currentLocation;
 timeLeftData;
 sortByData;
+industrySectorValue;
+securityClearValue;
 
   constructor(public _commonRequestService: CommonRequestService) { }
 
@@ -140,6 +142,8 @@ sortByData;
 	this.contractorEducation = "";
 	this.drivingLicence = '';
   this.currentLocation = '';
+  this.industrySectorValue = [];
+  this.securityClearValue = [];
   }
 
   saveAdvanceSearch() {
@@ -161,8 +165,8 @@ sortByData;
       'showContractor': this.showContractor,
       'contractorName': this.contractorName,
       'education': this.contractorEducation,
-      'industrySector': '',
-      'securityClearance': '',
+      'industrySector': this.industrySectorValue,
+      'securityClearance': this.securityClearValue,
       'drivingLicence': this.drivingLicence
     }
   }

@@ -26,7 +26,7 @@ export class RecruiterViewApplicationsComponent implements OnInit {
   	private _commonDataSharedService: CommonDataSharedService) { }
 
   ngOnInit() {
-  	this.getApplicationList(9);
+  	this.getApplicationList(12);
   }
 
   passJobId(id) {
@@ -55,6 +55,7 @@ export class RecruiterViewApplicationsComponent implements OnInit {
          if(data && data.status === "TRUE") {
            this.errorMsgFlag = false;
            this.listingData = data.data;
+           console.log("this.listingData--", this.listingData, this.listingData.length);
            //this.loopArray = this.listingData.length/4;
 
            // for (let i=0; i<(this.listingData.length%4)+1;i++) {

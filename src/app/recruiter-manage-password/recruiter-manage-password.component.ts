@@ -16,6 +16,7 @@ export class RecruiterManagePasswordComponent implements OnInit {
   newPasswordFlag = false;
   confirmPasswordFlag = false;
   allErrorMessageFlag = false;
+  errorMessageValue = "";
   constructor(public _commonRequestService: CommonRequestService, private router: Router) { }
 
   ngOnInit() {
@@ -60,10 +61,13 @@ export class RecruiterManagePasswordComponent implements OnInit {
           data => {
            console.log("recruiter password--", data);
            if(data && data.status === "TRUE") {
+             this.errorMessageValue = "password update successfully."
              this.router.navigate(['../recruiterLogin']);
              this.oldPassword = "";
              this.newPassword = "";
              this.confirmPassword = "";
+           } else {
+             this.errorMessageValue = data && data.error && data.error.length > 0 ? data.error[0] : '';
            }
           }
       );

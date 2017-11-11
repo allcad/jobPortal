@@ -17,7 +17,8 @@ export class RecruiterManageAccountComponent implements OnInit {
   allErrorFlag = false;
   manageAccountFlag = false;
   telephoneValidFlag = false;
-
+  accountCreatedValue;
+  errorMessage = "";
   constructor(public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -39,6 +40,7 @@ export class RecruiterManageAccountComponent implements OnInit {
            this.name = data.data.personalDetails && data.data.personalDetails.name ? data.data.personalDetails.name : "";
            this.jobTitle = data.data.personalDetails && data.data.personalDetails.jobTitle ? data.data.personalDetails.jobTitle : "";
            this.telePhone = data.data.contactDetails && data.data.contactDetails.telephone ? data.data.contactDetails.telephone : "";
+           this.accountCreatedValue = data.data.personalDetails && data.data.personalDetails.accountCreated ? data.data.personalDetails.accountCreated : "";
          }
         }
     );
@@ -78,15 +80,31 @@ export class RecruiterManageAccountComponent implements OnInit {
 
     if(!this.allErrorFlag) {
     	var recruiterAccountJson = {
-  		personalDetails: {
-  			'name': this.name,
-  			'jobTitle': this.jobTitle
-  		},
-  		contactDetails: {
-  			'telephone': this.telePhone
-  		}
+      'email':"test@test7.com",
+      'loginToken':"$2y$10$DTSQAfFihO1F3OSQv.najuvalS6q57RU.NzsyPBVHi9tgpQmcl14y",
+      'recuriter_contact_name':this.name,
+      'recuriter_contact_job_title':this.jobTitle,
+      'recuriter_phone_number':this.telePhone
+
   	}
   	console.log("recruiterAccountJson--", recruiterAccountJson);
+    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/account/update";
+         this._commonRequestService.postData(wsUrl,recruiterAccountJson).subscribe(
+          data => {
+           console.log("recruiter acoount update--", data);
+           window.scroll(0,0);
+           this.manageAccountFlag = true;
+           if(data && data.status === "TRUE") {
+             this.errorMessage = "Account Update Successfully.";
+             //this.router.navigate(['../recruiterLogin']);
+             this.name = "";
+             this.jobTitle = "";
+             this.telePhone = "";
+           } else {
+             this.errorMessage = data && data.error && data.error.length > 0 ? data.error[0] : '';
+           }
+          }
+      );
     }
   }
 

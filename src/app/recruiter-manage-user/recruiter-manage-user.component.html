@@ -15,8 +15,8 @@
           </div>
         </div>
       </div>
-      <div class="alert alert-success margin-tp18" *ngIf="showMessage">
-      <a href="javascript:void(0)" class="close" title="close">×</a> Manage User is save <strong>succesfully!</strong>
+      <div class="alert alert-success margin-tp18" *ngIf="errorMessage">
+      <a href="javascript:void(0)" class="close" title="close">×</a><strong>{{errorMessage}}</strong>
     </div>
       <div class="row">
         <div class="col-sm-100">

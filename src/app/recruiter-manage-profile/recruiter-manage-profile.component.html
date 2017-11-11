@@ -556,10 +556,10 @@
                     <div class="feed_profile_page">
                       <p class="">Display feed on profile page?</p>
                       <div class="input-group group_inline_rights">
-                        <input value="addMulSocialArray[i].otherRadio" id="prepaid5" name="service_type3" checked="" type="radio" [(ngModel)]="addMulSocialArray[i].otherRadio" name="addMulSocialArray[i].otherRadio">
-                        <label for="prepaid5" class="radio-inline"><span></span> Yes </label>
-                        <input value="addMulSocialArray[i].otherRadio" id="postpaid6" name="service_type3" type="radio" [(ngModel)]="addMulSocialArray[i].otherRadio" name="addMulSocialArray[i].otherRadio" >
-                        <label for="postpaid6" class="radio-inline"><span></span> No </label>
+                        <input value="otherYes" id="prepaidyes_{{i}}" name="service_type3" checked="" type="radio" [(ngModel)]="addMulSocialArray[i].otherRadio" name="addMulSocialArray[i].otherRadio">
+                        <label for="prepaidyes_{{i}}" class="radio-inline"><span></span> Yes </label>
+                        <input value="otherNo" id="prepaidno_{{i}}" name="service_type3" type="radio" [(ngModel)]="addMulSocialArray[i].otherRadio" name="addMulSocialArray[i].otherRadio" >
+                        <label for="prepaidno_{{i}}" class="radio-inline"><span></span> No </label>
                       </div>
                     </div>
                   </div>

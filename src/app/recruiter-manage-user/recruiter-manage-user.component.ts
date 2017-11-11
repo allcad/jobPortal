@@ -18,6 +18,7 @@ export class RecruiterManageUserComponent implements OnInit {
   showMessage = false;
   subUserArray;
   totalNumberOfUser;
+  errorMessage = "";
   constructor(public _commonRequestService: CommonRequestService) {
   	//this.addMulUserArray.splice(0,1);
    }
@@ -42,13 +43,18 @@ export class RecruiterManageUserComponent implements OnInit {
         data => {
          console.log("manage user--", data);
          window.scroll(0,0);
-         this.showMessage = true;
-         this.newUserName = "";
-         this.emailAddress = "";
-         this.userPassword = "";
-         this.jobTitleValue = "";
-         this.confirmPassWord = "";
-         this.telephoneV = "";
+         if(data && data.status === "TRUE") {
+           this.errorMessage = " Manage User is save succesfully!";
+           //this.showMessage = true;
+           this.newUserName = "";
+           this.emailAddress = "";
+           this.userPassword = "";
+           this.jobTitleValue = "";
+           this.confirmPassWord = "";
+           this.telephoneV = "";
+         } else {
+           this.errorMessage = data && data.error && data.error.length > 0 ? data.error[0] : '';
+         }
         }
     );
   }

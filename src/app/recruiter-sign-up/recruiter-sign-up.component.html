@@ -4,7 +4,7 @@
   <div id="contractor-signup">
     <div class="container">
 
-      <div class="errorbox" *ngIf="companyNameFlag || contactNameFlag || phoneNoFlag || jobTitleFlag || emailFlag || passwordFlag || verifyPasswordValueFlag || keySkillFlag || validPhoneNoFlag || phoneNoMaxLengthFlag || validEmailFlag || verifyEmailReqFlag || verifyEmailFlag"><b>The following error(s) occured:</b><br> 
+      <div class="errorbox" *ngIf="companyNameFlag || contactNameFlag || phoneNoFlag || jobTitleFlag || emailFlag || passwordFlag || verifyPasswordValueFlag || keySkillFlag || validPhoneNoFlag || phoneNoMaxLengthFlag || validEmailFlag || verifyEmailReqFlag || verifyEmailFlag || passwordSameFlag || emailSameFlag"><b>The following error(s) occured:</b><br> 
           <li *ngIf="companyNameFlag">Company Name is required.</li>
           <li *ngIf="contactNameFlag">Contract Name is required.</li>
           <li *ngIf="phoneNoFlag">Phone No is required.</li>
@@ -18,6 +18,8 @@
           <li *ngIf="validEmailFlag">Please enter valid email.</li>
           <li *ngIf="verifyEmailReqFlag">Verify email field is required.</li>
           <li *ngIf="verifyEmailFlag">Please enter valid verify email.</li>
+          <li *ngIf="passwordSameFlag">Password and verify password should be same.</li>
+          <li *ngIf="emailSameFlag">Email and verify email should be same.</li>
       </div>
 
       <div class="row">

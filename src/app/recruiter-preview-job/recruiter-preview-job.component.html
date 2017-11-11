@@ -3,9 +3,9 @@
             <!--contractor login-->
             <div id="contractor-signup">
                 <div class="container">
-                    <div *ngIf="jobPostFlag">
-                        <div class="alert alert-danger margin-tp18" *ngFor="let item of previewJobErrorMsg">
-                            <a href="javascript:void(0)" class="close" title="close">×</a> {{item}}
+                    <div *ngIf="previewJobErrorMsg">
+                        <div class="alert alert-danger margin-tp18">
+                            <a href="javascript:void(0)" class="close" title="close">×</a> {{previewJobErrorMsg}}
                         </div>
                     </div>
                     <div class="row">

@@ -28,6 +28,8 @@ export class RecruiterSignUpComponent implements OnInit {
   verifyEmailFlag = false;
   verifyEmailReqFlag = false;
   verifyEmailAddress;
+  passwordSameFlag = false;
+  emailSameFlag = false;
   inputData; JobTitle; phoneNo; emailAddress; passwordValue; keySkill; termOfUse = false; inputUrl; status; succesMessageFlag = false;
   constructor(public _commonRequestService: CommonRequestService) { }
 
@@ -37,7 +39,7 @@ export class RecruiterSignUpComponent implements OnInit {
   
 
    onSignUp(userForm:NgForm){
-     var phoneRegex = /[0-9]*/;
+     var phoneRegex = /^\d{10}$/;
      var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
      if(this.phoneNo && phoneRegex.test(this.phoneNo)) {
@@ -56,6 +58,12 @@ export class RecruiterSignUpComponent implements OnInit {
         this.verifyEmailFlag = false;
       } else {
         this.verifyEmailFlag = true;
+      }
+
+      if(this.emailAddress !== this.verifyEmailAddress) {
+        this.emailSameFlag = true;
+      } else {
+        this.emailSameFlag = false;
       }
 
       if(this.phoneNo && this.phoneNo.length > 15) {
@@ -118,9 +126,16 @@ export class RecruiterSignUpComponent implements OnInit {
       this.verifyPasswordValueFlag = true;
     }
 
+    if(this.passwordValue !== this.verifyPasswordValue) {
+      this.passwordSameFlag = true;
+    } else {
+      this.passwordSameFlag = false;
+    }
+
     if(this.companyNameFlag || this.contactNameFlag || this.phoneNoFlag || this.jobTitleFlag 
       || this.emailFlag || this.passwordFlag || this.verifyPasswordValueFlag || this.keySkillFlag || this.validPhoneNoFlag
-      || this.phoneNoMaxLengthFlag || this.verifyEmailReqFlag || this.verifyEmailFlag || this.verifyEmailFlag) {
+      || this.phoneNoMaxLengthFlag || this.verifyEmailReqFlag || this.verifyEmailFlag || this.verifyEmailFlag
+      || this.passwordSameFlag || this.emailSameFlag) {
       this.allErrorMsgFlag = true;
     } else {
       this.allErrorMsgFlag = false;

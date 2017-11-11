@@ -36,6 +36,9 @@ export class RecruiterSavedSearchComponent implements OnInit {
   searchListDataFlag = false;
   showSaveSearchList = false;
   educationValue = "";
+  errorSuccessMessage = "";
+  industrySectorValue;
+  securityClearValue;
   constructor(public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -43,6 +46,10 @@ export class RecruiterSavedSearchComponent implements OnInit {
     this.getIndustry();
     this.getTimeLeftData();
     this.getEducationData();
+  }
+
+  industrysectorChange() {
+    console.log("industrySectorValue--", this.industrySectorValue);
   }
 
   getTimeLeftData() {
@@ -166,6 +173,8 @@ export class RecruiterSavedSearchComponent implements OnInit {
             this.showContractors = data.data.recuriter_search_dont_show_to_contractor;
             this.contractorName = data.data.recuriter_search_by_contract_name;
             this.educationValue = data.data.recuriter_search_by_education;
+            this.industrySectorValue = data.data.recuriter_search_by_industry;
+            this.securityClearValue = data.data.recuriter_search_by_security_clearance;
             this.drivingLicenceValue = data.data.recuriter_search_by_driving_license === 1 ? 'yes' : 'no';
           }
         }
@@ -213,6 +222,8 @@ export class RecruiterSavedSearchComponent implements OnInit {
     this.contractorName = "";
     this.educationValue = "";
     this.drivingLicenceValue = "";
+    this.industrySectorValue = [];
+    this.industrySectorValue = [];
   }
 
   saveSearch() {
@@ -237,8 +248,8 @@ export class RecruiterSavedSearchComponent implements OnInit {
       "recuriter_search_by_updated_contractor_since":this.showContractors,
       "recuriter_search_by_contract_name":this.contractorName,
       "recuriter_search_by_education":this.educationValue,
-      "recuriter_search_by_industry":["1", "2"],
-      "recuriter_search_by_security_clearance":["1", "2"],
+      "recuriter_search_by_industry":this.industrySectorValue,
+      "recuriter_search_by_security_clearance":this.securityClearValue,
       "recuriter_search_by_driving_license":this.drivingLicenceValue == 'yes' ? 1 : 2
 
     }
@@ -251,6 +262,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
           window.scroll(0,0);
           if(this.responseData.status === "TRUE"){
                   this.succesMessageFlag =true;
+                  this.errorSuccessMessage = "Saved succesfully !";
                   this.resetFields();
                   this.getSaveSearchList();
           //         this.ErrorMesageFlag =false
@@ -259,6 +271,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
           }
           else{
              this.succesMessageFlag =false;
+             this.errorSuccessMessage = data && data.error && data.error.length > 0 ? data.error[0] : '';
               //this.ErrorMesageFlag =true;
               //this.errorMsg = this.responseData.error[0];
           }

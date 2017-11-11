@@ -4,9 +4,9 @@
             <div id="contractor-signup">
                 <form>
                     <div class="container">
-                        <div class="alert alert-success margin-tp18" *ngIf="succesMessageFlag">
-                          <a href="javascript:void(0)" class="close" title="close">×</a>
-                          Saved <strong>succesfully!</strong>
+                        <div class="alert alert-success margin-tp18" *ngIf="errorSuccessMessage">
+                          <a href="javascript:void(0)" class="close" title="close">×</a>{{errorSuccessMessage}}
+                           
                       </div>
                         <div class="row">
                             <div class="col-sm-100">
@@ -255,14 +255,13 @@
                                                         </div>
 
                                                     </div>
-                                                    <ul class="form-control industry_min_heights padding_none">
-                                                        <!-- <li class="active">All</li> -->
-                                                        <!-- <li>Accountancy</li>
-                                                        <li>Aerospace/Defence/Military</li>
-                                                        <li>Automotive</li>
-                                                        <li>Banking/Financial Services</li> -->
+                                                    <select class="form-control industry_min_heights padding_none" name="industrySectorValue" [(ngModel)]="industrySectorValue" multiple (change)="industrysectorChange()">
+                                                            <option value="">Industry Sector(S)</option>
+                                                            <option value="{{item?.id}}" *ngFor="let item of industryArrayData">{{item?.industry}}</option>
+                                                        </select>
+                                                    <!-- <ul class="form-control industry_min_heights padding_none">
                                                         <li *ngFor="let item of industryArrayData">{{item?.industry}}</li>
-                                                    </ul>
+                                                    </ul> -->
                                                 </div>
                                             </div>
                                             <div class="col-sm-50">
@@ -270,14 +269,13 @@
                                                     <div class="input-group"> <span class="form-control industry_sector">Security Clearance</span>
                                                         <div class="input-group-addon bordr_non"></div>
                                                     </div>
-                                                    <ul class="form-control industry_min_heights padding_none">
-                                                        <!-- <li class="active">All</li>
-                                                        <li>BPSS</li>
-                                                        <li>CRB</li>
-                                                        <li>CTC</li>
-                                                        <li>DV</li> -->
+                                                    <select class="form-control industry_min_heights padding_none" name="securityClearValue" [(ngModel)]="securityClearValue" multiple (change)="industrysectorChange()">
+                                                            <option value="">Security Clearance</option>
+                                                            <option value="{{item?.id}}" *ngFor="let item of securityClearanceArray">{{item?.name}}</option>
+                                                        </select>
+                                                    <!-- <ul class="form-control industry_min_heights padding_none">
                                                         <li *ngFor="let item of securityClearanceArray">{{item?.name}}</li>
-                                                    </ul>
+                                                    </ul> -->
                                                 </div>
                                             </div>
                                         </div>

@@ -6,7 +6,7 @@
                 <a href="javascript:void(0)" class="close" title="close">×</a><strong>{{postJobSuccessMsg}}</strong>
               </div>
                 <form #recruiterJobPostingForm="ngForm" (ngSubmit)="onJobPostSave(recruiterJobPostingForm)">
-                    <div class="errorbox" *ngIf="jobPostingTiteFlag || jobPostingDurationFlag || startDateFlag || industrySectorFlag || workEliFlag || cityFlag || maxRateFlag || minRateFlag"><b>The following error(s) occured:</b><br> 
+                    <div class="errorbox" *ngIf="jobPostingTiteFlag || jobPostingDurationFlag || startDateFlag || industrySectorFlag || workEliFlag || cityFlag || maxRateFlag || minRateFlag || jobSpecificationFlag"><b>The following error(s) occured:</b><br> 
                         <li *ngIf="jobPostingTiteFlag">Job Title is required.</li>
                         <li *ngIf="jobPostingDurationFlag">Job Duration is required.</li>
                         <li *ngIf="startDateFlag">Start Date is required.</li>
@@ -15,6 +15,7 @@
                         <li *ngIf="cityFlag">City is required.</li>
                         <li *ngIf="maxRateFlag">Max rate is required.</li>
                         <li *ngIf="minRateFlag">Min rate is required.</li>
+                        <li *ngIf="jobSpecificationFlag">Job Specification title and body is required.</li>
                     </div>
                     <div class="container">
                         <div class="row">
