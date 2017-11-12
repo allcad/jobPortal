@@ -320,10 +320,13 @@ jobSpecificationFlag = false;
   			"recruiterNameId": this.recruiterName,
   			"saveTempleteAs": this.saveTemplateAs,
   			"jobReference": this.jobReference,
-        "recuriter_job_is_featured": "0",
-        "templateId": this.currentTemplate ? this.currentTemplate : ''        
-
+        "recuriter_job_is_featured": "0"        
         }
+
+        if (this.currentTemplate) {
+          this.input["saveTempleteAs_id"] = this.currentTemplate;
+        }
+
         var wsUrl;
         //alert(0);
         if(!this.jobPostingJobId) {
@@ -356,6 +359,7 @@ jobSpecificationFlag = false;
                 if(data && data.status === "TRUE") {
                    window.scroll(0,0);
                   this.resetData();
+                  this.getTemplateData();
                   this.postJobSuccessMsg = 'Post Job Update succesfully!'
                   //this.jobPostFlag = false;
                   //this.router.navigate(['/recruiter/manage-jobs']);

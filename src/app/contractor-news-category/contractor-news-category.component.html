@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-20 col-md-15">
-          <div class="featured_advice featured_artical"> <img src="./assetsimages/featured-article-icon.png" alt="ads" title="ads" class="img-responsive">
+          <div class="featured_advice featured_artical"> <img src="./assets/images/featured-article-icon.png" alt="ads" title="ads" class="img-responsive">
             <p>Featured Article</p>
           </div>
         </div>
@@ -12,8 +12,8 @@
             <swiper [config]="config">
               <div class="swiper-wrapper">
                 <li>
-                  <h2>IT Jobs Going abroad a concern</h2>
-                  <p>
+                  <h2 style="color: #fff;">IT Jobs Going abroad a concern</h2>
+                  <p style="color: #fff;">
                     The offshoring of any jobs here in the UK should ignite concerns among all workers, those employed directly and contractors alike. However, the latest news from Lloyds Bank could well raise hackles among those involved in IT with the announcement that they will despatching around 90 IT jobs to India.</p>
                   <p> Those 90 IT jobs were among 625 Lloyds plans to eliminate. Last week, the bank announced that a strategic review back in 2014 said that some 9,000 jobs.
                   </p>
@@ -21,9 +21,9 @@
                     <div class="col-xs-50">
                       <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> </div>
                     </div>
-                    <div class="col-xs-50">
+                    <!-- <div class="col-xs-50">
                       <div class="letest_news_footer" routerLink="../adviceDetail"> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
-                    </div>
+                    </div> -->
                   </div>
                 </li>
               </div>
@@ -111,7 +111,7 @@
       <div class="row">
         <div class=" col-md-33 col-sm-33" *ngFor="let news of newsList">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
             <img src="{{news?.article_image}}" alt="" title="" class="img-responsive" onError="this.src='./assets/images/letest-news.png'" alt="" title="" class="img-responsive">
             <h5>{{news.article_title}}</h5>
             <p [innerHTML]="news.article_body | slice:0:100"> </p>
@@ -120,8 +120,8 @@
         </div>
         <!-- <div class="col-md-34 col-sm-34">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -129,8 +129,8 @@
         </div>
         <div class="col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -140,15 +140,15 @@
       <!-- <div class="row">
         <div class=" col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
           </div>
         </div>
         <div class="col-md-34 col-sm-34">
-          <div class="update_your_availability sign_up_contractrecruit"> <img src="./assetsimages/login-after-logo.png" alt="" title="" class="img-responsive">
+          <div class="update_your_availability sign_up_contractrecruit"> <img src="./assets/images/login-after-logo.png" alt="" title="" class="img-responsive">
             <h5>SIGN UP TO<br>
               <span>CONTRACTRECRUIT</span></h5>
             <p>Sign up to ContractRecruit and get access to all the best IT contract jobs in the UK and much, much more</p>
@@ -156,8 +156,8 @@
         </div>
         <div class="col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -167,20 +167,20 @@
       <div class="row">
         <app-ad-space></app-ad-space>
         <!-- <div class="col-sm-33">
-          <div class="ad_space margin_bottom_20"> <img src="./assetsimages/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
+          <div class="ad_space margin_bottom_20"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
         </div>
         <div class="col-sm-34">
-          <div class="ad_space margin_bottom_20"> <img src="./assetsimages/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
+          <div class="ad_space margin_bottom_20"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
         </div>
         <div class="col-sm-33">
-          <div class="ad_space margin_bottom_20"> <img src="./assetsimages/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
+          <div class="ad_space margin_bottom_20"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
         </div> -->
       </div>
       <!-- <div class="row">
         <div class=" col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -188,8 +188,8 @@
         </div>
         <div class="col-md-34 col-sm-34">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -197,8 +197,8 @@
         </div>
         <div class="col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -227,8 +227,8 @@
       <div class="row">
         <div class=" col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -236,8 +236,8 @@
         </div>
         <div class="col-md-34 col-sm-34">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -245,8 +245,8 @@
         </div>
         <div class="col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -255,20 +255,20 @@
       </div>
       <div class="row">
         <div class="col-sm-33">
-          <div class="ad_space margin_bottom_20"> <img src="./assetsimages/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
+          <div class="ad_space margin_bottom_20"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
         </div>
         <div class="col-sm-34">
-          <div class="ad_space margin_bottom_20"> <img src="./assetsimages/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
+          <div class="ad_space margin_bottom_20"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
         </div>
         <div class="col-sm-33">
-          <div class="ad_space margin_bottom_20"> <img src="./assetsimages/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
+          <div class="ad_space margin_bottom_20"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
         </div>
       </div>
       <div class="row">
         <div class=" col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -276,8 +276,8 @@
         </div>
         <div class="col-md-34 col-sm-34">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -285,8 +285,8 @@
         </div>
         <div class="col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -305,15 +305,15 @@
       <div class="row">
         <div class=" col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
           </div>
         </div>
         <div class="col-md-34 col-sm-34">
-          <div class="update_your_availability sign_up_contractrecruit"> <img src="./assetsimages/login-after-logo.png" alt="" title="" class="img-responsive">
+          <div class="update_your_availability sign_up_contractrecruit"> <img src="./assets/images/login-after-logo.png" alt="" title="" class="img-responsive">
             <h5>SIGN UP TO<br>
               <span>CONTRACTRECRUIT</span></h5>
             <p>Sign up to ContractRecruit and get access to all the best IT contract jobs in the UK and much, much more</p>
@@ -321,8 +321,8 @@
         </div>
         <div class="col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -332,8 +332,8 @@
       <div class="row">
         <div class=" col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -341,8 +341,8 @@
         </div>
         <div class="col-md-34 col-sm-34">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -350,8 +350,8 @@
         </div>
         <div class="col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -360,20 +360,20 @@
       </div>
       <div class="row">
         <div class="col-sm-33">
-          <div class="ad_space margin_bottom_20"> <img src="./assetsimages/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
+          <div class="ad_space margin_bottom_20"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
         </div>
         <div class="col-sm-34">
-          <div class="ad_space margin_bottom_20"> <img src="./assetsimages/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
+          <div class="ad_space margin_bottom_20"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
         </div>
         <div class="col-sm-33">
-          <div class="ad_space margin_bottom_20"> <img src="./assetsimages/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
+          <div class="ad_space margin_bottom_20"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
         </div>
       </div>
       <div class="row">
         <div class=" col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -381,8 +381,8 @@
         </div>
         <div class="col-md-34 col-sm-34">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -390,8 +390,8 @@
         </div>
         <div class="col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -420,8 +420,8 @@
       <div class="row">
         <div class=" col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -429,8 +429,8 @@
         </div>
         <div class="col-md-34 col-sm-34">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -438,8 +438,8 @@
         </div>
         <div class="col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -448,20 +448,20 @@
       </div>
       <div class="row">
         <div class="col-sm-33">
-          <div class="ad_space margin_bottom_20"> <img src="./assetsimages/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
+          <div class="ad_space margin_bottom_20"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
         </div>
         <div class="col-sm-34">
-          <div class="ad_space margin_bottom_20"> <img src="./assetsimages/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
+          <div class="ad_space margin_bottom_20"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
         </div>
         <div class="col-sm-33">
-          <div class="ad_space margin_bottom_20"> <img src="./assetsimages/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
+          <div class="ad_space margin_bottom_20"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
         </div>
       </div>
       <div class="row">
         <div class=" col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -469,8 +469,8 @@
         </div>
         <div class="col-md-34 col-sm-34">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -478,8 +478,8 @@
         </div>
         <div class="col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -498,8 +498,8 @@
       <div class="row">
         <div class=" col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -507,8 +507,8 @@
         </div>
         <div class="col-md-34 col-sm-34">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -516,8 +516,8 @@
         </div>
         <div class="col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -526,20 +526,20 @@
       </div>
       <div class="row">
         <div class="col-sm-33">
-          <div class="ad_space margin_bottom_20"> <img src="./assetsimages/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
+          <div class="ad_space margin_bottom_20"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
         </div>
         <div class="col-sm-34">
-          <div class="ad_space margin_bottom_20"> <img src="./assetsimages/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
+          <div class="ad_space margin_bottom_20"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
         </div>
         <div class="col-sm-33">
-          <div class="ad_space margin_bottom_20"> <img src="./assetsimages/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
+          <div class="ad_space margin_bottom_20"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
         </div>
       </div>
       <div class="row">
         <div class=" col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -547,8 +547,8 @@
         </div>
         <div class="col-md-34 col-sm-34">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -556,8 +556,8 @@
         </div>
         <div class="col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -567,15 +567,15 @@
       <div class="row">
         <div class=" col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
           </div>
         </div>
         <div class="col-md-34 col-sm-34">
-          <div class="update_your_availability sign_up_contractrecruit"> <img src="./assetsimages/login-after-logo.png" alt="" title="" class="img-responsive">
+          <div class="update_your_availability sign_up_contractrecruit"> <img src="./assets/images/login-after-logo.png" alt="" title="" class="img-responsive">
             <h5>SIGN UP TO<br>
               <span>CONTRACTRECRUIT</span></h5>
             <p>Sign up to ContractRecruit and get access to all the best IT contract jobs in the UK and much, much more</p>
@@ -583,8 +583,8 @@
         </div>
         <div class="col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -613,8 +613,8 @@
       <div class="row">
         <div class=" col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -622,8 +622,8 @@
         </div>
         <div class="col-md-34 col-sm-34">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -631,8 +631,8 @@
         </div>
         <div class="col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -641,20 +641,20 @@
       </div>
       <div class="row">
         <div class="col-sm-33">
-          <div class="ad_space margin_bottom_20"> <img src="./assetsimages/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
+          <div class="ad_space margin_bottom_20"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
         </div>
         <div class="col-sm-34">
-          <div class="ad_space margin_bottom_20"> <img src="./assetsimages/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
+          <div class="ad_space margin_bottom_20"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
         </div>
         <div class="col-sm-33">
-          <div class="ad_space margin_bottom_20"> <img src="./assetsimages/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
+          <div class="ad_space margin_bottom_20"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
         </div>
       </div>
       <div class="row">
         <div class=" col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -662,8 +662,8 @@
         </div>
         <div class="col-md-34 col-sm-34">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -671,8 +671,8 @@
         </div>
         <div class="col-md-33 col-sm-33">
           <div class="letest_news_box">
-            <div class="book_mark"><a href="javascript:void(0)"><img src="./assetsimages/it-news.png" alt="" title=""></a></div>
-            <img src="./assetsimages/letest-news.png" alt="" title="" class="img-responsive">
+            <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
+            <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
             <h5>IT Jobs going abroad a concern for Contractors</h5>
             <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -692,7 +692,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-30 col-md-30">
-          <div class="green_logo"> <img src="./assetsimages/contra-logo.png" alt="ads" title="ads" class="img-responsive"> </div>
+          <div class="green_logo"> <img src="./assets/images/contra-logo.png" alt="ads" title="ads" class="img-responsive"> </div>
         </div>
         <div class="col-sm-70 col-md-65 col-md-offset-5">
           <div class="contract_right_part">

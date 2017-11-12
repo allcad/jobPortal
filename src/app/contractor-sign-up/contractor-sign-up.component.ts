@@ -1,4 +1,4 @@
-import { Component, OnInit,NgModule } from '@angular/core';
+import { Component, OnInit,NgModule,ViewChild } from '@angular/core';
 import { FormsModule,NgForm } from '@angular/forms';
 import { CommonRequestService } from '../common-request.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -54,6 +54,11 @@ contractorServicesInavlid = false;
 contractorInvalid = false;
 contractorEndDateInvalid = false;
 invalidFile = false;
+currentEmploymentSituationCheck;
+@ViewChild('myInput') myInputVariable;
+@ViewChild('permanent') permanentVariable;
+@ViewChild('inContract') inContractVariable;
+@ViewChild('outOfContract') outOfContractVariable;
  constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
@@ -63,7 +68,9 @@ invalidFile = false;
     window.scroll(0,0);
   }
 
-  onFormSubmit(userForm){
+  onFormSubmit(userForm){ 
+    console.log("this.permanentVariable--", this.permanentVariable);
+    
     if(userForm.valid && !this.checkOtherFieldValidation()){
     this.fd = new FormData();
     this.fd.append('loginToken',(localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).token )? JSON.parse(localStorage.getItem('loginDetail')).token:  "nsakdlallas1232mk123b2k1390iq2ekq");
@@ -135,7 +142,9 @@ invalidFile = false;
        this.categoryData[i].checked = false;
      }
      this.contractor_agree_terms_status = false;
-
+     this.myInputVariable.nativeElement.value = "";
+     
+     this.currentEmploymentSituationCheck = "";
     }
 
      logRadio(value): void {

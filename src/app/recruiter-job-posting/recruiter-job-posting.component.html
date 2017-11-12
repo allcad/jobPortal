@@ -2,9 +2,7 @@
             <!--navigation top end-->
             <!--contractor login-->
             <div id="contractor-signup" class="recruiter_job_posting_manage">
-                <div class="alert alert-success margin-tp18" *ngIf="jobPostFlag">
-                <a href="javascript:void(0)" class="close" title="close" (click)="jobPostFlag = !jobPostFlag">×</a><strong>{{postJobSuccessMsg}}</strong>
-              </div>
+               
                 <form #recruiterJobPostingForm="ngForm" (ngSubmit)="onJobPostSave(recruiterJobPostingForm)">
                     <div class="errorbox" *ngIf="jobPostingTiteFlag || jobPostingDurationFlag || startDateFlag || industrySectorFlag || workEliFlag || cityFlag || maxRateFlag || minRateFlag || jobSpecificationFlag"><b>The following error(s) occured:</b><br> 
                         <li *ngIf="jobPostingTiteFlag">Job Title is required.</li>
@@ -39,6 +37,9 @@
                                 </div>
                             </div>
                         </div>
+                         <div class="alert alert-success margin-tp18" *ngIf="jobPostFlag">
+                <a href="javascript:void(0)" class="close" title="close" (click)="jobPostFlag = !jobPostFlag">×</a><strong>{{postJobSuccessMsg}}</strong>
+              </div>
                         <div class="signup_form_section">
                             <div class="margin_bottom_30">
                                 <div class="job_search_keywords">
@@ -164,6 +165,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- <span>(£)</span> -->
                                     <div class="col-sm-35 col-md-offset-2">
                                         <div class="form-group">
                                             <div class="input-group">
