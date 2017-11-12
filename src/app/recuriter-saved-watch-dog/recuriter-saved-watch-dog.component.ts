@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-recuriter-saved-watch-dog',
   templateUrl: './recuriter-saved-watch-dog.component.html',
@@ -37,7 +38,9 @@ export class RecuriterSavedWatchDogComponent implements OnInit {
   educationValue = "";
   errorMessageFlag = false;
   errorMessage = "";
-  constructor(public _commonRequestService: CommonRequestService) { }
+  industrySectorValue;
+  securityClearValue;
+  constructor(public _commonRequestService: CommonRequestService, private router: Router) { }
 
   ngOnInit() {
     this.getSecurityClearance();
@@ -174,6 +177,8 @@ export class RecuriterSavedWatchDogComponent implements OnInit {
             this.contractorName = data.data.params.recuriter_search_by_contract_name;
             this.educationValue = data.data.params.recuriter_search_by_education;
             this.drivingLicenceValue = data.data.params.recuriter_search_by_driving_license === 1 ? 'yes' : 'no';
+            this.industrySectorValue = data.data.params.recuriter_search_by_industry? data.data.params.recuriter_search_by_industry : [];
+            this.securityClearValue = data.data.params.recuriter_search_by_security_clearance ? data.data.params.recuriter_search_by_security_clearance : [];
           }
         }
     );
@@ -247,8 +252,8 @@ export class RecuriterSavedWatchDogComponent implements OnInit {
       "recuriter_search_by_updated_contractor_since":this.showContractors,
       "recuriter_search_by_contract_name":this.contractorName,
       "recuriter_search_by_education":this.educationValue,
-      "recuriter_search_by_industry":["1", "2"],
-      "recuriter_search_by_security_clearance":["1", "2"],
+      "recuriter_search_by_industry":this.industrySectorValue?this.industrySectorValue:[],
+      "recuriter_search_by_security_clearance":this.securityClearValue?this.securityClearValue:[],
       "recuriter_search_by_driving_license":this.drivingLicenceValue == 'yes' ? 1 : 2,      
         }
       }
@@ -267,6 +272,8 @@ export class RecuriterSavedWatchDogComponent implements OnInit {
                   this.errorMessage = "";
                   this.resetFields();
                   this.getSaveSearchList();
+
+                  this.router.navigate(['./recruiter/watchdog']);
           //         this.ErrorMesageFlag =false
           // this.profileData={};
           // this.errorMsg = "";

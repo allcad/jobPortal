@@ -3,22 +3,7 @@
   <!--contractor login-->
   <div id="contractor-signup">
     <div class="container">
-
-      <div class="errorbox" *ngIf="nameFlag || jobTitleFlag || telephoneFlag || telephoneValidFlag"><b>The following error(s) occured:</b>
-        <br>
-        <li *ngIf="nameFlag">Name is required.</li>
-        <li *ngIf="jobTitleFlag">JOB TITLE is required.</li>
-        <li *ngIf="telephoneFlag">TELEPHONE is required.</li>
-        <li *ngIf="telephoneValidFlag">please enter valid TELEPHONE is required.</li>
-      </div>
-
-      <div class="alert alert-success margin-tp18" *ngIf="manageAccountFlag">
-        <a href="javascript:void(0)" class="close" title="close" (click)="manageAccountFlag = !manageAccountFlag">×</a><strong>{{successMessage}}</strong>
-      </div>
-      <div class="alert alert-danger margin-tp18" *ngIf="manageErrorFlag">
-        <a href="javascript:void(0)" class="close" title="close" (click)="manageErrorFlag = !manageErrorFlag">×</a><strong>{{errorMessage}}</strong>
-      </div>
-
+      
       <div class="row">
         <div class="col-sm-100">
           <div class="contractor_signup befourlogin_fontsize">
@@ -30,6 +15,20 @@
             </ul>
           </div>
         </div>
+
+      </div>
+      <div class="alert alert-success margin-tp18" *ngIf="manageAccountFlag">
+          <a href="javascript:void(0)" class="close" title="close" (click)="manageAccountFlag = !manageAccountFlag">×</a><strong>{{successMessage}}</strong>
+        </div>
+        <div class="alert alert-danger margin-tp18" *ngIf="manageErrorFlag">
+          <a href="javascript:void(0)" class="close" title="close" (click)="manageErrorFlag = !manageErrorFlag">×</a><strong>{{errorMessage}}</strong>
+        </div>
+        <div class="errorbox" *ngIf="nameFlag || jobTitleFlag || telephoneFlag || telephoneValidFlag"><b>The following error(s) occured:</b>
+        <br>
+        <li *ngIf="nameFlag">Name is required.</li>
+        <li *ngIf="jobTitleFlag">JOB TITLE is required.</li>
+        <li *ngIf="telephoneFlag">TELEPHONE is required.</li>
+        <li *ngIf="telephoneValidFlag">please enter valid TELEPHONE is required.</li>
       </div>
       <div class="row">
         <div class="col-sm-100">
@@ -100,7 +99,7 @@
                 <h2 class="">Account Details</h2>
               </div>
               <div class="total_number_users user_account_created">
-                <p><span>Super User :</span> {{name}}</p>
+                <p><span>Super User :</span> {{accountSuperUserName}}</p>
                 <p><span>Account Created : </span>{{accountCreatedValue | date}}</p>
               </div>
               <div class="row">

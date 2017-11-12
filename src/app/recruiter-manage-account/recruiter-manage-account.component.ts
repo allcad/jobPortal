@@ -21,6 +21,7 @@ export class RecruiterManageAccountComponent implements OnInit {
   errorMessage = "";
   successMessage = "";
   manageErrorFlag = false;
+  accountSuperUserName;
   constructor(public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -43,6 +44,7 @@ export class RecruiterManageAccountComponent implements OnInit {
            this.jobTitle = data.data.personalDetails && data.data.personalDetails.jobTitle ? data.data.personalDetails.jobTitle : "";
            this.telePhone = data.data.contactDetails && data.data.contactDetails.telephone ? data.data.contactDetails.telephone : "";
            this.accountCreatedValue = data.data.personalDetails && data.data.personalDetails.accountCreated ? data.data.personalDetails.accountCreated : "";
+           this.accountSuperUserName = data.data.personalDetails && data.data.personalDetails.name ? data.data.personalDetails.name : "";
          }
         }
     );
@@ -103,6 +105,7 @@ export class RecruiterManageAccountComponent implements OnInit {
              this.name = "";
              this.jobTitle = "";
              this.telePhone = "";
+             this.recruiterAccountDetails();
            } else {
              this.manageErrorFlag = true;
              this.manageAccountFlag = false;
