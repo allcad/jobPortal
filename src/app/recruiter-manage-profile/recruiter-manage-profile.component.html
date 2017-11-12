@@ -52,10 +52,10 @@
                 </div>
               </div>
               <div class="alert alert-success margin-tp18" *ngIf="succesMessageFlag">
-                <a href="javascript:void(0)" class="close" title="close">×</a> You are sign up <strong>succesfully!</strong>
+                <a href="javascript:void(0)" class="close" title="close" (click)="succesMessageFlag = !succesMessageFlag">×</a> You are sign up <strong>succesfully!</strong>
               </div>
               <div class="alert alert-danger margin-tp18" *ngIf="ErrorMesageFlag">
-                <a href="javascript:void(0)" class="close" title="close">×</a>
+                <a href="javascript:void(0)" class="close" title="close" (click)="ErrorMesageFlag = !ErrorMesageFlag">×</a>
                 <strong>Error!</strong> {{errorMsg}}
               </div>
               <div class="job_search_keywords">
@@ -65,8 +65,9 @@
                 <div class="col-sm-40">
                   <div class="profile_image background_pink">
                     <!-- <img src="./assets/images/profile-pik.png" alt="ads" title="ads" class="img-responsive">  -->
+
                     <div style="margin-bottom: 30px;">
-                      <img class="img-responsive" [src]="profileData?.profileimage[0] ? profileData?.profileimage[0]?.attachment_url +'/' +  profileData?.profileimage[0]?.attachment_name : './assets/images/profile-pik.png'" alt="ads">
+                      <img class="img-responsive" [src]="profileData && profileData.profileimage[0] ? profileData.profileimage[0].attachment_url+'/' +  profileData.profileimage[0].attachment_name : './assets/images/profile-pik.png'" alt="ads">
                     </div>
                     <!-- <a href="javascript:void(0);"></a> -->
                     <!-- <input type="file" class="upload" (change)="recruiterFileChangeEvent($event)" /> -->

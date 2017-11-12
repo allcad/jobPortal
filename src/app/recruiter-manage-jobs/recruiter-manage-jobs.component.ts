@@ -22,6 +22,7 @@ export class RecruiterManageJobsComponent implements OnInit {
   pageNo = 1;
   onPageClick = 9;
   sortByData;
+  jobPostFlagError = false;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService) { }
 
@@ -202,7 +203,14 @@ export class RecruiterManageJobsComponent implements OnInit {
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
          console.log("delete--", data);
-         this.getManageJobsList(this.currentPageNo);
+         if (data) {
+           this.jobPostFlag = true;
+           this.jobPostFlagError = false;
+           this.getManageJobsList(this.currentPageNo);
+         } else {
+           this.jobPostFlag = false;
+           this.jobPostFlagError = true;           
+         }
         }
     );
   }

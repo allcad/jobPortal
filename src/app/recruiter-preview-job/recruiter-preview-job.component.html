@@ -5,7 +5,7 @@
                 <div class="container">
                     <div *ngIf="previewJobErrorMsg">
                         <div class="alert alert-danger margin-tp18">
-                            <a href="javascript:void(0)" class="close" title="close">×</a> {{previewJobErrorMsg}}
+                            <a href="javascript:void(0)" class="close" title="close" (click)="previewJobErrorMsg =!previewJobErrorMsg">×</a> {{previewJobErrorMsg}}
                         </div>
                     </div>
                     <div class="row">

@@ -3,7 +3,7 @@
             <!--contractor login-->
             <div id="contractor-signup" class="recruiter_job_posting_manage">
                 <div class="alert alert-success margin-tp18" *ngIf="jobPostFlag">
-                <a href="javascript:void(0)" class="close" title="close">×</a><strong>{{postJobSuccessMsg}}</strong>
+                <a href="javascript:void(0)" class="close" title="close" (click)="jobPostFlag = !jobPostFlag">×</a><strong>{{postJobSuccessMsg}}</strong>
               </div>
                 <form #recruiterJobPostingForm="ngForm" (ngSubmit)="onJobPostSave(recruiterJobPostingForm)">
                     <div class="errorbox" *ngIf="jobPostingTiteFlag || jobPostingDurationFlag || startDateFlag || industrySectorFlag || workEliFlag || cityFlag || maxRateFlag || minRateFlag || jobSpecificationFlag"><b>The following error(s) occured:</b><br> 

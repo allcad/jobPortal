@@ -39,6 +39,8 @@ export class RecruiterSavedSearchComponent implements OnInit {
   errorSuccessMessage = "";
   industrySectorValue;
   securityClearValue;
+  successMessageFlag = false;
+  errorMessageFlag = false;
   constructor(public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -263,6 +265,8 @@ export class RecruiterSavedSearchComponent implements OnInit {
           if(this.responseData.status === "TRUE"){
                   this.succesMessageFlag =true;
                   this.errorSuccessMessage = "Saved succesfully !";
+                  this.successMessageFlag  = true;
+                  this.errorMessageFlag = false;
                   this.resetFields();
                   this.getSaveSearchList();
           //         this.ErrorMesageFlag =false
@@ -272,6 +276,8 @@ export class RecruiterSavedSearchComponent implements OnInit {
           else{
              this.succesMessageFlag =false;
              this.errorSuccessMessage = data && data.error && data.error.length > 0 ? data.error[0] : '';
+             this.successMessageFlag  = false;
+             this.errorMessageFlag = true;
               //this.ErrorMesageFlag =true;
               //this.errorMsg = this.responseData.error[0];
           }

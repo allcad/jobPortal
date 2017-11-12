@@ -5,8 +5,12 @@
                 <form>
                     <div class="container">
                         <div class="alert alert-success margin-tp18" *ngIf="succesMessageFlag">
-                          <a href="javascript:void(0)" class="close" title="close">×</a>
+                          <a href="javascript:void(0)" class="close" title="close" (click)="succesMessageFlag = !succesMessageFlag">×</a>
                           Saved <strong>succesfully!</strong>
+                      </div>
+                      <div class="alert alert-danger margin-tp18" *ngIf="errorMessageFlag">
+                          <a href="javascript:void(0)" class="close" title="close" (click)="succesMessageFlag = !succesMessageFlag">×</a>
+                          {{errorMessage}}
                       </div>
                         <div class="row">
                             <div class="col-sm-100">

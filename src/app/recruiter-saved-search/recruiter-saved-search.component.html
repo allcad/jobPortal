@@ -4,8 +4,12 @@
             <div id="contractor-signup">
                 <form>
                     <div class="container">
-                        <div class="alert alert-success margin-tp18" *ngIf="errorSuccessMessage">
-                          <a href="javascript:void(0)" class="close" title="close">×</a>{{errorSuccessMessage}}
+                        <div class="alert alert-danger margin-tp18" *ngIf="errorMessageFlag">
+                          <a href="javascript:void(0)" class="close" title="close" (close)="errorMessageFlag = !errorMessageFlag">×</a>{{errorSuccessMessage}}
+                           
+                      </div>
+                      <div class="alert alert-success margin-tp18" *ngIf="successMessageFlag">
+                          <a href="javascript:void(0)" class="close" title="close" (close)="successMessageFlag = !successMessageFlag">×</a>{{errorSuccessMessage}}
                            
                       </div>
                         <div class="row">

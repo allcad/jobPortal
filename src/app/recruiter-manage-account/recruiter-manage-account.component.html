@@ -13,7 +13,10 @@
       </div>
 
       <div class="alert alert-success margin-tp18" *ngIf="manageAccountFlag">
-        <a href="javascript:void(0)" class="close" title="close">×</a><strong>{{errorMessage}}</strong>
+        <a href="javascript:void(0)" class="close" title="close" (click)="manageAccountFlag = !manageAccountFlag">×</a><strong>{{successMessage}}</strong>
+      </div>
+      <div class="alert alert-danger margin-tp18" *ngIf="manageErrorFlag">
+        <a href="javascript:void(0)" class="close" title="close" (click)="manageErrorFlag = !manageErrorFlag">×</a><strong>{{errorMessage}}</strong>
       </div>
 
       <div class="row">

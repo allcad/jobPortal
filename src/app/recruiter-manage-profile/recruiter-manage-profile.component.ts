@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm} from '@angular/forms';
 import { CommonRequestService } from '../common-request.service';
-
+import * as jquery from 'jquery';
 @Component({
   selector: 'app-recruiter-manage-profile',
   templateUrl: './recruiter-manage-profile.component.html',
@@ -476,13 +476,16 @@ fd;
     otherAddressDataObj.otherAddress.push(this.otherAddress);
   }
 
+  console.log("this.imageFile--", this.imageFile);
+
+ 
   this.fd.append('loginToken',(localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).token )? JSON.parse(localStorage.getItem('loginDetail')).token:  "nsakdlallas1232mk123b2k1390iq2ekq");
   this.fd.append('email',(localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).email )? JSON.parse(localStorage.getItem('loginDetail')).email:  "test@gmail.com");
   this.fd.append('companyDetails', JSON.stringify(companyDetail));
   this.fd.append('companyDescription',this.companyDescription);
   this.fd.append('companySocial', JSON.stringify(companySocial));
   this.fd.append('otherAddress',JSON.stringify(otherAddressDataObj.otherAddress ));
-  this.fd.append('ProfileUrl', this.imageFile ? this.imageFile : {});
+  this.fd.append('ProfileUrl', this.imageFile ? this.imageFile : {} );
 	console.log("recruiterProfileJson", this.fd);
   console.log("companyDetail--", companyDetail);
   console.log("this.companyDescription--", this.companyDescription);
@@ -498,6 +501,7 @@ fd;
                   this.ErrorMesageFlag =false
           this.profileData={};
           this.errorMsg = "";
+          this.getProfileDta();
           }
           else{
              this.succesMessageFlag =false;
@@ -510,7 +514,6 @@ fd;
     ); 
    }
   };
-
 
 
 
@@ -529,7 +532,7 @@ getProfileDta(){
           var companySocialData;
           if(data && data.data) {
             this.profileData = data.data;
-            if(this.profileData['companySocial'] !== []) {
+            if(this.profileData['companySocial']) {
               console.log("comapny social--", this.profileData['companySocial']);
               companySocialData = JSON.parse(this.profileData['companySocial']);
             }
@@ -586,7 +589,7 @@ getProfileDta(){
             console.log('this.addMulAddArray--', this.addMulAddArray);
           }
 
-          }
+          } 
         }
     );
 

@@ -19,6 +19,9 @@ export class RecruiterManageUserComponent implements OnInit {
   subUserArray;
   totalNumberOfUser;
   errorMessage = "";
+  successMessage = "";
+  successMessageFlag = false;
+  errorMessageFlag = false;
   constructor(public _commonRequestService: CommonRequestService) {
   	//this.addMulUserArray.splice(0,1);
    }
@@ -44,7 +47,9 @@ export class RecruiterManageUserComponent implements OnInit {
          console.log("manage user--", data);
          window.scroll(0,0);
          if(data && data.status === "TRUE") {
-           this.errorMessage = " Manage User is save succesfully!";
+           this.successMessage = " Manage User is Save Succesfully!";
+           this.successMessageFlag = true;
+           this.errorMessageFlag = false;
            //this.showMessage = true;
            this.newUserName = "";
            this.emailAddress = "";
@@ -53,6 +58,8 @@ export class RecruiterManageUserComponent implements OnInit {
            this.confirmPassWord = "";
            this.telephoneV = "";
          } else {
+           this.successMessageFlag = false;
+           this.errorMessageFlag = true;
            this.errorMessage = data && data.error && data.error.length > 0 ? data.error[0] : '';
          }
         }
@@ -69,8 +76,17 @@ export class RecruiterManageUserComponent implements OnInit {
        this._commonRequestService.postData(wsUrl,saveJson).subscribe(
         data => {
          console.log("manage sub user--", data);
-         this.subUserArray = data.data;
-         this.totalNumberOfUser = this.subUserArray.length + 1;
+         if (data && data.status === "TRUE") {
+           this.subUserArray = data.data;
+           this.totalNumberOfUser = this.subUserArray.length + 1;
+           this.successMessage = "Sub User Created Succesfully!";
+           this.successMessageFlag = true;
+           this.errorMessageFlag = false;
+         } else {
+           this.successMessage = "Error While Creating Sub User";
+           this.successMessageFlag = false;
+           this.errorMessageFlag = true;
+         }
          window.scroll(0,0);
         }
     );
@@ -86,6 +102,15 @@ export class RecruiterManageUserComponent implements OnInit {
        this._commonRequestService.postData(wsUrl,saveJson).subscribe(
         data => {
          console.log("manage super user--", data);
+         if (data && data.status === "TRUE") {
+           this.successMessage = "Super User Created Succesfully!";
+           this.successMessageFlag = true;
+           this.errorMessageFlag = false;
+         } else {
+           this.successMessage = "Error While Creating Super User!";
+           this.successMessageFlag = false;
+           this.errorMessageFlag = true;
+         }
          window.scroll(0,0);
         }
     );
@@ -101,6 +126,15 @@ export class RecruiterManageUserComponent implements OnInit {
        this._commonRequestService.postData(wsUrl,saveJson).subscribe(
         data => {
          console.log("delete--", data);
+          if (data && data.status === "TRUE") {
+           this.successMessage = "User Deleted Succesfully!";
+           this.successMessageFlag = true;
+           this.errorMessageFlag = false;
+         } else {
+           this.successMessage = "Error While Deleting Super User!";
+           this.successMessageFlag = false;
+           this.errorMessageFlag = true;
+         }
          window.scroll(0,0);
         }
     );

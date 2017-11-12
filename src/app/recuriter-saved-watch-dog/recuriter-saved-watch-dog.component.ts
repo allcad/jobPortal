@@ -35,6 +35,8 @@ export class RecuriterSavedWatchDogComponent implements OnInit {
   searchListDataFlag = false;
   showSaveSearchList = false;
   educationValue = "";
+  errorMessageFlag = false;
+  errorMessage = "";
   constructor(public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -261,6 +263,8 @@ export class RecuriterSavedWatchDogComponent implements OnInit {
           window.scroll(0,0);
           if(this.responseData.status === "TRUE"){
                   this.succesMessageFlag =true;
+                  this.errorMessageFlag = false;
+                  this.errorMessage = "";
                   this.resetFields();
                   this.getSaveSearchList();
           //         this.ErrorMesageFlag =false
@@ -269,6 +273,8 @@ export class RecuriterSavedWatchDogComponent implements OnInit {
           }
           else{
              this.succesMessageFlag =false;
+             this.errorMessageFlag = true;
+             this.errorMessage = "Error while saving Watch Dog";
               //this.ErrorMesageFlag =true;
               //this.errorMsg = this.responseData.error[0];
           }

@@ -19,6 +19,8 @@ export class RecruiterManageAccountComponent implements OnInit {
   telephoneValidFlag = false;
   accountCreatedValue;
   errorMessage = "";
+  successMessage = "";
+  manageErrorFlag = false;
   constructor(public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -93,14 +95,17 @@ export class RecruiterManageAccountComponent implements OnInit {
           data => {
            console.log("recruiter acoount update--", data);
            window.scroll(0,0);
-           this.manageAccountFlag = true;
            if(data && data.status === "TRUE") {
-             this.errorMessage = "Account Update Successfully.";
+             this.manageAccountFlag = true;
+             this.manageErrorFlag = false;
+             this.successMessage = "Account Update Successfully.";
              //this.router.navigate(['../recruiterLogin']);
              this.name = "";
              this.jobTitle = "";
              this.telePhone = "";
            } else {
+             this.manageErrorFlag = true;
+             this.manageAccountFlag = false;
              this.errorMessage = data && data.error && data.error.length > 0 ? data.error[0] : '';
            }
           }

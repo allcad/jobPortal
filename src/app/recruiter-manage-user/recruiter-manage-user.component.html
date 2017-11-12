@@ -15,8 +15,11 @@
           </div>
         </div>
       </div>
-      <div class="alert alert-success margin-tp18" *ngIf="errorMessage">
-      <a href="javascript:void(0)" class="close" title="close">×</a><strong>{{errorMessage}}</strong>
+      <div class="alert alert-danger margin-tp18" *ngIf="errorMessageFlag">
+      <a href="javascript:void(0)" class="close" title="close" (click)="errorMessageFlag = !errorMessageFlag">×</a><strong>{{errorMessage}}</strong>
+    </div>
+    <div class="alert alert-success margin-tp18" *ngIf="successMessageFlag">
+      <a href="javascript:void(0)" class="close" title="close" (click)="successMessageFlag = !successMessageFlag">×</a><strong>{{successMessage}}</strong>
     </div>
       <div class="row">
         <div class="col-sm-100">

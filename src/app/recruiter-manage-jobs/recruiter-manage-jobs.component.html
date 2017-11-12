@@ -3,7 +3,10 @@
             <!--contractor login-->
             <div class="container">
                 <div class="alert alert-success margin-tp18" *ngIf="jobPostFlag">
-                <a href="javascript:void(0)" class="close" title="close">×</a> Post Job Save <strong>succesfully!</strong>
+                <a href="javascript:void(0)" class="close" title="close" (click)="jobPostFlag = !jobPostFlag">×</a> Post Job Delete <strong>succesfully!</strong>
+              </div>
+              <div class="alert alert-danger margin-tp18" *ngIf="jobPostFlagError">
+                <a href="javascript:void(0)" class="close" title="close" (click)="jobPostFlagError = !jobPostFlagError">×</a> Error While Deleting Job
               </div>
                 <div class="row">
                     <div class="col-sm-50">

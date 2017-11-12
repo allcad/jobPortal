@@ -31,10 +31,10 @@
             </ul>
           </div>
           <div class="alert alert-success margin-tp18" *ngIf="succesLoginFlag">
-            <a href="javascript:void(0)" class="close" title="close">×</a> You are Log in <strong>succesfully!</strong>
+            <a href="javascript:void(0)" class="close" title="close" (click)="succesLoginFlag = !succesLoginFlag">×</a> You are Log in <strong>succesfully!</strong>
           </div>
           <div class="alert alert-danger margin-tp18" *ngIf="errorMsgFlag">
-            <a href="javascript:void(0)" class="close" title="close">×</a>
+            <a href="javascript:void(0)" class="close" title="close" (click)="errorMsgFlag = !errorMsgFlag">×</a>
             <strong>Error!</strong> Your Email id is not Registered !!
           </div>
           <div class="login_form_section">
