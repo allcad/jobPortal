@@ -22,7 +22,7 @@ export class ContractorSignUpComponent implements OnInit {
  contractor_current_password;
  contractor_job_title;
  contractor_key_skills;
- fileForCV:any;contractor_employment_situation:any="permanant";contractService:any;
+ fileForCV:any;contractor_employment_situation:any="";contractService:any;
  contractor_rate;checkAgree;
  valid;
  fileForCv;
@@ -41,11 +41,17 @@ export class ContractorSignUpComponent implements OnInit {
  CVFile = null;
  noticePeriodList = [];
  submitClicked=false;
- noticePeriod ="immediate";
+ noticePeriod ="Immediate";
  contractEndDate = "";
  useNoticePeriod = "no";
  detailsLiveFrom = "1";
  contractor_post_code = "";
+ formInvalidFlag = false;
+ passwordInvalid = false;
+cvInvalid = false;
+employmentSituation = false;
+contractorServicesInavlid = false;
+contractorInvalid = false;
  constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
 ngOnInit() {
@@ -55,8 +61,8 @@ this.getNoticePeriodData()
 }
 
     onFormSubmit(userForm){
-    if(userForm.valid){
-      this.fd = new FormData();
+    if(userForm.valid && !this.checkOtherFieldValidation()){
+    this.fd = new FormData();
     this.fd.append('loginToken',(localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).token )? JSON.parse(localStorage.getItem('loginDetail')).token:  "nsakdlallas1232mk123b2k1390iq2ekq");
     this.fd.append('email',(localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).email )? JSON.parse(localStorage.getItem('loginDetail')).email:  "test@gmail.com");
     this.fd.append('contractor_first_name',this.contractor_first_name);
@@ -64,7 +70,7 @@ this.getNoticePeriodData()
     this.fd.append('contractor_email',this.contractor_email);
     this.fd.append('contractor_tel_no',this.contractor_tel_no);
     this.fd.append('contractor_current_password',this.contractor_current_password);
-    this.fd.append('contractor_rate',this.contractor_rate ? this.contractor_rate : "200");
+    this.fd.append('contractor_rate',this.contractor_rate ? this.contractor_rate : "300");
     this.fd.append('fileForCv',this.CVFile);
     this.fd.append('contractor_job_title',this.contractor_job_title);
     this.fd.append('contractor_key_skills',JSON.stringify(this.selectedSkillIdArray));
@@ -86,12 +92,18 @@ this.getNoticePeriodData()
           if(this.listSignUpData.status === "TRUE"){
                   this.succesMessageFlag =true;
                   this.ErrorMesageFlag =false
-          this.inputData={};
+                  this.inputData={};
+                  this.resetForm();
+                  userForm.resetForm();
+                  window.scroll(0,0);
+                  this.formInvalidFlag = false;
+                  //userForm.markAsPristine();
           }
           else{
             this.validateMsg = this.listSignUpData.error[0];
-             this.succesMessageFlag =false;
-              this.ErrorMesageFlag =true;
+            this.succesMessageFlag =false;
+            this.ErrorMesageFlag =true;
+            window.scroll(0,0);
           }
     
           // console.log("keySkill: ", this.listSignUpData);
@@ -99,15 +111,69 @@ this.getNoticePeriodData()
     );     
     }else{
       window.scroll(0,0);
+      this.checkOtherFieldValidation();
+      this.formInvalidFlag = true;
     }
     
 
 }
+  
+
+  resetForm(){
+    this.contractor_first_name = "";
+    this.contractor_last_name = "";
+    this.contractor_current_password = "";
+    this.contractor_email = "";
+    this.contractor_tel_no = "";
+    this.contractor_job_title ="";
+    this.contractor_post_code = "";
+    this.selectedSkillArray = [];
+    this.contractor_employment_situation = "";
+    for(var i=0; i<this.categoryData.length; i++){
+       this.categoryData[i].checked = false;
+     }
+     this.contractor_agree_terms_status = false;
+
+    }
 
      logRadio(value): void {
        this.contractor_employment_situation = value;
     }
 
+
+    checkOtherFieldValidation(){
+      this.passwordInvalid = false;
+      this.cvInvalid = false;
+      this.employmentSituation = false;
+      this.contractorServicesInavlid = false;
+      this.contractorInvalid = false;
+      this.formInvalidFlag = false;
+
+      if(this.contractor_current_password && this.contractor_current_password.length>0 && this.contractor_current_password.length <6){
+        this.passwordInvalid = true;
+        this.contractorInvalid = true;
+      }
+      if(!this.CVFile){
+        this.cvInvalid = true;
+        this.contractorInvalid = true;
+      }
+
+      if(!this.contractor_employment_situation){
+        this.employmentSituation = true;
+        this.contractorInvalid = true;
+      }
+
+      if(this.getSelecetdContractorServices().length ==0){
+        this.contractorServicesInavlid = true;
+        this.contractorInvalid = true;
+      }
+
+      if(this.contractor_employment_situation == 'in contract' && !this.contractEndDate){
+        this.contractorInvalid = true;
+        this.contractorInvalid  = true;
+      }
+      return this.contractorInvalid;
+    }
 
 
 

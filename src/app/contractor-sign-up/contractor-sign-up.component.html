@@ -13,28 +13,32 @@
               <li class="active">CONTRACTOR SIGN UP</li>
             </ul>
           </div>
-          <div class="alert alert-success margin-tp18" *ngIf="succesMessageFlag">
-            <a href="javascript:void(0)" class="close" title="close">×</a> You are sign up <strong>succesfully!</strong>
+          <div class="alert alert-success margin-tp18" *ngIf="succesMessageFlag" >
+            <a href="javascript:void(0)" class="close" title="close" (click)="succesMessageFlag=false;">×</a> You are sign up <strong>succesfully!</strong>
           </div>
           <div class="alert alert-danger margin-tp18" *ngIf="ErrorMesageFlag">
-            <a href="javascript:void(0)" class="close" title="close">×</a>
+            <a href="javascript:void(0)" class="close" title="close" (click)="ErrorMesageFlag=false;">×</a>
             <strong>Error!</strong> {{validateMsg}}
           </div>
           <div class="signup_form_section">
-            <div class="errorbox" *ngIf="userForm && userForm.form && userForm.form.controls && userForm.form.invalid && userForm.submitted"><b>The following error(s) occured:</b>
+            <div class="errorbox" *ngIf="(userForm && userForm.form && userForm.form.controls && userForm.form.invalid && userForm.submitted) || formInvalidFlag"><b>The following error(s) occured:</b>
               <br>
-              <li *ngIf="userForm.form.controls.contractor_first_name?.hasError('required')">First name required</li>
+              <li *ngIf="userForm.form.controls.contractor_first_name?.hasError('required')">Please enter first name</li>
               <li *ngIf="userForm.form.controls.contractor_first_name?.hasError('pattern')">Valid first name required</li>
-              <li *ngIf="userForm.form.controls.contractor_last_name?.hasError('required')">Last name required</li>
-              <li *ngIf="userForm.form.controls.contractor_email?.hasError('required')">Email required</li>
+              <li *ngIf="userForm.form.controls.contractor_last_name?.hasError('required')">Please enter last name</li>
+              <li *ngIf="userForm.form.controls.contractor_email?.hasError('required')">Please enter an email address</li>
               <li *ngIf="userForm.form.controls.contractor_email?.hasError('pattern')">Valid Email required</li>
-              <li *ngIf="userForm.form.controls.contractor_tel_no?.hasError('required')">Phone number required</li>
-              <li *ngIf="userForm.form.controls.contractor_tel_no?.hasError('pattern')">Valid phone number required</li>
-              <li *ngIf="userForm.form.controls.contractor_current_password?.hasError('required')">Password required</li>
-              <li *ngIf="userForm.form.controls.contractor_job_title?.hasError('required')">Job title required</li>
+              <li *ngIf="userForm.form.controls.contractor_tel_no?.hasError('required')">Invalid mobile number.</li>
+              <li *ngIf="userForm.form.controls.contractor_tel_no?.hasError('pattern')">Invalid mobile number</li>
+              <li *ngIf="userForm.form.controls.contractor_current_password?.hasError('required') || passwordInvalid">Your password must be at least 6 characters in length.</li>
+              <li *ngIf="userForm.form.controls.contractor_job_title?.hasError('required')">Please enter Recent Job Title</li>
               
-              <li *ngIf="userForm.form.controls.contractor_postal_title?.hasError('required')">Postal code required</li>
-              <li *ngIf="userForm.form.controls.termOfUse?.hasError('required')">Accept Terms of Use</li>
+              <li *ngIf="userForm.form.controls.contractor_postal_title?.hasError('required')">Please enter a postcode.</li>
+              <li *ngIf="userForm.form.controls.termOfUse?.hasError('required')">Please agree to our terms of use.</li>
+              <li *ngIf="cvInvalid">Please upload a CV.</li>
+              <li *ngIf="contractorServicesInavlid">Please select an option from Contractor Services</li>
+              <li *ngIf="contractorInvalid">Please enter your contract end date</li>
+              <li *ngIf="employmentSituation">Please indicate your current employment situation.</li>
 
 
             </div>
@@ -121,7 +125,7 @@
                         <span>Find CV
                             <img alt="search now" src="./assets/images/find-cv.png" title="search now">
                           </span>
-                        <input type="file" class="upload"  (change)="fileChangeEvent($event)"/>
+                        <input type="file" class="upload"  (change)="fileChangeEvent($event);checkOtherFieldValidation();"/>
                       </div>
                       <!-- <input type="file" class="form-control input-group-addon find_cv_from" id="uploadCV" name="documents" placeholder="Upload CV" required [tooltip]="uploadCVTooltip" (change)="fileChangeEvent($event)"> -->
                       <tooltip-content #uploadCVTooltip>
@@ -181,18 +185,14 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/key-skills.png" alt="Key Skills" title="Key Skills" class="img-responsive"></div>
-                      <!-- <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Key Skills (Separated with commas)" name="contractor_key_skills" auto-complete [(ngModel)]="contractor_key_skills" required [tooltip]="keySkillTooltip">
-                      <tooltip-content #keySkillTooltip>
-                        <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_key_skills?.valid " style="color: #C21F39"> Key Skill </span>
-                        <span [hidden]="!userForm.form.controls.contractor_key_skills?.hasError('required')" style="color: #C21F39"> Key Skill is required! </span>
-                      </tooltip-content> -->
+                      
                       <div class="enter_your_skills">
                         <select class="form-control minimal background_drop_down" [(ngModel)]="selectedSkill" name="skills" (change)="selectSkill()">
                           <option value="">Select Skill</option>
                           <option *ngFor="let skill of skillData" [value]="skill.skill_id">{{skill.skill_name}}</option>
                         </select>
                       </div>
-                      <div class="add_sub_skills">
+                      <div class="add_sub_skills" *ngIf="selectedSkillArray.length>0">
                         <a href="javascript:void(0)" *ngFor="let selectedSkill of selectedSkillArray; let i = index">
                       {{selectedSkill.skill_name}}
                    <img src="./assets/images/close-icon.png" alt="Close" title="Close" (click)="removeSelectedSkill(i)"></a>
@@ -210,11 +210,11 @@
               <div class="current_rate_signup situation35">
                 <h2>CURRENT EMPLOYMENT SITUATION</h2>
                 <div class="checkbox-inline">
-                  <input #permanent type="radio" id="permanent" name="optradio" checked="checked" value="permanent" (change)="logRadio('permanant')">
+                  <input #permanent type="radio" id="permanent" name="optradio" value="permanent" (change)="logRadio('permanant');checkOtherFieldValidation();">
                   <label for="permanent" class="radio-inline"><span></span> PERMANENT </label>
-                  <input #inContract type="radio" id="permanent2" name="optradio" value="inContract" (change)="logRadio('in contract')">
+                  <input #inContract type="radio" id="permanent2" name="optradio" value="inContract" (change)="logRadio('in contract');checkOtherFieldValidation();">
                   <label for="permanent2" class="radio-inline"><span></span> IN CONTRACT </label>
-                  <input #outOfContract type="radio" id="permanent3" name="optradio" value="outOfContract" (change)="logRadio('out of contract')">
+                  <input #outOfContract type="radio" id="permanent3" name="optradio" value="outOfContract" (change)="logRadio('out of contract');checkOtherFieldValidation();">
                   <label for="permanent3" class="radio-inline"><span></span> OUT OF CONTRACT </label>
                 </div>
               </div>
@@ -235,7 +235,7 @@
               <div class="rg_row" id="ext" style="display: block;" *ngIf="contractor_employment_situation == 'in contract'">
                 <div class="showdate rest_data_show show_ui_picker" style="float: right; display: none;">{{dateSelected | date: 'short'}}</div>
                 <div class="text-00 clear imtn">Contract End Date :</div>
-                <input type="date" [(ngModel)]="contractEndDate" name="contract_end_date" id="datepicker"  class="hasDatepicker" style="float: left;">
+                <input type="date" [(ngModel)]="contractEndDate" name="contract_end_date" id="datepicker"  class="hasDatepicker" style="float: left;" (change)="checkOtherFieldValidation();">
                 <div class="text-00 text-438" style="padding-left:0;float: left;">MAKE MY DETAILS LIVE FROM?</div>
                 <div>
                   <select class="optn text-ipn-opntn" name="details_live" style="float:right; margin-top: -20px;" [(ngModel)]="detailsLiveFrom">
@@ -268,59 +268,13 @@
                 <div class="row">
                   <div class="col-sm-50" *ngFor="let category of categoryData">
                     <div class="service_box">
-                      <input type="radio" id="{{category.name}}" [value]="category.id" name="{{category.name}}" (change)="category.checked=!category.checked">
+                      <input type="checkbox" id="{{category.name}}" [value]="category.id" name="{{category.name}}" [checked]="category.checked" (change)="category.checked=!category.checked;checkOtherFieldValidation();">
                       <label for="{{category.name}}"><span></span> {{category.name}}</label>
                     </div>
                   </div>
-                  <!-- <div class="col-sm-50">
-                    <div class="service_box">
-                      <input type="checkbox" id="inlineCheckbox5" value="option5">
-                      <label for="inlineCheckbox5"><span></span> IT CONTRACTOR ACCOUNTANTS</label>
-                    </div>
-                  </div> -->
+                  
                 </div>
-                <!-- <div class="row">
-                  <div class="col-sm-50">
-                    <div class="service_box">
-                      <input type="checkbox" id="inlineCheckbox6" value="option6">
-                      <label for="inlineCheckbox6"><span></span> LIMITED COMPANY</label>
-                    </div>
-                  </div>
-                  <div class="col-sm-50">
-                    <div class="service_box">
-                      <input type="checkbox" id="inlineCheckbox7" value="option7">
-                      <label for="inlineCheckbox7"><span></span> CONTRACTOR MORTGAGE</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-50">
-                    <div class="service_box">
-                      <input type="checkbox" id="inlineCheckbox8" value="option8">
-                      <label for="inlineCheckbox8"><span></span> BUSINESS BANK ACCOUNT</label>
-                    </div>
-                  </div>
-                  <div class="col-sm-50">
-                    <div class="service_box">
-                      <input type="checkbox" id="inlineCheckbox9" value="option9">
-                      <label for="inlineCheckbox9"><span></span> IT CONTRACTOR INSURANCE</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-50">
-                    <div class="service_box">
-                      <input type="checkbox" id="inlineCheckbox10" value="option10">
-                      <label for="inlineCheckbox10"><span></span> WEALTH MANAGEMENT</label>
-                    </div>
-                  </div>
-                  <div class="col-sm-50">
-                    <div class="service_box">
-                      <input type="checkbox" id="inlineCheckbox11" value="option11">
-                      <label for="inlineCheckbox11"><span></span> NONE OF THE ABOVE </label>
-                    </div>
-                  </div>
-                </div> -->
+                
               </div>
               <div class="current_rate_signup situation35">
                 <div class="terms_of_use">
