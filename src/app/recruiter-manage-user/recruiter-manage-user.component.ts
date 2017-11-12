@@ -22,6 +22,7 @@ export class RecruiterManageUserComponent implements OnInit {
   successMessage = "";
   successMessageFlag = false;
   errorMessageFlag = false;
+  
   constructor(public _commonRequestService: CommonRequestService) {
   	//this.addMulUserArray.splice(0,1);
    }
@@ -57,6 +58,7 @@ export class RecruiterManageUserComponent implements OnInit {
            this.jobTitleValue = "";
            this.confirmPassWord = "";
            this.telephoneV = "";
+           this.makeSubUser();
          } else {
            this.successMessageFlag = false;
            this.errorMessageFlag = true;
@@ -79,9 +81,9 @@ export class RecruiterManageUserComponent implements OnInit {
          if (data && data.status === "TRUE") {
            this.subUserArray = data.data;
            this.totalNumberOfUser = this.subUserArray.length + 1;
-           this.successMessage = "Sub User Created Succesfully!";
-           this.successMessageFlag = true;
-           this.errorMessageFlag = false;
+           // this.successMessage = "Sub User Created Succesfully!";
+           // this.successMessageFlag = true;
+           // this.errorMessageFlag = false;
          } else {
            this.successMessage = "Error While Creating Sub User";
            this.successMessageFlag = false;
@@ -106,6 +108,7 @@ export class RecruiterManageUserComponent implements OnInit {
            this.successMessage = "Super User Created Succesfully!";
            this.successMessageFlag = true;
            this.errorMessageFlag = false;
+           //this.makeSubUser();
          } else {
            this.successMessage = "Error While Creating Super User!";
            this.successMessageFlag = false;
@@ -130,6 +133,7 @@ export class RecruiterManageUserComponent implements OnInit {
            this.successMessage = "User Deleted Succesfully!";
            this.successMessageFlag = true;
            this.errorMessageFlag = false;
+           this.makeSubUser();
          } else {
            this.successMessage = "Error While Deleting Super User!";
            this.successMessageFlag = false;

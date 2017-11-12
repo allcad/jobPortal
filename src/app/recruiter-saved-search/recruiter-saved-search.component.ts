@@ -135,6 +135,9 @@ export class RecruiterSavedSearchComponent implements OnInit {
           console.log("delete data--", data);
           this.getSaveSearchList();
           this.resetFields();
+          this.successMessageFlag =  true;
+          this.errorSuccessMessage = "Saved Search Delete Successfully";
+          window.scroll(0,0);
           //this.industryArrayData = data.data;
           //this.recruiterNameArray = data.data;
         }
@@ -234,30 +237,32 @@ export class RecruiterSavedSearchComponent implements OnInit {
       "loginToken":"$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y",
       "recuriter_saved_search_name":this.savedSearchName,
       "recuriter_search_add_to_watchdog":this.addToWatchDogCheck === true ? 1 : 2,
-      "recuriter_search_job_title":this.jobTitle,
-      "recuriter_search_keywords":this.keywordSearch,
+      "recuriter_search_job_title":this.jobTitle?this.jobTitle:'',
+      "recuriter_search_keywords":this.keywordSearch?this.keywordSearch:'',
       "recuriter_search_stemmed_terms":this.stemmedTerms === true ? 1 : 2,
-      "recuriter_search_core_skills":this.coreSkills,
-      "recuriter_search_certifications":this.certificationValues,
-      "recuriter_search_dont_show_to_contractor":this.dontShowContractor,
-      "recuriter_search_location":this.cityTownValue,
+      "recuriter_search_core_skills":this.coreSkills?this.coreSkills:'',
+      "recuriter_search_certifications":this.certificationValues?this.certificationValues:'',
+      "recuriter_search_dont_show_to_contractor":this.dontShowContractor?this.dontShowContractor:'',
+      "recuriter_search_location":this.cityTownValue?this.cityTownValue:'',
       "recuriter_search_include_relocators":this.includeRelocators ? 1 : 2,
-      "recuriter_search_by_rate_min":this.minRate,
-      "recuriter_search_by_rate_max":this.maxRate,
-      "recuriter_search_by_rate_type":this.dailyHourlyValue,
-      "recuriter_search_by_time_left":this.timeLeftOnCutCont,
+      "recuriter_search_by_rate_min":this.minRate?this.minRate:'',
+      "recuriter_search_by_rate_max":this.maxRate?this.maxRate:'',
+      "recuriter_search_by_rate_type":this.dailyHourlyValue?this.dailyHourlyValue:'',
+      "recuriter_search_by_time_left":this.timeLeftOnCutCont?this.timeLeftOnCutCont:'',
       "recuriter_search_by_unavailable":this.includeUnavailable ? 1 : 2,
-      "recuriter_search_by_updated_contractor_since":this.showContractors,
-      "recuriter_search_by_contract_name":this.contractorName,
-      "recuriter_search_by_education":this.educationValue,
-      "recuriter_search_by_industry":this.industrySectorValue,
-      "recuriter_search_by_security_clearance":this.securityClearValue,
+      "recuriter_search_by_updated_contractor_since":this.showContractors?this.showContractors:'',
+      "recuriter_search_by_contract_name":this.contractorName?this.contractorName:'',
+      "recuriter_search_by_education":this.educationValue?this.educationValue:[],
+      "recuriter_search_by_industry":this.industrySectorValue?this.industrySectorValue:[],
+      "recuriter_search_by_security_clearance":this.securityClearValue?this.securityClearValue:[],
       "recuriter_search_by_driving_license":this.drivingLicenceValue == 'yes' ? 1 : 2
-
+     
     }
-    console.log("savedSearchSaveJson", savedSearchSaveJson);
 
-    var inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/save_search";
+    if (this.recentRecruiterSaveId) {
+      savedSearchSaveJson["search_id"] = this.recentRecruiterSaveId ? this.recentRecruiterSaveId : '';
+      console.log("savedSearchSaveJson00", savedSearchSaveJson)
+      var inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/save_search/update";
        this._commonRequestService.postData(inputUrl, savedSearchSaveJson).subscribe(
         data => {
           this.responseData = data;
@@ -285,6 +290,39 @@ export class RecruiterSavedSearchComponent implements OnInit {
           // console.log("keySkill: ", this.listSignUpData);
         }
     ); 
+    } else {
+      var inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/save_search";
+       this._commonRequestService.postData(inputUrl, savedSearchSaveJson).subscribe(
+        data => {
+          this.responseData = data;
+          window.scroll(0,0);
+          if(this.responseData.status === "TRUE"){
+                  this.succesMessageFlag =true;
+                  this.errorSuccessMessage = "Saved succesfully !";
+                  this.successMessageFlag  = true;
+                  this.errorMessageFlag = false;
+                  this.resetFields();
+                  this.getSaveSearchList();
+          //         this.ErrorMesageFlag =false
+          // this.profileData={};
+          // this.errorMsg = "";
+          }
+          else{
+             this.succesMessageFlag =false;
+             this.errorSuccessMessage = data && data.error && data.error.length > 0 ? data.error[0] : '';
+             this.successMessageFlag  = false;
+             this.errorMessageFlag = true;
+              //this.ErrorMesageFlag =true;
+              //this.errorMsg = this.responseData.error[0];
+          }
+    
+          // console.log("keySkill: ", this.listSignUpData);
+        }
+    ); 
+    }
+    //console.log("savedSearchSaveJson", savedSearchSaveJson);
+
+    
   }
 
 }

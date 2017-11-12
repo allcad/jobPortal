@@ -14,7 +14,7 @@
           <li *ngIf="emailFlag">Email is required.</li>
           <li *ngIf="passwordFlag">Password is required.</li>
           <li *ngIf="verifyPasswordValueFlag">Verify Password is required.</li>
-          <li *ngIf="keySkillFlag">Key skill is required.</li>
+          <li *ngIf="keySkillFlag">Pass Code is required.</li>
           <li *ngIf="validEmailFlag">Please enter valid email.</li>
           <li *ngIf="verifyEmailReqFlag">Verify email field is required.</li>
           <li *ngIf="verifyEmailFlag">Please enter valid verify email.</li>
@@ -189,7 +189,7 @@
                 <div class="col-sm-50">
                   <div class="terms_of_uses margin_trems_10px">
                     <input id="inlineCheckbox12" value="option12" type="checkbox" [(ngModel)]="termOfUse" name="termOfUse" required>
-                    <label for="inlineCheckbox12" class=""><span></span> I AGREE TO CONTRACTRECRUIT’S <a href="javascript:void(0);" [routerLink]="['../recruiter-terms']" class="text_pink">TERMS OF USE</a> </label>
+                    <label for="inlineCheckbox12" class=""><span></span> I AGREE TO CONTRACTRECRUIT’S <a href="javascript:void(0);" [routerLink]="['../recruiter-terms']" class="text_pink" target="_blank">TERMS OF USE</a> </label>
                   </div>
                 </div>
               </div>

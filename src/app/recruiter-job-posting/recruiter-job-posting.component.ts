@@ -320,7 +320,8 @@ jobSpecificationFlag = false;
   			"recruiterNameId": this.recruiterName,
   			"saveTempleteAs": this.saveTemplateAs,
   			"jobReference": this.jobReference,
-        "recuriter_job_is_featured": "0"
+        "recuriter_job_is_featured": "0",
+        "templateId": this.currentTemplate ? this.currentTemplate : ''        
 
         }
         var wsUrl;
@@ -388,7 +389,8 @@ jobSpecificationFlag = false;
       "saveTempleteAs": this.saveTemplateAs ? this.saveTemplateAs : '',
       "jobReference": this.jobReference ? this.jobReference : '',
       "recuriter_job_is_featured": "0",
-      "jobId": this.jobPostingJobId ? this.jobPostingJobId : ''
+      "jobId": this.jobPostingJobId ? this.jobPostingJobId : '',
+      "templateId": this.currentTemplate ? this.currentTemplate : ''
       }
     var obj = {'jobPreviewData' : input};
     localStorage.setItem('jobPostingData', JSON.stringify(obj));

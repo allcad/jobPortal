@@ -149,7 +149,7 @@ export class RecruiterSignUpComponent implements OnInit {
           "recuriter_contact_job_title":this.JobTitle,
           "recuriter_phone_number":this.phoneNo,
           "recuriter_new_password":this.passwordValue,
-          "keySkill":["1","2"],
+          "keySkill":this.keySkill,
           "recuriter_tems_status":this.termOfUse
         }
         console.log( this.inputData,"fdf");
@@ -167,6 +167,9 @@ export class RecruiterSignUpComponent implements OnInit {
               this.JobTitle = "";
               this.phoneNo = "";
               this.passwordValue = "";
+              this.verifyEmailAddress = "";
+              this.keySkill = "";
+              this.verifyPasswordValue = "";
               this.termOfUse = false;
             }
             else{

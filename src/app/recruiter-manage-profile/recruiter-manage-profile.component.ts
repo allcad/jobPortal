@@ -203,7 +203,6 @@ fd;
     reader.onload = (event:any) => {
       this.profileUrl = reader.result;
     }
-
     this.imageFile = fileInput.target.files[0];
     reader.readAsDataURL(this.imageFile);
     console.log("this.imageFile", this.imageFile);
@@ -546,7 +545,7 @@ getProfileDta(){
           this.postCode =this.profileData['companyDetails'] && this.profileData['companyDetails'].postCode ? this.profileData['companyDetails'].postCode : "";
           this.telephone =this.profileData['companyDetails'] && this.profileData['companyDetails'].telephone ? this.profileData['companyDetails'].telephone : "";
           this.sameAsPerAddFlag = this.profileData['companyDetails'] && this.profileData['companyDetails'].sameAsPermanentAddress === "true" ? true : false;
-          this.profileUrl = this.profileData['companyDetails'] && this.profileData['companyDetails'].companyUrl ? this.profileData['companyDetails'].companyUrl : "";
+          //this.profileUrl = this.profileData['companyDetails'] && this.profileData['companyDetails'].companyUrl ? this.profileData['companyDetails'].companyUrl : "";
           this.postalAddressLine1 =this.profileData['companyDetails'] && this.profileData['companyDetails'].postalAddressLine1 ? this.profileData['companyDetails'].postalAddressLine1 : "";
           this.postalAddressLine2 =this.profileData['companyDetails'] && this.profileData['companyDetails'].postalAddressLine2 ? this.profileData['companyDetails'].postalAddressLine2 : "";
           this.postalCity =this.profileData['companyDetails'] && this.profileData['companyDetails'].postalCity ? this.profileData['companyDetails'].postalCity : "";

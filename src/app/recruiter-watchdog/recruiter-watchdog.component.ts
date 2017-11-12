@@ -78,6 +78,7 @@ export class RecruiterWatchdogComponent implements OnInit {
         data => {
          console.log("recruiterId--", data);
          this.getWatchDogListData(this.pageNo);
+         this.router.navigate(['./recruiter/watchdog']);
         }
     );
   }
