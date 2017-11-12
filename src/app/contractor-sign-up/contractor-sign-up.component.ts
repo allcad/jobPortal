@@ -46,12 +46,14 @@ export class ContractorSignUpComponent implements OnInit {
  useNoticePeriod = "no";
  detailsLiveFrom = "1";
  contractor_post_code = "";
- formInvalidFlag = false;
+ //formInvalidFlag = false;
  passwordInvalid = false;
 cvInvalid = false;
 employmentSituation = false;
 contractorServicesInavlid = false;
 contractorInvalid = false;
+contractorEndDateInvalid = false;
+invalidFile = false;
  constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
 ngOnInit() {
@@ -96,7 +98,8 @@ this.getNoticePeriodData()
                   this.resetForm();
                   userForm.resetForm();
                   window.scroll(0,0);
-                  this.formInvalidFlag = false;
+                  this.contractorInvalid = false;
+                  //this.formInvalidFlag = false;
                   //userForm.markAsPristine();
           }
           else{
@@ -112,7 +115,6 @@ this.getNoticePeriodData()
     }else{
       window.scroll(0,0);
       this.checkOtherFieldValidation();
-      this.formInvalidFlag = true;
     }
     
 
@@ -147,14 +149,17 @@ this.getNoticePeriodData()
       this.employmentSituation = false;
       this.contractorServicesInavlid = false;
       this.contractorInvalid = false;
-      this.formInvalidFlag = false;
-
+      this.contractorEndDateInvalid = false;
       if(this.contractor_current_password && this.contractor_current_password.length>0 && this.contractor_current_password.length <6){
         this.passwordInvalid = true;
         this.contractorInvalid = true;
       }
       if(!this.CVFile){
         this.cvInvalid = true;
+        this.contractorInvalid = true;
+      }
+
+      if(this.CVFile && this.checkFileValid(this.CVFile.name)){
         this.contractorInvalid = true;
       }
 
@@ -169,7 +174,7 @@ this.getNoticePeriodData()
       }
 
       if(this.contractor_employment_situation == 'in contract' && !this.contractEndDate){
-        this.contractorInvalid = true;
+        this.contractorEndDateInvalid = true;
         this.contractorInvalid  = true;
       }
       return this.contractorInvalid;
@@ -192,10 +197,22 @@ this.getNoticePeriodData()
   
 fileChangeEvent(fileInput: any) {
     this.CVFile = fileInput.target.files[0];
-    //this.fd = new FormData();
-    //this.fd.append('fileForCv', file);
+  }
 
-    
+
+  checkFileValid(file){
+    let accetpableFile = ['doc', 'docx', 'pdf', 'rtf', 'odt'];
+    let fileExtention = file.split('.');
+    fileExtention = fileExtention[fileExtention.length-1];
+    this.invalidFile = false;
+    if(accetpableFile.indexOf(fileExtention.toLowerCase()) == -1){
+      this.invalidFile = true;
+      return true;
+    }else{
+      this.invalidFile = false;
+      return false;
+    }
+
   }
   getRangeSliderValue(event){
     this.contractor_rate =event.from;

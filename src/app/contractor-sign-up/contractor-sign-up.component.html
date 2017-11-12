@@ -21,7 +21,7 @@
             <strong>Error!</strong> {{validateMsg}}
           </div>
           <div class="signup_form_section">
-            <div class="errorbox" *ngIf="(userForm && userForm.form && userForm.form.controls && userForm.form.invalid && userForm.submitted) || formInvalidFlag"><b>The following error(s) occured:</b>
+            <div class="errorbox" *ngIf="(userForm && userForm.form && userForm.form.controls && userForm.form.invalid && userForm.submitted) || contractorInvalid"><b>The following error(s) occured:</b>
               <br>
               <li *ngIf="userForm.form.controls.contractor_first_name?.hasError('required')">Please enter first name</li>
               <li *ngIf="userForm.form.controls.contractor_first_name?.hasError('pattern')">Valid first name required</li>
@@ -37,9 +37,9 @@
               <li *ngIf="userForm.form.controls.termOfUse?.hasError('required')">Please agree to our terms of use.</li>
               <li *ngIf="cvInvalid">Please upload a CV.</li>
               <li *ngIf="contractorServicesInavlid">Please select an option from Contractor Services</li>
-              <li *ngIf="contractorInvalid">Please enter your contract end date</li>
+              <li *ngIf="contractorEndDateInvalid">Please enter your contract end date</li>
               <li *ngIf="employmentSituation">Please indicate your current employment situation.</li>
-
+              <li *ngIf="invalidFile">File format is not valid</li>
 
             </div>
             <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
