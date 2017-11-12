@@ -3,7 +3,7 @@
   <nav style="height: 1px;" aria-expanded="false" id="bs-navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
       <li class="firstli" (mouseenter) ="mouseEnter('firstli')" (mouseLeave)="mouseLeave('firstli')">
-        <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);" (click)="jobSearchFlag = !jobSearchFlag">Job Search <span class="caret"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"> </a>
+        <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);" (click)="removeClass();jobSearchFlag = !jobSearchFlag">Job Search <span class="caret"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"> </a>
       
         <ul class="navigation-dropdown">
           <div class="dropdown-nav-wrap">
@@ -61,7 +61,7 @@
         </ul>
       </li>
       <li class="secondli" (mouseenter) ="mouseEnter('secondli')" (mouseLeave)="mouseLeave('secondli')">
-        <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);" (click)="itContractorFlag = !itContractorFlag">IT Contractors <span class="caret"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"></a>
+        <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);" (click)="removeClass();itContractorFlag = !itContractorFlag">IT Contractors <span class="caret"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"></a>
         <!-- <ul class="navigation-dropdown" >
           <div class="dropdown-nav-wrap" >
           <ul>
@@ -122,13 +122,13 @@
                     <hr class="visible-xs">
                     <li><a (click)="removeClass()" href="javascript:void(0)" routerLink="./contractorSignup">Sign Up</a></li>
                     <hr class="visible-xs">
-                    <li class="visible-xs"><a href="javascript:void(0)" routerLink="../public/contractor_hub_home">ContractHub Home</a></li>
+                    <li class="visible-xs"><a (click)="removeClass()" href="javascript:void(0)" routerLink="../public/contractor_hub_home">ContractHub Home</a></li>
                     <hr class="visible-xs">
-                    <li class="visible-xs"><a href="javascript:void(0)">IT Contractor News</a></li>
+                    <li class="visible-xs"><a (click)="removeClass()" href="javascript:void(0)">IT Contractor News</a></li>
                     <hr class="visible-xs">
-                    <li class="visible-xs"><a href="javascript:void(0)" routerLink="../advice">IT Contractor Advice</a></li>
+                    <li class="visible-xs"><a (click)="removeClass()" href="javascript:void(0)" routerLink="../advice">IT Contractor Advice</a></li>
                     <hr class="visible-xs">
-                    <li class="visible-xs"><a href="javascript:void(0)" class="visible-xs">Contractor Service</a></li>
+                    <li class="visible-xs"><a (click)="removeClass()" href="javascript:void(0)" class="visible-xs">Contractor Service</a></li>
                 </ul>
             </li>
             <li class="hidden-xs">
@@ -177,7 +177,7 @@
 
       </li>
       <li class="color-pink thirdli" (mouseenter) ="mouseEnter('thirdli')" (mouseLeave)="mouseLeave('thirdli')">
-        <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);" (click)="itRecruiterFlag = !itRecruiterFlag">IT Recruiters <span class="caret pink"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"></a>
+        <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);" (click)="removeClass();itRecruiterFlag = !itRecruiterFlag">IT Recruiters <span class="caret pink"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"></a>
         <!-- <div class="cntrct-hub-nav" *ngIf="itRecruiterFlag">
           <ul>
             <li class="hub-lst">
@@ -229,28 +229,34 @@
                           <hr class="visible-xs">
                           <li><a (click)="removeClass()" href="javascript:void(0)" routerLink="./recruiterRegister">Sign Up</a></li>
                           <hr class="visible-xs">
-                          <li class="hidden-xs"><a href="javascript:void(0)">Why Should I Sign Up</a></li>
+                          <li class="hidden-xs"><a (click)="removeClass()" href="javascript:void(0)">Why Should I Sign Up</a></li>
                           <li><a (click)="removeClass()" href="javascript:void(0)">Why use <span class="stong">Contract</span>Recruit?</a></li>
                           <hr class="visible-xs">
-                          <li class="visible-xs"><a href="javascript:void(0)">Advanced Contractor Search</a></li>
+                          <li class="visible-xs"><a (click)="removeClass()" href="javascript:void(0)">Advanced Contractor Search</a></li>
                       </ul>
                   </li>
                   <li class="hidden-xs">
                       <h2 class="hidden-xs">Search IT Contractors</h2>
                       <ul class="hidden-xs">
-                          <li><a (click)="removeClass()" href="javascript:void(0)" routerLink="/recruiter/advanced-search">Advanced Contractor Search</a></li>
+                        <!--  routerLink="/recruiter/advanced-search" -->
+                          <li><a (click)="removeClass()" href="javascript:void(0)">Advanced Contractor Search</a></li>
                       </ul>
                       <h2 class="hidden-xs">Quick Search</h2>
                       <ul class="hidden-xs">
-                          <li><a (click)="removeClass()" href="javascript:void(0)" routerLink="/recruiter/searchresult-loggedin">Contract Web Developers</a></li>
+                        <!--  routerLink="/recruiter/searchresult-loggedin" -->
+                          <li><a (click)="removeClass()" href="javascript:void(0)">Contract Web Developers</a></li>
                           <hr class="visible-xs">
-                          <li><a (click)="removeClass()" href="javascript:void(0)" routerLink="/recruiter/searchresult-loggedin">Contract Project Managers</a></li>
+                          <!--  routerLink="/recruiter/searchresult-loggedin" -->
+                          <li><a (click)="removeClass()" href="javascript:void(0)">Contract Project Managers</a></li>
                           <hr class="visible-xs">
-                          <li><a (click)="removeClass()" href="javascript:void(0)" routerLink="/recruiter/searchresult-loggedin">Contract Analysts</a></li>
+                          <!--  routerLink="/recruiter/searchresult-loggedin" -->
+                          <li><a (click)="removeClass()" href="javascript:void(0)">Contract Analysts</a></li>
                           <hr class="visible-xs">
-                          <li><a (click)="removeClass()" href="javascript:void(0)" routerLink="/recruiter/searchresult-loggedin">Contract Designers</a></li>
+                          <!--  routerLink="/recruiter/searchresult-loggedin"-->
+                          <li><a (click)="removeClass()" href="javascript:void(0)">Contract Designers</a></li>
                           <hr class="visible-xs">
-                          <li><a (click)="removeClass()" href="javascript:void(0)" routerLink="/recruiter/searchresult-loggedin">Contract Software Developers</a></li>
+                          <!--  routerLink="/recruiter/searchresult-loggedin" -->
+                          <li><a (click)="removeClass()" href="javascript:void(0)">Contract Software Developers</a></li>
                       </ul>
                   </li>
                   <li class="hidden-xs">
@@ -258,14 +264,15 @@
                       <ul>
                           <li><a (click)="removeClass()" href="javascript:void(0)">How to Use ContractRecruit</a></li>
                           <hr class="visible-xs">
-                          <li><a (click)="removeClass()" href="javascript:void(0)" routerLink="/public/faq">Recruiter FAQs</a></li>
+                          <!--  routerLink="/public/faq" -->
+                          <li><a (click)="removeClass()" href="javascript:void(0)">Recruiter FAQs</a></li>
                       </ul>
                   </li>
               </div>
           </ul>
       </li>
       <li class="fourli" (mouseenter) ="mouseEnter('fourli')" (mouseLeave)="mouseLeave('fourli')">
-        <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);" (click)="aboutContractRecruitFlag = !aboutContractRecruitFlag">About ContractRecruit <span class="caret"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"></a>
+        <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);" (click)="removeClass();aboutContractRecruitFlag = !aboutContractRecruitFlag">About ContractRecruit <span class="caret"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"></a>
 
         <ul class="navigation-dropdown col-one">
                                     <div class="dropdown-nav-wrap">

@@ -291,4 +291,8 @@ export class RecuriterSavedWatchDogComponent implements OnInit {
     ); 
   }
 
+  industrysectorChange(){
+    
+  }
+
 }
