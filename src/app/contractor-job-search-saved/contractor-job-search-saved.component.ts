@@ -90,9 +90,11 @@ successMsg = "";
                 this.getListOfSavedSearch();  
                 this.showSuccessMsg = true;
                 this.successMsg = "Search Saved";
+                window.scroll(0,0);
               }else{
                 this.showErrorMsg = true;
-                this.errorMsg = typeof(data.error)=='object' ? data.error[0] : data.error;;
+                this.errorMsg = typeof(data.error)=='object' ? data.error[0] : data.error;
+                window.scroll(0,0);
               }
               
            

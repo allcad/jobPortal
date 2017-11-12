@@ -17,7 +17,8 @@ export class ContractorNewsArticleComponent implements OnInit {
   	if(!this.articleId){
   		this.articleId = localStorage.getItem("newsId");
   	}
-	this.getArticle(this.articleId);
+	  this.getArticle(this.articleId);
+    window.scroll(0,0);
 
   }
 

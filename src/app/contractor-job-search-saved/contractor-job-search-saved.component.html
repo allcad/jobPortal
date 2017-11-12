@@ -38,8 +38,17 @@
               <br>
               <li *ngIf="saveSearchForm.form.controls.searchName?.hasError( 'required')">Please enter search name</li>
               <li *ngIf="saveSearchForm.form.controls.jobTitle?.hasError( 'required')">Please enter job title</li>
+              <li *ngIf="saveSearchForm.form.controls.keywords?.hasError( 'required')">Please enter keywords</li>
+              <li *ngIf="saveSearchForm.form.controls.excludingWords?.hasError( 'required')">Please enter excluding words</li>
+              <li *ngIf="saveSearchForm.form.controls.distance?.hasError( 'required')">Please enter distance</li>
+              <li *ngIf="saveSearchForm.form.controls.location?.hasError( 'required')">Please enter location</li>
+              <li *ngIf="saveSearchForm.form.controls.min?.hasError( 'required')">Please enter min rate</li>
+              <li *ngIf="saveSearchForm.form.controls.max?.hasError( 'required')">Please enter max rate</li>
+              <li *ngIf="saveSearchForm.form.controls.jobRefNumber?.hasError( 'required')">Please enter job reference number</li>
+              <li *ngIf="saveSearchForm.form.controls.postedSince?.hasError( 'required')">Please enter post duration</li>
+
             </div>
-            <form  #saveSearchForm="ngForm">
+            <form #saveSearchForm="ngForm">
               <div class="job_search_keywords">
                 <h2>name</h2>
               </div>
@@ -77,7 +86,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/Keywords.png" alt="Keywords" title="Keywords" class="img-responsive"></div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Keywords (Boolean Search)" [(ngModel)]="keywords" name="keywords">
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Keywords (Boolean Search)" [(ngModel)]="keywords" name="keywords" required>
                     </div>
                   </div>
                 </div>
@@ -87,7 +96,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/excluding.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Excluding these words (separate with commas)" [(ngModel)]="excludingWords" name="excludingWords">
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Excluding these words (separate with commas)" [(ngModel)]="excludingWords" name="excludingWords" required>
                     </div>
                   </div>
                 </div>
@@ -101,7 +110,7 @@
                     <div class="input-group">
                       <div class="input-group-addon upto_border_none">Up to</div>
                       <div class="select_option_arrow"></div>
-                      <select class="form-control background_drop_down" [(ngModel)]="distance" name="distance">
+                      <select class="form-control background_drop_down" [(ngModel)]="distance" name="distance" >
                         <option value="0">Miles</option>
                         <option value="1">1 mile</option>
                         <option value="5">5 miles</option>
@@ -120,7 +129,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon upto_border_none">From</div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="City, Town, or PostCode" [(ngModel)]="location" name="location">
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="City, Town, or PostCode" [(ngModel)]="location" name="location" required>
                     </div>
                   </div>
                 </div>
@@ -130,7 +139,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon upto_border_none">From</div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Rate Min (£)" [(ngModel)]="minRate" name="min">
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Rate Min (£)" [(ngModel)]="minRate" name="min" required>
                     </div>
                   </div>
                 </div>
@@ -138,7 +147,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon upto_border_none">To</div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Rate Max (£)" [(ngModel)]="maxRate" name="max">
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Rate Max (£)" [(ngModel)]="maxRate" name="max" required>
                     </div>
                   </div>
                 </div>
@@ -173,13 +182,13 @@
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/reference-number.png" alt="Job Reference Number" title="Job Reference Number" class="img-responsive"></div>
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Job Reference Number" [(ngModel)]="jobRefNumber" name="jobRefNumber">
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Job Reference Number" [(ngModel)]="jobRefNumber" name="jobRefNumber" required>
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/show-contacts.png" alt="Show Contacts" title="Show Contacts" class="img-responsive"></div>
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Show Contacts Posted Since:" [(ngModel)]="postDuration" name="postedSince">
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Show Contacts Posted Since:" [(ngModel)]="postDuration" name="postedSince" required>
                       </div>
                     </div>
                   </div>

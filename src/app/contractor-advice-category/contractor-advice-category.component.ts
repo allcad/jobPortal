@@ -13,8 +13,8 @@ export class ContractorAdviceCategoryComponent implements OnInit {
   latestAdviceArticleList = [];
 	selectedAdviceCategory;
   config : SwiperOptions = {
-            pagination: '.swiper-pagination',
-            paginationClickable: true,
+            //pagination: '.swiper-pagination',
+          //  paginationClickable: true,
             nextButton: '.swiper-button-next',
             prevButton: '.swiper-button-prev',
             spaceBetween: 30
