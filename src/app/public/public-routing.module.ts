@@ -17,6 +17,9 @@ import { AboutRecruiterComponent } from '../about-recruiter/about-recruiter.comp
 import { ContactPageComponent } from '../contact-page/contact-page.component';
 import { NotFoundPageComponent } from '../not-found-page/not-found-page.component';
 import { FaqComponent } from '../faq/faq.component';
+import { ContractorAdviceArticleComponent } from '../contractor-advice-article/contractor-advice-article.component';
+import { ContractorAdviceCategoryComponent } from '../contractor-advice-category/contractor-advice-category.component';
+import { ContractorHubHomeComponent } from '../contractor-hub-home/contractor-hub-home.component';
 
 const publicRoutes: Routes = [
 {
@@ -49,6 +52,9 @@ const publicRoutes: Routes = [
 },{
     "path": "terms_use",
     "component" : TermUseComponent
+},{
+    "path": "contractor_hub_home",
+    "component" : ContractorHubHomeComponent
 }, {
     "path": "recruiter-terms",
     "component": RecruiterTermsComponent
@@ -61,6 +67,12 @@ const publicRoutes: Routes = [
 }, {
     "path": "faq",
     "component": FaqComponent
+},{
+    "path": "advice",
+    "component": ContractorAdviceCategoryComponent
+},{
+    "path": "adviceDetail",
+    "component": ContractorAdviceArticleComponent
 },{
     "path": "",
     "redirectTo" : "home",

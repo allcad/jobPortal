@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
-
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-contractor-advice-listing',
   templateUrl: './contractor-advice-listing.component.html',
@@ -8,7 +8,7 @@ import { CommonRequestService } from '../common-request.service';
 })
 export class ContractorAdviceListingComponent implements OnInit {
 	latestArticleList = [];
-  constructor(private _commonRequestService: CommonRequestService) { }
+  constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
 
@@ -18,7 +18,7 @@ export class ContractorAdviceListingComponent implements OnInit {
   getLatestArticle(){
   	let input = {
   		page: 1,
-  		limit : 3
+  		limit : 2
   	}
 	var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/post/page/advice/article/all";
       this._commonRequestService.postData(url, input).subscribe(
@@ -33,6 +33,8 @@ export class ContractorAdviceListingComponent implements OnInit {
     console.log(item);
     localStorage.setItem("adviceArticleId", item.id);
     this._commonRequestService.setDataWithoutObserval(item.id, "adviceArticleId");
+    this._router.navigate(['../adviceDetail'], {relativeTo: this._routes});
+     //routerLink="../adviceDetail"
   }
 
 }

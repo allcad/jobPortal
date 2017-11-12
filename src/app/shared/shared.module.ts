@@ -27,6 +27,14 @@ import { ContractorNewsCategoryComponent } from '../contractor-news-category/con
 import { CountdownPipe } from '../countdown.pipe';
 import { SwiperModule } from 'angular2-useful-swiper';
 
+
+import { ContractorHubHomeComponent } from '../contractor-hub-home/contractor-hub-home.component';
+import { ContractorAdviceMenuListingComponent } from '../contractor-advice-menu-listing/contractor-advice-menu-listing.component';
+import { ContractorAdviceListingComponent } from '../contractor-advice-listing/contractor-advice-listing.component';
+import { ContractorAdviceComponent } from '../contractor-advice/contractor-advice.component';
+import { ContractorAdviceArticleComponent } from '../contractor-advice-article/contractor-advice-article.component';
+import { ContractorAdviceCategoryComponent } from '../contractor-advice-category/contractor-advice-category.component';
+
 @NgModule({
   declarations: [
    FindContractHubComponent,
@@ -45,7 +53,13 @@ import { SwiperModule } from 'angular2-useful-swiper';
   ContentBottomRightAdsComponent,
   SocialMediaComponent,
   CountdownPipe,
-  ContractorNewsCategoryComponent
+  ContractorNewsCategoryComponent,
+  ContractorHubHomeComponent,
+  ContractorAdviceMenuListingComponent,
+ContractorAdviceListingComponent,
+ContractorAdviceComponent,
+ContractorAdviceArticleComponent,
+ContractorAdviceCategoryComponent
   ],
   imports: [
     FormsModule,
@@ -73,7 +87,8 @@ ContractorServicesComponent,
   CountdownPipe,
   ContractorNewsArticleComponent,
   ContractorNewsCategoryComponent,
-  SwiperModule
+  SwiperModule,
+  ContractorHubHomeComponent
   ],
   providers: [],
   bootstrap: []
