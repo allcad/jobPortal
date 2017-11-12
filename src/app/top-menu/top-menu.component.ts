@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import * as $ from 'jquery';
 @Component({
   selector: 'app-top-menu',
   templateUrl: './top-menu.component.html',
@@ -15,9 +15,20 @@ export class TopMenuComponent implements OnInit {
   ngOnInit() {
   }
 
-  removeClass() {
-    //document.querySelector(".navigation-dropdown")['style']['display'] = 'none';
-    //console.log("dropDownClass", document.querySelector(".navigation-dropdown"));
+  removeClass() {          
+    $(".navigation-dropdown").slideUp();
+  }
+
+  mouseEnter(className) {
+    let cName = className;
+    console.log("mousse enter--", $(this), className);
+     $("."+cName).children().slideDown(); 
+    //$(".navigation-dropdown").parent().slideDown();
+  }
+
+  mouseLeave(className) {
+    let cName = className;
+   $("."+cName).slideUp(); 
   }
 
 }
