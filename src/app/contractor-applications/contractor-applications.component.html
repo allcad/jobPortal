@@ -13,10 +13,9 @@
               <li class="active">APPLICATIONS</li>
             </ul>
             <div *ngIf="appliedJobList?.length > 0" class="pull-right applied_jobs">You have applied to <span>{{appliedJobList?.length}}</span> job(s)</div>
-
             <div *ngIf="appliedJobList?.length==0 " class="pull-right applied_jobs">You have applied to <span>0</span> job</div>
           </div>
-          <div class="pull-right application_sort_by"> <a href="javascript:void(0)" class="dropdown-toggle btn-primary font_capitaliz hover_white_pluse" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <i class="fa fa-sort-desc  plus_blue" aria-hidden="true"></i>
+          <div *ngIf="appliedJobList?.length > 0" class="pull-right application_sort_by"> <a href="javascript:void(0)" class="dropdown-toggle btn-primary font_capitaliz hover_white_pluse" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <i class="fa fa-sort-desc  plus_blue" aria-hidden="true"></i>
               </a>
             <ul class="dropdown-menu">
             </ul>
@@ -122,22 +121,22 @@
     </div>
     <app-ad-space></app-ad-space>
     <!-- <div class="row">
-	    <div class="col-sm-33">
-		  <div class="ad_space">
-		    <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
-		  </div>
-		</div>
-		<div class="col-sm-34">
-		  <div class="ad_space">
-		    <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
-		  </div>
-		</div>
-		<div class="col-sm-33">
-		  <div class="ad_space">
-		    <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
-		  </div>
-		</div>
-	  </div> -->
+      <div class="col-sm-33">
+      <div class="ad_space">
+        <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
+      </div>
+    </div>
+    <div class="col-sm-34">
+      <div class="ad_space">
+        <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
+      </div>
+    </div>
+    <div class="col-sm-33">
+      <div class="ad_space">
+        <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
+      </div>
+    </div>
+    </div> -->
     <!-- <div class="row">
       <div class=" col-md-33 col-sm-33">
         <div class="my_applications_box">
@@ -323,22 +322,22 @@
       </div>
     </div> -->
     <!-- <div class="row">
-	    <div class="col-sm-33">
-		  <div class="ad_space">
-		    <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
-		  </div>
-		</div>
-		<div class="col-sm-34">
-		  <div class="ad_space">
-		    <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
-		  </div>
-		</div>
-		<div class="col-sm-33">
-		  <div class="ad_space">
-		    <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
-		  </div>
-		</div>
-	  </div> -->
+      <div class="col-sm-33">
+      <div class="ad_space">
+        <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
+      </div>
+    </div>
+    <div class="col-sm-34">
+      <div class="ad_space">
+        <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
+      </div>
+    </div>
+    <div class="col-sm-33">
+      <div class="ad_space">
+        <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
+      </div>
+    </div>
+    </div> -->
     <!-- <app-ad-space></app-ad-space>
     <div class="row">
       <div class=" col-md-33 col-sm-33">

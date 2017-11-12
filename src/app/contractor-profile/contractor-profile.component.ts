@@ -75,6 +75,7 @@ export class ContractorProfileComponent implements OnInit {
     this.getIndustrySector();
     this.getSecurityClearenceData();
     this.getProfileDta();
+    window.scroll(0,0);
     // this.cropperSettings = new CropperSettings();
     // this.cropperSettings.width = 100;
     // this.cropperSettings.height = 100;
@@ -199,7 +200,7 @@ export class ContractorProfileComponent implements OnInit {
                  this.succesMessageFlag =false;
                   this.ErrorMesageFlag =true;
                    window.scroll(0,0);
-                   this.errorMsg = this.responseData.error[0];
+                   this.errorMsg = typeof(data.error)=='object' ? data.error[0] : data.error;;
                   // this.responseData.status=""
               }
         
@@ -236,7 +237,7 @@ export class ContractorProfileComponent implements OnInit {
           else{
              this.succesMessageFlag =false;
               this.ErrorMesageFlag =true;
-              this.errorMsg = data.error[0];
+              this.errorMsg = typeof(data.error)=='object' ? data.error[0] : data.error;
               window.scroll(0,0);
 
            
@@ -401,7 +402,7 @@ getProfileDta(){
           this._router.navigate(['../../public/home'], {'relativeTo': this._routes});
            }
            else{
-             this.errorMsg = data.error[0];
+             this.errorMsg = typeof(data.error)=='object' ? data.error[0] : data.error;;
              this.ErrorMesageFlag = true;
              window.scroll(0,0);
            }
@@ -429,7 +430,7 @@ getProfileDta(){
             this.succesMessageFlag =true;
            window.scroll(0,0); 
           } else{
-            this.errorMsg = data.error[0];
+            this.errorMsg = typeof(data.error)=='object' ? data.error[0] : data.error;;
             this.ErrorMesageFlag = true;
             window.scroll(0,0);
           }

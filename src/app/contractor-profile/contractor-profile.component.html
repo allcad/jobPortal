@@ -462,7 +462,7 @@
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/account-pass.png" alt="Enter Password" title="Password" class="img-responsive"></div>
-                        <input class="form-control" id="exampleInputEmail1" placeholder="Confirm New Password" type="password" [(ngModel)]="confirmNewPassword" name="confirmNewPassword" [tooltip]="confirmNewPasswordTooltip">
+                        <input class="form-control" id="exampleInputEmail1" placeholder="Confirm New Password" type="password" [(ngModel)]="confirmNewPassword" name="confirmNewPassword" [tooltip]="confirmNewPasswordTooltip" onpaste="return false;">
                         <tooltip-content #confirmNewPasswordTooltip>
                           <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.confirmNewPassword?.valid " style="color: #C21F39"> Password</span>
                         </tooltip-content>
