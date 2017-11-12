@@ -19,41 +19,48 @@ export class ContractorProfileComponent implements OnInit {
   profileUrl: string;
   userName: string;
   emailAddress;
-  securityClearance;
-  euDrivingLicence;
-  postCode;
-  dayRate1;
-  dayRate2;
-  availability: string;
-  webAddress: string;
-  stackOverWebAdd: string;
-  gitHubWebAdd: string;
-  linkedinWebAdd: string;
-  behanceWebAdd: string;
-  preferredJobTitle: string;
+  securityClearance = 0;
+  euDrivingLicence = 1;
+  postCode = "";
+  dayRate1 = 0;
+  dayRate2 = 0;
+  availability: string = "";
+  webAddress: string = "";
+  stackOverWebAdd: string = "";
+  gitHubWebAdd: string = "";
+  linkedinWebAdd: string = "";
+  behanceWebAdd: string ="";
+  preferredJobTitle: string="";
   commutableValue: number;
   rate1;dataUrl;
   skillData;
   rate2;
-  dailyHourlyValue;profileData;
-  currentJobTitle: string;
-  summary: string;
-  certification: string;
-  qualification: string;
-  preferredJobTitleValue: string;commutable;
+  dailyHourlyValue="daily";
+  profileData;
+  currentJobTitle: string = "";
+  summary: string = "";
+  certification: string = "";
+  qualification: string = "";
+  preferredJobTitleValue: string;
+  commutable;
   currentPassword;
-  newPassword;fileUploadForCV;
+  newPassword;
+  fileUploadForCV;
   fileUploadForCover;
   confirmNewPassword;contractorProfileJson;inputUrl;responseData;succesMessageFlag =false;fileUpload;industrySector;
-ErrorMesageFlag=false;
-fd;
-imageFile;
-CVFile;
-coverLetterFile;
-contratorCVList = [{id:1, result: null}];
-coverLetterList = [{id:1, result: null}];
-industrySectorData = [];
-securityClearenceData = [];
+  ErrorMesageFlag=false;
+  fd;
+  imageFile;
+  CVFile;
+  coverLetterFile;
+  contratorCVList = [{id:0}];
+  coverLetterList = [{id:1}];
+  industrySectorData = [];
+  securityClearenceData = [];
+  uploadedCvArray = [];
+  uploadedCoverLetter = [];
+  successMsg = "";
+  errorMsg= "";
 // cropperActive = true;
 // cropperSettings;
 // data;
@@ -107,10 +114,13 @@ securityClearenceData = [];
   }
   contractorCoverLetterFileChangeEvent(fileInput: any){
     this.coverLetterFile = fileInput.target.files[0];
+    this.uploadedCoverLetter.push(this.coverLetterFile);
   }
 
   contractorCVFileChangeEvent(fileInput){
     this.CVFile = fileInput.target.files[0];
+
+    this.uploadedCvArray.push(this.CVFile);
   }
 
   // uploadFile(){
@@ -123,66 +133,84 @@ securityClearenceData = [];
   // }
 
   saveContractorProfile(form: NgForm) {
-    console.log(this.polygonPath);
+    if(form.valid){
+      this.fd = new FormData();
+        this.fd.append('loginToken',(localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).token )? JSON.parse(localStorage.getItem('loginDetail')).token:  "nsakdlallas1232mk123b2k1390iq2ekq");
+        this.fd.append('email',(localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).email )? JSON.parse(localStorage.getItem('loginDetail')).email:  "test@gmail.com");
+        this.fd.append('contractorProfileUrl',this.imageFile);
+        this.fd.append('userName',this.userName);
+        this.fd.append('emailAddress',this.emailAddress);
+        this.fd.append('securityClearance',this.securityClearance);
+        this.fd.append('euDrivingLicence',this.euDrivingLicence);
+        this.fd.append('postCode',this.postCode);
+        this.fd.append('dayRate_min',this.dayRate1 ? this.dayRate1 : 0);
+        this.fd.append('dayRate_max',this.dayRate2 ? this.dayRate2 : 0);
+        this.fd.append('availability',this.availability);
+        this.fd.append('webAddress',this.webAddress);
+        this.fd.append('stackOverWebAddress',this.stackOverWebAdd);
+        this.fd.append('gitHubWebAddress',this.gitHubWebAdd);
+        this.fd.append('linkedinWebAddress',this.linkedinWebAdd);
+        this.fd.append('behanceWebAddress',this.behanceWebAdd);
 
-    this.fd = new FormData();
-    this.fd.append('loginToken',(localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).token )? JSON.parse(localStorage.getItem('loginDetail')).token:  "nsakdlallas1232mk123b2k1390iq2ekq");
-    this.fd.append('email',(localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).email )? JSON.parse(localStorage.getItem('loginDetail')).email:  "test@gmail.com");
-    this.fd.append('contractorProfileUrl',this.imageFile);
-    this.fd.append('userName',this.userName);
-    this.fd.append('emailAddress',this.emailAddress);
-    this.fd.append('securityClearance',this.securityClearance);
-    this.fd.append('euDrivingLicence',parseInt(this.euDrivingLicence));
-    this.fd.append('postCode',this.postCode);
-    this.fd.append('dayRate_min',this.dayRate1);
-    this.fd.append('dayRate_max',this.dayRate2);
-    this.fd.append('availability',this.availability);
-    this.fd.append('webAddress',this.webAddress);
-    this.fd.append('stackOverWebAddress',this.stackOverWebAdd);
-    this.fd.append('gitHubWebAddress',this.gitHubWebAdd);
-    this.fd.append('linkedinWebAddress',this.linkedinWebAdd);
-    this.fd.append('behanceWebAddress',this.behanceWebAdd);
+        this.fd.append('yourPreferredJobTitle',this.preferredJobTitleValue);
+        this.fd.append('commutable',this.commutable);
+        this.fd.append('rate_min',this.rate1);
 
-    this.fd.append('yourPreferredJobTitle',this.preferredJobTitleValue);
-    this.fd.append('commutable',this.commutable);
-    this.fd.append('rate_min',this.rate1);
+        this.fd.append('rate_max',this.rate2);
 
-    this.fd.append('rate_max',this.rate2);
+        this.fd.append('dailyHourlyValue',this.dailyHourlyValue);
 
-    this.fd.append('dailyHourlyValue',this.dailyHourlyValue);
+        this.fd.append('currentJobTitle',this.currentJobTitle);
 
-    this.fd.append('currentJobTitle',this.currentJobTitle);
+        this.fd.append('skill&Experience',JSON.stringify(this.selectedSkillArray));
 
-    this.fd.append('skill&Experience',JSON.stringify(this.selectedSkillArray));
+        this.fd.append('summary',this.summary);
 
-    this.fd.append('summary',this.summary);
+        this.fd.append('industrySector',JSON.stringify(this.industrySector));
 
-    this.fd.append('industrySector',JSON.stringify(this.industrySector));
-
-    this.fd.append('certification',this.certification);
-    this.fd.append('qualification',this.qualification);
-    this.fd.append('uploadCV[]',JSON.stringify([this.CVFile, this.CVFile]));
-    this.fd.append('uploadCoverLetter',this.coverLetterFile);
-    this.fd.append('longitude', this.lat);
-    this.fd.append('latitude', this.lng);
-   this.inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/profile/submit";
-       this._commonRequestService.postData(this.inputUrl, this.fd).subscribe(
-        data => {
-          this.responseData = data;
-          if(this.responseData.status === "TRUE"){
-                  this.succesMessageFlag =true;
-                  this.ErrorMesageFlag =false
-          this.profileData={};
-          }
-          else{
-             this.succesMessageFlag =false;
-              this.ErrorMesageFlag =true;
-              // this.responseData.status=""
-          }
-    
-          // console.log("keySkill: ", this.listSignUpData);
+        this.fd.append('certification',this.certification);
+        this.fd.append('qualification',this.qualification);
+        for(let i=0;i<this.uploadedCvArray.length; i++){
+          this.fd.append('uploadCV[]',JSON.stringify(this.uploadedCvArray[i]));
         }
-    ); 
+        
+        for(let i=0; i<this.uploadedCoverLetter.length; i++){
+          this.fd.append('uploadCoverLetter[]',JSON.stringify(this.uploadedCoverLetter[i]));
+        }
+
+
+        //this.fd.append('uploadCoverLetter',this.coverLetterFile);
+        this.fd.append('longitude', this.lat);
+        this.fd.append('latitude', this.lng);
+       this.inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/profile/submit";
+           this._commonRequestService.postData(this.inputUrl, this.fd).subscribe(
+            data => {
+              this.responseData = data;
+              if(this.responseData.status === "TRUE"){
+               this.succesMessageFlag =true;
+               this.ErrorMesageFlag =false
+              this.profileData={};
+              this.uploadedCvArray = [];
+              this.uploadedCoverLetter = [];
+               window.scroll(0,0);
+               this.successMsg = 'Profile updated';
+              }
+              else{
+                 this.succesMessageFlag =false;
+                  this.ErrorMesageFlag =true;
+                   window.scroll(0,0);
+                   this.errorMsg = this.responseData.error[0];
+                  // this.responseData.status=""
+              }
+        
+              // console.log("keySkill: ", this.listSignUpData);
+            }
+        ); 
+     }else{
+       window.scroll(0,0);
+     }
+
+    
   }
 
   accountDetailsSave() {
@@ -200,11 +228,17 @@ securityClearenceData = [];
           this.responseData = data;
           if(this.responseData.status === "TRUE"){
                   this.succesMessageFlag =true;
-                  this.ErrorMesageFlag =false
+                  this.ErrorMesageFlag =false;
+                  this.successMsg = "Password change";
+                  this._router.navigate(['../../public/home'], {'relativeTo': this._routes});
+
           }
           else{
              this.succesMessageFlag =false;
               this.ErrorMesageFlag =true;
+              this.errorMsg = data.error[0];
+              window.scroll(0,0);
+
            
           }
     
@@ -278,31 +312,31 @@ getProfileDta(){
 
 
   setProfileData(){
-    this.userName = this.profileData.userName;
+   this.userName = this.profileData.userName;
    this.profileUrl= this.profileData && this.profileData.contractorProfileUrl[0] ? this.profileData.contractorProfileUrl[0].attachment_url + '/'+  this.profileData.contractorProfileUrl[0].attachment_name : "";   
    this.emailAddress= this.profileData.emailAddress;
-   this.securityClearance= this.profileData.securityClearance;
-   this.euDrivingLicence= this.profileData.euDrivingLicence.toString();
-   this.postCode= this.profileData.postCode;
-   this.dayRate1 = this.profileData.dayRate_min;
-   this.dayRate2 = this.profileData.dayRate_max;
-   this.availability= this.profileData.availability;
-   this.webAddress= this.profileData.webAddress;
-   this.stackOverWebAdd= this.profileData.stackOverWebAddress;  
-   this.gitHubWebAdd= this.profileData.gitHubWebAddress; 
-   this.linkedinWebAdd= this.profileData.linkedinWebAddress; 
-   this.behanceWebAdd= this.profileData.behanceWebAddress;
-   this.preferredJobTitleValue= this.profileData.yourPreferredJobTitle;   
-   this.commutable= this.profileData.commutable;  
+   this.securityClearance= this.profileData.securityClearance ? this.profileData.securityClearance : 0;
+   this.euDrivingLicence= this.profileData.euDrivingLicence;
+   this.postCode= this.profileData.postCode && this.profileData.postCode !== 'null' ? this.profileData.postCode : '';
+   this.dayRate1 = this.profileData.dayRate_min && this.profileData.dayRate_min !== 'null' ? this.profileData.dayRate_min : '';
+   this.dayRate2 = this.profileData.dayRate_max && this.profileData.dayRate_max !=='null' ? this.profileData.dayRate_max : '';
+   this.availability= this.profileData.availability && this.profileData.availability !== 'null' ? this.profileData.availability : '';
+   this.webAddress= this.profileData.webAddress && this.profileData.webAddress !=='null' ? this.profileData.webAddress : ''; 
+   this.stackOverWebAdd= this.profileData.stackOverWebAddress && this.profileData.stackOverWebAddress !== 'null' ? this.profileData.stackOverWebAddress: '';  
+   this.gitHubWebAdd= this.profileData.gitHubWebAddress && this.profileData.gitHubWebAddress !=='null' ? this.profileData.gitHubWebAddress : ''; 
+   this.linkedinWebAdd= this.profileData.linkedinWebAddress && this.profileData.linkedinWebAddress !=='null' ? this.profileData.linkedinWebAddress : ''; 
+   this.behanceWebAdd= this.profileData.behanceWebAddress && this.profileData.behanceWebAddress !=='null' ? this.profileData.behanceWebAddress : '';
+   this.preferredJobTitleValue= this.profileData.yourPreferredJobTitle && this.profileData.yourPreferredJobTitle !=='null' ? this.profileData.yourPreferredJobTitle : '';   
+   this.commutable= this.profileData.commutable && (this.profileData.commutable=='commutable' || this.profileData.commutable=='relocatable') ? this.profileData.commutable : 'commutable';  
    this.rate1 = this.profileData.rate_min;
    this.rate2 = this.profileData.rate_max;
-   this.dailyHourlyValue= this.profileData.dailyHourlyValue; 
-   this.currentJobTitle= this.profileData.currentJobTitle;
-   this.summary= this.profileData.summary;   
-    this.certification= this.profileData.certification; 
-    this.qualification= this.profileData.qualification;  
-    this.fileUploadForCV= this.profileData.uploadCV;
-    this.fileUploadForCover= this.profileData.uploadCoverLetter;
+   this.dailyHourlyValue= this.profileData.dailyHourlyValue ? this.profileData.dailyHourlyValue : 'daily'; 
+   this.currentJobTitle= this.profileData.currentJobTitle && this.profileData.currentJobTitle !== 'null' ? this.profileData.currentJobTitle : '';
+   this.summary= this.profileData.summary && this.profileData.summary !=='null' ? this.profileData.summary : '';   
+    this.certification= this.profileData.certification && this.profileData.certification !== 'null' ? this.profileData.certification: ''; 
+    this.qualification= this.profileData.qualification && this.profileData.qualification !== 'null' ? this.profileData.qualification: '';  
+    this.contratorCVList= (this.profileData.uploadCV && this.profileData.uploadCV.length>0) ? this.profileData.uploadCV : this.contratorCVList;
+    this.coverLetterList= (this.profileData.uploadCoverLetter && this.profileData.uploadCoverLetter.length>0) ? this.profileData.uploadCoverLetter : this.coverLetterList;
     this.industrySector = this.profileData.industrySector;
     this.selectedSkillArray = this.profileData['skill&Experience'];
   }
@@ -321,7 +355,7 @@ getProfileDta(){
   }
 
   addAnotherCV(){
-    this.contratorCVList.push({id : this.contratorCVList.length+1, result: null})
+    this.contratorCVList.push({id : this.contratorCVList.length+1})
   }
 
   removeElement(array, index){
@@ -329,7 +363,7 @@ getProfileDta(){
   }
 
   addAnotherCoverLetter(){
-    this.coverLetterList.push({id : this.coverLetterList.length+1, result: null})
+    this.coverLetterList.push({id : this.coverLetterList.length+1})
   }
 
   getIndustrySector(){
@@ -363,8 +397,14 @@ getProfileDta(){
     let dataUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/account_close";
        this._commonRequestService.postData(dataUrl, input).subscribe(
         data => {
+           if(data.status === "TRUE"){
           this._router.navigate(['../../public/home'], {'relativeTo': this._routes});
-       
+           }
+           else{
+             this.errorMsg = data.error[0];
+             this.ErrorMesageFlag = true;
+             window.scroll(0,0);
+           }
         }
     );
     
@@ -372,23 +412,40 @@ getProfileDta(){
 
   savePreferredJobTitle(){
     console.log(this.preferredJobTitle);
-    if(this.savePreferredJobTitle){
+    if(this.preferredJobTitle){
       let input = {
       "email" : "test@gmail.com",
       "loginToken" : "ndckajs546JGkknk",
-      "yourPreferredJobTitle" : this.preferredJobTitleValue
+      "yourPreferredJobTitle" : this.preferredJobTitle
     }
 
 
     let dataUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/profile/preferred_job_title";
        this._commonRequestService.postData(dataUrl, input).subscribe(
         data => {
-         console.log("preferredJobTitleSaved");   
-         this.preferredJobTitle = "";
+          if(data.status === "TRUE"){
+           this.preferredJobTitle = "";
+           this.successMsg = "Preferred job saved";
+            this.succesMessageFlag =true;
+           window.scroll(0,0); 
+          } else{
+            this.errorMsg = data.error[0];
+            this.ErrorMesageFlag = true;
+            window.scroll(0,0);
+          }
+         
        }
     );
     }
     
+  }
+
+  editcv(index){
+    this.contratorCVList[index] = {'id': index+1}
+  }
+
+  editCover(index){
+    this.coverLetterList[index] = {'id' : index+1}
   }
 
 }

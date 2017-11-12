@@ -15,37 +15,41 @@
               <li class="active">Profile </li>
             </ul>
             <div class="alert alert-success margin-tp18" *ngIf="succesMessageFlag">
-              <a href="javascript:void(0)" class="close" title="close">×</a> You are sign up <strong>succesfully!</strong>
+              <a href="javascript:void(0)" class="close" title="close" (click)="succesMessageFlag=false">×</a>{{successMsg}} <strong>succesfully!</strong>
             </div>
             <div class="alert alert-danger margin-tp18" *ngIf="ErrorMesageFlag">
-              <a href="javascript:void(0)" class="close" title="close">×</a>
-              <strong>Error!</strong> You are already sign up with this Email!
+              <a href="javascript:void(0)" class="close" title="close" (click)="ErrorMesageFlag=false">×</a>
+              <strong>Error!</strong> {{errorMsg}}
             </div>
             <div class="pull-right job_search"> <a href="javascript:void(0)" class="btn-primary hover_white_pluse" [routerLink]="['../viewProfile']">View Profile <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> <a href="javascript:void(0);" class="btn-info hover_white_pluse">Edit Profile <i class="fa fa-plus plus_black" aria-hidden="true"></i></a> </div>
           </div>
         </div>
       </div>
       <div class="contractor_profile_main">
+        <div class="errorbox" *ngIf="contractorProfile && contractorProfile.form && contractorProfile.form.controls && contractorProfile.form.invalid && contractorProfile.submitted"><b>The following error(s) occured:</b>
+          <br>
+          <li *ngIf="contractorProfile.form.controls.webAddress?.hasError( 'pattern')">Web address not valid</li>
+          <li *ngIf="contractorProfile.form.controls.stackOverWebAdd?.hasError( 'pattern')">stack overflow address not valid</li>
+          <li *ngIf="contractorProfile.form.controls.gitHubWebAdd?.hasError( 'pattern')">Github address not valid</li>
+          <li *ngIf="contractorProfile.form.controls.linkedinWebAdd?.hasError( 'pattern')">linkedIn address not valid</li>
+          <li *ngIf="contractorProfile.form.controls.behanceWebAdd?.hasError('pattern')">Behance address not valid</li>
+        </div>
         <form (ngSubmit)="saveContractorProfile(contractorProfile)" #contractorProfile="ngForm">
           <div class="row">
             <div class="col-md-30 col-sm-40">
               <div class="profile_left_part signup_form_section width_auto">
                 <div class="profile_image">
-                  <div >
+                  <div>
                     <div style="margin-bottom: 30px;">
                       <img class="img-responsive" [src]="profileUrl ? profileUrl : './assets/images/profile-pik.png'" alt="ads">
                     </div>
-
-
-                      <div class="fileUpload btn btn-primary">
-                          <span><img src="./assets/images/camera.png" alt="camera" title="camera"></span>
-                          <input type="file" class="upload" (change)="contractorImageFileChangeEvent($event)"/>
-                          
-                      </div>
-                        <!-- <button type="button" (click)="uploadFile()">Upload</button> -->
-                      <!-- <span></span>
+                    <div class="fileUpload btn btn-primary">
+                      <span><img src="./assets/images/camera.png" alt="camera" title="camera"></span>
+                      <input type="file" class="upload" (change)="contractorImageFileChangeEvent($event)" />
+                    </div>
+                    <!-- <button type="button" (click)="uploadFile()">Upload</button> -->
+                    <!-- <span></span>
                       <input type="file" class="upload" (change)="contractorImageFileChangeEvent($event)" /> -->
-
                   </div>
                   <!-- <div>
                     <img-cropper #cropper  [image]="data" [settings]="cropperSettings">
@@ -81,7 +85,7 @@
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/security-clearance.png" alt="Enter Password" title="Password" class="img-responsive"></div>
                       <select class="form-control minimal background_drop_down" [(ngModel)]="securityClearance" name="securityClearance" [tooltip]="securityClearanceTooltip" required>
-                        <option value="">Security Clearance?</option>
+                        <option [value]="0">Security Clearance?</option>
                         <option *ngFor="let item of securityClearenceData" value="{{item.id}}">
                           {{item.name}}
                         </option>
@@ -121,7 +125,7 @@
                   <div class="form-group row">
                     <div class="col-xs-62">
                       <div class="input-group">
-                        <div class="input-group-addon upto_border_none day_rate_align"><img src="./assets/images/day-rate.png" alt="Post Code" title="Post Code" class="img-responsive"> Day Rate</div>
+                        <div class="input-group-addon upto_border_none day_rate_align"><img src="./assets/images/day-rate.png" alt="Post Code" title="Post Code" class="img-responsive"> Day Rate (&euro;)</div>
                         <input class="form-control" id="exampleInputEmail1" placeholder="" type="text" [(ngModel)]="dayRate1" name="dayRate1" [tooltip]="dayRate1Tolltop">
                         <tooltip-content #dayRate1Tolltop>
                           <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.dayRate1?.valid" style="color: #C21F39">Minimum </span>
@@ -234,7 +238,7 @@
                     <div class="form-group row">
                       <div class="col-xs-55">
                         <div class="input-group">
-                          <div class="input-group-addon upto_border_none">Rate</div>
+                          <div class="input-group-addon upto_border_none">Rate(&euro;)</div>
                           <input class="form-control" id="exampleInputEmail1" placeholder="" type="text" [(ngModel)]="rate1" name="rate1">
                         </div>
                       </div>
@@ -270,7 +274,7 @@
                   </div>
                 </div>
               </div>
-             <!--  <div class="job_search_keywords signup_form_section width_auto">
+               <div class="job_search_keywords signup_form_section width_auto">
                 <h2>Skills & Experience</h2>
                 <div class="enter_your_skills">
                   <select class="form-control minimal background_drop_down" [(ngModel)]="selectedSkill" name="skills" (change)="selectSkill()">
@@ -284,17 +288,14 @@
                       {{selectedSkill.skill_name}}
                    <img src="./assets/images/close-icon.png" alt="Close" title="Close" (click)="removeSelectedSkill(i)"></a>
                 </div>
+              </div>
+              <!-- <div class="job_search_keywords signup_form_section width_auto">
+                <h2>Skills &amp; Experience</h2>
+                <div class="enter_your_skills">
+                  <label>Enter your skills:</label>
+                  <a href="javascript:void(0)"><img src="./assets/images/your-skills.png" alt="Enter your skills" title="Enter your skills"></a> </div>
+                <div class="add_sub_skills"> <a href="javascript:void(0)">PHP <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a> <a href="javascript:void(0)">java <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a> <a href="javascript:void(0)">JAVASCRIPT <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a> </div>
               </div> -->
-
-              <div class="job_search_keywords signup_form_section width_auto">
-                  <h2>Skills &amp; Experience</h2>
-                  <div class="enter_your_skills">
-                    <label>Enter your skills:</label>
-                    <a href="javascript:void(0)"><img src="./assets/images/your-skills.png" alt="Enter your skills" title="Enter your skills"></a> </div>
-                  <div class="add_sub_skills"> <a href="javascript:void(0)">PHP <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a> <a href="javascript:void(0)">java <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a> <a href="javascript:void(0)">JAVASCRIPT <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a> </div>
-                </div>
-
-
               <div class="signup_form_section summary_industry_box width_auto">
                 <div class="row">
                   <div class="col-sm-50">
@@ -314,7 +315,6 @@
                         <select name="industrySector" [(ngModel)]="industrySector" multiple="true">
                           <option *ngFor="let industry of industrySectorData" value="{{industry.id}}">{{industry.industry}}</option>
                         </select>
-                       
                       </ul>
                     </div>
                   </div>
@@ -347,29 +347,28 @@
                 <div class="row" *ngFor="let CV of contratorCVList; let i = index">
                   <div class="col-md-59 col-sm-100">
                     <div class="form-group magin_bottomo768">
-                      <div class="input-group">
+                      <div *ngIf="!CV?.attachment_name" class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/upload-cv.png" alt="Upload CV" title="Upload CV" class="img-responsive"></div>
                         <div class="filecv">
                           <span>Browse From
                               <img alt="search now" src="./assets/images/find-cv.png" title="search now" >
                             </span>
-                          <input type="file" class="upload" (change)="contractorCVFileChangeEvent()"/>
+                          <input type="file" class="upload" (change)="contractorCVFileChangeEvent($event)" />
                         </div>
-                        <!--  <input class="form-control" id="exampleInputEmail1" placeholder="Upload CV(s)" type="text"> -->
-                       <!--  <input type="file" class="form-control input-group-addon find_cv_from" name="cv_{{i}}" (change)="contractorCVFileChangeEvent($event)" />
-                        <div class="input-group-addon find_cv_from"><a href="javascript:void(0)" class="dropdown-toggle padding_left_right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Browse From<img src="./assets/images/find-cv.png" alt="Browse From" title="Browse From"></a> -->
-                          <!--                        <ul class="dropdown-menu">
-                            <li><a href="javascript:void(0)"><img src="./assets/images/mail-box1.png" alt="OneDrive" title="OneDrive" class="img-responsive"></a> <a href="javascript:void(0)"><img src="./assets/images/mail-box3.png" alt="GoogleDrive" title="GoogleDrive" class="img-responsive"></a> </li>
-                            <li> <a href="javascript:void(0)"><img src="./assets/images/mail-box2.png" alt="Dropbox" title="Dropbox" class="img-responsive"></a> <a href="javascript:void(0)"><img src="./assets/images/mail-box4.png" alt="LocalDrive" title="LocalDrive" class="img-responsive"></a> </li>
-                          </ul> 
-                        </div>-->
                       </div>
+
+                      <div *ngIf="CV?.attachment_name" class="input-group">
+                        <div class="input-group-addon"><img src="./assets/images/download-icon.png" alt="Download" title="Download" class="img-responsive"></div>
+                        <label class="form-control">{{CV?.attachment_name}}</label>
+                      </div>
+
+
                     </div>
                   </div>
                   <div class="col-md-41 col-sm-100">
-                    <div class="current_rate_signup margin_top_10 margin_left_blue10"> <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse">Edit <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
+                    <div class="current_rate_signup margin_top_10 margin_left_blue10"> <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse" (click)="editCover(i)">Edit <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
                       <a href="javascript:void(0)" *ngIf="i!==0" class="btn-primary font_capitaliz hover_white_pluse" (click)="removeElement(contratorCVList, i)">Remove <i class="fa fa-minus plus_blue" aria-hidden="true"></i></a> </div>
-                      <div class="add_another_cv" (click)="addAnotherCV()"> <a href="javascript:void(0)" class="pink_color"><i class="fa fa-plus" aria-hidden="true"></i> Add Another CV</a> </div>
+                    <div class="add_another_cv" *ngIf="i==contratorCVList.length-1" (click)="addAnotherCV()"> <a href="javascript:void(0)" class="pink_color"><i class="fa fa-plus" aria-hidden="true"></i> Add Another CV</a> </div>
                   </div>
                 </div>
                 <!-- <div class="row">
@@ -377,12 +376,12 @@
                   <div class="col-md-41 col-sm-100">
                     <div class="add_another_cv" (click)="addAnotherCV()"> <a href="javascript:void(0)" class="pink_color"><i class="fa fa-plus" aria-hidden="true"></i> Add Another CV</a> </div>
                   </div>-->
-                  <!-- /div> 
+                <!-- /div> 
                 </div>-->
                 <div class="row" *ngFor="let coverLetter of coverLetterList; let i = index;">
                   <div class="col-md-59 col-sm-100">
                     <div class="form-group magin_bottomo768">
-                      <div class="input-group">
+                      <!-- <div class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/upload-cv.png" alt="Upload CV" title="Upload CV" class="img-responsive"></div>
                         <div class="filecv">
                           <span>Browse From
@@ -390,19 +389,29 @@
                             </span>
                           <input type="file" class="upload" />
                         </div>
-                        <!-- <input type="file" class="form-control input-group-addon find_cv_from" (change)="contractorCoverLetterFileChangeEvent($event)" />
-                        <div class="input-group-addon find_cv_from"><a href="javascript:void(0)" class="dropdown-toggle padding_left_right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Browse From<img src="./assets/images/find-cv.png" alt="Browse From" title="Browse From"></a> -->
-                          <!--                           <ul class="dropdown-menu">
-                            <li><a href="javascript:void(0)"><img src="./assets/images/mail-box1.png" alt="OneDrive" title="OneDrive" class="img-responsive"></a> <a href="javascript:void(0)"><img src="./assets/images/mail-box3.png" alt="GoogleDrive" title="GoogleDrive" class="img-responsive"></a> </li>
-                            <li> <a href="javascript:void(0)"><img src="./assets/images/mail-box2.png" alt="Dropbox" title="Dropbox" class="img-responsive"></a> <a href="javascript:void(0)"><img src="./assets/images/mail-box4.png" alt="LocalDrive" title="LocalDrive" class="img-responsive"></a> </li>
-                          </ul> 
-                        </div>-->
+                      </div> -->
+                      <div *ngIf="!coverLetter?.attachment_name" class="input-group">
+                        <div class="input-group-addon"><img src="./assets/images/upload-cv.png" alt="Upload CV" title="Upload CV" class="img-responsive"></div>
+                        <div class="filecv">
+                          <span>Browse From
+                              <img alt="search now" src="./assets/images/find-cv.png" title="search now" >
+                            </span>
+                          <input type="file" class="upload" (change)="contractorCoverLetterFileChangeEvent($event)" />
+                        </div>
                       </div>
+
+                      <div *ngIf="coverLetter?.attachment_name" class="input-group">
+                        <div class="input-group-addon"><img src="./assets/images/upload-cv.png" alt="Upload CV" title="Upload CV" class="img-responsive"></div>
+                        <div class="filecv">
+                          <label>{{coverLetter?.attachment_name}}</label>
+                        </div>
+                      </div>
+                      
                     </div>
                   </div>
                   <div class="col-md-41 col-sm-100">
                     <div class="current_rate_signup margin_top_10 margin_left_blue10"> <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse">Edit <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> <a *ngIf="i!==0" href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse" (click)="removeElement(coverLetterList, i)">Remove <i class="fa fa-minus plus_blue" aria-hidden="true"></i></a> </div>
-                    <div class="add_another_cv" (click)="addAnotherCoverLetter()"> <a href="javascript:void(0)" class="pink_color"><i class="fa fa-plus" aria-hidden="true"></i> Add Another Cover Letter</a> </div>
+                    <div class="add_another_cv" *ngIf="i==coverLetterList.length-1" (click)="addAnotherCoverLetter()"> <a href="javascript:void(0)" class="pink_color"><i class="fa fa-plus" aria-hidden="true"></i> Add Another Cover Letter</a> </div>
                   </div>
                 </div>
                 <!-- <div class="row">

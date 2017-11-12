@@ -35,8 +35,9 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon">
-                        <img class="img-responsive" src= './assets/images/profile-pik.png'>
+                        <img class="img-responsive" src= './assets/images/account-pass.png'>
                       </div>
+                       <!-- <div class="input-group-addon"><img src="./assets/images/account-pass.png" alt="Enter Password" title="Password" class="img-responsive"></div> -->
                       <label [tooltip]="userName" class="form-control">{{profileData?.userName}}</label>
                       <tooltip-content #userName>
                         <span style="color: #C21F39"> User Name</span>
@@ -166,7 +167,8 @@
                   <div class="col-md-22 col-sm-50">
                     <div class="form-group">
                       <div class="input-group width_100_commutable">
-                        <label [tooltip]="commutable" class="form-control">{{profileData?.commutable ? profileData?.commutable : 'NA'}}</label>
+                        <label [tooltip]="commutable" class="form-control">{{profileData?.commutable && 
+                        (profileData?.commutable =='commutable' || profileData?.commutable =='relocatable') ? profileData?.commutable  : 'commutable'}}</label>
                         <tooltip-content #commutable>
                           <span style="color: #C21F39">commutable</span>
                         </tooltip-content>

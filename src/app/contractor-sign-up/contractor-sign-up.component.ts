@@ -56,13 +56,14 @@ contractorEndDateInvalid = false;
 invalidFile = false;
  constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
-ngOnInit() {
-this.getKeySkillData();
-this.getContractorServices();
-this.getNoticePeriodData()
-}
+  ngOnInit() {
+    this.getKeySkillData();
+    this.getContractorServices();
+    this.getNoticePeriodData();
+    window.scroll(0,0);
+  }
 
-    onFormSubmit(userForm){
+  onFormSubmit(userForm){
     if(userForm.valid && !this.checkOtherFieldValidation()){
     this.fd = new FormData();
     this.fd.append('loginToken',(localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).token )? JSON.parse(localStorage.getItem('loginDetail')).token:  "nsakdlallas1232mk123b2k1390iq2ekq");
@@ -99,8 +100,7 @@ this.getNoticePeriodData()
                   userForm.resetForm();
                   window.scroll(0,0);
                   this.contractorInvalid = false;
-                  //this.formInvalidFlag = false;
-                  //userForm.markAsPristine();
+                  
           }
           else{
             this.validateMsg = this.listSignUpData.error[0];
