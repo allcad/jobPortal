@@ -200,7 +200,7 @@ export class ContractorProfileComponent implements OnInit {
                  this.succesMessageFlag =false;
                   this.ErrorMesageFlag =true;
                    window.scroll(0,0);
-                   this.errorMsg = typeof(data.error)=='object' ? data.error[0] : data.error;;
+                   this.errorMsg = typeof(data.error)=='object' ? data.error[0] : data.error;
                   // this.responseData.status=""
               }
         

@@ -14,36 +14,32 @@
               <li class="right_arrow">&gt;</li>
               <li class="active">Saved Search</li>
             </ul>
+            <div class="alert alert-success margin-tp18" *ngIf="showSuccessMsg">
+              <a href="javascript:void(0)" class="close" title="close" (click)="showSuccessMsg=false">×</a>{{successMsg}} <strong>succesfully!</strong>
+            </div>
+            <div class="alert alert-danger margin-tp18" *ngIf="showErrorMsg">
+              <a href="javascript:void(0)" class="close" title="close" (click)="showErrorMsg=false">×</a>
+              <strong>Error!</strong> {{errorMsg}}
+            </div>
             <div class="pull-right job_search">
               <a href="javascript:void(0)" [routerLink]="['../jobSearch']" class="btn-primary hover_white_pluse width_180px">Return to Search <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
-
               <div style="display: inline;">
-                                        <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="getSaveSearchList()">Saved Search <i class="fa fa-angle-down plus_blue font_size_margin text_pink" aria-hidden="true"></i></a>
-
-                                        <div class="form-group">
-                                            <!--<div class="input-group"> <span class="form-control industry_sector">Saved Search List</span>
-                                                 <div class="input-group-addon bordr_non"><img src="./assets/images/inform.png" alt="Enter Password" title="Password" class="img-responsive"></div> 
-                                            </div>-->
-                                            <ul class="form-control industry_min_heights padding_none">
-                                                <li *ngFor="let search of savedSearchList" (click)="searchSelect(search?.contractor_search_id)">{{search?.contractor_search_name}}</li>
-                                            </ul>
-                                        </div>
-
-                                        </div>
-                                        
-        <!--       <a href="javascript:void(0)" class="btn-primary hover_white_pluse width_180px ">Your Searches <i class="fa fa-angle-down plus_blue font_size_margin" aria-hidden="true"></i></a>
-
-              <select name="searchList" (change)="searchSelect()" [(ngModel)]="seletecSearchId">
-              	<option selected="true" disabled>Saved Search</option>
-              	<option *ngFor="let search of savedSearchList" [value]="search.contractor_search_id"> {{search.contractor_search_name}}</option>
-              </select> -->
-
-
-              
+                <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="getSaveSearchList();showList=!showList">Saved Search <i class="fa fa-angle-down plus_blue font_size_margin text_pink" aria-hidden="true"></i></a>
+                <div class="form-group" *ngIf="showList">
+                  <ul class="form-control industry_min_heights padding_none">
+                    <li *ngFor="let search of savedSearchList" (click)="searchSelect(search?.contractor_search_id)">{{search?.contractor_search_name}}</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
           <div class="signup_form_section">
-            <form>
+            <div class="errorbox" *ngIf="saveSearchForm && saveSearchForm.form && saveSearchForm.form.controls && saveSearchForm.form.invalid && saveClicked"><b>The following error(s) occured:</b>
+              <br>
+              <li *ngIf="saveSearchForm.form.controls.searchName?.hasError( 'required')">Please enter search name</li>
+              <li *ngIf="saveSearchForm.form.controls.jobTitle?.hasError( 'required')">Please enter job title</li>
+            </div>
+            <form  #saveSearchForm="ngForm">
               <div class="job_search_keywords">
                 <h2>name</h2>
               </div>
@@ -52,7 +48,7 @@
                   <div class="form-group responsive_margin35">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/save-search-name.png" alt="Saved Search Name" title="Saved Search Name" class="img-responsive"></div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Saved Search Name" [(ngModel)]="searchName" name="searchName">
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Saved Search Name" [(ngModel)]="searchName" name="searchName" required>
                       <div class="input-group-addon upto_border_none responsive_width padding_left25">
                         <div class="service_box">
                           <input id="inlineCheckbox4" value="option4" type="checkbox">
@@ -71,7 +67,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Job Title" [(ngModel)]="jobTitle" name="jobTitle">
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Job Title" [(ngModel)]="jobTitle" name="jobTitle" required>
                     </div>
                   </div>
                 </div>
@@ -106,7 +102,7 @@
                       <div class="input-group-addon upto_border_none">Up to</div>
                       <div class="select_option_arrow"></div>
                       <select class="form-control background_drop_down" [(ngModel)]="distance" name="distance">
-                        <option value="">Miles</option>
+                        <option value="0">Miles</option>
                         <option value="1">1 mile</option>
                         <option value="5">5 miles</option>
                         <option value="10">10 miles</option>
@@ -149,9 +145,9 @@
                 <div class="col-sm-50">
                   <div class="form-group">
                     <div class="input-group">
-                      <input value="daily" id="prepaid" name="service_type"  checked="" type="radio" [(ngModel)]="rateType">
+                      <input value="daily" id="prepaid" name="service_type" checked="" type="radio" [(ngModel)]="rateType">
                       <label for="prepaid" class="radio-inline"><span></span> Daily Rate </label>
-                      <input value="hourly" [(ngModel)]="rateType" id="postpaid" name="service_type"  type="radio">
+                      <input value="hourly" [(ngModel)]="rateType" id="postpaid" name="service_type" type="radio">
                       <label for="postpaid" class="radio-inline"><span></span>Hourly Rate </label>
                     </div>
                   </div>
@@ -167,16 +163,6 @@
                       <span class="form-control industry_sector">Industry Sector(S)</span>
                       <div class="input-group-addon bordr_non"><img src="./assets/images/inform.png" alt="Enter Password" title="Password" class="img-responsive"></div>
                     </div>
-                    <!-- <ul class="form-control industry_min_heights padding_none contractor_profile min_height_335">
-                      <li class="active">All</li>
-                      <li>Aerospace/Defence/Military</li>
-                      <li>Automotive</li>
-                      <li>Banking/Financial Services</li>
-                      <li>Business Services/Vendors</li>
-                      <li>Charity/non-for-profit</li>
-                      <li>Consultancy</li>
-                      <li>Legal</li>
-                    </ul> -->
                     <select name="industrySector" [(ngModel)]="industrySector" multiple="true">
                       <option *ngFor="let industry of industrySectorData" value="{{industry.id}}">{{industry.industry}}</option>
                     </select>
@@ -203,7 +189,7 @@
                 <div class="row">
                   <div class="col-sm-60">
                     <div class="sign_up_left_side">
-                      <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse width_180px margin_bottom_10px" (click)="saveSearch()">Save Search <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
+                      <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse width_180px margin_bottom_10px" (click)="saveSearch(saveSearchForm);saveClicked=true;">Save Search <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
                       <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse width_180px" (click)="deleteSearch()">Delete Search <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
                     </div>
                   </div>

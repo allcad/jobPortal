@@ -28,6 +28,13 @@
 </section>
 <section>
   <div class="container">
+
+     <div class="errorbox" *ngIf="appliedJobList?.length==0">
+              <br>
+              <li>There are no record</li>
+              
+            </div>
+
     <div class="row">
       <div class=" col-md-33 col-sm-33" *ngFor="let job of appliedJobList">
         <div class="my_applications_box" (click)="viewCompanyProfile()">

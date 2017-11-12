@@ -11,7 +11,7 @@ industrySectorData = [];
 savedSearchList = [];
 rateType="daily";
 searchName: string;
-distance;
+distance="0";
 excludingWords;
 jobRefNumber;
 jobTitle;
@@ -22,6 +22,12 @@ location;
 postDuration;
 industrySector = [];
 seletecSearchId;
+showList = false;
+saveClicked=false;
+showSuccessMsg = false;
+showErrorMsg = false;
+errorMsg = "";
+successMsg = "";
   constructor(private _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -54,40 +60,55 @@ seletecSearchId;
     );
   }
 
-  saveSearch(){
-  	let url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/save_search";
-  	let inputJson =  {
-	"email": "johnsmith21@gmail.com",
-	"loginToken": "$2y$10$U2wRqqX16ZU5/bno9773M.79k5Pag7h9njwxC7Bk6aqgB1NyElP0m",
-	"contractor_search_name": this.searchName ? this.searchName : null,
-	"contractor_search_by_miles": this.distance ? this.distance : null,
-	"contractor_search_by_exclude_words": this.excludingWords ? this.excludingWords : null,
-	"contractor_search_by_job_reference_number": this.jobRefNumber ? this.jobRefNumber : null,
-	"contractor_search_by_job_title": this.jobTitle ? this.jobTitle : null,
-	"contractor_search_by_keywords": this.keywords ? this.keywords : null,
-	"contractor_search_by_rate_max": this.maxRate  ? this.maxRate : null,
-	"contractor_search_by_rate_min": this.minRate ? this.minRate : null,
-	"contractor_search_by_location": this.location ? this.location : null,
-	"contractor_search_by_rate_type": this.rateType,
-	"contractor_search_by_posted_contact_since": this.postDuration ? this.postDuration : null,
-	"contractor_search_by_industry_sector" : this.industrySector
-	}
-	console.log("saveSearchInput", inputJson);
-	
-       this._commonRequestService.postData(url, inputJson).subscribe(
-        data => {
-          console.log("data", data);
-          this.resetForm();
-          this.getListOfSavedSearch();
-       
-        }
-    );
+  saveSearch(form){
+
+    if(form.valid){
+      let url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/save_search";
+      let inputJson =  {
+      "email": "johnsmith21@gmail.com",
+      "loginToken": "$2y$10$U2wRqqX16ZU5/bno9773M.79k5Pag7h9njwxC7Bk6aqgB1NyElP0m",
+      "contractor_search_name": this.searchName ? this.searchName : null,
+      "contractor_search_by_miles": this.distance ? this.distance : null,
+      "contractor_search_by_exclude_words": this.excludingWords ? this.excludingWords : null,
+      "contractor_search_by_job_reference_number": this.jobRefNumber ? this.jobRefNumber : null,
+      "contractor_search_by_job_title": this.jobTitle ? this.jobTitle : null,
+      "contractor_search_by_keywords": this.keywords ? this.keywords : null,
+      "contractor_search_by_rate_max": this.maxRate  ? this.maxRate : null,
+      "contractor_search_by_rate_min": this.minRate ? this.minRate : null,
+      "contractor_search_by_location": this.location ? this.location : null,
+      "contractor_search_by_rate_type": this.rateType,
+      "contractor_search_by_posted_contact_since": this.postDuration ? this.postDuration : null,
+      "contractor_search_by_industry_sector" : this.industrySector
+      }
+      console.log("saveSearchInput", inputJson);
+      
+           this._commonRequestService.postData(url, inputJson).subscribe(
+            data => {
+              if(data.status == 'TRUE'){
+                this.saveClicked=false
+                this.resetForm();
+                this.getListOfSavedSearch();  
+                this.showSuccessMsg = true;
+                this.successMsg = "Search Saved";
+              }else{
+                this.showErrorMsg = true;
+                this.errorMsg = typeof(data.error)=='object' ? data.error[0] : data.error;;
+              }
+              
+           
+            }
+        );
+    } else{
+      window.scroll(0,0)
+    }
+
+  	
   }
 
   resetForm(){
   	this.rateType="daily";
 	this.searchName="";
-	this.distance="";
+	this.distance="0";
 	this.excludingWords="";
 	this.jobRefNumber="";
 	this.jobTitle="";
