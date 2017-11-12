@@ -162,11 +162,18 @@ successMsg = "";
   	let url="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/save_search/delete";
        this._commonRequestService.postData(url, input).subscribe(
         data => {
-          	
-          	console.log("searchDeletedSuccessfully");
-          	this.seletecSearchId = "";
-          	this.resetForm();
-          	this.getListOfSavedSearch();
+          	 if(data.status == 'TRUE'){
+                 this.seletecSearchId = "";
+                 this.resetForm();
+                this.getListOfSavedSearch();
+                this.successMsg = "Search deleted";
+                this.showSuccessMsg = true;
+                window.scroll(0,0);
+              }else{
+                this.showErrorMsg = true;
+                this.errorMsg = typeof(data.error)=='object' ? data.error[0] : data.error;
+                window.scroll(0,0);
+              }
         }
     );
   	}
