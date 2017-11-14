@@ -577,7 +577,7 @@ getProfileDta(){
               }
             }
           }
-
+          console.log("this.profileData['otherAddress']", this.profileData['otherAddress']);
           if(this.profileData['otherAddress'] && this.profileData['otherAddress'].length > 0) {
             for(var i = 0; i< this.profileData['otherAddress'].length; i++) {
               if(this.profileData['otherAddress'][i].addressLine1) {

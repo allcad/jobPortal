@@ -82,7 +82,7 @@ invalidErrorMsg = "";
           else{
              this.errorMsgFlag =true;
               this.succesLoginFlag =false;
-              this.invalidErrorMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
+              this.invalidErrorMsg = data && data.error ? data.error : '';
                //this.generate();
                this.addNumber="";
           }
