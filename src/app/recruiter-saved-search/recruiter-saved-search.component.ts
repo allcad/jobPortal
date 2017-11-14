@@ -41,6 +41,8 @@ export class RecruiterSavedSearchComponent implements OnInit {
   securityClearValue;
   successMessageFlag = false;
   errorMessageFlag = false;
+  saveSearchDataListing;
+  sameSearchNameFlag = false;
   constructor(public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -48,6 +50,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
     this.getIndustry();
     this.getTimeLeftData();
     this.getEducationData();
+    this.getListOfSaveSearch();
   }
 
   industrysectorChange() {
@@ -133,7 +136,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
           console.log("delete data--", data);
-          this.getSaveSearchList();
+          this.getListOfSaveSearch();
           this.resetFields();
           this.successMessageFlag =  true;
           this.errorSuccessMessage = "Saved Search Delete Successfully";
@@ -187,7 +190,12 @@ export class RecruiterSavedSearchComponent implements OnInit {
   }
 
   getSaveSearchList() {
-     var input = {
+    this.searchListDataFlag = true;
+     this.searchListData = this.saveSearchDataListing;
+  }
+
+  getListOfSaveSearch() {
+    var input = {
      "email":"test@test7.com",
     "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu"
 
@@ -198,8 +206,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
         data => {
           console.log("list save search--", data);
           if(data && data.data && data.data.length > 0) {
-            this.searchListDataFlag = true;
-            this.searchListData = data.data;
+            this.saveSearchDataListing = data.data;
           }
           //this.industryArrayData = data.data;
           //this.recruiterNameArray = data.data;
@@ -259,66 +266,87 @@ export class RecruiterSavedSearchComponent implements OnInit {
      
     }
 
-    if (this.recentRecruiterSaveId) {
-      savedSearchSaveJson["search_id"] = this.recentRecruiterSaveId ? this.recentRecruiterSaveId : '';
-      console.log("savedSearchSaveJson00", savedSearchSaveJson)
-      var inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/save_search/update";
-       this._commonRequestService.postData(inputUrl, savedSearchSaveJson).subscribe(
-        data => {
-          this.responseData = data;
+    if(this.saveSearchDataListing && this.saveSearchDataListing.length > 0) {
+      for(var i=0;i<this.saveSearchDataListing.length;i++) {
+        // console.log("this.saveSearchDataListing[i].recuriter_saved_search_name", this.saveSearchDataListing[i].recuriter_saved_search_name);
+        // console.log("this.savedSearchName", this.savedSearchName, this.savedSearchName.toLowerCase().trim());
+        if(this.saveSearchDataListing[i].recuriter_saved_search_name == this.savedSearchName.toLowerCase().trim()) {
           window.scroll(0,0);
-          if(this.responseData.status === "TRUE"){
-                  this.succesMessageFlag =true;
-                  this.errorSuccessMessage = "Saved succesfully !";
-                  this.successMessageFlag  = true;
-                  this.errorMessageFlag = false;
-                  this.resetFields();
-                  this.getSaveSearchList();
-          //         this.ErrorMesageFlag =false
-          // this.profileData={};
-          // this.errorMsg = "";
-          }
-          else{
-             this.succesMessageFlag =false;
-             this.errorSuccessMessage = data && data.error && data.error.length > 0 ? data.error[0] : '';
-             this.successMessageFlag  = false;
-             this.errorMessageFlag = true;
-              //this.ErrorMesageFlag =true;
-              //this.errorMsg = this.responseData.error[0];
-          }
-    
-          // console.log("keySkill: ", this.listSignUpData);
+          this.errorMessageFlag = true;
+          this.errorSuccessMessage = "This Saved Search name is already exist.";
+          this.sameSearchNameFlag = true;
+          break;
+        } else {
+          this.sameSearchNameFlag = false;
+          this.errorMessageFlag = false;
+          this.errorSuccessMessage = "";
         }
-    ); 
-    } else {
-      var inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/save_search";
-       this._commonRequestService.postData(inputUrl, savedSearchSaveJson).subscribe(
-        data => {
-          this.responseData = data;
-          window.scroll(0,0);
-          if(this.responseData.status === "TRUE"){
-                  this.succesMessageFlag =true;
-                  this.errorSuccessMessage = "Saved succesfully !";
-                  this.successMessageFlag  = true;
-                  this.errorMessageFlag = false;
-                  this.resetFields();
-                  this.getSaveSearchList();
-          //         this.ErrorMesageFlag =false
-          // this.profileData={};
-          // this.errorMsg = "";
+      }
+    }
+    console.log("this.sameSearchNameFlag", this.sameSearchNameFlag);
+
+    if(!this.sameSearchNameFlag) {
+      if (this.recentRecruiterSaveId) {
+        savedSearchSaveJson["search_id"] = this.recentRecruiterSaveId ? this.recentRecruiterSaveId : '';
+        console.log("savedSearchSaveJson00", savedSearchSaveJson)
+        var inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/save_search/update";
+         this._commonRequestService.postData(inputUrl, savedSearchSaveJson).subscribe(
+          data => {
+            this.responseData = data;
+            window.scroll(0,0);
+            if(this.responseData.status === "TRUE"){
+                    this.succesMessageFlag =true;
+                    this.errorSuccessMessage = "Saved succesfully !";
+                    this.successMessageFlag  = true;
+                    this.errorMessageFlag = false;
+                    this.resetFields();
+                    this.getListOfSaveSearch();
+            //         this.ErrorMesageFlag =false
+            // this.profileData={};
+            // this.errorMsg = "";
+            }
+            else{
+               this.succesMessageFlag =false;
+               this.errorSuccessMessage = data && data.error && data.error.length > 0 ? data.error[0] : '';
+               this.successMessageFlag  = false;
+               this.errorMessageFlag = true;
+                //this.ErrorMesageFlag =true;
+                //this.errorMsg = this.responseData.error[0];
+            }
+      
+            // console.log("keySkill: ", this.listSignUpData);
           }
-          else{
-             this.succesMessageFlag =false;
-             this.errorSuccessMessage = data && data.error && data.error.length > 0 ? data.error[0] : '';
-             this.successMessageFlag  = false;
-             this.errorMessageFlag = true;
-              //this.ErrorMesageFlag =true;
-              //this.errorMsg = this.responseData.error[0];
+      ); 
+      } else {
+        var inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/save_search";
+         this._commonRequestService.postData(inputUrl, savedSearchSaveJson).subscribe(
+          data => {
+            this.responseData = data;
+            window.scroll(0,0);
+            if(this.responseData.status === "TRUE"){
+                    this.succesMessageFlag =true;
+                    this.errorSuccessMessage = "Saved succesfully !";
+                    this.successMessageFlag  = true;
+                    this.errorMessageFlag = false;
+                    this.resetFields();
+                    this.getListOfSaveSearch();
+            //         this.ErrorMesageFlag =false
+            // this.profileData={};
+            // this.errorMsg = "";
+            }
+            else{
+               this.succesMessageFlag =false;
+               this.errorSuccessMessage = data && data.error && data.error.length > 0 ? data.error[0] : '';
+               this.successMessageFlag  = false;
+               this.errorMessageFlag = true;
+                //this.ErrorMesageFlag =true;
+                //this.errorMsg = this.responseData.error[0];
+            }
+      
+            // console.log("keySkill: ", this.listSignUpData);
           }
-    
-          // console.log("keySkill: ", this.listSignUpData);
-        }
-    ); 
+      ); 
+      }
     }
     //console.log("savedSearchSaveJson", savedSearchSaveJson);
 

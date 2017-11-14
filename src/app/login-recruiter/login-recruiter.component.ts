@@ -19,6 +19,7 @@ emailNamePatternFlag = false;
 passwordReqFlag = false;
 humanKnowFlag = false;
 saveFlag = false;
+invalidErrorMsg = "";
   constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -81,6 +82,7 @@ saveFlag = false;
           else{
              this.errorMsgFlag =true;
               this.succesLoginFlag =false;
+              this.invalidErrorMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
                //this.generate();
                this.addNumber="";
           }

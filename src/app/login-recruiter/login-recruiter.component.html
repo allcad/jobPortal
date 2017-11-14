@@ -30,13 +30,20 @@
               <li class="active">Login </li>
             </ul>
           </div>
+
+          <div class="errorbox" *ngIf="errorMsgFlag"><b>The following error(s) occured:</b><br> 
+            <li *ngIf="errorMsgFlag">{{invalidErrorMsg}}</li>
+            <!-- <li *ngIf="emailNamePatternFlag">Please Enter valid email.</li>
+            <li *ngIf="passwordReqFlag">Please enter a password.</li>
+            <li *ngIf="humanKnowFlag">Are you human field is required.</li> -->
+          </div>
           <div class="alert alert-success margin-tp18" *ngIf="succesLoginFlag">
             <a href="javascript:void(0)" class="close" title="close" (click)="succesLoginFlag = !succesLoginFlag">×</a> You are Log in <strong>succesfully!</strong>
           </div>
-          <div class="alert alert-danger margin-tp18" *ngIf="errorMsgFlag">
+         <!--  <div class="alert alert-danger margin-tp18" *ngIf="errorMsgFlag">
             <a href="javascript:void(0)" class="close" title="close" (click)="errorMsgFlag = !errorMsgFlag">×</a>
             <strong>Error!</strong> Your Email id is not Registered !!
-          </div>
+          </div> -->
           <div class="login_form_section">
             <form #f="ngForm" (ngSubmit)="onLogin(f)">
               <div class="row">
