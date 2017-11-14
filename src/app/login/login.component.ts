@@ -13,6 +13,7 @@ password="";email=""; inputLogin;
 valid;dataUrl;response;
 contractorviewProfileData;wsUrl;input;
 inputData;min;max;addNumber;number;number2;errorMessage;inputUrl;status;succesLoginFlag=false;errorMsgFlag=false;
+errorMsg;
   constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -42,6 +43,7 @@ inputData;min;max;addNumber;number;number2;errorMessage;inputUrl;status;succesLo
           else{
              this.errorMsgFlag =true;
               this.succesLoginFlag =false;
+              this.errorMsg = typeof(data.error)=='object' ? data.error[0] : data.error;
           }
         }
     )

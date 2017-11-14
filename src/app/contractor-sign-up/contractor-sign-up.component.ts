@@ -107,6 +107,7 @@ currentEmploymentSituationCheck;
                   userForm.resetForm();
                   window.scroll(0,0);
                   this.contractorInvalid = false;
+                  this._router.navigate(['../contractorLogin'], {'relativeTo': this._routes});
                   
           }
           else{
