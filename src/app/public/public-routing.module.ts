@@ -20,6 +20,9 @@ import { FaqComponent } from '../faq/faq.component';
 import { ContractorAdviceArticleComponent } from '../contractor-advice-article/contractor-advice-article.component';
 import { ContractorAdviceCategoryComponent } from '../contractor-advice-category/contractor-advice-category.component';
 import { ContractorHubHomeComponent } from '../contractor-hub-home/contractor-hub-home.component';
+import { RecruiterGuidesPageComponent } from '../recruiter-guides-page/recruiter-guides-page.component';
+import { PrivacyPolicyComponent } from '../privacy-policy/privacy-policy.component';
+import { SiteMapComponent } from '../site-map/site-map.component';
 
 const publicRoutes: Routes = [
 {
@@ -74,6 +77,15 @@ const publicRoutes: Routes = [
     "path": "adviceDetail",
     "component": ContractorAdviceArticleComponent
 },{
+    "path": "guides",
+    "component": RecruiterGuidesPageComponent
+}, {
+    "path": "privacy-policy",
+    "component": PrivacyPolicyComponent
+} , {
+    "path": "site-map",
+    "component": SiteMapComponent
+}, {
     "path": "",
     "redirectTo" : "home",
     "pathMatch" : "full"
