@@ -23,7 +23,7 @@ export class ContractorSignUpComponent implements OnInit {
  contractor_job_title;
  contractor_key_skills;
  fileForCV:any;contractor_employment_situation:any="";contractService:any;
- contractor_rate;checkAgree;
+ contractor_rate_min;contractor_rate_max;checkAgree;
  valid;
  fileForCv;
  dataForService:any;
@@ -80,7 +80,8 @@ currentEmploymentSituationCheck;
     this.fd.append('contractor_email',this.contractor_email);
     this.fd.append('contractor_tel_no',this.contractor_tel_no);
     this.fd.append('contractor_current_password',this.contractor_current_password);
-    this.fd.append('contractor_rate',this.contractor_rate ? this.contractor_rate : "300");
+    this.fd.append('contractor_rate_min',this.contractor_rate_min ? this.contractor_rate_min : "200");
+    this.fd.append('contractor_rate_max',this.contractor_rate_max ? this.contractor_rate_max : "400");
     this.fd.append('fileForCv',this.CVFile);
     this.fd.append('contractor_job_title',this.contractor_job_title);
     this.fd.append('contractor_key_skills',JSON.stringify(this.selectedSkillIdArray));
@@ -225,7 +226,8 @@ fileChangeEvent(fileInput: any) {
 
   }
   getRangeSliderValue(event){
-    this.contractor_rate =event.from;
+    this.contractor_rate_min =event.from;
+    this.contractor_rate_max = event.to;
   }
 
 

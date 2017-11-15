@@ -21,12 +21,13 @@
             <strong>Error!</strong> {{errorMsg}}
           </div>
           <div class="login_form_section">
-            <div class="errorbox" *ngIf="f && f.form && f.form.controls && f.form.invalid && f.submitted"><b>The following error(s) occured:</b>
+            <div class="errorbox" *ngIf="((f && f.form && f.form.controls && f.form.invalid) || totalInvalid) && f.submitted"><b>The following error(s) occured:</b>
               <br>
               <li *ngIf="f.form.controls.email?.hasError('required')">Email Required</li>
               <li *ngIf="f.form.controls.email?.hasError('pattern')">Email not valid</li>
               <li *ngIf="f.form.controls.password?.hasError('required')">Password Required</li>
               <li *ngIf="f.form.controls.addNumber?.hasError('required')">Total Required</li>
+              <li *ngIf="!f.form.controls.addNumber?.hasError('required') && totalInvalid">Total Invalid</li>
             </div>
 
             <form #f="ngForm" (ngSubmit)="onLogin(f)">

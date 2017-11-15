@@ -34,7 +34,7 @@
             </div>
           </div>
           <div class="signup_form_section">
-            <div class="errorbox" *ngIf="saveSearchForm && saveSearchForm.form && saveSearchForm.form.controls && saveSearchForm.form.invalid && saveClicked"><b>The following error(s) occured:</b>
+            <div class="errorbox" *ngIf="((saveSearchForm && saveSearchForm.form && saveSearchForm.form.controls && saveSearchForm.form.invalid) || searchNameExist) && saveClicked"><b>The following error(s) occured:</b>
               <br>
               <li *ngIf="saveSearchForm.form.controls.searchName?.hasError( 'required')">Please enter search name</li>
               <li *ngIf="saveSearchForm.form.controls.jobTitle?.hasError( 'required')">Please enter job title</li>
@@ -46,6 +46,7 @@
               <li *ngIf="saveSearchForm.form.controls.max?.hasError( 'required')">Please enter max rate</li>
               <li *ngIf="saveSearchForm.form.controls.jobRefNumber?.hasError( 'required')">Please enter job reference number</li>
               <li *ngIf="saveSearchForm.form.controls.postedSince?.hasError( 'required')">Please enter post duration</li>
+              <li *ngIf="searchNameExist">Search already saved with this name</li>
 
             </div>
             <form #saveSearchForm="ngForm">

@@ -14,6 +14,7 @@ valid;dataUrl;response;
 contractorviewProfileData;wsUrl;input;
 inputData;min;max;addNumber;number;number2;errorMessage;inputUrl;status;succesLoginFlag=false;errorMsgFlag=false;
 errorMsg;
+totalInvalid = false;
   constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -21,6 +22,7 @@ errorMsg;
   }
 
     onLogin(f:NgForm){
+      this.totalInvalid = false;
       if(f.valid && parseInt(this.addNumber) === (this.number + this.number2)){
       this.inputLogin={
         "email":this.email,
@@ -49,6 +51,9 @@ errorMsg;
     )
        
       }else{
+        if(parseInt(this.addNumber) !== (this.number + this.number2)){
+         this.totalInvalid = true; 
+        }
          window.scroll(0,0);
        }
 }

@@ -158,10 +158,10 @@
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
                       <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Current Job Title" name="contractor_job_title" [(ngModel)]="contractor_job_title" required [tooltip]="contractor_job_titleTooltip">
-                      <tooltip-content #contractor_job_titleTooltip>
+                     <!--  <tooltip-content #contractor_job_titleTooltip>
                         <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_job_title?.valid " style="color: #C21F39"> Job Title </span>
                         <span [hidden]="!userForm.form.controls.contractor_job_title?.hasError('required')" style="color: #C21F39"> Job Title is required! </span>
-                      </tooltip-content>
+                      </tooltip-content> -->
                     </div>
                   </div>
                 </div>
@@ -201,7 +201,7 @@
               <div class="current_rate_signup situation35">
                 <h2>ENTER YOUR CURRENT RATE</h2>
                 <!-- <img src="./assets/images/price-filter.png" alt="ads" title="ads" class="img-responsive">  -->
-                <ion-range-slider class="width_100" (onFinish)="getRangeSliderValue($event)" #sliderElement min="200" value="100" max="800" step="10" from="300">
+                <ion-range-slider type="double" prefix="£" class="width_100" (onFinish)="getRangeSliderValue($event)" #sliderElement min="0" value="100" max="2000" step="5" from="200" to="400">
                 </ion-range-slider>
               </div>
               <div class="current_rate_signup situation35">

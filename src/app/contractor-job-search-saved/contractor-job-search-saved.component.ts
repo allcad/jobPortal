@@ -28,6 +28,7 @@ showSuccessMsg = false;
 showErrorMsg = false;
 errorMsg = "";
 successMsg = "";
+searchNameExist = false;
   constructor(private _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -62,7 +63,7 @@ successMsg = "";
 
   saveSearch(form){
 
-    if(form.valid){
+    if(form.valid && this.isSearchAlreadyExist(this.searchName)){
       let url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/save_search";
       let inputJson =  {
       "email": "johnsmith21@gmail.com",
@@ -79,6 +80,9 @@ successMsg = "";
       "contractor_search_by_rate_type": this.rateType,
       "contractor_search_by_posted_contact_since": this.postDuration ? this.postDuration : null,
       "contractor_search_by_industry_sector" : this.industrySector
+      }
+      if(this.seletecSearchId){
+        inputJson['contractor_search_id'] = this.seletecSearchId;
       }
       console.log("saveSearchInput", inputJson);
       
@@ -107,6 +111,24 @@ successMsg = "";
   	
   }
 
+  isSearchAlreadyExist(searchName){
+    this.searchNameExist = false;
+    if(searchName && !(this.seletecSearchId>0)){
+      for(let i=0;i<this.savedSearchList.length;i++){
+      if((this.savedSearchList[i].contractor_search_name).trim().toLowerCase() == searchName.trim().toLowerCase()){
+        this.searchNameExist = true;
+        return false;
+
+      }
+    }
+    return true;;
+    }
+    else{
+      return true;
+    }
+    
+  }
+
   resetForm(){
   	this.rateType="daily";
 	this.searchName="";
@@ -120,12 +142,12 @@ successMsg = "";
 	this.location="";
 	this.postDuration="";
 	this.industrySector = [];
+  this.seletecSearchId = 0;
   }
 
   searchSelect(id){
     this.seletecSearchId = id;
-
-  	let input = {
+    let input = {
   		"email": "johnsmith21@gmail.com",
 		"loginToken": "$2y$10$U2wRqqX16ZU5/bno9773M.79k5Pag7h9njwxC7Bk6aqgB1NyElP0m",
 		"contractor_search_id" : this.seletecSearchId
