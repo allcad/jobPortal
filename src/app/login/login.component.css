@@ -28,3 +28,26 @@
     margin-left: 15px;
     color: #ffffff;
 }
+
+
+.btn-default {
+    color: #fff !important;
+}
+
+.btn-default i {
+    color: #000 !important;
+}
+
+
+
+
+.btn-default:hover {
+    
+    color: #000 !important;
+}
+
+.btn-default:hover i {
+    color: #fff !important;
+}
+
+.btn-default{ border:transparent; }

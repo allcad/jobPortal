@@ -121,3 +121,45 @@ agm-map {
     margin-left: 15px;
     color: #ffffff;
 }
+
+
+:host/deep/.min_height_335 {
+    min-height: 260px !important;
+}
+
+:host/deep/.contractor_profile {
+    border: 1px solid #ccc !important;
+    min-height: 260px;
+    overflow: auto;
+    padding: 15px 0;
+    width: 100% !important;
+}
+
+:host/deep/.form-control .contractor_profile > option:hover {
+    background: #4cdbff none repeat scroll 0 0 !important;
+    color: #fff;
+}
+
+:host/deep/.form-control .contractor_profile > {
+    background: #4cdbff none repeat scroll 0 0 !important;
+    color: #fff;
+
+}
+
+:host/deep/.form-control .contractor_profile > option {
+    color: #000;
+    cursor: context-menu;
+    font-size: 15px;
+    margin-bottom: 2px;
+    padding: 4px 20px 4px 10px;
+    font-family: 'HelveticaNeue';
+}
+
+:host/deep/.form-control .contractor_profile > option:first-child{
+    background: #4cdbff none repeat scroll 0 0;
+    color: #fff;
+    -webkit-transition: all 0.2s ease 0s;
+}
+
+:host/deep/.form-control{ padding: 0px; }
+:host/deep/select{border-radius: 0px !important;}

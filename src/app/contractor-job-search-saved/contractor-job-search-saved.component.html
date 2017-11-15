@@ -173,7 +173,7 @@
                       <span class="form-control industry_sector">Industry Sector(S)</span>
                       <div class="input-group-addon bordr_non"><img src="./assets/images/inform.png" alt="Enter Password" title="Password" class="img-responsive"></div>
                     </div>
-                    <select name="industrySector" [(ngModel)]="industrySector" multiple="true">
+                    <select class="form-control padding_none contractor_profile min_height_335" name="industrySector" [(ngModel)]="industrySector" multiple="true">
                       <option *ngFor="let industry of industrySectorData" value="{{industry.id}}">{{industry.industry}}</option>
                     </select>
                   </div>

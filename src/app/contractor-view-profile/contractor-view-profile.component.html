@@ -249,7 +249,7 @@
                         <div class="input-group-addon bordr_non"></div>
                       </div>
                       <div class="view_industry_sector">
-                        <ul *ngIf="profileData && profileData.industrySector && industrySectorData">
+                        <ul class="form-control industry_min_heights padding_none" *ngIf="profileData && profileData.industrySector && industrySectorData">
                           <li *ngFor="let sector of profileData.industrySector">{{getIndustrySectorName(sector)}}</li>
                           
                         </ul>

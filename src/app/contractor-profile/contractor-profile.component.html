@@ -311,8 +311,8 @@
                       <div class="input-group"> <span class="form-control industry_sector">Industry Sector</span>
                         <div class="input-group-addon bordr_non"></div>
                       </div>
-                      <ul class="form-control industry_min_heights padding_none contractor_profile">
-                        <select name="industrySector" [(ngModel)]="industrySector" multiple="true">
+                      <ul class="form-control ">
+                        <select class="industry_min_heights padding_none contractor_profile min_height_335" name="industrySector" [(ngModel)]="industrySector" multiple="true">
                           <option *ngFor="let industry of industrySectorData" value="{{industry.id}}">{{industry.industry}}</option>
                         </select>
                       </ul>

@@ -1,6 +1,20 @@
 .margin-tp18{
 	margin-top: 18px;
 }
+
+:host/deep/.irs-from{ background: #00ccff;}
+:host/deep/.irs-from:after{ border-top-color:#00ccff; }
+:host/deep/.irs-to{ background: #00ccff;}
+:host/deep/.irs-to:after{ border-top-color:#00ccff; }
+:host/deep/.irs-bar{ background:#00ccff;}
+:host/deep/.irs-slider{background:#00ccff; width:2px !important;}
+
+:host/deep/input[type="checkbox"]:checked + label span{ background: rgba(0, 0, 0, 0) url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Mjc2OTZGMzc5NzgxMTFFNzlDREVFMzAxRkZDMzdBNTAiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Mjc2OTZGMzg5NzgxMTFFNzlDREVFMzAxRkZDMzdBNTAiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoyNzY5NkYzNTk3ODExMUU3OUNERUUzMDFGRkMzN0E1MCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoyNzY5NkYzNjk3ODExMUU3OUNERUUzMDFGRkMzN0E1MCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ps8NKyMAAABYSURBVHjaYmQ487+TgYEhE4h5GUgDn4F4OgPQgE+f/vwnGYD0gPSCDAADoGkkYbAeoF4mBgrBqAGjBgwOA1iguYoXkh1IA6yMDD8Yyc3OIM1m3Ay7AQIMAK9xZNI9TerSAAAAAElFTkSuQmCC) no-repeat scroll 0 center; }
+:host/deep/a{ color:#00ccff !important;}
+:host/deep/.current_rate_signup .terms_of_use a {color: #ff0066 !important;}
+:host/deep/.rate_signup h2{ font-size: 16px; }
+:host/deep/.rate_signup span{ font-size: 20px; }
+
 .fileUpload {
     position: relative;
     overflow: hidden;
@@ -177,6 +191,8 @@
     color: #ffffff;
 }
 
+
+
 input[type=number]::-webkit-inner-spin-button, 
 input[type="number"]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
@@ -190,3 +206,4 @@ input[type="date"]::-webkit-outer-spin-button {
   margin: 0; 
 
 }
+
