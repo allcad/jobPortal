@@ -85,6 +85,7 @@ allErrorMsgFlag = false;
 addMulAddArray = [{'addresslLine1': 'line1', 'addressLine1Name': 'address1', 'addressLine2': 'line2', 'addressLine2Name': 'address2', 'city': 'city', 'cityName': 'cityN', 'country': 'cou', 'countryName': 'country1', 'postCode': '12', 'postName': 'postN', 'telephone': '134', 'telephone1': 'teleP'}]
 addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio': ''}];
 fd;
+WSErrorMsg = "";
   constructor(public _commonRequestService: CommonRequestService) {
     this.addMulAddArray.splice(0,1);
     this.addMulSocialArray.splice(0,1);
@@ -505,7 +506,7 @@ fd;
           else{
              this.succesMessageFlag =false;
               this.ErrorMesageFlag =true;
-              this.errorMsg = this.responseData.error[0];
+              this.WSErrorMsg = this.responseData.error[0];
           }
     
           // console.log("keySkill: ", this.listSignUpData);

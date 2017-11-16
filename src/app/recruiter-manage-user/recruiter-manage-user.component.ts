@@ -22,6 +22,7 @@ export class RecruiterManageUserComponent implements OnInit {
   successMessage = "";
   successMessageFlag = false;
   errorMessageFlag = false;
+  WSErrorMsg = "";
   
   constructor(public _commonRequestService: CommonRequestService) {
   	//this.addMulUserArray.splice(0,1);
@@ -62,7 +63,7 @@ export class RecruiterManageUserComponent implements OnInit {
          } else {
            this.successMessageFlag = false;
            this.errorMessageFlag = true;
-           this.errorMessage = data && data.error && data.error.length > 0 ? data.error[0] : '';
+           this.WSErrorMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
          }
         }
     );
@@ -85,7 +86,7 @@ export class RecruiterManageUserComponent implements OnInit {
            // this.successMessageFlag = true;
            // this.errorMessageFlag = false;
          } else {
-           this.successMessage = "Error While Creating Sub User";
+           this.WSErrorMsg = "Error While Creating Sub User";
            this.successMessageFlag = false;
            this.errorMessageFlag = true;
          }
@@ -110,7 +111,7 @@ export class RecruiterManageUserComponent implements OnInit {
            this.errorMessageFlag = false;
            //this.makeSubUser();
          } else {
-           this.successMessage = "Error While Creating Super User!";
+           this.WSErrorMsg = "Error While Creating Super User!";
            this.successMessageFlag = false;
            this.errorMessageFlag = true;
          }
@@ -135,7 +136,7 @@ export class RecruiterManageUserComponent implements OnInit {
            this.errorMessageFlag = false;
            this.makeSubUser();
          } else {
-           this.successMessage = "Error While Deleting Super User!";
+           this.WSErrorMsg = "Error While Deleting Super User!";
            this.successMessageFlag = false;
            this.errorMessageFlag = true;
          }

@@ -22,6 +22,10 @@
           <li *ngIf="webAddValidationFlag">Please enter valid web address.</li>
       </div>
 
+      <div class="errorbox" *ngIf="WSErrorMsg"><b></b><br> 
+          <li>{{WSErrorMsg}}</li>
+      </div>
+
 
       <div class="row">
         <div class="col-sm-100">
@@ -54,10 +58,10 @@
               <div class="alert alert-success margin-tp18" *ngIf="succesMessageFlag">
                 <a href="javascript:void(0)" class="close" title="close" (click)="succesMessageFlag = !succesMessageFlag">×</a> You are sign up <strong>succesfully!</strong>
               </div>
-              <div class="alert alert-danger margin-tp18" *ngIf="ErrorMesageFlag">
+              <!-- <div class="alert alert-danger margin-tp18" *ngIf="ErrorMesageFlag">
                 <a href="javascript:void(0)" class="close" title="close" (click)="ErrorMesageFlag = !ErrorMesageFlag">×</a>
                 <strong>Error!</strong> {{errorMsg}}
-              </div>
+              </div> -->
               <div class="job_search_keywords">
                 <h2 class="">Company Details</h2>
               </div>

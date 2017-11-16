@@ -38,9 +38,12 @@
                                         </ul>
                                     </div>
                                 </div> -->
-            <div class="alert alert-danger margin-tp18" *ngIf="errorMessageFlag">
+        <div class="errorbox" *ngIf="WSErrorMsg"><b></b><br> 
+          <li>{{WSErrorMsg}}</li>
+        </div>
+            <!-- <div class="alert alert-danger margin-tp18" *ngIf="errorMessageFlag">
               <a href="javascript:void(0)" class="close" title="close" (click)="errorMessageFlag = !errorMessageFlag">×</a>{{errorSuccessMessage}}
-            </div>
+            </div> -->
             <div class="alert alert-success margin-tp18" *ngIf="successMessageFlag">
               <a href="javascript:void(0)" class="close" title="close" (click)="successMessageFlag = !successMessageFlag">×</a>{{errorSuccessMessage}}
             </div>

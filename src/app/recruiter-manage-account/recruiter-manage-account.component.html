@@ -20,9 +20,13 @@
       <div class="alert alert-success margin-tp18" *ngIf="manageAccountFlag">
           <a href="javascript:void(0)" class="close" title="close" (click)="manageAccountFlag = !manageAccountFlag">×</a><strong>{{successMessage}}</strong>
         </div>
-        <div class="alert alert-danger margin-tp18" *ngIf="manageErrorFlag">
+        <!-- <div class="alert alert-danger margin-tp18" *ngIf="manageErrorFlag">
           <a href="javascript:void(0)" class="close" title="close" (click)="manageErrorFlag = !manageErrorFlag">×</a><strong>{{errorMessage}}</strong>
-        </div>
+        </div> -->
+        <div class="errorbox" *ngIf="WSErrorMsg"><b></b>
+        <br>
+        <li>{{WSErrorMsg}}</li>
+      </div>
         <div class="errorbox" *ngIf="nameFlag || jobTitleFlag || telephoneFlag || telephoneValidFlag"><b>The following error(s) occured:</b>
         <br>
         <li *ngIf="nameFlag">Name is required.</li>

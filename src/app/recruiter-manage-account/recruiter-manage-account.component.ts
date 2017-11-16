@@ -22,6 +22,7 @@ export class RecruiterManageAccountComponent implements OnInit {
   successMessage = "";
   manageErrorFlag = false;
   accountSuperUserName;
+  WSErrorMsg = "";
   constructor(public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -109,7 +110,7 @@ export class RecruiterManageAccountComponent implements OnInit {
            } else {
              this.manageErrorFlag = true;
              this.manageAccountFlag = false;
-             this.errorMessage = data && data.error && data.error.length > 0 ? data.error[0] : '';
+             this.WSErrorMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
            }
           }
       );

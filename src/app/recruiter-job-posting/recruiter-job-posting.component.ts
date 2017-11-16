@@ -45,6 +45,7 @@ cityFlag = false;
 minRateFlag = false;
 maxRateFlag = false;
 jobSpecificationFlag = false;
+WSErrorMsg = "";
   constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -345,7 +346,7 @@ jobSpecificationFlag = false;
                   var obj1 = {'jobPreviewData' : ''};
                   localStorage.setItem('editJobPost', JSON.stringify(obj1));
                 } else {
-                  this.postJobSuccessMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
+                  this.WSErrorMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
                 }
                 }
           );
@@ -366,6 +367,7 @@ jobSpecificationFlag = false;
                 } else if(data && data.error){
                   //this.previewJobErrorMsg = data.error;
                   //this.jobPostFlag = true;
+                  this.WSErrorMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
                 }
                 //this.jobPostFlag = true;
               }

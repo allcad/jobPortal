@@ -37,6 +37,12 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="errorbox" *ngIf="WSErrorMsg"><b></b><br> 
+                        <li>{{WSErrorMsg}}</li>
+                    </div>
+
+
                          <div class="alert alert-success margin-tp18" *ngIf="jobPostFlag">
                 <a href="javascript:void(0)" class="close" title="close" (click)="jobPostFlag = !jobPostFlag">×</a><strong>{{postJobSuccessMsg}}</strong>
               </div>

@@ -17,6 +17,7 @@ export class RecruiterManagePasswordComponent implements OnInit {
   confirmPasswordFlag = false;
   allErrorMessageFlag = false;
   errorMessageValue = "";
+  WSErrorMsg = "";
   constructor(public _commonRequestService: CommonRequestService, private router: Router) { }
 
   ngOnInit() {
@@ -67,7 +68,7 @@ export class RecruiterManagePasswordComponent implements OnInit {
              this.newPassword = "";
              this.confirmPassword = "";
            } else {
-             this.errorMessageValue = data && data.error && data.error.length > 0 ? data.error[0] : '';
+             this.WSErrorMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
            }
           }
       );
