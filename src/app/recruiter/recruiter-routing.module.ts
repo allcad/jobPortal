@@ -23,6 +23,7 @@ import { RecruiterWatchdogComponent } from '../recruiter-watchdog/recruiter-watc
 import { ViewContractorProfileComponent } from '../view-contractor-profile/view-contractor-profile.component';
 import { ResolverService } from '../resolver.service';
 import { RecuriterSavedWatchDogComponent } from '../recuriter-saved-watch-dog/recuriter-saved-watch-dog.component';
+import { RecruiterHomeComponent } from '../recruiter-home/recruiter-home.component';
 
 const recruiterRoutes: Routes = [{
     "path": "manage-password",
@@ -94,6 +95,10 @@ const recruiterRoutes: Routes = [{
 }, {
     "path" : "saved-watch-dog",
     "component": RecuriterSavedWatchDogComponent,
+    "resolve": {resolverData: ResolverService}
+}, {
+    "path" : "recruiter-home",
+    "component": RecruiterHomeComponent,
     "resolve": {resolverData: ResolverService}
 }
 ]

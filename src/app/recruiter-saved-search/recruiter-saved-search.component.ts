@@ -404,7 +404,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
             // this.errorMsg = "";
             }
             else {
-              this.errorMessageFlag = false;
+              this.errorMessageFlag = true;
               this.errorSuccessMessage = data && data.error ? data.error : '';
                // this.succesMessageFlag =false;
                // this.errorSuccessMessage = data && data.error && data.error.length > 0 ? data.error[0] : '';

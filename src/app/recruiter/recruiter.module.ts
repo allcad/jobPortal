@@ -30,6 +30,8 @@ import { RecruiterWatchListComponent } from '../recruiter-watch-list/recruiter-w
 import { RecruiterWatchdogComponent } from '../recruiter-watchdog/recruiter-watchdog.component';
 import { ViewContractorProfileComponent } from '../view-contractor-profile/view-contractor-profile.component';
 import { RecuriterSavedWatchDogComponent } from '../recuriter-saved-watch-dog/recuriter-saved-watch-dog.component';
+import { RecruiterHomeComponent } from '../recruiter-home/recruiter-home.component';
+
 @NgModule({
   declarations: [
     RecruiterManagePasswordComponent,
@@ -51,7 +53,8 @@ import { RecuriterSavedWatchDogComponent } from '../recuriter-saved-watch-dog/re
 	RecruiterWatchListComponent,
 	RecruiterWatchdogComponent,
 	ViewContractorProfileComponent,
-	RecuriterSavedWatchDogComponent
+	RecuriterSavedWatchDogComponent,
+	RecruiterHomeComponent
   ],
   imports: [
    

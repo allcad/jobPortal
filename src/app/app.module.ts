@@ -55,6 +55,7 @@ import { ResolverService } from './resolver.service';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,6 +79,9 @@ import { ResolverService } from './resolver.service';
     // ContractorSearchResultComponent,
     
     ContractorLoginFullJobComponent,
+   
+    
+    
     //ContractorNewsCategoryComponent,
     //TermUseComponent,
     //RecruiterTermsComponent
