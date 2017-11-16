@@ -62,7 +62,7 @@ searchNameExist = false;
   }
 
   saveSearch(form){
-
+    
     if(form.valid && this.isSearchAlreadyExist(this.searchName)){
       let url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/save_search";
       let inputJson =  {

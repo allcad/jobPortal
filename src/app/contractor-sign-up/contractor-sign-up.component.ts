@@ -23,7 +23,7 @@ export class ContractorSignUpComponent implements OnInit {
  contractor_job_title;
  contractor_key_skills;
  fileForCV:any;contractor_employment_situation:any="";contractService:any;
- contractor_rate_min;contractor_rate_max;checkAgree;
+ contractor_rate_min=200;contractor_rate_max=400;checkAgree;
  valid;
  fileForCv;
  dataForService:any;
@@ -299,6 +299,11 @@ fileChangeEvent(fileInput: any) {
           
         }
     );
+  }
+
+  rateChange(event){
+    this.contractor_rate_min = event.from;
+    this.contractor_rate_max = event.to;
   }
 
 }

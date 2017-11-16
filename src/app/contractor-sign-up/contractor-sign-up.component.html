@@ -202,11 +202,11 @@
                 <h2>ENTER YOUR CURRENT RATE</h2>
                 <!-- <img src="./assets/images/price-filter.png" alt="ads" title="ads" class="img-responsive">  -->
                 <div class="rate_signup">
-                  <h2>RATE <span> &#163;200</span> to <span> &#163;400</span> p/d</h2>
+                  <h2>RATE <span> &#163;{{contractor_rate_min}}</span> to <span> &#163;{{contractor_rate_max}}</span> p/d</h2>
 
                 </div>
 
-                <ion-range-slider type="double" prefix="£" class="width_100" (onFinish)="getRangeSliderValue($event)" #sliderElement min="0" value="100" max="2000" step="5" from="200" to="400">
+                <ion-range-slider type="double" prefix="£" class="width_100" (onFinish)="getRangeSliderValue($event)" #sliderElement min="0" value="100" max="2000" step="5" from="200" to="400" (onChange)="rateChange($event)">
                 </ion-range-slider>
               </div>
               <div class="current_rate_signup situation35">
