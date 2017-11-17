@@ -383,31 +383,6 @@ export class RecruiterSavedSearchComponent implements OnInit {
       // "page":1,
       // "limit":10,
       // "sort":8
-
-      "email":"test@test7.com",
-      "loginToken":"$2y$10$ERdO743JuPZF6a4SfV8HQe69MqBJBtM3o3cz.ChfrZbcySNegW1e6",
-      "recuriter_search_job_title":"sr. developer",
-      "recuriter_search_keywords":"test",
-      "recuriter_search_stemmed_terms":1,
-      "recuriter_search_core_skills":"java, php",
-      "recuriter_search_certifications":"abc",
-      "recuriter_search_dont_show_to_contractor":"test",
-      "recuriter_search_location":"test",
-      "recuriter_search_include_relocators":1,
-      "recuriter_search_by_rate_min":"250",
-      "recuriter_search_by_rate_max":"500",
-      "recuriter_search_by_rate_type":"Hourly",
-      "recuriter_search_by_time_left":"6",
-      "recuriter_search_by_unavailable":1,
-      "recuriter_search_by_updated_contractor_since":6,
-      "recuriter_search_by_contract_name":"john",
-      "recuriter_search_by_education":"abc",
-      "recuriter_search_by_industry":"1003,1004",
-      "recuriter_search_by_security_clearance":"1, 2",
-      "recuriter_search_by_driving_license":1,
-      "page":1,
-      "limit":10,
-      "sort":8
     }
 
 

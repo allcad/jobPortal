@@ -75,7 +75,7 @@ invalidErrorMsg = "";
              this.errorMsgFlag =false;
              localStorage.setItem("loginDetail", JSON.stringify({"token": data.data.loginToken, "email": data.data.email}))
               this.succesLoginFlag =true;
-              this.router.navigate(['/recruiter/profile']);
+              this.router.navigate(['/recruiter/recruiter-home']);
               //this.getViewProfileDta();
              
           }
