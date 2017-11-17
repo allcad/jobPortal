@@ -20,3 +20,10 @@
     margin-left: 15px;
     color: #ffffff;
 }
+
+:host/deep/.irs-from{ background: #00ccff;}
+:host/deep/.irs-from:after{ border-top-color:#00ccff; }
+:host/deep/.irs-to{ background: #00ccff;}
+:host/deep/.irs-to:after{ border-top-color:#00ccff; }
+:host/deep/.irs-bar{ background:#00ccff;}
+:host/deep/.irs-slider{background:#00ccff; width:2px !important;}

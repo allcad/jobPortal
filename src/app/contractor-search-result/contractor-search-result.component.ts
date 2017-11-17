@@ -11,6 +11,7 @@ export class ContractorSearchResultComponent implements OnInit {
   constructor(private _commonRequestService: CommonRequestService) { }
   totalRecords;
   searchResult = [];
+  filteredData = []
   ngOnInit() {
   	console.log(JSON.parse(localStorage.getItem("jobSearch")));
   	let searchJson = JSON.parse(localStorage.getItem("jobSearch"));
@@ -23,6 +24,9 @@ export class ContractorSearchResultComponent implements OnInit {
   		.subscribe(data=>{
   			if(data.status == "TRUE"){
   				this.searchResult = data.data;
+          this.filteredData = this.searchResult.filter(item=>{
+            return item
+          });
   				this.totalRecords = data.recordsTotal;
   			} else{
   				if(data.error == "No Record Found"){
@@ -51,5 +55,12 @@ export class ContractorSearchResultComponent implements OnInit {
    
     
   }
+  }
+
+
+  getRangeSliderValue(event){
+    this.filteredData = this.searchResult.filter(item=>{
+      return  item.prefereedRate.minRate>event.from && item.prefereedRate.maxRate<event.to
+    })
   }
 }

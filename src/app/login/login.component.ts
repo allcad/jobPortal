@@ -46,11 +46,13 @@ totalInvalid = false;
              this.errorMsgFlag =true;
               this.succesLoginFlag =false;
               this.errorMsg = typeof(data.error)=='object' ? data.error[0] : data.error;
+              //setTimeout(()=>{this.errorMsgFlag = false},1000)
           }
         }
     )
        
       }else{
+        this.errorMsgFlag = false;
         if(parseInt(this.addNumber) !== (this.number + this.number2)){
          this.totalInvalid = true; 
         }
