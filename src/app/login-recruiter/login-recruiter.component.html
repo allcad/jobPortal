@@ -49,21 +49,21 @@
               <div class="row">
                 <div class="col-sm-50">
                   <div class="form-group">
-                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="EMAIL*" style="color:#fff;" [(ngModel)]="email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [tooltip]="emailTooltip">
-                    <tooltip-content #emailTooltip>
+                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="EMAIL*" style="color:#fff;" [(ngModel)]="email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                    <!-- <tooltip-content #emailTooltip>
                       <span *ngIf="f?.form && f.form.controls && f.form.controls.email?.valid" style="color: white"> Email </span>
                       <span [hidden]="!f.form.controls.email?.hasError('required')" style="color: white"> Email  is required!</span>
                       <span [hidden]="!f.form.controls.email?.hasError('pattern')" style="color:white">Email invalid!</span>
-                    </tooltip-content>
+                    </tooltip-content> -->
                   </div>
                 </div>
                 <div class="col-sm-50">
                   <div class="form-group">
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="PASSWORD*" [(ngModel)]="password" name="password" required [tooltip]="passwordTooltip">
-                    <tooltip-content #passwordTooltip>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="PASSWORD*" [(ngModel)]="password" name="password" required>
+                    <!-- <tooltip-content #passwordTooltip>
                       <span *ngIf="f?.form && f.form.controls && f.form.controls.password?.valid" style="color:white"> Password </span>
                       <span [hidden]="!f.form.controls.password?.hasError('required')" style="color: white"> Password  is required!</span>
-                    </tooltip-content>
+                    </tooltip-content> -->
                   </div>
                 </div>
               </div>

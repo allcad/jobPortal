@@ -34,10 +34,13 @@ invalidErrorMsg = "";
         this.emailNameFlag = true;
       }
 
-      if(emailRefex.test(this.email)) {
-        this.emailNamePatternFlag = false;
-      } else {
-        this.emailNamePatternFlag = true;
+      if(this.email) {
+        if(emailRefex.test(this.email)) {
+          this.emailNamePatternFlag = false;
+        } 
+        else {
+          this.emailNamePatternFlag = true;
+        }
       }
 
       if(this.password) {
