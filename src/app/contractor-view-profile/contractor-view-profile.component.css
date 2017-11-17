@@ -37,3 +37,7 @@ agm-map {
     color: #fff;
     -webkit-transition: all 0.2s ease 0s;
 }
+
+.font_capitaliz {
+    text-transform: uppercase !important;
+}

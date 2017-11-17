@@ -19,3 +19,8 @@
     margin-left: 15px;
     color: #ffffff;
 }
+
+.my_applications_box .footer_box .social_box_footer a:hover {
+    color: #23527c;
+    -webkit-transition: all 0.5s ease 0s;
+}

@@ -54,3 +54,20 @@
     margin-left: 15px;
     color: #ffffff;
 }
+
+input[type="radio"]:checked + label span{ background: rgba(0, 0, 0, 0) url("../../assets/images/check-radio.png") no-repeat scroll 0 center; }
+
+.form-control.contractor_profile > option {
+    color: #000;
+    cursor: context-menu;
+    font-size: 15px;
+    margin-bottom: 2px;
+    padding: 5px 20px 5px 10px;
+    font-family: 'HelveticaNeue';
+}
+
+.form-control.contractor_profile > option:first-child{
+    background: #4cdbff none repeat scroll 0 0;
+    color: #fff;
+    -webkit-transition: all 0.2s ease 0s;
+}
