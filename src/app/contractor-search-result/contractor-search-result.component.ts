@@ -12,25 +12,44 @@ export class ContractorSearchResultComponent implements OnInit {
   totalRecords;
   searchResult = [];
   filteredData = []
+  sortOptionsList = [];
+  sort = 1;
+  searchJson;
   ngOnInit() {
   	console.log(JSON.parse(localStorage.getItem("jobSearch")));
-  	let searchJson = JSON.parse(localStorage.getItem("jobSearch"));
-  	this.getSearchData(searchJson);
+  	this.searchJson = JSON.parse(localStorage.getItem("jobSearch"));
+  	this.getSearchData();
+    this.getSortList();
+
   }
 
-  getSearchData(searchJson){
+  getSortList(){
+    let url = 'http://dev.contractrecruit.co.uk/contractor_admin/api/get/short_by_contractor_search';
+    this._commonRequestService.getData(url)
+      .subscribe(data=>{
+        this.sortOptionsList = data.data;
+      })
+
+
+  }
+
+
+
+  getSearchData(){
+    this.searchJson.sort = this.sort;
   	let url ="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/search";
-  	this._commonRequestService.postData(url,searchJson)
+  	this._commonRequestService.postData(url,this.searchJson)
   		.subscribe(data=>{
   			if(data.status == "TRUE"){
   				this.searchResult = data.data;
-          this.filteredData = this.searchResult.filter(item=>{
-            return item
-          });
+          // this.filteredData = this.searchResult.filter(item=>{
+          //   return item
+          // });
   				this.totalRecords = data.recordsTotal;
   			} else{
   				if(data.error == "No Record Found"){
   					this.totalRecords = 0;
+            this.searchResult = [];
   				}
   			}
   		})
@@ -59,8 +78,12 @@ export class ContractorSearchResultComponent implements OnInit {
 
 
   getRangeSliderValue(event){
-    this.filteredData = this.searchResult.filter(item=>{
-      return  item.prefereedRate.minRate>event.from && item.prefereedRate.maxRate<event.to
-    })
+    // this.filteredData = this.searchResult.filter(item=>{
+    //   return  item.prefereedRate.minRate>event.from && item.prefereedRate.maxRate<event.to
+    // })
+
+    this.searchJson.contractor_search_by_rate_min = event.from;
+    this.searchJson.contractor_search_by_rate_max = event.to;
+    this.getSearchData();
   }
 }

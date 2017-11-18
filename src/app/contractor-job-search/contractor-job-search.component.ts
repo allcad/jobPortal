@@ -21,13 +21,24 @@ industrySectorData = [];
 industrySector = [];
 lastSearchData;
 submitClick = false;
+timeSlotList =[];
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
     window.scroll(0,0);
     this.getIndustrySector();
+    this.gettimeSlotList();
   }
 
+  gettimeSlotList(){
+    let dataUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/time_slot_contractor_search";
+       this._commonRequestService.getData(dataUrl).subscribe(
+        data => {
+          this.timeSlotList = data.data;
+       
+        }
+    );
+  }
 
   getIndustrySector(){
     let dataUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/industries";

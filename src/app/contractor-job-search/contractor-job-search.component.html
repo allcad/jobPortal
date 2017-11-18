@@ -147,14 +147,14 @@
                         <div class="input-group-addon"><img src="./assets/images/show-contacts.png" alt="Show Contracts Posted Since" title="Show Contracts Posted Since" class="img-responsive"></div>
                         <!-- <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Show Contacts Posted Since:" name="contacts" [(ngModel)]="showContacts"> -->
                         <select class="form-control minimal background_drop_down" [(ngModel)]="showContracts" name="showContracts">
-                          <option value="all">All time</option>
-                          <option value="1">Last 24 hours</option>
+                          <option *ngFor ="let slot of timeSlotList" [value]="slot.id">{{slot.text}}</option>
+                          <!-- <option value="1">Last 24 hours</option>
                           <option value="2">Last 48 hours</option>
                           <option value="7">Last 7 days</option>
                           <option value="10">Last 10 days</option>
                           <option value="14">Last 14 days</option>
                           <option value="30">Last 30 days</option>
-                          <option value="60">Last 60 days</option>
+                          <option value="60">Last 60 days</option> -->
                         </select>
                       </div>
                     </div>

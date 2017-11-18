@@ -25,17 +25,26 @@
           <div class="col-sm-30">
             <div class="pull-right application_sort_by position_relative padding_left_right_15"> <a href="javascript:void(0)" class="dropdown-toggle btn-primary font_capitaliz width_180px hover_white_pluse" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Search Option <i class="fa fa-angle-down plus_blue font_size_margin" aria-hidden="true"></i></a>
               <ul class="dropdown-menu">
+                <li routerLink="../jobSearch">New Search</li>
+                <li routerLink="../jobSearch">Refine Search</li>
+                <li >Save Search</li>
+                <li>Send Search</li>
               </ul>
             </div>
             <div class="pull-right application_sort_by width100 padding_left_right_15"> <a href="javascript:void(0)" class="dropdown-toggle btn-primary font_capitaliz hover_white_pluse" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <i class="fa fa-angle-down plus_blue font_size_margin" aria-hidden="true"></i></a>
-              <ul class="dropdown-menu">
-                <li>Most Recent</li>
-                <li>Most Relevent</li>
-                <li>Best Rate</li>
-                <li>Closest Distance</li>
+              <ul class="dropdown-menu" (change)="sortData()">
+                <li *ngFor="let option of sortOptionsList" [value]="option.id" (click)="sort=option.id; getSearchData()">{{option.text}}</li>
 
               </ul>
             </div>
+
+
+           <!--  <select class="pull-right application_sort_by width100 padding_left_right_15" [(ngModel)]="sort">
+              <a href="javascript:void(0)" class="dropdown-toggle btn-primary font_capitaliz hover_white_pluse" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <i class="fa fa-angle-down plus_blue font_size_margin" aria-hidden="true"></i></a>
+
+              <option*ngFor="let item of sortOptionsList" [value]="option.id">{{item.text}}/option>
+            </select> -->
+
           </div>
         </div>
       </div>
@@ -54,7 +63,7 @@
               
             </div>
 
-      <div class=" col-md-33 col-sm-33" *ngFor="let item of filteredData">
+      <div class=" col-md-33 col-sm-33" *ngFor="let item of searchResult">
         <div class="my_applications_box">
           <div class="header_top">
             <img src="./assets/images/location-map.png" alt="ads" title="ads" class="img-responsive">
