@@ -92,6 +92,7 @@ export class RecruiterManageJobsComponent implements OnInit {
         data => {
          console.log("data from manage job list--", data);
          if(data && data.status === "TRUE") {
+           this.errorMsg = "";
            this.errorMsgFlag = false;
            this.listingData = data.data;
              for(var i=0;i<3;i++) {

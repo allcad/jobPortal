@@ -65,9 +65,9 @@
                                 <div class="col-sm-50 col-xs-50">
                                     <div class="home_recruiter_contant">
                                         <p class="text_pink"><strong>Contractor Search</strong></p>
-                                        <p>Saved Search</p>
-                                        <p><strong>Watch</strong>Dogs </p>
-                                        <p><strong>Watch</strong>List <span class="text_pink"><strong>12</strong></span></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['../saved-search']">Saved Search</a></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['../watchdog']"><strong>Watch</strong>Dogs </a></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['../watch-list']"><strong>Watch</strong>List <span class="text_pink"><strong>12</strong></span></a></p>
                                     </div>
                                 </div>
                             </div>
@@ -82,10 +82,10 @@
                                 </div>
                                 <div class="col-sm-50 col-xs-50">
                                     <div class="home_recruiter_contant">
-                                        <p>Post a Job</p>
-                                        <p>Manage Jobs <span class="text_pink"><strong>6</strong></span></p>
-                                        <p>View Applications </p>
-                                        <p>Post a Premium Job</p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['../job-posting']">Post a Job</a></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['../manage-jobs']">Manage Jobs <span class="text_pink"><strong>6</strong></span></a></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['../view-applications']">View Applications </a></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['../view-applications']">Post a Premium Job</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -100,9 +100,9 @@
                                 </div>
                                 <div class="col-sm-50 col-xs-50">
                                     <div class="home_recruiter_contant">
-                                        <p><strong>PROFILE COMPLETION</strong> <span class="text_pink"><strong>85%</strong></span></p>
-                                        <p>View Profile</p>
-                                        <p>Edit Profile</p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['../profile']"><strong>PROFILE COMPLETION</strong> <span class="text_pink"><strong>85%</strong></span></a></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['../view-profile']">View Profile</a></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['../profile']">Edit Profile</a></p>
                                         <p>Share Profile</p>
                                     </div>
                                 </div>
@@ -118,10 +118,10 @@
                                 </div>
                                 <div class="col-sm-50 col-xs-50">
                                     <div class="home_recruiter_contant">
-                                        <p>View Current Plan</p>
-                                        <p>Edit Account Details</p>
-                                        <p>Add Another User</p>
-                                        <p>View Account Users</p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['../view-profile']">View Current Plan</a></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['../manage-account']">Edit Account Details</a></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['../manage-user']">Add Another User</a></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['../manage-user']">View Account Users</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -134,7 +134,7 @@
                                         <a href="javascript:void(0)"><img src="./assets/images/add-icon.png" alt="add" title="add"></a>
                                         <a href="javascript:void(0)"><img src="./assets/images/filter-icon.png" alt="filter" title="filter"></a>
                                     </div>
-                                    <p> Number of Applications</p>
+                                    <p><a href="javascript:void(0);" [routerLink]="['../view-applications']">Number of Applications</a></p>
                                     <ul>
                                         <li><i class="fa fa-circle color_1" aria-hidden="true"></i> >100 </li>
                                         <li><i class="fa fa-circle color_2" aria-hidden="true"></i> 75 - 100 </li>
@@ -214,35 +214,35 @@
                     <h2 class="font_capitalizs">Your Jobs with the <span class="text_pink">least</span> | Most applications </h2>
                 </div>
                 <div class="row">
-                    <div class=" col-md-33 col-sm-33">
+                    <div class=" col-md-33 col-sm-33" *ngFor="let item of listingData">
                         <div class="my_applications_box">
                             <div class="header_top">
                                 <img src="./assets/images/location-map.png" alt="ads" title="ads" class="img-responsive">
-                                <p class="text_pink">Basingstoke, Hampshire</p>
+                                <p class="text_pink">{{item?.recruiterNameId}}</p>
                             </div>
                             <div class="application_box_contant">
                                 <img src="./assets/images/application1.png" alt="ads" title="ads" class="img-responsive">
-                                <h2>Retention Marketing Manager</h2>
+                                <h2>{{item?.jobTitle}}</h2>
                             </div>
                             <div class="application_box_contant2">
-                                <p><span class="text_pink">Location:</span> Basingstoke, Hampshire</p>
-                                <p><span class="text_pink">Rate:</span> £200 - £260 p/d</p>
-                                <p><span class="text_pink">Start Date:</span> 10/07/2017</p>
-                                <p><span class="text_pink">Duration:</span> 6 Months</p>
-                                <p class="full_contant">Xcede are currently seeking a contract Marketing Manager for a 6 Month Contract with a leading UK brand.
-                                    <br> Focusing on Retention you will be providing maternity cover...</p>
+                                <p><span class="text_pink">Location:</span>{{item?.cityTown}}</p>
+                                <p><span class="text_pink">Rate:</span> £{{item?.prefereedRate?.minRate}} - £{{item?.prefereedRate?.maxRate}} p/<span *ngIf="item?.prefereedRate?.dailyHourlyRate === 'daily'">d</span>
+                                    <span *ngIf="item?.prefereedRate?.dailyHourlyRate === 'hourly'">h</span></p>
+                                <p><span class="text_pink">Start Date:</span>{{item?.startDate}}</p>
+                                <p><span class="text_pink">Duration:</span>{{item?.duration}}</p>
+                                <p class="full_contant">{{item?.jobSpecification}}</p>
                             </div>
                             <div class="footer_box">
                                 <div class="pull-left social_box_footer">
                                     <p><span class="text_pink">25</span> Applications</p>
                                 </div>
                                 <div class="pull-right view_company">
-                                    <a href="javascript:void(0)" class="hover_text_pink">Edit Posting <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                                    <a href="javascript:void(0)" [routerLink]="['../job-posting']" (click)="passJobId(item?.jobid)" class="hover_text_pink">Edit Posting <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-34 col-sm-34">
+                    <!-- <div class="col-md-34 col-sm-34">
                         <div class="my_applications_box">
                             <div class="header_top">
                                 <img src="./assets/images/location-map.png" alt="ads" title="ads" class="img-responsive">
@@ -297,7 +297,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="row">
                     <div class="col-sm-100">

@@ -501,6 +501,7 @@ WSErrorMsg = "";
                   this.ErrorMesageFlag =false
           this.profileData={};
           this.errorMsg = "";
+          this.WSErrorMsg = "";
           this.getProfileDta();
           }
           else{

@@ -75,6 +75,7 @@ invalidErrorMsg = "";
           console.log("data--", data);
           this.getData = data;
            if( this.getData.status === "TRUE" && this.getData.data.type === "recuriter"){
+             this.invalidErrorMsg ="";
              this.errorMsgFlag =false;
              localStorage.setItem("loginDetail", JSON.stringify({"token": data.data.loginToken, "email": data.data.email}))
               this.succesLoginFlag =true;

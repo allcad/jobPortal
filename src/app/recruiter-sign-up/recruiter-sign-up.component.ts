@@ -30,6 +30,7 @@ export class RecruiterSignUpComponent implements OnInit {
   verifyEmailAddress;
   passwordSameFlag = false;
   emailSameFlag = false;
+  invalidErrorMsg = "";
   inputData; JobTitle; phoneNo; emailAddress; passwordValue; keySkill; termOfUse = false; inputUrl; status; succesMessageFlag = false;
   constructor(public _commonRequestService: CommonRequestService) { }
 
@@ -171,10 +172,12 @@ export class RecruiterSignUpComponent implements OnInit {
               this.keySkill = "";
               this.verifyPasswordValue = "";
               this.termOfUse = false;
+              this.invalidErrorMsg = "";
             }
             else{
                this.succesMessageFlag =false;
                 this.ErrorMesageFlag =true;
+                this.invalidErrorMsg = data && data.error ? data.error : '';
             }
             console.log("rercu_sign: ", this.status);
           }

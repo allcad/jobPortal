@@ -270,6 +270,7 @@ export class RecuriterSavedWatchDogComponent implements OnInit {
                   this.succesMessageFlag =true;
                   this.errorMessageFlag = false;
                   this.errorMessage = "";
+                  this.errorMessage = "";
                   this.resetFields();
                   this.getSaveSearchList();
 

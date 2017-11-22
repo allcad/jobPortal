@@ -106,6 +106,7 @@ export class RecruiterManageAccountComponent implements OnInit {
              this.name = "";
              this.jobTitle = "";
              this.telePhone = "";
+             this.WSErrorMsg = "";
              this.recruiterAccountDetails();
            } else {
              this.manageErrorFlag = true;

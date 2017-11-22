@@ -97,6 +97,7 @@ export class RecruiterPreviewJobComponent implements OnInit {
               console.log("data result", data);
               if(data && data.status === "TRUE") {
                 this.jobPostFlag = false;
+                this.previewJobErrorMsg = "";
                 this.router.navigate(['/recruiter/manage-jobs']);
               } else if(data && data.error){
                 this.previewJobErrorMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
@@ -114,6 +115,7 @@ export class RecruiterPreviewJobComponent implements OnInit {
               console.log("data result", data);
               if(data && data.status === "TRUE") {
                 this.jobPostFlag = false;
+                this.previewJobErrorMsg = "";
                 this.router.navigate(['/recruiter/manage-jobs']);
               } else if(data && data.error){
                 this.previewJobErrorMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';

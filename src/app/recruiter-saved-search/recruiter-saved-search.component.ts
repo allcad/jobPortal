@@ -298,6 +298,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
             window.scroll(0,0);
             if(this.responseData.status === "TRUE"){
                     this.succesMessageFlag =true;
+                    this.WSErrorMsg = "";
                     this.errorSuccessMessage = "Saved succesfully !";
                     this.successMessageFlag  = true;
                     this.errorMessageFlag = false;
@@ -327,6 +328,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
             window.scroll(0,0);
             if(this.responseData.status === "TRUE"){
                     this.succesMessageFlag =true;
+                    this.WSErrorMsg = "";
                     this.errorSuccessMessage = "Saved succesfully !";
                     this.successMessageFlag  = true;
                     this.errorMessageFlag = false;
@@ -357,32 +359,32 @@ export class RecruiterSavedSearchComponent implements OnInit {
 
   searchResult() {
     var savedSearchSaveJson = {
-      // "email":"test@test8.com",
-      // "loginToken":"$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y",
-      // // "recuriter_saved_search_name":this.savedSearchName,
-      // // "recuriter_search_add_to_watchdog":this.addToWatchDogCheck === true ? 1 : 2,
-      // "recuriter_search_job_title":this.jobTitle?this.jobTitle:'',
-      // "recuriter_search_keywords":this.keywordSearch?this.keywordSearch:'',
-      // "recuriter_search_stemmed_terms":this.stemmedTerms === true ? 1 : 2,
-      // "recuriter_search_core_skills":this.coreSkills?this.coreSkills:'',
-      // "recuriter_search_certifications":this.certificationValues?this.certificationValues:'',
-      // "recuriter_search_dont_show_to_contractor":this.dontShowContractor?this.dontShowContractor:'',
-      // "recuriter_search_location":this.cityTownValue?this.cityTownValue:'',
-      // "recuriter_search_include_relocators":this.includeRelocators ? 1 : 2,
-      // "recuriter_search_by_rate_min":this.minRate?this.minRate:'',
-      // "recuriter_search_by_rate_max":this.maxRate?this.maxRate:'',
-      // "recuriter_search_by_rate_type":this.dailyHourlyValue?this.dailyHourlyValue:'',
-      // "recuriter_search_by_time_left":this.timeLeftOnCutCont?this.timeLeftOnCutCont:'',
-      // "recuriter_search_by_unavailable":this.includeUnavailable ? 1 : 2,
-      // "recuriter_search_by_updated_contractor_since":this.showContractors?this.showContractors:'',
-      // "recuriter_search_by_contract_name":this.contractorName?this.contractorName:'',
-      // "recuriter_search_by_education":this.educationValue?this.educationValue:[],
-      // "recuriter_search_by_industry":JSON.stringify(this.industrySectorValue)?JSON.stringify(this.industrySectorValue) : [],
-      // "recuriter_search_by_security_clearance":JSON.stringify(this.securityClearValue) ?JSON.stringify(this.securityClearValue) : [],
-      // "recuriter_search_by_driving_license":this.drivingLicenceValue == 'yes' ? 1 : 2,
-      // "page":1,
-      // "limit":10,
-      // "sort":8
+      "email":"test@test8.com",
+      "loginToken":"$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y",
+      // "recuriter_saved_search_name":this.savedSearchName,
+      // "recuriter_search_add_to_watchdog":this.addToWatchDogCheck === true ? 1 : 2,
+      "recuriter_search_job_title":this.jobTitle?this.jobTitle:'',
+      "recuriter_search_keywords":this.keywordSearch?this.keywordSearch:'',
+      "recuriter_search_stemmed_terms":this.stemmedTerms === true ? 1 : 2,
+      "recuriter_search_core_skills":this.coreSkills?this.coreSkills:'',
+      "recuriter_search_certifications":this.certificationValues?this.certificationValues:'',
+      "recuriter_search_dont_show_to_contractor":this.dontShowContractor?this.dontShowContractor:'',
+      "recuriter_search_location":this.cityTownValue?this.cityTownValue:'',
+      "recuriter_search_include_relocators":this.includeRelocators ? 1 : 2,
+      "recuriter_search_by_rate_min":this.minRate?this.minRate:'',
+      "recuriter_search_by_rate_max":this.maxRate?this.maxRate:'',
+      "recuriter_search_by_rate_type":this.dailyHourlyValue?this.dailyHourlyValue:'',
+      "recuriter_search_by_time_left":this.timeLeftOnCutCont?this.timeLeftOnCutCont:'',
+      "recuriter_search_by_unavailable":this.includeUnavailable ? 1 : 2,
+      "recuriter_search_by_updated_contractor_since":this.showContractors?this.showContractors:'',
+      "recuriter_search_by_contract_name":this.contractorName?this.contractorName:'',
+      "recuriter_search_by_education":this.educationValue?this.educationValue:[],
+      "recuriter_search_by_industry":JSON.stringify(this.industrySectorValue)?JSON.stringify(this.industrySectorValue) : [],
+      "recuriter_search_by_security_clearance":JSON.stringify(this.securityClearValue) ?JSON.stringify(this.securityClearValue) : [],
+      "recuriter_search_by_driving_license":this.drivingLicenceValue == 'yes' ? 1 : 2,
+      "page":1,
+      "limit":10,
+      "sort":8
     }
 
 
@@ -395,6 +397,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
             console.log("search result--", data);
             window.scroll(0,0);
             if(data.status === "TRUE"){
+              this.WSErrorMsg = "";
                     // this.succesMessageFlag =true;
                     // this.errorSuccessMessage = "Saved succesfully !";
                     // this.successMessageFlag  = true;

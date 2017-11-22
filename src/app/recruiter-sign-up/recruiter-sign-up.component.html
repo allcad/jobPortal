@@ -38,10 +38,14 @@
               <a href="javascript:void(0)" class="close" title="close" (click)="succesMessageFlag = !succesMessageFlag">×</a>
               You are sign up <strong>succesfully!</strong>
           </div>
-                        <div class="alert alert-danger margin-tp18" *ngIf="ErrorMesageFlag">
+          <!-- <div class="alert alert-danger margin-tp18" *ngIf="ErrorMesageFlag">
               <a href="javascript:void(0)" class="close" title="close" (click)="ErrorMesageFlag = !ErrorMesageFlag">×</a>
             <strong>Error!</strong>  You are already sign up with this Email!
-          </div>
+          </div> -->
+
+          <div class="errorbox" *ngIf="invalidErrorMsg"><b></b><br> 
+          <li>{{invalidErrorMsg}}</li>
+      </div>
 
           <div class="signup_form_section">
             <form  #user="ngForm" (ngSubmit)="onSignUp(user)">

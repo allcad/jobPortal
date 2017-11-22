@@ -339,6 +339,7 @@ WSErrorMsg = "";
                 window.scroll(0,0);
                 if(data && data.status === "TRUE") {
                   this.resetData();
+                  this.WSErrorMsg = "";
                   this.postJobSuccessMsg = 'Post Job Save succesfully!';
                    var obj = {'jobId' : ''};
                   localStorage.setItem('recruiterJobData', JSON.stringify(obj));
@@ -361,6 +362,7 @@ WSErrorMsg = "";
                    window.scroll(0,0);
                   this.resetData();
                   this.getTemplateData();
+                  this.WSErrorMsg = "";
                   this.postJobSuccessMsg = 'Post Job Update succesfully!'
                   //this.jobPostFlag = false;
                   //this.router.navigate(['/recruiter/manage-jobs']);

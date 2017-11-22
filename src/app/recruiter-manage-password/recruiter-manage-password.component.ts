@@ -67,6 +67,7 @@ export class RecruiterManagePasswordComponent implements OnInit {
              this.oldPassword = "";
              this.newPassword = "";
              this.confirmPassword = "";
+             this.WSErrorMsg = "";
            } else {
              this.WSErrorMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
            }

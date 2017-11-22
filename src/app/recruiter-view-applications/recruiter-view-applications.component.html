@@ -114,7 +114,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-50 col-md-64">
-                                        <div class="footer_right_part"> <a href="{{item?.resume[0]['attachment_url']}}/{{item?.resume[0]['attachment_name']}}" class="btn-primary hover_text_pink hover_white_pluse width_280px" target="_blank" download><span>Download CV</span> <i class="fa fa-download plus_blue text_pinks" aria-hidden="true"></i></a> <a href="javascript:void(0);" (click)="viewContractorProfile(item?.contractor_reg_id, item?.contractor_first_name, item?.contractor_last_name)" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>View Profile</span> <i class="fa fa-plus plus_blue text_pinks" aria-hidden="true"></i></a> </div>
+                                        <div class="footer_right_part"> <a *ngIf="item && item?.resume && item?.resume.length > 0" href="{{item?.resume[0]['attachment_url']}}/{{item?.resume[0]['attachment_name']}}" class="btn-primary hover_text_pink hover_white_pluse width_280px" target="_blank" download><span>Download CV</span> <i class="fa fa-download plus_blue text_pinks" aria-hidden="true"></i></a> <a href="javascript:void(0);" (click)="viewContractorProfile(item?.contractor_reg_id, item?.contractor_first_name, item?.contractor_last_name)" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>View Profile</span> <i class="fa fa-plus plus_blue text_pinks" aria-hidden="true"></i></a> </div>
                                     </div>
                                 </div>
                             </div>

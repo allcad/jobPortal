@@ -59,6 +59,7 @@ export class RecruiterManageUserComponent implements OnInit {
            this.jobTitleValue = "";
            this.confirmPassWord = "";
            this.telephoneV = "";
+           this.WSErrorMsg = "";
            this.makeSubUser();
          } else {
            this.successMessageFlag = false;
@@ -82,6 +83,7 @@ export class RecruiterManageUserComponent implements OnInit {
          if (data && data.status === "TRUE") {
            this.subUserArray = data.data;
            this.totalNumberOfUser = this.subUserArray.length + 1;
+           this.WSErrorMsg = "";
            // this.successMessage = "Sub User Created Succesfully!";
            // this.successMessageFlag = true;
            // this.errorMessageFlag = false;
@@ -109,6 +111,7 @@ export class RecruiterManageUserComponent implements OnInit {
            this.successMessage = "Super User Created Succesfully!";
            this.successMessageFlag = true;
            this.errorMessageFlag = false;
+           this.WSErrorMsg = "";
            //this.makeSubUser();
          } else {
            this.WSErrorMsg = "Error While Creating Super User!";
@@ -134,6 +137,7 @@ export class RecruiterManageUserComponent implements OnInit {
            this.successMessage = "User Deleted Succesfully!";
            this.successMessageFlag = true;
            this.errorMessageFlag = false;
+           this.WSErrorMsg = "";
            this.makeSubUser();
          } else {
            this.WSErrorMsg = "Error While Deleting Super User!";
