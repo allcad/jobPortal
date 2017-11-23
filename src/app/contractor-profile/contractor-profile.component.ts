@@ -172,11 +172,11 @@ export class ContractorProfileComponent implements OnInit {
         this.fd.append('certification',this.certification);
         this.fd.append('qualification',this.qualification);
         for(let i=0;i<this.uploadedCvArray.length; i++){
-          this.fd.append('uploadCV[]',JSON.stringify(this.uploadedCvArray[i]));
+          this.fd.append('uploadCV[]',this.uploadedCvArray[i]);
         }
         
         for(let i=0; i<this.uploadedCoverLetter.length; i++){
-          this.fd.append('uploadCoverLetter[]',JSON.stringify(this.uploadedCoverLetter[i]));
+          this.fd.append('uploadCoverLetter[]',this.uploadedCoverLetter[i]);
         }
 
 
