@@ -306,4 +306,12 @@ fileChangeEvent(fileInput: any) {
     this.contractor_rate_max = event.to;
   }
 
+  getLocation(){
+    let url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this.contractor_post_code + "&key=AIzaSyCcc7ZyRGjRbAuDgsLSQGdTuFxvLW9FGiI"
+    this._commonRequestService.getData(url)
+      .subscribe(data=>{
+        console.log(data);
+      })
+  }
+
 }

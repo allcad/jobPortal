@@ -28,11 +28,11 @@
                         </div>
                         <div class="col-sm-75 col-md-80">
                             <div class="web_email_content">
-                                <p><span>Website</span> {{companyDetail?.companySocial?.webAddress}}/</p>
-                                <p><span>Email</span> {{companyDetail?.companySocial?.emailAddress}}</p>
-                                <p><span>Size</span> &lt;{{companyDetail?.companyDetails?.companySize}} Employees</p>
-                                <p><span>Location</span> {{companyDetail?.companyDetails?.companyAddress}}</p>
-                                <p><span>Description</span> {{companyDetail?.companyDescription}}<span class="text_manage"></span></p>
+                                <p><span>Website</span> {{companyDetail?.companySocial?.webAddress ? companyDetail?.companySocial?.webAddress : 'NA' }} </p>
+                                <p><span>Email</span> {{companyDetail?.companySocial?.emailAddress ? companyDetail?.companySocial?.emailAddress : 'NA'}}</p>
+                                <p><span>Size</span> &lt;{{companyDetail?.companyDetails?.companySize ? companyDetail?.companyDetails?.companySize : 'NA'}} Employees</p>
+                                <p><span>Location</span> {{companyDetail?.companyDetails?.companyAddress ? companyDetail?.companyDetails?.companyAddress : 'NA'}}</p>
+                                <p><span>Description</span> {{companyDetail?.companyDescription ? companyDetail?.companyDescription : 'NA'}}<span class="text_manage"></span></p>
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                                 <p><span>15</span> Miles from Home</p>
                             </div>
                             <div class="application_box_contant">
-                                <img src="./assets/images/application1.png" alt="ads" title="ads" class="img-responsive">
+                                <img src="./assets/images/application1.png" onError="this.src='./assets/images/application1.png'" alt="ads" title="ads" class="img-responsive">
                                 <h2>{{job.jobTitle}}</h2>
                             </div>
                             <div class="application_box_contant2">
@@ -69,7 +69,7 @@
                                 <p><span>Rate:</span> £{{job.prefereedRate.minRate}} - £{{job.prefereedRate.maxRate}} p/{{job.prefereedRate.dailyHourlyRate =='daily'? 'd' :'h'}}</p>
                                 <p><span>Start Date:</span> {{job.startDate| date:'medium' :'MM-dd-yyyy' }}</p>
                                 <p><span>Duration:</span> {{job.duration}}</p>
-                                <p class="full_contant">{{job.jobSpecification | slice:0:100}}</p>
+                                <p class="full_contant">{{job.jobSpecification | slice:0:100}}...</p>
                             </div>
                             <div class="footer_box">
                                 <div class="pull-left social_box_footer">

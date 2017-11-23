@@ -34,6 +34,13 @@
           <li *ngIf="contractorProfile.form.controls.linkedinWebAdd?.hasError( 'pattern')">linkedIn address not valid</li>
           <li *ngIf="contractorProfile.form.controls.behanceWebAdd?.hasError('pattern')">Behance address not valid</li>
         </div>
+        <div class="errorbox" *ngIf="preferredJobTitleFlag"><b>The following error(s) occured:</b>
+          <br>
+          <li>Job title required</li>
+          
+        </div>
+
+
         <form (ngSubmit)="saveContractorProfile(contractorProfile)" #contractorProfile="ngForm">
           <div class="row">
             <div class="col-md-30 col-sm-40">
@@ -274,7 +281,7 @@
                   </div>
                 </div>
               </div>
-               <div class="job_search_keywords signup_form_section width_auto">
+              <div class="job_search_keywords signup_form_section width_auto">
                 <h2>Skills & Experience</h2>
                 <div class="enter_your_skills">
                   <select class="form-control minimal background_drop_down" [(ngModel)]="selectedSkill" name="skills" (change)="selectSkill()">
@@ -356,17 +363,14 @@
                           <input type="file" class="upload" (change)="contractorCVFileChangeEvent($event)" />
                         </div>
                       </div>
-
                       <div *ngIf="CV?.attachment_name" class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/download-icon.png" alt="Download" title="Download" class="img-responsive"></div>
                         <label class="form-control">{{CV?.attachment_name}}</label>
                       </div>
-
-
                     </div>
                   </div>
                   <div class="col-md-41 col-sm-100">
-                    <div class="current_rate_signup margin_top_10 margin_left_blue10"> <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse" (click)="editCover(i)">Edit <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
+                    <div class="current_rate_signup margin_top_10 margin_left_blue10"> <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse" (click)="editcv(i)">Edit <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
                       <a href="javascript:void(0)" *ngIf="i!==0" class="btn-primary font_capitaliz hover_white_pluse" (click)="removeElement(contratorCVList, i)">Remove <i class="fa fa-minus plus_blue" aria-hidden="true"></i></a> </div>
                     <div class="add_another_cv" *ngIf="i==contratorCVList.length-1" (click)="addAnotherCV()"> <a href="javascript:void(0)" class="pink_color"><i class="fa fa-plus" aria-hidden="true"></i> Add Another CV</a> </div>
                   </div>
@@ -396,21 +400,21 @@
                           <span>Browse From
                               <img alt="search now" src="./assets/images/find-cv.png" title="search now" >
                             </span>
-                          <input type="file" class="upload" (change)="contractorCoverLetterFileChangeEvent($event)" />
+                          <input type="file" class="upload" (change)="contractorCoverLetterFileChangeEvent($event)"  />
                         </div>
                       </div>
-
                       <div *ngIf="coverLetter?.attachment_name" class="input-group">
-                        <div class="input-group-addon"><img src="./assets/images/upload-cv.png" alt="Upload CV" title="Upload CV" class="img-responsive"></div>
+                        <!-- <div class="input-group-addon"><img src="./assets/images/upload-cv.png" alt="Upload CV" title="Upload CV" class="img-responsive"></div>
                         <div class="filecv">
                           <label>{{coverLetter?.attachment_name}}</label>
-                        </div>
+                        </div> -->
+                        <div class="input-group-addon"><img src="./assets/images/download-icon.png" alt="Download" title="Download" class="img-responsive"></div>
+                        <label class="form-control">{{coverLetter?.attachment_name}}</label>
                       </div>
-                      
                     </div>
                   </div>
                   <div class="col-md-41 col-sm-100">
-                    <div class="current_rate_signup margin_top_10 margin_left_blue10"> <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse">Edit <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> <a *ngIf="i!==0" href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse" (click)="removeElement(coverLetterList, i)">Remove <i class="fa fa-minus plus_blue" aria-hidden="true"></i></a> </div>
+                    <div class="current_rate_signup margin_top_10 margin_left_blue10"> <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse" (click)="editCoverLetter(i)">Edit <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> <a *ngIf="i!==0" href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse" (click)="removeElement(coverLetterList, i)">Remove <i class="fa fa-minus plus_blue" aria-hidden="true"></i></a> </div>
                     <div class="add_another_cv" *ngIf="i==coverLetterList.length-1" (click)="addAnotherCoverLetter()"> <a href="javascript:void(0)" class="pink_color"><i class="fa fa-plus" aria-hidden="true"></i> Add Another Cover Letter</a> </div>
                   </div>
                 </div>

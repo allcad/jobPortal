@@ -15,7 +15,7 @@ export class AdSpaceComponent implements OnInit {
   }
 
   getAdsList(){
-  	var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/ads";
+  	let url ="http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/ads";
       this._commonRequestService.getData(url).subscribe(
         data => {
           this.addList = data.data;

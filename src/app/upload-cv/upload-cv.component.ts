@@ -1,20 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { CommonRequestService } from '../common-request.service';
 @Component({
   selector: 'app-upload-cv',
   templateUrl: './upload-cv.component.html',
   styleUrls: ['./upload-cv.component.css']
 })
 export class UploadCvComponent implements OnInit {
-
-  constructor(private _router: Router, private _routes: ActivatedRoute) { }
+  recruiterCount;
+  constructor(private _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
+    
+    setInterval(()=>{
+      this.getLiveContactor();  
+    },60000)
+    
   }
 
-  loginClick(){
-  	/*this._router.navigate(['../contractorLogin']);*/
-  	
+  getLiveContactor(){
+    let  url ="http://dev.contractrecruit.co.uk/contractor_admin/api/logedin_contractor";
+      this._commonRequestService.getData(url).subscribe(
+        data => {
+          this.recruiterCount = data.data[0][0].count;
+          
+        }
+    );
   }
+
+
 
 }

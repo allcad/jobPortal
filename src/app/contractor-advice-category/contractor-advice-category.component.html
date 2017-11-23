@@ -36,16 +36,16 @@
               <!-- slider -->
               <swiper [config]="config">
                 <div class="swiper-wrapper">
-                  <li *ngFor="let article of articleList">
+                  <li class="swiper-slide" *ngFor="let article of articleList">
                     <h2>{{article.title}}</h2>
                     <p [innerHTML]="article.description"></p>
                     <div class="row">
                       <div class="col-xs-50">
                         <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> </div>
                       </div>
-                      <!-- <div class="col-xs-50">
-                        <div class="letest_news_footer" routerLink="../adviceDetail"> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
-                      </div> -->
+                      <div class="col-xs-50">
+                        <div class="letest_news_footer" (click)="readFullArticle(article)"> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
+                      </div>
                     </div>
                   </li>
                 </div>

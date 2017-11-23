@@ -10,10 +10,23 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ContractorApplicationsComponent implements OnInit {
 	appliedJobList = [];
+  sortOptions = [];
+  sortBy = 1;
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
+    this.getSortOptions()
   	this.getAppliedjobList();
+  }
+
+
+  getSortOptions(){
+    let url ="http://dev.contractrecruit.co.uk/contractor_admin/api/get/short_by";
+      this._commonRequestService.getData(url).subscribe(
+        data => {
+          this.sortOptions = data.data;
+        }
+    );
   }
 
   getAppliedjobList(){
@@ -21,7 +34,8 @@ export class ContractorApplicationsComponent implements OnInit {
   		"email" : "test@test.com",
   		"loginToken" : "lsbdjaGUJ46fdsfJnLMjdfsdfssdfJG67",
   		"page" : 1,
-  		"limit" : -1
+  		"limit" : -1,
+      "sort_by" : this.sortBy
   	}
   	var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/applied_job/list";
       this._commonRequestService.postData(url, input).subscribe(

@@ -8,24 +8,23 @@
           </div>
         </div>
         <div class="col-sm-80 col-md-85">
-          <div class="advice_category_slider news_category_banner">
+          <div >
             <swiper [config]="config">
               <div class="swiper-wrapper">
-                <li>
-                  <h2 style="color: #fff;">IT Jobs Going abroad a concern</h2>
-                  <p style="color: #fff;">
-                    The offshoring of any jobs here in the UK should ignite concerns among all workers, those employed directly and contractors alike. However, the latest news from Lloyds Bank could well raise hackles among those involved in IT with the announcement that they will despatching around 90 IT jobs to India.</p>
-                  <p> Those 90 IT jobs were among 625 Lloyds plans to eliminate. Last week, the bank announced that a strategic review back in 2014 said that some 9,000 jobs.
-                  </p>
-                  <div class="row">
-                    <div class="col-xs-50">
-                      <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> </div>
+                <div *ngFor="let news of newsList" class="swiper-slide">
+                  <li>
+                    <h2 style="color: #fff;">{{news.article_title}}</h2>
+                    <p style="color: #fff;" [innerHTML]="news.article_body | slice:0:300"> </p>
+                    <div class="row">
+                      <div class="col-xs-50">
+                        <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> </div>
+                      </div>
+                      <div class="col-xs-50">
+                        <div class="letest_news_footer"> <a href="javascript:void(0)" class="btn-primary news_read_more" (click)="readMore(news)">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
+                      </div>
                     </div>
-                    <!-- <div class="col-xs-50">
-                      <div class="letest_news_footer" routerLink="../adviceDetail"> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
-                    </div> -->
-                  </div>
-                </li>
+                  </li>
+                </div>
               </div>
               <!-- Add Pagination -->
               <!-- <div class="swiper-pagination"></div> -->

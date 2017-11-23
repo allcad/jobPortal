@@ -23,7 +23,6 @@ export class ContractorNewsCategoryComponent implements OnInit {
   }
 
   getLatestNews(){
-    
     var inputJson = {
       page :1,
       limit: -1

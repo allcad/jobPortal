@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-contractor-advice-article',
@@ -9,7 +11,7 @@ import { CommonRequestService } from '../common-request.service';
 export class ContractorAdviceArticleComponent implements OnInit {
 	articleId;
 	articleData;
-  constructor(private _commonRequestService: CommonRequestService) { }
+  constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
   	this.articleId = this._commonRequestService.getDataWithoutObserval("adviceArticleId");
@@ -33,6 +35,10 @@ export class ContractorAdviceArticleComponent implements OnInit {
   				this.articleData = data.data;
   			})
   	}	
+  }
+
+  returnToAllArticle(){
+    this._router.navigate(['../advice'], {relativeTo: this._routes});
   }
 
 }
