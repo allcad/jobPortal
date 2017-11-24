@@ -69,7 +69,8 @@ export class RecruiterManagePasswordComponent implements OnInit {
              this.confirmPassword = "";
              this.WSErrorMsg = "";
            } else {
-             this.WSErrorMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
+             console.log("data----", data.error);
+             this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
            }
           }
       );

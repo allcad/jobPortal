@@ -16,12 +16,37 @@ export class RecruiterHomeComponent implements OnInit {
   	private _commonDataSharedService: CommonDataSharedService) { }
 
   ngOnInit() {
+  	this.getRecruiterCount();
   	this.getManageJobsList(9);
   }
   passJobId(id) {
   	//this._commonDataSharedService.manageJobsJobId.next(id);
   	var obj = {'jobId' : id};
     localStorage.setItem('recruiterJobData', JSON.stringify(obj));
+  }
+
+  getRecruiterCount() {
+   var input = {
+   	"email":"dummy@test.com",
+	"loginToken":"$2y$10$dAixE9mJsFhouUU1NzgtvePYp7WjCcZ5NhzJPOLAO6Cz.wH0It0za",
+	"login_type":JSON.parse(localStorage.getItem('loginDetail')).role
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/add_last_view";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+         console.log("add last view--", data);
+         // if(data && data.status === "TRUE") {
+         //   this.listingData = data.data;
+         //  } else {
+         //    if(data && data.error && data.error.length > 0) {
+         //    // this.errorMsgFlag = true;
+         //    //   this.errorMsg = data.error[0];
+         //    }
+         //  }
+        }
+    );
   }
 
   getManageJobsList(pageLimit) {

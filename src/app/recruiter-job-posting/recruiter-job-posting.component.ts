@@ -347,7 +347,7 @@ WSErrorMsg = "";
                   var obj1 = {'jobPreviewData' : ''};
                   localStorage.setItem('editJobPost', JSON.stringify(obj1));
                 } else {
-                  this.WSErrorMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
+                  this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
                 }
                 }
           );

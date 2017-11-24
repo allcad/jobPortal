@@ -111,7 +111,7 @@ export class RecruiterManageAccountComponent implements OnInit {
            } else {
              this.manageErrorFlag = true;
              this.manageAccountFlag = false;
-             this.WSErrorMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
+             this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
            }
           }
       );

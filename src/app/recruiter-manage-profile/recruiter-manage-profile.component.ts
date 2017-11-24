@@ -83,7 +83,7 @@ companyUrlFlag = false;
 companyEmailFlag = false;
 allErrorMsgFlag = false;
 addMulAddArray = [{'addresslLine1': 'line1', 'addressLine1Name': 'address1', 'addressLine2': 'line2', 'addressLine2Name': 'address2', 'city': 'city', 'cityName': 'cityN', 'country': 'cou', 'countryName': 'country1', 'postCode': '12', 'postName': 'postN', 'telephone': '134', 'telephone1': 'teleP'}]
-addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio': ''}];
+addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio': '', 'otherName':''}];
 fd;
 WSErrorMsg = "";
   constructor(public _commonRequestService: CommonRequestService) {
@@ -146,7 +146,7 @@ WSErrorMsg = "";
   addAnotherSocialLink() {
     var newItem = this.addMulSocialArray.length + 1;
     console.log("this.addMulAddArray before", this.addMulSocialArray);
-    this.addMulSocialArray.push({'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio': ''})
+    this.addMulSocialArray.push({'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio': '', 'otherName': 'other'+newItem});
   }
 
   removeFunction(myObjects,prop,valu){
@@ -164,7 +164,7 @@ WSErrorMsg = "";
   removeSocialLink(value) {
     console.log("value--", value);
     console.log("this.addMulSocialArray", this.addMulSocialArray)
-    this.addMulSocialArray = this.removeFunction(this.addMulSocialArray,"otherSocialLink",value.otherSocialLink);
+    this.addMulSocialArray = this.removeFunction(this.addMulSocialArray,"otherName",value.otherName);
   }
 
   samePermanentAdd() {
@@ -306,28 +306,34 @@ WSErrorMsg = "";
       this.companyEmailFlag = true;
     }
 
-    if(!this.emailAddress.match(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)) {
-      this.emailAddValidationFlag = true;
-    } else {
-      this.emailAddValidationFlag = false;
+    if(this.emailAddress) {
+      if(!this.emailAddress.match(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)) {
+        this.emailAddValidationFlag = true;
+      } else {
+        this.emailAddValidationFlag = false;
+      }
     }
 
-    if(!this.telephone.match(/^\d{10}$/)) {
-      this.telephoneValidationFlag = true;
-    } else {
-      this.telephoneValidationFlag = false;
-    }
-
-    if(!this.webAddress.match(/^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/)) {
-      this.webAddValidationFlag = true;
-    } else {
-      this.webAddValidationFlag = false;
+    if(this.telephone) {
+      if(!this.telephone.match(/^\d{10}$/)) {
+        this.telephoneValidationFlag = true;
+      } else {
+        this.telephoneValidationFlag = false;
+      }
     }
 
     if(this.webAddress) {
       this.companyUrlFlag = false;
     } else {
       this.companyUrlFlag = true;
+    }
+
+    if(this.webAddress) {
+      if(!this.webAddress.match(/^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/)) {
+        this.webAddValidationFlag = true;
+      } else {
+        this.webAddValidationFlag = false;
+      }
     }
 
     if(this.companyDescription) {
@@ -575,7 +581,8 @@ getProfileDta(){
           if(companySocialData && companySocialData.otherSocialData && companySocialData.otherSocialData.length > 0) {
             for(var i = 0; i< companySocialData.otherSocialData.length; i++) {
               if(companySocialData.otherSocialData[i].Url) {
-                this.addMulSocialArray.push({'otherSocialLink': companySocialData.otherSocialData[i].Url, 'otherSocialFeed': companySocialData.otherSocialData[i].fullUrl, 'otherRadio': companySocialData.otherSocialData[i].displayFeed})
+                var newItem = i;
+                this.addMulSocialArray.push({'otherSocialLink': companySocialData.otherSocialData[i].Url, 'otherSocialFeed': companySocialData.otherSocialData[i].fullUrl, 'otherRadio': companySocialData.otherSocialData[i].displayFeed, 'otherName': 'other'+newItem});
               }
             }
           }

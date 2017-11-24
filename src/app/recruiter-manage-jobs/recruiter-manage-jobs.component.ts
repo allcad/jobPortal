@@ -126,9 +126,9 @@ export class RecruiterManageJobsComponent implements OnInit {
            console.log("secondArray", this.secondArray);
            console.log("thirdArray", this.thirdArray);
           } else {
-            if(data && data.error && data.error.length > 0) {
+            if(data && data.error) {
             this.errorMsgFlag = true;
-              this.errorMsg = data.error[0];
+              this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
             }
           }
         }

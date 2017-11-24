@@ -43,34 +43,44 @@ export class RecruiterSignUpComponent implements OnInit {
      var phoneRegex = /^\d{10}$/;
      var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-     if(this.phoneNo && phoneRegex.test(this.phoneNo)) {
-        this.validPhoneNoFlag = false;
-      } else {
-        this.validPhoneNoFlag = true;
+     if(this.phoneNo) {
+       if(phoneRegex.test(this.phoneNo)) {
+          this.validPhoneNoFlag = false;
+        } else {
+          this.validPhoneNoFlag = true;
+        }
       }
 
-      if(this.emailAddress && emailRegex.test(this.emailAddress)) {
-        this.validEmailFlag = false;
-      } else {
-        this.validEmailFlag = true;
+      if(this.emailAddress) {
+        if(emailRegex.test(this.emailAddress)) {
+          this.validEmailFlag = false;
+        } else {
+          this.validEmailFlag = true;
+        }
       }
 
-      if(this.verifyEmailAddress && emailRegex.test(this.verifyEmailAddress)) {
-        this.verifyEmailFlag = false;
-      } else {
-        this.verifyEmailFlag = true;
+      if(this.verifyEmailAddress) {
+        if(emailRegex.test(this.verifyEmailAddress)) {
+          this.verifyEmailFlag = false;
+        } else {
+          this.verifyEmailFlag = true;
+        }
       }
 
-      if(this.emailAddress !== this.verifyEmailAddress) {
-        this.emailSameFlag = true;
-      } else {
-        this.emailSameFlag = false;
+      if(this.emailAddress && this.verifyEmailAddress) {
+        if(this.emailAddress !== this.verifyEmailAddress) {
+          this.emailSameFlag = true;
+        } else {
+          this.emailSameFlag = false;
+        }
       }
 
-      if(this.phoneNo && this.phoneNo.length > 15) {
-        this.phoneNoMaxLengthFlag = true;
-      } else {
-        this.phoneNoMaxLengthFlag = false;
+      if(this.phoneNo) {
+        if(this.phoneNo.length > 15) {
+          this.phoneNoMaxLengthFlag = true;
+        } else {
+          this.phoneNoMaxLengthFlag = false;
+        }
       }
 
     if(this.companyName) {
@@ -127,16 +137,19 @@ export class RecruiterSignUpComponent implements OnInit {
       this.verifyPasswordValueFlag = true;
     }
 
-    if(this.passwordValue !== this.verifyPasswordValue) {
-      this.passwordSameFlag = true;
-    } else {
-      this.passwordSameFlag = false;
+    if(this.passwordValue && this.verifyPasswordValue) {
+      if(this.passwordValue !== this.verifyPasswordValue) {
+        this.passwordSameFlag = true;
+      } else {
+        this.passwordSameFlag = false;
+      }
     }
 
     if(this.companyNameFlag || this.contactNameFlag || this.phoneNoFlag || this.jobTitleFlag 
       || this.emailFlag || this.passwordFlag || this.verifyPasswordValueFlag || this.keySkillFlag || this.validPhoneNoFlag
       || this.phoneNoMaxLengthFlag || this.verifyEmailReqFlag || this.verifyEmailFlag || this.verifyEmailFlag
       || this.passwordSameFlag || this.emailSameFlag) {
+      window.scroll(0,0);
       this.allErrorMsgFlag = true;
     } else {
       this.allErrorMsgFlag = false;
@@ -177,7 +190,7 @@ export class RecruiterSignUpComponent implements OnInit {
             else{
                this.succesMessageFlag =false;
                 this.ErrorMesageFlag =true;
-                this.invalidErrorMsg = data && data.error ? data.error : '';
+                this.invalidErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
             }
             console.log("rercu_sign: ", this.status);
           }

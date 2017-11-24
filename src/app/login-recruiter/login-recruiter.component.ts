@@ -77,7 +77,7 @@ invalidErrorMsg = "";
            if( this.getData.status === "TRUE" && this.getData.data.type === "recuriter"){
              this.invalidErrorMsg ="";
              this.errorMsgFlag =false;
-             localStorage.setItem("loginDetail", JSON.stringify({"token": data.data.loginToken, "email": data.data.email}))
+             localStorage.setItem("loginDetail", JSON.stringify({"token": data.data.loginToken, "email": data.data.email, "role": data.data.type}))
               this.succesLoginFlag =true;
               this.router.navigate(['/recruiter/recruiter-home']);
               //this.getViewProfileDta();
@@ -86,7 +86,7 @@ invalidErrorMsg = "";
           else{
              this.errorMsgFlag =true;
               this.succesLoginFlag =false;
-              this.invalidErrorMsg = data && data.error ? data.error : '';
+              this.invalidErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
                //this.generate();
                this.addNumber="";
           }

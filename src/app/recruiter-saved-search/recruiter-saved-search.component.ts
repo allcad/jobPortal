@@ -310,7 +310,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
             }
             else{
                this.succesMessageFlag =false;
-               this.WSErrorMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
+               this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
                this.successMessageFlag  = false;
                this.errorMessageFlag = true;
                 //this.ErrorMesageFlag =true;
@@ -340,7 +340,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
             }
             else{
                this.succesMessageFlag =false;
-               this.WSErrorMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
+               this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
                this.successMessageFlag  = false;
                this.errorMessageFlag = true;
                 //this.ErrorMesageFlag =true;
@@ -410,7 +410,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
             }
             else {
               this.errorMessageFlag = true;
-              this.WSErrorMsg = data && data.error ? data.error : '';
+              this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
                // this.succesMessageFlag =false;
                // this.errorSuccessMessage = data && data.error && data.error.length > 0 ? data.error[0] : '';
                // this.successMessageFlag  = false;
