@@ -13,6 +13,7 @@ export class ResolverService implements Resolve<any> {
     
     var currentRoute = route['_routerState'].url.split('/');
     console.log("currentRoute",currentRoute);
+    console.log("localStorageData", localStorageData);
 
     /*condition of contractor page*/
 
@@ -24,13 +25,15 @@ export class ResolverService implements Resolve<any> {
       }
     }
 
-    // else if(currentRoute && currentRoute[1] && currentRoute[1]== "recruiter"){
-    //   if(localStorageData && localStorageData.role==="recruiter"){
-    //     return true;
-    //   }else{
-    //     this.router.navigate(['/public/home'], {relativeTo: this.routes});
-    //   }
-    // }
+    if(currentRoute && currentRoute[1] && currentRoute[1]== "recruiter"){
+      if(localStorageData && localStorageData.role==="recuriter"){
+        console.log("if")
+        return true;
+      }else{
+        console.log("else")
+        this.router.navigate(['/public/home'], {relativeTo: this.routes});
+      }
+    }
 
 }
 }

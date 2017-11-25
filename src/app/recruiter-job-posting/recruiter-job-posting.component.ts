@@ -340,6 +340,7 @@ WSErrorMsg = "";
                 if(data && data.status === "TRUE") {
                   this.resetData();
                   this.WSErrorMsg = "";
+                  this.jobPostingJobId = "";
                   this.postJobSuccessMsg = 'Post Job Save succesfully!';
                    var obj = {'jobId' : ''};
                   localStorage.setItem('recruiterJobData', JSON.stringify(obj));
@@ -364,6 +365,11 @@ WSErrorMsg = "";
                   this.getTemplateData();
                   this.WSErrorMsg = "";
                   this.postJobSuccessMsg = 'Post Job Update succesfully!'
+                  var obj = {'jobId' : ''};
+                  localStorage.setItem('recruiterJobData', JSON.stringify(obj));
+
+                  var obj1 = {'jobPreviewData' : ''};
+                  localStorage.setItem('editJobPost', JSON.stringify(obj1));
                   //this.jobPostFlag = false;
                   //this.router.navigate(['/recruiter/manage-jobs']);
                 } else if(data && data.error){
@@ -400,6 +406,7 @@ WSErrorMsg = "";
       "jobId": this.jobPostingJobId ? this.jobPostingJobId : '',
       "templateId": this.currentTemplate ? this.currentTemplate : ''
       }
+      console.log("input--", input);
     var obj = {'jobPreviewData' : input};
     localStorage.setItem('jobPostingData', JSON.stringify(obj));
   }

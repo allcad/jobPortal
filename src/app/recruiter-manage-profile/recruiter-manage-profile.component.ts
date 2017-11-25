@@ -158,7 +158,7 @@ WSErrorMsg = "";
   removeAddress(value) {
     console.log("value--", value);
     console.log("this.addMulAddArray", this.addMulAddArray)
-    this.addMulAddArray = this.removeFunction(this.addMulAddArray,"addresslLine1",value.addresslLine1);
+    this.addMulAddArray = this.removeFunction(this.addMulAddArray,"addressLine1Name",value.addressLine1Name);
   }
 
   removeSocialLink(value) {

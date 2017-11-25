@@ -20,4 +20,8 @@ export class RecruiterHeaderComponent implements OnInit {
     localStorage.setItem('editJobPost', JSON.stringify(obj1));
   }
 
+  logoutRecruiter(){
+    localStorage.removeItem("loginDetail");
+  }
+
 }
