@@ -88,8 +88,11 @@ const publicRoutes: Routes = [
     "path": "site-map",
     "component": SiteMapComponent
 },{
-    "path": "contractor-job-search",
+    "path": "jobSearch",
     "component": ContractorJobSearchComponent
+},{
+    "path" :"lastSearch",
+    "component" :ContractorJobSearchComponent
 }, {
     "path": "searchResult",
     "component": ContractorSearchResultComponent

@@ -16,13 +16,14 @@
           <div class="alert alert-success margin-tp18" *ngIf="succesMessageFlag">
             <a href="javascript:void(0)" class="close" title="close" (click)="succesMessageFlag=false;">×</a> You are sign up <strong>succesfully!</strong>
           </div>
-          <div class="alert alert-danger margin-tp18" *ngIf="ErrorMesageFlag">
+          <!-- <div class="alert alert-danger margin-tp18" *ngIf="ErrorMesageFlag">
             <a href="javascript:void(0)" class="close" title="close" (click)="ErrorMesageFlag=false;">×</a>
             <strong>Error!</strong> {{validateMsg}}
-          </div>
+          </div> -->
           <div class="signup_form_section">
-            <div class="errorbox" *ngIf="(userForm && userForm.form && userForm.form.controls && userForm.form.invalid && userForm.submitted) || contractorInvalid"><b>The following error(s) occured:</b>
+            <div class="errorbox" *ngIf="(userForm && userForm.form && userForm.form.controls && userForm.form.invalid && userForm.submitted) || contractorInvalid || ErrorMesageFlag"><b>The following error(s) occured:</b>
               <br>
+              <li *ngIf="ErrorMesageFlag">{{validateMsg}}</li>
               <li *ngIf="userForm.form.controls.contractor_first_name?.hasError('required')">Please enter first name</li>
               <li *ngIf="userForm.form.controls.contractor_first_name?.hasError('pattern')">Valid first name required</li>
               <li *ngIf="userForm.form.controls.contractor_last_name?.hasError('required')">Please enter last name</li>
@@ -125,12 +126,7 @@
                           </span>
                         <input type="file" class="upload" (change)="fileChangeEvent($event);" #myInput />
                       </div>
-                      <!-- <input type="file" class="form-control input-group-addon find_cv_from" id="uploadCV" name="documents" placeholder="Upload CV" required [tooltip]="uploadCVTooltip" (change)="fileChangeEvent($event)"> -->
-                      <tooltip-content #uploadCVTooltip>
-                        <span *ngIf=" !valid" style="color: #C21F39"> Upload CV </span>
-                        <!-- <span *ngIf="!valid && contractUploadCV" style="color: #C21F39"> Upload CV </span>     -->
-                      </tooltip-content>
-                      <!--                         <div class="input-group-addon find_cv_from"><a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Find CV From<img src="./assets/images/find-cv.png" alt="Find CV" title="Find CV"></a>
+                      <!--<div class="input-group-addon find_cv_from"><a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Find CV From<img src="./assets/images/find-cv.png" alt="Find CV" title="Find CV"></a>
                           <ul class="dropdown-menu">
                             <li><a href="javascript:void(0)"><img src="./assets/images/mail-box1.png" alt="OneDrive" title="OneDrive" class="img-responsive"></a> <a href="javascript:void(0)"><img src="./assets/images/mail-box3.png" alt="GoogleDrive" title="GoogleDrive" class="img-responsive"></a> </li>
                             <li> <a href="javascript:void(0)"><img src="./assets/images/mail-box2.png" alt="Dropbox" title="Dropbox" class="img-responsive"></a> <a href="javascript:void(0)"><img src="./assets/images/mail-box4.png" alt="LocalDrive" title="LocalDrive" class="img-responsive"></a> </li>
@@ -157,8 +153,8 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Current Job Title" name="contractor_job_title" [(ngModel)]="contractor_job_title" required >
-                     <!--  <tooltip-content #contractor_job_titleTooltip>
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Current Job Title" name="contractor_job_title" [(ngModel)]="contractor_job_title" required>
+                      <!--  <tooltip-content #contractor_job_titleTooltip>
                         <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_job_title?.valid " style="color: #C21F39"> Job Title </span>
                         <span [hidden]="!userForm.form.controls.contractor_job_title?.hasError('required')" style="color: #C21F39"> Job Title is required! </span>
                       </tooltip-content> -->
@@ -203,9 +199,7 @@
                 <!-- <img src="./assets/images/price-filter.png" alt="ads" title="ads" class="img-responsive">  -->
                 <div class="rate_signup">
                   <h2>RATE <span> &#163;{{contractor_rate_min}}</span> to <span> &#163;{{contractor_rate_max}}</span> p/d</h2>
-
                 </div>
-
                 <ion-range-slider type="double" prefix="£" class="width_100" (onFinish)="getRangeSliderValue($event)" #sliderElement min="0" value="100" max="2000" step="5" from="200" to="400" (onChange)="rateChange($event)">
                 </ion-range-slider>
               </div>

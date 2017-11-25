@@ -1,10 +1,10 @@
 
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common'; 
-import { IonRangeSliderModule } from "ng2-ion-range-slider";
+import { CommonModule } from '@angular/common';
+//import { IonRangeSliderModule } from "ng2-ion-range-slider";
 import { FormsModule } from '@angular/forms';
-import {ToolTipModule} from 'angular2-tooltip';
-import {TooltipModule} from "ng2-tooltip";
+import { ToolTipModule } from 'angular2-tooltip';
+import { TooltipModule } from "ng2-tooltip";
 import { HttpModule } from '@angular/http';
 
 import { ContentComponent } from '../content/content.component';
@@ -16,7 +16,6 @@ import { FindContractorComponent } from '../find-contractor/find-contractor.comp
 
 
 
-import { ContractorJobSearchComponent } from '../contractor-job-search/contractor-job-search.component';
 import { ContractorSignUpComponent } from '../contractor-sign-up/contractor-sign-up.component';
 import { LoginComponent } from '../login/login.component';
 import { SharedModule } from '../shared/shared.module';
@@ -38,44 +37,43 @@ import { SiteMapComponent } from '../site-map/site-map.component';
 import { BenefitsComponent } from '../benefits/benefits.component';
 import { SiteMaintenanceComponent } from '../site-maintenance/site-maintenance.component';
 import { NotFoundPageComponent } from '../not-found-page/not-found-page.component';
-import { ContractorSearchResultComponent } from '../contractor-search-result/contractor-search-result.component';
+
 
 @NgModule({
-  declarations: [
-    ContentComponent,
-   	SearchComponent,
-	UploadCvComponent,
-	FindContractorComponent,
-	//AboutContractorComponent,
-	TermUseComponent,
-	// FindContractHubComponent,
-	ContractorSearchResultComponent,
-	ContractorSignUpComponent,
-	LoginComponent,
-	RecruiterSignUpComponent,
-	LoginRecruiterComponent,
-	RecruiterTermsComponent,
-	AboutRecruiterComponent,
-	ContactPageComponent,
-    RecruiterGuidesPageComponent,
-    FaqComponent,
-    PrivacyPolicyComponent,
-    SiteMapComponent,
-    BenefitsComponent,
-    SiteMaintenanceComponent,
-    NotFoundPageComponent,
-    ContractorJobSearchComponent
-  ],
-  imports: [
-  	PublicRoutingModule,
-  	FormsModule,
-  	ToolTipModule,
-	TooltipModule,
-	HttpModule,
-	CommonModule,
-	IonRangeSliderModule,
-	SharedModule
-  ],
-  providers: []
+	declarations: [
+		ContentComponent,
+		SearchComponent,
+		UploadCvComponent,
+		FindContractorComponent,
+		//AboutContractorComponent,
+		TermUseComponent,
+		// FindContractHubComponent,
+		ContractorSignUpComponent,
+		LoginComponent,
+		RecruiterSignUpComponent,
+		LoginRecruiterComponent,
+		RecruiterTermsComponent,
+		AboutRecruiterComponent,
+		ContactPageComponent,
+		RecruiterGuidesPageComponent,
+		FaqComponent,
+		PrivacyPolicyComponent,
+		SiteMapComponent,
+		BenefitsComponent,
+		SiteMaintenanceComponent,
+		NotFoundPageComponent,
+
+	],
+	imports: [
+		PublicRoutingModule,
+		FormsModule,
+		ToolTipModule,
+		TooltipModule,
+		HttpModule,
+		CommonModule,
+		//IonRangeSliderModule,
+		SharedModule
+	],
+	providers: []
 })
 export class PublicModule { }

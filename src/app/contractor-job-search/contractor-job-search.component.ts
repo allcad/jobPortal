@@ -22,12 +22,19 @@ industrySector = [];
 lastSearchData;
 submitClick = false;
 timeSlotList =[];
+isPublic = false;
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
     window.scroll(0,0);
     this.getIndustrySector();
     this.gettimeSlotList();
+    if(this._router.url.split('/')[2] == "lastSearch"){
+      this.lastSearch();
+    }
+    if(this._router.url.split('/')[1] == "public"){
+      this.isPublic = true;
+    }
   }
 
   gettimeSlotList(){
@@ -104,6 +111,9 @@ timeSlotList =[];
 
   }
 
+  lastSearchClick(){
+    this._router.navigate(['../lastSearch'], {relativeTo: this._routes});
+  }
 
   lastSearch(){
     let dataUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/last_search";

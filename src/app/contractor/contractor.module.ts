@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {ToolTipModule} from 'angular2-tooltip';
-import {TooltipModule} from "ng2-tooltip";
+import { ToolTipModule } from 'angular2-tooltip';
+import { TooltipModule } from "ng2-tooltip";
 import { HttpModule } from '@angular/http';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
 
 import { ContractorRoutingModule } from './contractor-routing.module';
@@ -33,35 +33,35 @@ import { ImageCropperModule } from 'ng2-img-cropper';
 
 @NgModule({
   declarations: [
-   
-	ContractorProfileComponent,
-	ContractorViewProfileComponent,
-  ContractorApplicationsComponent,
-  ContractorJobSearchSavedComponent,
-  //ContractorSearchResultComponent,
- // ContractorHubHomeComponent,
-  // ContractorAdviceMenuListingComponent,
-  // ContractorAdviceListingComponent,
-  // ContractorAdviceComponent,
-  // ContractorAdviceArticleComponent,
-  // ContractorAdviceCategoryComponent,
-  AboutContractorComponent,
-  ContractorHelpComponent
-	
+
+    ContractorProfileComponent,
+    ContractorViewProfileComponent,
+    ContractorApplicationsComponent,
+    ContractorJobSearchSavedComponent,
+    //ContractorSearchResultComponent,
+    // ContractorHubHomeComponent,
+    // ContractorAdviceMenuListingComponent,
+    // ContractorAdviceListingComponent,
+    // ContractorAdviceComponent,
+    // ContractorAdviceArticleComponent,
+    // ContractorAdviceCategoryComponent,
+    AboutContractorComponent,
+    ContractorHelpComponent
+
   ],
   imports: [
-   CommonModule,
+    CommonModule,
     FormsModule,
-   ToolTipModule,
-	TooltipModule,
-	HttpModule,
-	ContractorRoutingModule,
-	IonRangeSliderModule,
-  SharedModule,
-  AgmCoreModule.forRoot({
+    ToolTipModule,
+    TooltipModule,
+    HttpModule,
+    ContractorRoutingModule,
+    IonRangeSliderModule,
+    SharedModule,
+    AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCcc7ZyRGjRbAuDgsLSQGdTuFxvLW9FGiI'
     }),
-  ImageCropperModule
+    ImageCropperModule
   ],
   providers: []
 })

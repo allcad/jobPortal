@@ -16,13 +16,14 @@
           <div class="alert alert-success margin-tp18" *ngIf="succesLoginFlag">
             <a href="javascript:void(0)" class="close" title="close" (click)="succesLoginFlag = false;">×</a> You are Log in <strong>succesfully!</strong>
           </div>
-          <div class="alert alert-danger margin-tp18" *ngIf="errorMsgFlag">
+          <!-- <div class="alert alert-danger margin-tp18" *ngIf="errorMsgFlag">
             <a href="javascript:void(0)" class="close" title="close" (click)="errorMsgFlag=false;">×</a>
             <strong>Error!</strong> {{errorMsg}}
-          </div>
+          </div> -->
           <div class="login_form_section">
-            <div class="errorbox" *ngIf="((f && f.form && f.form.controls && f.form.invalid) || totalInvalid) && f.submitted && !errorMsgFlag"><b>The following error(s) occured:</b>
+            <div class="errorbox" *ngIf="(((f && f.form && f.form.controls && f.form.invalid) || totalInvalid) && f.submitted && !errorMsgFlag) || errorMsgFlag"><b>The following error(s) occured:</b>
               <br>
+              <li *ngIf="errorMsgFlag">{{errorMsg}}</li>
               <li *ngIf="f.form.controls.email?.hasError('required')">Your Email/password are incorrect or your account has not been activated yet.</li>
               <li *ngIf="f.form.controls.email?.hasError('pattern')">Your Email/password are incorrect or your account has not been activated yet.</li>
               <li *ngIf="f.form.controls.password?.hasError('required')">Please enter a password.</li>

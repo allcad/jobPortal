@@ -1,11 +1,12 @@
 
 import { NgModule } from '@angular/core';
-import {NgForm} from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import {ToolTipModule} from 'angular2-tooltip';
-import {TooltipModule} from "ng2-tooltip";
+import { ToolTipModule } from 'angular2-tooltip';
+import { TooltipModule } from "ng2-tooltip";
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
+import { IonRangeSliderModule } from "ng2-ion-range-slider";
 
 import { FindContractHubComponent } from '../find-contract-hub/find-contract-hub.component';
 import { ContractorServiceMenuListingComponent } from '../contractor-service-menu-listing/contractor-service-menu-listing.component';
@@ -34,61 +35,69 @@ import { ContractorAdviceListingComponent } from '../contractor-advice-listing/c
 import { ContractorAdviceComponent } from '../contractor-advice/contractor-advice.component';
 import { ContractorAdviceArticleComponent } from '../contractor-advice-article/contractor-advice-article.component';
 import { ContractorAdviceCategoryComponent } from '../contractor-advice-category/contractor-advice-category.component';
+import { ContractorSearchResultComponent } from '../contractor-search-result/contractor-search-result.component';
+import { ContractorJobSearchComponent } from '../contractor-job-search/contractor-job-search.component';
 
 @NgModule({
   declarations: [
-   FindContractHubComponent,
-   ContractorServicesComponent,
-   ContractorServiceListingComponent,
+    FindContractHubComponent,
+    ContractorServicesComponent,
+    ContractorServiceListingComponent,
     ContractorServiceListingDetailsComponent,
-  AdSpaceComponent,
-  LatestNewsComponent,
-  LatestNewsListingComponent,
-  LatestNewsListingDetailsComponent,
-  ContractorServiceMenuListingComponent,
-  ContractorRecuriterProfileComponent,
-  ContractorDirectoryComponent,
-  ContractorNewsArticleComponent,
-  ContentBottomLeftAdsComponent,
-  ContentBottomRightAdsComponent,
-  SocialMediaComponent,
-  CountdownPipe,
-  ContractorNewsCategoryComponent,
-  ContractorHubHomeComponent,
-  ContractorAdviceMenuListingComponent,
-ContractorAdviceListingComponent,
-ContractorAdviceComponent,
-ContractorAdviceArticleComponent,
-ContractorAdviceCategoryComponent
+    AdSpaceComponent,
+    LatestNewsComponent,
+    LatestNewsListingComponent,
+    LatestNewsListingDetailsComponent,
+    ContractorServiceMenuListingComponent,
+    ContractorRecuriterProfileComponent,
+    ContractorDirectoryComponent,
+    ContractorNewsArticleComponent,
+    ContentBottomLeftAdsComponent,
+    ContentBottomRightAdsComponent,
+    SocialMediaComponent,
+    CountdownPipe,
+    ContractorNewsCategoryComponent,
+    ContractorHubHomeComponent,
+    ContractorAdviceMenuListingComponent,
+    ContractorAdviceListingComponent,
+    ContractorAdviceComponent,
+    ContractorAdviceArticleComponent,
+    ContractorAdviceCategoryComponent,
+    ContractorSearchResultComponent,
+    ContractorJobSearchComponent
   ],
   imports: [
     FormsModule,
-ToolTipModule,
-TooltipModule,
-HttpModule,
-CommonModule,
-SwiperModule
+    ToolTipModule,
+    TooltipModule,
+    HttpModule,
+    CommonModule,
+    SwiperModule,
+    IonRangeSliderModule
   ],
   exports: [
-FindContractHubComponent,
-ContractorServicesComponent,
-   ContractorServiceListingComponent,
+    FindContractHubComponent,
+    ContractorServicesComponent,
+    ContractorServiceListingComponent,
     ContractorServiceListingDetailsComponent,
-  AdSpaceComponent,
-  LatestNewsComponent,
-  LatestNewsListingComponent,
-  LatestNewsListingDetailsComponent,
-  ContractorServiceMenuListingComponent,
-  ContentBottomLeftAdsComponent,
-  ContentBottomRightAdsComponent,
-  SocialMediaComponent,
-  ContractorRecuriterProfileComponent,
-  ContractorDirectoryComponent,
-  CountdownPipe,
-  ContractorNewsArticleComponent,
-  ContractorNewsCategoryComponent,
-  SwiperModule,
-  ContractorHubHomeComponent
+    AdSpaceComponent,
+    LatestNewsComponent,
+    LatestNewsListingComponent,
+    LatestNewsListingDetailsComponent,
+    ContractorServiceMenuListingComponent,
+    ContentBottomLeftAdsComponent,
+    ContentBottomRightAdsComponent,
+    SocialMediaComponent,
+    ContractorRecuriterProfileComponent,
+    ContractorDirectoryComponent,
+    CountdownPipe,
+    ContractorNewsArticleComponent,
+    ContractorNewsCategoryComponent,
+    SwiperModule,
+    IonRangeSliderModule,
+    ContractorHubHomeComponent,
+    ContractorSearchResultComponent,
+    ContractorJobSearchComponent
   ],
   providers: [],
   bootstrap: []

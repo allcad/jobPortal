@@ -17,17 +17,18 @@
             <div class="alert alert-success margin-tp18" *ngIf="succesMessageFlag">
               <a href="javascript:void(0)" class="close" title="close" (click)="succesMessageFlag=false">×</a>{{successMsg}} <strong>succesfully!</strong>
             </div>
-            <div class="alert alert-danger margin-tp18" *ngIf="ErrorMesageFlag">
+            <!-- <div class="alert alert-danger margin-tp18" *ngIf="ErrorMesageFlag">
               <a href="javascript:void(0)" class="close" title="close" (click)="ErrorMesageFlag=false">×</a>
               <strong>Error!</strong> {{errorMsg}}
-            </div>
+            </div> -->
             <div class="pull-right job_search"> <a href="javascript:void(0)" class="btn-primary hover_white_pluse" [routerLink]="['../viewProfile']">View Profile <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> <a href="javascript:void(0);" class="btn-info hover_white_pluse">Edit Profile <i class="fa fa-plus plus_black" aria-hidden="true"></i></a> </div>
           </div>
         </div>
       </div>
       <div class="contractor_profile_main">
-        <div class="errorbox" *ngIf="contractorProfile && contractorProfile.form && contractorProfile.form.controls && contractorProfile.form.invalid && contractorProfile.submitted"><b>The following error(s) occured:</b>
+        <div class="errorbox" *ngIf="(contractorProfile && contractorProfile.form && contractorProfile.form.controls && contractorProfile.form.invalid && contractorProfile.submitted) || ErrorMesageFlag"><b>The following error(s) occured:</b>
           <br>
+          <li *ngIf="ErrorMesageFlag">{{errorMsg}}</li>
           <li *ngIf="contractorProfile.form.controls.webAddress?.hasError( 'pattern')">Web address not valid</li>
           <li *ngIf="contractorProfile.form.controls.stackOverWebAdd?.hasError( 'pattern')">stack overflow address not valid</li>
           <li *ngIf="contractorProfile.form.controls.gitHubWebAdd?.hasError( 'pattern')">Github address not valid</li>

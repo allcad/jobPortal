@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-contractor-search-result',
@@ -8,19 +9,22 @@ import { CommonRequestService } from '../common-request.service';
 })
 export class ContractorSearchResultComponent implements OnInit {
 
-  constructor(private _commonRequestService: CommonRequestService) { }
+  constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
   totalRecords;
   searchResult = [];
   filteredData = []
   sortOptionsList = [];
   sort = 1;
   searchJson;
+  isPublic = false;
   ngOnInit() {
   	console.log(JSON.parse(localStorage.getItem("jobSearch")));
   	this.searchJson = JSON.parse(localStorage.getItem("jobSearch"));
   	this.getSearchData();
     this.getSortList();
-
+    if(this._router.url.split('/')[1] == "public"){
+      this.isPublic = true;
+    }
   }
 
   getSortList(){
@@ -85,5 +89,14 @@ export class ContractorSearchResultComponent implements OnInit {
     this.searchJson.contractor_search_by_rate_min = event.from;
     this.searchJson.contractor_search_by_rate_max = event.to;
     this.getSearchData();
+  }
+
+
+  refineSearch(){
+    this._router.navigate(['../lastSearch'], {relativeTo: this._routes});
+  }
+
+  newSearch(){
+    this._router.navigate(['../jobSearch'], {relativeTo: this._routes});
   }
 }

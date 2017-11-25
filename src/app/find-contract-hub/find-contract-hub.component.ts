@@ -53,6 +53,10 @@ export class FindContractHubComponent implements OnInit {
   	this._router.navigate(['../contractor-directory'], {relativeTo: this._routes})
   }
 
+  goToContractorHub(){
+    this._router.navigate(['../contractor_hub_home'], {relativeTo: this._routes})
+  }
+
 
 
 }

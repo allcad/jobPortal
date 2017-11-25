@@ -25,9 +25,9 @@
           <div class="col-sm-30">
             <div class="pull-right application_sort_by position_relative padding_left_right_15"> <a href="javascript:void(0)" class="dropdown-toggle btn-primary font_capitaliz width_180px hover_white_pluse" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Search Option <i class="fa fa-angle-down plus_blue font_size_margin" aria-hidden="true"></i></a>
               <ul class="dropdown-menu">
-                <li routerLink="../jobSearch">New Search</li>
-                <li routerLink="../jobSearch">Refine Search</li>
-                <li >Save Search</li>
+                <li (click)="newSearch()">New Search</li>
+                <li (click)="refineSearch()">Refine Search</li>
+                <li *ngIf="!isPublic" >Save Search</li>
                 <li>Send Search</li>
               </ul>
             </div>

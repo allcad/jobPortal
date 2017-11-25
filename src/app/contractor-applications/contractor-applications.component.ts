@@ -9,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./contractor-applications.component.css']
 })
 export class ContractorApplicationsComponent implements OnInit {
-	appliedJobList = [];
+	appliedJobList;
   sortOptions = [];
   sortBy = 1;
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
