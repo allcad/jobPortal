@@ -19,32 +19,28 @@
       <div class="serch_results_rate" *ngIf="totalRecords>0">
         <div class="row">
           <div class="col-sm-70">
-            <ion-range-slider type="double" prefix="£" class="width_100" (onFinish)="getRangeSliderValue($event)" #sliderElement min="0" value="100" max="2000" step="5" from="0" to="2000" >
-                </ion-range-slider>
+            <ion-range-slider type="double" prefix="£" class="width_100" (onFinish)="getRangeSliderValue($event)" #sliderElement min="0" value="100" max="2000" step="5" from="0" to="2000">
+            </ion-range-slider>
           </div>
           <div class="col-sm-30">
             <div class="pull-right application_sort_by position_relative padding_left_right_15"> <a href="javascript:void(0)" class="dropdown-toggle btn-primary font_capitaliz width_180px hover_white_pluse" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Search Option <i class="fa fa-angle-down plus_blue font_size_margin" aria-hidden="true"></i></a>
               <ul class="dropdown-menu">
                 <li (click)="newSearch()">New Search</li>
                 <li (click)="refineSearch()">Refine Search</li>
-                <li *ngIf="!isPublic" >Save Search</li>
+                <li *ngIf="!isPublic">Save Search</li>
                 <li>Send Search</li>
               </ul>
             </div>
             <div class="pull-right application_sort_by width100 padding_left_right_15"> <a href="javascript:void(0)" class="dropdown-toggle btn-primary font_capitaliz hover_white_pluse" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <i class="fa fa-angle-down plus_blue font_size_margin" aria-hidden="true"></i></a>
               <ul class="dropdown-menu" (change)="sortData()">
                 <li *ngFor="let option of sortOptionsList" [value]="option.id" (click)="sort=option.id; getSearchData()">{{option.text}}</li>
-
               </ul>
             </div>
-
-
-           <!--  <select class="pull-right application_sort_by width100 padding_left_right_15" [(ngModel)]="sort">
+            <!--  <select class="pull-right application_sort_by width100 padding_left_right_15" [(ngModel)]="sort">
               <a href="javascript:void(0)" class="dropdown-toggle btn-primary font_capitaliz hover_white_pluse" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <i class="fa fa-angle-down plus_blue font_size_margin" aria-hidden="true"></i></a>
 
               <option*ngFor="let item of sortOptionsList" [value]="option.id">{{item.text}}/option>
             </select> -->
-
           </div>
         </div>
       </div>
@@ -55,14 +51,10 @@
 <section>
   <div class="container">
     <div class="row">
-
-
-        <div class="errorbox" *ngIf="totalRecords==0">
-              <br>
-              <li >No Jobs Found</li>
-              
-            </div>
-
+      <div class="errorbox" *ngIf="totalRecords==0">
+        <br>
+        <li>No Jobs Found</li>
+      </div>
       <div class=" col-md-33 col-sm-33" *ngFor="let item of searchResult">
         <div class="my_applications_box">
           <div class="header_top">
@@ -70,7 +62,7 @@
             <p><span>15</span> Miles from Home</p>
           </div>
           <div class="application_box_contant">
-            <img [src]="item.profileimage[0]?.attachment_url ? item.profileimage[0].attachment_url + '/' + item.profileimage[0].attachment_name : './assets/images/application1.png'"  alt="ads" title="ads" class="img-responsive">
+            <img [src]="item.profileimage[0]?.attachment_url ? item.profileimage[0].attachment_url + '/' + item.profileimage[0].attachment_name : './assets/images/application1.png'" alt="ads" title="ads" class="img-responsive">
             <h2>{{item.jobTitle}}</h2>
           </div>
           <div class="application_box_contant2">
@@ -87,13 +79,19 @@
               <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a>
               <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
             </div>
-            <div class="pull-right view_company">
-              <a href="javascript:void(0)" (click)="applyJob(item)">{{item.applyed ? 'Applied' : 'Apply Now'}} <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
+            <div class="pull-right view_company" *ngIf="!isPublic">
+              <a href="javascript:void(0)"  (click)="applyJob(item)">{{item.applyed ? 'Applied' : 'Apply Now'}} <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
+            </div>
+            <div class="pull-right view_company" *ngIf="isPublic">
+              <p class="call-to-view ctvpad" style="float:right;padding-right:10px;"><a href="javascript:void(0)" (click)="login()">Login</a> or <a href="javascript: void(0)" (click)="signup()">Sign Up</a> to apply </p>
+              <ul>
+                <input type="hidden" name="siteurl_foryoumaylove" id="siteurl-youmaylove" value="https://stage.contractrecruit.co.uk/contractors/">
+              </ul>
             </div>
           </div>
         </div>
       </div>
-     <!--  <div class="col-md-34 col-sm-34">
+      <!--  <div class="col-md-34 col-sm-34">
         <div class="my_applications_box">
           <div class="header_top">
             <img src="./assets/images/location-map.png" alt="ads" title="ads" class="img-responsive">
@@ -171,7 +169,6 @@
         </div>
       </div>
     </div>
-  
   </div>
   <div class="contractrecruit_banner">
     <div class="container">
@@ -206,5 +203,4 @@
       </div>
     </div>
   </div>
- 
 </section>

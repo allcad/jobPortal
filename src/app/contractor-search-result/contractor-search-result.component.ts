@@ -99,4 +99,12 @@ export class ContractorSearchResultComponent implements OnInit {
   newSearch(){
     this._router.navigate(['../jobSearch'], {relativeTo: this._routes});
   }
+
+  login(){
+   this._router.navigate(['../contractorLogin'], {relativeTo: this._routes}); 
+  }
+
+  signup(){
+    this._router.navigate(['../contractorSignup'], {relativeTo: this._routes});
+  }
 }
