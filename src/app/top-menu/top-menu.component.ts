@@ -36,7 +36,12 @@ export class TopMenuComponent implements OnInit {
 
   categoryClicked(categoryData) {
     this._commonRequestService.setDataWithoutObserval(categoryData.contract_hub_category_id, 'category_hub_id');
-    this._router.navigate(['../public/contractor-directory'], { relativeTo: this._routes });
+    
+    this._router.navigate(['../public/home'], { skipLocationChange: true }).then(() =>
+      this._router.navigate(['../public/contractor-directory'], { relativeTo: this._routes })
+    );
+
+    
     this.removeClass();
   }
 

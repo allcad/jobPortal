@@ -19,11 +19,11 @@
           </div>
           <div class="signup_form_section">
 
-            <div class="errorbox" *ngIf="(searchForm && searchForm.form && searchForm.form.controls && searchForm.form.invalid && submitClick)"><b>The following error(s) occured:</b>
+            <!-- <div class="errorbox" *ngIf="(searchForm && searchForm.form && searchForm.form.controls && searchForm.form.invalid && submitClick)"><b>The following error(s) occured:</b>
               <br>
               <li *ngIf="searchForm.form.controls.jobTitle?.hasError('required')">Please enter job title</li>
               
-            </div>
+            </div> -->
 
             <form #searchForm="ngForm">
               <div class="job_search_keywords">
@@ -34,7 +34,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Job Title" name="jobTitle" [(ngModel)]="jobTitle" required>
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Job Title" name="jobTitle" [(ngModel)]="jobTitle">
                     </div>
                   </div>
                 </div>
@@ -147,6 +147,7 @@
                         <div class="input-group-addon"><img src="./assets/images/show-contacts.png" alt="Show Contracts Posted Since" title="Show Contracts Posted Since" class="img-responsive"></div>
                         <!-- <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Show Contacts Posted Since:" name="contacts" [(ngModel)]="showContacts"> -->
                         <select class="form-control minimal background_drop_down" [(ngModel)]="showContracts" name="showContracts">
+                          <option value="0" selected disabled>Posted since</option>
                           <option *ngFor ="let slot of timeSlotList" [value]="slot.id">{{slot.text}}</option>
                           <!-- <option value="1">Last 24 hours</option>
                           <option value="2">Last 48 hours</option>

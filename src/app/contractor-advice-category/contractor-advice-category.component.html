@@ -38,7 +38,7 @@
                 <div class="swiper-wrapper">
                   <li class="swiper-slide" *ngFor="let article of articleList">
                     <h2>{{article.title}}</h2>
-                    <p [innerHTML]="article.description"></p>
+                    <p [innerHTML]="article.description | slice: 0 : 100"></p>
                     <div class="row">
                       <div class="col-xs-50">
                         <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> </div>

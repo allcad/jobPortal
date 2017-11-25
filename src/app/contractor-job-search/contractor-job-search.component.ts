@@ -14,15 +14,16 @@ distance="0";
 place;
 minRate;
 maxRate;
-rateType="daily";
+rateType="";
 jobPreferenceNumber;
-showContracts="7";
+showContracts="0";
 industrySectorData = [];
 industrySector = [];
 lastSearchData;
 submitClick = false;
 timeSlotList =[];
 isPublic = false;
+
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
@@ -62,22 +63,25 @@ isPublic = false;
     this.submitClick = true;
     if(form.valid){
       var inputJson = {
-      "email" : "jcobSmit@gmail.com",
-      "loginToken" : "dnaskd",
-      contractor_search_by_job_title : this.jobTitle ? this.jobTitle: "",
-      contractor_search_by_keywords : this.keywords ? this.keywords : "",
-      contractor_search_by_exclude_words : this.excluding ? this.excluding : "",
-      contractor_search_by_miles : this.distance ? this.distance: "",
-      contractor_search_by_location: this.place ? this.place : "",
-      contractor_search_by_rate_min: this.minRate ? this.minRate : "",
-      contractor_search_by_rate_max: this.maxRate ? this.maxRate : "",
-      contractor_search_by_rate_type: this.rateType ? this.rateType : "",
-      contractor_search_by_job_reference_number : this.jobPreferenceNumber ? this.jobPreferenceNumber : "",
-      contractor_search_by_posted_contact_since: this.showContracts,
-      contractor_search_by_industry_sector : this.industrySector,
-      page : 1,
-      limit: 10,
-      sort: 1
+        contractor_search_by_job_title : this.jobTitle ? this.jobTitle: "",
+        contractor_search_by_keywords : this.keywords ? this.keywords : "",
+        contractor_search_by_exclude_words : this.excluding ? this.excluding : "",
+        contractor_search_by_miles : this.distance && this.distance !='0' ? this.distance: "",
+        contractor_search_by_location: this.place ? this.place : "",
+        contractor_search_by_rate_min: this.minRate ? this.minRate : "",
+        contractor_search_by_rate_max: this.maxRate ? this.maxRate : "",
+        contractor_search_by_rate_type: this.rateType ? this.rateType : "",
+        contractor_search_by_job_reference_number : this.jobPreferenceNumber ? this.jobPreferenceNumber : "",
+        contractor_search_by_posted_contact_since: this.showContracts && this.showContracts!=='0' ? this.showContracts : "",
+        contractor_search_by_industry_sector : this.industrySector ? this.industrySector : "",
+        page : 1,
+        limit: 10,
+        sort: 1
+    } 
+
+    if(!this.isPublic){
+      inputJson['email'] = "david@gmail.com";
+      inputJson['loginToken'] = "zbdkjasdJJJ41saloijdoailkL"
     }
 
     localStorage.setItem("jobSearch", JSON.stringify(inputJson));

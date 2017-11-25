@@ -80,7 +80,7 @@
               <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
             </div>
             <div class="pull-right view_company" *ngIf="!isPublic">
-              <a href="javascript:void(0)"  (click)="applyJob(item)">{{item.applyed ? 'Applied' : 'Apply Now'}} <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
+              <a href="javascript:void(0)" (click)="applyJob(item)">{{item.applyed ? 'Applied' : 'Apply Now'}} <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
             </div>
             <div class="pull-right view_company" *ngIf="isPublic">
               <p class="call-to-view ctvpad" style="float:right;padding-right:10px;"><a href="javascript:void(0)" (click)="login()">Login</a> or <a href="javascript: void(0)" (click)="signup()">Sign Up</a> to apply </p>
@@ -204,3 +204,38 @@
     </div>
   </div>
 </section>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Choose CV & Cover Letter</h4>
+      </div>
+      <div class="modal-body">
+        <form id="CVchoices" action="apply.php">
+          <div class="modal3-mid">
+            <div class="cvrow">
+              <label for="chooseCV">Choose CV:</label>
+              <span class="select161">
+            <select class="inpfocus" name="user_cv" id="chooseCV" [(ngModel)]="selectedCv">
+              <option [value]="cv.attachment_id" *ngFor="let cv of cvList">{{cv.attachment_name}}</option>
+              </select>
+            </span></div>
+            <div class="cvrow">
+              <label for="chooseCover">Choose Cover Letter:</label>
+              <span class="select161">
+            <select class="inpfocus" name="user_cover" id="chooseCover" [(ngModel)]="selectedCover">
+              <option [value]="cover.attachment_id" *ngFor="let cover of coverList">{{cover.attachment_name}}</option>
+              <option value="0">None</option>
+              </select>
+            </span></div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="apply()">Apply Now</button>
+      </div>
+    </div>
+  </div>
+</div>
