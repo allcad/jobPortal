@@ -11,7 +11,7 @@
           <div >
             <swiper [config]="config">
               <div class="swiper-wrapper">
-                <div *ngFor="let news of newsList" class="swiper-slide">
+                <div *ngFor="let news of newsList" class="swiper-slide" style="background: url(./assets/images/advice-category-banner-bg.png) no-repeat; background-size: cover; background-position: center;">
                   <li>
                     <h2 style="color: #fff;">{{news.article_title}}</h2>
                     <p style="color: #fff;" [innerHTML]="news.article_body | slice:0:300"> </p>
@@ -96,8 +96,8 @@
               <input class="form-control" id="exampleInputEmail2" placeholder="SEARCH NEWS HERE..." type="email">
             </div>
           </div>
-          <div class="col-md-13 col-sm-20">
-            <a href="javascript:void(0)" type="submit" class="btn btn-default font_capitaliz hover_white_pluse">search <i class="fa fa-search font_color_white transform_rotate" aria-hidden="true"></i></a>
+          <div class="col-md-13 col-sm-20 hover_button">
+            <a href="javascript:void(0)" type="submit" class="margin-tp">search <i class="fa fa-search font_color_white transform_rotate" aria-hidden="true"></i></a>
           </div>
         </div>
       </div>
@@ -217,7 +217,7 @@
                 <input type="email" class="form-control" id="exampleInputEmail2" placeholder="ENTER YOUR EMAIL ADDRESS HERE...">
               </div>
             </div>
-            <div class="col-md-16 col-sm-23"> <a href="javascript:void(0)" type="submit" class="btn btn-default font_capitaliz hover_white_pluse">SIGN UP NOW <i class="fa fa-plus font_color_white" aria-hidden="true"></i></a> </div>
+            <div class="col-md-16 col-sm-23 hover_button"> <a href="javascript:void(0)" type="submit" class="">SIGN UP NOW <i class="fa fa-plus font_color_white" aria-hidden="true"></i></a> </div>
           </div>
         </form>
       </div>
