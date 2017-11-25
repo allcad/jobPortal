@@ -27,3 +27,12 @@
 :host/deep/.irs-to:after{ border-top-color:#00ccff; }
 :host/deep/.irs-bar{ background:#00ccff;}
 :host/deep/.irs-slider{background:#00ccff; width:2px !important;}
+
+.my_applications_box .footer_box .view_company p a {
+    width: auto;
+}
+.footer_box a:hover{
+    color: #333 !important;
+    text-decoration: none !important;
+    transition: all .0s;
+}

@@ -120,18 +120,25 @@
                   <div class="form-group">
                     <div class="input-group" style="border-bottom: 1px solid #000; padding-bottom: 4px;">
                       <div class="input-group-addon" style="border-bottom: 0;"><img src="./assets/images/upload-cv.png" alt="Upload CV" title="Upload CV" class="img-responsive"></div>
-                      <div class="fileUpload">
+                      <!-- <div class="fileUpload">
                         <span>Find CV
                             <img alt="search now" src="./assets/images/find-cv.png" title="search now">
                           </span>
                         <input type="file" class="upload" (change)="fileChangeEvent($event);" #myInput />
-                      </div>
-                      <!--<div class="input-group-addon find_cv_from"><a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Find CV From<img src="./assets/images/find-cv.png" alt="Find CV" title="Find CV"></a>
+                      </div> -->
+                      <div class="find_cv_from" style="text-align: right; margin: 2px 0 4px 0;"><a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" style="color: #fff !important;" aria-haspopup="true" aria-expanded="true">Find CV From<img src="./assets/images/find-cv.png" alt="Find CV" title="Find CV"></a>
                           <ul class="dropdown-menu">
                             <li><a href="javascript:void(0)"><img src="./assets/images/mail-box1.png" alt="OneDrive" title="OneDrive" class="img-responsive"></a> <a href="javascript:void(0)"><img src="./assets/images/mail-box3.png" alt="GoogleDrive" title="GoogleDrive" class="img-responsive"></a> </li>
-                            <li> <a href="javascript:void(0)"><img src="./assets/images/mail-box2.png" alt="Dropbox" title="Dropbox" class="img-responsive"></a> <a href="javascript:void(0)"><img src="./assets/images/mail-box4.png" alt="LocalDrive" title="LocalDrive" class="img-responsive"></a> </li>
+                            <li> <a href="javascript:void(0)"><img src="./assets/images/mail-box2.png" alt="Dropbox" title="Dropbox" class="img-responsive"></a> 
+
+                            <div class="fileUpload">
+                              <a href="javascript:void(0)"><img src="./assets/images/mail-box4.png" alt="LocalDrive" title="LocalDrive" class="img-responsive"></a>
+                              <input type="file" class="upload" name="">
+                            </div>
+
+                            <!-- <a href="javascript:void(0)"><img src="./assets/images/mail-box4.png" alt="LocalDrive" title="LocalDrive" class="img-responsive"></a> --> </li>
                           </ul>
-                        </div> -->
+                        </div> 
                     </div>
                   </div>
                   <div style="margin-top: -35px;text-align: right;font-family: arial;">
@@ -185,11 +192,11 @@
                           <option *ngFor="let skill of skillData" [value]="skill.skill_id">{{skill.skill_name}}</option>
                         </select>
                       </div>
-                      <div class="add_sub_skills" *ngIf="selectedSkillArray.length>0">
-                        <a href="javascript:void(0)" *ngFor="let selectedSkill of selectedSkillArray; let i = index">
+                    </div>
+                    <div class="add_sub_skills" *ngIf="selectedSkillArray.length>0">
+                      <a href="javascript:void(0)" *ngFor="let selectedSkill of selectedSkillArray; let i = index">
                       {{selectedSkill.skill_name}}
                    <img src="./assets/images/close-icon.png" alt="Close" title="Close" (click)="removeSelectedSkill(i)"></a>
-                      </div>
                     </div>
                   </div>
                 </div>

@@ -36,15 +36,15 @@
               <!-- slider -->
               <swiper [config]="config">
                 <div class="swiper-wrapper">
-                  <li class="swiper-slide" *ngFor="let article of articleList">
+                  <li class="swiper-slide" *ngFor="let article of articleList" style="background: url(./assets/images/advice-category-banner-bg.png) no-repeat; background-size: cover; background-position: center;">
                     <h2>{{article.title}}</h2>
-                    <p [innerHTML]="article.description | slice: 0 : 100"></p>
+                    <p [innerHTML]="article.description | slice : 0 : 200"></p>
                     <div class="row">
                       <div class="col-xs-50">
                         <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> </div>
                       </div>
                       <div class="col-xs-50">
-                        <div class="letest_news_footer" (click)="readFullArticle(article)"> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
+                        <div class="letest_news_footer" (click)="readFullArticle(article)"> <a href="javascript:void(0)" class="news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
                       </div>
                     </div>
                   </li>
@@ -139,8 +139,8 @@
               <input class="form-control" id="exampleInputEmail2" placeholder="SEARCH ADVICE HERE..." type="email">
             </div>
           </div>
-          <div class="col-md-15 col-sm-23">
-            <a href="javascript:void(0)" type="submit" class="btn btn-default font_capitaliz hover_white_pluse">search <i class="fa fa-search font_color_white transform_rotate" aria-hidden="true"></i></a>
+          <div class="col-md-15 col-sm-23 hover_button">
+            <a href="javascript:void(0)" type="submit" class="margin-tp">search <i class="fa fa-search font_color_white transform_rotate" aria-hidden="true"></i></a>
           </div>
         </div>
       </div>
@@ -155,7 +155,7 @@
           <div class="book_mark" routerLink="../adviceDetail"><a href="javascript:void(0)"><img src="./assets/images/artical-message.png" alt="" title=""></a></div>
           <img [src]="adviceArticle.image" alt="" onError="this.src='./assets/images/advice-article-default.png'" alt="" title="" class="img-responsive">
           <h5>{{adviceArticle.title}}</h5>
-          <p [innerHTML]="adviceArticle.description"></p>
+          <p [innerHTML]="adviceArticle.description | slice : 0 : 100"></p>
           <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
         </div>
       </div>
@@ -259,7 +259,7 @@
             <input type="email" class="form-control" id="exampleInputEmail2" placeholder="ENTER YOUR EMAIL ADDRESS HERE...">
           </div>
         </div>
-        <div class="col-md-16 col-sm-23"> <a href="javascript:void(0)" type="submit" class="btn btn-default font_capitaliz hover_white_pluse">SIGN UP NOW <i class="fa fa-plus font_color_white" aria-hidden="true"></i></a> </div>
+        <div class="col-md-16 col-sm-23 hover_button"> <a href="javascript:void(0)" type="submit" class="">SIGN UP NOW <i class="fa fa-plus font_color_white" aria-hidden="true"></i></a> </div>
       </div>
     </form>
   </div>
