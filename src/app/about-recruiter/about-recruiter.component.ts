@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonDataSharedService } from '../commonDataSharedService';
 import * as $ from 'jquery';
 
 @Component({
@@ -8,9 +9,36 @@ import * as $ from 'jquery';
 })
 export class AboutRecruiterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _commonDataShareService: CommonDataSharedService) { }
 
   ngOnInit() {
+
+    this._commonDataShareService.switchToDivSubject.subscribe((data) =>{
+          if(data) {
+            //console.log("data--", data);
+
+            if (data === 'contractRecruit') {
+              setTimeout(function(){
+              if ($('#contractrecurit') && $('#contractrecurit').offset())
+              $(window).scrollTop($('#contractrecurit').offset().top);
+             },100); 
+            }
+            if (data === "whoAreWe") {
+              setTimeout(function(){
+              if ($('#whoarewe') && $('#whoarewe').offset())
+             $(window).scrollTop($('#whoarewe').offset().top);
+             },100); 
+            }
+            if (data === "whatWeDo") {
+              setTimeout(function(){
+               if ($('#whatdowedo') && $('#whatdowedo').offset())
+               $(window).scrollTop($('#whatdowedo').offset().top); 
+              },100);
+            }
+
+            
+          }
+        });
   	 //$(".roket").animate({top: '-10px'});
     
   	$(document).on('scroll', function() {
@@ -19,11 +47,11 @@ export class AboutRecruiterComponent implements OnInit {
         $(".roket").animate({top: '55px'},'slow',function(){});
     }
     var isAnimating = $('.roket_arrow').is(':animated');
-    console.log('isAnimating--', isAnimating, $('.roket_arrow').css('top'));
+    //console.log('isAnimating--', isAnimating, $('.roket_arrow').css('top'));
     if ($('.roket_arrow').css('top') && parseInt($('.roket_arrow').css('top').split("px")[0]) <= 190)      {
     if($('.roket_arrow') && $('.roket_arrow').position()){
         $(".roket_arrow").animate({right: '+=10', top: '+=10'},'fast',function(){    
-          console.log($(this).css('top'));
+          //console.log($(this).css('top'));
           if ($('.roket_arrow').css('top') && parseInt($('.roket_arrow').css('top').split("px")[0]) >= 190)    	{
              $(this).stop(true,true);
           }
@@ -44,7 +72,7 @@ export class AboutRecruiterComponent implements OnInit {
     // 	$(".roket_arrow").stop(true,true);
     // 	// alert("in");
     // }
-})
+});
   }
 
 }

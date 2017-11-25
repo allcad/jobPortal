@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 import { CommonRequestService } from '../common-request.service';
+import { CommonDataSharedService } from '../commonDataSharedService';
 import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-top-menu',
@@ -13,7 +14,8 @@ export class TopMenuComponent implements OnInit {
   itContractorFlag = false;
   aboutContractRecruitFlag = false;
   categoryData = [];
-  constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
+  constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute,
+    private _commonDataShareService: CommonDataSharedService) { }
 
   ngOnInit() {
     this.getServiceCategory();
@@ -36,7 +38,7 @@ export class TopMenuComponent implements OnInit {
 
   categoryClicked(categoryData) {
     this._commonRequestService.setDataWithoutObserval(categoryData.contract_hub_category_id, 'category_hub_id');
-    
+    this._router.navigate(['../public/contractor-directory'], { relativeTo: this._routes });
     this._router.navigate(['../public/home'], { skipLocationChange: true }).then(() =>
       this._router.navigate(['../public/contractor-directory'], { relativeTo: this._routes })
     );
@@ -61,6 +63,23 @@ export class TopMenuComponent implements OnInit {
     let cName = className;
     $("." + cName).slideUp();
   }
+
+ moveToTerms(value) {
+   var obj = {'value' : value};
+    localStorage.setItem('termsValue', JSON.stringify(obj));
+    this._commonDataShareService.termsAndUsePage.next(value);
+    this._router.navigate(['/public/privacy-policy']);
+}
+
+moveToAboutPage(value) {
+  this._commonDataShareService.switchToDivSubject.next(value);
+  this._router.navigate(['/public/about-recruiter']);
+}
+
+moveToSearchResult(value) {
+  this._commonDataShareService.advancedSerahcResult.next(value);
+  this._router.navigate(['/recruiter/searchresult-loggedin']);
+}
 
   searchContract(key, value) {
     let inputJson = {

@@ -239,24 +239,24 @@
                       <h2 class="hidden-xs">Search IT Contractors</h2>
                       <ul class="hidden-xs">
                         <!--  routerLink="/recruiter/advanced-search" -->
-                          <li><a (click)="removeClass()" href="javascript:void(0)">Advanced Contractor Search</a></li>
+                          <li><a (click)="removeClass()" routerLink="/recruiter/advanced-search" href="javascript:void(0)">Advanced Contractor Search</a></li>
                       </ul>
                       <h2 class="hidden-xs">Quick Search</h2>
                       <ul class="hidden-xs">
                         <!--  routerLink="/recruiter/searchresult-loggedin" -->
-                          <li><a (click)="removeClass()" href="javascript:void(0)">Contract Web Developers</a></li>
+                          <li><a (click)="removeClass();moveToSearchResult('Web Developers')" href="javascript:void(0)">Contract Web Developers</a></li>
                           <hr class="visible-xs">
                           <!--  routerLink="/recruiter/searchresult-loggedin" -->
-                          <li><a (click)="removeClass()" href="javascript:void(0)">Contract Project Managers</a></li>
+                          <li><a (click)="removeClass();moveToSearchResult('Project Managers')" href="javascript:void(0)">Contract Project Managers</a></li>
                           <hr class="visible-xs">
                           <!--  routerLink="/recruiter/searchresult-loggedin" -->
-                          <li><a (click)="removeClass()" href="javascript:void(0)">Contract Analysts</a></li>
+                          <li><a (click)="removeClass();moveToSearchResult('Analysts')" href="javascript:void(0)">Contract Analysts</a></li>
                           <hr class="visible-xs">
                           <!--  routerLink="/recruiter/searchresult-loggedin"-->
-                          <li><a (click)="removeClass()" href="javascript:void(0)">Contract Designers</a></li>
+                          <li><a (click)="removeClass();moveToSearchResult('Designers')" href="javascript:void(0)">Contract Designers</a></li>
                           <hr class="visible-xs">
                           <!--  routerLink="/recruiter/searchresult-loggedin" -->
-                          <li><a (click)="removeClass()" href="javascript:void(0)">Contract Software Developers</a></li>
+                          <li><a (click)="removeClass();moveToSearchResult('Software Developers')" href="javascript:void(0)">Contract Software Developers</a></li>
                       </ul>
                   </li>
                   <li class="hidden-xs">
@@ -279,17 +279,17 @@
                                         <li>
                                             <h2 class="hidden-xs">About ContractRecruit</h2>
                                             <ul>
-                                                <li><a (click)="removeClass()" href="javascript:void(0)" routerLink="/public/about-recruiter">What is <span class="stong">Contract</span>Recruit?</a></li>
+                                                <li><a (click)="removeClass();moveToAboutPage('contractRecruit')" href="javascript:void(0)">What is <span class="stong">Contract</span>Recruit?</a></li>
                                                 <hr class="visible-xs">
-                                                <li><a (click)="removeClass()" href="javascript:void(0)" routerLink="/public/about-recruiter">Who are we?</a></li>
+                                                <li><a (click)="removeClass();moveToAboutPage('whoAreWe')" href="javascript:void(0)">Who are we?</a></li>
                                                 <hr class="visible-xs">
-                                                <li><a (click)="removeClass()" href="javascript:void(0)" routerLink="/public/about-recruiter">What do we do?</a></li>
+                                                <li><a (click)="removeClass();moveToAboutPage('whatWeDo')" href="javascript:void(0)">What do we do?</a></li>
                                             </ul>
                                             <h2 class="hidden-xs">Site Usage</h2>
                                             <ul class="hidden-xs">
-                                                <li><a (click)="removeClass()" href="javascript:void(0)">Terms of Use</a></li>
+                                                <li><a (click)="removeClass();moveToTerms('terms')" href="javascript:void(0)">Terms of Use</a></li>
                                                 <hr class="visible-xs">
-                                                <li><a (click)="removeClass()" routerLink="./privacy-policy" href="javascript:void(0)">Privacy Policy</a></li>
+                                                <li><a (click)="removeClass();moveToTerms('privacy')" routerLink="./privacy-policy" href="javascript:void(0)">Privacy Policy</a></li>
                                                 <hr class="visible-xs">
                                                 <li><a (click)="removeClass()" routerLink="./site-map" href="javascript:void(0)">Site Map</a></li>
                                             </ul>

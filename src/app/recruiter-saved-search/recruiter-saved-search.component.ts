@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-recruiter-saved-search',
@@ -45,7 +46,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
   sameSearchNameFlag = false;
   WSErrorMsg = '';
   showDeleteButtonFlag = false;
-  constructor(public _commonRequestService: CommonRequestService) { }
+  constructor(public _commonRequestService: CommonRequestService, private _router: Router) { }
 
   ngOnInit() {
     this.getSecurityClearance();
@@ -262,14 +263,14 @@ export class RecruiterSavedSearchComponent implements OnInit {
       "recuriter_search_by_unavailable":this.includeUnavailable ? 1 : 0,
       "recuriter_search_by_updated_contractor_since":this.showContractors?this.showContractors:'',
       "recuriter_search_by_contract_name":this.contractorName?this.contractorName:'',
-      "recuriter_search_by_education":this.educationValue?this.educationValue:[],
+      "recuriter_search_by_education":this.educationValue?this.educationValue:"",
       "recuriter_search_by_industry":this.industrySectorValue?this.industrySectorValue:[],
       "recuriter_search_by_security_clearance":this.securityClearValue?this.securityClearValue:[],
       "recuriter_search_by_driving_license":this.drivingLicenceValue == 'yes' ? 1 : 0
      
     }
 
-    if(this.saveSearchDataListing && this.saveSearchDataListing.length > 0) {
+    if(this.saveSearchDataListing && this.saveSearchDataListing.length > 0 && this.recentRecruiterSaveId == "") {
       for(var i=0;i<this.saveSearchDataListing.length;i++) {
         // console.log("this.saveSearchDataListing[i].recuriter_saved_search_name", this.saveSearchDataListing[i].recuriter_saved_search_name);
         // console.log("this.savedSearchName", this.savedSearchName, this.savedSearchName.toLowerCase().trim());
@@ -380,12 +381,12 @@ export class RecruiterSavedSearchComponent implements OnInit {
       "recuriter_search_by_rate_max":this.maxRate?this.maxRate:'',
       "recuriter_search_by_rate_type":this.dailyHourlyValue?this.dailyHourlyValue:'',
       "recuriter_search_by_time_left":this.timeLeftOnCutCont?this.timeLeftOnCutCont:'',
-      "recuriter_search_by_unavailable":this.includeUnavailable ? 1 : 0,
+      "recuriter_search_by_unavailable":this.includeUnavailable ? 1 : 1,
       "recuriter_search_by_updated_contractor_since":this.showContractors?this.showContractors:'',
       "recuriter_search_by_contract_name":this.contractorName?this.contractorName:'',
-      "recuriter_search_by_education":this.educationValue?this.educationValue:[],
-      "recuriter_search_by_industry":JSON.stringify(this.industrySectorValue)?JSON.stringify(this.industrySectorValue) : [],
-      "recuriter_search_by_security_clearance":JSON.stringify(this.securityClearValue) ?JSON.stringify(this.securityClearValue) : [],
+      "recuriter_search_by_education":this.educationValue?this.educationValue:"",
+      "recuriter_search_by_industry":JSON.stringify(this.industrySectorValue)?JSON.stringify(this.industrySectorValue) : "",
+      "recuriter_search_by_security_clearance":JSON.stringify(this.securityClearValue) ?JSON.stringify(this.securityClearValue) : "",
       "recuriter_search_by_driving_license":this.drivingLicenceValue == 'yes' ? 1 : 0,
       "page":1,
       "limit":10,
@@ -403,6 +404,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
             window.scroll(0,0);
             if(data.status === "TRUE"){
               this.WSErrorMsg = "";
+              this._router.navigate(['/recruiter/searchresult-loggedin']);
                     // this.succesMessageFlag =true;
                     // this.errorSuccessMessage = "Saved succesfully !";
                     // this.successMessageFlag  = true;
