@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CommonRequestService } from '../common-request.service';
 import { CommonDataSharedService } from '../commonDataSharedService';
 
+
 @Component({
   selector: 'app-recruiter-home',
   templateUrl: './recruiter-home.component.html',
@@ -16,6 +17,9 @@ export class RecruiterHomeComponent implements OnInit {
   	private _commonDataSharedService: CommonDataSharedService) { }
 
   ngOnInit() {
+
+       
+    
   	this.getRecruiterCount();
   	this.getManageJobsList(9);
   }

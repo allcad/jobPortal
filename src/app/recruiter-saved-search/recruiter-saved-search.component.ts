@@ -289,7 +289,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
     }
     console.log("this.sameSearchNameFlag", this.sameSearchNameFlag);
 
-    if(!this.sameSearchNameFlag) {
+    
       if (this.recentRecruiterSaveId) {
         savedSearchSaveJson["search_id"] = this.recentRecruiterSaveId ? this.recentRecruiterSaveId : '';
         console.log("savedSearchSaveJson00", savedSearchSaveJson)
@@ -324,36 +324,37 @@ export class RecruiterSavedSearchComponent implements OnInit {
           }
       ); 
       } else {
-        var inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/save_search";
-         this._commonRequestService.postData(inputUrl, savedSearchSaveJson).subscribe(
-          data => {
-            this.responseData = data;
-            window.scroll(0,0);
-            if(this.responseData.status === "TRUE"){
-                    this.succesMessageFlag =true;
-                    this.WSErrorMsg = "";
-                    this.errorSuccessMessage = "Saved succesfully !";
-                    this.showDeleteButtonFlag = false;
-                    this.successMessageFlag  = true;
-                    this.errorMessageFlag = false;
-                    this.resetFields();
-                    this.getListOfSaveSearch();
-            //         this.ErrorMesageFlag =false
-            // this.profileData={};
-            // this.errorMsg = "";
-            }
-            else{
-               this.succesMessageFlag =false;
-               this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
-               this.successMessageFlag  = false;
-               this.errorMessageFlag = true;
-                //this.ErrorMesageFlag =true;
-                //this.errorMsg = this.responseData.error[0];
-            }
-      
-            // console.log("keySkill: ", this.listSignUpData);
-          }
-      ); 
+         if(!this.sameSearchNameFlag) {
+            var inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/save_search";
+             this._commonRequestService.postData(inputUrl, savedSearchSaveJson).subscribe(
+              data => {
+                this.responseData = data;
+                window.scroll(0,0);
+                if(this.responseData.status === "TRUE"){
+                        this.succesMessageFlag =true;
+                        this.WSErrorMsg = "";
+                        this.errorSuccessMessage = "Saved succesfully !";
+                        this.showDeleteButtonFlag = false;
+                        this.successMessageFlag  = true;
+                        this.errorMessageFlag = false;
+                        this.resetFields();
+                        this.getListOfSaveSearch();
+                //         this.ErrorMesageFlag =false
+                // this.profileData={};
+                // this.errorMsg = "";
+                }
+                else{
+                   this.succesMessageFlag =false;
+                   this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+                   this.successMessageFlag  = false;
+                   this.errorMessageFlag = true;
+                    //this.ErrorMesageFlag =true;
+                    //this.errorMsg = this.responseData.error[0];
+                }
+          
+                // console.log("keySkill: ", this.listSignUpData);
+              }
+          ); 
       }
     }
     //console.log("savedSearchSaveJson", savedSearchSaveJson);
