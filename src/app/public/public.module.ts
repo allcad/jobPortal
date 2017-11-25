@@ -16,7 +16,7 @@ import { FindContractorComponent } from '../find-contractor/find-contractor.comp
 
 
 
-
+import { ContractorJobSearchComponent } from '../contractor-job-search/contractor-job-search.component';
 import { ContractorSignUpComponent } from '../contractor-sign-up/contractor-sign-up.component';
 import { LoginComponent } from '../login/login.component';
 import { SharedModule } from '../shared/shared.module';
@@ -38,6 +38,7 @@ import { SiteMapComponent } from '../site-map/site-map.component';
 import { BenefitsComponent } from '../benefits/benefits.component';
 import { SiteMaintenanceComponent } from '../site-maintenance/site-maintenance.component';
 import { NotFoundPageComponent } from '../not-found-page/not-found-page.component';
+import { ContractorSearchResultComponent } from '../contractor-search-result/contractor-search-result.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { NotFoundPageComponent } from '../not-found-page/not-found-page.componen
 	//AboutContractorComponent,
 	TermUseComponent,
 	// FindContractHubComponent,
-	
+	ContractorSearchResultComponent,
 	ContractorSignUpComponent,
 	LoginComponent,
 	RecruiterSignUpComponent,
@@ -63,6 +64,7 @@ import { NotFoundPageComponent } from '../not-found-page/not-found-page.componen
     BenefitsComponent,
     SiteMaintenanceComponent,
     NotFoundPageComponent,
+    ContractorJobSearchComponent
   ],
   imports: [
   	PublicRoutingModule,

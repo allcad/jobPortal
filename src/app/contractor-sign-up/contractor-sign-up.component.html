@@ -89,7 +89,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/mobile-number.png" alt="Telephone Number" title="Telephone Number" class="img-responsive"></div>
-                      <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Enter Mobile Number" name="contractor_tel_no" [(ngModel)]="contractor_tel_no" pattern="[0-9]*" required [tooltip]="phoneTooltip">
+                      <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Enter Mobile Number" name="contractor_tel_no" [(ngModel)]="contractor_tel_no" pattern="[0-9]*" min="0" required [tooltip]="phoneTooltip">
                       <tooltip-content #phoneTooltip>
                         <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_tel_no?.valid " style="color: #C21F39">Contractor's Mobile No </span>
                         <span [hidden]="!userForm.form.controls.contractor_tel_no?.hasError('required')" style="color: #C21F39"> Mobile No is required! </span>
@@ -157,7 +157,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Current Job Title" name="contractor_job_title" [(ngModel)]="contractor_job_title" required [tooltip]="contractor_job_titleTooltip">
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Current Job Title" name="contractor_job_title" [(ngModel)]="contractor_job_title" required >
                      <!--  <tooltip-content #contractor_job_titleTooltip>
                         <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_job_title?.valid " style="color: #C21F39"> Job Title </span>
                         <span [hidden]="!userForm.form.controls.contractor_job_title?.hasError('required')" style="color: #C21F39"> Job Title is required! </span>
@@ -270,7 +270,7 @@
                 <div class="row">
                   <div class="col-sm-50" *ngFor="let category of categoryData">
                     <div class="service_box">
-                      <input type="checkbox" id="{{category.name}}" [value]="category.id" name="{{category.name}}" [checked]="category.checked" (change)="category.checked=!category.checked;">
+                      <input type="checkbox" id="{{category.name}}" [value]="category.id" name="{{category.name}}" [checked]="category.checked" (change)="serviceChange(category)">
                       <label for="{{category.name}}"><span></span> {{category.name}}</label>
                     </div>
                   </div>
@@ -279,7 +279,7 @@
               <div class="current_rate_signup situation35">
                 <div class="terms_of_use">
                   <input type="checkbox" id="inlineCheckbox12" value="option153" [(ngModel)]="contractor_agree_terms_status" name="termOfUse" required>
-                  <label for="inlineCheckbox12"><span></span> I AGREE TO CONTRACTRECRUIT’S <a (click)="clickTermsUse()" href="javascript:void(0)" target="_blank">TERMS OF USE</a> </label>
+                  <label for="inlineCheckbox12"><span></span> I AGREE TO CONTRACTRECRUIT’S <a href="javascript:void(0)" routerLink="../terms_use" target="_blank">TERMS OF USE</a> </label>
                 </div>
                 <button type="submit" class="btn-primary pull-right hover_white_pluse">SIGN UP <i class="fa fa-plus plus_blue" aria-hidden="true"></i></button>
                 <!--   <a href="javascript:void(0)" class="btn-primary pull-right hover_white_pluse">SIGN UP <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> --></div>

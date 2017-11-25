@@ -23,6 +23,8 @@ import { ContractorHubHomeComponent } from '../contractor-hub-home/contractor-hu
 import { RecruiterGuidesPageComponent } from '../recruiter-guides-page/recruiter-guides-page.component';
 import { PrivacyPolicyComponent } from '../privacy-policy/privacy-policy.component';
 import { SiteMapComponent } from '../site-map/site-map.component';
+import { ContractorJobSearchComponent } from '../contractor-job-search/contractor-job-search.component';
+import { ContractorSearchResultComponent } from '../contractor-search-result/contractor-search-result.component';
 
 const publicRoutes: Routes = [
 {
@@ -85,7 +87,13 @@ const publicRoutes: Routes = [
 } , {
     "path": "site-map",
     "component": SiteMapComponent
+},{
+    "path": "contractor-job-search",
+    "component": ContractorJobSearchComponent
 }, {
+    "path": "searchResult",
+    "component": ContractorSearchResultComponent
+},{
     "path": "",
     "redirectTo" : "home",
     "pathMatch" : "full"
@@ -95,7 +103,7 @@ const publicRoutes: Routes = [
 },{
     "path": '**', 
     "redirectTo": '/404'
-}]
+},]
 
 @NgModule({
     imports:[RouterModule.forChild(publicRoutes)],

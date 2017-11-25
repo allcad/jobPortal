@@ -10,11 +10,11 @@
             <li>
               <h2 class="hidden-xs">IT Contract Search</h2>
               <ul>
-                <li><a (click)="removeClass()" href="javascript:void(0)">Advanced Job Search</a></li>
+                <li><a (click)="removeClass()" href="javascript:void(0)" routerLink="../public/contractor-job-search">Advanced Job Search</a></li>
                 <hr class="visible-xs">
-                <li><a (click)="removeClass()" href="javascript:void(0)">View Newest Contracts</a></li>
+                <li><a (click)="removeClass()" href="javascript:void(0)" routerLink="../public/searchResult">View Newest Contracts</a></li>
                 <hr class="visible-xs">
-                <li><a (click)="removeClass()" href="javascript:void(0)">View all IT Contracts</a></li>
+                <li><a (click)="removeClass()" href="javascript:void(0)" routerLink="../public/searchResult">View all IT Contracts</a></li>
               </ul>
             </li>
             <li class="hidden-xs">
@@ -124,7 +124,7 @@
                     <hr class="visible-xs">
                     <li class="visible-xs"><a (click)="removeClass()" href="javascript:void(0)" routerLink="../public/contractor_hub_home">ContractHub Home</a></li>
                     <hr class="visible-xs">
-                    <li class="visible-xs"><a (click)="removeClass()" href="javascript:void(0)">IT Contractor News</a></li>
+                    <li class="visible-xs"><a (click)="removeClass()" href="javascript:void(0)" routerLink="../news_category">IT Contractor News</a></li>
                     <hr class="visible-xs">
                     <li class="visible-xs"><a (click)="removeClass()" href="javascript:void(0)" routerLink="../advice">IT Contractor Advice</a></li>
                     <hr class="visible-xs">
@@ -136,15 +136,15 @@
                 <ul class="hidden-xs">
                     <li><a (click)="removeClass()" href="javascript:void(0)"  routerLink="../public/contractor_hub_home">ContractHub Home</a></li>
                     <hr class="visible-xs">
-                    <li><a (click)="removeClass()" href="javascript:void(0)">IT Contractor News</a></li>
+                    <li><a (click)="removeClass()" href="javascript:void(0)" routerLink="../public/news_category">IT Contractor News</a></li>
                     <hr class="visible-xs">
-                    <li><a (click)="removeClass()" href="javascript:void(0)">IT Contractor Advice</a></li>
+                    <li><a (click)="removeClass()" href="javascript:void(0)" routerLink="../public/advice">IT Contractor Advice</a></li>
                 </ul>
                 <h2 class="hidden-xs">Contractor Services</h2>
                 <ul class="hidden-xs">
-                    <li><a (click)="removeClass()" href="javascript:void(0)">Umbrella Companies</a></li>
+                    <li *ngFor="let category of categoryData" (click)="categoryClicked(category)"><a  href="javascript:void(0)">{{category.contract_hub_category_name}}</a></li>
                     <hr class="visible-xs">
-                    <li><a (click)="removeClass()" href="javascript:void(0)">Contractor Insurance</a></li>
+                    <!-- <li><a (click)="removeClass()" href="javascript:void(0)">Contractor Insurance</a></li>
                     <hr class="visible-xs">
                     <li><a (click)="removeClass()" href="javascript:void(0)">IT Training</a></li>
                     <hr class="visible-xs">
@@ -156,7 +156,7 @@
                     <hr class="visible-xs">
                     <li><a (click)="removeClass()" href="javascript:void(0)">IT Contractor Accountancy</a></li>
                     <hr class="visible-xs">
-                    <li><a (click)="removeClass()" href="javascript:void(0)">IT Contractor Mortgages</a></li>
+                    <li><a (click)="removeClass()" href="javascript:void(0)">IT Contractor Mortgages</a></li> -->
                 </ul>
             </li>
             <li class="hidden-xs">

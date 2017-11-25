@@ -314,4 +314,21 @@ fileChangeEvent(fileInput: any) {
       })
   }
 
+  serviceChange(category){
+    if(category.name === 'NONE OF THE ABOVE'){
+      this.categoryData = this.categoryData.filter(item=>{
+        item.checked = false;
+        return item;
+      })
+    }else{
+      this.categoryData = this.categoryData.filter(item=>{
+        if(item.name === 'NONE OF THE ABOVE'){
+          item.checked = false;
+        }
+        return item;
+      })
+    }
+    category.checked=!category.checked;
+  }
+
 }

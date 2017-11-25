@@ -10,8 +10,8 @@ import { ContractorRoutingModule } from './contractor-routing.module';
 
 import { ContractorProfileComponent } from '../contractor-profile/contractor-profile.component';
 import { ContractorViewProfileComponent } from '../contractor-view-profile/contractor-view-profile.component';
-import { ContractorJobSearchComponent } from '../contractor-job-search/contractor-job-search.component';
-import { ContractorSearchResultComponent } from '../contractor-search-result/contractor-search-result.component';
+
+// import { ContractorSearchResultComponent } from '../contractor-search-result/contractor-search-result.component';
 import { ContractorApplicationsComponent } from '../contractor-applications/contractor-applications.component';
 import { ContractorJobSearchSavedComponent } from '../contractor-job-search-saved/contractor-job-search-saved.component';
 //import { ContractorDirectoryComponent } from '../contractor-directory/contractor-directory.component';
@@ -36,10 +36,9 @@ import { ImageCropperModule } from 'ng2-img-cropper';
    
 	ContractorProfileComponent,
 	ContractorViewProfileComponent,
-  ContractorJobSearchComponent,
   ContractorApplicationsComponent,
   ContractorJobSearchSavedComponent,
-  ContractorSearchResultComponent,
+  //ContractorSearchResultComponent,
  // ContractorHubHomeComponent,
   // ContractorAdviceMenuListingComponent,
   // ContractorAdviceListingComponent,
