@@ -51,6 +51,7 @@ import { ContractorLoginFullJobComponent } from './contractor-login-full-job/con
 
 import { CommonDataSharedService } from './commonDataSharedService';
 import { ResolverService } from './resolver.service';
+import { CommonService } from './commonService.service';
 
 
 
@@ -99,7 +100,7 @@ import { ResolverService } from './resolver.service';
     RecruiterModule,
     ContractorModule
   ],
-  providers: [CommonRequestService, CommonDataSharedService, ResolverService],
+  providers: [CommonRequestService, CommonDataSharedService, ResolverService, CommonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
