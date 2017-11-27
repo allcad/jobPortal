@@ -72,7 +72,8 @@
 
                     <div style="margin-bottom: 30px;">
                       
-                      <img *ngIf="!profileUrl" class="img-responsive" [src]="profileData && profileData.profileimage[0] ? profileData.profileimage[0].attachment_url+'/' +  profileData.profileimage[0].attachment_name : './assets/images/profile-pik.png'" alt="ads">
+                      <!-- <img *ngIf="!profileUrl" class="img-responsive" [src]="profileData && profileData.profileimage[0] ? profileData.profileimage[0].attachment_url+'/' +  profileData.profileimage[0].attachment_name : './assets/images/profile-pik.png'" alt="ads"> -->
+                      <img *ngIf="!profileUrl" class="img-responsive" [src]="profileData && profileData?.profileimage && profileData?.profileimage.length > 0 && profileData?.profileimage[0] ? profileData?.profileimage[0]?.attachment_url+'/' +  profileData?.profileimage[0]?.attachment_name : './assets/images/profile-pik.png'" alt="ads">
                       <img *ngIf="profileUrl" class="img-responsive" [src]="profileUrl" alt="ads">
                     </div>
                     <!-- <a href="javascript:void(0);"></a> -->

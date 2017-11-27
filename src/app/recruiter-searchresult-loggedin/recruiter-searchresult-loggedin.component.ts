@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonDataSharedService } from '../commonDataSharedService';
 import { CommonRequestService } from '../common-request.service';
+import { CommonService } from '../commonService.service';
 
 @Component({
   selector: 'app-recruiter-searchresult-loggedin',
@@ -15,18 +16,23 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   thirdArray = [];
   pageLimit = 12;
   savedResult;
-  constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService) { }
+  WSErrorMsg = "";
+  constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService,
+    private _commonService: CommonService) { }
 
   ngOnInit() {
   	//this.getSearchResultList();
-    this._commonDataShareService.advancedSerahcResult.subscribe((data) =>{
-      console.log("serach result--", data);
-          if(data) {
-            //this.setValue(data);
-            this.savedResult = data;
-            this.getSearchResultList();
-          }
-        });
+    // this._commonDataShareService.advancedSerahcResult.subscribe((data) =>{
+    //   console.log("serach result--", data);
+    //       if(data) {
+    //         //this.setValue(data);
+    //         this.savedResult = data;
+    //         this.getSearchResultList();
+    //       }
+    //     });
+    this.savedResult = this._commonService.getSearchResult();
+    console.log("this.savedResult", this.savedResult)
+    this.getSearchResultList();
   }
 
   getSearchResultList() {
@@ -65,7 +71,7 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
       savedSearchSaveJson = this.savedResult;
     }
 
-    //this.searchList = [];
+    this.searchList = [];
 
     
 
@@ -113,11 +119,11 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
            console.log("secondArray", this.secondArray);
            console.log("thirdArray", this.thirdArray);
 
-              //this.WSErrorMsg = "";
+              this.WSErrorMsg = "";
             }
             else {
               // this.errorMessageFlag = true;
-              // this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+               this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
             }
       
           }

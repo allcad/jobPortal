@@ -37,8 +37,10 @@ import { ContractorAdviceArticleComponent } from '../contractor-advice-article/c
 import { ContractorAdviceCategoryComponent } from '../contractor-advice-category/contractor-advice-category.component';
 import { ContractorSearchResultComponent } from '../contractor-search-result/contractor-search-result.component';
 import { ContractorJobSearchComponent } from '../contractor-job-search/contractor-job-search.component';
+import { RecruiterSearchresultLoggedinComponent } from '../recruiter-searchresult-loggedin/recruiter-searchresult-loggedin.component';
+import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/recruiter-advanced-search.component';
 // import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/recruiter-advanced-search.component';
-// import { RecruiterSavedSearchComponent } from '../recruiter-saved-search/recruiter-saved-search.component';
+ import { RecruiterSavedSearchComponent } from '../recruiter-saved-search/recruiter-saved-search.component';
 
 @NgModule({
   declarations: [
@@ -67,8 +69,9 @@ import { ContractorJobSearchComponent } from '../contractor-job-search/contracto
     ContractorAdviceCategoryComponent,
     ContractorSearchResultComponent,
     ContractorJobSearchComponent,
-    // RecruiterAdvancedSearchComponent,
-    // RecruiterSavedSearchComponent
+    RecruiterSearchresultLoggedinComponent,
+     RecruiterAdvancedSearchComponent,
+     RecruiterSavedSearchComponent
   ],
   imports: [
     FormsModule,
@@ -102,8 +105,9 @@ import { ContractorJobSearchComponent } from '../contractor-job-search/contracto
     ContractorHubHomeComponent,
     ContractorSearchResultComponent,
     ContractorJobSearchComponent,
-    // RecruiterAdvancedSearchComponent,
-    // RecruiterSavedSearchComponent
+    RecruiterSearchresultLoggedinComponent,
+     RecruiterAdvancedSearchComponent,
+     RecruiterSavedSearchComponent
   ],
   providers: [],
   bootstrap: []

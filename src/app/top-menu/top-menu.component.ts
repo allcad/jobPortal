@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 import { CommonRequestService } from '../common-request.service';
 import { CommonDataSharedService } from '../commonDataSharedService';
+import { CommonService } from '../commonService.service';
 import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-top-menu',
@@ -15,7 +16,7 @@ export class TopMenuComponent implements OnInit {
   aboutContractRecruitFlag = false;
   categoryData = [];
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute,
-    private _commonDataShareService: CommonDataSharedService) { }
+    private _commonDataShareService: CommonDataSharedService, private commonService: CommonService) { }
 
   ngOnInit() {
     this.getServiceCategory();
@@ -77,8 +78,9 @@ moveToAboutPage(value) {
 }
 
 moveToSearchResult(value) {
-  this._commonDataShareService.advancedSerahcResult.next(value);
-  this._router.navigate(['/recruiter/searchresult-loggedin']);
+  //this._commonDataShareService.advancedSerahcResult.next(value);
+  this.commonService.setSearchResult(value);
+  this._router.navigate(['/public/searchresult-loggedin']);
 }
 
   searchContract(key, value) {

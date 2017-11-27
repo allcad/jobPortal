@@ -28,10 +28,13 @@
                         </div>
                     </div>
                 </div>
+                <div class="errorbox" *ngIf="WSErrorMsg"><b></b><br> 
+                    <li>{{WSErrorMsg}}</li>
+                </div>
                 <div class="refine_rate">
                     <div class="row">
                         <div class="col-sm-70">
-                            <div class="">
+                            <div class="" *ngIf="searchList.length > 0">
                                 <!-- <img src="./assets/images/refind-rate.png" alt="" title="" class="img-responsive"> -->
                                 <ion-range-slider class="width_100" (onFinish)="getRangeSliderValue($event)" #searchResultElement min="200" value="100" max="800" step="10" from="300">
                                 </ion-range-slider>
@@ -76,7 +79,7 @@
                 </div>
                 <div class="pager_section_searchresult">
                     <div class="row">
-                        <div class="col-sm-50">
+                        <div class="col-sm-50" *ngIf="searchList.length > 0">
                             <div class="pazer"> <span>Show</span> 
                                 <a href="javascript:void(0);" [ngClass]="12===pageLimit ? 'active':''" (click)="onPageClick('12')">12</a> 
                                 <a href="javascript:void(0);" [ngClass]="16===pageLimit ? 'active':''" (click)="onPageClick('16')">16</a> 
@@ -94,7 +97,6 @@
             <!--contractor login end-->
             <div class="container">
                 <div class="row">
-                    fjvjf{{firstArrayValue.length}}
                     <div class="col-sm-50" *ngFor="let item of firstArrayValue">
                         <div class="recruiter_searchresult_box">
                             <div class="watchlist_header padding_bottom_5">
@@ -124,7 +126,7 @@
                                 <div class="row">
                                     <div class="col-sm-53 col-md-36">
                                         <div class="footer_left_part">
-                                            <p>Last viewed <span>23/10/2016</span></p>
+                                            <p>Last viewed <span>{{item?.last_view}}</span></p>
                                         </div>
                                     </div>
                                     <div class="col-sm-47 col-md-64">
@@ -318,13 +320,13 @@
                     </div>
                 </div> -->
                 <app-ad-space></app-ad-space>
-                <div class="row" *ngFor="let item of secondArray">
-                    <div class="col-sm-50">
+                <div class="row">
+                    <div class="col-sm-50"  *ngFor="let item of secondArray">
                         <div class="recruiter_searchresult_box">
                             <div class="watchlist_header padding_bottom_5">
                                 <div class="row">
                                     <div class="col-xs-60">
-                                        <h3 class="watch_list_hadding">Shiv Shankar  </h3>
+                                        <h3 class="watch_list_hadding">{{item?.contractor_name}}  </h3>
                                     </div>
                                     <div class="col-xs-40">
                                         <div class="header_right_side">
@@ -335,20 +337,20 @@
                                 </div>
                             </div>
                             <div class="watch_list_content recruiter_searchresult_list">
-                                <p><span>Job Title :</span> <strong>Senior Project Manager</strong></p>
-                                <p class="location_backgroung_icon"><span>Location :</span> North West Nuneaton, Warwickshire</p>
-                                <p><span>Rate :</span> Commutable <a href="javascript:void(0);">£10 - £40</a><strong> p/d</strong>
+                                <p><span>Job Title :</span> <strong>{{item?.contractor_job_title}}</strong></p>
+                                <p class="location_backgroung_icon"><span>Location :</span> {{item?.contractor_address}}</p>
+                                <p><span>Rate :</span> Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/d</strong>
                                     <br>Relocatable <a href="javascript:void(0);">£25 - £70</a><strong> p/d</strong> </p>
-                                <p><span>Availability :</span> Available Immediately </p>
+                                <p><span>Availability :</span> {{item?.availability}} </p>
                                 <p><span>Key Skills :</span> java, spring, hibernate, sql, javascript, node, NoSQL, Cucumber </p>
                                 <p><span>CV Highlight :</span> as a <a href="javascript:void(0);" class="background_highlight">java</a> developer I...we used <a href="javascript:void(0);" class="background_highlight">java</a> to do... the core <a href="javascript:void(0);" class="background_highlight">java</a> base was...it was <a href="javascript:void(0);" class="background_highlight">java</a> spring and... </p>
-                                <p><span>Notice Period :</span> N/A </p>
+                                <p><span>Notice Period :</span> {{item?.notice_period}} </p>
                             </div>
                             <div class="watchlist_footer">
                                 <div class="row">
                                     <div class="col-sm-53 col-md-36">
                                         <div class="footer_left_part">
-                                            <p>Last viewed <span>23/10/2016</span></p>
+                                            <p>Last viewed <span>{{item?.last_view}}</span></p>
                                         </div>
                                     </div>
                                     <div class="col-sm-47 col-md-64">
@@ -542,13 +544,13 @@
                     </div>
                 </div> -->
                 <app-ad-space></app-ad-space>
-                <div class="row" *ngFor="let item of thirdArray">
-                    <div class="col-sm-50">
+                <div class="row">
+                    <div class="col-sm-50" *ngFor="let item of thirdArray">
                         <div class="recruiter_searchresult_box">
                             <div class="watchlist_header padding_bottom_5">
                                 <div class="row">
                                     <div class="col-xs-60">
-                                        <h3 class="watch_list_hadding">Shiv Shankar  </h3>
+                                        <h3 class="watch_list_hadding">{{item?.contractor_name}}  </h3>
                                     </div>
                                     <div class="col-xs-40">
                                         <div class="header_right_side">
@@ -559,20 +561,20 @@
                                 </div>
                             </div>
                             <div class="watch_list_content recruiter_searchresult_list">
-                                <p><span>Job Title :</span> <strong>Senior Project Manager</strong></p>
-                                <p class="location_backgroung_icon"><span>Location :</span> North West Nuneaton, Warwickshire</p>
-                                <p><span>Rate :</span> Commutable <a href="javascript:void(0);">£10 - £40</a><strong> p/d</strong>
+                                <p><span>Job Title :</span> <strong>{{item?.contractor_job_title}}</strong></p>
+                                <p class="location_backgroung_icon"><span>Location :</span> {{item?.contractor_address}}</p>
+                                <p><span>Rate :</span> Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/d</strong>
                                     <br>Relocatable <a href="javascript:void(0);">£25 - £70</a><strong> p/d</strong> </p>
-                                <p><span>Availability :</span> Available Immediately </p>
+                                <p><span>Availability :</span> {{item?.availability}} </p>
                                 <p><span>Key Skills :</span> java, spring, hibernate, sql, javascript, node, NoSQL, Cucumber </p>
                                 <p><span>CV Highlight :</span> as a <a href="javascript:void(0);" class="background_highlight">java</a> developer I...we used <a href="javascript:void(0);" class="background_highlight">java</a> to do... the core <a href="javascript:void(0);" class="background_highlight">java</a> base was...it was <a href="javascript:void(0);" class="background_highlight">java</a> spring and... </p>
-                                <p><span>Notice Period :</span> N/A </p>
+                                <p><span>Notice Period :</span> {{item?.notice_period}} </p>
                             </div>
                             <div class="watchlist_footer">
                                 <div class="row">
                                     <div class="col-sm-53 col-md-36">
                                         <div class="footer_left_part">
-                                            <p>Last viewed <span>23/10/2016</span></p>
+                                            <p>Last viewed <span>{{item?.last_view}}</span></p>
                                         </div>
                                     </div>
                                     <div class="col-sm-47 col-md-64">

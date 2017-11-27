@@ -25,6 +25,8 @@ import { PrivacyPolicyComponent } from '../privacy-policy/privacy-policy.compone
 import { SiteMapComponent } from '../site-map/site-map.component';
 import { ContractorJobSearchComponent } from '../contractor-job-search/contractor-job-search.component';
 import { ContractorSearchResultComponent } from '../contractor-search-result/contractor-search-result.component';
+import { RecruiterSearchresultLoggedinComponent } from '../recruiter-searchresult-loggedin/recruiter-searchresult-loggedin.component';
+import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/recruiter-advanced-search.component';
 
 const publicRoutes: Routes = [
 {
@@ -96,6 +98,14 @@ const publicRoutes: Routes = [
 }, {
     "path": "searchResult",
     "component": ContractorSearchResultComponent
+},{
+    "path": "searchresult-loggedin",
+    "component": RecruiterSearchresultLoggedinComponent,
+   // "resolve": {resolverData: ResolverService}
+},{
+    "path": "advanced-search",
+    "component": RecruiterAdvancedSearchComponent,
+    //"resolve": {resolverData: ResolverService}
 },{
     "path": "",
     "redirectTo" : "home",

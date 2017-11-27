@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
+import { Routes, RouterModule, ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-recruiter-advanced-search',
@@ -33,7 +34,10 @@ sortByData;
 industrySectorValue;
 securityClearValue;
 
-  constructor(public _commonRequestService: CommonRequestService) { }
+  constructor(public _commonRequestService: CommonRequestService, private activateRoute: ActivatedRoute,
+    private _route: Router) {
+    console.log("activateRoute", _route.url);
+   }
 
   ngOnInit() {
     this.getSecurityClearance();
@@ -169,6 +173,13 @@ securityClearValue;
       'securityClearance': this.securityClearValue,
       'drivingLicence': this.drivingLicence
     }
+    if(this._route.url == "/public/advanced-search") {
+      this._route.navigate(['/public/searchresult-loggedin']);
+    } else if(this._route.url == "/recruiter/advanced-search") {
+      this._route.navigate(['/recruiter/searchresult-loggedin']);
+    } 
+
+
   }
 
 }

@@ -47,7 +47,7 @@ const recruiterRoutes: Routes = [{
 }*/ {
     "path": "advanced-search",
     "component": RecruiterAdvancedSearchComponent,
-    //"resolve": {resolverData: ResolverService}
+    "resolve": {resolverData: ResolverService}
 }, {
     "path": "help",
     "component": RecruiterHelpComponent,
@@ -71,7 +71,7 @@ const recruiterRoutes: Routes = [{
 }, {
     "path": "searchresult-loggedin",
     "component": RecruiterSearchresultLoggedinComponent,
-    //"resolve": {resolverData: ResolverService}
+    "resolve": {resolverData: ResolverService}
 }, {
     "path": "view-applications",
     "component": RecruiterViewApplicationsComponent,

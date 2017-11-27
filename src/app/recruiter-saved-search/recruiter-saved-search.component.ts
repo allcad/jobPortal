@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonDataSharedService } from '../commonDataSharedService';
+import { CommonService } from '../commonService.service';
 
 @Component({
   selector: 'app-recruiter-saved-search',
@@ -48,7 +49,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
   WSErrorMsg = '';
   showDeleteButtonFlag = false;
   constructor(public _commonRequestService: CommonRequestService, private _router: Router,
-    private _commonDataShareService: CommonDataSharedService) { }
+    private _commonDataShareService: CommonDataSharedService, private commonService: CommonService) { }
 
   ngOnInit() {
     this.getSecurityClearance();
@@ -395,7 +396,8 @@ export class RecruiterSavedSearchComponent implements OnInit {
       "sort":8
     }
 
-    this._commonDataShareService.advancedSerahcResult.next(savedSearchSaveJson);
+    //this._commonDataShareService.advancedSerahcResult.next(savedSearchSaveJson);
+    this.commonService.setSearchResult(savedSearchSaveJson);
     this._router.navigate(['/recruiter/searchresult-loggedin']);
 
 
