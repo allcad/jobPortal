@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
 import { Router } from '@angular/router';
 import { FormsModule,NgForm } from '@angular/forms';
+import { CommonService } from '../commonService.service';
 
 @Component({
   selector: 'app-recruiter-job-posting',
@@ -46,7 +47,8 @@ minRateFlag = false;
 maxRateFlag = false;
 jobSpecificationFlag = false;
 WSErrorMsg = "";
-  constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
+  constructor(private router: Router, public _commonRequestService: CommonRequestService, 
+    private commonService: CommonService) { }
 
   ngOnInit() {
     this.recruiterNameList();
@@ -54,9 +56,14 @@ WSErrorMsg = "";
     this.getTemplateData();
     var localStorageData = JSON.parse(localStorage.getItem('recruiterJobData'));
     console.log("localStorageData--", localStorageData);
-    if(localStorageData && localStorageData.jobId) {
-      this.jobPostingJobId = localStorageData.jobId;
-      this.jobPostingData(localStorageData.jobId);
+    // if(localStorageData && localStorageData.jobId) {
+    //   this.jobPostingJobId = localStorageData.jobId;
+    //   this.jobPostingData(localStorageData.jobId);
+    // }
+     if(this.commonService.getJobIdForJobPosting()) {
+       console.log("this.commonService.getJobIdForJobPosting()", this.commonService.getJobIdForJobPosting());
+      this.jobPostingJobId = this.commonService.getJobIdForJobPosting();
+      this.jobPostingData(this.jobPostingJobId);
     }
     var editJoblocalStorageData = JSON.parse(localStorage.getItem('editJobPost'));
     console.log("editJoblocalStorageData", editJoblocalStorageData);
@@ -364,6 +371,7 @@ WSErrorMsg = "";
                   this.resetData();
                   this.getTemplateData();
                   this.WSErrorMsg = "";
+                  this.jobPostingJobId = "";
                   this.postJobSuccessMsg = 'Post Job Update succesfully!'
                   var obj = {'jobId' : ''};
                   localStorage.setItem('recruiterJobData', JSON.stringify(obj));

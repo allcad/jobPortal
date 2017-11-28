@@ -3,6 +3,7 @@ import { FormsModule,NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonRequestService } from '../common-request.service';
 import { CommonDataSharedService } from '../commonDataSharedService';
+import { CommonService } from '../commonService.service';
 
 @Component({
   selector: 'app-recruiter-preview-job',
@@ -15,7 +16,7 @@ export class RecruiterPreviewJobComponent implements OnInit {
   jobPostFlag = false;
   uniqueJobId;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
-  	private _commonDataSharedService: CommonDataSharedService) { }
+  	private _commonDataSharedService: CommonDataSharedService, private commonService: CommonService) { }
 
   ngOnInit() {
   	// this._commonDataSharedService.manageJobsJobId.subscribe(data=> {
@@ -26,14 +27,22 @@ export class RecruiterPreviewJobComponent implements OnInit {
   	// })
   	var localStorageData = JSON.parse(localStorage.getItem('recruiterJobData'));
   	console.log("localStorageData--", localStorageData);
-  	if(localStorageData && localStorageData.jobId) {
-      this.uniqueJobId = localStorageData.jobId;
-  		this.jobList(localStorageData.jobId);
-  	}
+  	// if(localStorageData && localStorageData.jobId) {
+   //    this.uniqueJobId = localStorageData.jobId;
+  	// 	this.jobList(localStorageData.jobId);
+  	// }
+    if(this.commonService.getJobIdForPreview()) {
+      console.log("this.commonService.getJobIdForPreview()", this.commonService.getJobIdForPreview());
+      this.uniqueJobId = this.commonService.getJobIdForPreview();
+      this.jobList(this.uniqueJobId);
+    }
     var jobPostingLocalStorage = JSON.parse(localStorage.getItem('jobPostingData'));
     console.log("jobPostingLocalStorage--", jobPostingLocalStorage);
     if(jobPostingLocalStorage && jobPostingLocalStorage.jobPreviewData) {
       this.previewDataList = jobPostingLocalStorage.jobPreviewData;
+      this.uniqueJobId = this.previewDataList && this.previewDataList.jobId ? this.previewDataList.jobId : '';
+      console.log("this.previewDataList from local", this.previewDataList)
+
     }
   }
 
@@ -56,10 +65,10 @@ export class RecruiterPreviewJobComponent implements OnInit {
   }
 
   goToJobPosting() {
-    if(!this.uniqueJobId) {
+    //if(!this.uniqueJobId) {
       var obj = {'jobPreviewData' : this.previewDataList};
       localStorage.setItem('editJobPost', JSON.stringify(obj));
-    }
+    //}
   }
 
   saveJobPost() {

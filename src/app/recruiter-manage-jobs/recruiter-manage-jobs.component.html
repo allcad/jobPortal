@@ -79,7 +79,7 @@
                                 <p><span class="text_gray" >Posted By     </span>{{item?.recruiterNameId}}</p>
                             </div>
                             <div class="manage_job_footer">
-                                <a href="javascript:void(0);" [routerLink]="['../preview-job']" (click)="passJobId(item?.jobid)"><img src="./assets/images/job-view.png" alt="" title=""></a>
+                                <a href="javascript:void(0);" [routerLink]="['../preview-job']" (click)="passJobIdForPreview(item?.jobid)"><img src="./assets/images/job-view.png" alt="" title=""></a>
                                 <a href="javascript:void(0);" [routerLink]="['../job-posting']" (click)="passJobId(item?.jobid)"><img src="./assets/images/job-edit.png" alt="" title=""></a>
                                 <a href="javascript:void(0);" (click)="refreshJob(item?.jobid)"><img src="./assets/images/job-referce.png" alt="" title=""></a>
                                 <a href="javascript:void(0);" (click)="deleteJob(item?.jobid)"><img src="./assets/images/job-delete.png" alt="" title=""></a>

@@ -102,7 +102,7 @@
                             <div class="watchlist_header padding_bottom_5">
                                 <div class="row">
                                     <div class="col-xs-60">
-                                        <h3 class="watch_list_hadding">{{item?.contractor_name}}  </h3>
+                                        <h3 class="watch_list_hadding">{{item?.name}}  </h3>
                                     </div>
                                     <div class="col-xs-40">
                                         <div class="header_right_side">
@@ -115,8 +115,17 @@
                             <div class="watch_list_content recruiter_searchresult_list">
                                 <p><span>Job Title :</span> <strong>{{item?.contractor_job_title}}</strong></p>
                                 <p class="location_backgroung_icon"><span>Location :</span>{{item?.contractor_address}}</p>
-                                <p><span>Rate :</span> Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/d</strong>
-                                    <br>Relocatable <a href="javascript:void(0);">£25 - £70</a><strong> p/d</strong> </p>
+                                <p><span>Rate :</span> 
+                                    <span *ngIf="item?.rate_name == 'commutable'">
+                                        Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
+                                        <span *ngIf="item?.rate_type === 'hourly'">h</span></strong>
+                                    </span>
+                                    
+                                    <span *ngIf="item?.rate_name == 'relocatable'">
+                                        Relocatable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
+                                        <span *ngIf="item?.rate_type === 'hourly'">h</span></strong> 
+                                    </span>
+                                </p>
                                 <p><span>Availability :</span> {{item?.availability}} </p>
                                 <p><span>Key Skills :</span> java, spring, hibernate, sql, javascript, node, NoSQL, Cucumber </p>
                                 <p><span>CV Highlight :</span> as a <a href="javascript:void(0);" class="background_highlight">java</a> developer I...we used <a href="javascript:void(0);" class="background_highlight">java</a> to do... the core <a href="javascript:void(0);" class="background_highlight">java</a> base was...it was <a href="javascript:void(0);" class="background_highlight">java</a> spring and... </p>
@@ -319,14 +328,14 @@
                         <div class="ad_space"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
                     </div>
                 </div> -->
-                <app-ad-space></app-ad-space>
+                <app-ad-space *ngIf="firstArrayValue.length > 0"></app-ad-space>
                 <div class="row">
                     <div class="col-sm-50"  *ngFor="let item of secondArray">
                         <div class="recruiter_searchresult_box">
                             <div class="watchlist_header padding_bottom_5">
                                 <div class="row">
                                     <div class="col-xs-60">
-                                        <h3 class="watch_list_hadding">{{item?.contractor_name}}  </h3>
+                                        <h3 class="watch_list_hadding">{{item?.name}}  </h3>
                                     </div>
                                     <div class="col-xs-40">
                                         <div class="header_right_side">
@@ -339,8 +348,19 @@
                             <div class="watch_list_content recruiter_searchresult_list">
                                 <p><span>Job Title :</span> <strong>{{item?.contractor_job_title}}</strong></p>
                                 <p class="location_backgroung_icon"><span>Location :</span> {{item?.contractor_address}}</p>
-                                <p><span>Rate :</span> Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/d</strong>
-                                    <br>Relocatable <a href="javascript:void(0);">£25 - £70</a><strong> p/d</strong> </p>
+                               <!--  <p><span>Rate :</span> Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/d</strong>
+                                    <br>Relocatable <a href="javascript:void(0);">£25 - £70</a><strong> p/d</strong> </p> -->
+                                    <p><span>Rate :</span> 
+                                    <span *ngIf="item?.rate_name == 'commutable'">
+                                        Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
+                                        <span *ngIf="item?.rate_type === 'hourly'">h</span></strong>
+                                    </span>
+                                    
+                                    <span *ngIf="item?.rate_name == 'relocatable'">
+                                        Relocatable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
+                                        <span *ngIf="item?.rate_type === 'hourly'">h</span></strong> 
+                                    </span>
+                                </p>
                                 <p><span>Availability :</span> {{item?.availability}} </p>
                                 <p><span>Key Skills :</span> java, spring, hibernate, sql, javascript, node, NoSQL, Cucumber </p>
                                 <p><span>CV Highlight :</span> as a <a href="javascript:void(0);" class="background_highlight">java</a> developer I...we used <a href="javascript:void(0);" class="background_highlight">java</a> to do... the core <a href="javascript:void(0);" class="background_highlight">java</a> base was...it was <a href="javascript:void(0);" class="background_highlight">java</a> spring and... </p>
@@ -543,14 +563,14 @@
                         <div class="ad_space"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
                     </div>
                 </div> -->
-                <app-ad-space></app-ad-space>
+                <app-ad-space *ngIf="secondArray.length > 0"></app-ad-space>
                 <div class="row">
                     <div class="col-sm-50" *ngFor="let item of thirdArray">
                         <div class="recruiter_searchresult_box">
                             <div class="watchlist_header padding_bottom_5">
                                 <div class="row">
                                     <div class="col-xs-60">
-                                        <h3 class="watch_list_hadding">{{item?.contractor_name}}  </h3>
+                                        <h3 class="watch_list_hadding">{{item?.name}}  </h3>
                                     </div>
                                     <div class="col-xs-40">
                                         <div class="header_right_side">
@@ -563,8 +583,19 @@
                             <div class="watch_list_content recruiter_searchresult_list">
                                 <p><span>Job Title :</span> <strong>{{item?.contractor_job_title}}</strong></p>
                                 <p class="location_backgroung_icon"><span>Location :</span> {{item?.contractor_address}}</p>
-                                <p><span>Rate :</span> Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/d</strong>
-                                    <br>Relocatable <a href="javascript:void(0);">£25 - £70</a><strong> p/d</strong> </p>
+                                <!-- <p><span>Rate :</span> Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/d</strong>
+                                    <br>Relocatable <a href="javascript:void(0);">£25 - £70</a><strong> p/d</strong> </p> -->
+                                    <p><span>Rate :</span> 
+                                    <span *ngIf="item?.rate_name == 'commutable'">
+                                        Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
+                                        <span *ngIf="item?.rate_type === 'hourly'">h</span></strong>
+                                    </span>
+                                    
+                                    <span *ngIf="item?.rate_name == 'relocatable'">
+                                        Relocatable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
+                                        <span *ngIf="item?.rate_type === 'hourly'">h</span></strong> 
+                                    </span>
+                                </p>
                                 <p><span>Availability :</span> {{item?.availability}} </p>
                                 <p><span>Key Skills :</span> java, spring, hibernate, sql, javascript, node, NoSQL, Cucumber </p>
                                 <p><span>CV Highlight :</span> as a <a href="javascript:void(0);" class="background_highlight">java</a> developer I...we used <a href="javascript:void(0);" class="background_highlight">java</a> to do... the core <a href="javascript:void(0);" class="background_highlight">java</a> base was...it was <a href="javascript:void(0);" class="background_highlight">java</a> spring and... </p>

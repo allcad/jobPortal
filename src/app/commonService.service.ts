@@ -12,6 +12,8 @@ import { Observable } from 'rxjs/Observable';
 export class CommonService {
 
   setSearchResultData;
+  jobIdForPreview;
+  jobIdForJobPosting;
 
   setSearchResult(data) {
     this.setSearchResultData = data;
@@ -20,6 +22,24 @@ export class CommonService {
   getSearchResult() {
     return this.setSearchResultData;
   }
+
+  setJobIdForPreview(data) {
+    this.jobIdForPreview = data;
+  }
+
+  getJobIdForPreview() {
+    return this.jobIdForPreview;
+  }
+
+  setJobIdForJobPosting(data) {
+    this.jobIdForJobPosting = data;
+  }
+
+  getJobIdForJobPosting() {
+    return this.jobIdForJobPosting;
+  }
+
+
 
 
 }

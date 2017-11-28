@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule,NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonRequestService } from '../common-request.service';
+import { CommonService } from '../commonService.service';
 import { CommonDataSharedService } from '../commonDataSharedService';
 
 @Component({
@@ -24,7 +25,7 @@ export class RecruiterManageJobsComponent implements OnInit {
   sortByData;
   jobPostFlagError = false;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
-  	private _commonDataSharedService: CommonDataSharedService) { }
+  	private _commonDataSharedService: CommonDataSharedService, private _commonService: CommonService) { }
 
   ngOnInit() {
   	this.getManageJobsList(9);
@@ -33,8 +34,13 @@ export class RecruiterManageJobsComponent implements OnInit {
 
   passJobId(id) {
   	//this._commonDataSharedService.manageJobsJobId.next(id);
-  	var obj = {'jobId' : id};
-    localStorage.setItem('recruiterJobData', JSON.stringify(obj));
+  	// var obj = {'jobId' : id};
+   //  localStorage.setItem('recruiterJobData', JSON.stringify(obj));
+    this._commonService.setJobIdForJobPosting(id);
+  }
+
+  passJobIdForPreview(id) {
+    this._commonService.setJobIdForPreview(id);
   }
 
   getSortByData() {
