@@ -83,6 +83,48 @@ export class RecruiterWatchdogComponent implements OnInit {
     );
   }
 
+  shareContractorProfile(id) {
+    console.log("currentSortBy--", id);
+     var input = {
+     "email":"test@test7.com",
+      "loginToken":"$2y$10$ERdO743JuPZF6a4SfV8HQe69MqBJBtM3o3cz.ChfrZbcySNegW1e6",
+      "contractor_id":id,
+      "send_to":"test@test.com"
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/send_contractor_by_email";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+         console.log("result shrae email--", data);
+         // this.getWatchDogListData(this.pageNo);
+         // this.router.navigate(['./recruiter/watchdog']);
+        }
+    );
+  }
+
+  playButtonClick(id) {
+    console.log("currentSortBy--", id);
+     var input = {
+     "email":"test@test7.com",
+      "loginToken":"$2y$10$ERdO743JuPZF6a4SfV8HQe69MqBJBtM3o3cz.ChfrZbcySNegW1e6",
+      "contractor_id":id,
+      "Job_id":2,
+      "notify":"1 week"
+
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/watch_add";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+         console.log("add watch list--", data);
+         // this.getWatchDogListData(this.pageNo);
+         // this.router.navigate(['./recruiter/watchdog']);
+        }
+    );
+  }
+
   editJob(id) {
   //   console.log("currentSortBy--", id);
   //    var input = {

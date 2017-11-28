@@ -48,6 +48,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
   sameSearchNameFlag = false;
   WSErrorMsg = '';
   showDeleteButtonFlag = false;
+  lastSearchResult;
   constructor(public _commonRequestService: CommonRequestService, private _router: Router,
     private _commonDataShareService: CommonDataSharedService, private commonService: CommonService) { }
 
@@ -57,6 +58,30 @@ export class RecruiterSavedSearchComponent implements OnInit {
     this.getTimeLeftData();
     this.getEducationData();
     this.getListOfSaveSearch();
+    if(this.commonService.getLastSearchData()) {
+      this.lastSearchResult = this.commonService.getLastSearchData();
+      //this.savedSearchName = this.lastSearchResult.recuriter_search_by_contract_name ? this.lastSearchResult.recuriter_search_by_contract_name : '';
+      this.addToWatchDogCheck = this.lastSearchResult.recuriter_search_by_contract_name;
+      this.jobTitle = this.lastSearchResult.recuriter_search_job_title;
+      this.keywordSearch = this.lastSearchResult.recuriter_search_keywords;
+      this.stemmedTerms = this.lastSearchResult.recuriter_search_stemmed_terms == 1 ? true : false;
+      this.coreSkills = this.lastSearchResult.recuriter_search_core_skills;
+      this.certificationValues = this.lastSearchResult.recuriter_search_certifications;
+      this.dontShowContractor = this.lastSearchResult.recuriter_search_dont_show_to_contractor;
+      this.cityTownValue = this.lastSearchResult.recuriter_search_location;
+      this.includeRelocators = this.lastSearchResult.recuriter_search_include_relocators == 1 ? true : false;
+      this.minRate = this.lastSearchResult.recuriter_search_by_rate_min;
+      this.maxRate = this.lastSearchResult.recuriter_search_by_rate_max;
+      this.dailyHourlyValue = this.lastSearchResult.recuriter_search_by_rate_type;
+      this.timeLeftOnCutCont = this.lastSearchResult.recuriter_search_by_time_left;
+      this.includeUnavailable = this.lastSearchResult.recuriter_search_by_unavailable;
+      // this.showContractors = this.lastSearchResult.recuriter_search_by_contract_name
+      // this.contractorName = this.lastSearchResult.recuriter_search_by_contract_name
+      this.educationValue = this.lastSearchResult.recuriter_search_by_education ? this.lastSearchResult.recuriter_search_by_education : '';
+      this.drivingLicenceValue = this.lastSearchResult.recuriter_search_by_driving_license === 1 ? 'yes' : 'no';
+      this.industrySectorValue = this.lastSearchResult.recuriter_search_by_industry;
+      this.securityClearValue = this.lastSearchResult.recuriter_search_by_security_clearance;
+    }
   }
 
   industrysectorChange() {
@@ -242,7 +267,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
     this.educationValue = "";
     this.drivingLicenceValue = "";
     this.industrySectorValue = [];
-    this.industrySectorValue = [];
+    this.securityClearValue = [];
   }
 
   saveSearch() {

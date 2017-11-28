@@ -27,6 +27,7 @@ import { ContractorJobSearchComponent } from '../contractor-job-search/contracto
 import { ContractorSearchResultComponent } from '../contractor-search-result/contractor-search-result.component';
 import { RecruiterSearchresultLoggedinComponent } from '../recruiter-searchresult-loggedin/recruiter-searchresult-loggedin.component';
 import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/recruiter-advanced-search.component';
+import { RecruiterSavedSearchComponent } from '../recruiter-saved-search/recruiter-saved-search.component';
 
 const publicRoutes: Routes = [
 {
@@ -105,6 +106,10 @@ const publicRoutes: Routes = [
 },{
     "path": "advanced-search",
     "component": RecruiterAdvancedSearchComponent,
+    //"resolve": {resolverData: ResolverService}
+},{
+    "path": "saved-search",
+    "component": RecruiterSavedSearchComponent,
     //"resolve": {resolverData: ResolverService}
 },{
     "path": "",

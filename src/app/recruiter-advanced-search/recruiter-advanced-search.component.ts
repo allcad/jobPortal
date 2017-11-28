@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
 import { Routes, RouterModule, ActivatedRoute, Router } from '@angular/router';
+import { CommonDataSharedService } from '../commonDataSharedService';
+import { CommonService } from '../commonService.service';
 
 @Component({
   selector: 'app-recruiter-advanced-search',
@@ -35,7 +37,7 @@ industrySectorValue;
 securityClearValue;
 
   constructor(public _commonRequestService: CommonRequestService, private activateRoute: ActivatedRoute,
-    private _route: Router) {
+    private _route: Router, private commonService: CommonService) {
     console.log("activateRoute", _route.url);
    }
 
@@ -63,6 +65,23 @@ securityClearValue;
     );
   }
 
+  // getSortByData() {
+  //    var input = {
+  //    "email":"test@test7.com",
+  //   "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu"
+
+  //  };
+  //  console.log("input--", input);
+  //  var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/short_by";
+  //      this._commonRequestService.getData(wsUrl).subscribe(
+  //       data => {
+  //         console.log("sort by--", data);
+  //         this.sortByData = data.data;
+  //         //this.recruiterNameArray = data.data;
+  //       }
+  //   );
+  // }
+
   getSortByData() {
      var input = {
      "email":"test@test7.com",
@@ -70,7 +89,7 @@ securityClearValue;
 
    };
    console.log("input--", input);
-   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/short_by";
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/short_by_recruiter_search";
        this._commonRequestService.getData(wsUrl).subscribe(
         data => {
           console.log("sort by--", data);
@@ -92,6 +111,31 @@ securityClearValue;
         data => {
           console.log("securityClearanceArray--", data);
           this.securityClearanceArray = data.data;
+          //this.recruiterNameArray = data.data;
+        }
+    );
+  }
+
+  lastSearchClick() {
+     var input = {
+     "email":"test@test7.com",
+    "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu"
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/last_search";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+          console.log("last search data--", data);
+          if(data && data.data && data.status == 'TRUE') {
+            this.commonService.setLastSearchData(data.data);
+          }
+          if(this._route.url == "/public/advanced-search") {
+            this._route.navigate(['/public/saved-search']);
+          } else if(this._route.url == "/recruiter/advanced-search") {
+            this._route.navigate(['/recruiter/saved-search']);
+          } 
+          //this.securityClearanceArray = data.data;
           //this.recruiterNameArray = data.data;
         }
     );
@@ -173,6 +217,39 @@ securityClearValue;
       'securityClearance': this.securityClearValue,
       'drivingLicence': this.drivingLicence
     }
+
+    var savedSearchSaveJson = {
+      "email":"test@test8.com",
+      "loginToken":"$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y",
+      // "recuriter_saved_search_name":this.savedSearchName,
+      // "recuriter_search_add_to_watchdog":this.addToWatchDogCheck === true ? 1 : 2,
+      "recuriter_search_job_title":this.jobTitle?this.jobTitle:'',
+      "recuriter_search_keywords":this.keyWordSearch ?this.keyWordSearch :'',
+      "recuriter_search_stemmed_terms":this.stemmedTermsCheck === true ? 1 : 0,
+      "recuriter_search_core_skills":this.coreSkills ? this.coreSkills :'',
+      "recuriter_search_certifications":this.certifications ? this.certifications : '',
+      "recuriter_search_dont_show_to_contractor":this.dontShowContractor ? this.dontShowContractor : '',
+      "recuriter_search_location":this.cityTown ? this.cityTown : '',
+      "recuriter_search_include_relocators":this.includeContractor ? 1 : 0,
+      "recuriter_search_by_rate_min":this.preferredMinRate ? this.preferredMinRate : '',
+      "recuriter_search_by_rate_max":this.preferredMaxRate ? this.preferredMaxRate : '',
+      "recuriter_search_by_rate_type":this.dailyHourlyRate ? this.dailyHourlyRate : '',
+      "recuriter_search_by_time_left":this.timeLeft ? this.timeLeft : '',
+      "recuriter_search_by_unavailable":1,
+      "recuriter_search_by_updated_contractor_since":this.showContractor ? this.showContractor : '',
+      "recuriter_search_by_contract_name":this.contractorName?this.contractorName:'',
+      "recuriter_search_by_education":this.contractorEducation ? this.contractorEducation : "",
+      "recuriter_search_by_industry":JSON.stringify(this.industrySectorValue) ? JSON.stringify(this.industrySectorValue)   : "",
+      "recuriter_search_by_security_clearance":JSON.stringify(this.securityClearValue) ? JSON.stringify(this.securityClearValue) :  "",
+      "recuriter_search_by_driving_license":this.drivingLicence == 'yes' ? 1 : 0,
+      "page":1,
+      "limit":10,
+      "sort":8
+    }
+
+    //this._commonDataShareService.advancedSerahcResult.next(savedSearchSaveJson);
+    this.commonService.setSearchResult(savedSearchSaveJson);
+    //this._route.navigate(['/recruiter/searchresult-loggedin']);
     if(this._route.url == "/public/advanced-search") {
       this._route.navigate(['/public/searchresult-loggedin']);
     } else if(this._route.url == "/recruiter/advanced-search") {

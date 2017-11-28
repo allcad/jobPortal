@@ -67,7 +67,8 @@ export class RecruiterPreviewJobComponent implements OnInit {
   goToJobPosting() {
     //if(!this.uniqueJobId) {
       var obj = {'jobPreviewData' : this.previewDataList};
-      localStorage.setItem('editJobPost', JSON.stringify(obj));
+      // localStorage.setItem('editJobPost', JSON.stringify(obj));
+       this.commonService.setJobIdForJobPosting(this.previewDataList);
     //}
   }
 

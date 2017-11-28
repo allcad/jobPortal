@@ -14,6 +14,7 @@ export class CommonService {
   setSearchResultData;
   jobIdForPreview;
   jobIdForJobPosting;
+  lastSearchData;
 
   setSearchResult(data) {
     this.setSearchResultData = data;
@@ -39,7 +40,13 @@ export class CommonService {
     return this.jobIdForJobPosting;
   }
 
+  setLastSearchData(data) {
+    this.lastSearchData = data;
+  }
 
+  getLastSearchData() {
+    return this.lastSearchData;
+  }
 
 
 }

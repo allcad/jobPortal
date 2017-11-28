@@ -63,27 +63,48 @@ WSErrorMsg = "";
      if(this.commonService.getJobIdForJobPosting()) {
        console.log("this.commonService.getJobIdForJobPosting()", this.commonService.getJobIdForJobPosting());
       this.jobPostingJobId = this.commonService.getJobIdForJobPosting();
-      this.jobPostingData(this.jobPostingJobId);
+      //this.jobPostingData(this.jobPostingJobId);
     }
+    console.log("this.jobPostingJobId", this.jobPostingJobId);
+    if(this.jobPostingJobId && typeof this.jobPostingJobId == 'object') {
+      this.jobPostingJobTitle = this.jobPostingJobId['jobTitle'];
+       this.jobPostingDuration = this.jobPostingJobId['duration'];
+       this.startDate = this.jobPostingJobId['startDate'];
+       this.industrySector = this.jobPostingJobId['industrySectorId'];
+       this.workEligibility = this.jobPostingJobId['workEligibilityId'];
+       this.cityTownValue = this.jobPostingJobId['cityTown'];
+       this.minRate = this.jobPostingJobId && this.jobPostingJobId['prefereedRate'] && this.jobPostingJobId['prefereedRate'].minRate ? this.jobPostingJobId['prefereedRate'].minRate : 0;
+       this.maxRate = this.jobPostingJobId && this.jobPostingJobId['prefereedRate'] && this.jobPostingJobId['prefereedRate'].maxRate ? this.jobPostingJobId['prefereedRate'].maxRate : 0
+       this.dailyHourlyValue = this.jobPostingJobId && this.jobPostingJobId['prefereedRate'] && this.jobPostingJobId['prefereedRate'].dailyHourlyRate ? this.jobPostingJobId['prefereedRate'].dailyHourlyRate : '';
+       this.jobSpecificationTitle = this.jobPostingJobId['jobSpecificationTitle'];
+       this.jobSpecificationBody = this.jobPostingJobId['jobSpecification'];
+       this.recruiterName = this.jobPostingJobId['recruiter_Id'];
+       this.saveTemplateAs = this.jobPostingJobId['saveTempleteAs'];
+       this.jobReference = this.jobPostingJobId['jobReference'];
+       this.editJobId = this.jobPostingJobId['jobId'];
+     } else if(this.jobPostingJobId){
+       this.editJobId = this.jobPostingJobId;
+       this.jobPostingData(this.jobPostingJobId);
+     }
     var editJoblocalStorageData = JSON.parse(localStorage.getItem('editJobPost'));
     console.log("editJoblocalStorageData", editJoblocalStorageData);
-    if(editJoblocalStorageData && editJoblocalStorageData.jobPreviewData) {
-      this.jobPostingJobTitle = editJoblocalStorageData.jobPreviewData.jobTitle;
-       this.jobPostingDuration = editJoblocalStorageData.jobPreviewData.duration;
-       this.startDate = editJoblocalStorageData.jobPreviewData.startDate;
-       this.industrySector = editJoblocalStorageData.jobPreviewData.industrySectorId;
-       this.workEligibility = editJoblocalStorageData.jobPreviewData.workEligibilityId;
-       this.cityTownValue = editJoblocalStorageData.jobPreviewData.cityTown;
-       this.minRate = editJoblocalStorageData.jobPreviewData && editJoblocalStorageData.jobPreviewData.prefereedRate && editJoblocalStorageData.jobPreviewData.prefereedRate.minRate ? editJoblocalStorageData.jobPreviewData.prefereedRate.minRate : 0;
-       this.maxRate = editJoblocalStorageData.jobPreviewData && editJoblocalStorageData.jobPreviewData.prefereedRate && editJoblocalStorageData.jobPreviewData.prefereedRate.maxRate ? editJoblocalStorageData.jobPreviewData.prefereedRate.maxRate : 0
-       this.dailyHourlyValue = editJoblocalStorageData.jobPreviewData && editJoblocalStorageData.jobPreviewData.prefereedRate && editJoblocalStorageData.jobPreviewData.prefereedRate.dailyHourlyRate ? editJoblocalStorageData.jobPreviewData.prefereedRate.dailyHourlyRate : '';
-       this.jobSpecificationTitle = editJoblocalStorageData.jobPreviewData.jobSpecificationTitle;
-       this.jobSpecificationBody = editJoblocalStorageData.jobPreviewData.jobSpecification;
-       this.recruiterName = editJoblocalStorageData.jobPreviewData.recruiter_Id;
-       this.saveTemplateAs = editJoblocalStorageData.jobPreviewData.saveTempleteAs;
-       this.jobReference = editJoblocalStorageData.jobPreviewData.jobReference;
-       this.editJobId = editJoblocalStorageData.jobPreviewData.jobId;
-    }
+    // if(editJoblocalStorageData && editJoblocalStorageData.jobPreviewData) {
+    //   this.jobPostingJobTitle = editJoblocalStorageData.jobPreviewData.jobTitle;
+    //    this.jobPostingDuration = editJoblocalStorageData.jobPreviewData.duration;
+    //    this.startDate = editJoblocalStorageData.jobPreviewData.startDate;
+    //    this.industrySector = editJoblocalStorageData.jobPreviewData.industrySectorId;
+    //    this.workEligibility = editJoblocalStorageData.jobPreviewData.workEligibilityId;
+    //    this.cityTownValue = editJoblocalStorageData.jobPreviewData.cityTown;
+    //    this.minRate = editJoblocalStorageData.jobPreviewData && editJoblocalStorageData.jobPreviewData.prefereedRate && editJoblocalStorageData.jobPreviewData.prefereedRate.minRate ? editJoblocalStorageData.jobPreviewData.prefereedRate.minRate : 0;
+    //    this.maxRate = editJoblocalStorageData.jobPreviewData && editJoblocalStorageData.jobPreviewData.prefereedRate && editJoblocalStorageData.jobPreviewData.prefereedRate.maxRate ? editJoblocalStorageData.jobPreviewData.prefereedRate.maxRate : 0
+    //    this.dailyHourlyValue = editJoblocalStorageData.jobPreviewData && editJoblocalStorageData.jobPreviewData.prefereedRate && editJoblocalStorageData.jobPreviewData.prefereedRate.dailyHourlyRate ? editJoblocalStorageData.jobPreviewData.prefereedRate.dailyHourlyRate : '';
+    //    this.jobSpecificationTitle = editJoblocalStorageData.jobPreviewData.jobSpecificationTitle;
+    //    this.jobSpecificationBody = editJoblocalStorageData.jobPreviewData.jobSpecification;
+    //    this.recruiterName = editJoblocalStorageData.jobPreviewData.recruiter_Id;
+    //    this.saveTemplateAs = editJoblocalStorageData.jobPreviewData.saveTempleteAs;
+    //    this.jobReference = editJoblocalStorageData.jobPreviewData.jobReference;
+    //    this.editJobId = editJoblocalStorageData.jobPreviewData.jobId;
+    // }
   }
 
   // getTemplateData() {
@@ -201,22 +222,23 @@ WSErrorMsg = "";
         data => {
           this.jobPostFlag = false;
          console.log("jobList--", data);
-         if(data && data.data) {
+         if(data && data.data && data.status == "TRUE") {
            this.jobPostingDetails = data.data;
-           this.jobPostingJobTitle = this.jobPostingDetails.jobTitle;
-           this.jobPostingDuration = this.jobPostingDetails.duration;
-           this.startDate = (this.jobPostingDetails.startDate).split(' ')[0];
-           this.industrySector = this.jobPostingDetails.industrySectorId;
-           this.workEligibility = this.jobPostingDetails.workEligibilityId;
-           this.cityTownValue = this.jobPostingDetails.cityTown;
-           this.minRate = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.minRate ? this.jobPostingDetails.prefereedRate.minRate : 0;
-           this.maxRate = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.maxRate ? this.jobPostingDetails.prefereedRate.maxRate : 0
-           this.dailyHourlyValue = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.dailyHourlyRate ? this.jobPostingDetails.prefereedRate.dailyHourlyRate : '';
-           this.jobSpecificationTitle = this.jobPostingDetails.jobSpecificationTitle;
-           this.jobSpecificationBody = this.jobPostingDetails.jobSpecification;
-           this.recruiterName = this.jobPostingDetails.recruiter_Id;
-           this.saveTemplateAs = this.jobPostingDetails.saveTempleteAs;
-           this.jobReference = this.jobPostingDetails.jobReference;
+
+             this.jobPostingJobTitle = this.jobPostingDetails.jobTitle;
+             this.jobPostingDuration = this.jobPostingDetails.duration;
+             this.startDate = (this.jobPostingDetails.startDate).split(' ')[0];
+             this.industrySector = this.jobPostingDetails.industrySectorId;
+             this.workEligibility = this.jobPostingDetails.workEligibilityId;
+             this.cityTownValue = this.jobPostingDetails.cityTown;
+             this.minRate = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.minRate ? this.jobPostingDetails.prefereedRate.minRate : 0;
+             this.maxRate = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.maxRate ? this.jobPostingDetails.prefereedRate.maxRate : 0
+             this.dailyHourlyValue = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.dailyHourlyRate ? this.jobPostingDetails.prefereedRate.dailyHourlyRate : '';
+             this.jobSpecificationTitle = this.jobPostingDetails.jobSpecificationTitle;
+             this.jobSpecificationBody = this.jobPostingDetails.jobSpecification;
+             this.recruiterName = this.jobPostingDetails.recruiter_Id;
+             this.saveTemplateAs = this.jobPostingDetails.saveTempleteAs;
+             this.jobReference = this.jobPostingDetails.jobReference;
          }
         }
     );
@@ -325,9 +347,9 @@ WSErrorMsg = "";
   			},
   			"jobSpecification": this.jobSpecificationBody,
   			"jobSpecificationTitle": this.jobSpecificationTitle,
-  			"recruiterNameId": this.recruiterName,
-  			"saveTempleteAs": this.saveTemplateAs,
-  			"jobReference": this.jobReference,
+  			"recruiterNameId": this.recruiterName ? this.recruiterName : '',
+  			"saveTempleteAs": this.recruiterName ? this.recruiterName : '',
+  			"jobReference": this.jobReference ? this.jobReference : '',
         "recuriter_job_is_featured": "0"        
         }
 
@@ -360,7 +382,7 @@ WSErrorMsg = "";
                 }
           );
         } else {
-          this.input.jobid = this.jobPostingJobId;
+          this.input['jobid'] = this.editJobId;
           wsUrl=" http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/submit/edit";
           console.log("input with job id-", this.input);
              this._commonRequestService.postData(wsUrl,this.input).subscribe(
@@ -383,7 +405,7 @@ WSErrorMsg = "";
                 } else if(data && data.error){
                   //this.previewJobErrorMsg = data.error;
                   //this.jobPostFlag = true;
-                  this.WSErrorMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
+                  this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
                 }
                 //this.jobPostFlag = true;
               }

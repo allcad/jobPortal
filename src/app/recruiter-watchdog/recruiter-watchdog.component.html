@@ -73,7 +73,7 @@
                                         </div>
                                         <div class="col-sm-88 col-xs-70">
                                             <div class="search_box_right">
-                                                <span>{{item.created}} </span>
+                                                <span>{{item?.created}} </span>
                                             </div>
                                         </div>
                                     </div>
@@ -85,7 +85,7 @@
                                         </div>
                                         <div class="col-sm-88 col-xs-70">
                                             <div class="search_box_right">
-                                                <span>{{item.setupby}}  </span>
+                                                <span>{{item?.setupby}}  </span>
                                             </div>
                                         </div>
                                     </div>
@@ -95,12 +95,12 @@
                                         <div class="col-sm-50">
                                             <div class="watchdog_mail_box recruiter_home_login">
                                                 <input class="form-control" id="exampleInputEmail1" placeholder="ENTER EMAIL ADDRESS" type="text">
-                                                <a href="javascript:void(0);" class="btn-default background_pink">share <i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                <a href="javascript:void(0);" class="btn-default background_pink" (click)="shareContractorProfile(item?.id)">share <i class="fa fa-plus" aria-hidden="true"></i></a>
                                             </div>
                                         </div>
                                         <div class="col-sm-50">
                                             <div class="watchdog_footer_icon">
-                                                <a href="javascript:void(0);"><img src="./assets/images/play-icon.png" alt="Job" title="Job"> </a>
+                                                <a href="javascript:void(0);" (click)="playButtonClick(item?.id)"><img src="./assets/images/play-icon.png" alt="Job" title="Job"> </a>
                                                 <!-- [routerLink]="['../job-posting']"-->
                                                 <a href="javascript:void(0);" (click)="editJob(item?.id)"><img src="./assets/images/watchdog-edit-icon.png" alt="Job" title="Job"> </a>
                                                 <a href="javascript:void(0);" (click)="deleteWatchDog(item?.id)"><img src="./assets/images/delete-icon.png" alt="Job" title="Job"> </a>
