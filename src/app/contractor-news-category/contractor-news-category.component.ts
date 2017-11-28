@@ -16,10 +16,15 @@ export class ContractorNewsCategoryComponent implements OnInit {
             spaceBetween: 30
         }
         newsList = [];
+        featuredNewsList = [];
+        popularNewsList = [];
+        dataToShow = [];
   constructor(private _commonRequestService: CommonRequestService,private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getLatestNews()
+    this.getLatestNews();
+    this.getPopularNews();
+    this.getFeaturedNews();
   }
 
   getLatestNews(){
@@ -31,7 +36,37 @@ export class ContractorNewsCategoryComponent implements OnInit {
       this._commonRequestService.postData(url, inputJson).subscribe(
         data => {
           this.newsList = data.data;
+          this.dataToShow = this.newsList;
           console.log("newsList", this.newsList);
+        }
+    );
+  }
+
+
+  getPopularNews(){
+    var inputJson = {
+      page :1,
+      limit: -1
+    }
+    var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/articles_populer";
+      this._commonRequestService.postData(url, inputJson).subscribe(
+        data => {
+          this.popularNewsList = data.data;
+          console.log("popularNewsList", this.popularNewsList);
+        }
+    );
+  }
+
+  getFeaturedNews(){
+    var inputJson = {
+      page :1,
+      limit: -1
+    }
+    var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/articles_featured";
+      this._commonRequestService.postData(url, inputJson).subscribe(
+        data => {
+          this.featuredNewsList = data.data;
+          console.log("featuredNewsList", this.featuredNewsList);
         }
     );
   }

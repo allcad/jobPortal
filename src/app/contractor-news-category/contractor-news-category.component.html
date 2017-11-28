@@ -11,7 +11,7 @@
           <div >
             <swiper [config]="config">
               <div class="swiper-wrapper">
-                <div *ngFor="let news of newsList" class="swiper-slide" style="background: url(./assets/images/advice-category-banner-bg.png) no-repeat; background-size: cover; background-position: center;">
+                <div *ngFor="let news of featuredNewsList" class="swiper-slide" style="background: url(./assets/images/advice-category-banner-bg.png) no-repeat; background-size: cover; background-position: center;">
                   <li>
                     <h2 style="color: #fff;">{{news.article_title}}</h2>
                     <p style="color: #fff;" [innerHTML]="news.article_body | slice:0:300"> </p>
@@ -86,9 +86,9 @@
           <div class="col-md-42 col-sm-50">
             <ul class="nav nav-tabs" role="tablist">
               <div class="timeline-panel"></div>
-              <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Latest news</a></li>
-              <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Popular</a></li>
-              <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">FEATURED ARTICLES</a></li>
+              <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" (click)="dataToShow = newsList;">Latest news</a></li>
+              <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" (click)="dataToShow = popularNewsList;">Popular</a></li>
+              <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" (click)="dataToShow = featuredNewsList;" >FEATURED ARTICLES</a></li>
             </ul>
           </div>
           <div class="col-md-45 col-sm-30">
@@ -108,7 +108,7 @@
   <div role="tabpanel" class="tab-pane active" id="home">
     <div class="container">
       <div class="row">
-        <div class=" col-md-33 col-sm-33" *ngFor="let news of newsList">
+        <div class=" col-md-33 col-sm-33" *ngFor="let news of dataToShow">
           <div class="letest_news_box">
             <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
             <img src="{{news?.article_image}}" alt="" title="" class="img-responsive" onError="this.src='./assets/images/letest-news.png'" alt="" title="" class="img-responsive">
