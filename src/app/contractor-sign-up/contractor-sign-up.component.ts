@@ -56,6 +56,7 @@ export class ContractorSignUpComponent implements OnInit {
   contractorEndDateInvalid = false;
   invalidFile = false;
   currentEmploymentSituationCheck;
+  fileName;
   @ViewChild('myInput') myInputVariable;
   @ViewChild('permanent') permanentVariable;
   @ViewChild('inContract') inContractVariable;
@@ -209,6 +210,7 @@ export class ContractorSignUpComponent implements OnInit {
 
   fileChangeEvent(fileInput: any) {
     this.CVFile = fileInput.target.files[0];
+    this.fileName = this.CVFile.name;
   }
 
 

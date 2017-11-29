@@ -186,5 +186,3 @@ agm-map {
     display: block;
 }
 
-
-:host /deep/ .second canvas{width: 100% !important;}

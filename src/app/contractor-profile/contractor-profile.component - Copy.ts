@@ -78,14 +78,13 @@ export class ContractorProfileComponent implements OnInit {
     this.getProfileDta();
     window.scroll(0, 0);
     this.cropperSettings = new CropperSettings();
-    this.cropperSettings.width = 280;
-    this.cropperSettings.height = 250;
+    this.cropperSettings.width = 100;
+    this.cropperSettings.height = 100;
     this.cropperSettings.croppedWidth = 100;
     this.cropperSettings.croppedHeight = 100;
-    this.cropperSettings.canvasWidth = 330;
+    this.cropperSettings.canvasWidth = 400;
     this.cropperSettings.canvasHeight = 300;
     this.cropperSettings.noFileInput = true;
-    
     this.data = {};
   }
 
@@ -493,7 +492,7 @@ export class ContractorProfileComponent implements OnInit {
     let contentType = block[0].split(":")[1];
     let realData = block[1].split(",")[1];
     let blob = this.b64toBlob(realData, contentType, 256);
-    this.imageFile = new File ([blob], this.fileName);
+    var file = new File ([blob], this.fileName);
   }
   
   b64toBlob(b64Data, contentType, sliceSize) {
