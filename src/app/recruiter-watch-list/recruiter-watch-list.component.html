@@ -11,33 +11,45 @@
                                 <li class="right_arrow text_pink">&gt;</li>
                                 <li class="active">WATCHLIST</li>
                             </ul>
-                            <div class="signup_form_section width_auto choose_template text-right width_auto">
+                            <div class="signup_form_section width_auto choose_template text-right width_auto" *ngIf="watchListData.length > 0">
                                 <label>Filter By Job:</label>
-                                <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none java_developer">
-                                    <option value="">ALL JOBS</option>
+                                <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none java_developer" [(ngModel)]="filterByJobId" (change)="filterByJobChange()">
+                                    <option value="0">All Jobs</option>
+                                    <option value="{{item?.jobid}}" *ngFor="let item of filterByJobData;">{{item?.jobTitle}}</option>
+                                    <!-- <option value="">ALL JOBS</option>
                                     <option value="1">124536</option>
                                     <option value="5">5124536</option>
                                     <option value="10">10124536</option>
-                                    <option value="20">20124536</option>
+                                    <option value="20">20124536</option> -->
                                 </select>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="pager_section">
+                  <div class="errorbox" *ngIf="errorMsg"><br> 
+                        <li>{{errorMsg}}</li>
+                    </div>
+                <div class="pager_section" *ngIf="watchListData.length > 0">
                     <div class="row">
                         <div class="col-sm-50">
-                            <div class="pazer"> <span>Show</span> <a href="javascript:void(0);" class="active">12</a> <a href="javascript:void(0);">16</a> <a href="javascript:void(0);">20</a> <span>results per page</span> </div>
+                            <div class="pazer"> 
+                                <span>Show</span> 
+                                <a href="javascript:void(0);" [ngClass]="12===pageLimit ? 'active':''" (click)="onPageClick('12')">12</a> 
+                                <a href="javascript:void(0);" [ngClass]="16===pageLimit ? 'active':''" (click)="onPageClick('16')">16</a> 
+                                <a href="javascript:void(0);" [ngClass]="20===pageLimit ? 'active':''" (click)="onPageClick('20')">20</a> 
+                                <span>results per page</span> 
+                            </div>
                         </div>
                         <div class="col-sm-50">
                             <div class="signup_form_section width_auto choose_template text-right width_auto">
                                 <label>Sort By:</label>
-                                <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none java_developer">
-                                    <option value="">AVAILABLILITY (SOONEST)</option>
+                                <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none java_developer" [(ngModel)]="currentSortBy" (change)="sortChange()">
+                                    <option value="{{item?.id}}" *ngFor="let item of watchListSortData;">{{item?.text}}</option>
+                                    <!-- <option value="">AVAILABLILITY (SOONEST)</option>
                                     <option value="1">124536</option>
                                     <option value="5">5124536</option>
                                     <option value="10">10124536</option>
-                                    <option value="20">20124536</option>
+                                    <option value="20">20124536</option> -->
                                 </select>
                             </div>
                         </div>
@@ -47,7 +59,7 @@
             <!--contractor login end-->
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-50">
+                    <div class="col-sm-50" *ngFor="let item of firstArray">
                         <div class="recruiter_watch_list_box">
                             <div class="watchlist_header">
                                 <div class="row">
@@ -80,7 +92,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-50">
+                    <!-- <div class="col-sm-50">
                         <div class="recruiter_watch_list_box">
                             <div class="watchlist_header">
                                 <div class="row">
@@ -112,9 +124,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
-                <div class="row">
+               <!--  <div class="row">
                     <div class="col-sm-50">
                         <div class="recruiter_watch_list_box">
                             <div class="watchlist_header">
@@ -181,7 +193,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- <div class="row">
                     <div class="col-sm-33">
                         <div class="ad_space"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
@@ -193,9 +205,9 @@
                         <div class="ad_space"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
                     </div>
                 </div> -->
-                <app-ad-space></app-ad-space>
+                <app-ad-space *ngIf="firstArray.length > 0"></app-ad-space>
                 <div class="row">
-                    <div class="col-sm-50">
+                    <div class="col-sm-50" *ngFor="let item of secondArray">
                         <div class="recruiter_watch_list_box">
                             <div class="watchlist_header">
                                 <div class="row">
@@ -228,7 +240,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-50">
+                    <!-- <div class="col-sm-50">
                         <div class="recruiter_watch_list_box">
                             <div class="watchlist_header">
                                 <div class="row">
@@ -260,9 +272,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-sm-50">
                         <div class="recruiter_watch_list_box">
                             <div class="watchlist_header">
@@ -329,7 +341,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- <div class="row">
                     <div class="col-sm-33">
                         <div class="ad_space"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
@@ -341,9 +353,9 @@
                         <div class="ad_space"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
                     </div>
                 </div> -->
-                <app-ad-space></app-ad-space>
+                <app-ad-space *ngIf="secondArray.length > 0"></app-ad-space>
                 <div class="row">
-                    <div class="col-sm-50">
+                    <div class="col-sm-50" *ngFor="let item of thirdArray">
                         <div class="recruiter_watch_list_box">
                             <div class="watchlist_header">
                                 <div class="row">
@@ -376,7 +388,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-50">
+                    <!-- <div class="col-sm-50">
                         <div class="recruiter_watch_list_box">
                             <div class="watchlist_header">
                                 <div class="row">
@@ -408,9 +420,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-sm-50">
                         <div class="recruiter_watch_list_box">
                             <div class="watchlist_header">
@@ -477,7 +489,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
-            <div class="show_more_application"> <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>SHOW MORE APPLICATIONS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
+            <div *ngIf="watchListData.length > 12" class="show_more_application"> <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>SHOW MORE APPLICATIONS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
         </section>

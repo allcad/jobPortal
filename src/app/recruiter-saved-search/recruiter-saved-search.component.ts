@@ -413,12 +413,12 @@ export class RecruiterSavedSearchComponent implements OnInit {
       "recuriter_search_by_updated_contractor_since":this.showContractors?this.showContractors:'',
       "recuriter_search_by_contract_name":this.contractorName?this.contractorName:'',
       "recuriter_search_by_education":this.educationValue?this.educationValue:"",
-      "recuriter_search_by_industry":JSON.stringify(this.industrySectorValue)?JSON.stringify(this.industrySectorValue) : "",
-      "recuriter_search_by_security_clearance":JSON.stringify(this.securityClearValue) ?JSON.stringify(this.securityClearValue) : "",
-      "recuriter_search_by_driving_license":this.drivingLicenceValue == 'yes' ? 1 : 0,
-      "page":1,
-      "limit":10,
-      "sort":8
+      "recuriter_search_by_industry":this.industrySectorValue ? this.industrySectorValue : "",
+      "recuriter_search_by_security_clearance":this.securityClearValue ? this.securityClearValue : "",
+      "recuriter_search_by_driving_license":this.drivingLicenceValue == 'yes' ? 1 : 0
+      //"page":1,
+      //"limit":12
+      //"sort":8
     }
 
     //this._commonDataShareService.advancedSerahcResult.next(savedSearchSaveJson);

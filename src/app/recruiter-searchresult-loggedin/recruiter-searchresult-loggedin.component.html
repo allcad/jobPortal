@@ -18,12 +18,13 @@
                     <div class="col-sm-50">
                         <div class="signup_form_section width_auto choose_template text-right width_auto200">
                             <label>Sort By:</label>
-                            <select class="form-control minimal background_drop_downs box_height_30 box_padding_3 padding_left_none java_developer">
-                                <option value="">ADDED (DESCENDING)</option>
+                            <select class="form-control minimal background_drop_downs box_height_30 box_padding_3 padding_left_none java_developer" [(ngModel)]="currentSortBy" (change)="sortChange()">
+                                <option value="{{item?.id}}" *ngFor="let item of sortByData;">{{item?.text}}</option>
+                                <!-- <option value="">ADDED (DESCENDING)</option>
                                 <option value="1">124536</option>
                                 <option value="5">5124536</option>
                                 <option value="10">10124536</option>
-                                <option value="20">20124536</option>
+                                <option value="20">20124536</option> -->
                             </select>
                         </div>
                     </div>

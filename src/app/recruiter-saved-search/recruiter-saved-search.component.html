@@ -15,9 +15,9 @@
               </ul>
               <div class="pull-right job_search">
                 <p>Need Help? | <span>Watch our Video Guides</span></p>
-                <div style="display: inline;">
+                <div style="display: inline-block; position: relative;">
                   <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="getSaveSearchList(); showSaveSearchList=!showSaveSearchList">Saved Search <i class="fa fa-angle-down plus_blue font_size_margin text_pink" aria-hidden="true"></i></a>
-                  <div class="form-group" *ngIf="showSaveSearchList">
+                  <div class="form-group" style="position: absolute;right: 0" *ngIf="showSaveSearchList">
                     <!--<div class="input-group"> <span class="form-control industry_sector">Saved Search List</span>
                                                  <div class="input-group-addon bordr_non"><img src="./assets/images/inform.png" alt="Enter Password" title="Password" class="img-responsive"></div> 
                                             </div>-->

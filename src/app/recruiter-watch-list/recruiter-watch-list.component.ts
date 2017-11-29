@@ -10,10 +10,132 @@ import { CommonService } from '../commonService.service';
 })
 export class RecruiterWatchListComponent implements OnInit {
 
+	watchListSortData;
+	filterByJobData;
+	watchListData = [];
+	currentSortBy = 1;
+	filterByJobId = 0;
+	pageNo = 1;
+	pageLimit = 12;
+	errorMsg = "";
+	firstArray = [];
+	secondArray = [];
+	thirdArray = [];
   constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService,
     private _commonService: CommonService) { }
 
   ngOnInit() {
+  	this.getSortByData();
+  	this.getFilterbyJobData();
+  	this.getWatchListData();
+  }
+
+  filterByJobChange() {
+  	this.getWatchListData();
+  }
+
+  sortChange() {
+  	this.getWatchListData();
+  }
+
+  getSortByData() {
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/short_by_recruiter_search ";
+       this._commonRequestService.getData(wsUrl).subscribe(
+        data => {
+         console.log("short by--", data);
+         if(data) {
+           this.watchListSortData = data.data;
+           
+        }
+      }
+    );
+  }
+
+  getFilterbyJobData() {
+  	var input = {
+  		"email":"test@test7.com",
+		"loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu",
+		"page":this.pageNo,
+		"limit": -1
+
+  	}
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/list";
+       this._commonRequestService.postData(wsUrl, input).subscribe(
+        data => {
+         console.log("filter by--", data);
+         if(data) {
+           this.filterByJobData = data.data;
+           
+        }
+      }
+    );
+  }
+
+  getWatchListData() {
+  	var input = {
+  		"email":"test@test7.com",
+		"loginToken":"$2y$10$ERdO743JuPZF6a4SfV8HQe69MqBJBtM3o3cz.ChfrZbcySNegW1e6",
+		"page":this.pageNo,
+		"limit":this.pageLimit,
+		"sort":this.currentSortBy,
+		"job_id":this.filterByJobId
+
+  	}
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/watch_list";
+       this._commonRequestService.postData(wsUrl, input).subscribe(
+        data => {
+         console.log("watch list--", data);
+         // if(data) {
+         //   this.watchListData = data.data;
+           if(data && data.status === "TRUE") {
+           this.errorMsg = "";
+           //this.errorMsgFlag = false;
+           this.watchListData = data.data;
+             for(var i=0;i<4;i++) {
+             	if(this.watchListData && this.watchListData[i]) {
+             		this.firstArray[i] = this.watchListData[i];
+             	}
+             };
+             
+           if(this.watchListData.length > 4) {
+             this.secondArray = [];
+             for(var i=0; i<4; i++) {
+             	if(this.watchListData && this.watchListData[i+4]) {
+             		this.secondArray[i] = this.watchListData[i+4];
+             	}
+             }
+           } else {
+             this.secondArray = [];
+           }
+           if(this.watchListData.length > 8) {
+             this.thirdArray = [];
+             for(var i=0; i<this.watchListData.length; i++) {
+               console.log("this.watchListData[i+8]", this.watchListData[i+8]);
+             	if(this.watchListData && this.watchListData[i+8]) {
+             		this.thirdArray[i] = this.watchListData[i+8];
+             	}
+             }
+           } else {
+             this.thirdArray = [];
+           }
+           console.log("firstarray", this.firstArray);
+           console.log("secondArray", this.secondArray);
+           console.log("thirdArray", this.thirdArray);
+          } else {
+            if(data && data.status === 'FALSE') {
+            //this.errorMsgFlag = true;
+              this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+            }
+          }
+           
+        }
+      //}
+    );
+  }
+
+  onPageClick(page) {
+  	this.pageLimit = page;
+  	this.getWatchListData();
   }
 
 }

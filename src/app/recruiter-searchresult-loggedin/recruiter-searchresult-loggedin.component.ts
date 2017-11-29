@@ -17,6 +17,9 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   pageLimit = 12;
   savedResult;
   WSErrorMsg = "";
+  sortByData;
+  currentSortBy = 1;
+  pageNo = 1;
   constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService,
     private _commonService: CommonService) { }
 
@@ -30,15 +33,35 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
     //         this.getSearchResultList();
     //       }
     //     });
+    this.getSortByData();
     this.savedResult = this._commonService.getSearchResult();
     console.log("this.savedResult", this.savedResult)
+    if(this.savedResult) {
+      this.getSearchResultList();
+    }
+  }
+
+  getSortByData() {
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/short_by_recruiter_search ";
+       this._commonRequestService.getData(wsUrl).subscribe(
+        data => {
+         console.log("short by--", data);
+         if(data) {
+           this.sortByData = data.data;
+           
+        }
+      }
+    );
+  }
+
+  sortChange() {
     this.getSearchResultList();
   }
 
   getSearchResultList() {
     console.log("value--", this.savedResult);
     var savedSearchSaveJson = {};
-    if(typeof this.savedResult == 'string') {
+    if(this.savedResult && typeof this.savedResult == 'string') {
       savedSearchSaveJson = {
         // "email":"test@test8.com",
         // "loginToken":"$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y",
@@ -63,12 +86,16 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
         "recuriter_search_by_industry": '',
         "recuriter_search_by_security_clearance": '',
         "recuriter_search_by_driving_license": 0,
-        "page":1,
+        "page":this.pageNo,
         "limit":this.pageLimit,
-        "sort":8
+        "sort":this.currentSortBy
         }
-    } else if(typeof this.savedResult == 'object') {
+    } else if(this.savedResult && typeof this.savedResult == 'object') {
+      console.log("currentSortBy", this.currentSortBy);
       savedSearchSaveJson = this.savedResult;
+      savedSearchSaveJson['sort'] = this.currentSortBy;
+      savedSearchSaveJson['page'] = this.pageNo;
+      savedSearchSaveJson['limit'] = this.pageLimit;
     }
 
     this.searchList = [];
