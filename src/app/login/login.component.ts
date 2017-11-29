@@ -1,5 +1,5 @@
-import { Component, OnInit,NgModule } from '@angular/core';
-import { FormsModule,NgForm } from '@angular/forms';
+import { Component, OnInit, NgModule } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonRequestService } from '../common-request.service';
 @Component({
@@ -9,89 +9,84 @@ import { CommonRequestService } from '../common-request.service';
 })
 
 export class LoginComponent implements OnInit {
-password="";email=""; inputLogin;
-valid;dataUrl;response;
-contractorviewProfileData;wsUrl;input;
-inputData;min;max;addNumber;number;number2;errorMessage;inputUrl;status;succesLoginFlag=false;errorMsgFlag=false;
-errorMsg;
-totalInvalid = false;
+  password = ""; email = ""; inputLogin;
+  valid; dataUrl; response;
+  contractorviewProfileData; wsUrl; input;
+  inputData; min; max; addNumber; number; number2; errorMessage; inputUrl; status; succesLoginFlag = false; errorMsgFlag = false;
+  errorMsg;
+  totalInvalid = false;
+  forgotPasswordFlag = false;
   constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
-  this.generate();
+    this.generate();
   }
 
-    onLogin(f:NgForm){
-      this.totalInvalid = false;
-      if(f.valid && parseInt(this.addNumber) === (this.number + this.number2)){
-      this.inputLogin={
-        "email":this.email,
-        "password":this.password
-        
+  onLogin(f: NgForm) {
+    this.totalInvalid = false;
+    if (f.valid && parseInt(this.addNumber) === (this.number + this.number2)) {
+      this.inputLogin = {
+        "email": this.email,
+        "password": this.password
+
       }
       var email = this.email;
-            console.log( this.inputLogin,"login-conta")
-  this.inputUrl= "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/signin" ;
-       this._commonRequestService.postData(this.inputUrl, this.inputLogin).subscribe(
+      console.log(this.inputLogin, "login-conta")
+      this.inputUrl = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/signin";
+      this._commonRequestService.postData(this.inputUrl, this.inputLogin).subscribe(
         data => {
           console.log(data);
-           if( data.status === "TRUE"){
-          
-               this.succesLoginFlag =true;
-                  this.errorMsgFlag =false;
-                  localStorage.setItem("loginDetail", JSON.stringify({"token": data.data.loginToken, "email": email, "role": data.data.type}))
-                  this.router.navigate(['../contractor/viewProfile']);
-           }
-          else{
-             this.errorMsgFlag =true;
-              this.succesLoginFlag =false;
-              this.errorMsg = typeof(data.error)=='object' ? data.error[0] : data.error;
-              //setTimeout(()=>{this.errorMsgFlag = false},1000)
+          if (data.status === "TRUE") {
+
+            this.succesLoginFlag = true;
+            this.errorMsgFlag = false;
+            localStorage.setItem("loginDetail", JSON.stringify({ "token": data.data.loginToken, "email": email, "role": data.data.type }))
+            this.router.navigate(['../contractor/viewProfile']);
+          }
+          else {
+            this.errorMsgFlag = true;
+            this.succesLoginFlag = false;
+            this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+            //setTimeout(()=>{this.errorMsgFlag = false},1000)
           }
         }
-    )
-       
-      }else{
-        this.errorMsgFlag = false;
-        if(parseInt(this.addNumber) !== (this.number + this.number2)){
-         this.totalInvalid = true; 
-        }
-         window.scroll(0,0);
-       }
-}
+      )
 
-getRandamValue(max,min){
-    return  Math.floor(Math.random() * 4) + 2; 
-}
-getRandamValue1(max,min){
-    return  Math.floor(Math.random() * 6) + 1  
-}
-    generate = function() {
-        this.number = this.getRandamValue(1, 10);
-        this.number2 = this.getRandamValue1(1, 10);
+    } else {
+      this.errorMsgFlag = false;
+      if (parseInt(this.addNumber) !== (this.number + this.number2)) {
+        this.totalInvalid = true;
+      }
+      window.scroll(0, 0);
+    }
+  }
+
+  getRandamValue(max, min) {
+    return Math.floor(Math.random() * 4) + 2;
+  }
+  getRandamValue1(max, min) {
+    return Math.floor(Math.random() * 6) + 1
+  }
+  generate = function() {
+    this.number = this.getRandamValue(1, 10);
+    this.number2 = this.getRandamValue1(1, 10);
+  }
+
+  forgotPasswordClicked() {
+    if (this.email) {
+      let url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/forget_password/request";
+      let input = {
+        "email": this.email
+      }
+
+      this._commonRequestService.postData(url, input).subscribe(
+        data => {
+          console.log(data.data)
+
+        }
+      );
     }
 
+  }
 
-  // getViewProfileDta() {
-  //         this.input={
-  //       "email":this.email,
-  //       "password":this.password,
-  //       "loginToken":data.data.loginToken,
-  //     }
-  //  this.wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/profile/view";
-  //      this._commonRequestService.postData(this.wsUrl,this.input).subscribe(
-  //       data => {
-  //         this.response = data;
-  //          this.contractorviewProfileData = data.data;
-  //          if( this.response.status === "TRUE"){
-  //              this.router.navigate(['contractors/view-profile']);
-  //              this._commonRequestService.setDataWithoutObserval( this.contractorviewProfileData,'contractor-profile-view-data');
-  //            // console.log("view_profile: ", this.contractorviewProfileData);
-  //          }
-         
-  //       }
-  //   );
-
-
- // }
 }

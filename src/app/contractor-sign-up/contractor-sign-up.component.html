@@ -41,6 +41,9 @@
               <li *ngIf="employmentSituation">Please indicate your current employment situation.</li>
               <li *ngIf="invalidFile">File format is not valid</li>
             </div>
+
+            
+
             <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
               <div class="row">
                 <div class="col-sm-50">
@@ -127,18 +130,16 @@
                         <input type="file" class="upload" (change)="fileChangeEvent($event);" #myInput />
                       </div> -->
                       <div class="find_cv_from" style="text-align: right; margin: 2px 0 4px 0;"><a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" style="color: #fff !important;" aria-haspopup="true" aria-expanded="true">Find CV From<img src="./assets/images/find-cv.png" alt="Find CV" title="Find CV"></a>
-                          <ul class="dropdown-menu">
-                            <li><a href="javascript:void(0)"><img src="./assets/images/mail-box1.png" alt="OneDrive" title="OneDrive" class="img-responsive"></a> <a href="javascript:void(0)"><img src="./assets/images/mail-box3.png" alt="GoogleDrive" title="GoogleDrive" class="img-responsive"></a> </li>
-                            <li> <a href="javascript:void(0)"><img src="./assets/images/mail-box2.png" alt="Dropbox" title="Dropbox" class="img-responsive"></a> 
-
+                        <ul class="dropdown-menu">
+                          <li><a href="javascript:void(0)"><img src="./assets/images/mail-box1.png" alt="OneDrive" title="OneDrive" class="img-responsive"></a> <a href="javascript:void(0)"><img src="./assets/images/mail-box3.png" alt="GoogleDrive" title="GoogleDrive" class="img-responsive"></a> </li>
+                          <li> <a href="javascript:void(0)"><img src="./assets/images/mail-box2.png" alt="Dropbox" title="Dropbox" class="img-responsive"></a>
                             <div class="fileUpload">
                               <a href="javascript:void(0)"><img src="./assets/images/mail-box4.png" alt="LocalDrive" title="LocalDrive" class="img-responsive"></a>
                               <input type="file" class="upload" name="">
                             </div>
-
-                            <!-- <a href="javascript:void(0)"><img src="./assets/images/mail-box4.png" alt="LocalDrive" title="LocalDrive" class="img-responsive"></a> --> </li>
-                          </ul>
-                        </div> 
+                            <!-- <a href="javascript:void(0)"><img src="./assets/images/mail-box4.png" alt="LocalDrive" title="LocalDrive" class="img-responsive"></a> --></li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                   <div style="margin-top: -35px;text-align: right;font-family: arial;">
@@ -186,16 +187,17 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/key-skills.png" alt="Key Skills" title="Key Skills" class="img-responsive"></div>
-                      <div class="enter_your_skills">
-                        <select class="form-control minimal background_drop_down" [(ngModel)]="selectedSkill" name="skills" (change)="selectSkill()">
+                     <!--  <div class="enter_your_skills"> -->
+                       <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Key Skills (Separated with commas)" (keyup)="skillKeyUp($event)" [(ngModel)]="skill" name="skill">
+                        <!-- <select class="form-control minimal background_drop_down" [(ngModel)]="selectedSkill" name="skills" (change)="selectSkill()">
                           <option value="">Select Skill</option>
                           <option *ngFor="let skill of skillData" [value]="skill.skill_id">{{skill.skill_name}}</option>
-                        </select>
-                      </div>
+                        </select> -->
+                      <!-- </div> -->
                     </div>
                     <div class="add_sub_skills" *ngIf="selectedSkillArray.length>0">
                       <a href="javascript:void(0)" *ngFor="let selectedSkill of selectedSkillArray; let i = index">
-                      {{selectedSkill.skill_name}}
+                      <span *ngIf="selectedSkill !== ''">{{selectedSkill}}</span>
                    <img src="./assets/images/close-icon.png" alt="Close" title="Close" (click)="removeSelectedSkill(i)"></a>
                     </div>
                   </div>

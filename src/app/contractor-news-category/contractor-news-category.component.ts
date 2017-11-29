@@ -8,18 +8,18 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./contractor-news-category.component.css']
 })
 export class ContractorNewsCategoryComponent implements OnInit {
-	config : SwiperOptions = {
-            pagination: '.swiper-pagination',
-            paginationClickable: true,
-            nextButton: '.swiper-button-next',
-            prevButton: '.swiper-button-prev',
-            spaceBetween: 30
-        }
-        newsList = [];
-        featuredNewsList = [];
-        popularNewsList = [];
-        dataToShow = [];
-  constructor(private _commonRequestService: CommonRequestService,private _router: Router, private _routes: ActivatedRoute) { }
+	config: SwiperOptions = {
+    pagination: '.swiper-pagination',
+    paginationClickable: true,
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev',
+    spaceBetween: 30
+  }
+  newsList = [];
+  featuredNewsList = [];
+  popularNewsList = [];
+  dataToShow = [];
+  constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
     this.getLatestNews();
@@ -27,54 +27,78 @@ export class ContractorNewsCategoryComponent implements OnInit {
     this.getFeaturedNews();
   }
 
-  getLatestNews(){
+  getLatestNews() {
     var inputJson = {
-      page :1,
+      page: 1,
       limit: -1
     }
-    var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/articles";
-      this._commonRequestService.postData(url, inputJson).subscribe(
-        data => {
-          this.newsList = data.data;
-          this.dataToShow = this.newsList;
-          console.log("newsList", this.newsList);
-        }
+    var url = "http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/articles";
+    this._commonRequestService.postData(url, inputJson).subscribe(
+      data => {
+        this.newsList = data.data;
+        this.dataToShow = this.newsList;
+        console.log("newsList", this.newsList);
+      }
     );
   }
 
 
-  getPopularNews(){
+  getPopularNews() {
     var inputJson = {
-      page :1,
+      page: 1,
       limit: -1
     }
-    var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/articles_populer";
-      this._commonRequestService.postData(url, inputJson).subscribe(
-        data => {
-          this.popularNewsList = data.data;
-          console.log("popularNewsList", this.popularNewsList);
-        }
+    var url = "http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/articles_populer";
+    this._commonRequestService.postData(url, inputJson).subscribe(
+      data => {
+        this.popularNewsList = data.data;
+        console.log("popularNewsList", this.popularNewsList);
+      }
     );
   }
 
-  getFeaturedNews(){
+  getFeaturedNews() {
     var inputJson = {
-      page :1,
+      page: 1,
       limit: -1
     }
-    var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/articles_featured";
-      this._commonRequestService.postData(url, inputJson).subscribe(
-        data => {
-          this.featuredNewsList = data.data;
-          console.log("featuredNewsList", this.featuredNewsList);
-        }
+    var url = "http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/articles_featured";
+    this._commonRequestService.postData(url, inputJson).subscribe(
+      data => {
+        this.featuredNewsList = data.data;
+        console.log("featuredNewsList", this.featuredNewsList);
+      }
     );
   }
 
-  readMore(news){
+
+  searchNews(searchKeyword) {
+  if(searchKeyword){
+    var inputJson = {
+      page: 1,
+      limit: -1,
+      search: searchKeyword
+    }
+    var url = "http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/articles_search";
+    this._commonRequestService.postData(url, inputJson).subscribe(
+      data => {
+        if(data.data.status == 'TRUE'){
+          this.dataToShow = data.data;
+        }else{
+          this.dataToShow = [];
+        }
+        
+      }
+    );
+  }
+  
+
+  }
+
+  readMore(news) {
     this._commonRequestService.setDataWithoutObserval(news._id, "newsId");
     localStorage.setItem("newsId", news._id);
-    this._router.navigate(['../news'], {relativeTo: this._routes});
+    this._router.navigate(['../news'], { relativeTo: this._routes });
   }
 
 }

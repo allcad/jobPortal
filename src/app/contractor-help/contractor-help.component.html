@@ -12,22 +12,22 @@
                 <div class="col-sm-23">
                   <div class="dropdown dropdown_help"> <a href="javascript:void(0)" class="btn-default dropdown-toggle advice_dropdown" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> CONTRACTORS <span class="caret"></span> </a>
                     <ul class="dropdown-menu dropdown-menu-help" aria-labelledby="dropdownMenu1">
-                      <li><a href="javascript:void(0)">Action</a></li>
-                      <li><a href="javascript:void(0)">Another action</a></li>
-                      <li><a href="javascript:void(0)">Something else here</a></li>
-                      <li><a href="javascript:void(0)">Separated link</a></li>
+                      <li><a href="javascript:void(0)">Contractor</a></li>
+                      <li><a href="javascript:void(0)">Recruiter</a></li>
+                     <!--  <li><a href="javascript:void(0)">Something else here</a></li>
+                      <li><a href="javascript:void(0)">Separated link</a></li> -->
                     </ul>
                   </div>
                 </div>
                 <div class="col-sm-77">
                   <div class="form-group">
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="SEARCH ALL OUR HELP ARTICLES HERE">
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="SEARCH ALL OUR HELP ARTICLES HERE" [(ngModel)]="searchKeyword" name="search">
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-100">
-                  <div class="form-group search_now_home"><a href="javascript:void(0)">SEARCH NOW <img src="./assets/images/search-now-icon.png" alt="search now" title="search now"></a> </div>
+                  <div class="form-group search_now_home" (click)="searchHelp(searchKeyword)"><a href="javascript:void(0)">SEARCH NOW <img src="./assets/images/search-now-icon.png" alt="search now" title="search now"></a> </div>
                 </div>
               </div>
             </form>

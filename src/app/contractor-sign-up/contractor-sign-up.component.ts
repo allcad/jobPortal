@@ -47,6 +47,7 @@ export class ContractorSignUpComponent implements OnInit {
  detailsLiveFrom = "1";
  contractor_post_code = "";
  //formInvalidFlag = false;
+ skill;
  passwordInvalid = false;
 cvInvalid = false;
 employmentSituation = false;
@@ -84,7 +85,7 @@ currentEmploymentSituationCheck;
     this.fd.append('contractor_rate_max',this.contractor_rate_max ? this.contractor_rate_max : "400");
     this.fd.append('fileForCv',this.CVFile);
     this.fd.append('contractor_job_title',this.contractor_job_title);
-    this.fd.append('contractor_key_skills',JSON.stringify(this.selectedSkillIdArray));
+    this.fd.append('contractor_key_skills',this.selectedSkillIdArray.join(','));
     this.fd.append('contractor_employment_situation',this.contractor_employment_situation ? this.contractor_employment_situation : "permanant");
     this.fd.append('contractor_services',JSON.stringify(this.getSelecetdContractorServices()));
     this.fd.append('contractor_agree_terms_status',this.contractor_agree_terms_status);
@@ -329,6 +330,19 @@ fileChangeEvent(fileInput: any) {
       })
     }
     category.checked=!category.checked;
+  }
+
+
+  skillKeyUp(event){
+    if(event.keyCode === 188){
+      this.selectedSkillArray = this.skill.split(',');
+      for(let i=this.selectedSkillArray.length-1; i>=0; i--){
+        if(this.selectedSkillArray[i] === ''){
+        this.selectedSkillArray.splice(i, 1);
+      }
+      }
+      
+    }
   }
 
 }

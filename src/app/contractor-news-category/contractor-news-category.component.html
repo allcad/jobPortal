@@ -93,11 +93,11 @@
           </div>
           <div class="col-md-45 col-sm-30">
             <div class="form-group mergin_bottom_none">
-              <input class="form-control" id="exampleInputEmail2" placeholder="SEARCH NEWS HERE..." type="email">
+              <input class="form-control" id="exampleInputEmail2" placeholder="SEARCH NEWS HERE..." type="text" [(ngModel)]="searchKeyword" required>
             </div>
           </div>
           <div class="col-md-13 col-sm-20 hover_button">
-            <a href="javascript:void(0)" type="submit" class="margin-tp">search <i class="fa fa-search font_color_white transform_rotate" aria-hidden="true"></i></a>
+            <a href="javascript:void(0)" (click)="searchNews(searchKeyword)" class="margin-tp">search <i class="fa fa-search font_color_white transform_rotate" aria-hidden="true" ></i></a>
           </div>
         </div>
       </div>
@@ -107,7 +107,7 @@
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane active" id="home">
     <div class="container">
-      <div class="row">
+      <div class="row" *ngIf="dataToShow && dataToShow.length > 0">
         <div class=" col-md-33 col-sm-33" *ngFor="let news of dataToShow">
           <div class="letest_news_box">
             <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
@@ -116,6 +116,9 @@
             <p [innerHTML]="news.article_body | slice:0:100"> </p>
             <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a (click)="readMore(news)" href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
           </div>
+        </div>
+        <div class=" col-md-33 col-sm-33" *ngIf="dataToShow && dataToShow.length == 0 ">
+          <span><strong>No Result Found</strong></span>
         </div>
         <!-- <div class="col-md-34 col-sm-34">
           <div class="letest_news_box">

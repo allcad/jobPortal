@@ -9,39 +9,58 @@ import { CommonRequestService } from '../common-request.service';
 export class ContractorHelpComponent implements OnInit {
 	helpCategoryList;
   helpData;
-   constructor(private _commonRequestService: CommonRequestService) { }
+  constructor(private _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
-  	this.getHelpCategory()
+    this.getHelpCategory()
   }
 
-  getHelpCategory(){
-  	let url ="http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/help_category";
-      this._commonRequestService.getData(url).subscribe(
-        data => {
-          this.helpCategoryList = data.data;
-          this.getHelpByCategoryId(this.helpCategoryList[0]._id)
-          console.log("this.helpCategoryList", this.helpCategoryList)
-        }
+  getHelpCategory() {
+    let url = "http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/help_category";
+    this._commonRequestService.getData(url).subscribe(
+      data => {
+        this.helpCategoryList = data.data;
+        this.getHelpByCategoryId(this.helpCategoryList[0]._id)
+        console.log("this.helpCategoryList", this.helpCategoryList)
+      }
     );
   }
 
 
-  getHelpByCategoryId(categoryId){
+  getHelpByCategoryId(categoryId) {
     this.helpData = [];
-  	let input = {
-  		 category:categoryId,
-		"page":1,
-		"limit":-1
-	};
-  	let url ="http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/help_article_by_category";
-      this._commonRequestService.postData(url, input).subscribe(
-        data => {
-           this.helpData = data.data;
-           console.log(this.helpData);
-        }, err=>{
-          console.log("err", err);
-        }
+    let input = {
+      category: categoryId,
+      "page": 1,
+      "limit": -1
+    };
+    let url = "http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/help_article_by_category";
+    this._commonRequestService.postData(url, input).subscribe(
+      data => {
+        this.helpData = data.data;
+        console.log(this.helpData);
+      }, err => {
+        console.log("err", err);
+      }
+    );
+  }
+
+
+  searchHelp(keyword) {
+     let input = {
+      "page": 1,
+      "limit": -1,
+      "category_type": "contractor",
+      "search": keyword
+
+    };
+    let url = "http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/help_article_by_category_type";
+    this._commonRequestService.postData(url, input).subscribe(
+      data => {
+        console.log(data);
+      }, err => {
+        console.log("err", err);
+      }
     );
   }
 
