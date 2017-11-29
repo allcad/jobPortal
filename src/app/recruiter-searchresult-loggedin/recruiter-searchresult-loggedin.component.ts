@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonDataSharedService } from '../commonDataSharedService';
 import { CommonRequestService } from '../common-request.service';
 import { CommonService } from '../commonService.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recruiter-searchresult-loggedin',
@@ -20,8 +21,15 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   sortByData;
   currentSortBy = 1;
   pageNo = 1;
+  addDynamicallyClass;
+  showMoreDetailsFlag: boolean[];
+  jobListData;
+  showWatchPopup = false;
+  notifyMeValue = "24 hours";
+  currentContractorId;
+  currentJobId;
   constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService,
-    private _commonService: CommonService) { }
+    private _commonService: CommonService, private router: Router) { }
 
   ngOnInit() {
   	//this.getSearchResultList();
@@ -34,6 +42,7 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
     //       }
     //     });
     this.getSortByData();
+    this.getJobList();
     this.savedResult = this._commonService.getSearchResult();
     console.log("this.savedResult", this.savedResult)
     if(this.savedResult) {
@@ -54,8 +63,68 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
     );
   }
 
+  openWatchPopup(item) {
+    this.showWatchPopup = true;
+    this.currentContractorId = item && item.contractor_id ? item.contractor_id : '';
+  }
+
+  closePopup() {
+    this.showWatchPopup = false;
+  }
+
+  addToWatchList() {
+      var input = {
+     "email":"test@test7.com",
+      "loginToken":"$2y$10$ERdO743JuPZF6a4SfV8HQe69MqBJBtM3o3cz.ChfrZbcySNegW1e6",
+      "contractor_id":this.currentContractorId,
+      "Job_id":this.currentJobId,
+      "notify":this.notifyMeValue
+
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/watch_add";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+         console.log("add watch list--", data);
+         // this.getWatchDogListData(this.pageNo);
+          this.router.navigate(['./recruiter/watch-list']);
+        }
+    );
+  }
+
   sortChange() {
     this.getSearchResultList();
+  }
+
+  getJobList() {
+    var input = {
+      "email":"test@test7.com",
+    "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu",
+    "page":1,
+    "limit": -1
+
+    }
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/list";
+       this._commonRequestService.postData(wsUrl, input).subscribe(
+        data => {
+         console.log("filter by--", data);
+         if(data) {
+           this.jobListData = data.data;
+           
+        }
+      }
+    );
+  }
+
+  showMoreDetails(index) {
+    this.showMoreDetailsFlag[index] = !this.showMoreDetailsFlag[index];
+    //console.log("this.showMoreDetailsFlag[index]", this.showMoreDetailsFlag[index]);
+    // if(this.showMoreDetailsFlag[index]) {
+    //   this.addDynamicallyClass = "more-details-toggle";
+    // } else {
+    //   this.addDynamicallyClass = "";
+    // }
   }
 
   getSearchResultList() {
@@ -114,6 +183,7 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
             if(data.status === "TRUE"){
 
               this.searchList = data.data;
+              this.showMoreDetailsFlag = Array(this.searchList.length).fill(false);
               console.log("this.searchList", this.searchList);
              for(var i=0;i<4;i++) {
                if(this.searchList && this.searchList[i]) {

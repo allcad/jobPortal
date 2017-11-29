@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonDataSharedService } from '../commonDataSharedService';
 import { CommonRequestService } from '../common-request.service';
 import { CommonService } from '../commonService.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recruiter-watch-list',
@@ -22,7 +23,7 @@ export class RecruiterWatchListComponent implements OnInit {
 	secondArray = [];
 	thirdArray = [];
   constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService,
-    private _commonService: CommonService) { }
+    private _commonService: CommonService, private router: Router) { }
 
   ngOnInit() {
   	this.getSortByData();
@@ -136,6 +137,12 @@ export class RecruiterWatchListComponent implements OnInit {
   onPageClick(page) {
   	this.pageLimit = page;
   	this.getWatchListData();
+  }
+
+  watchContractorProfile(contractorId, firstName, lastName) {
+    var obj = {'currentContractorId' : contractorId, 'currentContractorFirstName': firstName, 'currentContractorLastName' : lastName, 'type':'watchList'};
+    localStorage.setItem('currentContractorData', JSON.stringify(obj));
+    this.router.navigate(['./recruiter/view-contractor-profile']);
   }
 
 }

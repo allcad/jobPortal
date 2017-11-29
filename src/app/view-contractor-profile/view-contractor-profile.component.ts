@@ -18,6 +18,7 @@ export class ViewContractorProfileComponent implements OnInit {
 	currentContractorLastName;
 	certification = [];
 	keySkills = [];
+  type;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService) { }
 
@@ -55,6 +56,15 @@ export class ViewContractorProfileComponent implements OnInit {
           }
         }
     );
+  }
+
+  moveToAnotherPage() {
+    this.type = localStorage.getItem('currentContractorData') ? JSON.parse(localStorage.getItem('currentContractorData'))['type'] : null;    
+    if(this.type === 'viewApplication') {
+      this.router.navigate(['./recruiter/view-applications']);
+    } else if(this.type === 'watchList') {
+      this.router.navigate(['./recruiter/watch-list']);
+    }
   }
 
 }

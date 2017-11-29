@@ -89,7 +89,7 @@
                             <div class="add_sub_skills"> <a href="javascript:void(0)">{{contractorData?.yourPreferredJobTitle}} <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a> </div>
                             <h3>Key Skills </h3>
                             <div class="add_sub_skills margin_bottom_none">
-                                <p> <a href="javascript:void(0)" *ngFor="let item of keySkills">{{item}} <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a></p>                                
+                                <p *ngIf="keySkills.length > 0"> <a href="javascript:void(0)" *ngFor="let item of keySkills">{{item}} <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a></p>                                
                             </div>
                             <div class="profile_education">
                                 <h3>Education </h3>
@@ -100,7 +100,7 @@
                             </div>
                             <div class="profile_education">
                                 <h3>Certifications </h3>
-                                <ul>
+                                <ul *ngIf="certification.length > 0">
                                     <li *ngFor="let item of certification"><img src="./assets/images/certifications-icon.png" alt="" title=""> {{item}}</li>
                                     
                                 </ul>
@@ -108,7 +108,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-100">
-                                <div class="sign_up_right_side sign_up_right_side_btn_part margin_left_blue10"> <a href="javascript:void(0)" class="btn-primary hover_text_pink hover_white_pluse">Return To Search Results <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
+                                <div class="sign_up_right_side sign_up_right_side_btn_part margin_left_blue10"> <a href="javascript:void(0)" (click)="moveToAnotherPage()" class="btn-primary hover_text_pink hover_white_pluse">Return To Search Results <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
                             </div>
                         </div>
                     </div>

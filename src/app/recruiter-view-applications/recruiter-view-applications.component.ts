@@ -120,7 +120,7 @@ export class RecruiterViewApplicationsComponent implements OnInit {
   }
 
   viewContractorProfile(contractorId, firstName, lastName) {
-  	var obj = {'currentContractorId' : contractorId, 'currentContractorFirstName': firstName, 'currentContractorLastName' : lastName};
+  	var obj = {'currentContractorId' : contractorId, 'currentContractorFirstName': firstName, 'currentContractorLastName' : lastName, 'type':'viewApplication'};
     localStorage.setItem('currentContractorData', JSON.stringify(obj));
   	this.router.navigate(['./recruiter/view-contractor-profile']);
   }
