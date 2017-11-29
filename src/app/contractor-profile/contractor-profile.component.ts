@@ -82,7 +82,7 @@ export class ContractorProfileComponent implements OnInit {
     this.cropperSettings.height = 100;
     this.cropperSettings.croppedWidth = 100;
     this.cropperSettings.croppedHeight = 100;
-    this.cropperSettings.canvasWidth = 400;
+    this.cropperSettings.canvasWidth = 360;
     this.cropperSettings.canvasHeight = 300;
     this.cropperSettings.noFileInput = true;
     this.data = {};

@@ -185,3 +185,6 @@ agm-map {
 .toggle_block .second{
     display: block;
 }
+
+
+:host /deep/ .second canvas{width: 100% !important;}
