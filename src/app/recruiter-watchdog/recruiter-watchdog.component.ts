@@ -19,6 +19,7 @@ export class RecruiterWatchdogComponent implements OnInit {
   onPageClick = 10;
   pageNo = 1;
   currentPageNo = 10;
+  errorMsg = "";
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
     private _commonDataSharedService: CommonDataSharedService, private commonService : CommonService) { }
 
@@ -84,20 +85,26 @@ export class RecruiterWatchdogComponent implements OnInit {
     );
   }
 
-  shareContractorProfile(id) {
+  shareContractorProfile(id, emailId) {
     console.log("currentSortBy--", id);
      var input = {
      "email":"test@test7.com",
       "loginToken":"$2y$10$ERdO743JuPZF6a4SfV8HQe69MqBJBtM3o3cz.ChfrZbcySNegW1e6",
       "contractor_id":id,
-      "send_to":"test@test.com"
+      "send_to":emailId
 
    };
    console.log("input--", input);
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/send_contractor_by_email";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
+          window.scroll(0,0);
          console.log("result shrae email--", data);
+         if(data && data.status === 'TRUE') {
+           this.errorMsg = "";
+         } else if(data && data.status === 'FALSE'){
+           this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+         }
          // this.getWatchDogListData(this.pageNo);
          // this.router.navigate(['./recruiter/watchdog']);
         }

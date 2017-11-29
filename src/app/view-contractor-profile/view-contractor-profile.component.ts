@@ -41,7 +41,9 @@ export class ViewContractorProfileComponent implements OnInit {
            this.errorMsgFlag = false;
            this.contractorData = data.data;
            this.certification = data && data.data['certification'] ? data.data['certification'].split(","):'';
-           this.keySkills = data && data.data['skill&Experience'] ? data.data['skill&Experience']:[];
+           this.keySkills = data && data.data['skill&Experience'] ? data.data['skill&Experience'].split(","):[];
+           console.log("this.certification", this.certification);
+           console.log("this.keySkills", this.keySkills);
            this.currentContractorFirstName = localStorage.getItem('currentContractorData') ? JSON.parse(localStorage.getItem('currentContractorData'))['currentContractorFirstName'] : null;  	
 	this.currentContractorLastName = localStorage.getItem('currentContractorData') ? JSON.parse(localStorage.getItem('currentContractorData'))['currentContractorLastName'] : null;  	
            

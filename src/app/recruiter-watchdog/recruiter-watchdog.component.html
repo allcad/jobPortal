@@ -17,6 +17,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="errorbox" *ngIf="errorMsg"><br> 
+                        <li>{{errorMsg}}</li>
+                    </div>
                 <div class="pager_section">
                     <div class="row">
                         <div class="col-sm-50" *ngIf="watchListDataArr.length !== 0">
@@ -94,8 +97,8 @@
                                     <div class="row">
                                         <div class="col-sm-50">
                                             <div class="watchdog_mail_box recruiter_home_login">
-                                                <input class="form-control" id="exampleInputEmail1" placeholder="ENTER EMAIL ADDRESS" type="text">
-                                                <a href="javascript:void(0);" class="btn-default background_pink" (click)="shareContractorProfile(item?.id)">share <i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                <input class="form-control" id="exampleInputEmail1" placeholder="ENTER EMAIL ADDRESS" type="text" [(ngModel)]="item.emailId">
+                                                <a href="javascript:void(0);" class="btn-default background_pink" (click)="shareContractorProfile(item?.id, item.emailId)">share <i class="fa fa-plus" aria-hidden="true"></i></a>
                                             </div>
                                         </div>
                                         <div class="col-sm-50">
