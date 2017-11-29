@@ -145,7 +145,7 @@
                                     </div>
                                 </div>
                                 <div class="more-details">
-                                    <div id="document_list" style="display: none;">
+                                    <div id="document_list">
                                         <div class="cv_document_main">
                                             <ul>
                                                 <li><a href="javascript:void(0);"><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
@@ -359,7 +359,7 @@
                                     
                                     <span *ngIf="item?.rate_name == 'relocatable'">
                                         Relocatable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
-                                        <span *ngIf="item?.rate_type === 'hourly'">h</span></strong> 
+                                        <div *ngIf="item?.rate_type === 'hourly'">h</div></strong> 
                                     </span>
                                 </p>
                                 <p><span>Availability :</span> {{item?.availability}} </p>
@@ -380,7 +380,7 @@
                                     </div>
                                 </div>
                                 <div class="more-details">
-                                    <div id="document_list" style="display: none;">
+                                    <div id="document_list">
                                         <div class="cv_document_main">
                                             <ul>
                                                 <li><a href="javascript:void(0);"><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
@@ -615,7 +615,7 @@
                                     </div>
                                 </div>
                                 <div class="more-details">
-                                    <div id="document_list" style="display: none;">
+                                    <div id="document_list">
                                         <div class="cv_document_main">
                                             <ul>
                                                 <li><a href="javascript:void(0);"><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
@@ -791,3 +791,48 @@
             </div>
             <div class="show_more_application"> <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>SHOW MORE CONTRACTORS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
         </section>
+
+
+
+ <!-- <div id="watchContractor" class="modalbox modbox2 window " style="top: 381.5px; left: 359px; display: block;">
+  <h3>Watch Contractor <span class="closex shut3">X</span></h3>
+  <div class="modal-inner">
+    <div class="inputrowx">
+      <div class="formgroup">
+        <label for="notifyme">Notify me <span>(Choose Multiple)</span>:</label>
+        <span class="inp-auto auto284"><span>
+                        <select class="inpfocus2" name="notifyme" id="notifyMe">
+                            <option value="1day">24 hours before live</option>
+                            <option value="2days">2 days before live</option>
+                            <option value="1week">1 week before live</option>
+                            <option value="all">All the above</option>
+                        </select>
+                    </span></span>
+      </div>
+    </div>
+    <div class="inputrowx">
+      <div class="formgroup">
+        <label for="attach-specific">Attach to specific job:</label>
+        <span class="inp-auto auto284"><span>
+                        <select class="inpfocus2" name="attachToJob" id="attachToJob">
+                            <option value=""></option>
+                                                            <option value="104699">demo</option>
+                                                            <option value="104701">dummy2</option>
+                                                            <option value="104702">dummy3</option>
+                                                            <option value="104703">dummy4</option>
+                                                            <option value="104704">dummy5</option>
+                                                            <option value="94908">test</option>
+                                                            <option value="97646">Test</option>
+                                                            <option value="104697">Tester</option>
+                                                    </select>
+                    </span></span>
+      </div>
+    </div>
+  </div>
+  <div class="modalbase">
+    <p class="modalview">View <a href="https://stage.contractrecruit.co.uk/recruiters/watching.php">Watching Folder</a></p>
+    <div class="saveProfile">
+      <input class="shut4 watchContractorSubmit" type="submit" name="watchCon" id="watchCon" value="Watch">
+    </div>
+  </div>
+</div> -->
