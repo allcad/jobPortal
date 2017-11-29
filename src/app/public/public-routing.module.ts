@@ -29,7 +29,7 @@ import { RecruiterSearchresultLoggedinComponent } from '../recruiter-searchresul
 import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/recruiter-advanced-search.component';
 import { RecruiterSavedSearchComponent } from '../recruiter-saved-search/recruiter-saved-search.component';
 import { RecruiterLostPasswordComponent } from '../recruiter-lost-password/recruiter-lost-password.component';
-
+import { ContractorForgotPasswordComponent } from '../contractor-forgot-password/contractor-forgot-password.component';
 const publicRoutes: Routes = [
 {
     "path": "contractorSignup",
@@ -116,6 +116,9 @@ const publicRoutes: Routes = [
     "path": "lost-password",
     "component": RecruiterLostPasswordComponent,
     //"resolve": {resolverData: ResolverService}
+},{
+    "path" : "cobtractor_forgot_password",
+    "component" : ContractorForgotPasswordComponent
 },{
     "path": "",
     "redirectTo" : "home",

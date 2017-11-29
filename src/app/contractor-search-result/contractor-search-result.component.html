@@ -70,8 +70,7 @@
             <p><span>Rate:</span> £{{item.prefereedRate.minRate}} - £{{item.prefereedRate.maxRate}} p/{{item.prefereedRate.dailyHourlyRate == 'daily' ? 'd' : 'h'}}</p>
             <p><span>Start Date:</span> {{item.startDate | date }}</p>
             <p><span>Duration:</span> {{item.duration}}</p>
-            <p class="full_contant">Xcede are currently seeking a contract Marketing Manager for a 6 Month Contract with a leading UK brand.
-              <br> Focusing on Retention you will be providing maternity cover...</p>
+            <p class="full_contant" innerHTML="{{item.jobDetail | slice : 0 : 200}}.."></p>
           </div>
           <div class="footer_box">
             <div class="pull-left social_box_footer">

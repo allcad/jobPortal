@@ -164,7 +164,7 @@ export class ContractorProfileComponent implements OnInit {
 
       this.fd.append('currentJobTitle', this.currentJobTitle);
 
-      this.fd.append('skill&Experience', JSON.stringify(this.selectedSkillArray));
+      this.fd.append('skill&Experience', this.selectedSkillArray.join(','));
 
       this.fd.append('summary', this.summary);
 
@@ -269,11 +269,27 @@ export class ContractorProfileComponent implements OnInit {
 
   }
 
-  addSkill() {
-    if (this.selectedSkillObject && this.selectedSkillArray.indexOf(this.selectedSkillObject) == -1) {
-      this.selectedSkillArray.push(this.selectedSkillObject);
-      this.selectedSkill = "";
+  addSkill(event) {
+
+    if (event.keyCode === 188) {
+      if (this.selectedSkill.split(',')[0] && this.selectedSkill.split(',')[0].trim() && this.selectedSkillArray.indexOf(this.selectedSkill.split(',')[0]) == -1) {
+        this.selectedSkillArray.push(this.selectedSkill.split(',')[0].trim())
+      }
+        this.selectedSkill = "";  
+             //this.selectedSkillArray = this.skill.split(',')[0];
+      // for(let i=this.selectedSkillArray.length-1; i>=0; i--){
+      //   if(this.selectedSkillArray[i] === ''){
+      //   this.selectedSkillArray.splice(i, 1);
+      //   this.skill;
+      // }
+      // }
+
     }
+
+    // if (this.selectedSkillObject && this.selectedSkillArray.indexOf(this.selectedSkillObject) == -1) {
+    //   this.selectedSkillArray.push(this.selectedSkillObject);
+    //   this.selectedSkill = "";
+    // }
 
   }
 
@@ -340,7 +356,7 @@ export class ContractorProfileComponent implements OnInit {
     this.contratorCVList = (this.profileData.uploadCV && this.profileData.uploadCV.length > 0) ? this.profileData.uploadCV : this.contratorCVList;
     this.coverLetterList = (this.profileData.uploadCoverLetter && this.profileData.uploadCoverLetter.length > 0) ? this.profileData.uploadCoverLetter : this.coverLetterList;
     this.industrySector = this.profileData.industrySector;
-    this.selectedSkillArray = this.profileData['skill&Experience'];
+    this.selectedSkillArray = this.profileData['skill&Experience'].split(',');
   }
 
 

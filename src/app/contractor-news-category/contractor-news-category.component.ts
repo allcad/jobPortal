@@ -19,6 +19,7 @@ export class ContractorNewsCategoryComponent implements OnInit {
   featuredNewsList = [];
   popularNewsList = [];
   dataToShow = [];
+  searchKeyword;
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
@@ -82,7 +83,7 @@ export class ContractorNewsCategoryComponent implements OnInit {
     var url = "http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/articles_search";
     this._commonRequestService.postData(url, inputJson).subscribe(
       data => {
-        if(data.data.status == 'TRUE'){
+        if(data.status == 'TRUE'){
           this.dataToShow = data.data;
         }else{
           this.dataToShow = [];

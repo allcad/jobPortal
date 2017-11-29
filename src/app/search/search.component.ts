@@ -7,7 +7,8 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-
+  title;
+  location;
   constructor(private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {

@@ -9,6 +9,7 @@ import { CommonRequestService } from '../common-request.service';
 export class ContractorHelpComponent implements OnInit {
 	helpCategoryList;
   helpData;
+  searchKeyword;
   constructor(private _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -46,12 +47,12 @@ export class ContractorHelpComponent implements OnInit {
   }
 
 
-  searchHelp(keyword) {
+  searchHelp() {
      let input = {
       "page": 1,
       "limit": -1,
       "category_type": "contractor",
-      "search": keyword
+      "search": this.searchKeyword
 
     };
     let url = "http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/help_article_by_category_type";

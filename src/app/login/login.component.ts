@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   inputData; min; max; addNumber; number; number2; errorMessage; inputUrl; status; succesLoginFlag = false; errorMsgFlag = false;
   errorMsg;
   totalInvalid = false;
-  forgotPasswordFlag = false;
   constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -72,21 +71,6 @@ export class LoginComponent implements OnInit {
     this.number2 = this.getRandamValue1(1, 10);
   }
 
-  forgotPasswordClicked() {
-    if (this.email) {
-      let url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/forget_password/request";
-      let input = {
-        "email": this.email
-      }
-
-      this._commonRequestService.postData(url, input).subscribe(
-        data => {
-          console.log(data.data)
-
-        }
-      );
-    }
-
-  }
+  
 
 }

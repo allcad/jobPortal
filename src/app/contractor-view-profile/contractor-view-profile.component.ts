@@ -34,7 +34,7 @@ getProfileDta(){
         data => {
           console.log("profile", data.data)
           this.profileData = data.data;
-          this.skillArray  = this.profileData['skill&Experience'];
+          this.skillArray  = (this.profileData['skill&Experience']).split(',');
           console.log("this.skillArray", this.skillArray);
           this._commonRequestService.setDataWithoutObserval(this.profileData, "contractorProfileData")
         }
