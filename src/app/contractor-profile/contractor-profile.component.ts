@@ -4,6 +4,7 @@ import { CommonRequestService } from '../common-request.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
 
+
 @Component({
   selector: 'app-contractor-profile',
   templateUrl: './contractor-profile.component.html',
@@ -62,30 +63,29 @@ export class ContractorProfileComponent implements OnInit {
   successMsg = "";
   errorMsg = "";
   preferredJobTitleFlag = false;
-  // cropperActive = true;
-  // cropperSettings;
-  // data;
-  // @ViewChild('cropper') cropperEle;
+  cropperSettings;
+  data;
+  @ViewChild('cropper') cropperEle;
 
   constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
     // console.log("cropper", this.cropperEle);
-    // this.cropperActive = false;
+    
     this.getKeySkillData();
     this.getIndustrySector();
     this.getSecurityClearenceData();
     this.getProfileDta();
     window.scroll(0, 0);
-    // this.cropperSettings = new CropperSettings();
-    // this.cropperSettings.width = 100;
-    // this.cropperSettings.height = 100;
-    // this.cropperSettings.croppedWidth = 100;
-    // this.cropperSettings.croppedHeight = 100;
-    // this.cropperSettings.canvasWidth = 400;
-    // this.cropperSettings.canvasHeight = 300;
-    // this.cropperSettings.noFileInput = true;
-    // this.data = {};
+    this.cropperSettings = new CropperSettings();
+    this.cropperSettings.width = 100;
+    this.cropperSettings.height = 100;
+    this.cropperSettings.croppedWidth = 100;
+    this.cropperSettings.croppedHeight = 100;
+    this.cropperSettings.canvasWidth = 400;
+    this.cropperSettings.canvasHeight = 300;
+    this.cropperSettings.noFileInput = true;
+    this.data = {};
   }
 
 
@@ -99,11 +99,13 @@ export class ContractorProfileComponent implements OnInit {
 
   contractorImageFileChangeEvent(fileInput: any) {
     var reader = new FileReader();
+    var image = new Image();
     var that = this;
-    reader.onload = (loadEvent: any) => {
+    reader.onloadend = (loadEvent: any) => {
       this.profileUrl = reader.result;
-      // that.cropperActive = true;
-      // that.cropperEle.setImage(loadEvent.target.result);
+      image.src = loadEvent.target.result;
+      that.cropperEle.setImage(image);
+      document.querySelector('.profile_image').classList.add('toggle_block');
     }
 
     this.imageFile = fileInput.target.files[0];
@@ -478,6 +480,11 @@ export class ContractorProfileComponent implements OnInit {
 
   editCover(index) {
     this.coverLetterList[index] = { 'id': index + 1 }
+  }
+
+  applyCrop(){
+    this.profileUrl = this.data.image;
+    document.querySelector('.profile_image').classList.remove('toggle_block');
   }
 
 }

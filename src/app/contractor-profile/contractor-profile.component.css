@@ -167,3 +167,21 @@ agm-map {
 :host/deep/.font_capitaliz {
     text-transform: uppercase !important;
 }
+
+.first{
+    display: block;
+}
+
+
+.second{
+    display: none;
+}
+
+.toggle_block .first{
+    display: none;
+}
+
+
+.toggle_block .second{
+    display: block;
+}
