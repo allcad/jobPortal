@@ -28,6 +28,7 @@ import { ContractorSearchResultComponent } from '../contractor-search-result/con
 import { RecruiterSearchresultLoggedinComponent } from '../recruiter-searchresult-loggedin/recruiter-searchresult-loggedin.component';
 import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/recruiter-advanced-search.component';
 import { RecruiterSavedSearchComponent } from '../recruiter-saved-search/recruiter-saved-search.component';
+import { RecruiterLostPasswordComponent } from '../recruiter-lost-password/recruiter-lost-password.component';
 
 const publicRoutes: Routes = [
 {
@@ -110,6 +111,10 @@ const publicRoutes: Routes = [
 },{
     "path": "saved-search",
     "component": RecruiterSavedSearchComponent,
+    //"resolve": {resolverData: ResolverService}
+}, {
+    "path": "lost-password",
+    "component": RecruiterLostPasswordComponent,
     //"resolve": {resolverData: ResolverService}
 },{
     "path": "",

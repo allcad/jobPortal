@@ -37,6 +37,7 @@ import { SiteMapComponent } from '../site-map/site-map.component';
 import { BenefitsComponent } from '../benefits/benefits.component';
 import { SiteMaintenanceComponent } from '../site-maintenance/site-maintenance.component';
 import { NotFoundPageComponent } from '../not-found-page/not-found-page.component';
+import { RecruiterLostPasswordComponent } from '../recruiter-lost-password/recruiter-lost-password.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { NotFoundPageComponent } from '../not-found-page/not-found-page.componen
 		BenefitsComponent,
 		SiteMaintenanceComponent,
 		NotFoundPageComponent,
+		RecruiterLostPasswordComponent
 
 	],
 	imports: [

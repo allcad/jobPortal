@@ -52,6 +52,7 @@ import { ContractorLoginFullJobComponent } from './contractor-login-full-job/con
 import { CommonDataSharedService } from './commonDataSharedService';
 import { ResolverService } from './resolver.service';
 import { CommonService } from './commonService.service';
+//import { RecruiterLostPasswordComponent } from './recruiter-lost-password/recruiter-lost-password.component';
 
 
 
@@ -80,6 +81,10 @@ import { CommonService } from './commonService.service';
     // ContractorSearchResultComponent,
     
     ContractorLoginFullJobComponent,
+   
+    
+    
+    //RecruiterLostPasswordComponent,
    
     
     

@@ -128,13 +128,32 @@ securityClearValue;
         data => {
           console.log("last search data--", data);
           if(data && data.data && data.status == 'TRUE') {
-            this.commonService.setLastSearchData(data.data);
+            //this.commonService.setLastSearchData(data.data);
+            this.jobTitle = data.data.recuriter_search_job_title;
+            this.keyWordSearch = data.data.recuriter_search_keywords;
+            this.stemmedTermsCheck = data.data.recuriter_search_stemmed_terms == 1 ? true : false;
+            this.coreSkills = data.data.recuriter_search_core_skills;
+            this.certifications = data.data.recuriter_search_certifications;
+            this.dontShowContractor = data.data.recuriter_search_dont_show_to_contractor;
+            this.cityTown = data.data.recuriter_search_location;
+            this.preferredMinRate = data.data.recuriter_search_by_rate_min;
+            this.preferredMaxRate = data.data.recuriter_search_by_rate_max;
+            this.dailyHourlyRate = data.data.recuriter_search_by_rate_type;
+            this.timeLeft = data.data.recuriter_search_by_time_left;
+            this.includeContractor = data.data.recuriter_search_include_relocators;
+            this.showContractor = data.data.recuriter_search_by_updated_contractor_since;
+            this.contractorName = data.data.recuriter_search_by_contract_name;
+            this.contractorEducation = data.data.recuriter_search_by_education;
+            this.drivingLicence = data.data.recuriter_search_by_driving_license === 1 ? 'yes' : 'no';
+            //this.currentLocation = data.data.recuriter_search_job_title
+            this.industrySectorValue = data.data.recuriter_search_by_industry;
+            this.securityClearValue = data.data.recuriter_search_by_security_clearance;
           }
-          if(this._route.url == "/public/advanced-search") {
-            this._route.navigate(['/public/saved-search']);
-          } else if(this._route.url == "/recruiter/advanced-search") {
-            this._route.navigate(['/recruiter/saved-search']);
-          } 
+          // if(this._route.url == "/public/advanced-search") {
+          //   this._route.navigate(['/public/saved-search']);
+          // } else if(this._route.url == "/recruiter/advanced-search") {
+          //   this._route.navigate(['/recruiter/saved-search']);
+          // } 
           //this.securityClearanceArray = data.data;
           //this.recruiterNameArray = data.data;
         }

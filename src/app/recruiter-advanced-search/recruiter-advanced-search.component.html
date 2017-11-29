@@ -16,18 +16,12 @@
                                 <li class="active">Advanced Search</li>
                             </ul>
                             <div class="pull-right job_search signup_form_section width_auto buttons_aligment">
-                                <div class="input-group responsive_width_100 display_inline_div">
+                                <!-- <div class="input-group responsive_width_100 display_inline_div">
                                     <div class="input-group-addon upto_border_none padding_right_38">Sort By</div>
                                     <select class="form-control minimal background_drop_down box_padding_3 box_height_30 padding_left_none">
-                                        <!-- <option value="">Sort By</option> -->
-                                        <!-- <option value="{{item?.short_text}}" *ngFor="let item of sortByData">{{item?.short_name}}</option> -->
                                         <option value="{{item?.id}}" *ngFor="let item of sortByData">{{item?.name}}</option>
-                                        <!-- <option value="1">124536</option>
-                                        <option value="5">5124536</option>
-                                        <option value="10">10124536</option>
-                                        <option value="20">20124536</option> -->
                                     </select>
-                                </div>
+                                </div> -->
                                 <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse" (click)="lastSearchClick()">Last Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> 
                                 <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse" (click)="resetSearch()">Reset Search 
                                     <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> 
