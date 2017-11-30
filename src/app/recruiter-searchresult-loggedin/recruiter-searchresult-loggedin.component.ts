@@ -117,6 +117,12 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
     );
   }
 
+  goToContractorProfile(contractorId, name) {
+    var obj = {'currentContractorId' : contractorId, 'currentContractorName': name, 'type':'search-result'};
+    localStorage.setItem('currentContractorData', JSON.stringify(obj));
+    this.router.navigate(['./recruiter/view-contractor-profile']);
+  }
+
   showMoreDetails(index) {
     this.showMoreDetailsFlag[index] = !this.showMoreDetailsFlag[index];
     //console.log("this.showMoreDetailsFlag[index]", this.showMoreDetailsFlag[index]);

@@ -45,8 +45,8 @@ export class ViewContractorProfileComponent implements OnInit {
            this.keySkills = data && data.data['skill&Experience'] ? data.data['skill&Experience'].split(","):[];
            console.log("this.certification", this.certification);
            console.log("this.keySkills", this.keySkills);
-           this.currentContractorFirstName = localStorage.getItem('currentContractorData') ? JSON.parse(localStorage.getItem('currentContractorData'))['currentContractorFirstName'] : null;  	
-	this.currentContractorLastName = localStorage.getItem('currentContractorData') ? JSON.parse(localStorage.getItem('currentContractorData'))['currentContractorLastName'] : null;  	
+           this.currentContractorFirstName = localStorage.getItem('currentContractorData') ? JSON.parse(localStorage.getItem('currentContractorData'))['currentContractorName'] : null;  	
+	         //this.currentContractorLastName = localStorage.getItem('currentContractorData') ? JSON.parse(localStorage.getItem('currentContractorData'))['currentContractorLastName'] : null;  	
            
           } else {
             if(data && data.error && data.error.length > 0) {
@@ -64,6 +64,8 @@ export class ViewContractorProfileComponent implements OnInit {
       this.router.navigate(['./recruiter/view-applications']);
     } else if(this.type === 'watchList') {
       this.router.navigate(['./recruiter/watch-list']);
+    } else if(this.type === 'search-result') {
+      this.router.navigate(['./recruiter/searchresult-loggedin']);
     }
   }
 

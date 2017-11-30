@@ -140,7 +140,8 @@ export class RecruiterWatchListComponent implements OnInit {
   }
 
   watchContractorProfile(contractorId, firstName, lastName) {
-    var obj = {'currentContractorId' : contractorId, 'currentContractorFirstName': firstName, 'currentContractorLastName' : lastName, 'type':'watchList'};
+    var name = firstName + " " + lastName;
+    var obj = {'currentContractorId' : contractorId, 'currentContractorName': name, 'type':'watchList'};
     localStorage.setItem('currentContractorData', JSON.stringify(obj));
     this.router.navigate(['./recruiter/view-contractor-profile']);
   }
