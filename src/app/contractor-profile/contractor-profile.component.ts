@@ -200,6 +200,7 @@ export class ContractorProfileComponent implements OnInit {
             this.uploadedCoverLetter = [];
             window.scroll(0, 0);
             this.successMsg = 'Profile updated';
+            this._router.navigate(['../viewProfile'], {relativeTo: this._routes});
           }
           else {
             this.succesMessageFlag = false;

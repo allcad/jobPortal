@@ -76,8 +76,8 @@ export class ContractorSignUpComponent implements OnInit {
 
     if (userForm.valid && !this.checkOtherFieldValidation()) {
       this.fd = new FormData();
-      this.fd.append('loginToken', (localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).token) ? JSON.parse(localStorage.getItem('loginDetail')).token : "nsakdlallas1232mk123b2k1390iq2ekq");
-      this.fd.append('email', (localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).email) ? JSON.parse(localStorage.getItem('loginDetail')).email : "test@gmail.com");
+      // this.fd.append('loginToken', (localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).token) ? JSON.parse(localStorage.getItem('loginDetail')).token : "nsakdlallas1232mk123b2k1390iq2ekq");
+      // this.fd.append('email', (localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).email) ? JSON.parse(localStorage.getItem('loginDetail')).email : "test@gmail.com");
       this.fd.append('contractor_first_name', this.contractor_first_name);
       this.fd.append('contractor_last_name', this.contractor_last_name);
       this.fd.append('contractor_email', this.contractor_email);
@@ -316,15 +316,17 @@ export class ContractorSignUpComponent implements OnInit {
     this.postalCodeInvalid = false;
     this.contractorInvalid = false;
     if(this.contractor_post_code ){
-      let url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this.contractor_post_code + "&key=AIzaSyCcc7ZyRGjRbAuDgsLSQGdTuFxvLW9FGiI"
+      let url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this.contractor_post_code + "&key=AIzaSyCcc7ZyRGjRbAuDgsLSQGdTuFxvLW9FGiI&components=country:GB"
     this._commonRequestService.getData(url)
       .subscribe(data => {
         if(data && data.results && data.status == 'OK'){
-          if(data.results[0].formatted_address.split(',')[data.results[0].formatted_address.split(',').length-1].trim().toLowerCase() == 'uk'){
+          if(data.results[0].formatted_address !== 'United Kingdom'){
             let locationJson = {
               "post_code" : this.contractor_post_code,
               "marker" : data.results[0].geometry.location,
-              "formatted_address" : data.results[0].formatted_address
+              "city" :  data.results[0].address_components.filter(item=>{
+                return item.types.indexOf('postal_town') > -1
+              })
             }
             console.log("locationJson",locationJson);
           }else{

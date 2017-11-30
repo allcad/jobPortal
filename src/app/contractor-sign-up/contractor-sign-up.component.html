@@ -21,7 +21,7 @@
             <strong>Error!</strong> {{validateMsg}}
           </div> -->
           <div class="signup_form_section">
-            <div class="errorbox" *ngIf="(userForm && userForm.form && userForm.form.controls && userForm.form.invalid && userForm.submitted) || contractorInvalid || ErrorMesageFlag || postalCodeInvalid"><b>The following error(s) occured:</b>
+            <div class="errorbox" *ngIf="(userForm && userForm.form && userForm.form.controls && userForm.form.invalid && userForm.submitted) || contractorInvalid || ErrorMesageFlag "><b>The following error(s) occured:</b>
               <br>
               <li *ngIf="ErrorMesageFlag">{{validateMsg}}</li>
               <li *ngIf="userForm.form.controls.contractor_first_name?.hasError('required')">Please enter first name</li>
