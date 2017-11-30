@@ -30,6 +30,7 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   currentJobId;
   unwatchPopupFlag = false;
   currentUnWatchId;
+  showSearchOptionFlag = false;
   constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService,
     private _commonService: CommonService, private router: Router) { }
 

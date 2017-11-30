@@ -45,10 +45,10 @@
                         <div class="col-sm-30">
                             <div class="your_options_profile margin_top_25">
                                 <div class="dropdown">
-                                    <button class="background_drop_downs" type="button" id="dropdownMenu_1">
+                                    <button class="background_drop_downs" type="button" id="dropdownMenu_1" (click)="showSearchOptionFlag = !showSearchOptionFlag">
                                         Search Options
                                     </button>
-                                    <ul class="dropdown-menu max-width" id="dropdownMenu1">
+                                    <ul class="dropdown-menu max-width" id="dropdownMenu1" [ngClass]="showSearchOptionFlag == true ? 'display_block' : ''">
                                         <li><a href="javascript:void(0);">New Search</a></li>
                                         <li><a href="javascript:void(0);">Refine Search</a></li>
                                         <li><a href="javascript:void(0)" id="save_search">Save Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
@@ -814,7 +814,7 @@
                     </div>
                 </div> -->
             </div>
-            <div class="show_more_application"> <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>SHOW MORE CONTRACTORS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
+            <div class="show_more_application"> <a *ngIf="searchList.length > 12" href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>SHOW MORE CONTRACTORS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
         </section>
 
 

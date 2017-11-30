@@ -331,7 +331,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
             if(this.responseData.status === "TRUE"){
                     this.succesMessageFlag =true;
                     this.WSErrorMsg = "";
-                    this.errorSuccessMessage = "Saved succesfully !";
+                    this.errorSuccessMessage = "Update succesfully !";
                     this.showDeleteButtonFlag = false;
                     this.successMessageFlag  = true;
                     this.errorMessageFlag = false;
@@ -401,8 +401,8 @@ export class RecruiterSavedSearchComponent implements OnInit {
       "recuriter_search_job_title":this.jobTitle?this.jobTitle:'',
       "recuriter_search_keywords":this.keywordSearch?this.keywordSearch:'',
       "recuriter_search_stemmed_terms":this.stemmedTerms === true ? 1 : 0,
-      "recuriter_search_core_skills":this.coreSkills?this.coreSkills:'',
-      "recuriter_search_certifications":this.certificationValues?this.certificationValues:'',
+      "recuriter_search_core_skills":this.coreSkills ? this.coreSkills:'',
+      "recuriter_search_certifications":this.certificationValues ? this.certificationValues:'',
       "recuriter_search_dont_show_to_contractor":this.dontShowContractor?this.dontShowContractor:'',
       "recuriter_search_location":this.cityTownValue?this.cityTownValue:'',
       "recuriter_search_include_relocators":this.includeRelocators ? 1 : 0,
@@ -414,8 +414,8 @@ export class RecruiterSavedSearchComponent implements OnInit {
       "recuriter_search_by_updated_contractor_since":this.showContractors?this.showContractors:'',
       "recuriter_search_by_contract_name":this.contractorName?this.contractorName:'',
       "recuriter_search_by_education":this.educationValue?this.educationValue:"",
-      "recuriter_search_by_industry":this.industrySectorValue ? this.industrySectorValue : "",
-      "recuriter_search_by_security_clearance":this.securityClearValue ? this.securityClearValue : "",
+      "recuriter_search_by_industry":this.industrySectorValue ? this.industrySectorValue.toString() : "",
+      "recuriter_search_by_security_clearance":this.securityClearValue ? this.securityClearValue.toString() : "",
       "recuriter_search_by_driving_license":this.drivingLicenceValue == 'yes' ? 1 : 0
       //"page":1,
       //"limit":12
