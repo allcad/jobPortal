@@ -103,7 +103,7 @@
           <div class="advice_popular_categories">
             <h3>Popular Categories</h3>
             <ul>
-              <li *ngFor="let adviceCategory of adviceCategoryData" (click)="this.selectedAdviceCategory=adviceCategory.id;getPostByCategory()"><a href="javascript:void(0)">{{adviceCategory.category_name}}</a></li>
+              <li *ngFor="let adviceCategory of adviceCategoryData" (click)="this.selectedAdviceCategory=adviceCategory.id;searchClicked=true;getPostByCategory()"><a href="javascript:void(0)">{{adviceCategory.category_name}}</a></li>
               <!-- <li><a href="javascript:void(0)">IR35 Advice</a></li>
                 <li><a href="javascript:void(0)">First Time Contractors</a></li>
                 <li><a href="javascript:void(0)">CV Writing</a></li>
@@ -126,21 +126,17 @@
     <span class="caret"></span>
   </a>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a href="javascript:void(0)">Action</a></li>
-                <li><a href="javascript:void(0)">Another action</a></li>
-                <li><a href="javascript:void(0)">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="javascript:void(0)">Separated link</a></li>
+                <li *ngFor="let adviceCategory of adviceCategoryData" (click)="this.selectedAdviceCategory=adviceCategory.id;searchClicked=true;getPostByCategory()"><a>{{adviceCategory.category_name}}</a></li>
               </ul>
             </div>
           </div>
           <div class="col-md-65 col-sm-47">
             <div class="form-group mergin_bottom_none">
-              <input class="form-control" id="exampleInputEmail2" placeholder="SEARCH ADVICE HERE..." type="email">
+              <input class="form-control" id="exampleInputEmail2" placeholder="SEARCH ADVICE HERE..." type="text" [(ngModel)]="searchKeyword">
             </div>
           </div>
           <div class="col-md-15 col-sm-23 hover_button">
-            <a href="javascript:void(0)" type="submit" class="margin-tp">search <i class="fa fa-search font_color_white transform_rotate" aria-hidden="true"></i></a>
+            <a href="javascript:void(0)" type="submit" class="margin-tp" (click)="searchArticle()">search <i class="fa fa-search font_color_white transform_rotate" aria-hidden="true"></i></a>
           </div>
         </div>
       </div>
@@ -148,9 +144,9 @@
   </div>
 </section>
 <div class="container">
-  <div class="related_contracts"> <span class="font_size13 font_related_articles">LATEST ARTICLES</span>
+  <div *ngIf="articleToShow && articleToShow.length > 0" class="related_contracts"> <span class="font_size13 font_related_articles">{{searchClicked ? 'SEARCH ARTICLES' : 'LATEST ARTICLES'}}</span>
     <div class="row">
-      <div class=" col-md-33 col-sm-33" *ngFor="let adviceArticle of latestAdviceArticleList">
+      <div class=" col-md-33 col-sm-33" *ngFor="let adviceArticle of articleToShow">
         <div class="letest_news_box">
           <div class="book_mark" routerLink="../adviceDetail"><a href="javascript:void(0)"><img src="./assets/images/artical-message.png" alt="" title=""></a></div>
           <img [src]="adviceArticle.image" alt="" onError="this.src='./assets/images/advice-article-default.png'" alt="" title="" class="img-responsive">
@@ -159,112 +155,37 @@
           <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
         </div>
       </div>
-     <!--  <div class="col-md-34 col-sm-34">
-        <div class="letest_news_box">
-          <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/artical-message.png" alt="" title=""></a></div>
-          <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
-          <h5>IT Jobs going abroad a concern for Contractors</h5>
-          <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
-          <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
-        </div>
-      </div>
-      <div class="col-md-33 col-sm-33">
-        <div class="letest_news_box">
-          <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/artical-message.png" alt="" title=""></a></div>
-          <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
-          <h5>IT Jobs going abroad a concern for Contractors</h5>
-          <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
-          <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
-        </div>
-      </div>
+      <button *ngIf="!searchClicked">See More Article</button>
     </div>
-    <div class="row">
-      <div class=" col-md-33 col-sm-33">
-        <div class="letest_news_box">
-          <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/artical-message.png" alt="" title=""></a></div>
-          <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
-          <h5>IT Jobs going abroad a concern for Contractors</h5>
-          <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
-          <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
-        </div>
-      </div>
-      <div class="col-md-34 col-sm-34">
-        <div class="update_your_availability"> <img src="./assets/images/login-after-logo.png" alt="" title="" class="img-responsive">
-          <h5>UPDATE YOUR<br>
-              <span>AVAILABILITY</span></h5>
-          <p>Update your availability so recruiters know when your ready for your next contract.</p>
-          <a href="javascript:void(0)" class="btn-primary news_read_more">UPDATE NOW <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
-      </div>
-      <div class="col-md-33 col-sm-33">
-        <div class="letest_news_box">
-          <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/artical-message.png" alt="" title=""></a></div>
-          <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
-          <h5>IT Jobs going abroad a concern for Contractors</h5>
-          <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
-          <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-33">
-        <div class="ad_space margin_bottom_20"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
-      </div>
-      <div class="col-sm-34">
-        <div class="ad_space margin_bottom_20"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
-      </div>
-      <div class="col-sm-33">
-        <div class="ad_space margin_bottom_20"> <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive"> </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class=" col-md-33 col-sm-33">
-        <div class="letest_news_box">
-          <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/artical-message.png" alt="" title=""></a></div>
-          <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
-          <h5>IT Jobs going abroad a concern for Contractors</h5>
-          <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
-          <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
-        </div>
-      </div>
-      <div class="col-md-34 col-sm-34">
-        <div class="letest_news_box">
-          <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/artical-message.png" alt="" title=""></a></div>
-          <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
-          <h5>IT Jobs going abroad a concern for Contractors</h5>
-          <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
-          <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
-        </div>
-      </div>
-      <div class="col-md-33 col-sm-33">
-        <div class="letest_news_box">
-          <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/artical-message.png" alt="" title=""></a></div>
-          <img src="./assets/images/letest-news.png" alt="" title="" class="img-responsive">
-          <h5>IT Jobs going abroad a concern for Contractors</h5>
-          <p>IT jobs going abroad are a major concern for IT Contractors in the UK with foreign companies hiring heavily and leaving little... </p>
-          <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
-        </div>
-      </div>
-    </div> -->
   </div>
-</div>
-<div class="weekly_newsletter login_form_section width_auto">
-  <div class="container">
-    <form class="">
-      <div class="row">
-        <div class="col-md-45 col-sm-100">
-          <p class="more_sign_up">Want more? <span>Sign up to our weekly newsletter</span></p>
-        </div>
-        <div class="col-md-39 col-sm-77">
-          <div class="form-group mergin_bottom_none">
-            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="ENTER YOUR EMAIL ADDRESS HERE...">
+
+  <div *ngIf="articleToShow && articleToShow.length == 0">
+      <div>
+        <span>
+          NO ARTICLE FOUND !
+        </span>
+        <button (click)="searchClicked = false; getLatestAdviceArticle();">Return to all article</button>
+      </div>
+  </div>
+
+  <div class="weekly_newsletter login_form_section width_auto">
+    <div class="container">
+      <form class="">
+        <div class="row">
+          <div class="col-md-45 col-sm-100">
+            <p class="more_sign_up">Want more? <span>Sign up to our weekly newsletter</span></p>
           </div>
+          <div class="col-md-39 col-sm-77">
+            <div class="form-group mergin_bottom_none">
+              <input type="email" class="form-control" id="exampleInputEmail2" placeholder="ENTER YOUR EMAIL ADDRESS HERE...">
+            </div>
+          </div>
+          <div class="col-md-16 col-sm-23 hover_button"> <a href="javascript:void(0)" type="submit" class="">SIGN UP NOW <i class="fa fa-plus font_color_white" aria-hidden="true"></i></a> </div>
         </div>
-        <div class="col-md-16 col-sm-23 hover_button"> <a href="javascript:void(0)" type="submit" class="">SIGN UP NOW <i class="fa fa-plus font_color_white" aria-hidden="true"></i></a> </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
-</div>
-<!-- <div class="container">
+  <!-- <div class="container">
   <div class="row">
     <div class=" col-md-33 col-sm-33">
       <div class="letest_news_box">
@@ -340,35 +261,35 @@
     </div>
   </div>
 </div> -->
-<section>
-  <div class="contractrecruit_banner full_job_margin70">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-30 col-md-30">
-          <div class="green_logo"> <img src="./assets/images/contra-logo.png" alt="ads" title="ads" class="img-responsive"> </div>
+  <section>
+    <div class="contractrecruit_banner full_job_margin70">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-30 col-md-30">
+            <div class="green_logo"> <img src="./assets/images/contra-logo.png" alt="ads" title="ads" class="img-responsive"> </div>
+          </div>
+          <div class="col-sm-70 col-md-65 col-md-offset-5">
+            <div class="contract_right_part">
+              <ul>
+                <li>SiMPLE</li>
+                <li class="circle"><i class="fa fa-circle" aria-hidden="true"></i></li>
+                <li>FAST</li>
+                <li class="circle"><i class="fa fa-circle" aria-hidden="true"></i></li>
+                <li>RELiABLE</li>
+                <li class="circle"><i class="fa fa-circle" aria-hidden="true"></i></li>
+                <li>SECURE</li>
+              </ul>
+              <p>Welcome our IT Contractor focused payroll solution that understands your needs brought to you by your ContractRecruit team. We make setting yourself up for work easy with our dedicated support team. Just get in touch on <span>0203 3300 714</span></p>
+            </div>
+          </div>
         </div>
-        <div class="col-sm-70 col-md-65 col-md-offset-5">
-          <div class="contract_right_part">
-            <ul>
-              <li>SiMPLE</li>
-              <li class="circle"><i class="fa fa-circle" aria-hidden="true"></i></li>
-              <li>FAST</li>
-              <li class="circle"><i class="fa fa-circle" aria-hidden="true"></i></li>
-              <li>RELiABLE</li>
-              <li class="circle"><i class="fa fa-circle" aria-hidden="true"></i></li>
-              <li>SECURE</li>
-            </ul>
-            <p>Welcome our IT Contractor focused payroll solution that understands your needs brought to you by your ContractRecruit team. We make setting yourself up for work easy with our dedicated support team. Just get in touch on <span>0203 3300 714</span></p>
+        <div class="row">
+          <div class="col-sm-100">
+            <div class="banner_find_out_more">
+              <p>Take Home upto <span>85% of your pay</span> on time every time with ContractRecruit Payroll Solutions</p>
+              <a href="javascript:void(0)" class="pull-right">FIND OUT MORE <i class="fa fa-plus" aria-hidden="true"></i></a> </div>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-100">
-          <div class="banner_find_out_more">
-            <p>Take Home upto <span>85% of your pay</span> on time every time with ContractRecruit Payroll Solutions</p>
-            <a href="javascript:void(0)" class="pull-right">FIND OUT MORE <i class="fa fa-plus" aria-hidden="true"></i></a> </div>
-        </div>
-      </div>
     </div>
-  </div>
-</section>
+  </section>

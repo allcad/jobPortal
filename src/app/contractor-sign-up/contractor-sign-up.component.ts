@@ -86,7 +86,7 @@ export class ContractorSignUpComponent implements OnInit {
       this.fd.append('contractor_rate_max', this.contractor_rate_max ? this.contractor_rate_max : "400");
       this.fd.append('fileForCv', this.CVFile);
       this.fd.append('contractor_job_title', this.contractor_job_title);
-      this.fd.append('contractor_key_skills', this.selectedSkillIdArray.join(','));
+      this.fd.append('contractor_key_skills', this.selectedSkillArray.join(',') ? this.selectedSkillArray.join(',') : '');
       this.fd.append('contractor_employment_situation', this.contractor_employment_situation ? this.contractor_employment_situation : "permanant");
       this.fd.append('contractor_services', JSON.stringify(this.getSelecetdContractorServices()));
       this.fd.append('contractor_agree_terms_status', this.contractor_agree_terms_status);

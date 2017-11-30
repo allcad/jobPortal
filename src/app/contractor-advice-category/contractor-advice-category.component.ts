@@ -11,6 +11,7 @@ export class ContractorAdviceCategoryComponent implements OnInit {
 	adviceCategoryData = [];
 	articleList = [];
   latestAdviceArticleList = [];
+  articleToShow = [];
 	selectedAdviceCategory;
   config: SwiperOptions = {
     //pagination: '.swiper-pagination',
@@ -19,6 +20,8 @@ export class ContractorAdviceCategoryComponent implements OnInit {
     prevButton: '.swiper-button-prev',
     spaceBetween: 30
   }
+  searchClicked = false;
+  searchKeyword;
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
@@ -49,8 +52,6 @@ export class ContractorAdviceCategoryComponent implements OnInit {
   }
 
   getPostByCategory() {
-
-
     var url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/page/advice/article";
     var inputJson = {
       "email": "test@gmail.com",
@@ -64,7 +65,9 @@ export class ContractorAdviceCategoryComponent implements OnInit {
       data => {
         console.log("articleList", data.data)
         this.articleList = data.data;
-
+        if(this.searchClicked){
+          this.articleToShow = this.articleList;
+        }
       }
     );
   }
@@ -78,6 +81,7 @@ export class ContractorAdviceCategoryComponent implements OnInit {
     this._commonRequestService.postData(url, input).subscribe(
       data => {
         this.latestAdviceArticleList = data.data;
+        this.articleToShow = this.latestAdviceArticleList;
         console.log(this.latestAdviceArticleList);
       }
     );
@@ -88,6 +92,29 @@ export class ContractorAdviceCategoryComponent implements OnInit {
     localStorage.setItem("adviceArticleId", item.id);
     this._commonRequestService.setDataWithoutObserval(item.id, "adviceArticleId");
     this._router.navigate(['../adviceDetail'], {relativeTo: this._routes});
+  }
+
+
+  searchArticle(){
+    if(this.searchKeyword){
+      let input = {
+      page: 1,
+      limit: -1,
+      search : this.searchKeyword
+    }
+    var url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/page/advice/article/search";
+    this._commonRequestService.postData(url, input).subscribe(
+      data => {
+        if(data.status == "TRUE"){
+          this.articleToShow  = data.data;
+        }else if(data.status === "FALSE"){
+          this.articleToShow = [];
+        }
+        
+      }
+    );
+    }
+    
   }
 
 
