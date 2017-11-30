@@ -299,6 +299,7 @@ WSErrorMsg = "";
   }
 
   saveRecruiterProfile(form : NgForm) {
+    this.WSErrorMsg = "";
     window.scroll(0,0);
     if(this.emailAddress) {
       this.companyEmailFlag = false;
@@ -513,7 +514,7 @@ WSErrorMsg = "";
           else{
              this.succesMessageFlag =false;
               this.ErrorMesageFlag =true;
-              this.WSErrorMsg = this.responseData.error[0];
+              this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;;
           }
     
           // console.log("keySkill: ", this.listSignUpData);

@@ -7,6 +7,7 @@ import { TooltipModule } from "ng2-tooltip";
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
+import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
 import { FindContractHubComponent } from '../find-contract-hub/find-contract-hub.component';
 import { ContractorServiceMenuListingComponent } from '../contractor-service-menu-listing/contractor-service-menu-listing.component';
@@ -80,7 +81,11 @@ import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/r
     HttpModule,
     CommonModule,
     SwiperModule,
-    IonRangeSliderModule
+    IonRangeSliderModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyANYk-sxj7-P1W8cB94WahJhtxdw1gEUJA",
+      libraries: ["places"]
+    })
   ],
   exports: [
     FindContractHubComponent,

@@ -24,6 +24,7 @@ export class RecruiterManagePasswordComponent implements OnInit {
   }
 
   savePassword(form: NgForm) {
+    this.WSErrorMsg = "";
     if(this.oldPassword) {
       this.oldPasswordFlag = false;
     } else {

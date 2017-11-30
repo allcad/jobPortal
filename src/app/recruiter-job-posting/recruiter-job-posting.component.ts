@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
 import { Router } from '@angular/router';
-import { FormsModule,NgForm } from '@angular/forms';
+import { FormsModule,NgForm, FormControl } from '@angular/forms';
 import { CommonService } from '../commonService.service';
+import { } from 'googlemaps';
+import { MapsAPILoader } from '@agm/core';
 
 @Component({
   selector: 'app-recruiter-job-posting',
@@ -10,6 +12,10 @@ import { CommonService } from '../commonService.service';
   styleUrls: ['./recruiter-job-posting.component.css']
 })
 export class RecruiterJobPostingComponent implements OnInit {
+
+  public searchControl: FormControl;
+  @ViewChild("search")
+  public searchElementRef: ElementRef;
 
 jobPostingJobTitle: string;
 jobPostingDuration;
@@ -50,12 +56,14 @@ WSErrorMsg = "";
 placeSearch;
 autocomplete;
   constructor(private router: Router, public _commonRequestService: CommonRequestService, 
-    private commonService: CommonService) { }
+    private commonService: CommonService, private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone) { }
 
   ngOnInit() {
     this.recruiterNameList();
     this.getIndustry();
     this.getTemplateData();
+    this.loadLocationAutoData();
     var localStorageData = JSON.parse(localStorage.getItem('recruiterJobData'));
     console.log("localStorageData--", localStorageData);
     // if(localStorageData && localStorageData.jobId) {
@@ -109,55 +117,32 @@ autocomplete;
     // }
   }
 
-//   initAutocomplete() {
-//   // Create the autocomplete object, restricting the search to geographical
-//   // location types.
-//   this.autocomplete = new google.maps.places.Autocomplete(
-//       /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
-//       {types: ['geocode']});
-
-//   // When the user selects an address from the dropdown, populate the address
-//   // fields in the form.
-//   this.autocomplete.addListener('place_changed', this.fillInAddress);
-// }
-
-// fillInAddress() {
-//   // Get the place details from the autocomplete object.
-//   var place = this.autocomplete.getPlace();
-//   console.log("place value", place);
-//   // for (var component in componentForm) {
-//   //   document.getElementById(component).value = '';
-//   //   document.getElementById(component).disabled = false;
-//   // }
-
-//   // Get each component of the address from the place details
-//   // and fill the corresponding field on the form.
-//   // for (var i = 0; i < place.address_components.length; i++) {
-//   //   var addressType = place.address_components[i].types[0];
-//   //   if (componentForm[addressType]) {
-//   //     var val = place.address_components[i][componentForm[addressType]];
-//   //     document.getElementById(addressType).value = val;
-//   //   }
-//   // }
-// }
-
-// geolocate() {
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(function(position) {
-//       var geolocation = {
-//         lat: position.coords.latitude,
-//         lng: position.coords.longitude
-//       };
-//       var circle = new google.maps.Circle({
-//         center: geolocation,
-//         radius: position.coords.accuracy
-//       });
-//       this.autocomplete.setBounds(circle.getBounds());
-//     });
-//   }
-// }
-
-
+  loadLocationAutoData() {
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["geocode"]
+      });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          console.log("place--", place);
+  
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+          
+          //set latitude, longitude and zoom
+          // this.latitude = place.geometry.location.lat();
+          // this.longitude = place.geometry.location.lng();
+          // this.zoom = 12;
+        });
+      });
+      console.log("cityTownValue", this.cityTownValue);
+    });
+  }
+ 
   // getTemplateData() {
   //    var input = {
   //    "email":"test@test7.com",
@@ -315,6 +300,7 @@ autocomplete;
   }
 
   onJobPostSave(f:NgForm) {
+    this.WSErrorMsg = "";
     window.scroll(0,0);
     if(this.jobPostingJobTitle) {
       this.jobPostingTiteFlag = false;

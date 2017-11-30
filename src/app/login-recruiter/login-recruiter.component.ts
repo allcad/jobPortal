@@ -27,6 +27,7 @@ invalidErrorMsg = "";
   }
 
     onLogin(f:NgForm){
+      this.invalidErrorMsg = "";
       var emailRefex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       if(this.email) {
         this.emailNameFlag = false;

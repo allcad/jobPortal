@@ -52,7 +52,7 @@ export class RecruiterManageAccountComponent implements OnInit {
   }
 
   saveRecruiterAccountForm(form: NgForm) {
-
+    this.WSErrorMsg = "";
     if(this.name) {
       this.nameFlag = false;
     } else {

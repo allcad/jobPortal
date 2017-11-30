@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule,NgForm } from '@angular/forms';
 import { CommonRequestService } from '../common-request.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recruiter-sign-up',
@@ -32,7 +33,7 @@ export class RecruiterSignUpComponent implements OnInit {
   emailSameFlag = false;
   invalidErrorMsg = "";
   inputData; JobTitle; phoneNo; emailAddress; passwordValue; keySkill; termOfUse = false; inputUrl; status; succesMessageFlag = false;
-  constructor(public _commonRequestService: CommonRequestService) { }
+  constructor(public _commonRequestService: CommonRequestService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -40,6 +41,7 @@ export class RecruiterSignUpComponent implements OnInit {
   
 
    onSignUp(userForm:NgForm){
+     this.invalidErrorMsg = "";
      var phoneRegex = /^\d{10}$/;
      var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -186,6 +188,7 @@ export class RecruiterSignUpComponent implements OnInit {
               this.verifyPasswordValue = "";
               this.termOfUse = false;
               this.invalidErrorMsg = "";
+              this.router.navigate(['./public/recruiterLogin']);
             }
             else{
                this.succesMessageFlag =false;

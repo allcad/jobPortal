@@ -271,6 +271,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
   }
 
   saveSearch() {
+    this.WSErrorMsg = "";
     var savedSearchSaveJson = {
       "email":"test@test8.com",
       "loginToken":"$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y",

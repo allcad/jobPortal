@@ -111,6 +111,7 @@ export class RecruiterManageUserComponent implements OnInit {
            this.successMessage = "Super User Created Succesfully!";
            this.successMessageFlag = true;
            this.errorMessageFlag = false;
+           this.makeSubUser();
            this.WSErrorMsg = "";
            //this.makeSubUser();
          } else {

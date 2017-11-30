@@ -149,7 +149,8 @@
                                         <div class="form-group responsive_margin35">
                                             <div class="input-group">
                                                 <div class="input-group-addon"><img src="./assets/images/recruiter-city-pastcode.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
-                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="City, Town or PostCode" name="cityTownValue" [(ngModel)]="cityTownValue" required>
+                                                <!-- <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="City, Town or PostCode" name="cityTownValue" [(ngModel)]="cityTownValue" required> -->
+                                                <input placeholder="City, Town or PostCode"  autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control box_height_30 box_padding_3" #search required>
                                                 <!-- <div id="locationField">
                                                     <input id="autocomplete" placeholder="City, Town or PostCode"
                                                     onFocus="geolocate()" type="text"></input>
