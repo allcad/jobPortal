@@ -54,6 +54,7 @@ export class ContractorSignUpComponent implements OnInit {
   contractorServicesInavlid = false;
   contractorInvalid = false;
   contractorEndDateInvalid = false;
+  postalCodeInvalid = false;
   invalidFile = false;
   currentEmploymentSituationCheck;
   fileName;
@@ -86,7 +87,7 @@ export class ContractorSignUpComponent implements OnInit {
       this.fd.append('contractor_rate_max', this.contractor_rate_max ? this.contractor_rate_max : "400");
       this.fd.append('fileForCv', this.CVFile);
       this.fd.append('contractor_job_title', this.contractor_job_title);
-      this.fd.append('contractor_key_skills', this.selectedSkillArray.join(',') ? this.selectedSkillArray.join(',') : '');
+      this.fd.append('contractor_key_skills', this.selectedSkillArray.join(',') ? this.selectedSkillArray.join(',') : (this.skill ? this.skill : '' ));
       this.fd.append('contractor_employment_situation', this.contractor_employment_situation ? this.contractor_employment_situation : "permanant");
       this.fd.append('contractor_services', JSON.stringify(this.getSelecetdContractorServices()));
       this.fd.append('contractor_agree_terms_status', this.contractor_agree_terms_status);
@@ -167,6 +168,8 @@ export class ContractorSignUpComponent implements OnInit {
       this.passwordInvalid = true;
       this.contractorInvalid = true;
     }
+
+    
     if (!this.CVFile) {
       this.cvInvalid = true;
       this.contractorInvalid = true;
@@ -310,11 +313,31 @@ export class ContractorSignUpComponent implements OnInit {
   }
 
   getLocation() {
-    let url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this.contractor_post_code + "&key=AIzaSyCcc7ZyRGjRbAuDgsLSQGdTuFxvLW9FGiI"
+    this.postalCodeInvalid = false;
+    this.contractorInvalid = false;
+    if(this.contractor_post_code ){
+      let url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this.contractor_post_code + "&key=AIzaSyCcc7ZyRGjRbAuDgsLSQGdTuFxvLW9FGiI"
     this._commonRequestService.getData(url)
       .subscribe(data => {
-        console.log(data);
+        if(data && data.results && data.status == 'OK'){
+          if(data.results[0].formatted_address.split(',')[data.results[0].formatted_address.split(',').length-1].trim().toLowerCase() == 'uk'){
+            let locationJson = {
+              "post_code" : this.contractor_post_code,
+              "marker" : data.results[0].geometry.location,
+              "formatted_address" : data.results[0].formatted_address
+            }
+            console.log("locationJson",locationJson);
+          }else{
+            this.postalCodeInvalid = true;
+            this.contractorInvalid = true;  
+          }
+        }else{
+          this.postalCodeInvalid = true;
+          this.contractorInvalid = true;
+        }
       })
+    }
+    
   }
 
   serviceChange(category) {
@@ -341,13 +364,7 @@ export class ContractorSignUpComponent implements OnInit {
         this.selectedSkillArray.push(this.skill.split(',')[0])
       }
         this.skill = "";  
-             //this.selectedSkillArray = this.skill.split(',')[0];
-      // for(let i=this.selectedSkillArray.length-1; i>=0; i--){
-      //   if(this.selectedSkillArray[i] === ''){
-      //   this.selectedSkillArray.splice(i, 1);
-      //   this.skill;
-      // }
-      // }
+             
 
     }
   }

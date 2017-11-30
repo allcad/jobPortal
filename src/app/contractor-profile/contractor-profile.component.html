@@ -65,7 +65,7 @@
                     <button type="button" class="btn-primary" style="padding: 5px 30px 4px; margin-bottom: 6px;" (click)="applyCrop()">Apply</button>
                   </div>
                 </div>
-                <div class="edit_icon"> <a href="javascript:void(0);"><img src="./assets/images/edit-icon.png" alt="Edit" title="Edit"></a> </div>
+                <!-- <div class="edit_icon"> <a href="javascript:void(0);"><img src="./assets/images/edit-icon.png" alt="Edit" title="Edit"></a> </div> -->
                 <div class="profile_form">
                   <div class="form-group">
                     <div class="input-group">
@@ -206,7 +206,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/Behance-Web.png" alt="Enter Behance Web Address" title="Enter Behance Web Address" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail1" placeholder="Enter Behance Web Address" type="text" [(ngModel)]="behanceWebAdd" name="behanceWebAdd" [tooltip]="behanceWebAddTooltip">
+                      <input class="form-control" id="exampleInputEmail1" placeholder="Enter Behance Web Address" type="text" pattern="https?://.+" [(ngModel)]="behanceWebAdd" name="behanceWebAdd" [tooltip]="behanceWebAddTooltip">
                       <tooltip-content #behanceWebAddTooltip>
                         <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.behanceWebAdd?.valid " style="color: #C21F39">Behance WebAddress</span>
                         <span [hidden]="!contractorProfile.form.controls.behanceWebAdd?.hasError('pattern')" style="color: #C21F39"> behance WebAddress not valid!</span>

@@ -21,7 +21,7 @@
             <strong>Error!</strong> {{validateMsg}}
           </div> -->
           <div class="signup_form_section">
-            <div class="errorbox" *ngIf="(userForm && userForm.form && userForm.form.controls && userForm.form.invalid && userForm.submitted) || contractorInvalid || ErrorMesageFlag"><b>The following error(s) occured:</b>
+            <div class="errorbox" *ngIf="(userForm && userForm.form && userForm.form.controls && userForm.form.invalid && userForm.submitted) || contractorInvalid || ErrorMesageFlag || postalCodeInvalid"><b>The following error(s) occured:</b>
               <br>
               <li *ngIf="ErrorMesageFlag">{{validateMsg}}</li>
               <li *ngIf="userForm.form.controls.contractor_first_name?.hasError('required')">Please enter first name</li>
@@ -39,6 +39,7 @@
               <li *ngIf="contractorServicesInavlid">Please select an option from Contractor Services</li>
               <li *ngIf="contractorEndDateInvalid">Please enter your contract end date</li>
               <li *ngIf="employmentSituation">Please indicate your current employment situation.</li>
+              <li *ngIf="postalCodeInvalid"> Invalid postcode, please enter a valid postcode. </li>
               <li *ngIf="invalidFile">File format is not valid</li>
             </div>
 
@@ -50,13 +51,13 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/user-name.png" alt="User Name" title="User Name" class="img-responsive"></div>
-                      <input type="text" class="form-control" id="contractorFirstName" placeholder="Enter First Name" name="contractor_first_name" [(ngModel)]="contractor_first_name" pattern="[a-zA-Z][a-zA-Z ]+" required [tooltip]="firstNameTooltip">
-                      <tooltip-content #firstNameTooltip>
+                      <input type="text" class="form-control" id="contractorFirstName" placeholder="Enter First Name" name="contractor_first_name" [(ngModel)]="contractor_first_name" pattern="[a-zA-Z][a-zA-Z ]+" required >
+                      <!-- <tooltip-content #firstNameTooltip>
                         <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_first_name?.valid " style="color: #C21F39"> Contractor First Name</span>
                         <span [hidden]="!userForm.form.controls.contractor_first_name?.hasError('required')" style="color: #C21F39"> Contractor First Name is required.</span>
                         <span [hidden]="!userForm.form.controls.contractor_first_name?.hasError('minlength')" style="color: #C21F39">Contractor First Name min length is 3.</span>
-                        <!-- <span [hidden]="!userForm.form.controls.contractor_first_name?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
-                      </tooltip-content>
+                        
+                      </tooltip-content> -->
                     </div>
                   </div>
                 </div>
@@ -64,13 +65,13 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/user-name.png" alt="User Name" title="User Name" class="img-responsive"></div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name" name="contractor_last_name" [(ngModel)]="contractor_last_name" required [tooltip]="lastNameTooltip">
-                      <tooltip-content #lastNameTooltip>
+                      <input type="text" class="form-control"  placeholder="Enter Last Name" name="contractor_last_name" [(ngModel)]="contractor_last_name" required >
+                     <!--  <tooltip-content #lastNameTooltip>
                         <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_last_name?.valid" style="color: #C21F39"> Contractor Last Name</span>
                         <span [hidden]="!userForm.form.controls.contractor_last_name?.hasError('required')" style="color: #C21F39"> Contractor last Name is required.</span>
                         <span [hidden]="!userForm.form.controls.contractor_last_name?.hasError('minlength')" style="color: #C21F39">Contractor last Name min length is 3.</span>
-                        <!-- <span [hidden]="!userForm.form.controls.contractor_last_name?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
-                      </tooltip-content>
+                       
+                      </tooltip-content> -->
                     </div>
                   </div>
                 </div>
@@ -80,12 +81,12 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/mail-address.png" alt="Email" title="Email" class="img-responsive"></div>
-                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Email Address" name="contractor_email" [(ngModel)]="contractor_email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [tooltip]="emailTooltip">
-                      <tooltip-content #emailTooltip>
+                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Email Address" name="contractor_email" [(ngModel)]="contractor_email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                      <!-- <tooltip-content #emailTooltip>
                         <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_email?.valid " style="color: #C21F39">Contractor's Email</span>
                         <span [hidden]="!userForm.form.controls.contractor_email?.hasError('required')" style="color: #C21F39"> Email is required.</span>
                         <span [hidden]="!userForm.form.controls.contractor_email?.hasError('pattern')" style="color: #C21F39">Email invalid!</span>
-                      </tooltip-content>
+                      </tooltip-content> -->
                     </div>
                   </div>
                 </div>
@@ -93,14 +94,13 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/mobile-number.png" alt="Telephone Number" title="Telephone Number" class="img-responsive"></div>
-                      <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Enter Mobile Number" name="contractor_tel_no" [(ngModel)]="contractor_tel_no" pattern="[0-9]*" min="0" required [tooltip]="phoneTooltip">
-                      <tooltip-content #phoneTooltip>
+                      <input type="number" class="form-control"  placeholder="Enter Mobile Number" name="contractor_tel_no" [(ngModel)]="contractor_tel_no" pattern="[0-9]*" min="0" required >
+                      <!-- <tooltip-content #phoneTooltip>
                         <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_tel_no?.valid " style="color: #C21F39">Contractor's Mobile No </span>
                         <span [hidden]="!userForm.form.controls.contractor_tel_no?.hasError('required')" style="color: #C21F39"> Mobile No is required! </span>
                         <span [hidden]="!userForm.form.controls.contractor_tel_no?.hasError('pattern')" style="color: #C21F39">Mobile No is not valid!</span>
-                        <!-- <span *ngIf="userForm.form && userForm.form.controls && userForm.form.controls.contractor_tel_no && !userForm.form.controls.contractor_tel_no.valid && !userForm.form.controls.contractor_tel_no?.hasError('required') && !userForm.form.controls.contractor_tel_no?.hasError('pattern')">Mobile No is not valid!</span> -->
-                        <!-- <span [hidden]="!userForm.form.controls.contractor_tel_no?.hasError('maxlength')" style="color: #C21F39">Phone No should be 10digit.</span> -->
-                      </tooltip-content>
+                       
+                      </tooltip-content> -->
                     </div>
                   </div>
                 </div>
@@ -110,12 +110,12 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/enter-password.png" alt="Enter Password" title="Password" class="img-responsive"></div>
-                      <input type="password" class="form-control" id="exampleInputEmail1" placeholder="Enter Password" name="contractor_current_password" [(ngModel)]="contractor_current_password" required [tooltip]="contpassword">
-                      <tooltip-content #contpassword>
+                      <input type="password" class="form-control"  placeholder="Enter Password" name="contractor_current_password" [(ngModel)]="contractor_current_password" required >
+                      <!-- <tooltip-content #contpassword>
                         <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_current_password?.valid" style="color: #C21F39">Contractor's Password </span>
                         <span [hidden]="!userForm.form.controls.contractor_current_password?.hasError('required')" style="color: #C21F39"> Password is required! </span>
-                        <!-- <span [hidden]="!userForm.form.controls.contractor_current_password?.hasError('minlength')" style="color: #C21F39">Password min length 6</span> -->
-                      </tooltip-content>
+                       
+                      </tooltip-content> -->
                     </div>
                   </div>
                 </div>
@@ -162,7 +162,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Current Job Title" name="contractor_job_title" [(ngModel)]="contractor_job_title" required>
+                      <input type="text" class="form-control"  placeholder="Enter Current Job Title" name="contractor_job_title" [(ngModel)]="contractor_job_title" required>
                       <!--  <tooltip-content #contractor_job_titleTooltip>
                         <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_job_title?.valid " style="color: #C21F39"> Job Title </span>
                         <span [hidden]="!userForm.form.controls.contractor_job_title?.hasError('required')" style="color: #C21F39"> Job Title is required! </span>
@@ -174,7 +174,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Postal Code" name="contractor_postal_title" [(ngModel)]="contractor_post_code" required (blur)="getLocation()">
+                      <input type="text" class="form-control"  placeholder="Enter Postal Code" name="contractor_postal_title" [(ngModel)]="contractor_post_code" required (blur)="getLocation()">
                       <!-- <tooltip-content #contractor_job_titleTooltip>
                         <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_job_title?.valid " style="color: #C21F39"> Postal Code </span>
                         <span [hidden]="!userForm.form.controls.contractor_job_title?.hasError('required')" style="color: #C21F39"> Postal Code is required! </span>
@@ -189,7 +189,7 @@
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/key-skills.png" alt="Key Skills" title="Key Skills" class="img-responsive"></div>
                      <!--  <div class="enter_your_skills"> -->
-                       <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Key Skills (Separated with commas)" (keyup)="skillKeyUp($event)" [(ngModel)]="skill" name="skill">
+                       <input type="text" class="form-control"  placeholder="Enter Key Skills (Separated with commas)" (keyup)="skillKeyUp($event)" [(ngModel)]="skill" name="skill">
                         <!-- <select class="form-control minimal background_drop_down" [(ngModel)]="selectedSkill" name="skills" (change)="selectSkill()">
                           <option value="">Select Skill</option>
                           <option *ngFor="let skill of skillData" [value]="skill.skill_id">{{skill.skill_name}}</option>

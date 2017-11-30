@@ -236,7 +236,7 @@ export class ContractorProfileComponent implements OnInit {
           this.succesMessageFlag = true;
           this.ErrorMesageFlag = false;
           this.successMsg = "Password change";
-          this._router.navigate(['../../public/home'], { 'relativeTo': this._routes });
+          this._router.navigate(['../../public/contractorLogin'], { 'relativeTo': this._routes });
 
         }
         else {
