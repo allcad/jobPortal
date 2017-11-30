@@ -155,16 +155,21 @@
           <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
         </div>
       </div>
-      <button *ngIf="!searchClicked">See More Article</button>
+      
+    </div>
+    <div class="row">
+      <div class="col-sm-100" style="text-align: center; margin-bottom: 40px;">
+        <button class="btn-primary news_read_more" *ngIf="!searchClicked">See More Article<i class="fa fa-plus plus_blue" aria-hidden="true"></i></button>
+      </div>
     </div>
   </div>
 
-  <div *ngIf="articleToShow && articleToShow.length == 0">
-      <div>
-        <span>
+  <div class="row" *ngIf="articleToShow && articleToShow.length == 0">
+      <div class="col-sm-100" style="text-align: center; margin-bottom: 40px;">
+        <h3 style="margin-bottom: 30px">
           NO ARTICLE FOUND !
-        </span>
-        <button (click)="searchClicked = false; getLatestAdviceArticle();">Return to all article</button>
+        </h3>
+        <button class="btn-primary news_read_more" (click)="searchClicked = false; getLatestAdviceArticle();">Return to all article<i class="fa fa-plus plus_blue" aria-hidden="true"></i></button>
       </div>
   </div>
 
