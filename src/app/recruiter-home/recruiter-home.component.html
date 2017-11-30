@@ -64,10 +64,10 @@
                                 </div>
                                 <div class="col-sm-50 col-xs-50">
                                     <div class="home_recruiter_contant">
-                                        <p class="text_pink"><strong>Contractor Search</strong></p>
-                                        <p><a href="javascript:void(0);" [routerLink]="['../saved-search']">Saved Search</a></p>
-                                        <p><a href="javascript:void(0);" [routerLink]="['../watchdog']"><strong>Watch</strong>Dogs </a></p>
-                                        <p><a href="javascript:void(0);" [routerLink]="['../watch-list']"><strong>Watch</strong>List <span class="text_pink"><strong>12</strong></span></a></p>
+                                        <p class="text_pink" [routerLink]="['/recruiter/advanced-search']"><strong>Contractor Search</strong></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['/recruiter/saved-search']">Saved Search </a><span class="text_pink"><strong>{{quickLinkData?.search?.save_search}}</strong></span></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['/recruiter/watchdog']"><strong>Watch</strong>Dogs </a><span class="text_pink"><strong>{{quickLinkData?.search?.watchdog}}</strong></span></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['/recruiter/watch-list']"><strong>Watch</strong>List <span class="text_pink"><strong>{{quickLinkData?.search?.watchlist}}</strong></span></a></p>
                                     </div>
                                 </div>
                             </div>
@@ -82,10 +82,10 @@
                                 </div>
                                 <div class="col-sm-50 col-xs-50">
                                     <div class="home_recruiter_contant">
-                                        <p><a href="javascript:void(0);" [routerLink]="['../job-posting']">Post a Job</a></p>
-                                        <p><a href="javascript:void(0);" [routerLink]="['../manage-jobs']">Manage Jobs <span class="text_pink"><strong>6</strong></span></a></p>
-                                        <p><a href="javascript:void(0);" [routerLink]="['../view-applications']">View Applications </a></p>
-                                        <p><a href="javascript:void(0);" [routerLink]="['../view-applications']">Post a Premium Job</a></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['/recruiter/job-posting']">Post a Job </a><span class="text_pink"><strong>{{quickLinkData?.job?.job_post}}</strong></span></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['/recruiter/manage-jobs']">Manage Jobs <span class="text_pink"><strong>{{quickLinkData?.job?.job_post}}</strong></span></a></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['../view-applications']">View Applications </a><span class="text_pink"><strong>{{quickLinkData?.job?.job_application}}</strong></span></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['/recruiter/job-posting']">Post a Premium Job</a><span class="text_pink"><strong> {{quickLinkData?.job?.premiumjob}}</strong></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -100,9 +100,9 @@
                                 </div>
                                 <div class="col-sm-50 col-xs-50">
                                     <div class="home_recruiter_contant">
-                                        <p><a href="javascript:void(0);" [routerLink]="['../profile']"><strong>PROFILE COMPLETION</strong> <span class="text_pink"><strong>85%</strong></span></a></p>
-                                        <p><a href="javascript:void(0);" [routerLink]="['../view-profile']">View Profile</a></p>
-                                        <p><a href="javascript:void(0);" [routerLink]="['../profile']">Edit Profile</a></p>
+                                        <p><a href="javascript:void(0);"><strong>PROFILE COMPLETION</strong> <span class="text_pink"><strong> {{quickLinkData?.profile}}%</strong></span></a></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['/recruiter/view-profile']">View Profile</a></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['/recruiter/profile']">Edit Profile</a></p>
                                         <p>Share Profile</p>
                                     </div>
                                 </div>
@@ -118,10 +118,10 @@
                                 </div>
                                 <div class="col-sm-50 col-xs-50">
                                     <div class="home_recruiter_contant">
-                                        <p><a href="javascript:void(0);" [routerLink]="['../view-profile']">View Current Plan</a></p>
-                                        <p><a href="javascript:void(0);" [routerLink]="['../manage-account']">Edit Account Details</a></p>
-                                        <p><a href="javascript:void(0);" [routerLink]="['../manage-user']">Add Another User</a></p>
-                                        <p><a href="javascript:void(0);" [routerLink]="['../manage-user']">View Account Users</a></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['/recruiter/manage-account']">View Current Plan</a></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['/recruiter/manage-account']">Edit Account Details</a></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['/recruiter/manage-user']">Add Another User</a></p>
+                                        <p><a href="javascript:void(0);" [routerLink]="['/recruiter/manage-user']">View Account Users</a><span class="text_pink"><strong> {{quickLinkData?.account?.users}}</strong></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -211,30 +211,31 @@
             </div>
             <div class="container">
                 <div class="recruiter_home_signup">
-                    <h2 class="font_capitalizs">Your Jobs with the <span class="text_pink">least</span> | Most applications </h2>
+                    <!-- <h2 class="font_capitalizs">Your Jobs with the <span class="text_pink">least</span> | Most applications </h2> -->
+                    <h2 class="font_capitalizs">Your Jobs with the <a href="javascript:void(0);" [ngClass]="'least'===sortType ? 'text_pink':''" (click)="getMostLeastJobs('least')">least</a> | <a href="javascript:void(0);" [ngClass]="'most'===sortType ? 'text_pink':''" (click)="getMostLeastJobs('most')">Most</a> applications </h2>
                 </div>
                 <div class="row">
-                    <div class=" col-md-33 col-sm-33" *ngFor="let item of listingData">
+                    <div class=" col-md-33 col-sm-33" *ngFor="let item of leastMostData">
                         <div class="my_applications_box">
                             <div class="header_top">
                                 <img src="./assets/images/location-map.png" alt="ads" title="ads" class="img-responsive">
-                                <p class="text_pink">{{item?.recruiterNameId}}</p>
+                                <p class="text_pink">{{item?.recuriter_contact_name}}</p>
                             </div>
                             <div class="application_box_contant">
-                                <img src="./assets/images/application1.png" alt="ads" title="ads" class="img-responsive">
+                                <img src="item?.profileimage && item?.profileimage.length > 0 ? item?.profileimage[0].attachment_url : './assets/images/application1.png'" alt="ads" title="ads" class="img-responsive">
                                 <h2>{{item?.jobTitle}}</h2>
                             </div>
                             <div class="application_box_contant2">
                                 <p><span class="text_pink">Location:</span>{{item?.cityTown}}</p>
                                 <p><span class="text_pink">Rate:</span> £{{item?.prefereedRate?.minRate}} - £{{item?.prefereedRate?.maxRate}} p/<span *ngIf="item?.prefereedRate?.dailyHourlyRate === 'daily'">d</span>
                                     <span *ngIf="item?.prefereedRate?.dailyHourlyRate === 'hourly'">h</span></p>
-                                <p><span class="text_pink">Start Date:</span>{{item?.startDate}}</p>
+                                <p><span class="text_pink">Start Date:</span>{{item?.startDate | date}}</p>
                                 <p><span class="text_pink">Duration:</span>{{item?.duration}}</p>
                                 <p class="full_contant">{{item?.jobSpecification}}</p>
                             </div>
                             <div class="footer_box">
                                 <div class="pull-left social_box_footer">
-                                    <p><span class="text_pink">25</span> Applications</p>
+                                    <p><span class="text_pink">{{item?.applied}}</span> Applications</p>
                                 </div>
                                 <div class="pull-right view_company">
                                     <a href="javascript:void(0)" [routerLink]="['../job-posting']" (click)="passJobId(item?.jobid)" class="hover_text_pink">Edit Posting <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
@@ -302,7 +303,7 @@
                 <div class="row">
                     <div class="col-sm-100">
                         <div class="show_more_application">
-                            <a href="javascript:void(0)" class="btn-primary hover_text_pink hover_white_pluse  width_230px"><span>MANAGE ALL JOBS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                            <a href="javascript:void(0)" (click)="showMoreJobs()" class="btn-primary hover_text_pink hover_white_pluse  width_230px"><span>MANAGE ALL JOBS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>

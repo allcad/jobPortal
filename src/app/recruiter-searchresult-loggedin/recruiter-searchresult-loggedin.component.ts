@@ -28,6 +28,8 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   notifyMeValue = "24 hours";
   currentContractorId;
   currentJobId;
+  unwatchPopupFlag = false;
+  currentUnWatchId;
   constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService,
     private _commonService: CommonService, private router: Router) { }
 
@@ -72,6 +74,15 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
     this.showWatchPopup = false;
   }
 
+  openUnWatchPopup(item) {
+    this.unwatchPopupFlag = true;
+    this.currentUnWatchId = item && item.contractor_id ? item.contractor_id : '';
+  }
+
+  closeUnwatchPopup() {
+    this.unwatchPopupFlag = false;
+  }
+
   addToWatchList() {
       var input = {
      "email":"test@test7.com",
@@ -89,6 +100,24 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
          console.log("add watch list--", data);
          // this.getWatchDogListData(this.pageNo);
           this.router.navigate(['./recruiter/watch-list']);
+        }
+    );
+  }
+
+  unwatchContractor() {
+      var input = {
+     "email":"test@test7.com",
+      "loginToken":"$2y$10$ERdO743JuPZF6a4SfV8HQe69MqBJBtM3o3cz.ChfrZbcySNegW1e6",
+      "watch_id":this.currentUnWatchId
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/watch_delete";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+         console.log("unwatch--", data);
+         this.unwatchPopupFlag = false;
+         // this.getWatchDogListData(this.pageNo);
+          //this.router.navigate(['./recruiter/watch-list']);
         }
     );
   }
