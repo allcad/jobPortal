@@ -47,6 +47,8 @@ minRateFlag = false;
 maxRateFlag = false;
 jobSpecificationFlag = false;
 WSErrorMsg = "";
+placeSearch;
+autocomplete;
   constructor(private router: Router, public _commonRequestService: CommonRequestService, 
     private commonService: CommonService) { }
 
@@ -106,6 +108,55 @@ WSErrorMsg = "";
     //    this.editJobId = editJoblocalStorageData.jobPreviewData.jobId;
     // }
   }
+
+//   initAutocomplete() {
+//   // Create the autocomplete object, restricting the search to geographical
+//   // location types.
+//   this.autocomplete = new google.maps.places.Autocomplete(
+//       /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+//       {types: ['geocode']});
+
+//   // When the user selects an address from the dropdown, populate the address
+//   // fields in the form.
+//   this.autocomplete.addListener('place_changed', this.fillInAddress);
+// }
+
+// fillInAddress() {
+//   // Get the place details from the autocomplete object.
+//   var place = this.autocomplete.getPlace();
+//   console.log("place value", place);
+//   // for (var component in componentForm) {
+//   //   document.getElementById(component).value = '';
+//   //   document.getElementById(component).disabled = false;
+//   // }
+
+//   // Get each component of the address from the place details
+//   // and fill the corresponding field on the form.
+//   // for (var i = 0; i < place.address_components.length; i++) {
+//   //   var addressType = place.address_components[i].types[0];
+//   //   if (componentForm[addressType]) {
+//   //     var val = place.address_components[i][componentForm[addressType]];
+//   //     document.getElementById(addressType).value = val;
+//   //   }
+//   // }
+// }
+
+// geolocate() {
+//   if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(function(position) {
+//       var geolocation = {
+//         lat: position.coords.latitude,
+//         lng: position.coords.longitude
+//       };
+//       var circle = new google.maps.Circle({
+//         center: geolocation,
+//         radius: position.coords.accuracy
+//       });
+//       this.autocomplete.setBounds(circle.getBounds());
+//     });
+//   }
+// }
+
 
   // getTemplateData() {
   //    var input = {

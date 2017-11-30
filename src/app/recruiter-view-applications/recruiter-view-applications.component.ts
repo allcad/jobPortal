@@ -22,17 +22,40 @@ export class RecruiterViewApplicationsComponent implements OnInit {
   pageNo = 1;
   onPageClick = 12;
   loopArray = [];
+  filterByJobData;
+  currentJobId = 0;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService) { }
 
   ngOnInit() {
   	this.getApplicationList(12);
+    this.getFilterbyJobData();
   }
 
   passJobId(id) {
   	//this._commonDataSharedService.manageJobsJobId.next(id);
   	var obj = {'jobId' : id};
     localStorage.setItem('recruiterJobData', JSON.stringify(obj));
+  }
+
+  getFilterbyJobData() {
+    var input = {
+      "email":"test@test7.com",
+    "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu",
+    "page":this.pageNo,
+    "limit": -1
+
+    }
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/list";
+       this._commonRequestService.postData(wsUrl, input).subscribe(
+        data => {
+         console.log("filter by--", data);
+         if(data) {
+           this.filterByJobData = data.data;
+           
+        }
+      }
+    );
   }
 
   
@@ -44,7 +67,7 @@ export class RecruiterViewApplicationsComponent implements OnInit {
 	"loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu",
    	"page":1,
 	"limit":pageLimit,
-	"jobid":"0"
+	"jobid":this.currentJobId.toString()
    };
    console.log("input--", input);
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/application/list";
@@ -90,7 +113,7 @@ export class RecruiterViewApplicationsComponent implements OnInit {
           } else {
             if(data && data.error && data.error.length > 0) {
             this.errorMsgFlag = true;
-              this.errorMsg = data.error[0];
+              this.errorMsg = this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
             }
           }
         }

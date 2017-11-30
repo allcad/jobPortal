@@ -153,7 +153,8 @@
                                     <div id="document_list">
                                         <div class="cv_document_main">
                                             <ul>
-                                                <li><a href="javascript:void(0);"><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
+                                                <li><a *ngIf="item && item?.resume && item?.resume?.length > 0" href="{{item?.resume[0]['attachment_url']}}/{{item?.resume[0]['attachment_name']}}" ><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
+                                                <li *ngIf="item && item?.resume && item?.resume?.length == 0"><a href="javascript:void(0);"><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
                                                 <li><a href="javascript:void(0);"><img src="./assets/images/view-profile-icon.png" alt="" title=""> <span>View Profile </span></a></li>
                                                 <li><a href="javascript:void(0);"><img src="./assets/images/highlighted-cv-icon.png" alt="" title=""> <span>Highlighted CV </span></a></li>
                                                 <li *ngIf="item?.is_watched == 0" (click)="openWatchPopup(item)"><a href="javascript:void(0);"><img src="./assets/images/WatchList-icon.png" alt="" title=""> <span>WATCH </span></a></li>
@@ -395,7 +396,8 @@
                                     <div id="document_list">
                                         <div class="cv_document_main">
                                             <ul>
-                                                <li><a href="javascript:void(0);"><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
+                                                <li><a *ngIf="item && item?.resume && item?.resume?.length > 0" href="{{item?.resume[0]['attachment_url']}}/{{item?.resume[0]['attachment_name']}}"><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
+                                                <li *ngIf="item && item?.resume && item?.resume?.length == 0"><a href="javascript:void(0);"><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
                                                 <li><a href="javascript:void(0);"><img src="./assets/images/view-profile-icon.png" alt="" title=""> <span>View Profile </span></a></li>
                                                 <li><a href="javascript:void(0);"><img src="./assets/images/highlighted-cv-icon.png" alt="" title=""> <span>Highlighted CV </span></a></li>
                                                 <!-- <li><a href="javascript:void(0);"><img src="./assets/images/WatchList-icon.png" alt="" title=""> <span>WatchList </span></a></li> -->
@@ -638,7 +640,8 @@
                                     <div id="document_list">
                                         <div class="cv_document_main">
                                             <ul>
-                                                <li><a href="javascript:void(0);"><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
+                                                <li *ngIf="item && item?.resume && item?.resume?.length > 0"><a href="{{item?.resume[0]['attachment_url']}}/{{item?.resume[0]['attachment_name']}}"><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
+                                                <li *ngIf="item && item?.resume && item?.resume?.length == 0"><a href="javascript:void(0);"><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
                                                 <li><a href="javascript:void(0);"><img src="./assets/images/view-profile-icon.png" alt="" title=""> <span>View Profile </span></a></li>
                                                 <li><a href="javascript:void(0);"><img src="./assets/images/highlighted-cv-icon.png" alt="" title=""> <span>Highlighted CV </span></a></li>
                                                 <!-- <li><a href="javascript:void(0);"><img src="./assets/images/WatchList-icon.png" alt="" title=""> <span>WatchList </span></a></li> -->

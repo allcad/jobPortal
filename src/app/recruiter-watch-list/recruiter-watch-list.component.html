@@ -77,8 +77,19 @@
                                 <p><span>Job Title :</span> {{item?.contractor_job_title}}</p>
                                 <p><span>Location :</span> {{item?.contractor_location}}</p>
                                 <p><span>Rate :</span> 
-                                    Commutable 
-                                    <a href="javascript:void(0);">£10 - £40</a> <span class="sapeter">|</span> Relocatable <a href="javascript:void(0);">£25 - £70</a> p/d </p>
+                                    <!-- Commutable 
+                                    <a href="javascript:void(0);">£10 - £40</a> <span class="sapeter">|</span> Relocatable <a href="javascript:void(0);">£25 - £70</a> p/d  -->
+
+                                    <cite style="font-style: normal;" *ngIf="item?.rate_name == 'commutable'">
+                                        Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
+                                        <span *ngIf="item?.rate_type === 'hourly'">h</span></strong>
+                                    </cite>
+                                    
+                                    <cite style="font-style: normal;" *ngIf="item?.rate_name == 'relocatable'">
+                                        Relocatable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
+                                        <span *ngIf="item?.rate_type === 'hourly'">h</span></strong> 
+                                    </cite>
+                                </p>
                             </div>
                             <div class="watchlist_footer">
                                 <div class="row">
@@ -89,7 +100,7 @@
                                     </div>
                                     <div class="col-sm-47 col-md-64">
                                         <div class="footer_right_part"> 
-                                            <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>Download CV</span> <i class="fa fa-download plus_blue text_pinks" aria-hidden="true"></i></a>
+                                            <a *ngIf="item && item?.resume && item?.resume?.length > 0" href="{{item?.resume[0]['attachment_url']}}/{{item?.resume[0]['attachment_name']}}" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>Download CV</span> <i class="fa fa-download plus_blue text_pinks" aria-hidden="true"></i></a>
                                             <a href="javascript:void(0);" (click)="watchContractorProfile(item?.contractor_reg_id, item?.contractor_first_name, item?.contractor_last_name)" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>View Profile</span> <i class="fa fa-plus plus_blue text_pinks" aria-hidden="true"></i></a> </div>
                                     </div>
                                 </div>
@@ -228,7 +239,17 @@
                             <div class="watch_list_content">
                                 <p><span>Job Title :</span> {{item?.contractor_job_title}}</p>
                                 <p><span>Location :</span> {{item?.contractor_location}}</p>
-                                <p><span>Rate :</span> Commutable <a href="javascript:void(0);">£10 - £40</a> <span class="sapeter">|</span> Relocatable <a href="javascript:void(0);">£25 - £70</a> p/d </p>
+                                <p><span>Rate :</span> 
+                                    <!-- Commutable <a href="javascript:void(0);">£10 - £40</a> <span class="sapeter">|</span> Relocatable <a href="javascript:void(0);">£25 - £70</a> p/d </p> -->
+                                    <cite style="font-style: normal;" *ngIf="item?.rate_name == 'commutable'">
+                                        Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
+                                        <span *ngIf="item?.rate_type === 'hourly'">h</span></strong>
+                                    </cite>
+                                    
+                                    <cite style="font-style: normal;" *ngIf="item?.rate_name == 'relocatable'">
+                                        Relocatable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
+                                        <span *ngIf="item?.rate_type === 'hourly'">h</span></strong> 
+                                    </cite>
                             </div>
                             <div class="watchlist_footer">
                                 <div class="row">
@@ -239,7 +260,7 @@
                                     </div>
                                     <div class="col-sm-50 col-md-64">
                                         <div class="footer_right_part"> 
-                                            <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>Download CV</span> <i class="fa fa-download plus_blue text_pinks" aria-hidden="true"></i></a>
+                                            <a *ngIf="item && item?.resume && item?.resume?.length > 0" href="{{item?.resume[0]['attachment_url']}}/{{item?.resume[0]['attachment_name']}}" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>Download CV</span> <i class="fa fa-download plus_blue text_pinks" aria-hidden="true"></i></a>
                                             <a href="javascript:void(0);" (click)="watchContractorProfile(item?.contractor_reg_id, item?.contractor_first_name, item?.contractor_last_name)" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>View Profile</span> <i class="fa fa-plus plus_blue text_pinks" aria-hidden="true"></i></a> </div>
                                     </div>
                                 </div>
@@ -378,7 +399,18 @@
                             <div class="watch_list_content">
                                 <p><span>Job Title :</span> {{item?.contractor_job_title}}</p>
                                 <p><span>Location :</span> {{item?.contractor_location}}</p>
-                                <p><span>Rate :</span> Commutable <a href="javascript:void(0);">£10 - £40</a> <span class="sapeter">|</span> Relocatable <a href="javascript:void(0);">£25 - £70</a> p/d </p>
+                                <p><span>Rate :</span> 
+                                    <!-- Commutable <a href="javascript:void(0);">£10 - £40</a> <span class="sapeter">|</span> Relocatable <a href="javascript:void(0);">£25 - £70</a> p/d  -->
+                                    <cite style="font-style: normal;" *ngIf="item?.rate_name == 'commutable'">
+                                        Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
+                                        <span *ngIf="item?.rate_type === 'hourly'">h</span></strong>
+                                    </cite>
+                                    
+                                    <cite style="font-style: normal;" *ngIf="item?.rate_name == 'relocatable'">
+                                        Relocatable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
+                                        <span *ngIf="item?.rate_type === 'hourly'">h</span></strong> 
+                                    </cite>
+                                </p>
                             </div>
                             <div class="watchlist_footer">
                                 <div class="row">
@@ -389,7 +421,7 @@
                                     </div>
                                     <div class="col-sm-50 col-md-64">
                                         <div class="footer_right_part"> 
-                                            <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>Download CV</span> <i class="fa fa-download plus_blue text_pinks" aria-hidden="true"></i></a> 
+                                            <a *ngIf="item && item?.resume && item?.resume?.length > 0" href="{{item?.resume[0]['attachment_url']}}/{{item?.resume[0]['attachment_name']}}" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>Download CV</span> <i class="fa fa-download plus_blue text_pinks" aria-hidden="true"></i></a> 
                                             <a href="javascript:void(0);" (click)="watchContractorProfile(item?.contractor_reg_id, item?.contractor_first_name, item?.contractor_last_name)" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>View Profile</span> <i class="fa fa-plus plus_blue text_pinks" aria-hidden="true"></i></a> </div>
                                     </div>
                                 </div>
