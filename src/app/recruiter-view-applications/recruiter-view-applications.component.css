@@ -19,3 +19,7 @@
     margin-left: 15px;
     color: #ffffff;
 }
+
+.watch_list_content p {
+    overflow: hidden;
+}

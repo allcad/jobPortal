@@ -116,7 +116,7 @@
                             <div class="watch_list_content recruiter_searchresult_list">
                                 <p><span>Job Title :</span> <strong>{{item?.contractor_job_title}}</strong></p>
                                 <p class="location_backgroung_icon"><span>Location :</span>{{item?.contractor_address}}</p>
-                                <p><span>Rate :</span> 
+                                <p style="height: 40px;"><span>Rate :</span> 
                                     <cite style="font-style: normal;" *ngIf="item?.rate_name == 'commutable'">
                                         Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
                                         <span *ngIf="item?.rate_type === 'hourly'">h</span></strong>
@@ -358,7 +358,7 @@
                                 <p class="location_backgroung_icon"><span>Location :</span> {{item?.contractor_address}}</p>
                                <!--  <p><span>Rate :</span> Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/d</strong>
                                     <br>Relocatable <a href="javascript:void(0);">£25 - £70</a><strong> p/d</strong> </p> -->
-                                    <p><span>Rate :</span> 
+                                    <p style="height: 40px;"><span>Rate :</span> 
                                     <cite style="font-style: normal;" *ngIf="item?.rate_name == 'commutable'">
                                         Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
                                         <span *ngIf="item?.rate_type === 'hourly'">h</span></strong>
@@ -602,7 +602,7 @@
                                 <p class="location_backgroung_icon"><span>Location :</span> {{item?.contractor_address}}</p>
                                 <!-- <p><span>Rate :</span> Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/d</strong>
                                     <br>Relocatable <a href="javascript:void(0);">£25 - £70</a><strong> p/d</strong> </p> -->
-                                    <p><span>Rate :</span> 
+                                    <p style="height: 40px;"><span>Rate :</span> 
                                     <cite style="font-style: normal;" *ngIf="item?.rate_name == 'commutable'">
                                         Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
                                         <span *ngIf="item?.rate_type === 'hourly'">h</span></strong>
@@ -819,7 +819,7 @@
 
 
 
- <div *ngIf="showWatchPopup" id="watchContractor" class="modalbox modbox2 window " style="top: 381.5px; left: 359px; display: block;">
+ <div *ngIf="showWatchPopup" id="watchContractor" class="modalbox modbox2 window " style="display: block;">
   <h3>Watch Contractor <span class="closex shut3" style="cursor: pointer;" (click)="closePopup()">X</span></h3>
   <div class="modal-inner">
     <div class="inputrowx">
@@ -856,3 +856,20 @@
 </div>
 
 <!-- more-details-toggle -->
+
+
+
+<div id="confirm-container" class="simplemodal-container">
+  <a href="#" title="Close" class="modal-close simplemodal-close">X</a>
+  <div tabindex="-1" class="simplemodal-wrap">
+    <div id="confirm" class="simplemodal-data">
+      <h3 class="message"></h3>
+      <p>Are you sure you want to stop watching this contractor?</p>
+      <div class="buttons">
+        <div class="no simplemodal-close">No</div>
+        <div class="yes">Yes</div>
+      </div>
+    </div>
+  </div>
+</div>
+

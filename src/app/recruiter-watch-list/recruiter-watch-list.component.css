@@ -19,3 +19,17 @@
     margin-left: 15px;
     color: #ffffff;
 }
+
+
+.watch_list_content p span {
+    color: #aaaaaa;
+    display: inline-block;
+    width: 28.5%;
+    position: relative;
+    left: 0px;
+    margin-left: -79px;
+}
+
+.watch_list_content p {
+    overflow: hidden;
+}
