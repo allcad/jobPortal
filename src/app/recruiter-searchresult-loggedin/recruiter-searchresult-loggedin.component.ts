@@ -35,11 +35,14 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   showSaveSearchBox = false;
   showSendSearchBox = false;
   showDownloadCVFlag = false;
+
   constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService,
-    private _commonService: CommonService, private router: Router) { }
+    private _commonService: CommonService, private router: Router) {
+      window.scroll(0,0);
+     }
 
   ngOnInit() {
-    window.scroll(0,0);
+    
   	//this.getSearchResultList();
     // this._commonDataShareService.advancedSerahcResult.subscribe((data) =>{
     //   console.log("serach result--", data);
@@ -89,7 +92,7 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
 
   openUnWatchPopup(item) {
     this.unwatchPopupFlag = true;
-    this.currentUnWatchId = item && item.contractor_id ? item.contractor_id : '';
+    this.currentUnWatchId = item && item.watch_id ? item.watch_id : '';
   }
 
   closeUnwatchPopup() {

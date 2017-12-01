@@ -133,7 +133,8 @@
                     <div class="form-group responsive_margin35">
                       <div class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/recruiter-city-pastcode.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
-                        <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="CITY, TOWN OR POSTCODE" name="cityTownValue" [(ngModel)]="cityTownValue">
+                        <!-- <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="CITY, TOWN OR POSTCODE" name="cityTownValue" [(ngModel)]="cityTownValue"> -->
+                        <input placeholder="City, Town or PostCode"  autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control box_height_30 box_padding_3" #savedSearch required>
                         <div class="input-group-addon upto_border_none responsive_width padding_left25">
                           <div class="service_box">
                             <input id="inlineCheckbox2" value="option2" type="checkbox" name="includeRelocators" [(ngModel)]="includeRelocators">

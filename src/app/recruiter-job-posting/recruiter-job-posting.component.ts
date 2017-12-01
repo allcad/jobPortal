@@ -294,6 +294,7 @@ displayLocationName = '';
              this.industrySector = this.jobPostingDetails.industrySectorId;
              this.workEligibility = this.jobPostingDetails.workEligibilityId;
              //this.cityTownValue = this.jobPostingDetails.cityTown;
+             this.searchElementRef.nativeElement.value = this.jobPostingDetails.location && this.jobPostingDetails.location.display_name ? this.jobPostingDetails.location.display_name : ''; 
              this.displayLocationName = this.jobPostingDetails.display_name ? this.jobPostingDetails.display_name : ''; 
              this.minRate = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.minRate ? this.jobPostingDetails.prefereedRate.minRate : 0;
              this.maxRate = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.maxRate ? this.jobPostingDetails.prefereedRate.maxRate : 0

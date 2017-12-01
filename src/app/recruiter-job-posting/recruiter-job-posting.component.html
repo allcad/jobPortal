@@ -31,7 +31,7 @@
                                 <div class="signup_form_section width_auto choose_templates">
                                     <label>Choose Template:</label>
                                     <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none java_developer" (change)="renderTemplateDate()" [(ngModel)]="currentTemplate" name="currentTemplate">
-                                        <option value="">Choose Template</option>
+                                        <!-- <option value="">Choose Template</option> -->
                                         <option value="{{item?.id}}" *ngFor="let item of templateData">{{item?.template_name}}</option>                                        
                                     </select>
                                 </div>

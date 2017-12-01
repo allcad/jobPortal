@@ -15,7 +15,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-sm-50">
+                    <div class="col-sm-50" *ngIf="searchList.length > 0">
                         <div class="signup_form_section width_auto choose_template text-right width_auto200">
                             <label>Sort By:</label>
                             <select class="form-control minimal background_drop_downs box_height_30 box_padding_3 padding_left_none java_developer" [(ngModel)]="currentSortBy" (change)="sortChange()">
@@ -42,7 +42,7 @@
                                 
                             </div>
                         </div>
-                        <div class="col-sm-30">
+                        <div class="col-sm-30" *ngIf="searchList.length > 0">
                             <div class="your_options_profile margin_top_25">
                                 <div class="dropdown">
                                     <button class="background_drop_downs" type="button" id="dropdownMenu_1" (click)="showSearchOptionFlag = !showSearchOptionFlag" [disabled]="searchOptionsDisabled">

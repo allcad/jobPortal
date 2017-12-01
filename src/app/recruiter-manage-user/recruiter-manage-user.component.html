@@ -60,7 +60,7 @@
                     </div>
                     <div class="col-sm-37 col-md-35">
                       <div class="manage_user_sub_right">
-                        <a href="javascript:void(0);" (click)="makeSuperUser(item?.recuriter_id)" class="btn-primary hover_text_pink hover_white_pluse width_180px">Make Super User  <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                        <a href="javascript:void(0);" *ngIf="item?.is_super_admin == null || item?.is_super_admin == 0" (click)="makeSuperUser(item?.recuriter_id)" class="btn-primary hover_text_pink hover_white_pluse width_180px">Make Super User  <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
                         <a href="javascript:void(0);" class="hover_white_pluse delete_super_user" (click)="deleteUser(item?.recuriter_id)"><i class="fa fa-trash-o text_pink" aria-hidden="true"></i> </a>
                       </div>
                     </div>
@@ -91,7 +91,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/recruiter-contractor-name.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="New User Name" name="newUser" [(ngModel)]="newUserName">
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="New User Name" name="newUser" [(ngModel)]="newUserName" [disabled]="companyEditableId == 0">
                     </div>
                   </div>
                 </div>
@@ -99,7 +99,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/recruiter-job-title.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Job Title" name="jobTitleValue" [(ngModel)]="jobTitleValue">
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Job Title" name="jobTitleValue" [(ngModel)]="jobTitleValue" [disabled]="companyEditableId == 0">
                     </div>
                   </div>
                 </div>
@@ -109,7 +109,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/password-manag.png" alt="" title="" class="img-responsive"></div>
-                      <input type="password" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Password" name="userPassword" [(ngModel)]="userPassword">
+                      <input type="password" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Password" name="userPassword" [(ngModel)]="userPassword" [disabled]="companyEditableId == 0">
                     </div>
                   </div>
                 </div>
@@ -117,7 +117,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/password-manag.png" alt="" title="" class="img-responsive"></div>
-                      <input type="password" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Confirm Password" name="confirmPassWord" [(ngModel)]="confirmPassWord">
+                      <input type="password" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Confirm Password" name="confirmPassWord" [(ngModel)]="confirmPassWord" [disabled]="companyEditableId == 0">
                     </div>
                   </div>
                 </div>
@@ -127,7 +127,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/recruiter-mail-address.png" alt="" title="" class="img-responsive"></div>
-                      <input type="email" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Email Address" name="emailAddress" [(ngModel)]="emailAddress">
+                      <input type="email" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Email Address" name="emailAddress" [(ngModel)]="emailAddress" [disabled]="companyEditableId == 0">
                     </div>
                   </div>
                 </div>
@@ -135,7 +135,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/telephone-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Telephone" name="telephoneV" [(ngModel)]="telephoneV">
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Telephone" name="telephoneV" [(ngModel)]="telephoneV" [disabled]="companyEditableId == 0">
                     </div>
                   </div>
                 </div>

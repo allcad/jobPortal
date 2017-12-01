@@ -51,12 +51,15 @@
                         <div class="recruiter_view_profile_left">
                             <h2>{{currentContractorFirstName}}</h2>
                             <p><span>PHP</span></p>
-                            <p><span>£{{contractorData?.dayRate_min}} - £{{contractorData?.dayRate_max}}</span> Commutable <span class="pink_color">|</span> <span>£{{contractorData?.rate_min}} - £{{contractorData?.rate_max}}</span> ReLOCatable</p>
+                            <p><span *ngIf="contractorData?.dailyHourlyValue == 'daily'">£{{contractorData?.rate_min}} - £{{contractorData?.rate_max}}</span>
+                            <span *ngIf="contractorData?.dailyHourlyValue == 'hourly'">£{{contractorData?.contractor_rate_min_hour}} - £{{contractorData?.contractor_rate_max_hr}}</span> Commutable <span class="pink_color">|</span> <span *ngIf="contractorData?.contractor_daily_hourly_value_relocatable == 'daily'">£{{contractorData?.contractor_rate_min_relocatable}} - £{{contractorData?.contractor_rate_max_relocatable}}</span> 
+                            <span *ngIf="contractorData?.contractor_daily_hourly_value_relocatable == 'hourly'">£{{contractorData?.contractor_rate_min_relocatable_hr}} - £{{contractorData?.contractor_rate_max_relocatable_hr}}</span>
+                        ReLOCatable</p>
                         </div>
                         <div class="recruiter_view_profile_left2">
-                            <p><span>Location:</span> Newport, Wales</p>
+                            <p><span>Location:</span> {{contractorData?.location}}</p>
                             <p><span>Email:</span> {{contractorData?.emailAddress}}</p>
-                            <p><span>Mobile:</span> {{contractorData?.commutable}}</p>
+                            <p><span>Mobile:</span> {{contractorData?.contractor_tel_no}}</p>
                         </div>
                         <div class="recruiter_view_profile_left3">
                             <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<span style="font-size: 14px">{{contractorData?.gitHubWebAddress}}</span></a><br/>
@@ -69,8 +72,8 @@
                             <p>{{contractorData?.availability}}</p>
                             <img src="./assets/images/days.png" alt="" title="">
                             <p class="font_size14">My Notice Period is </p>
-                            <h3>2 Months</h3>
-                            <p class="font_size12">I am happy to use my notice period</p>
+                            <h3>{{contractorData?.notice_period}}</h3>
+                            <p class="font_size12">I am happy to use my notice period : {{contractorData?.happy_notice}}</p>
                         </div>
                     </div>
                 </div>

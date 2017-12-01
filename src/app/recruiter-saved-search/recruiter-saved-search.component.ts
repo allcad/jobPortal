@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonDataSharedService } from '../commonDataSharedService';
 import { CommonService } from '../commonService.service';
+import { FormControl } from '@angular/forms';
+import { } from 'googlemaps';
+import { MapsAPILoader } from '@agm/core';
 
 @Component({
   selector: 'app-recruiter-saved-search',
@@ -10,6 +13,10 @@ import { CommonService } from '../commonService.service';
   styleUrls: ['./recruiter-saved-search.component.css']
 })
 export class RecruiterSavedSearchComponent implements OnInit {
+  public searchControl: FormControl;
+  @ViewChild("savedSearch")
+  public searchElementRef: ElementRef;
+
   savedSearchName: string;
   addToWatchDogCheck= false;
   jobTitle: string;
@@ -49,8 +56,15 @@ export class RecruiterSavedSearchComponent implements OnInit {
   WSErrorMsg = '';
   showDeleteButtonFlag = false;
   lastSearchResult;
+  autocomplete;
+postcode = '';
+displayTown = '';
+displayCountry = '';
+displayLocationName = '';
   constructor(public _commonRequestService: CommonRequestService, private _router: Router,
-    private _commonDataShareService: CommonDataSharedService, private commonService: CommonService) { }
+    private _commonDataShareService: CommonDataSharedService, private commonService: CommonService, 
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone) { }
 
   ngOnInit() {
     this.getSecurityClearance();
@@ -58,6 +72,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
     this.getTimeLeftData();
     this.getEducationData();
     this.getListOfSaveSearch();
+    this.loadLocationAutoData();
     // if(this.commonService.getLastSearchData()) {
     //   this.lastSearchResult = this.commonService.getLastSearchData();
     //   //this.savedSearchName = this.lastSearchResult.recuriter_search_by_contract_name ? this.lastSearchResult.recuriter_search_by_contract_name : '';
@@ -82,6 +97,50 @@ export class RecruiterSavedSearchComponent implements OnInit {
     //   this.industrySectorValue = this.lastSearchResult.recuriter_search_by_industry;
     //   this.securityClearValue = this.lastSearchResult.recuriter_search_by_security_clearance;
     // }
+  }
+
+  loadLocationAutoData() {
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["geocode"]
+      });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          console.log("place--", place);
+          // this.postcode = "";
+          // this.displayTown = "";
+          // this.displayCountry = "";
+          // this.displayLocationName = "";
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+          if(place && place.address_components && place.address_components.length > 0 && place.formatted_address) {
+            for(var i=0;i<place.address_components.length; i++) {
+              for(var j=0; j<place.address_components[i].types.length; j++) {
+                if(place.address_components[i].types[j] == "postal_code") {
+                  this.postcode = place.address_components[i].long_name;
+                }
+                if(place.address_components[i].types[j] == "postal_town") {
+                  this.displayTown = place.address_components[i].long_name;
+                }
+                if(place.address_components[i].types[j] == "country") {
+                  this.displayCountry = place.address_components[i].long_name;
+                }
+                this.displayLocationName = this.displayTown + " " + this.postcode + "," + this.displayCountry;
+              }
+            }
+          }
+          console.log("this.postcode", this.postcode);
+          console.log("this.displayTown", this.displayTown);
+          console.log("this.displayCountry", this.displayCountry);
+          console.log("this.displayLocationName", this.displayLocationName);
+        });
+      });
+      console.log("cityTownValue", this.cityTownValue);
+    });
   }
 
   industrysectorChange() {
@@ -283,7 +342,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
       "recuriter_search_core_skills":this.coreSkills?this.coreSkills:'',
       "recuriter_search_certifications":this.certificationValues?this.certificationValues:'',
       "recuriter_search_dont_show_to_contractor":this.dontShowContractor?this.dontShowContractor:'',
-      "recuriter_search_location":this.cityTownValue?this.cityTownValue:'',
+      "recuriter_search_location":this.displayLocationName?this.displayLocationName:'',
       "recuriter_search_include_relocators":this.includeRelocators ? 1 : 0,
       "recuriter_search_by_rate_min":this.minRate?this.minRate:'',
       "recuriter_search_by_rate_max":this.maxRate?this.maxRate:'',
@@ -296,6 +355,10 @@ export class RecruiterSavedSearchComponent implements OnInit {
       "recuriter_search_by_industry":this.industrySectorValue?this.industrySectorValue:[],
       "recuriter_search_by_security_clearance":this.securityClearValue?this.securityClearValue:[],
       "recuriter_search_by_driving_license":this.drivingLicenceValue == 'yes' ? 1 : 0
+      // "postcode": this.postcode ? this.postcode : '',
+      // "display_town" : this.displayTown ? this.displayTown : '',
+      // "display_county": this.displayCountry ? this.displayCountry : '',
+      // "display_name" : this.displayLocationName ? this.displayLocationName : '',
      
     }
 

@@ -23,6 +23,7 @@ export class RecruiterManageUserComponent implements OnInit {
   successMessageFlag = false;
   errorMessageFlag = false;
   WSErrorMsg = "";
+  companyEditableId = '';
   
   constructor(public _commonRequestService: CommonRequestService) {
   	//this.addMulUserArray.splice(0,1);
@@ -30,6 +31,8 @@ export class RecruiterManageUserComponent implements OnInit {
 
   ngOnInit() {
     this.makeSubUser();
+    let localStorageData = localStorage.getItem("loginDetail") ?  JSON.parse(localStorage.getItem("loginDetail")) : ""; 
+    this.companyEditableId = localStorageData.isCompanyEditable;
   }
 
   addAnotherUser() {
