@@ -39,6 +39,10 @@
 .display_block{
     display: block;
 }
+.display_none{
+    display: none;
+}
+
 
 #document_list{display: none;}
 .more-details-toggle #document_list{display: block !important;}

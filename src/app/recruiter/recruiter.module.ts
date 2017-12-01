@@ -28,7 +28,7 @@ import { RecruiterViewApplicationsComponent } from '../recruiter-view-applicatio
 import { RecruiterViewProfileComponent } from '../recruiter-view-profile/recruiter-view-profile.component';
 import { RecruiterWatchListComponent } from '../recruiter-watch-list/recruiter-watch-list.component';
 import { RecruiterWatchdogComponent } from '../recruiter-watchdog/recruiter-watchdog.component';
-import { ViewContractorProfileComponent } from '../view-contractor-profile/view-contractor-profile.component';
+//import { ViewContractorProfileComponent } from '../view-contractor-profile/view-contractor-profile.component';
 import { RecuriterSavedWatchDogComponent } from '../recuriter-saved-watch-dog/recuriter-saved-watch-dog.component';
 import { RecruiterHomeComponent } from '../recruiter-home/recruiter-home.component';
 
@@ -52,7 +52,7 @@ import { RecruiterHomeComponent } from '../recruiter-home/recruiter-home.compone
 	RecruiterViewProfileComponent,
 	RecruiterWatchListComponent,
 	RecruiterWatchdogComponent,
-	ViewContractorProfileComponent,
+	//ViewContractorProfileComponent,
 	RecuriterSavedWatchDogComponent,
 	RecruiterHomeComponent
   ],

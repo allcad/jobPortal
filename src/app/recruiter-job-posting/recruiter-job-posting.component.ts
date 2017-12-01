@@ -55,6 +55,10 @@ jobSpecificationFlag = false;
 WSErrorMsg = "";
 placeSearch;
 autocomplete;
+postcode = '';
+displayTown = '';
+displayCountry = '';
+displayLocationName = '';
   constructor(private router: Router, public _commonRequestService: CommonRequestService, 
     private commonService: CommonService, private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone) { }
@@ -119,6 +123,7 @@ autocomplete;
 
   loadLocationAutoData() {
     this.mapsAPILoader.load().then(() => {
+      //console.log("this.searchElementRef.nativeElement", this.searchElementRef.nativeElement);
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["geocode"]
       });
@@ -127,12 +132,34 @@ autocomplete;
           //get the place result
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
           console.log("place--", place);
-  
+          this.postcode = "";
+          this.displayTown = "";
+          this.displayCountry = "";
+          this.displayLocationName = "";
           //verify result
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
-          
+          if(place && place.address_components && place.address_components.length > 0 && place.formatted_address) {
+            for(var i=0;i<place.address_components.length; i++) {
+              for(var j=0; j<place.address_components[i].types.length; j++) {
+                if(place.address_components[i].types[j] == "postal_code") {
+                  this.postcode = place.address_components[i].long_name;
+                }
+                if(place.address_components[i].types[j] == "postal_town") {
+                  this.displayTown = place.address_components[i].long_name;
+                }
+                if(place.address_components[i].types[j] == "country") {
+                  this.displayCountry = place.address_components[i].long_name;
+                }
+                this.displayLocationName = this.displayTown + " " + this.postcode + "," + this.displayCountry;
+              }
+            }
+          }
+          console.log("this.postcode", this.postcode);
+          console.log("this.displayTown", this.displayTown);
+          console.log("this.displayCountry", this.displayCountry);
+          console.log("this.displayLocationName", this.displayLocationName);
           //set latitude, longitude and zoom
           // this.latitude = place.geometry.location.lat();
           // this.longitude = place.geometry.location.lng();
@@ -266,7 +293,8 @@ autocomplete;
              this.startDate = (this.jobPostingDetails.startDate).split(' ')[0];
              this.industrySector = this.jobPostingDetails.industrySectorId;
              this.workEligibility = this.jobPostingDetails.workEligibilityId;
-             this.cityTownValue = this.jobPostingDetails.cityTown;
+             //this.cityTownValue = this.jobPostingDetails.cityTown;
+             this.displayLocationName = this.jobPostingDetails.display_name ? this.jobPostingDetails.display_name : ''; 
              this.minRate = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.minRate ? this.jobPostingDetails.prefereedRate.minRate : 0;
              this.maxRate = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.maxRate ? this.jobPostingDetails.prefereedRate.maxRate : 0
              this.dailyHourlyValue = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.dailyHourlyRate ? this.jobPostingDetails.prefereedRate.dailyHourlyRate : '';
@@ -288,7 +316,7 @@ autocomplete;
      this.startDate = "";
      this.industrySector = "0";
      this.workEligibility = "0";
-     this.cityTownValue = "";
+     this.displayLocationName = "";
      this.minRate = 0;
      this.maxRate = 0;
      this.dailyHourlyValue = "";
@@ -300,6 +328,7 @@ autocomplete;
   }
 
   onJobPostSave(f:NgForm) {
+    console.log("this.searchElementRef.nativeElement.value", this.searchElementRef.nativeElement.value);
     this.WSErrorMsg = "";
     window.scroll(0,0);
     if(this.jobPostingJobTitle) {
@@ -314,7 +343,7 @@ autocomplete;
       this.jobPostingDurationFlag = true;
     }
 
-    if(this.cityTownValue) {
+    if(this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value) {
       this.cityFlag = false;
     } else {
       this.cityFlag = true;
@@ -376,7 +405,11 @@ autocomplete;
   			"startDate": this.startDate,
   			"industrySectorId": this.industrySector,
   			"workEligibilityId" : this.workEligibility,
-  			"cityTown": this.cityTownValue,
+  			//"cityTown": this.cityTownValue,
+        "postcode": this.postcode,
+        "display_town" : this.displayTown,
+        "display_county": this.displayCountry,
+        "display_name" : this.displayLocationName,
   			"prefereedRate": {
   				"minRate": this.minRate,
   				"maxRate": this.maxRate,
@@ -408,11 +441,11 @@ autocomplete;
                   this.WSErrorMsg = "";
                   this.jobPostingJobId = "";
                   this.postJobSuccessMsg = 'Post Job Save succesfully!';
-                   var obj = {'jobId' : ''};
-                  localStorage.setItem('recruiterJobData', JSON.stringify(obj));
+                  //  var obj = {'jobId' : ''};
+                  // localStorage.setItem('recruiterJobData', JSON.stringify(obj));
 
-                  var obj1 = {'jobPreviewData' : ''};
-                  localStorage.setItem('editJobPost', JSON.stringify(obj1));
+                  // var obj1 = {'jobPreviewData' : ''};
+                  // localStorage.setItem('editJobPost', JSON.stringify(obj1));
                 } else {
                   this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
                 }
@@ -432,11 +465,11 @@ autocomplete;
                   this.WSErrorMsg = "";
                   this.jobPostingJobId = "";
                   this.postJobSuccessMsg = 'Post Job Update succesfully!'
-                  var obj = {'jobId' : ''};
-                  localStorage.setItem('recruiterJobData', JSON.stringify(obj));
+                  // var obj = {'jobId' : ''};
+                  // localStorage.setItem('recruiterJobData', JSON.stringify(obj));
 
-                  var obj1 = {'jobPreviewData' : ''};
-                  localStorage.setItem('editJobPost', JSON.stringify(obj1));
+                  // var obj1 = {'jobPreviewData' : ''};
+                  // localStorage.setItem('editJobPost', JSON.stringify(obj1));
                   //this.jobPostFlag = false;
                   //this.router.navigate(['/recruiter/manage-jobs']);
                 } else if(data && data.error){

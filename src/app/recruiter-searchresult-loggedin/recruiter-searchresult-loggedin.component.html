@@ -45,15 +45,15 @@
                         <div class="col-sm-30">
                             <div class="your_options_profile margin_top_25">
                                 <div class="dropdown">
-                                    <button class="background_drop_downs" type="button" id="dropdownMenu_1" (click)="showSearchOptionFlag = !showSearchOptionFlag">
+                                    <button class="background_drop_downs" type="button" id="dropdownMenu_1" (click)="showSearchOptionFlag = !showSearchOptionFlag" [disabled]="searchOptionsDisabled">
                                         Search Options
                                     </button>
-                                    <ul class="dropdown-menu max-width" id="dropdownMenu1" [ngClass]="showSearchOptionFlag == true ? 'display_block' : ''">
-                                        <li><a href="javascript:void(0);">New Search</a></li>
-                                        <li><a href="javascript:void(0);">Refine Search</a></li>
-                                        <li><a href="javascript:void(0)" id="save_search">Save Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                                    <ul class="dropdown-menu max-width" id="dropdownMenu1" [ngClass]="showSearchOptionFlag == true ? 'display_block' : 'display_none'">
+                                        <li (click)="goToAdvancedSearch()"><a href="javascript:void(0);">New Search</a></li>
+                                        <li (click)="goToAdvancedSearch()"><a href="javascript:void(0);">Refine Search</a></li>
+                                        <li><a (click)="showSaveSearchBox = !showSaveSearchBox" href="javascript:void(0)" id="save_search">Save Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> 
                                             <div class="home_page_inquery">
-                                                <div id="hide_show_div" style="display: none;">
+                                                <div id="hide_show_div" [ngClass]="showSaveSearchBox == true ? 'display_block' : 'display_none'">
                                                     <div class="after_login_menu">
                                                         <input type="text" placeholder="Enter Search Name" class="enter_border">
                                                         <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>Save Search</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
@@ -61,9 +61,9 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <li><a href="javascript:void(0)" id="send_search">Send Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                                        <li><a (click)="showSendSearchBox = !showSendSearchBox" href="javascript:void(0)" id="send_search">Send Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
                                             <div class="home_page_inquery">
-                                                <div id="message_send" style="display: none;">
+                                                <div id="message_send" [ngClass]="showSendSearchBox == true ? 'display_block' : 'display_none'">
                                                     <div class="after_login_menu">
                                                         <input type="text" placeholder="Enter Email Here" class="enter_border">
                                                         <textarea placeholder="Message" class="enter_border"></textarea>
@@ -117,14 +117,18 @@
                                 <p><span>Job Title :</span> <strong>{{item?.contractor_job_title}}</strong></p>
                                 <p class="location_backgroung_icon"><span>Location :</span>{{item?.contractor_address}}</p>
                                 <p style="height: 40px;"><span>Rate :</span> 
-                                    <cite style="font-style: normal;" *ngIf="item?.rate_name == 'commutable'">
-                                        Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
-                                        <span *ngIf="item?.rate_type === 'hourly'">h</span></strong>
+                                    <cite style="font-style: normal;">
+                                        Commutable
+                                        <a *ngIf="item?.rate_type == 'daily'" href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}} Per Day</a>
+                                        <a *ngIf="item?.rate_type == 'hourly'" href="javascript:void(0);">£{{item?.contractor_rate_min_hour}} - £{{item?.contractor_rate_max_hr}} Per Hour</a> 
                                     </cite>
                                     
-                                    <cite style="font-style: normal;" *ngIf="item?.rate_name == 'relocatable'">
-                                        Relocatable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
-                                        <span *ngIf="item?.rate_type === 'hourly'">h</span></strong> 
+                                    <cite style="font-style: normal;">
+                                        Relocatable
+                                        <!-- <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
+                                        <span *ngIf="item?.rate_type === 'hourly'">h</span></strong>  -->
+                                        <a *ngIf="item?.contractor_daily_hourly_value_relocatable == 'daily'" href="javascript:void(0);">£{{item?.contractor_rate_min_relocatable}} - £{{item?.contractor_rate_max_relocatable}} Per Day</a>
+                                        <a *ngIf="item?.contractor_daily_hourly_value_relocatable == 'hourly'" href="javascript:void(0);">£{{item?.contractor_rate_min_relocatable_hr}} - £{{item?.contractor_rate_max_relocatable_hr}} Per Hour</a> 
                                     </cite>
                                 </p>
                                 <p><span>Availability :</span> {{item?.availability}} </p>
@@ -359,7 +363,7 @@
                                <!--  <p><span>Rate :</span> Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/d</strong>
                                     <br>Relocatable <a href="javascript:void(0);">£25 - £70</a><strong> p/d</strong> </p> -->
                                     <p style="height: 40px;"><span>Rate :</span> 
-                                    <cite style="font-style: normal;" *ngIf="item?.rate_name == 'commutable'">
+                                    <!-- <cite style="font-style: normal;" *ngIf="item?.rate_name == 'commutable'">
                                         Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
                                         <span *ngIf="item?.rate_type === 'hourly'">h</span></strong>
                                     </cite>
@@ -367,6 +371,19 @@
                                     <cite style="font-style: normal;" *ngIf="item?.rate_name == 'relocatable'">
                                         Relocatable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
                                         <div *ngIf="item?.rate_type === 'hourly'">h</div></strong> 
+                                    </cite> -->
+                                    <cite style="font-style: normal;">
+                                        Commutable
+                                        <a *ngIf="item?.rate_type == 'daily'" href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}} Per Day</a>
+                                        <a *ngIf="item?.rate_type == 'hourly'" href="javascript:void(0);">£{{item?.contractor_rate_min_hour}} - £{{item?.contractor_rate_max_hr}} Per Hour</a> 
+                                    </cite>
+                                    
+                                    <cite style="font-style: normal;">
+                                        Relocatable
+                                        <!-- <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
+                                        <span *ngIf="item?.rate_type === 'hourly'">h</span></strong>  -->
+                                        <a *ngIf="item?.contractor_daily_hourly_value_relocatable == 'daily'" href="javascript:void(0);">£{{item?.contractor_rate_min_relocatable}} - £{{item?.contractor_rate_max_relocatable}} Per Day</a>
+                                        <a *ngIf="item?.contractor_daily_hourly_value_relocatable == 'hourly'" href="javascript:void(0);">£{{item?.contractor_rate_min_relocatable_hr}} - £{{item?.contractor_rate_max_relocatable_hr}} Per Hour</a> 
                                     </cite>
                                 </p>
                                 <p><span>Availability :</span> {{item?.availability}} </p>
@@ -603,7 +620,7 @@
                                 <!-- <p><span>Rate :</span> Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/d</strong>
                                     <br>Relocatable <a href="javascript:void(0);">£25 - £70</a><strong> p/d</strong> </p> -->
                                     <p style="height: 40px;"><span>Rate :</span> 
-                                    <cite style="font-style: normal;" *ngIf="item?.rate_name == 'commutable'">
+                                    <!-- <cite style="font-style: normal;" *ngIf="item?.rate_name == 'commutable'">
                                         Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
                                         <span *ngIf="item?.rate_type === 'hourly'">h</span></strong>
                                     </cite>
@@ -611,6 +628,19 @@
                                     <cite style="font-style: normal;" *ngIf="item?.rate_name == 'relocatable'">
                                         Relocatable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
                                         <span *ngIf="item?.rate_type === 'hourly'">h</span></strong> 
+                                    </cite> -->
+                                    <cite style="font-style: normal;">
+                                        Commutable
+                                        <a *ngIf="item?.rate_type == 'daily'" href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}} Per Day</a>
+                                        <a *ngIf="item?.rate_type == 'hourly'" href="javascript:void(0);">£{{item?.contractor_rate_min_hour}} - £{{item?.contractor_rate_max_hr}} Per Hour</a> 
+                                    </cite>
+                                    
+                                    <cite style="font-style: normal;">
+                                        Relocatable
+                                        <!-- <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
+                                        <span *ngIf="item?.rate_type === 'hourly'">h</span></strong>  -->
+                                        <a *ngIf="item?.contractor_daily_hourly_value_relocatable == 'daily'" href="javascript:void(0);">£{{item?.contractor_rate_min_relocatable}} - £{{item?.contractor_rate_max_relocatable}} Per Day</a>
+                                        <a *ngIf="item?.contractor_daily_hourly_value_relocatable == 'hourly'" href="javascript:void(0);">£{{item?.contractor_rate_min_relocatable_hr}} - £{{item?.contractor_rate_max_relocatable_hr}} Per Hour</a> 
                                     </cite>
                                 </p>
                                 <p><span>Availability :</span> {{item?.availability}} </p>

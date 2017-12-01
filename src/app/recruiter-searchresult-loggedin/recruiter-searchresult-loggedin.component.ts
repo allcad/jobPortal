@@ -31,6 +31,9 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   unwatchPopupFlag = false;
   currentUnWatchId;
   showSearchOptionFlag = false;
+  searchOptionsDisabled = false;
+  showSaveSearchBox = false;
+  showSendSearchBox = false;
   constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService,
     private _commonService: CommonService, private router: Router) { }
 
@@ -44,6 +47,9 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
     //         this.getSearchResultList();
     //       }
     //     });
+    if(this.router.url == "/public/searchresult-loggedin") {
+      this.searchOptionsDisabled = true;
+    }
     this.getSortByData();
     this.getJobList();
     this.savedResult = this._commonService.getSearchResult();
@@ -51,6 +57,10 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
     if(this.savedResult) {
       this.getSearchResultList();
     }
+  }
+
+  goToAdvancedSearch() {
+    this.router.navigate(['./recruiter/advanced-search']);
   }
 
   getSortByData() {

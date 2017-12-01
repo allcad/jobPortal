@@ -32,11 +32,11 @@ export class RecruiterViewApplicationsComponent implements OnInit {
     this.getFilterbyJobData();
   }
 
-  passJobId(id) {
-  	//this._commonDataSharedService.manageJobsJobId.next(id);
-  	var obj = {'jobId' : id};
-    localStorage.setItem('recruiterJobData', JSON.stringify(obj));
-  }
+  // passJobId(id) {
+  // 	//this._commonDataSharedService.manageJobsJobId.next(id);
+  // 	var obj = {'jobId' : id};
+  //   localStorage.setItem('recruiterJobData', JSON.stringify(obj));
+  // }
 
   getFilterbyJobData() {
     var input = {

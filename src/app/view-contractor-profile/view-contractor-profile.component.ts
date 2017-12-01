@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { FormsModule,NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonRequestService } from '../common-request.service';
 import { CommonDataSharedService } from '../commonDataSharedService';
+import { } from 'googlemaps';
+import { MapsAPILoader } from '@agm/core';
+
 @Component({
   selector: 'app-view-contractor-profile',
   templateUrl: './view-contractor-profile.component.html',
@@ -19,13 +22,22 @@ export class ViewContractorProfileComponent implements OnInit {
 	certification = [];
 	keySkills = [];
   type;
+  public latitude: number;
+  public longitude: number;
+  public zoom: number;
+  qualification = [];
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
-  	private _commonDataSharedService: CommonDataSharedService) { }
+  	private _commonDataSharedService: CommonDataSharedService,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone) { }
 
   ngOnInit() {
+    this.zoom = 3;
+    this.latitude = 39.8282;
+    this.longitude = -98.5795;
 
   	this.currentContractorId = localStorage.getItem('currentContractorData') ? JSON.parse(localStorage.getItem('currentContractorData'))['currentContractorId'] : null;
-	
+	  console.log("this.currentContractorId", this.currentContractorId);
   	this.getContractorData();
 
   }
@@ -43,10 +55,16 @@ export class ViewContractorProfileComponent implements OnInit {
            this.contractorData = data.data;
            this.certification = data && data.data['certification'] ? data.data['certification'].split(","):'';
            this.keySkills = data && data.data['skill&Experience'] ? data.data['skill&Experience'].split(","):[];
+           this.qualification = data && data.data['qualification'] ? data.data['qualification'].split(',') : [];
            console.log("this.certification", this.certification);
            console.log("this.keySkills", this.keySkills);
            this.currentContractorFirstName = localStorage.getItem('currentContractorData') ? JSON.parse(localStorage.getItem('currentContractorData'))['currentContractorName'] : null;  	
-	         //this.currentContractorLastName = localStorage.getItem('currentContractorData') ? JSON.parse(localStorage.getItem('currentContractorData'))['currentContractorLastName'] : null;  	
+	         this.latitude = parseFloat(this.contractorData.latitude);
+           this.longitude = parseFloat(this.contractorData.longitude);
+           this.zoom = 3;
+           console.log("this.latitude", this.latitude, "this.longitude", this.longitude);
+           //this.setCurrentPosition(this.latitude, this.longitude)
+           //this.currentContractorLastName = localStorage.getItem('currentContractorData') ? JSON.parse(localStorage.getItem('currentContractorData'))['currentContractorLastName'] : null;  	
            
           } else {
             if(data && data.error && data.error.length > 0) {
@@ -57,6 +75,16 @@ export class ViewContractorProfileComponent implements OnInit {
         }
     );
   }
+
+  // private setCurrentPosition(latitude, longitude) {
+  //   if ("geolocation" in navigator) {
+  //     navigator.geolocation.getCurrentPosition((position) => {
+  //       this.latitude = latitude;
+  //       this.longitude = longitude;
+  //       this.zoom = 12;
+  //     });
+  //   }
+  // }
 
   moveToAnotherPage() {
     this.type = localStorage.getItem('currentContractorData') ? JSON.parse(localStorage.getItem('currentContractorData'))['type'] : null;    

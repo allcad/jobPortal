@@ -42,6 +42,7 @@ import { RecruiterSearchresultLoggedinComponent } from '../recruiter-searchresul
 import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/recruiter-advanced-search.component';
 // import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/recruiter-advanced-search.component';
  import { RecruiterSavedSearchComponent } from '../recruiter-saved-search/recruiter-saved-search.component';
+ import { ViewContractorProfileComponent } from '../view-contractor-profile/view-contractor-profile.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/r
     ContractorJobSearchComponent,
     RecruiterSearchresultLoggedinComponent,
      RecruiterAdvancedSearchComponent,
-     RecruiterSavedSearchComponent
+     RecruiterSavedSearchComponent,
+     ViewContractorProfileComponent
   ],
   imports: [
     FormsModule,
@@ -112,7 +114,8 @@ import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/r
     ContractorJobSearchComponent,
     RecruiterSearchresultLoggedinComponent,
      RecruiterAdvancedSearchComponent,
-     RecruiterSavedSearchComponent
+     RecruiterSavedSearchComponent,
+     ViewContractorProfileComponent
   ],
   providers: [],
   bootstrap: []

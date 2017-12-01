@@ -76,7 +76,10 @@
                 </div>
             </div>
             <div class="profile_maps">
-                <img src="./assets/images/profile-map.png" alt="" title="" class="img-responsive">
+                <!-- <img src="./assets/images/profile-map.png" alt="" title="" class="img-responsive"> -->
+                <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+                    <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                </agm-map>
             </div>
             <div class="container">
                 <div class="row">
@@ -93,9 +96,9 @@
                             </div>
                             <div class="profile_education">
                                 <h3>Education </h3>
-                                <ul>
-                                    <li><img src="./assets/images/education-icon.png" alt="" title=""> B.C.A</li>
-                                    <li><img src="./assets/images/education-icon.png" alt="" title=""> M.S.C</li>
+                                <ul *ngIf="qualification.length > 0">
+                                    <li *ngFor="let item of qualification"><img src="./assets/images/education-icon.png" alt="" title=""> {{item}}</li>
+                                    <!-- <li><img src="./assets/images/education-icon.png" alt="" title=""> M.S.C</li> -->
                                 </ul>
                             </div>
                             <div class="profile_education">
