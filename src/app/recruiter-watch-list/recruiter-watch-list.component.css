@@ -23,13 +23,15 @@
 
 .watch_list_content p span {
     color: #aaaaaa;
-    display: inline-block;
+    display: block;
     width: 28.5%;
     position: relative;
     left: 0px;
-    margin-left: -79px;
+    margin-left: 0;
+    float: left;
 }
 
 .watch_list_content p {
     overflow: hidden;
+    padding-left: 0 !important;
 }

@@ -76,15 +76,17 @@
                             <div class="watch_list_content">
                                 <p><span>Job Title :</span> {{item?.contractor_job_title}}</p>
                                 <p><span>Location :</span> {{item?.contractor_location}}</p>
-                                <p style="height: 40px;"><span>Rate :</span> 
-                                    Commutable 
+                                <p style="height: 40px;">
+                                    <span style="height: 40px;">Rate :</span> 
+                                    <cite style="display: block; float: left; width: 70%; font-style: normal;">Commutable 
                                     <a *ngIf="item?.rate_type == 'daily'" href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}} Per Day</a>
                                     <a *ngIf="item?.rate_type == 'hourly'" href="javascript:void(0);">£{{item?.contractor_rate_min_hour}} - £{{item?.contractor_rate_max_hr}} Per Hour</a> 
-                                    <span class="sapeter">|</span> 
-                                    Relocatable 
+                                    <cite class="sapeter">|</cite> 
+                                    Relocatable
                                     <!-- <a href="javascript:void(0);">£25 - £70</a> p/d  -->
                                     <a *ngIf="item?.contractor_daily_hourly_value_relocatable == 'daily'" href="javascript:void(0);">£{{item?.contractor_rate_min_relocatable}} - £{{item?.contractor_rate_max_relocatable}} Per Day</a>
                                     <a *ngIf="item?.contractor_daily_hourly_value_relocatable == 'hourly'" href="javascript:void(0);">£{{item?.contractor_rate_min_relocatable_hr}} - £{{item?.contractor_rate_max_relocatable_hr}} Per Hour</a> 
+                                    </cite>
 
                                     <!-- <cite style="font-style: normal;" *ngIf="item?.rate_name == 'commutable'">
                                         Commutable <a href="javascript:void(0);">£{{item?.rate_min}} - £{{item?.rate_max}}</a><strong> p/<span *ngIf="item?.rate_type === 'daily'">d</span>
