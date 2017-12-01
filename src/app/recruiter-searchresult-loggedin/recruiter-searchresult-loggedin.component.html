@@ -158,8 +158,8 @@
                                     <div id="document_list">
                                         <div class="cv_document_main">
                                             <ul>
-                                                <li><a *ngIf="item && item?.resume && item?.resume?.length > 0" href="{{item?.resume[0]['attachment_url']}}/{{item?.resume[0]['attachment_name']}}" ><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
-                                                <li *ngIf="item && item?.resume && item?.resume?.length == 0"><a href="javascript:void(0);"><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
+                                                <li *ngIf="item && item?.resume && item?.resume?.length > 0"><a href="{{item?.resume[0]['attachment_url']}}/{{item?.resume[0]['attachment_name']}}" ><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
+                                                <li *ngIf="item && item?.resume && item?.resume?.length == 0"><a href="javascript:void(0);" (click)="showDownloadCVPopup()"><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
                                                 <li><a href="javascript:void(0);" (click)="goToContractorProfile(item?.contractor_id, item?.name)"><img src="./assets/images/view-profile-icon.png" alt="" title=""> <span>View Profile </span></a></li>
                                                 <li><a href="javascript:void(0);"><img src="./assets/images/highlighted-cv-icon.png" alt="" title=""> <span>Highlighted CV </span></a></li>
                                                 <li *ngIf="item?.is_watched == 0" (click)="openWatchPopup(item)"><a href="javascript:void(0);"><img src="./assets/images/WatchList-icon.png" alt="" title=""> <span>WATCH </span></a></li>
@@ -414,8 +414,8 @@
                                     <div id="document_list">
                                         <div class="cv_document_main">
                                             <ul>
-                                                <li><a *ngIf="item && item?.resume && item?.resume?.length > 0" href="{{item?.resume[0]['attachment_url']}}/{{item?.resume[0]['attachment_name']}}"><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
-                                                <li *ngIf="item && item?.resume && item?.resume?.length == 0"><a href="javascript:void(0);"><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
+                                                <li *ngIf="item && item?.resume && item?.resume?.length > 0"><a href="{{item?.resume[0]['attachment_url']}}/{{item?.resume[0]['attachment_name']}}"><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
+                                                <li (click)="showDownloadCVPopup()" *ngIf="item && item?.resume && item?.resume?.length == 0"><a href="javascript:void(0);"><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
                                                 <li><a href="javascript:void(0);" (click)="goToContractorProfile(item?.contractor_id, item?.name)"><img src="./assets/images/view-profile-icon.png" alt="" title=""> <span>View Profile </span></a></li>
                                                 <li><a href="javascript:void(0);"><img src="./assets/images/highlighted-cv-icon.png" alt="" title=""> <span>Highlighted CV </span></a></li>
                                                 <!-- <li><a href="javascript:void(0);"><img src="./assets/images/WatchList-icon.png" alt="" title=""> <span>WatchList </span></a></li> -->
@@ -672,7 +672,7 @@
                                         <div class="cv_document_main">
                                             <ul>
                                                 <li *ngIf="item && item?.resume && item?.resume?.length > 0"><a href="{{item?.resume[0]['attachment_url']}}/{{item?.resume[0]['attachment_name']}}"><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
-                                                <li *ngIf="item && item?.resume && item?.resume?.length == 0"><a href="javascript:void(0);"><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
+                                                <li (click)="showDownloadCVPopup()" *ngIf="item && item?.resume && item?.resume?.length == 0"><a href="javascript:void(0);"><img src="./assets/images/download-cv-icon.png" alt="" title=""> <span>Download CV </span></a></li>
                                                 <li><a href="javascript:void(0);" (click)="goToContractorProfile(item?.contractor_id, item?.name)"><img src="./assets/images/view-profile-icon.png" alt="" title=""> <span>View Profile </span></a></li>
                                                 <li><a href="javascript:void(0);"><img src="./assets/images/highlighted-cv-icon.png" alt="" title=""> <span>Highlighted CV </span></a></li>
                                                 <!-- <li><a href="javascript:void(0);"><img src="./assets/images/WatchList-icon.png" alt="" title=""> <span>WatchList </span></a></li> -->
@@ -899,6 +899,19 @@
       <div class="buttons">
         <div class="no simplemodal-close" (click)="closeUnwatchPopup()">No</div>
         <div class="yes" (click) = "unwatchContractor()">Yes</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="confirm-container" class="simplemodal-container" *ngIf="showDownloadCVFlag">
+  <a href="javascript:void(0);" style="cursor: pointer;" title="Close" class="modal-close simplemodal-close" (click)="closeDownloadCVPopup()">X</a>
+  <div tabindex="-1" class="simplemodal-wrap">
+    <div id="confirm" class="simplemodal-data">
+      <h3 class="message"></h3>
+      <p>CV is not available.</p>
+      <div class="buttons">
+        <div class="no simplemodal-close" (click)="closeDownloadCVPopup()">Ok</div>
       </div>
     </div>
   </div>

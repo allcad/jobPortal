@@ -405,7 +405,7 @@ displayLocationName = '';
   			"startDate": this.startDate,
   			"industrySectorId": this.industrySector,
   			"workEligibilityId" : this.workEligibility,
-  			//"cityTown": this.cityTownValue,
+  			"cityTown": this.displayLocationName,
         "postcode": this.postcode,
         "display_town" : this.displayTown,
         "display_county": this.displayCountry,

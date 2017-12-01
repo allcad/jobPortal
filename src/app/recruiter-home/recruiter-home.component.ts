@@ -91,13 +91,13 @@ export class RecruiterHomeComponent implements OnInit {
     );
   }
 
-  showMoreJobs() {
-    var pageNo = 1;
-    pageNo += 1;
-    //this.pageNo += 1;
-    this.pageLimit = this.pageLimit * pageNo;
-    console.log("this.pageLimit", this.pageLimit)
-    this.getMostLeastJobs(this.sortType)
-  }
+  // showMoreJobs() {
+  //   // var pageNo = 1;
+  //   // pageNo += 1;
+  //   this.pageNo += 1;
+  //   //this.pageLimit = this.pageLimit * this.pageNo;
+  //   console.log("this.pageLimit", this.pageLimit)
+  //   this.getMostLeastJobs(this.sortType)
+  // }
 
 }

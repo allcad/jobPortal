@@ -34,10 +34,12 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   searchOptionsDisabled = false;
   showSaveSearchBox = false;
   showSendSearchBox = false;
+  showDownloadCVFlag = false;
   constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService,
     private _commonService: CommonService, private router: Router) { }
 
   ngOnInit() {
+    window.scroll(0,0);
   	//this.getSearchResultList();
     // this._commonDataShareService.advancedSerahcResult.subscribe((data) =>{
     //   console.log("serach result--", data);
@@ -92,6 +94,14 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
 
   closeUnwatchPopup() {
     this.unwatchPopupFlag = false;
+  }
+
+  showDownloadCVPopup() {
+    this.showDownloadCVFlag = true;
+  }
+
+  closeDownloadCVPopup() {
+    this.showDownloadCVFlag = false;
   }
 
   addToWatchList() {
