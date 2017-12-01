@@ -30,6 +30,8 @@ import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/r
 import { RecruiterSavedSearchComponent } from '../recruiter-saved-search/recruiter-saved-search.component';
 import { RecruiterLostPasswordComponent } from '../recruiter-lost-password/recruiter-lost-password.component';
 import { ContractorForgotPasswordComponent } from '../contractor-forgot-password/contractor-forgot-password.component';
+import { ContractorResetPasswordComponent } from '../contractor-reset-password/contractor-reset-password.component';
+
 const publicRoutes: Routes = [
 {
     "path": "contractorSignup",
@@ -119,6 +121,9 @@ const publicRoutes: Routes = [
 },{
     "path" : "cobtractor_forgot_password",
     "component" : ContractorForgotPasswordComponent
+},{
+    "path" : "cobtractor_reset_password",
+    "component" : ContractorResetPasswordComponent
 },{
     "path": "",
     "redirectTo" : "home",

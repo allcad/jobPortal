@@ -39,6 +39,8 @@ import { SiteMaintenanceComponent } from '../site-maintenance/site-maintenance.c
 import { NotFoundPageComponent } from '../not-found-page/not-found-page.component';
 import { RecruiterLostPasswordComponent } from '../recruiter-lost-password/recruiter-lost-password.component';
 import { ContractorForgotPasswordComponent } from '../contractor-forgot-password/contractor-forgot-password.component';
+import { ContractorResetPasswordComponent } from '../contractor-reset-password/contractor-reset-password.component';
+
 
 @NgModule({
 	declarations: [
@@ -46,9 +48,7 @@ import { ContractorForgotPasswordComponent } from '../contractor-forgot-password
 		SearchComponent,
 		UploadCvComponent,
 		FindContractorComponent,
-		//AboutContractorComponent,
 		TermUseComponent,
-		// FindContractHubComponent,
 		ContractorSignUpComponent,
 		LoginComponent,
 		RecruiterSignUpComponent,
@@ -64,8 +64,8 @@ import { ContractorForgotPasswordComponent } from '../contractor-forgot-password
 		SiteMaintenanceComponent,
 		NotFoundPageComponent,
 		RecruiterLostPasswordComponent,
-		ContractorForgotPasswordComponent
-
+		ContractorForgotPasswordComponent,
+		ContractorResetPasswordComponent
 	],
 	imports: [
 		PublicRoutingModule,
@@ -74,7 +74,6 @@ import { ContractorForgotPasswordComponent } from '../contractor-forgot-password
 		TooltipModule,
 		HttpModule,
 		CommonModule,
-		//IonRangeSliderModule,
 		SharedModule
 	],
 	providers: []

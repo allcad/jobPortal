@@ -3,7 +3,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { CommonRequestService } from '../common-request.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
-
+declare var google: any;
 
 @Component({
   selector: 'app-contractor-profile',
@@ -67,11 +67,28 @@ export class ContractorProfileComponent implements OnInit {
   data;
   @ViewChild('cropper') cropperEle;
   fileName;
+  contractor_daily_hourly_value_relocatable = "daily";
+  rate_min_commutable;
+  rate_min_hr;
+  contractor_rate_min_relocatable;
+  contractor_rate_min_relocatable_hr;
+  rate_max_commutable;
+  rate_max_hr;
+  contractor_rate_max_relocatable;
+  contractor_rate_max_relocatable_hr;
+  commutabledailyHourlyValue;
+  polygon1;
+  polygon2;
+  map;
+  drawingManager1: any;
+  drawingManager2: any;
+  commutablePolygun = [];
+  relocateablePolygun = [];
+  commutablePolygonInst;
+  relocatablePolygonInst;
   constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
-    // console.log("cropper", this.cropperEle);
-    
     this.getKeySkillData();
     this.getIndustrySector();
     this.getSecurityClearenceData();
@@ -85,18 +102,135 @@ export class ContractorProfileComponent implements OnInit {
     this.cropperSettings.canvasWidth = 330;
     this.cropperSettings.canvasHeight = 300;
     this.cropperSettings.noFileInput = true;
-    
     this.data = {};
+
   }
 
 
   drawPloygon() {
-    this.polygonPath = [
-      { lng: this.lng + 0.3, lat: this.lat + 0.3 },
-      { lng: this.lng + 0.5, lat: this.lat + 0.3 },
-      { lng: this.lng + 0.9, lat: this.lat + 0.9 },
-    ]
+    if (this.commutable == 'commutable') {
+
+      if (this.commutablePolygun && this.commutablePolygun.length == 0) {
+        this.drawingManager1 = new google.maps.drawing.DrawingManager({
+          drawingMode: google.maps.drawing.OverlayType.POLYGON,
+          drawingControl: true,
+          polygonOptions: this.polygon1,
+          drawingControlOptions: {
+            position: google.maps.ControlPosition.TOP_CENTER,
+            drawingModes: []
+
+          }
+
+        });
+
+        this.drawingManager1.setMap(this.map);
+        let that = this;
+        google.maps.event.addListener(this.drawingManager1, 'polygoncomplete', function(polygon) {
+          for (var i = 0; i < polygon.getPath().getLength(); i++) {
+            that.commutablePolygun.push({ 'lat': Number(polygon.getPath().getAt(i).toUrlValue(6).split(',')[0]), 'lng': Number(polygon.getPath().getAt(i).toUrlValue(6).split(',')[1]) });
+          }
+          console.log(that.commutablePolygun);
+          that.commutablePolygonInst = polygon;
+          that.drawingManager1.setMap(null);
+        });
+      } else {
+        alert("you can draw only one map")
+      }
+    } else {
+      if (this.relocateablePolygun && this.relocateablePolygun.length == 0) {
+        this.drawingManager2 = new google.maps.drawing.DrawingManager({
+          drawingMode: google.maps.drawing.OverlayType.POLYGON,
+          drawingControl: true,
+          polygonOptions: this.polygon2,
+          drawingControlOptions: {
+            position: google.maps.ControlPosition.TOP_CENTER,
+            drawingModes: ['polygon']
+
+          }
+        });
+        this.drawingManager2.setMap(this.map);
+        let that = this;
+        google.maps.event.addListener(this.drawingManager2, 'polygoncomplete', function(polygon) {
+          for (var i = 0; i < polygon.getPath().getLength(); i++) {
+            that.relocateablePolygun.push({ 'lat': Number(polygon.getPath().getAt(i).toUrlValue(6).split(',')[0]), 'lng': Number(polygon.getPath().getAt(i).toUrlValue(6).split(',')[1]) });
+          }
+
+          console.log(that.relocateablePolygun);
+          that.relocatablePolygonInst = polygon;
+          that.drawingManager2.setMap(null);
+        });
+      } else {
+        alert("you can draw only one map")
+      }
+
+
+    }
   }
+
+
+  editPolygun() {
+    if (this.commutable == 'commutable' && this.commutablePolygonInst) {
+      this.commutablePolygonInst.setEditable(true);
+      let that = this;
+      google.maps.event.addListener(this.commutablePolygonInst.getPath(), 'insert_at', function(index, obj) {
+        that.commutablePolygun = [];
+        for (var i = 0; i < that.commutablePolygonInst.getPath().getLength(); i++) {
+          that.commutablePolygun.push({ 'lat': Number(that.commutablePolygonInst.getPath().getAt(i).toUrlValue(6).split(',')[0]), 'lng': Number(that.commutablePolygonInst.getPath().getAt(i).toUrlValue(6).split(',')[1]) });
+        }
+
+      });
+      google.maps.event.addListener(this.commutablePolygonInst.getPath(), 'set_at', function(index, obj) {
+        that.commutablePolygun = [];
+        for (var i = 0; i < that.commutablePolygonInst.getPath().getLength(); i++) {
+          that.commutablePolygun.push({ 'lat': Number(that.commutablePolygonInst.getPath().getAt(i).toUrlValue(6).split(',')[0]), 'lng': Number(that.commutablePolygonInst.getPath().getAt(i).toUrlValue(6).split(',')[1]) });
+        }
+
+      });
+    } else if (this.commutable == 'relocatable' && this.relocatablePolygonInst) {
+      this.relocatablePolygonInst.setEditable(true);
+      let that = this;
+      google.maps.event.addListener(this.relocatablePolygonInst.getPath(), 'insert_at', function(index, obj) {
+        that.relocateablePolygun = [];
+        for (var i = 0; i < that.relocatablePolygonInst.getPath().getLength(); i++) {
+          that.relocateablePolygun.push({ 'lat': Number(that.relocatablePolygonInst.getPath().getAt(i).toUrlValue(6).split(',')[0]), 'lng': Number(that.relocatablePolygonInst.getPath().getAt(i).toUrlValue(6).split(',')[1]) });
+        }
+
+      });
+      google.maps.event.addListener(this.relocatablePolygonInst.getPath(), 'set_at', function(index, obj) {
+        that.relocateablePolygun = [];
+        for (var i = 0; i < that.relocatablePolygonInst.getPath().getLength(); i++) {
+          that.relocateablePolygun.push({ 'lat': Number(that.relocatablePolygonInst.getPath().getAt(i).toUrlValue(6).split(',')[0]), 'lng': Number(that.relocatablePolygonInst.getPath().getAt(i).toUrlValue(6).split(',')[1]) });
+        }
+
+      });
+    }
+  }
+
+  drawExistingMap() {
+    if(this.commutablePolygun && this.commutablePolygun.length){
+         this.commutablePolygonInst = new google.maps.Polygon({
+          paths: this.commutablePolygun,
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#ff0066",
+          strokeColor: "#ff6bcd",
+          fillOpacity: 0.35
+        });
+        this.commutablePolygonInst.setMap(this.map);
+    } 
+
+    if(this.relocateablePolygun && this.relocateablePolygun.length){
+      this.relocatablePolygonInst = new google.maps.Polygon({
+          paths: this.relocateablePolygun,
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#00ccff",
+          strokeColor: "#09e4f9",
+          fillOpacity: 0.35
+        });
+    }
+  }
+
 
   contractorImageFileChangeEvent(fileInput: any) {
     var reader = new FileReader();
@@ -112,11 +246,6 @@ export class ContractorProfileComponent implements OnInit {
     this.imageFile = fileInput.target.files[0];
     this.fileName = this.imageFile.name;
     reader.readAsDataURL(this.imageFile);
-
-
-
-
-
   }
   contractorCoverLetterFileChangeEvent(fileInput: any) {
     this.coverLetterFile = fileInput.target.files[0];
@@ -128,15 +257,6 @@ export class ContractorProfileComponent implements OnInit {
 
     this.uploadedCvArray.push(this.CVFile);
   }
-
-  // uploadFile(){
-  //   this.inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/hub/getfilebyte";
-  //      this._commonRequestService.postData(this.inputUrl, this.fd).subscribe(
-  //       data => {
-  //         console.log(data);
-  //       }
-  //   ); 
-  // }
 
   saveContractorProfile(form: NgForm) {
     if (form.valid) {
@@ -159,12 +279,25 @@ export class ContractorProfileComponent implements OnInit {
       this.fd.append('behanceWebAddress', this.behanceWebAdd);
 
       this.fd.append('yourPreferredJobTitle', this.preferredJobTitleValue);
+
       this.fd.append('commutable', this.commutable);
-      this.fd.append('rate_min', this.rate1);
 
-      this.fd.append('rate_max', this.rate2);
 
-      this.fd.append('dailyHourlyValue', this.dailyHourlyValue);
+      this.fd.append('rate_min', this.rate_min_commutable || "");
+      this.fd.append('rate_max', this.rate_max_commutable || "");
+
+      this.fd.append('contractor_rate_min_relocatable', this.contractor_rate_min_relocatable || "");
+      this.fd.append('contractor_rate_max_relocatable', this.contractor_rate_max_relocatable || "");
+      this.fd.append('contractor_rate_min_hour', this.rate_min_hr || "");
+      this.fd.append('contractor_rate_max_hr', this.rate_max_hr || "");
+      this.fd.append('contractor_rate_min_relocatable_hr', this.contractor_rate_min_relocatable_hr || "");
+      this.fd.append('contractor_rate_max_relocatable_hr', this.contractor_rate_max_relocatable_hr || "");
+
+
+
+      this.fd.append('dailyHourlyValue', this.commutabledailyHourlyValue);
+
+      this.fd.append('contractor_daily_hourly_value_relocatable', this.contractor_daily_hourly_value_relocatable);
 
       this.fd.append('currentJobTitle', this.currentJobTitle);
 
@@ -188,7 +321,15 @@ export class ContractorProfileComponent implements OnInit {
       //this.fd.append('uploadCoverLetter',this.coverLetterFile);
       this.fd.append('longitude', this.lat);
       this.fd.append('latitude', this.lng);
+
+      this.fd.append('commutablePolygon', JSON.stringify(this.commutablePolygun));
+      this.fd.append('relocatablePolygon', JSON.stringify(this.relocateablePolygun))
+
       this.inputUrl = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/profile/submit";
+
+      console.log(this.fd);
+
+
       this._commonRequestService.postData(this.inputUrl, this.fd).subscribe(
         data => {
           this.responseData = data;
@@ -200,7 +341,7 @@ export class ContractorProfileComponent implements OnInit {
             this.uploadedCoverLetter = [];
             window.scroll(0, 0);
             this.successMsg = 'Profile updated';
-            this._router.navigate(['../viewProfile'], {relativeTo: this._routes});
+            this._router.navigate(['../viewProfile'], { relativeTo: this._routes });
           }
           else {
             this.succesMessageFlag = false;
@@ -280,8 +421,8 @@ export class ContractorProfileComponent implements OnInit {
       if (this.selectedSkill.split(',')[0] && this.selectedSkill.split(',')[0].trim() && this.selectedSkillArray.indexOf(this.selectedSkill.split(',')[0]) == -1) {
         this.selectedSkillArray.push(this.selectedSkill.split(',')[0].trim())
       }
-        this.selectedSkill = "";  
-             //this.selectedSkillArray = this.skill.split(',')[0];
+      this.selectedSkill = "";
+      //this.selectedSkillArray = this.skill.split(',')[0];
       // for(let i=this.selectedSkillArray.length-1; i>=0; i--){
       //   if(this.selectedSkillArray[i] === ''){
       //   this.selectedSkillArray.splice(i, 1);
@@ -326,12 +467,47 @@ export class ContractorProfileComponent implements OnInit {
           console.log("profiledtaa", data.data)
           this.profileData = data.data;
           this.setProfileData();
+          this.initializeMap();
+         // this.drawExistingMap()
           this._commonRequestService.setDataWithoutObserval(this.profileData, "contractorProfileData")
         }
       );
     }
   }
 
+
+
+
+
+  initializeMap() {
+    this.polygon1 = {
+      draggable: false,
+      editable: false,
+      fillColor: "#ff0066",
+      strokeColor: "#ff6bcd"
+    };
+
+    this.polygon2 = {
+      draggable: false,
+      editable: false,
+      fillColor: "#00ccff",
+      strokeColor: "#09e4f9"
+    };
+
+    this.map = new google.maps.Map(document.getElementById('profileMap'), {
+      center: { lat: this.lat, lng: this.lng },
+      zoom: 10
+    });
+
+    var marker = new google.maps.Marker({
+      position: { lat: this.lat, lng: this.lng }
+    });
+    marker.setMap(this.map);
+    setTimeout(()=>{
+      this.drawExistingMap();
+    },1000)
+    
+  }
 
 
   setProfileData() {
@@ -350,10 +526,26 @@ export class ContractorProfileComponent implements OnInit {
     this.linkedinWebAdd = this.profileData.linkedinWebAddress && this.profileData.linkedinWebAddress !== 'null' ? this.profileData.linkedinWebAddress : '';
     this.behanceWebAdd = this.profileData.behanceWebAddress && this.profileData.behanceWebAddress !== 'null' ? this.profileData.behanceWebAddress : '';
     this.preferredJobTitleValue = this.profileData.yourPreferredJobTitle && this.profileData.yourPreferredJobTitle !== 'null' ? this.profileData.yourPreferredJobTitle : '';
-    this.commutable = this.profileData.commutable && (this.profileData.commutable == 'commutable' || this.profileData.commutable == 'relocatable') ? this.profileData.commutable : 'commutable';
+    //this.commutable = this.profileData.commutable && (this.profileData.commutable == 'commutable' || this.profileData.commutable == 'relocatable') ? this.profileData.commutable : 'commutable';
+    this.commutable = "commutable";
     this.rate1 = this.profileData.rate_min;
     this.rate2 = this.profileData.rate_max;
-    this.dailyHourlyValue = this.profileData.dailyHourlyValue ? this.profileData.dailyHourlyValue : 'daily';
+    this.dailyHourlyValue = 'daily';
+    this.commutabledailyHourlyValue = "daily";
+    this.rate_min_commutable = this.rate1;
+    this.rate_max_commutable = this.rate2;
+    this.rate_min_hr = this.profileData.contractor_rate_min_hour;
+    this.rate_max_hr = this.profileData.contractor_rate_max_hr;
+
+    this.commutablePolygun = this.profileData.commutablePolygon ? this.profileData.commutablePolygon : [],
+    this.relocateablePolygun = this.profileData.relocateablePolygon ? this.profileData.relocateablePolygon : [],
+
+    this.contractor_rate_min_relocatable = this.profileData.contractor_rate_min_relocatable;
+    this.contractor_rate_min_relocatable_hr = this.profileData.contractor_rate_min_relocatable_hr;
+    this.contractor_rate_max_relocatable = this.profileData.contractor_rate_max_relocatable;
+    this.contractor_rate_max_relocatable_hr = this.profileData.contractor_rate_max_relocatable_hr;
+
+    //this.dailyHourlyValue = this.profileData.dailyHourlyValue ? this.profileData.dailyHourlyValue : 'daily';
     this.currentJobTitle = this.profileData.currentJobTitle && this.profileData.currentJobTitle !== 'null' ? this.profileData.currentJobTitle : '';
     this.summary = this.profileData.summary && this.profileData.summary !== 'null' ? this.profileData.summary : '';
     this.certification = this.profileData.certification && this.profileData.certification !== 'null' ? this.profileData.certification : '';
@@ -386,7 +578,7 @@ export class ContractorProfileComponent implements OnInit {
     let input = {
       "email": "john@gmail.com",
       "loginToken": "sdkndjhaKHK68768khkhYjU",
-      "attachment_id" : array[index].attachment_relation
+      "attachment_id": array[index].attachment_relation
     }
     this._commonRequestService.postData(dataUrl, input).subscribe(
       data => {
@@ -471,7 +663,7 @@ export class ContractorProfileComponent implements OnInit {
 
         }
       );
-    } else{
+    } else {
       this.preferredJobTitleFlag = true;
     }
 
@@ -485,38 +677,91 @@ export class ContractorProfileComponent implements OnInit {
     this.coverLetterList[index] = { 'id': index + 1 }
   }
 
-  applyCrop(){
+  applyCrop() {
     this.profileUrl = this.data.image;
     let croppedImage = this.data.image;
     document.querySelector('.profile_image').classList.remove('toggle_block');
     this.imageFile;
-    let block =  croppedImage.split(";");
+    let block = croppedImage.split(";");
     let contentType = block[0].split(":")[1];
     let realData = block[1].split(",")[1];
     let blob = this.b64toBlob(realData, contentType, 256);
-    this.imageFile = new File ([blob], this.fileName);
+    this.imageFile = new File([blob], this.fileName);
   }
-  
+
   b64toBlob(b64Data, contentType, sliceSize) {
-        contentType = contentType || '';
-        sliceSize = sliceSize || 512;
+    contentType = contentType || '';
+    sliceSize = sliceSize || 512;
 
-        var byteCharacters = atob(b64Data);
-        var byteArrays = [];
+    var byteCharacters = atob(b64Data);
+    var byteArrays = [];
 
-        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-            var slice = byteCharacters.slice(offset, offset + sliceSize);
+    for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      var slice = byteCharacters.slice(offset, offset + sliceSize);
 
-            var byteNumbers = new Array(slice.length);
-            for (var i = 0; i < slice.length; i++) {
-                byteNumbers[i] = slice.charCodeAt(i);
-            }
+      var byteNumbers = new Array(slice.length);
+      for (var i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
 
-            var byteArray = new Uint8Array(byteNumbers);
+      var byteArray = new Uint8Array(byteNumbers);
 
-            byteArrays.push(byteArray);
-        }
-       var blob = new Blob(byteArrays, {type: contentType});
-      return blob;
-}
+      byteArrays.push(byteArray);
+    }
+    var blob = new Blob(byteArrays, { type: contentType });
+    return blob;
+  }
+
+
+  minRateKeyup() {
+    if (this.commutable == 'commutable' && this.dailyHourlyValue == 'daily') {
+      this.rate_min_commutable = this.rate1;
+    } else if (this.commutable == 'commutable' && this.dailyHourlyValue == 'hourly') {
+      this.rate_min_hr = this.rate1;
+    } else if (this.commutable == 'relocatable' && this.dailyHourlyValue == 'daily') {
+      this.contractor_rate_min_relocatable = this.rate1;
+    } else {
+      this.contractor_rate_min_relocatable_hr = this.rate1;
+    }
+  }
+
+  maxRateKeyup() {
+    if (this.commutable == 'commutable' && this.dailyHourlyValue == 'daily') {
+      this.rate_max_commutable = this.rate2;
+    } else if (this.commutable == 'commutable' && this.dailyHourlyValue == 'hourly') {
+      this.rate_max_hr = this.rate2;
+    } else if (this.commutable == 'relocatable' && this.dailyHourlyValue == 'daily') {
+      this.contractor_rate_max_relocatable = this.rate2;
+    } else {
+      this.contractor_rate_max_relocatable_hr = this.rate2;
+    }
+  }
+
+
+  changeRateType() {
+    if (this.dailyHourlyValue == 'daily') {
+      this.rate1 = this.commutable == 'commutable' ? this.profileData.rate_min : this.profileData.contractor_rate_min_relocatable;
+      this.rate2 = this.commutable == 'commutable' ? this.profileData.rate_max : this.profileData.contractor_rate_max_relocatable;
+    } else {
+      this.rate1 = this.commutable == 'commutable' ? this.profileData.contractor_rate_min_hour : this.profileData.contractor_rate_min_relocatable_hr;
+      this.rate2 = this.commutable == 'commutable' ? this.profileData.contractor_rate_max_hr : this.profileData.contractor_rate_max_relocatable_hr;
+    }
+
+    if (this.commutable == 'commutable') {
+      this.commutabledailyHourlyValue = this.dailyHourlyValue
+    } else {
+      this.contractor_daily_hourly_value_relocatable = this.dailyHourlyValue;
+    }
+  }
+
+
+  changeRelocatable() {
+    if (this.commutable == 'commutable') {
+      this.rate1 = this.dailyHourlyValue == 'daily' ? this.profileData.rate_min : this.profileData.contractor_rate_min_hour;
+      this.rate2 = this.dailyHourlyValue == 'daily' ? this.profileData.rate_max : this.profileData.contractor_rate_max_hr;
+    } else {
+      this.rate1 = this.dailyHourlyValue == 'daily' ? this.profileData.contractor_rate_min_relocatable : this.profileData.contractor_rate_min_relocatable_hr;
+      this.rate2 = this.dailyHourlyValue == 'daily' ? this.profileData.contractor_rate_max_relocatable : this.profileData.contractor_rate_max_relocatable_hr;
+    }
+  }
 }
