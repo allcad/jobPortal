@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { CommonRequestService } from '../common-request.service';
 import { CommonDataSharedService } from '../commonDataSharedService';
 import { } from 'googlemaps';
-import { MapsAPILoader } from '@agm/core';
+// import { MapsAPILoader } from '@agm/core';
 
 @Component({
   selector: 'app-view-contractor-profile',
@@ -26,9 +26,9 @@ export class ViewContractorProfileComponent implements OnInit {
   public longitude: number;
   public zoom: number;
   qualification = [];
+  map;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService,
-    private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone) { }
 
   ngOnInit() {
@@ -63,6 +63,7 @@ export class ViewContractorProfileComponent implements OnInit {
            this.longitude = parseFloat(this.contractorData.longitude);
            this.zoom = 3;
            console.log("this.latitude", this.latitude, "this.longitude", this.longitude);
+           
            //this.setCurrentPosition(this.latitude, this.longitude)
            //this.currentContractorLastName = localStorage.getItem('currentContractorData') ? JSON.parse(localStorage.getItem('currentContractorData'))['currentContractorLastName'] : null;  	
            
@@ -75,6 +76,8 @@ export class ViewContractorProfileComponent implements OnInit {
         }
     );
   }
+
+  
 
   // private setCurrentPosition(latitude, longitude) {
   //   if ("geolocation" in navigator) {

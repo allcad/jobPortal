@@ -207,7 +207,7 @@ export class ContractorProfileComponent implements OnInit {
   }
 
   drawExistingMap() {
-    if(this.commutablePolygun && this.commutablePolygun.length){
+    if(this.commutablePolygun && this.commutablePolygun.length > 0){
          this.commutablePolygonInst = new google.maps.Polygon({
           paths: this.commutablePolygun,
           strokeOpacity: 0.8,
@@ -219,7 +219,7 @@ export class ContractorProfileComponent implements OnInit {
         this.commutablePolygonInst.setMap(this.map);
     } 
 
-    if(this.relocateablePolygun && this.relocateablePolygun.length){
+    if(this.relocateablePolygun && this.relocateablePolygun.length > 0){
       this.relocatablePolygonInst = new google.maps.Polygon({
           paths: this.relocateablePolygun,
           strokeOpacity: 0.8,
@@ -467,7 +467,7 @@ export class ContractorProfileComponent implements OnInit {
           console.log("profiledtaa", data.data)
           this.profileData = data.data;
           this.setProfileData();
-          this.initializeMap();
+          
          // this.drawExistingMap()
           this._commonRequestService.setDataWithoutObserval(this.profileData, "contractorProfileData")
         }
@@ -502,10 +502,9 @@ export class ContractorProfileComponent implements OnInit {
     var marker = new google.maps.Marker({
       position: { lat: this.lat, lng: this.lng }
     });
-    marker.setMap(this.map);
-    setTimeout(()=>{
-      this.drawExistingMap();
-    },1000)
+    marker.setMap(this.map);   
+    this.drawExistingMap();
+   
     
   }
 
@@ -554,6 +553,8 @@ export class ContractorProfileComponent implements OnInit {
     this.coverLetterList = (this.profileData.uploadCoverLetter && this.profileData.uploadCoverLetter.length > 0) ? this.profileData.uploadCoverLetter : this.coverLetterList;
     this.industrySector = this.profileData.industrySector;
     this.selectedSkillArray = this.profileData['skill&Experience'].split(',');
+    this.initializeMap();
+   
   }
 
 
