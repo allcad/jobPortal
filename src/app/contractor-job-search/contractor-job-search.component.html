@@ -18,12 +18,11 @@
             </div>
           </div>
           <div class="signup_form_section">
-
-            <!-- <div class="errorbox" *ngIf="(searchForm && searchForm.form && searchForm.form.controls && searchForm.form.invalid && submitClick)"><b>The following error(s) occured:</b>
+            <div class="errorbox" *ngIf="(formNotValid && submitClick)"><b>The following error(s) occured:</b>
               <br>
-              <li *ngIf="searchForm.form.controls.jobTitle?.hasError('required')">Please enter job title</li>
+              <li>Min rate always should be lesser than Max rate</li>
               
-            </div> -->
+            </div>
 
             <form #searchForm="ngForm">
               <div class="job_search_keywords">
@@ -96,7 +95,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon upto_border_none">From</div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Rate Min (£)" name="minRate" [(ngModel)]="minRate">
+                      <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Rate Min (£)" name="minRate" [(ngModel)]="minRate">
                     </div>
                   </div>
                 </div>
@@ -104,7 +103,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon upto_border_none">To</div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Rate Max (£)" name="maxRate" [(ngModel)]="maxRate">
+                      <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Rate Max (£)" name="maxRate" [(ngModel)]="maxRate">
                     </div>
                   </div>
                 </div>

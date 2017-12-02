@@ -25,6 +25,9 @@ export class ContractorSearchResultComponent implements OnInit {
   selectedCover;
   selectedCv;
   jobDetail;
+  currentPage = 1;
+  totalPage;
+  loading;
   ngOnInit() {
   	console.log(JSON.parse(localStorage.getItem("jobSearch")));
   	this.searchJson = JSON.parse(localStorage.getItem("jobSearch"));
@@ -53,20 +56,27 @@ export class ContractorSearchResultComponent implements OnInit {
 
 
 
-  getSearchData(){
+  getSearchData(flag=false){
     this.searchJson.sort = this.sort;
+    this.searchJson.page = flag ? this.currentPage : 1;
+    this.searchJson.limit = 5;
+    this.loading = true;
   	let url ="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/search";
   	this._commonRequestService.postData(url,this.searchJson)
   		.subscribe(data=>{
+        this.loading = false;
   			if(data.status == "TRUE"){
-  				this.searchResult = data.data;
-          // this.filteredData = this.searchResult.filter(item=>{
-          //   return item
-          // });
+          if(flag){
+  				  this.searchResult = this.searchResult.concat(data.data); 
+          } else{
+            this.searchResult = data.data; 
+          }
+          this.totalPage = data.TotalPage;
   				this.totalRecords = data.recordsTotal;
   			} else{
   				if(data.error == "No Record Found"){
   					this.totalRecords = 0;
+            this.totalPage = 0;
             this.searchResult = [];
   				}
   			}

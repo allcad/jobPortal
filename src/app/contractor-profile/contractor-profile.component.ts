@@ -4,7 +4,7 @@ import { CommonRequestService } from '../common-request.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
 declare var google: any;
-
+declare var $: any;
 @Component({
   selector: 'app-contractor-profile',
   templateUrl: './contractor-profile.component.html',
@@ -633,7 +633,7 @@ export class ContractorProfileComponent implements OnInit {
     this._commonRequestService.postData(dataUrl, input).subscribe(
       data => {
         if (data.status === "TRUE") {
-          this._router.navigate(['../../public/home'], { 'relativeTo': this._routes });
+          this._router.navigate(['../../public/contractorSignup'], { 'relativeTo': this._routes });
         }
         else {
           this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;;
@@ -771,5 +771,9 @@ export class ContractorProfileComponent implements OnInit {
       this.rate1 = this.dailyHourlyValue == 'daily' ? this.profileData.contractor_rate_min_relocatable : this.profileData.contractor_rate_min_relocatable_hr;
       this.rate2 = this.dailyHourlyValue == 'daily' ? this.profileData.contractor_rate_max_relocatable : this.profileData.contractor_rate_max_relocatable_hr;
     }
+  }
+
+  closeAccountClick(){
+    $('#myModal').modal();
   }
 }

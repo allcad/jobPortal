@@ -18,7 +18,7 @@
           <div *ngIf="appliedJobList?.length > 0" class="pull-right application_sort_by"> <a href="javascript:void(0)" class="dropdown-toggle btn-primary font_capitaliz hover_white_pluse" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <i class="fa fa-sort-desc  plus_blue" aria-hidden="true"></i>
               </a>
             <ul class="dropdown-menu">
-              <li *ngFor="let option of sortOptions" (click)="sortBy = option.id;getAppliedjobList()">{{option.short_name}}</li>
+              <li *ngFor="let option of sortOptions" (click)="currentPage=1;sortBy = option.id;getAppliedjobList()">{{option.short_name}}</li>
             </ul>
           </div>
         </div>
@@ -29,14 +29,11 @@
 </section>
 <section>
   <div class="container">
-
-     <div class="errorbox" *ngIf="appliedJobList?.length==0">
-              <br>
-              <li>There are no record</li>
-              
-            </div>
-
-    <div class="row">
+    <div class="errorbox" *ngIf="appliedJobList?.length==0 && !loading">
+      <br>
+      <li>There are no record</li>
+    </div>
+    <div class="row" *ngIf="!loading">
       <div class=" col-md-33 col-sm-33" *ngFor="let job of appliedJobList">
         <div class="my_applications_box" (click)="viewCompanyProfile()">
           <div class="header_top">
@@ -126,6 +123,14 @@
           </div>
         </div>
       </div>-->
+    </div>
+    <div class="row" *ngIf="totalPage && (totalPage > currentPage)">
+      <div class="col-sm-100">
+        <div class="show_more_application" (click)="currentPage=currentPage+1; getAppliedjobList();"> <a href="javascript:void(0)" class="btn-primary hover_white_pluse"><span>SEE MORE JOBS</span> <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
+      </div>
+    </div>
+    <div *ngIf="loading" class="row">
+      <img src="./assets/images/bx_loader.gif">
     </div>
     <app-ad-space></app-ad-space>
     <!-- <div class="row">

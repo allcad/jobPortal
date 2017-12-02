@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ContractorServiceListingComponent implements OnInit {
 	categoryData = [];
+  loading = true;
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes:ActivatedRoute ) { }
 
   ngOnInit() {
@@ -20,6 +21,7 @@ export class ContractorServiceListingComponent implements OnInit {
   }
 
    getContarctorHubCategory(){
+    this.loading = true;
   	var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/hub/category";
   	var inputJson = {
   		"email" : "test@gmail.com",
@@ -27,8 +29,8 @@ export class ContractorServiceListingComponent implements OnInit {
   	}
        this._commonRequestService.postData(url, inputJson).subscribe(
         data => {
-          console.log("categoryData", data.data)
           this.categoryData = data.data; 
+          this.loading = false;
         }
     );
   }

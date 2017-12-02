@@ -6,9 +6,9 @@
           <div class="contractor_signup">
             <h2 class="font_capitalizs">Search <span>Results</span></h2>
             <ul class="breadcomb">
-              <li><a href="javascript:void(0)">Home</a></li>
+              <li><a href="javascript:void(0)" routerLink="../home">Home</a></li>
               <li class="right_arrow">&gt;</li>
-              <li><a href="javascript:void(0)">ADVANCED SEARCH </a></li>
+              <li><a href="javascript:void(0)" routerLink="../jobSearch">ADVANCED SEARCH </a></li>
               <li class="right_arrow">&gt;</li>
               <li class="active">RESULTS</li>
             </ul>
@@ -16,7 +16,7 @@
           </div>
         </div>
       </div>
-      <div class="serch_results_rate" *ngIf="totalRecords>0">
+      <div class="serch_results_rate" >
         <div class="row">
           <div class="col-sm-70">
             <ion-range-slider type="double" prefix="£" class="width_100" (onFinish)="getRangeSliderValue($event)" #sliderElement min="0" value="100" max="2000" step="5" from="0" to="2000">
@@ -24,7 +24,7 @@
           </div>
           <div class="col-sm-30">
             <div class="pull-right application_sort_by position_relative padding_left_right_15"> <a href="javascript:void(0)" class="dropdown-toggle btn-primary font_capitaliz width_180px hover_white_pluse" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Search Option <i class="fa fa-angle-down plus_blue font_size_margin" aria-hidden="true"></i></a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu" style="cursor: pointer;">
                 <li (click)="newSearch()">New Search</li>
                 <li (click)="refineSearch()">Refine Search</li>
                 <li *ngIf="!isPublic">Save Search</li>
@@ -50,6 +50,9 @@
 </section>
 <section>
   <div class="container">
+    <div *ngIf="loading" class="row">
+     <img src="./assets/images/bx_loader.gif">
+    </div>
     <div class="row">
       <div class="errorbox" *ngIf="totalRecords==0">
         <br>
@@ -69,7 +72,7 @@
             <p><span>Location:</span>{{item.cityTown}}</p>
             <p><span>Rate:</span> £{{item.prefereedRate.minRate}} - £{{item.prefereedRate.maxRate}} p/{{item.prefereedRate.dailyHourlyRate == 'daily' ? 'd' : 'h'}}</p>
             <p><span>Start Date:</span> {{item.startDate | date }}</p>
-            <p><span>Duration:</span> {{item.duration}}</p>
+            <p><span>Duration:</span> {{item.duration}} Days</p>
             <p class="full_contant" innerHTML="{{item.jobDetail | slice : 0 : 200}}.."></p>
           </div>
           <div class="footer_box">
@@ -90,9 +93,9 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row" *ngIf="totalPage && (totalPage > currentPage)">
         <div class="col-sm-100">
-          <div class="show_more_application"> <a href="javascript:void(0)" class="btn-primary hover_white_pluse"><span>SEE MORE ARTICLES</span> <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
+          <div class="show_more_application" (click)="currentPage=currentPage+1; getSearchData(true);"> <a href="javascript:void(0)" class="btn-primary hover_white_pluse"><span>SEE MORE APPLICATION</span> <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
         </div>
       </div>
       <!--  <div class="col-md-34 col-sm-34">
@@ -156,7 +159,8 @@
         </div>
       </div> -->
     </div>
-    <div class="row">
+    <app-ad-space></app-ad-space>
+   <!--  <div class="row">
       <div class="col-sm-33">
         <div class="ad_space">
           <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
@@ -172,7 +176,7 @@
           <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
   <div class="contractrecruit_banner">
     <div class="container">

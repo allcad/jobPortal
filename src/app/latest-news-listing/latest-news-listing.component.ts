@@ -12,12 +12,13 @@ export class LatestNewsListingComponent implements OnInit {
 
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
   newsList;
+  loading = true;
   ngOnInit() {
   	this.getLatestNews()
   }
 
   getLatestNews(){
-  	
+  	this.loading = true;
     var inputJson = {
       page :1,
       limit: 2
@@ -27,6 +28,7 @@ export class LatestNewsListingComponent implements OnInit {
         data => {
           this.newsList = data.data;
           console.log("newsList", this.newsList);
+          this.loading = false;
         }
     );
   }

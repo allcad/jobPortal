@@ -28,6 +28,7 @@ export class ContractorJobSearchComponent implements OnInit {
   displayTown;
   displayCountry;
   displayLocationName;
+  formNotValid = false;
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) { }
 
   ngOnInit() {
@@ -35,7 +36,8 @@ export class ContractorJobSearchComponent implements OnInit {
     this.getIndustrySector();
     this.gettimeSlotList();
     if (this._router.url.split('/')[2] == "lastSearch") {
-      this.lastSearch();
+      //this.lastSearch();
+      this.setSearchData(JSON.parse(localStorage.getItem('jobSearch')))
     }
     if (this._router.url.split('/')[1] == "public") {
       this.isPublic = true;
@@ -43,8 +45,8 @@ export class ContractorJobSearchComponent implements OnInit {
     this.loadLocationAutoData();
   }
 
-  ngAfterViewInit(){
-   window.scroll(0,0);
+  ngAfterViewInit() {
+    window.scroll(0, 0);
   }
 
   gettimeSlotList() {
@@ -70,13 +72,14 @@ export class ContractorJobSearchComponent implements OnInit {
 
   searchJob(form) {
     this.submitClick = true;
-    if (form.valid) {
+    this.formNotValid = false;
+    if (this.checkForMinAndMaxValueValidation()) {
       var inputJson = {
         contractor_search_by_job_title: this.jobTitle ? this.jobTitle : "",
         contractor_search_by_keywords: this.keywords ? this.keywords : "",
         contractor_search_by_exclude_words: this.excluding ? this.excluding : "",
         contractor_search_by_miles: this.distance && this.distance != '0' ? this.distance : "",
-        contractor_search_by_location:  (this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value) ? (this.displayLocationName || "") : "",
+        contractor_search_by_location: (this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value) ? (this.displayLocationName || "") : "",
         contractor_search_by_rate_min: this.minRate ? this.minRate : "",
         contractor_search_by_rate_max: this.maxRate ? this.maxRate : "",
         contractor_search_by_rate_type: this.rateType ? this.rateType : "",
@@ -101,6 +104,7 @@ export class ContractorJobSearchComponent implements OnInit {
       this._router.navigate(['../searchResult'], { 'relativeTo': this._routes });
 
     } else {
+      this.formNotValid = true;
       window.scroll(0, 0);
     }
 
@@ -114,6 +118,15 @@ export class ContractorJobSearchComponent implements OnInit {
     //  );
   }
 
+  checkForMinAndMaxValueValidation() {
+    if (this.minRate && this.maxRate) {
+      if (this.minRate > this.maxRate) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   resetSearch() {
     this.jobTitle = "";
     this.keywords = "";
@@ -124,12 +137,17 @@ export class ContractorJobSearchComponent implements OnInit {
     this.maxRate = "";
     this.rateType = "daily"
     this.jobPreferenceNumber = "";
-    this.showContracts = "";
+    this.showContracts = "0";
 
   }
 
   lastSearchClick() {
-    this._router.navigate(['../lastSearch'], { relativeTo: this._routes });
+    //this._router.navigate(['../contractor/lastSearch'], { skipLocationChange: true }).then(() =>{
+    this.lastSearch();
+    //this._router.navigate(['../lastSearch'], { 'relativeTo': this._routes })
+    //});
+
+
   }
 
   lastSearch() {
@@ -141,23 +159,27 @@ export class ContractorJobSearchComponent implements OnInit {
     this._commonRequestService.postData(dataUrl, obj).subscribe(
       data => {
         this.lastSearchData = data.data;
-        this.jobTitle = this.lastSearchData.contractor_search_by_job_title;
-        this.keywords = this.lastSearchData.contractor_search_by_keywords;
-        this.excluding = this.lastSearchData.contractor_search_by_exclude_words;
-        this.distance = this.lastSearchData.contractor_search_by_miles;
-        this.searchElementRef.nativeElement.value = this.lastSearchData.display_name;
-        this.minRate = this.lastSearchData.contractor_search_by_rate_min;
-        this.maxRate = this.lastSearchData.contractor_search_by_rate_max;
-        this.rateType = this.lastSearchData.contractor_search_by_rate_type;
-        this.jobPreferenceNumber = this.lastSearchData.contractor_search_by_job_reference_number;
-        this.showContracts = this.lastSearchData.contractor_search_by_posted_contact_since;
-        this.industrySector = this.lastSearchData.contractor_search_by_industry_sector;
-        this.postcode = this.lastSearchData.postcode;
-        this.displayTown = this.lastSearchData.display_town;
-        this.displayCountry = this.lastSearchData.display_county;
-        this.displayLocationName = this.lastSearchData.display_name;
+        this.setSearchData(this.lastSearchData);
       }
     );
+  }
+
+  setSearchData(dataObject) {
+    this.jobTitle = dataObject.contractor_search_by_job_title;
+    this.keywords = dataObject.contractor_search_by_keywords;
+    this.excluding = dataObject.contractor_search_by_exclude_words;
+    this.distance = dataObject.contractor_search_by_miles;
+    this.searchElementRef.nativeElement.value = dataObject.display_name;
+    this.minRate = dataObject.contractor_search_by_rate_min;
+    this.maxRate = dataObject.contractor_search_by_rate_max;
+    this.rateType = dataObject.contractor_search_by_rate_type;
+    this.jobPreferenceNumber = dataObject.contractor_search_by_job_reference_number;
+    this.showContracts = dataObject.contractor_search_by_posted_contact_since || '0';
+    this.industrySector = dataObject.contractor_search_by_industry_sector;
+    this.postcode = dataObject.postcode;
+    this.displayTown = dataObject.display_town;
+    this.displayCountry = dataObject.display_county;
+    this.displayLocationName = dataObject.display_name;
   }
 
   loadLocationAutoData() {

@@ -54,7 +54,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <div class="input-group" *ngIf="profileData">
+                    <div class="input-group" *ngIf="profileData && securityClearenceData">
                       <div class="input-group-addon"><img src="./assets/images/security-clearance.png" alt="Enter Password" title="Password" class="img-responsive"></div>
                       <label [tooltip]="securityClearance" class="form-control">{{getSecurityClearnceName(profileData) ? getSecurityClearnceName(profileData) : 'NA'}}</label>
                       <!-- <tooltip-content #securityClearance>
@@ -250,9 +250,12 @@
                         <div class="input-group-addon bordr_non"></div>
                       </div>
                       <div class="view_industry_sector">
-                        <ul class="form-control industry_min_heights padding_none" *ngIf="profileData && profileData.industrySector && industrySectorData">
+                        <ul class="form-control industry_min_heights padding_none" *ngIf="profileData && profileData.industrySector && industrySectorData && profileData.industrySector.length>0">
                           <li *ngFor="let sector of profileData.industrySector">{{getIndustrySectorName(sector)}}</li>
                           
+                        </ul>
+                        <ul class="form-control industry_min_heights padding_none" *ngIf="!profileData || !profileData.industrySector || !industrySectorData || profileData.industrySector.length == 0">
+                          <li>NA</li>
                         </ul>
                       </div>
                     </div>
