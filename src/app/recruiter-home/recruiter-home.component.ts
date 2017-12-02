@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { CommonRequestService } from '../common-request.service';
 import { CommonDataSharedService } from '../commonDataSharedService';
 import { CommonService } from '../commonService.service';
-import { Chart } from 'angular-highcharts';
+//import { Chart } from 'angular-highcharts';
 import { FormControl } from '@angular/forms';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
@@ -92,21 +92,21 @@ export class RecruiterHomeComponent implements OnInit {
     });
   }
 
-  chart = new Chart({
-      chart: {
-        type: 'line'
-      },
-      title: {
-        text: 'Linechart'
-      },
-      credits: {
-        enabled: false
-      },
-      series: [{
-        name: 'Line 1',
-        data: [1, 2, 3]
-      }]
-    });
+  // chart = new Chart({
+  //     chart: {
+  //       type: 'line'
+  //     },
+  //     title: {
+  //       text: 'Linechart'
+  //     },
+  //     credits: {
+  //       enabled: false
+  //     },
+  //     series: [{
+  //       name: 'Line 1',
+  //       data: [1, 2, 3]
+  //     }]
+  //   });
 
 
   getMostLeastJobs(type) {
