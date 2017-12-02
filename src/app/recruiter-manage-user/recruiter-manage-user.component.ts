@@ -23,7 +23,7 @@ export class RecruiterManageUserComponent implements OnInit {
   successMessageFlag = false;
   errorMessageFlag = false;
   WSErrorMsg = "";
-  companyEditableId = '';
+  companyEditableId;
   
   constructor(public _commonRequestService: CommonRequestService) {
   	//this.addMulUserArray.splice(0,1);

@@ -85,7 +85,7 @@ allErrorMsgFlag = false;
 addMulAddArray = [{'addresslLine1': 'line1', 'addressLine1Name': 'address1', 'addressLine2': 'line2', 'addressLine2Name': 'address2', 'city': 'city', 'cityName': 'cityN', 'country': 'cou', 'countryName': 'country1', 'postCode': '12', 'postName': 'postN', 'telephone': '134', 'telephone1': 'teleP'}]
 addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio': '', 'otherName':''}];
 fd;
-companyEditableId = '';
+companyEditableId;
 WSErrorMsg = "";
   constructor(public _commonRequestService: CommonRequestService) {
     this.addMulAddArray.splice(0,1);
