@@ -27,3 +27,7 @@
     color: #ffffff;
 }
 
+.anchor_disable {
+    pointer-events: none;
+}
+

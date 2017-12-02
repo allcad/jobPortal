@@ -41,6 +41,9 @@
         <div class="errorbox" *ngIf="WSErrorMsg"><b></b><br> 
           <li>{{WSErrorMsg}}</li>
         </div>
+        <div class="errorbox" *ngIf="searchListErrorMsg && showSaveSearchList"><b></b><br> 
+          <li>{{searchListErrorMsg}}</li>
+        </div>
             <!-- <div class="alert alert-danger margin-tp18" *ngIf="errorMessageFlag">
               <a href="javascript:void(0)" class="close" title="close" (click)="errorMessageFlag = !errorMessageFlag">×</a>{{errorSuccessMessage}}
             </div> -->

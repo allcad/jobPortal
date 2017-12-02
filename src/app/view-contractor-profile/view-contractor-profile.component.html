@@ -24,12 +24,14 @@
                                     Your Options
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="javascript:void(0)">Download CV</a></li>
+                                    <li *ngIf="contractorData && contractorData?.uploadCV && contractorData?.uploadCV?.length > 0"><a href="{{contractorData?.uploadCV[0]['attachment_url']}}/{{contractorData?.uploadCV[0]['attachment_name']}}">Download CV</a></li>
+                                    <li *ngIf="contractorData && contractorData?.uploadCV && contractorData?.uploadCV?.length == 0"><a href="javascript:void(0)">Download CV</a></li>
                                     <li><a href="javascript:void(0)">Email Contractor</a></li>
-                                    <li><a href="javascript:void(0)">Watch Contractor</a></li>
-                                    <li><a href="javascript:void(0)" id="send_search">Send Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                                    <li *ngIf="contractorData?.is_watched == 0" (click)="watchContractor()"><a href="javascript:void(0)">Watch Contractor</a></li>
+                                    <li *ngIf="contractorData?.is_watched == 1" (click)="unwatchContractor()"><a href="javascript:void(0)">Unwatch Contractor</a></li>
+                                    <li (click)="showShareProfileBox = !showShareProfileBox"><a href="javascript:void(0)" id="send_search">Share Profile <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
                                         <div class="home_page_inquery">
-                                            <div id="message_send" style="display: none;">
+                                            <div id="message_send" [ngClass]="showShareProfileBox == true ? 'display_block' : 'display_none'">
                                                 <div class="after_login_menu">
                                                     <input type="text" placeholder="Enter Email Here" class="enter_border">
                                                     <textarea placeholder="Message" class="enter_border"></textarea>

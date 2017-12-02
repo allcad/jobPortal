@@ -56,7 +56,7 @@
                 </div>
               </div>
               <div class="alert alert-success margin-tp18" *ngIf="succesMessageFlag">
-                <a href="javascript:void(0)" class="close" title="close" (click)="succesMessageFlag = !succesMessageFlag">×</a> You are sign up <strong>succesfully!</strong>
+                <a href="javascript:void(0)" class="close" title="close" (click)="succesMessageFlag = !succesMessageFlag">×</a> You are updated profile <strong>succesfully!</strong>
               </div>
               <!-- <div class="alert alert-danger margin-tp18" *ngIf="ErrorMesageFlag">
                 <a href="javascript:void(0)" class="close" title="close" (click)="ErrorMesageFlag = !ErrorMesageFlag">×</a>
@@ -364,7 +364,7 @@
                     </div>
                   </div>
                   <div class="sign_up_right_side margin_top_-30px">
-                    <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="removeAddress(item)">Remove
+                    <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="removeAddress(item)" [ngClass]="companyEditableId == 0 ? 'anchor_disable': ''">Remove
                       <i class="fa fa-minus plus_blue text_pink" aria-hidden="true"></i>
                     </a>
                   </div>
@@ -379,7 +379,7 @@
                       <i class="fa fa-minus plus_blue text_pink" aria-hidden="true"></i>
                     </a> -->
                     <p class="text_pink">
-                      <a href="javascript:void(0);" class="text_pink" (click)="addMultiplePhone()">
+                      <a href="javascript:void(0);" class="text_pink" (click)="addMultiplePhone()" [ngClass]="companyEditableId == 0 ? 'anchor_disable': ''">
                         <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i> Add Another Address
                       </a>
                     </p>
@@ -573,7 +573,7 @@
                   </div>
                 </div>
                 <div class="sign_up_right_side margin_top_-30px"> 
-                  <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="removeSocialLink(item)">Remove<i class="fa fa-minus plus_blue text_pink" aria-hidden="true"></i></a>
+                  <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="removeSocialLink(item)" [ngClass]="companyEditableId == 0 ? 'anchor_disable': ''">Remove<i class="fa fa-minus plus_blue text_pink" aria-hidden="true"></i></a>
                 </div>
               </div>
 
@@ -583,7 +583,7 @@
                   <div class="sign_up_right_side margin_top_-30px"> 
                     <!-- <a href="javascript:void(0)" class="btn-primary hover_text_pink hover_white_pluse width_180px">Remove<i class="fa fa-minus plus_blue text_pink" aria-hidden="true"></i></a> -->
                     <p class="text_pink">
-                      <a href="javascript:void(0);" class="text_pink" (click)="addAnotherSocialLink()">
+                      <a href="javascript:void(0);" class="text_pink" (click)="addAnotherSocialLink()" [ngClass]="companyEditableId == 0 ? 'anchor_disable': ''">
                         <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i> Add Another Social Link</a>
                     </p>
                   </div>

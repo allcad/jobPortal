@@ -44,6 +44,7 @@ import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/r
 // import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/recruiter-advanced-search.component';
  import { RecruiterSavedSearchComponent } from '../recruiter-saved-search/recruiter-saved-search.component';
  import { ViewContractorProfileComponent } from '../view-contractor-profile/view-contractor-profile.component';
+ import { ChartModule } from 'angular-highcharts';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/r
     SwiperModule,
     RouterModule,
     IonRangeSliderModule,
+    ChartModule,
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyANYk-sxj7-P1W8cB94WahJhtxdw1gEUJA",
       libraries: ["places"]
@@ -118,7 +120,8 @@ import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/r
     RecruiterSearchresultLoggedinComponent,
      RecruiterAdvancedSearchComponent,
      RecruiterSavedSearchComponent,
-     ViewContractorProfileComponent
+     ViewContractorProfileComponent,
+     ChartModule
   ],
   providers: [],
   bootstrap: []

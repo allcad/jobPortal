@@ -35,7 +35,9 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   showSaveSearchBox = false;
   showSendSearchBox = false;
   showDownloadCVFlag = false;
-
+  storeSaveSearchJson;
+  maxPageSize;
+  totalRecords;
   constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService,
     private _commonService: CommonService, private router: Router) {
       window.scroll(0,0);
@@ -225,12 +227,13 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
       savedSearchSaveJson['page'] = this.pageNo;
       savedSearchSaveJson['limit'] = this.pageLimit;
     }
-
+    this.storeSaveSearchJson = savedSearchSaveJson;
     this.searchList = [];
-
-    
-
-
+    this.firstArrayValue = [];
+    this.secondArray = [];
+    this.thirdArray = [];
+    this.maxPageSize = '';
+    this.totalRecords = '';
     //if(!this.sameSearchNameFlag) {
         console.log("savedSearchSaveJson00", savedSearchSaveJson)
         var inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/search";
@@ -240,7 +243,8 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
             console.log("search result--", data);
             window.scroll(0,0);
             if(data.status === "TRUE"){
-
+              this.maxPageSize = data.TotalPage;
+              this.totalRecords = data.recordsTotal;
               this.searchList = data.data;
               this.showMoreDetailsFlag = Array(this.searchList.length).fill(false);
               console.log("this.searchList", this.searchList);
@@ -279,6 +283,7 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
             }
             else {
               // this.errorMessageFlag = true;
+
                this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
             }
       
@@ -288,12 +293,35 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   }
 
   onPageClick(pageNo) {
-    this.pageLimit = pageNo;
+    this.pageNo = 1;
+    this.pageLimit = parseInt(pageNo);
     this.getSearchResultList();
   }
 
   getRangeSliderValue(event){
 
+  }
+
+   showMoreContractors() {
+    // console.log("before", this.currentPageNo);
+    // console.log("this.onPageClick", this.onPageClick);
+    //this.pageNo = 2;
+     //console.log("this.pageNo before", this.pageNo)
+    //this.pageNo += 1;
+    if(this.maxPageSize >= this.pageNo) {
+      this.pageNo += 1;
+    }
+    //console.log("this.pageNo", this.pageNo)
+    // if(this.maxPageSize >= this.pageNo) {
+    //   this.pageLimit = this.pageLimit * this.pageNo;
+      
+    // } 
+    // if(this.pageLimit > this.totalRecords) {
+    //     this.pageLimit = 12 * this.pageNo;
+    //   }
+      this.getSearchResultList();
+    //console.log("this.currentPageNo", this.currentPageNo);
+    //this.getSearchResultList();
   }
 
 }

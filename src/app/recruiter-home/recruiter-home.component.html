@@ -30,7 +30,9 @@
                         </div>
                         <div class="col-sm-80 col-md-80">
                             <div class="recruiter_add_sub_skills">
-                                <img src="./assets/images/graph-img.png" alt="Close" title="Close" class="img-responsive">
+                                <!-- <img src="./assets/images/graph-img.png" alt="Close" title="Close" class="img-responsive"> -->
+                                <!-- <button (click)="add()">Add Point!</button> -->
+                                <div [chart]="chart"></div>
                             </div>
                         </div>
                         <div class="col-sm-20 col-md-20">
@@ -184,22 +186,23 @@
                                     <div class="row">
                                         <div class="col-sm-50">
                                             <div class="form-group">
-                                                <input class="form-control" id="exampleInputEmail1" placeholder="ENTER SKILL OR JOB TITLE " type="text">
+                                                <input class="form-control" id="exampleInputEmail1" placeholder="ENTER SKILL OR JOB TITLE " type="text" [(ngModel)]="jobTitleValue" name="jobTitleValue">
                                             </div>
                                         </div>
                                         <div class="col-sm-50">
                                             <div class="form-group">
-                                                <input class="form-control" id="exampleInputPassword1" placeholder="ENTER LOCATION" type="text">
+                                                <!-- <input class="form-control" id="exampleInputPassword1" placeholder="ENTER LOCATION" type="text" [(ngModel)]="locationValue" name="locationValue"> -->
+                                                <input placeholder="ENTER LOCATION"  autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control box_height_30 box_padding_3" #homeSearch required id="exampleInputPassword1">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-70">
-                                            <div class="form-group forgot_click_here text_align_left"> NEED A MORE ADVANCED SEARCH? <a href="javascript:void(0)" class="text_pink">CLICK HERE</a> </div>
+                                            <div class="form-group forgot_click_here text_align_left"> NEED A MORE ADVANCED SEARCH? <a [routerLink]="['/recruiter/advanced-search']" href="javascript:void(0)" class="text_pink">CLICK HERE</a> </div>
                                         </div>
                                         <div class="col-sm-30">
                                             <div class="form-group">
-                                                <div class="form-group form_login margin_top_7 recruiter_home_login"> <a href="javascript:void(0)" class="btn-default background_pink">SEARCH <i class="fa fa-plus" aria-hidden="true"></i></a> </div>
+                                                <div class="form-group form_login margin_top_7 recruiter_home_login"> <a (click)="searchResultHomePage()" href="javascript:void(0)" class="btn-default background_pink">SEARCH <i class="fa fa-plus" aria-hidden="true"></i></a> </div>
                                             </div>
                                         </div>
                                     </div>

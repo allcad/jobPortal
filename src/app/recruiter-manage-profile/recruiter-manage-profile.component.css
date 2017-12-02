@@ -61,3 +61,7 @@
     margin-left: 15px;
     color: #ffffff;
 }
+
+.anchor_disable {
+    pointer-events: none;
+}
