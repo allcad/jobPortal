@@ -27,7 +27,11 @@ export class ContractorNewsCategoryComponent implements OnInit {
     this.getPopularNews();
     this.getFeaturedNews();
   }
-
+  
+  ngAfterViewInit(){
+   window.scroll(0,0);
+  }
+ 
   getLatestNews() {
     var inputJson = {
       page: 1,

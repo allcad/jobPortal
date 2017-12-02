@@ -47,6 +47,10 @@ export class ContractorSearchResultComponent implements OnInit {
 
   }
 
+  ngAfterViewInit(){
+   window.scroll(0,0);
+  }
+
 
 
   getSearchData(){

@@ -25,6 +25,11 @@ export class ContractorRecuriterProfileComponent implements OnInit {
   	this.getJobList();
   }
 
+
+  ngAfterViewInit(){
+   window.scroll(0,0);
+  }
+
   getCompanyProfile(companyId){
     var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/company_detail";
     var inputJson = {

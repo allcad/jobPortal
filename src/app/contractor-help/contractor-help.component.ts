@@ -16,6 +16,10 @@ export class ContractorHelpComponent implements OnInit {
     this.getHelpCategory()
   }
 
+  ngAfterViewInit(){
+   window.scroll(0,0);
+  }
+
   getHelpCategory() {
     let url = "http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/help_category";
     this._commonRequestService.getData(url).subscribe(

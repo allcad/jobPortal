@@ -22,6 +22,10 @@ export class ContractorNewsArticleComponent implements OnInit {
 
   }
 
+  ngAfterViewInit(){
+   window.scroll(0,0);
+  }
+
   getArticle(id){
   	let url ="http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/articles/single";
   	let input = {

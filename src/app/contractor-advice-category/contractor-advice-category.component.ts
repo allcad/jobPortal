@@ -33,6 +33,10 @@ export class ContractorAdviceCategoryComponent implements OnInit {
     this.getLatestAdviceArticle();
   }
 
+  ngAfterViewInit(){
+   window.scroll(0,0);
+  }
+
   getadviceCategory() {
     var url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/page/advice/category";
     var inputJson = {

@@ -16,6 +16,7 @@ export class FindContractHubComponent implements OnInit {
   	this.getContarctorHubCategory();
   }
 
+  
   getContarctorHubCategory(){
   	var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/hub/category";
   	var inputJson = {

@@ -11,5 +11,8 @@ export class ContractorAdviceComponent implements OnInit {
 
   ngOnInit() {
   }
+  ngAfterViewInit(){
+   window.scroll(0,0);
+  }
 
 }

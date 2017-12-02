@@ -15,6 +15,10 @@ export class ContractorServiceMenuListingComponent implements OnInit {
   	this.getContarctorHubCategory();
   }
 
+  ngAfterViewInit(){
+   window.scroll(0,0);
+  }
+
   getContarctorHubCategory(){
   	var url ="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/hub/category";
   	var inputJson = {

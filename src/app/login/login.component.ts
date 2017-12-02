@@ -21,6 +21,10 @@ export class LoginComponent implements OnInit {
     this.generate();
   }
 
+  ngAfterViewInit(){
+   window.scroll(0,0);
+  }
+
   onLogin(f: NgForm) {
     this.totalInvalid = false;
     if (f.valid && parseInt(this.addNumber) === (this.number + this.number2)) {

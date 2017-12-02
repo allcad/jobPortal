@@ -24,7 +24,7 @@
             <div class="pull-right job_search">
               <a href="javascript:void(0)" [routerLink]="['../jobSearch']" class="btn-primary hover_white_pluse width_180px">Return to Search <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
               <div style="display: inline;">
-                <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="getSaveSearchList();showList=!showList">Saved Search <i class="fa fa-angle-down plus_blue font_size_margin text_pink" aria-hidden="true"></i></a>
+                <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="getListOfSavedSearch();showList=!showList">Saved Search <i class="fa fa-angle-down plus_blue font_size_margin text_pink" aria-hidden="true"></i></a>
                 <div class="form-group" *ngIf="showList">
                   <ul class="form-control industry_min_heights padding_none">
                     <li *ngFor="let search of savedSearchList" (click)="searchSelect(search?.contractor_search_id);showList=false;">{{search?.contractor_search_name}}</li>
@@ -45,7 +45,7 @@
               <li *ngIf="saveSearchForm.form.controls.min?.hasError( 'required')">Please enter min rate</li>
               <li *ngIf="saveSearchForm.form.controls.max?.hasError( 'required')">Please enter max rate</li>
               <li *ngIf="saveSearchForm.form.controls.jobRefNumber?.hasError( 'required')">Please enter job reference number</li>
-              <li *ngIf="saveSearchForm.form.controls.postedSince?.hasError( 'required')">Please enter post duration</li>
+             <!--  <li *ngIf="saveSearchForm.form.controls.postedSince?.hasError( 'required')">Please enter post duration</li> -->
               <li *ngIf="searchNameExist">Search already saved with this name</li>
 
             </div>
@@ -130,7 +130,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon upto_border_none">From</div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="City, Town, or PostCode" [(ngModel)]="location" name="location" required>
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="City, Town, or PostCode" autocorrect="off" autocapitalize="off" spellcheck="off" #search name="location" required>
                     </div>
                   </div>
                 </div>
@@ -189,7 +189,12 @@
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/show-contacts.png" alt="Show Contacts" title="Show Contacts" class="img-responsive"></div>
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Show Contacts Posted Since:" [(ngModel)]="postDuration" name="postedSince" required>
+                        <!-- <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Show Contacts Posted Since:" [(ngModel)]="postDuration" name="postedSince" required> -->
+                        <select class="form-control minimal background_drop_down" [(ngModel)]="postDuration" name="showContracts">
+                          <option value="0" selected disabled>Posted since</option>
+                          <option *ngFor ="let slot of timeSlotList" [value]="slot.id">{{slot.text}}</option>
+                          
+                        </select>
                       </div>
                     </div>
                   </div>

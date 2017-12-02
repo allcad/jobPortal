@@ -68,7 +68,10 @@ export class ContractorSignUpComponent implements OnInit {
     this.getKeySkillData();
     this.getContractorServices();
     this.getNoticePeriodData();
-    window.scroll(0, 0);
+  }
+
+  ngAfterViewInit(){
+   window.scroll(0,0);
   }
 
   onFormSubmit(userForm) {

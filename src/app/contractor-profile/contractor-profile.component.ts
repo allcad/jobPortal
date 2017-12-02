@@ -106,6 +106,10 @@ export class ContractorProfileComponent implements OnInit {
 
   }
 
+  ngAfterViewInit(){
+   window.scroll(0,0);
+  }
+
 
   drawPloygon() {
     if (this.commutable == 'commutable') {
@@ -171,6 +175,7 @@ export class ContractorProfileComponent implements OnInit {
   editPolygun() {
     if (this.commutable == 'commutable' && this.commutablePolygonInst) {
       this.commutablePolygonInst.setEditable(true);
+      this.relocatablePolygonInst.setEditable(false);
       let that = this;
       google.maps.event.addListener(this.commutablePolygonInst.getPath(), 'insert_at', function(index, obj) {
         that.commutablePolygun = [];
@@ -187,6 +192,7 @@ export class ContractorProfileComponent implements OnInit {
 
       });
     } else if (this.commutable == 'relocatable' && this.relocatablePolygonInst) {
+      this.commutablePolygonInst.setEditable(false);
       this.relocatablePolygonInst.setEditable(true);
       let that = this;
       google.maps.event.addListener(this.relocatablePolygonInst.getPath(), 'insert_at', function(index, obj) {
@@ -228,6 +234,7 @@ export class ContractorProfileComponent implements OnInit {
           strokeColor: "#09e4f9",
           fillOpacity: 0.35
         });
+      this.relocatablePolygonInst.setMap(this.map);
     }
   }
 
@@ -536,8 +543,8 @@ export class ContractorProfileComponent implements OnInit {
     this.rate_min_hr = this.profileData.contractor_rate_min_hour;
     this.rate_max_hr = this.profileData.contractor_rate_max_hr;
 
-    this.commutablePolygun = this.profileData.commutablePolygon ? this.profileData.commutablePolygon : [],
-    this.relocateablePolygun = this.profileData.relocateablePolygon ? this.profileData.relocateablePolygon : [],
+    this.commutablePolygun = this.profileData.commutablePolygon ? JSON.parse(this.profileData.commutablePolygon) : [],
+    this.relocateablePolygun = this.profileData.relocatablePolygon ? JSON.parse(this.profileData.relocatablePolygon) : [],
 
     this.contractor_rate_min_relocatable = this.profileData.contractor_rate_min_relocatable;
     this.contractor_rate_min_relocatable_hr = this.profileData.contractor_rate_min_relocatable_hr;

@@ -96,6 +96,10 @@ moveToSearchResult(value) {
       contractor_search_by_job_reference_number: "",
       contractor_search_by_posted_contact_since: "",
       contractor_search_by_industry_sector: "",
+      postcode : "",
+      display_town : "",
+      display_county : "",
+      display_name : "",
       page: 1,
       limit: 10,
       sort: 1

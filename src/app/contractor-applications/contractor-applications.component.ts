@@ -19,6 +19,10 @@ export class ContractorApplicationsComponent implements OnInit {
   	this.getAppliedjobList();
   }
 
+  ngAfterViewInit(){
+   window.scroll(0,0);
+  }
+
 
   getSortOptions(){
     let url ="http://dev.contractrecruit.co.uk/contractor_admin/api/get/short_by";

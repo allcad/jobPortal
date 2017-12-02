@@ -15,6 +15,11 @@ export class ContractorAdviceListingComponent implements OnInit {
   	this.getLatestArticle();
   }
 
+
+  ngAfterViewInit(){
+   window.scroll(0,0);
+  }
+
   getLatestArticle(){
   	let input = {
   		page: 1,

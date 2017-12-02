@@ -15,6 +15,10 @@ export class ContractorForgotPasswordComponent implements OnInit {
 	ngOnInit() {
 	}
 
+	ngAfterViewInit(){
+   window.scroll(0,0);
+  }
+
 
 	forgotPasswordClicked(form) {
 		this.errorMsg = "";

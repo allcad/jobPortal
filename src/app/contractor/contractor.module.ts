@@ -26,7 +26,7 @@ import { SharedModule } from '../shared/shared.module';
 // import { ContractorNewsArticleComponent } from '../contractor-news-article/contractor-news-article.component';
 import { ContractorHelpComponent } from '../contractor-help/contractor-help.component';
 import { AboutContractorComponent } from '../about-contractor/about-contractor.component';
-import { AgmCoreModule } from '@agm/core';
+//import { AgmCoreModule } from '@agm/core';
 //import { LyResizingCroppingImagesModule } from 'angular2-resizing-cropping-image';
 
 import { ImageCropperModule } from 'ng2-img-cropper';
@@ -58,9 +58,9 @@ import { ImageCropperModule } from 'ng2-img-cropper';
     ContractorRoutingModule,
     IonRangeSliderModule,
     SharedModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCcc7ZyRGjRbAuDgsLSQGdTuFxvLW9FGiI'
-    }),
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'AIzaSyCcc7ZyRGjRbAuDgsLSQGdTuFxvLW9FGiI'
+    // }),
     ImageCropperModule
   ],
   providers: []

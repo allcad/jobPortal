@@ -86,7 +86,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon upto_border_none">From</div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="City, Town, or PostCode" name="from" [(ngModel)]="place">
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="City, Town, or PostCode" name="from" autocorrect="off" autocapitalize="off" spellcheck="off" #search>
                     </div>
                   </div>
                 </div>
@@ -149,13 +149,7 @@
                         <select class="form-control minimal background_drop_down" [(ngModel)]="showContracts" name="showContracts">
                           <option value="0" selected disabled>Posted since</option>
                           <option *ngFor ="let slot of timeSlotList" [value]="slot.id">{{slot.text}}</option>
-                          <!-- <option value="1">Last 24 hours</option>
-                          <option value="2">Last 48 hours</option>
-                          <option value="7">Last 7 days</option>
-                          <option value="10">Last 10 days</option>
-                          <option value="14">Last 14 days</option>
-                          <option value="30">Last 30 days</option>
-                          <option value="60">Last 60 days</option> -->
+                          
                         </select>
                       </div>
                     </div>

@@ -6,6 +6,7 @@ import { ToolTipModule } from 'angular2-tooltip';
 import { TooltipModule } from "ng2-tooltip";
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
@@ -83,6 +84,7 @@ import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/r
     HttpModule,
     CommonModule,
     SwiperModule,
+    RouterModule,
     IonRangeSliderModule,
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyANYk-sxj7-P1W8cB94WahJhtxdw1gEUJA",
@@ -90,6 +92,7 @@ import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/r
     })
   ],
   exports: [
+  RouterModule,
     FindContractHubComponent,
     ContractorServicesComponent,
     ContractorServiceListingComponent,

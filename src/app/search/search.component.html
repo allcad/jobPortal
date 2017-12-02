@@ -16,13 +16,13 @@
                 </div>
                 <div class="col-sm-50">
                   <div class="form-group">
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="ENTER LOCATION..." [(ngModel)]="location" name="location">
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="ENTER LOCATION..." name="location" autocorrect="off" autocapitalize="off" spellcheck="off" #search>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-100">
-                  <div class="form-group search_now_home"><a href="javascript:void(0)" (click)="searchContract(title, location)">SEARCH NOW <img src="./assets/images/search-now-icon.png" alt="search now" title="search now"></a> </div>
+                  <div class="form-group search_now_home"><a href="javascript:void(0)" (click)="searchContract(title)">SEARCH NOW <img src="./assets/images/search-now-icon.png" alt="search now" title="search now"></a> </div>
                 </div>
               </div>
             </form>

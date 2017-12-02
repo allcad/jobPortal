@@ -22,6 +22,10 @@ export class ContractorAdviceArticleComponent implements OnInit {
   	this.getArticleData(this.articleId)
   }
 
+  ngAfterViewInit(){
+   window.scroll(0,0);
+  }
+  
   getArticleData(articleId){
   	if(articleId){
   		let input = {

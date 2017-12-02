@@ -16,12 +16,17 @@ export class ContractorViewProfileComponent implements OnInit {
   polygonPath = [{ lng: this.lng + 0.3, lat: this.lat + 0.3 },
       { lng: this.lng + 0.5, lat: this.lat + 0.3 },
       { lng: this.lng + 0.9, lat: this.lat + 0.9 },];
+      map;
  constructor(public _commonRequestService: CommonRequestService,) { }
 
   ngOnInit() {
   this.getSecurityClearenceData();
   this.getIndustrySectorData();
   this.getProfileDta();
+  }
+
+  ngAfterViewInit(){
+   window.scroll(0,0);
   }
 
 getProfileDta(){
@@ -36,9 +41,52 @@ getProfileDta(){
           this.profileData = data.data;
           this.skillArray  = (this.profileData['skill&Experience']).split(',');
           console.log("this.skillArray", this.skillArray);
-          this._commonRequestService.setDataWithoutObserval(this.profileData, "contractorProfileData")
+          this._commonRequestService.setDataWithoutObserval(this.profileData, "contractorProfileData");
+          this.initializeMap()
         }
     );
+}
+
+initializeMap(){
+  this.map = new google.maps.Map(document.getElementById('profilePreviewMap'), {
+      center: { lat: this.lat, lng: this.lng },
+      zoom: 10
+    });
+
+    var marker = new google.maps.Marker({
+      position: { lat: this.lat, lng: this.lng }
+    });
+    marker.setMap(this.map);   
+    this.drawExistingMap();
+}
+
+
+drawExistingMap(){
+
+   if(this.profileData.commutablePolygon && this.profileData.commutablePolygon.length > 0){
+
+         let commutablePolygonInst = new google.maps.Polygon({
+          paths: JSON.parse(this.profileData.commutablePolygon),
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#ff0066",
+          strokeColor: "#ff6bcd",
+          fillOpacity: 0.35
+        });
+        commutablePolygonInst.setMap(this.map);
+    } 
+
+    if(this.profileData.relocatablePolygon && this.profileData.relocatablePolygon.length > 0){
+      let relocatablePolygonInst = new google.maps.Polygon({
+          paths: JSON.parse(this.profileData.relocatablePolygon),
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#00ccff",
+          strokeColor: "#09e4f9",
+          fillOpacity: 0.35
+        });
+      relocatablePolygonInst.setMap(this.map);
+    }
 }
 
 getSecurityClearenceData(){

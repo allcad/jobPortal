@@ -21,6 +21,10 @@ export class ContractorDirectoryComponent implements OnInit {
     }
   }
 
+  ngAfterViewInit(){
+   window.scroll(0,0);
+  }
+
   categoryClicked(categoryData) {
     console.log(categoryData);
     this.selectedContractorHubCategory = categoryData.contract_hub_category_id;

@@ -12,4 +12,8 @@ export class ContractorResetPasswordComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngAfterViewInit(){
+   window.scroll(0,0);
+  }
+
 }
