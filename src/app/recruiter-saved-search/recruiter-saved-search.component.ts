@@ -41,7 +41,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
   educationData;
   succesMessageFlag = false;
   responseData;
-  searchListData;
+  searchListData = [];
   recentRecruiterSaveId;
   searchListDataFlag = false;
   showSaveSearchList = false;
@@ -61,6 +61,7 @@ postcode = '';
 displayTown = '';
 displayCountry = '';
 displayLocationName = '';
+searchListErrorMsg = "";
   constructor(public _commonRequestService: CommonRequestService, private _router: Router,
     private _commonDataShareService: CommonDataSharedService, private commonService: CommonService, 
     private mapsAPILoader: MapsAPILoader,
@@ -286,6 +287,7 @@ displayLocationName = '';
   }
 
   getListOfSaveSearch() {
+    this.WSErrorMsg = "";
     var input = {
      "email":"test@test7.com",
     "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu"
@@ -298,10 +300,14 @@ displayLocationName = '';
           console.log("list save search--", data);
           if(data && data.data && data.data.length > 0) {
             this.saveSearchDataListing = data.data;
-          }
+            this.searchListErrorMsg = "";
+          } else{
+               this.searchListErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+             
+            }
           //this.industryArrayData = data.data;
           //this.recruiterNameArray = data.data;
-        }
+        } 
     );
   }
 
@@ -467,7 +473,7 @@ displayLocationName = '';
       "recuriter_search_core_skills":this.coreSkills ? this.coreSkills:'',
       "recuriter_search_certifications":this.certificationValues ? this.certificationValues:'',
       "recuriter_search_dont_show_to_contractor":this.dontShowContractor?this.dontShowContractor:'',
-      "recuriter_search_location":this.cityTownValue?this.cityTownValue:'',
+      "recuriter_search_location":this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value : '',
       "recuriter_search_include_relocators":this.includeRelocators ? 1 : 0,
       "recuriter_search_by_rate_min":this.minRate?this.minRate:'',
       "recuriter_search_by_rate_max":this.maxRate?this.maxRate:'',

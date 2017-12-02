@@ -454,6 +454,7 @@ WSErrorMsg = "";
       'otherSocialData' : []
     };
     let otherAddressDataObj = {'otherAddress': []};
+    console.log("this.socialLinkName", this.socialLinkName);
   console.log("this.addMulAddArray before", this.addMulSocialArray);
   if(this.addMulSocialArray && this.addMulSocialArray.length > 0) {
     for(var i = 0; i<this.addMulSocialArray.length; i++) {
@@ -495,12 +496,12 @@ WSErrorMsg = "";
   this.fd.append('companyDescription',this.companyDescription);
   this.fd.append('companySocial', JSON.stringify(companySocial));
   this.fd.append('otherAddress',JSON.stringify(otherAddressDataObj.otherAddress ));
-  this.fd.append('ProfileUrl', this.imageFile ? this.imageFile : {} );
-	console.log("recruiterProfileJson", this.fd);
+  this.fd.append('ProfileUrl', this.imageFile ? this.imageFile : '' );
   console.log("companyDetail--", companyDetail);
   console.log("this.companyDescription--", this.companyDescription);
   console.log("companySocial--", companySocial);
   console.log("otherAddress--", otherAddressDataObj.otherAddress);
+	console.log("recruiterProfileJson", this.fd);
      this.inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/profile/submit";
        this._commonRequestService.postData(this.inputUrl, this.fd).subscribe(
         data => {
@@ -544,7 +545,7 @@ getProfileDta(){
           if(data && data.data) {
             this.profileData = data.data;
             if(this.profileData['companySocial']) {
-              console.log("comapny social--", this.profileData['companySocial']);
+              console.log("comapny social--", JSON.parse(this.profileData['companySocial']));
               companySocialData = JSON.parse(this.profileData['companySocial']);
             }
             this.companyName =this.profileData['companyDetails'] && this.profileData['companyDetails'].companyName ? this.profileData['companyDetails'].companyName : "";
@@ -574,7 +575,7 @@ getProfileDta(){
           this.fullUrlRssFeed= companySocialData && companySocialData.rssData && companySocialData.rssData.fullUrlRssFeed ? companySocialData.rssData.fullUrlRssFeed : "";
           this.rssDisplayFeed= companySocialData && companySocialData.rssData && companySocialData.rssData.rssDisplayFeed ? companySocialData.rssData.rssDisplayFeed : "";
 
-          this.socialLinkName= companySocialData && companySocialData.twitterData && companySocialData.twitterData.socialLinkName ? companySocialData.twitterData.socialLinkName : "";
+          this.socialLinkName= companySocialData && companySocialData.twitterData && companySocialData.twitterData.twitterUrl ? companySocialData.twitterData.twitterUrl : "";
           this.fullUrlTwitterFeed= companySocialData && companySocialData.twitterData && companySocialData.twitterData.fullUrlTwitterFeed ? companySocialData.twitterData.fullUrlTwitterFeed : "";
           this.twitterDisplayFeed= companySocialData && companySocialData.twitterData && companySocialData.twitterData.twitterDisplayFeed ? companySocialData.twitterData.twitterDisplayFeed : "";
 

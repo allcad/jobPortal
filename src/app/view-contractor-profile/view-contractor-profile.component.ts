@@ -27,6 +27,7 @@ export class ViewContractorProfileComponent implements OnInit {
   public zoom: number;
   qualification = [];
   map;
+  showShareProfileBox = false;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService,
     private ngZone: NgZone) { }
@@ -44,6 +45,8 @@ export class ViewContractorProfileComponent implements OnInit {
 
   getContractorData() {
   	let input = {
+       "email":"test@test7.com",
+      "loginToken":"$2y$10$ERdO743JuPZF6a4SfV8HQe69MqBJBtM3o3cz.ChfrZbcySNegW1e6",
   		"contractor_reg_id":this.currentContractorId
   	};
   	var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/profile/view/globel";
@@ -73,6 +76,45 @@ export class ViewContractorProfileComponent implements OnInit {
               this.errorMsg = data.error[0];
             }
           }
+        }
+    );
+  }
+
+  watchContractor() {
+      var input = {
+     "email":"test@test7.com",
+      "loginToken":"$2y$10$ERdO743JuPZF6a4SfV8HQe69MqBJBtM3o3cz.ChfrZbcySNegW1e6",
+      "contractor_id":this.currentContractorId,
+      "Job_id":0,
+      "notify":null
+
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/watch_add";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+         console.log("add watch list--", data);
+         // this.getWatchDogListData(this.pageNo);
+          this.router.navigate(['./recruiter/watch-list']);
+        }
+    );
+  }
+
+  unwatchContractor() {
+      var input = {
+     "email":"test@test7.com",
+      "loginToken":"$2y$10$ERdO743JuPZF6a4SfV8HQe69MqBJBtM3o3cz.ChfrZbcySNegW1e6",
+      "watch_id":this.contractorData && this.contractorData.watch_id ? this.contractorData.watch_id : ''
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/watch_delete";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+         console.log("unwatch--", data);
+         //this.unwatchPopupFlag = false;
+         // this.getWatchDogListData(this.pageNo);
+          this.router.navigate(['./recruiter/watch-list']);
         }
     );
   }

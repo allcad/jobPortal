@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { FormsModule,NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonRequestService } from '../common-request.service';
 import { CommonDataSharedService } from '../commonDataSharedService';
 import { CommonService } from '../commonService.service';
+import { Chart } from 'angular-highcharts';
+import { FormControl } from '@angular/forms';
+import { } from 'googlemaps';
+import { MapsAPILoader } from '@agm/core';
 
 
 @Component({
@@ -12,6 +16,9 @@ import { CommonService } from '../commonService.service';
   styleUrls: ['./recruiter-home.component.css']
 })
 export class RecruiterHomeComponent implements OnInit {
+  public searchControl: FormControl;
+  @ViewChild("homeSearch")
+  public searchElementRef: ElementRef;
 	listingData = [];
   pageNo = 1;
   pageLimit = 10;
@@ -19,13 +26,18 @@ export class RecruiterHomeComponent implements OnInit {
   leastMostData;
   wsError = "";
   quickLinkData;
+  jobTitleValue = "";
+  locationValue = "";
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
-  	private _commonDataSharedService: CommonDataSharedService, private _commonService: CommonService) { }
+  	private _commonDataSharedService: CommonDataSharedService, private _commonService: CommonService,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone) { }
 
   ngOnInit() {
     this.getQuickLinksData();
+    this.loadLocationAutoData();
        
-    
+    this.getGraphData();
   	//this.getRecruiterCount();
   	this.getMostLeastJobs('least');
   }
@@ -35,6 +47,66 @@ export class RecruiterHomeComponent implements OnInit {
    //  localStorage.setItem('recruiterJobData', JSON.stringify(obj));
    this._commonService.setJobIdForJobPosting(id);
   }
+
+  loadLocationAutoData() {
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["geocode"]
+      });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          console.log("place--", place);
+          // this.postcode = "";
+          // this.displayTown = "";
+          // this.displayCountry = "";
+          // this.displayLocationName = "";
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+          // if(place && place.address_components && place.address_components.length > 0 && place.formatted_address) {
+          //   for(var i=0;i<place.address_components.length; i++) {
+          //     for(var j=0; j<place.address_components[i].types.length; j++) {
+          //       if(place.address_components[i].types[j] == "postal_code") {
+          //         this.postcode = place.address_components[i].long_name;
+          //       }
+          //       if(place.address_components[i].types[j] == "postal_town") {
+          //         this.displayTown = place.address_components[i].long_name;
+          //       }
+          //       if(place.address_components[i].types[j] == "country") {
+          //         this.displayCountry = place.address_components[i].long_name;
+          //       }
+          //       this.displayLocationName = this.displayTown + " " + this.postcode + "," + this.displayCountry;
+          //     }
+          //   }
+          // }
+          // console.log("this.postcode", this.postcode);
+          // console.log("this.displayTown", this.displayTown);
+          // console.log("this.displayCountry", this.displayCountry);
+          // console.log("this.displayLocationName", this.displayLocationName);
+        });
+      });
+      //console.log("cityTownValue", this.cityTownValue);
+    });
+  }
+
+  chart = new Chart({
+      chart: {
+        type: 'line'
+      },
+      title: {
+        text: 'Linechart'
+      },
+      credits: {
+        enabled: false
+      },
+      series: [{
+        name: 'Line 1',
+        data: [1, 2, 3]
+      }]
+    });
 
 
   getMostLeastJobs(type) {
@@ -91,6 +163,35 @@ export class RecruiterHomeComponent implements OnInit {
     );
   }
 
+  getGraphData() {
+    this.wsError = "";
+   var input = {
+     "email":"test@test7.com",
+    "loginToken":"$2y$10$QTgvT3EZ2c9nejMN0nXQyukZflChwM.qqcp1n.sdXvE8kRMMleJ.e",
+    "overall_team":1,
+    "number_applications":1,
+    "job_posted":1,
+    "job_viewed":1,
+    "date":"2017-11"
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin//api/post/recruiter/deashboard_graph";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+         console.log("Graph data", data);
+         if(data && data.status === "TRUE") {
+           //this.quickLinkData = data.data;
+           this.wsError = "";
+          } else {
+            if(data && data.status === "FALSE") {
+              this.wsError = typeof (data.error) == 'object' ? data.error[0] : data.error;
+            }
+          }
+        }
+    );
+  }
+
   // showMoreJobs() {
   //   // var pageNo = 1;
   //   // pageNo += 1;
@@ -99,5 +200,39 @@ export class RecruiterHomeComponent implements OnInit {
   //   console.log("this.pageLimit", this.pageLimit)
   //   this.getMostLeastJobs(this.sortType)
   // }
+
+  searchResultHomePage() {
+    var savedSearchSaveJson = {
+      "email":"test@test8.com",
+      "loginToken":"$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y",
+      // "recuriter_saved_search_name":this.savedSearchName,
+      // "recuriter_search_add_to_watchdog":this.addToWatchDogCheck === true ? 1 : 2,
+      "recuriter_search_job_title":this.jobTitleValue?this.jobTitleValue:'',
+      "recuriter_search_keywords":'',
+      "recuriter_search_stemmed_terms":0,
+      "recuriter_search_core_skills":'',
+      "recuriter_search_certifications":'',
+      "recuriter_search_dont_show_to_contractor":'',
+      "recuriter_search_location":this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value : '',
+      "recuriter_search_include_relocators":0,
+      "recuriter_search_by_rate_min": '',
+      "recuriter_search_by_rate_max": '',
+      "recuriter_search_by_rate_type": '',
+      "recuriter_search_by_time_left": '',
+      "recuriter_search_by_unavailable": 1,
+      "recuriter_search_by_updated_contractor_since": '',
+      "recuriter_search_by_contract_name": '',
+      "recuriter_search_by_education": "",
+      "recuriter_search_by_industry": "",
+      "recuriter_search_by_security_clearance": "",
+      "recuriter_search_by_driving_license": 0
+      //"page":1,
+      //"limit":12
+      //"sort":8
+    }
+
+    this._commonService.setSearchResult(savedSearchSaveJson);
+    this.router.navigate(['/recruiter/searchresult-loggedin']);
+  }
 
 }
