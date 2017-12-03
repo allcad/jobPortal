@@ -9,12 +9,12 @@
             <div class="contractor_signup recruiter_signup">
               <h2 class="font_capitalizs">SAVED <span class="text_pink">SEARCH</span></h2>
               <ul class="breadcomb">
-                <li><a href="javascript:void(0)">Home</a></li>
+                <li><a href="javascript:void(0)" [routerLink]="['../recruiter-home']">Home</a></li>
                 <li class="right_arrow text_pink">&gt;</li>
                 <li class="active">Saved Search </li>
               </ul>
               <div class="pull-right job_search">
-                <p>Need Help? | <span>Watch our Video Guides</span></p>
+                <p>Need Help? | <span style="cursor: pointer;" [routerLink]="['/recruiter/guides']">Watch our Video Guides</span></p>
                 <div style="display: inline-block; position: relative;">
                   <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="getSaveSearchList(); showSaveSearchList=!showSaveSearchList">Saved Search <i class="fa fa-angle-down plus_blue font_size_margin text_pink" aria-hidden="true"></i></a>
                   <div class="form-group" style="position: absolute;right: 0" *ngIf="showSaveSearchList">

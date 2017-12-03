@@ -38,13 +38,16 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   storeSaveSearchJson;
   maxPageSize;
   totalRecords;
+  showLoginMoreDetailsOptions = false;
+  showWithoutLoginMoreOptions = false;
+  currentUrl;
   constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService,
     private _commonService: CommonService, private router: Router) {
-      window.scroll(0,0);
+      this.currentUrl = router.url;
      }
 
   ngOnInit() {
-    
+    window.scroll(0,0);
   	//this.getSearchResultList();
     // this._commonDataShareService.advancedSerahcResult.subscribe((data) =>{
     //   console.log("serach result--", data);
@@ -192,6 +195,8 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
     console.log("value--", this.savedResult);
     var savedSearchSaveJson = {};
     if(this.savedResult && typeof this.savedResult == 'string') {
+      this.showWithoutLoginMoreOptions = true;
+      this.showLoginMoreDetailsOptions = false;
       savedSearchSaveJson = {
         // "email":"test@test8.com",
         // "loginToken":"$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y",
@@ -221,17 +226,25 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
         "sort":this.currentSortBy
         }
     } else if(this.savedResult && typeof this.savedResult == 'object') {
+      this.showWithoutLoginMoreOptions = true;
+      this.showLoginMoreDetailsOptions = false;
       console.log("currentSortBy", this.currentSortBy);
       savedSearchSaveJson = this.savedResult;
       savedSearchSaveJson['sort'] = this.currentSortBy;
       savedSearchSaveJson['page'] = this.pageNo;
       savedSearchSaveJson['limit'] = this.pageLimit;
+      if(this.router.url !== "/public/searchresult-loggedin") {
+        this.showLoginMoreDetailsOptions = true;
+        this.showWithoutLoginMoreOptions = false;
+        savedSearchSaveJson['email'] = "test@test8.com";
+        savedSearchSaveJson['loginToken'] = "$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y";
+      }
     }
     this.storeSaveSearchJson = savedSearchSaveJson;
-    this.searchList = [];
-    this.firstArrayValue = [];
-    this.secondArray = [];
-    this.thirdArray = [];
+    // this.searchList = [];
+    // this.firstArrayValue = [];
+    // this.secondArray = [];
+    // this.thirdArray = [];
     this.maxPageSize = '';
     this.totalRecords = '';
     //if(!this.sameSearchNameFlag) {
@@ -245,7 +258,10 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
             if(data.status === "TRUE"){
               this.maxPageSize = data.TotalPage;
               this.totalRecords = data.recordsTotal;
-              this.searchList = data.data;
+              //this.searchList = data.data;
+              for(var i=0;i<data.data.length;i++) {
+                this.searchList.push(data.data[i]);
+              }
               this.showMoreDetailsFlag = Array(this.searchList.length).fill(false);
               console.log("this.searchList", this.searchList);
              for(var i=0;i<4;i++) {
@@ -295,6 +311,10 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   onPageClick(pageNo) {
     this.pageNo = 1;
     this.pageLimit = parseInt(pageNo);
+    this.searchList = [];
+    this.firstArrayValue = [];
+    this.secondArray = [];
+    this.thirdArray = [];
     this.getSearchResultList();
   }
 

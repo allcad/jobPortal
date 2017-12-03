@@ -22,6 +22,8 @@ export class RecruiterWatchListComponent implements OnInit {
 	firstArray = [];
 	secondArray = [];
 	thirdArray = [];
+  maxPage;
+  maxRecord;
   constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService,
     private _commonService: CommonService, private router: Router) { }
 
@@ -90,8 +92,13 @@ export class RecruiterWatchListComponent implements OnInit {
          //   this.watchListData = data.data;
            if(data && data.status === "TRUE") {
            this.errorMsg = "";
+           this.maxPage = data.TotalPage;
+           this.maxRecord = data.recordsTotal;
            //this.errorMsgFlag = false;
-           this.watchListData = data.data;
+           //this.watchListData = data.data;
+           for(var i=0;i<data.data.length;i++) {
+             this.watchListData.push(data.data[i]);
+           }
              for(var i=0;i<4;i++) {
              	if(this.watchListData && this.watchListData[i]) {
              		this.firstArray[i] = this.watchListData[i];
@@ -135,8 +142,19 @@ export class RecruiterWatchListComponent implements OnInit {
   }
 
   onPageClick(page) {
-  	this.pageLimit = page;
+  	this.pageLimit = parseInt(page);
+    this.watchListData = [];
+    this.firstArray = [];
+    this.secondArray = [];
+    this.thirdArray = [];
   	this.getWatchListData();
+  }
+
+  showMoreList() {
+    if(this.maxPage >= this.pageNo) {
+      this.pageNo += 1;
+    }
+    this.getWatchListData();
   }
 
   watchContractorProfile(contractorId, firstName, lastName) {

@@ -24,6 +24,8 @@ export class RecruiterViewApplicationsComponent implements OnInit {
   loopArray = [];
   filterByJobData;
   currentJobId = 0;
+  maxPage;
+  maxRecord;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService) { }
 
@@ -65,7 +67,7 @@ export class RecruiterViewApplicationsComponent implements OnInit {
    var input = {
    	"email":"test@test7.com",
 	"loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu",
-   	"page":1,
+   	"page":this.pageNo,
 	"limit":pageLimit,
 	"jobid":this.currentJobId.toString()
    };
@@ -77,7 +79,12 @@ export class RecruiterViewApplicationsComponent implements OnInit {
          console.log("data from manage job list--", data);
          if(data && data.status === "TRUE") {
            this.errorMsgFlag = false;
-           this.listingData = data.data;
+           //this.listingData = data.data;
+           this.maxPage = data.TotalPage;
+           this.maxRecord = data.recordsTotal;
+           for(var i=0;i<data.data.length;i++) {
+             this.listingData.push(data.data[i]);
+           }
            console.log("this.listingData--", this.listingData, this.listingData.length);
            //this.loopArray = this.listingData.length/4;
 
@@ -121,13 +128,13 @@ export class RecruiterViewApplicationsComponent implements OnInit {
   }
 
   onPageJobList(pageNo) {
-    //this.currentPageNo = parseInt(pageNo);
-    this.onPageClick = parseInt(pageNo);
+    this.currentPageNo = parseInt(pageNo);
+    //this.onPageClick = parseInt(pageNo);
+     this.listingData = [];
     this.firstArray = [];
      this.secondArray = [];
-     this.listingData = [];
      this.pageNo = 1;
-    this.getApplicationList(pageNo);
+    this.getApplicationList(this.currentPageNo);
   }
 
   showMoreJobs() {
@@ -135,9 +142,12 @@ export class RecruiterViewApplicationsComponent implements OnInit {
     // console.log("this.onPageClick", this.onPageClick);
     //this.pageNo = 2;
      //console.log("this.pageNo before", this.pageNo)
-    this.pageNo += 1;
+    //this.pageNo += 1;
     //console.log("this.pageNo", this.pageNo)
-    this.currentPageNo = this.onPageClick * this.pageNo;
+    //this.currentPageNo = this.onPageClick * this.pageNo;
+    if(this.maxPage >= this.pageNo) {
+      this.pageNo += 1;
+    }
     //console.log("this.currentPageNo", this.currentPageNo);
     this.getApplicationList(this.currentPageNo);
   }

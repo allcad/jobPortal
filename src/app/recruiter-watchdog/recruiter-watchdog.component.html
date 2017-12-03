@@ -7,7 +7,7 @@
                         <div class="contractor_signup recruiter_signup">
                             <h2 class="font_capitalizs">Recruiter <span class="text_pink">WatcHdogs</span></h2>
                             <ul class="breadcomb color_active">
-                                <li><a href="javascript:void(0)">Home</a></li>
+                                <li><a href="javascript:void(0)" [routerLink]="['../recruiter-home']">Home</a></li>
                                 <li class="right_arrow text_pink">&gt;</li>
                                 <li class="active">WatcHdogs</li>
                             </ul>
@@ -25,9 +25,9 @@
                         <div class="col-sm-50" *ngIf="watchListDataArr.length !== 0">
                             <div class="pazer">
                                 <span>Show</span>
-                                <a href="javascript:void(0);" [ngClass]="10===onPageClick ? 'active':''" (click)="onPageJobList('10')">10</a>
-                                <a href="javascript:void(0);" [ngClass]="15===onPageClick ? 'active':''" (click)="onPageJobList('15')">15</a>
-                                <a href="javascript:void(0);" [ngClass]="20===onPageClick ? 'active':''" (click)="onPageJobList('20')">20</a>
+                                <a href="javascript:void(0);" [ngClass]="10===currentPageNo ? 'active':''" (click)="onPageJobList('10')">10</a>
+                                <a href="javascript:void(0);" [ngClass]="15===currentPageNo ? 'active':''" (click)="onPageJobList('15')">15</a>
+                                <a href="javascript:void(0);" [ngClass]="20===currentPageNo ? 'active':''" (click)="onPageJobList('20')">20</a>
                                 <span>results per page</span>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                                         </div>
                                         <div class="col-sm-88">
                                             <div class="search_box_right">
-                                                <span><strong>Job Title:</strong> {{item['params']['recuriter_search_job_title']}}</span> <span class="pink_color_span">|</span> <span><strong>Location:</strong> {{item['params']['recuriter_search_location']}}</span> <span class="pink_color_span">|</span> <span> <strong>Postcode:</strong> </span> <span class="pink_color_span">| </span> <span><strong>Rate Min:</strong> £{{item['params']['recuriter_search_by_rate_min']}}</span> <span class="pink_color_span">|</span> <span><strong>Rate Max:</strong> £{{item['params']['recuriter_search_by_rate_max']}}</span> <span class="pink_color_span">|</span> <span><strong>Rate Type:</strong> {{item['params']['recuriter_search_by_rate_type']}}</span>
+                                                <span><strong>Job Title:</strong> {{item['params']['recuriter_search_job_title'] ? item['params']['recuriter_search_job_title'] : 'N/A'}}</span> <span class="pink_color_span">|</span> <span><strong>Location:</strong> {{item['params']['recuriter_search_location'] ? item['params']['recuriter_search_location'] : 'N/A'}}</span> <span class="pink_color_span">|</span> <span> <strong>Postcode:</strong> </span> <span class="pink_color_span">| </span> <span><strong>Rate Min:</strong> £{{item['params']['recuriter_search_by_rate_min'] ? item['params']['recuriter_search_by_rate_min'] : 'N/A'}}</span> <span class="pink_color_span">|</span> <span><strong>Rate Max:</strong> £{{item['params']['recuriter_search_by_rate_max'] ? item['params']['recuriter_search_by_rate_max'] : 'N/A'}}</span> <span class="pink_color_span">|</span> <span><strong>Rate Type:</strong> {{item['params']['recuriter_search_by_rate_type'] ? item['params']['recuriter_search_by_rate_type'] : 'N/A'}}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -76,7 +76,7 @@
                                         </div>
                                         <div class="col-sm-88 col-xs-70">
                                             <div class="search_box_right">
-                                                <span>{{item?.created}} </span>
+                                                <span>{{item?.created ? item?.created : 'N/A'}} </span>
                                             </div>
                                         </div>
                                     </div>
@@ -88,7 +88,7 @@
                                         </div>
                                         <div class="col-sm-88 col-xs-70">
                                             <div class="search_box_right">
-                                                <span>{{item?.setupby}}  </span>
+                                                <span>{{item?.setupby ? item?.setupby : 'N/A'}}  </span>
                                             </div>
                                         </div>
                                     </div>
@@ -268,6 +268,6 @@
             <app-ad-space *ngIf="watchListDataArr.length !== 0"></app-ad-space>
             
             <div class="show_more_application">
-                <a *ngIf="watchListDataArr.length > 10" href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>SHOW MORE WATCHDOGS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                <a *ngIf="watchListDataArr.length > 9" href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="showMoreWatchDogs()"><span>SHOW MORE WATCHDOGS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
             </div>
         </section>

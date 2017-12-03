@@ -30,7 +30,7 @@ import { RecruiterTermsComponent } from '../recruiter-terms/recruiter-terms.comp
 import { AboutRecruiterComponent } from '../about-recruiter/about-recruiter.component';
 
 import { ContactPageComponent } from '../contact-page/contact-page.component';
-import { RecruiterGuidesPageComponent } from '../recruiter-guides-page/recruiter-guides-page.component';
+//import { RecruiterGuidesPageComponent } from '../recruiter-guides-page/recruiter-guides-page.component';
 import { FaqComponent } from '../faq/faq.component';
 import { PrivacyPolicyComponent } from '../privacy-policy/privacy-policy.component';
 import { SiteMapComponent } from '../site-map/site-map.component';
@@ -56,7 +56,7 @@ import { ContractorResetPasswordComponent } from '../contractor-reset-password/c
 		RecruiterTermsComponent,
 		AboutRecruiterComponent,
 		ContactPageComponent,
-		RecruiterGuidesPageComponent,
+		//RecruiterGuidesPageComponent,
 		FaqComponent,
 		PrivacyPolicyComponent,
 		SiteMapComponent,

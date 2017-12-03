@@ -24,6 +24,8 @@ export class RecruiterManageJobsComponent implements OnInit {
   onPageClick = 9;
   sortByData;
   jobPostFlagError = false;
+  totalPage;
+  maxRecord;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService, private _commonService: CommonService) { }
 
@@ -89,7 +91,7 @@ export class RecruiterManageJobsComponent implements OnInit {
    var input = {
    	"email":"test@test7.com",
 	"loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu",
-   	"page":1,
+   	"page":this.pageNo,
 	"limit":pageLimit
    };
    console.log("input--", input);
@@ -100,7 +102,12 @@ export class RecruiterManageJobsComponent implements OnInit {
          if(data && data.status === "TRUE") {
            this.errorMsg = "";
            this.errorMsgFlag = false;
-           this.listingData = data.data;
+           //this.listingData = data.data;
+           this.totalPage = data.TotalPage;
+           this.maxRecord = data.recordsTotal;
+           for(var i=0;i<data.data.length;i++) {
+             this.listingData.push(data.data[i]);
+           }
              for(var i=0;i<3;i++) {
              	if(this.listingData && this.listingData[i]) {
              		this.firstArray[i] = this.listingData[i];
@@ -142,14 +149,15 @@ export class RecruiterManageJobsComponent implements OnInit {
   }
 
   onPageJobList(pageNo) {
-    //this.currentPageNo = parseInt(pageNo);
-    this.onPageClick = parseInt(pageNo);
+    this.currentPageNo = parseInt(pageNo);
+    this.pageNo = 1;
+    //this.onPageClick = parseInt(pageNo);
+     this.listingData = [];
     this.firstArray = [];
      this.secondArray = [];
-     this.secondArray = [];
-     this.listingData = [];
+     this.thirdArray = [];
      this.pageNo = 1;
-    this.getManageJobsList(pageNo);
+    this.getManageJobsList(this.currentPageNo);
   }
 
   showMoreJobs() {
@@ -157,9 +165,12 @@ export class RecruiterManageJobsComponent implements OnInit {
     // console.log("this.onPageClick", this.onPageClick);
     //this.pageNo = 2;
      //console.log("this.pageNo before", this.pageNo)
-    this.pageNo += 1;
+    //this.pageNo += 1;
     //console.log("this.pageNo", this.pageNo)
-    this.currentPageNo = this.onPageClick * this.pageNo;
+    //this.currentPageNo = this.onPageClick * this.pageNo;
+    if(this.totalPage >= this.pageNo) {
+      this.pageNo += 1;
+    }
     //console.log("this.currentPageNo", this.currentPageNo);
     this.getManageJobsList(this.currentPageNo);
   }

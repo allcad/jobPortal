@@ -24,7 +24,9 @@ export class RecruiterManageUserComponent implements OnInit {
   errorMessageFlag = false;
   WSErrorMsg = "";
   companyEditableId;
-  
+  openPopupFlag = false;
+  currentDeleteId;
+  userAllowed = '';
   constructor(public _commonRequestService: CommonRequestService) {
   	//this.addMulUserArray.splice(0,1);
    }
@@ -87,6 +89,7 @@ export class RecruiterManageUserComponent implements OnInit {
            this.subUserArray = data.data;
            this.totalNumberOfUser = this.subUserArray.length + 1;
            this.WSErrorMsg = "";
+           this.userAllowed = data.user_allowed;
            // this.successMessage = "Sub User Created Succesfully!";
            // this.successMessageFlag = true;
            // this.errorMessageFlag = false;
@@ -127,11 +130,12 @@ export class RecruiterManageUserComponent implements OnInit {
     );
   }
 
-  deleteUser(id) {
+  deleteUser() {
+    this.openPopupFlag = false;
     var saveJson = {
       "email":"test@test7.com",
       "loginToken":"$2y$10$qIXhfBp1FO4l8bfXilrWo.mgeDm2YiznM49TGdC00qeTP8.psEeFC",
-      "recuriter_id":id
+      "recuriter_id":this.currentDeleteId
     }
     var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/super/user/delete";
        this._commonRequestService.postData(wsUrl,saveJson).subscribe(
@@ -151,6 +155,15 @@ export class RecruiterManageUserComponent implements OnInit {
          window.scroll(0,0);
         }
     );
+  }
+
+  openDeletePopup(id) {
+    this.currentDeleteId = id;
+    this.openPopupFlag = true;
+  }
+
+  closeDeletePopup() {
+    this.openPopupFlag = false;
   }
 
 }

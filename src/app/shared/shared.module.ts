@@ -45,6 +45,7 @@ import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/r
  import { RecruiterSavedSearchComponent } from '../recruiter-saved-search/recruiter-saved-search.component';
  import { ViewContractorProfileComponent } from '../view-contractor-profile/view-contractor-profile.component';
  //import { ChartModule } from 'angular-highcharts';
+ import { RecruiterGuidesPageComponent } from '../recruiter-guides-page/recruiter-guides-page.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/r
     RecruiterSearchresultLoggedinComponent,
      RecruiterAdvancedSearchComponent,
      RecruiterSavedSearchComponent,
-     ViewContractorProfileComponent
+     ViewContractorProfileComponent,
+     RecruiterGuidesPageComponent
   ],
   imports: [
     FormsModule,
@@ -121,6 +123,7 @@ import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/r
      RecruiterAdvancedSearchComponent,
      RecruiterSavedSearchComponent,
      ViewContractorProfileComponent,
+     RecruiterGuidesPageComponent
      //ChartModule
   ],
   providers: [],

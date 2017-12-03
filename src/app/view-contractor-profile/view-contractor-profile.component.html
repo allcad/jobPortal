@@ -7,7 +7,7 @@
                         <div class="contractor_signup recruiter_signup  befourlogin_fontsize">
                             <h2 class="font_capitalizs">Contractor <span class="text_pink">PROFILE</span></h2>
                             <ul class="breadcomb color_active">
-                                <li><a href="#/public/home">Home</a></li>
+                                <li><a href="javascript:void(0);" [routerLink]="['../recruiter-home']">Home</a></li>
                                 <li class="right_arrow text_pink">&gt;</li>
                                 <li><a href="javascript:void(0)">Saved Search</a></li>
                                 <li class="right_arrow text_pink">&gt;</li>
@@ -59,23 +59,23 @@
                         ReLOCatable</p>
                         </div>
                         <div class="recruiter_view_profile_left2">
-                            <p><span>Location:</span> {{contractorData?.location}}</p>
-                            <p><span>Email:</span> {{contractorData?.emailAddress}}</p>
-                            <p><span>Mobile:</span> {{contractorData?.contractor_tel_no}}</p>
+                            <p><span>Location:</span> {{contractorData?.location ? contractorData?.location : 'N/A'}}</p>
+                            <p><span>Email:</span> {{contractorData?.emailAddress ? contractorData?.emailAddress : 'N/A'}}</p>
+                            <p><span>Mobile:</span> {{contractorData?.contractor_tel_no ? contractorData?.contractor_tel_no : 'N/A'}}</p>
                         </div>
                         <div class="recruiter_view_profile_left3">
-                            <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<span style="font-size: 14px">{{contractorData?.gitHubWebAddress}}</span></a><br/>
-                            <a href="javascript:void(0)"><i class="fa fa-laptop" aria-hidden="true"></i>&nbsp;<span style="font-size: 14px">{{contractorData?.linkedinWebAddress}}</span></a>
+                            <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;<span style="font-size: 14px">{{contractorData?.gitHubWebAddress ? contractorData?.gitHubWebAddress : 'N/A'}}</span></a><br/>
+                            <a href="javascript:void(0)"><i class="fa fa-laptop" aria-hidden="true"></i>&nbsp;<span style="font-size: 14px">{{contractorData?.linkedinWebAddress ? contractorData?.linkedinWebAddress : 'N/A'}}</span></a>
                         </div>
                     </div>
                     <div class="col-sm-50">
                         <div class="recruiter_view_profile_right">
                             <h5>Availability</h5>
-                            <p>{{contractorData?.availability}}</p>
+                            <p>{{contractorData?.availability ? contractorData?.availability : 'N/A'}}</p>
                             <img src="./assets/images/days.png" alt="" title="">
                             <p class="font_size14">My Notice Period is </p>
-                            <h3>{{contractorData?.notice_period}}</h3>
-                            <p class="font_size12">I am happy to use my notice period : {{contractorData?.happy_notice}}</p>
+                            <h3>{{contractorData?.notice_period ? contractorData?.notice_period : 'N/A'}}</h3>
+                            <p class="font_size12">I am happy to use my notice period : {{contractorData?.happy_notice ? contractorData?.happy_notice : 'N/A'}}</p>
                         </div>
                     </div>
                 </div>
@@ -93,15 +93,17 @@
                         <div class="profile_my_work">
                             <h3>My Work</h3>
                             <h5>Summary</h5>
-                            <p>{{contractorData?.summary}}</p>
+                            <p>{{contractorData?.summary ? contractorData?.summary : 'N/A'}}</p>
                             <h5>Preferred Job Title</h5>
-                            <div class="add_sub_skills"> <a href="javascript:void(0)">{{contractorData?.yourPreferredJobTitle}} <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a> </div>
+                            <div class="add_sub_skills"> <a href="javascript:void(0)">{{contractorData?.yourPreferredJobTitle ? contractorData?.yourPreferredJobTitle : 'N/A'}} <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a> </div>
                             <h3>Key Skills </h3>
                             <div class="add_sub_skills margin_bottom_none">
+                                <p *ngIf="keySkills.length == 0">N/A</p>
                                 <p *ngIf="keySkills.length > 0"> <a href="javascript:void(0)" *ngFor="let item of keySkills">{{item}} <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a></p>                                
                             </div>
                             <div class="profile_education">
                                 <h3>Education </h3>
+                                <p *ngIf="qualification.length == 0">N/A</p>
                                 <ul *ngIf="qualification.length > 0">
                                     <li *ngFor="let item of qualification"><img src="./assets/images/education-icon.png" alt="" title=""> {{item}}</li>
                                     <!-- <li><img src="./assets/images/education-icon.png" alt="" title=""> M.S.C</li> -->
@@ -109,6 +111,7 @@
                             </div>
                             <div class="profile_education">
                                 <h3>Certifications </h3>
+                                <p *ngIf="certification.length == 0">N/A</p>
                                 <ul *ngIf="certification.length > 0">
                                     <li *ngFor="let item of certification"><img src="./assets/images/certifications-icon.png" alt="" title=""> {{item}}</li>
                                     

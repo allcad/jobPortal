@@ -13,7 +13,7 @@
                         <div class="contractor_signup recruiter_signup">
                             <h2 class="font_capitalizs">Manage <span class="text_pink">Jobs</span></h2>
                             <ul class="breadcomb color_active">
-                                <li><a href="javascript:void(0)">Home</a></li>
+                                <li><a href="javascript:void(0)" [routerLink]="['../recruiter-home']">Home</a></li>
                                 <li class="right_arrow text_pink">&gt;</li>
                                 <li class="active">MANAGE JOBS</li>
                             </ul>
@@ -34,9 +34,9 @@
                         <div class="col-sm-50" *ngIf="listingData.length !== 0">
                             <div class="pazer">
                                 <span>Show</span>                                
-                                <a href="javascript:void(0);" [ngClass]="9===onPageClick ? 'active':''" (click)="onPageJobList('9')">9</a>
-                                <a href="javascript:void(0);" [ngClass]="12===onPageClick ? 'active':''" (click)="onPageJobList('12')">12</a>
-                                <a href="javascript:void(0);" [ngClass]="15===onPageClick ? 'active':''" (click)="onPageJobList('15')">15</a>
+                                <a href="javascript:void(0);" [ngClass]="9===currentPageNo ? 'active':''" (click)="onPageJobList('9')">9</a>
+                                <a href="javascript:void(0);" [ngClass]="12===currentPageNo ? 'active':''" (click)="onPageJobList('12')">12</a>
+                                <a href="javascript:void(0);" [ngClass]="15===currentPageNo ? 'active':''" (click)="onPageJobList('15')">15</a>
                                 <span>results per page</span>
                             </div>
                         </div>
@@ -67,16 +67,16 @@
                         <div class="my_applications_box">
                             <div class="header_top">
                                 <img src="./assets/images/job-watchdogs.png" alt="ads" title="ads" class="img-responsive margin_top_five">
-                                <span class="job_test">{{item?.jobTitle}}</span>
+                                <span class="job_test">{{item?.jobTitle ? item?.jobTitle : 'N/A'}}</span>
                             </div>
                             <div class="application_box_contant2 recruiter_appications_box">
-                                <p><span class="text_pink">Applications </span> {{item?.applied}}</p>
-                                <p><span class="text_gray">Views</span> {{item?.views}}</p>
-                                <p><span class="text_pink">Watching </span> {{item?.watching}}</p>
-                                <p><span class="text_gray">Reference Number  </span> {{item?.jobReference}}</p>
+                                <p><span class="text_pink">Applications </span> {{item?.applied ? item?.applied : 'N/A'}}</p>
+                                <p><span class="text_gray">Views</span> {{item?.views ? item?.views : 'N/A'}}</p>
+                                <p><span class="text_pink">Watching </span> {{item?.watching ? item?.watching : 'N/A'}}</p>
+                                <p><span class="text_gray">Reference Number  </span> {{item?.jobReference ? item?.jobReference : 'N/A'}}</p>
                                 <p><span class="text_gray">Date (Posted)    </span> {{item?.recuriter_job_created_at | date}}</p>
-                                <p><span class="text_gray">Date (Expiration)  </span> {{item?.expireDate | date}}</p>
-                                <p><span class="text_gray" >Posted By     </span>{{item?.recruiterNameId}}</p>
+                                <p><span class="text_gray">Date (Expiration)  </span> {{ item?.expireDate | date}}</p>
+                                <p><span class="text_gray" >Posted By     </span>{{item?.recruiterNameId ? item?.recruiterNameId : 'N/A'}}</p>
                             </div>
                             <div class="manage_job_footer">
                                 <a href="javascript:void(0);" [routerLink]="['../preview-job']" (click)="passJobIdForPreview(item?.jobid)"><img src="./assets/images/job-view.png" alt="" title=""></a>
@@ -159,16 +159,16 @@
                         <div class="my_applications_box">
                             <div class="header_top">
                                 <img src="./assets/images/job-watchdogs.png" alt="ads" title="ads" class="img-responsive margin_top_five">
-                                <span class="job_test">{{item?.jobTitle}}</span>
+                                <span class="job_test">{{item?.jobTitle ? item?.jobTitle : 'N/A'}}</span>
                             </div>
                             <div class="application_box_contant2 recruiter_appications_box">
-                                <p><span class="text_pink">Applications </span> {{item?.applied}}</p>
-                                <p><span class="text_gray">Views</span> {{item?.views}}</p>
-                                <p><span class="text_pink">Watching </span> {{item?.watching}}</p>
-                                <p><span class="text_gray">Reference Number  </span> {{item?.jobReference}}</p>
+                                <p><span class="text_pink">Applications </span> {{item?.applied ? item?.applied : 'N/A'}}</p>
+                                <p><span class="text_gray">Views</span> {{item?.views ? item?.views : 'N/A'}}</p>
+                                <p><span class="text_pink">Watching </span> {{item?.watching ? item?.watching : N/A}}</p>
+                                <p><span class="text_gray">Reference Number  </span> {{item?.jobReference ? item?.jobReference : 'N/A'}}</p>
                                 <p><span class="text_gray">Date (Posted)    </span> {{item?.recuriter_job_created_at | date}}</p>
                                 <p><span class="text_gray">Date (Expiration)  </span> {{item?.expireDate | date}}</p>
-                                <p><span class="text_gray">Posted By     </span> {{item?.recruiterNameId}}</p>
+                                <p><span class="text_gray">Posted By     </span> {{item?.recruiterNameId ? item?.recruiterNameId : 'N/A'}}</p>
                             </div>
                             <div class="manage_job_footer">
                                 <a href="javascript:void(0);" [routerLink]="['../preview-job']" (click)="passJobId(item?.jobid)"><img src="./assets/images/job-view.png" alt="" title=""></a>
@@ -319,16 +319,16 @@
                         <div class="my_applications_box">
                             <div class="header_top">
                                 <img src="./assets/images/job-watchdogs.png" alt="ads" title="ads" class="img-responsive margin_top_five">
-                                <span class="job_test">{{item?.jobTitle}}</span>
+                                <span class="job_test">{{item?.jobTitle ? item?.jobTitle : 'N/A'}}</span>
                             </div>
                             <div class="application_box_contant2 recruiter_appications_box">
-                                <p><span class="text_pink">Applications </span> {{item?.applied}}</p>
-                                <p><span class="text_gray">Views</span> {{item?.views}}</p>
-                                <p><span class="text_pink">Watching </span> {{item?.watching}}</p>
-                                <p><span class="text_gray">Reference Number  </span> {{item?.jobReference}}</p>
+                                <p><span class="text_pink">Applications </span> {{item?.applied ? item?.applied : 'N/A'}}</p>
+                                <p><span class="text_gray">Views</span> {{item?.views ? item?.views : 'N/A'}}</p>
+                                <p><span class="text_pink">Watching </span> {{item?.watching ? item?.watching : 'N/A'}}</p>
+                                <p><span class="text_gray">Reference Number  </span> {{item?.jobReference ? item?.jobReference : 'N/A'}}</p>
                                 <p><span class="text_gray">Date (Posted)    </span> {{item?.recuriter_job_created_at | date}}</p>
-                                <p><span class="text_gray">Date (Expiration)  </span> {{item?.expireDate | date}}</p>
-                                <p><span class="text_gray">Posted By     </span> {{item?.recruiterNameId}}</p>
+                                <p><span class="text_gray">Date (Expiration)  </span> {{ item?.expireDate | date}}</p>
+                                <p><span class="text_gray">Posted By     </span> {{item?.recruiterNameId ? item?.recruiterNameId : 'N/A'}}</p>
                             </div>
                             <div class="manage_job_footer">
                                 <a href="javascript:void(0);" [routerLink]="['../preview-job']" (click)="passJobId(item?.jobid)"><img src="./assets/images/job-view.png" alt="" title=""></a>
@@ -387,6 +387,6 @@
                 </div>
             </div>
             <div class="show_more_application">
-                <a *ngIf="listingData.length > 9" href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="showMoreJobs()"><span>SHOW MORE JOBS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                <a *ngIf="listingData.length > 8" href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="showMoreJobs()"><span>SHOW MORE JOBS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
             </div>
         </section>

@@ -4,20 +4,21 @@
   <div id="contractor-signup">
     <div class="container">
 
-      <div class="errorbox" *ngIf="companyNameFlag || contactNameFlag || phoneNoFlag || jobTitleFlag || emailFlag || passwordFlag || verifyPasswordValueFlag || keySkillFlag || validPhoneNoFlag || phoneNoMaxLengthFlag || validEmailFlag || verifyEmailReqFlag || verifyEmailFlag || passwordSameFlag || emailSameFlag"><b>The following error(s) occured:</b><br> 
-          <li *ngIf="companyNameFlag">Company Name is required.</li>
-          <li *ngIf="contactNameFlag">Contract Name is required.</li>
-          <li *ngIf="phoneNoFlag">Phone No is required.</li>
+      <div class="errorbox" *ngIf="companyNameFlag || contactNameFlag || phoneNoFlag || jobTitleFlag || emailFlag || passwordFlag || validPhoneNoFlag || phoneNoMaxLengthFlag || validEmailFlag || passwordSameFlag || emailSameFlag || termsOfUseFlag"><b>The following error(s) occured:</b><br> 
+          <li *ngIf="companyNameFlag">Company Name required.</li>
+          <li *ngIf="contactNameFlag">Consultant name required.</li>
+          <li *ngIf="phoneNoFlag">Please enter a telephone number.</li>
           <li *ngIf="validPhoneNoFlag">Phone No not valid.</li>
           <li *ngIf="phoneNoMaxLengthFlag">Phone No max length is 15.</li>
-          <li *ngIf="jobTitleFlag">Job Title is required.</li>
-          <li *ngIf="emailFlag">Email is required.</li>
-          <li *ngIf="passwordFlag">Password is required.</li>
-          <li *ngIf="verifyPasswordValueFlag">Verify Password is required.</li>
-          <li *ngIf="keySkillFlag">Pass Code is required.</li>
+          <li *ngIf="jobTitleFlag">Job Title required.</li>
+          <li *ngIf="emailFlag">Please enter an email address.</li>
+          <li *ngIf="passwordFlag">Your password must be at least 6 characters in length.</li>
+          <li *ngIf="termsOfUseFlag">Please agree to our terms of use.</li>
+          <!-- <li *ngIf="verifyPasswordValueFlag">Verify Password is required.</li>
+          <li *ngIf="keySkillFlag">Pass Code is required.</li> -->
           <li *ngIf="validEmailFlag">Please enter valid email.</li>
-          <li *ngIf="verifyEmailReqFlag">Verify email field is required.</li>
-          <li *ngIf="verifyEmailFlag">Please enter valid verify email.</li>
+          <!-- <li *ngIf="verifyEmailReqFlag">Verify email field is required.</li>
+          <li *ngIf="verifyEmailFlag">Please enter valid verify email.</li> -->
           <li *ngIf="passwordSameFlag">Password and verify password should be same.</li>
           <li *ngIf="emailSameFlag">Email and verify email should be same.</li>
       </div>
@@ -27,7 +28,7 @@
           <div class="contractor_signup befourlogin_fontsize">
             <h2>Recruiter <span class="text_pink">Register</span></h2>
             <ul class="breadcomb color_active">
-              <li><a href="#/public/home" class="hover_text_pink">Home</a></li>
+              <li><a href="#/public/home" class="hover_text_pink" [routerLink]="['../recruiterLogin']">Home</a></li>
               <li class="right_arrow text_pink">&gt;</li>
               <li><a href="javascript:void(0);" class="hover_text_pink">Recruiter</a></li>
               <li class="right_arrow text_pink">&gt;</li>

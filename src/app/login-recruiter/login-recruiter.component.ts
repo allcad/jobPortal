@@ -23,6 +23,7 @@ invalidErrorMsg = "";
   constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
+    window.scroll(0,0);
   this.generate();
   }
 

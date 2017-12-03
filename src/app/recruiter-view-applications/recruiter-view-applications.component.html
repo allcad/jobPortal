@@ -7,7 +7,7 @@
                         <div class="contractor_signup recruiter_signup">
                             <h2 class="font_capitalizs">View <span class="text_pink">Applications</span></h2>
                             <ul class="breadcomb color_active">
-                                <li><a href="#/public/home">Home</a></li>
+                                <li><a href="javascript:void(0);" [routerLink]="['../recruiter-home']">Home</a></li>
                                 <li class="right_arrow text_pink">&gt;</li>
                                 <li class="active">APPLICATIONS</li>
                             </ul>
@@ -28,9 +28,9 @@
                     <div class="row">
                         <div class="col-sm-50" *ngIf="listingData.length !== 0">
                             <div class="pazer"> <span>Show</span> 
-                                <a href="javascript:void(0);" [ngClass]="12===onPageClick ? 'active':''" (click)="onPageJobList('12')">12</a> 
-                                <a href="javascript:void(0);" [ngClass]="16===onPageClick ? 'active':''" (click)="onPageJobList('16')">16</a> 
-                                <a href="javascript:void(0);" [ngClass]="20===onPageClick ? 'active':''" (click)="onPageJobList('20')">20</a> <span>results per page</span> </div>
+                                <a href="javascript:void(0);" [ngClass]="12===currentPageNo ? 'active':''" (click)="onPageJobList('12')">12</a> 
+                                <a href="javascript:void(0);" [ngClass]="16===currentPageNo ? 'active':''" (click)="onPageJobList('16')">16</a> 
+                                <a href="javascript:void(0);" [ngClass]="20===currentPageNo ? 'active':''" (click)="onPageJobList('20')">20</a> <span>results per page</span> </div>
                         </div>
                         <div class="col-sm-50" *ngIf="listingData.length !== 0">
                             <div class="signup_form_section width_auto choose_template text-right width_auto200">
@@ -61,21 +61,21 @@
                                     </div>
                                     <div class="col-md-64 col-sm-74">
                                         <div class="header_right_side">
-                                            <p><span>Viewable on</span> {{item?.contractor_visible_on}}</p>
+                                            <p><span>Viewable on</span> {{item?.contractor_visible_on ? item?.contractor_visible_on : 'N/A'}}</p>
                                             <a href="javascript:void(0);"> <img src="./assets/images/whatch-close-icon.png" alt="" title=""></a> </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="watch_list_content">
-                                <p><span>Job Title :</span> {{item?.contractor_job_title}}</p>
-                                <p><span>Location :</span> {{item?.contractor_location}}</p><br>
+                                <p><span>Job Title :</span> {{item?.contractor_job_title ? item?.contractor_job_title : 'N/A'}}</p>
+                                <p><span>Location :</span> {{item?.contractor_location ? item?.contractor_location : 'N/A'}}</p><br>
                                 <p style="height: 40px;"><span>Rate :</span> Commutable <a href="javascript:void(0);">£ {{item?.contractor_day_rate_min}} - £{{item?.contractor_day_rate_max}}</a> <span class="sapeter">|</span> Relocatable <a href="javascript:void(0);">£{{item?.contractor_rate_min}} - £{{item?.contractor_rate_max}}</a> p/d </p>
                             </div>
                             <div class="watchlist_footer">
                                 <div class="row">
                                     <div class="col-sm-50 col-md-36">
                                         <div class="footer_left_part">
-                                            <p>Last viewed <span>{{item?.last_viewed}}</span></p>
+                                            <p>Last viewed <span>{{item?.last_viewed ? item?.last_viewed : 'N/A'}}</span></p>
                                         </div>
                                     </div>
                                     <div class="col-sm-50 col-md-64">
@@ -98,21 +98,21 @@
                                     </div>
                                     <div class="col-md-64 col-sm-74">
                                         <div class="header_right_side">
-                                            <p><span>Viewable on</span> {{item?.contractor_visible_on}}</p>
+                                            <p><span>Viewable on</span> {{item?.contractor_visible_on ? item?.contractor_visible_on : 'N/A'}}</p>
                                             <a href="javascript:void(0);"> <img src="./assets/images/whatch-close-icon.png" alt="" title=""></a> </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="watch_list_content">
-                                <p><span>Job Title :</span> {{item?.contractor_job_title}}</p>
-                                <p><span>Location :</span> {{item?.contractor_location}}</p><br>
+                                <p><span>Job Title :</span> {{item?.contractor_job_title ? item?.contractor_job_title : 'N/A'}}</p>
+                                <p><span>Location :</span> {{item?.contractor_location ? item?.contractor_location : 'N/A'}}</p><br>
                                 <p style="height: 40px;"><span>Rate :</span> Commutable <a href="javascript:void(0);">£ {{item?.contractor_day_rate_min}} - £{{item?.contractor_day_rate_max}}</a> <span class="sapeter">|</span> Relocatable <a href="javascript:void(0);">£{{item?.contractor_rate_min}} - £{{item?.contractor_rate_max}}</a> p/d </p>
                             </div>
                             <div class="watchlist_footer">
                                 <div class="row">
                                     <div class="col-sm-50 col-md-36">
                                         <div class="footer_left_part">
-                                            <p>Last viewed <span>{{item?.last_viewed}}</span></p>
+                                            <p>Last viewed <span>{{item?.last_viewed ? item?.last_viewed : 'N/A'}}</span></p>
                                         </div>
                                     </div>
                                     <div class="col-sm-50 col-md-64">
@@ -124,5 +124,5 @@
                     </div>                    
                 </div>             
             </div>
-            <div class="show_more_application"> <a *ngIf="listingData.length > 12" href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="showMoreJobs()"><span>SHOW MORE APPLICATIONS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
+            <div class="show_more_application"> <a *ngIf="listingData.length > 11" href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="showMoreJobs()"><span>SHOW MORE APPLICATIONS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
         </section>

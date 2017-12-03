@@ -32,6 +32,7 @@ export class RecruiterSignUpComponent implements OnInit {
   passwordSameFlag = false;
   emailSameFlag = false;
   invalidErrorMsg = "";
+  termsOfUseFlag = false;
   inputData; JobTitle; phoneNo; emailAddress; passwordValue; keySkill; termOfUse = false; inputUrl; status; succesMessageFlag = false;
   constructor(public _commonRequestService: CommonRequestService, private router: Router) { }
 
@@ -139,6 +140,12 @@ export class RecruiterSignUpComponent implements OnInit {
       this.verifyPasswordValueFlag = true;
     }
 
+    if(this.termOfUse) {
+      this.termsOfUseFlag = false;
+    } else {
+      this.termsOfUseFlag = true;
+    }
+
     if(this.passwordValue && this.verifyPasswordValue) {
       if(this.passwordValue !== this.verifyPasswordValue) {
         this.passwordSameFlag = true;
@@ -147,10 +154,10 @@ export class RecruiterSignUpComponent implements OnInit {
       }
     }
 
-    if(this.companyNameFlag || this.contactNameFlag || this.phoneNoFlag || this.jobTitleFlag 
-      || this.emailFlag || this.passwordFlag || this.verifyPasswordValueFlag || this.keySkillFlag || this.validPhoneNoFlag
-      || this.phoneNoMaxLengthFlag || this.verifyEmailReqFlag || this.verifyEmailFlag || this.verifyEmailFlag
-      || this.passwordSameFlag || this.emailSameFlag) {
+    if(this.companyNameFlag || this.contactNameFlag || this.phoneNoFlag 
+      || this.jobTitleFlag || this.emailFlag || this.passwordFlag || this.validPhoneNoFlag 
+      || this.phoneNoMaxLengthFlag || this.validEmailFlag || this.passwordSameFlag || 
+      this.emailSameFlag || this.termsOfUseFlag) {
       window.scroll(0,0);
       this.allErrorMsgFlag = true;
     } else {

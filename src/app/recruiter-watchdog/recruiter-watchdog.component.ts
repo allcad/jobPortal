@@ -20,6 +20,8 @@ export class RecruiterWatchdogComponent implements OnInit {
   pageNo = 1;
   currentPageNo = 10;
   errorMsg = "";
+  maxPage;
+  maxRecord;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
     private _commonDataSharedService: CommonDataSharedService, private commonService : CommonService) { }
 
@@ -48,15 +50,19 @@ export class RecruiterWatchdogComponent implements OnInit {
   "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu",
     "sort_by_id":this.currentSortBy,
     "page":this.pageNo,
-    "limit":this.onPageClick
+    "limit":this.currentPageNo
    };
    console.log("input--", input);
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/watchdogs/list";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
          console.log("recruiterId--", data);
-         if (data && data.data) {           
-           this.watchListDataArr = data.data;
+         if (data && data.status == 'TRUE') {  
+         this.maxPage = data.TotalPage;         
+           //this.watchListDataArr = data.data;
+           for(var i =0;i<data.data.length;i++) {
+             this.watchListDataArr.push(data.data[i]);
+           }
            this.watchListDataArrCount = data.data.length;
          } else {
            this.watchListDataArr = [];
@@ -133,8 +139,8 @@ export class RecruiterWatchdogComponent implements OnInit {
    //  );
    if(item) {
      var savedSearchSaveJson = {
-        "email":"test@test8.com",
-        "loginToken":"$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y",
+        // "email":"test@test8.com",
+        // "loginToken":"$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y",
         // "recuriter_saved_search_name":this.savedSearchName,
         // "recuriter_search_add_to_watchdog":this.addToWatchDogCheck === true ? 1 : 2,
         "recuriter_search_job_title": item && item.params && item.params.recuriter_search_job_title,
@@ -190,21 +196,26 @@ export class RecruiterWatchdogComponent implements OnInit {
 
 
   onPageJobList(pageNo) {
-    //this.currentPageNo = parseInt(pageNo);
-    this.onPageClick = parseInt(pageNo);    
+    this.currentPageNo = parseInt(pageNo);
+    //this.onPageClick = parseInt(pageNo);    
      this.pageNo = 1;
-    this.getWatchDogListData(pageNo);
+     this.watchListDataArr = [];
+    this.getWatchDogListData(this.currentPageNo);
   }
 
-  showMoreJobs() {
+  showMoreWatchDogs() {
     // console.log("before", this.currentPageNo);
     // console.log("this.onPageClick", this.onPageClick);
     //this.pageNo = 2;
      //console.log("this.pageNo before", this.pageNo)
-    this.pageNo += 1;
+    //this.pageNo += 1;
     //console.log("this.pageNo", this.pageNo)
-    this.currentPageNo = this.onPageClick * this.pageNo;
+    //this.currentPageNo = this.onPageClick * this.pageNo;
     //console.log("this.currentPageNo", this.currentPageNo);
+    console.log("this.maxPage", this.maxPage);
+    if(this.maxPage >= this.pageNo) {
+      this.pageNo += 1;
+    }
     this.getWatchDogListData(this.currentPageNo);
   }
 

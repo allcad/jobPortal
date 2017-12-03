@@ -203,8 +203,8 @@ export class RecruiterHomeComponent implements OnInit {
 
   searchResultHomePage() {
     var savedSearchSaveJson = {
-      "email":"test@test8.com",
-      "loginToken":"$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y",
+      // "email":"test@test8.com",
+      // "loginToken":"$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y",
       // "recuriter_saved_search_name":this.savedSearchName,
       // "recuriter_search_add_to_watchdog":this.addToWatchDogCheck === true ? 1 : 2,
       "recuriter_search_job_title":this.jobTitleValue?this.jobTitleValue:'',

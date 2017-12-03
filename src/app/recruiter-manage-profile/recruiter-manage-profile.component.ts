@@ -544,7 +544,7 @@ getProfileDta(){
           var companySocialData;
           if(data && data.data) {
             this.profileData = data.data;
-            if(this.profileData['companySocial']) {
+            if(this.profileData['companySocial'] && this.profileData['companySocial'].length > 0) {
               console.log("comapny social--", JSON.parse(this.profileData['companySocial']));
               companySocialData = JSON.parse(this.profileData['companySocial']);
             }

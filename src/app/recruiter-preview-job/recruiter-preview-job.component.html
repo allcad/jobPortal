@@ -11,9 +11,9 @@
                     <div class="row">
                         <div class="col-sm-100">
                             <div class="contractor_signup befourlogin_fontsize">
-                                <h2 class="">JOB Preview - <span class="text_pink">{{previewDataList?.jobTitle}}</span></h2>
+                                <h2 class="">JOB Preview - <span class="text_pink">{{previewDataList?.jobTitle ? previewDataList?.jobTitle : 'N/A'}}</span></h2>
                                 <ul class="breadcomb margin_left_10px">
-                                    <li><a href="javascript:void(0)" class="hover_text_pink">Home</a></li>
+                                    <li><a href="javascript:void(0)" class="hover_text_pink" [routerLink]="['../recruiter-home']">Home</a></li>
                                     <li class="right_arrow text_pink">&gt;</li>
                                     <li><a href="javascript:void(0);" class="hover_text_pink">JOB POSTING </a></li>
                                     <li class="right_arrow text_pink">&gt;</li>
@@ -36,14 +36,14 @@
                         <div class="col-md-60 col-sm-52 col-md-offset-1">
                             <div class="application_full_detail application_full_detail_recruiter">
                                 <p><span>Location:</span>
-                                    <label class="responsive_right"> {{previewDataList?.cityTown}}</label>
+                                    <label class="responsive_right"> {{previewDataList?.cityTown ? previewDataList?.cityTown : 'N/A'}}</label>
                                 </p>
-                                <p><span>Rate:</span> £{{previewDataList?.prefereedRate?.minRate}} - £{{previewDataList?.prefereedRate?.maxRate}} p/<span *ngIf="previewDataList?.prefereedRate?.dailyHourlyRate === 'daily'">d</span>
+                                <p><span>Rate:</span> £{{previewDataList?.prefereedRate?.minRate ? previewDataList?.prefereedRate?.minRate : 'N/A'}} - £{{previewDataList?.prefereedRate?.maxRate ? previewDataList?.prefereedRate?.maxRate : 'N/A'}} p/<span *ngIf="previewDataList?.prefereedRate?.dailyHourlyRate === 'daily'">d</span>
                                     <span *ngIf="previewDataList?.prefereedRate?.dailyHourlyRate === 'hourly'">h</span></p>
-                                <p><span>Start Date:</span> {{previewDataList?.startDate}}</p>
-                                <p><span>Duration:</span> {{previewDataList?.duration}}</p>
-                                <p><span>Company: </span> {{previewDataList?.company}}</p>
-                                <p><span>Ref: </span> {{previewDataList?.jobReference}}</p>
+                                <p><span>Start Date:</span> {{previewDataList?.startDate ? previewDataList?.startDate : 'N/A'}}</p>
+                                <p><span>Duration:</span> {{previewDataList?.duration ? previewDataList?.duration : 'N/A'}}</p>
+                                <p><span>Company: </span> {{previewDataList?.company ? previewDataList?.company : 'N/A'}}</p>
+                                <p><span>Ref: </span> {{previewDataList?.jobReference ? previewDataList?.jobReference : 'N/A'}}</p>
                             </div>
                         </div>
                         <!-- <div class="col-md-25 col-sm-30">
