@@ -127,7 +127,7 @@ const publicRoutes: Routes = [
 },{
     "path": "",
     "redirectTo" : "home",
-    "pathMatch" : "full"
+    "pathMatch" : 'full'
 }, {
     "path": '404', 
     "component": NotFoundPageComponent

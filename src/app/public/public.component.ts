@@ -11,7 +11,12 @@ export class PublicComponent implements OnInit {
   constructor(private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
-  	this._router.navigate(['./home'], {relativeTo: this._routes});
+  	console.log("test")
+
+  	if(this._router.url.indexOf('public') > -1 && this._router.url.split('/').length <= 2){
+  		this._router.navigate(['./home'], {relativeTo: this._routes});
+  	}
+  	//this._router.navigate(['./home'], {relativeTo: this._routes});
   }
 
 }
