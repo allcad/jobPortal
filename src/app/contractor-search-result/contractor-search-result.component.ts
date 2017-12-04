@@ -28,6 +28,9 @@ export class ContractorSearchResultComponent implements OnInit {
   currentPage = 1;
   totalPage;
   loading;
+  sendSaerch = {name: '', send_to : '', message: ''};
+  showSuccessMsg = false;
+  successMsg = '';
   ngOnInit() {
   	console.log(JSON.parse(localStorage.getItem("jobSearch")));
   	this.searchJson = JSON.parse(localStorage.getItem("jobSearch"));
@@ -59,7 +62,7 @@ export class ContractorSearchResultComponent implements OnInit {
   getSearchData(flag=false){
     this.searchJson.sort = this.sort;
     this.searchJson.page = flag ? this.currentPage : 1;
-    this.searchJson.limit = 5;
+    this.searchJson.limit = 6;
     this.loading = true;
   	let url ="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/search";
   	this._commonRequestService.postData(url,this.searchJson)
@@ -152,5 +155,32 @@ export class ContractorSearchResultComponent implements OnInit {
 
   signup(){
     this._router.navigate(['../contractorSignup'], {relativeTo: this._routes});
+  }
+
+
+  sendSearch(){
+     $('#sendSearchModal').modal();
+  }
+
+
+  send(){
+      let url ="http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/search_send";
+     let inputJson = this.searchJson;
+     inputJson.name = this.sendSaerch.name;
+     inputJson.send_to = this.sendSaerch.send_to;
+     inputJson.message = this.sendSaerch.message;
+     console.log(inputJson);
+       this._commonRequestService.postData(url, inputJson).subscribe(
+        data => {
+          if(data.status == 'TRUE'){
+            this.showSuccessMsg = true;
+            this.sendSaerch = {name: '', send_to : '', message: ''};
+            this.successMsg = 'Search Send';
+            window.scroll(0,0);
+          }
+        }
+    );  
+
+
   }
 }

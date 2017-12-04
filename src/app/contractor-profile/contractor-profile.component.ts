@@ -11,8 +11,8 @@ declare var $: any;
   styleUrls: ['./contractor-profile.component.css']
 })
 export class ContractorProfileComponent implements OnInit {
-  lat: number = 57.653484;
-  lng: number = -3.335724;
+  lat;
+  lng;
   polygonPath = [];
   selectedSkill;
   selectedSkillArray = [];
@@ -86,6 +86,9 @@ export class ContractorProfileComponent implements OnInit {
   relocateablePolygun = [];
   commutablePolygonInst;
   relocatablePolygonInst;
+  display_town;
+  display_county;
+  display_name;
   constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
@@ -106,8 +109,8 @@ export class ContractorProfileComponent implements OnInit {
 
   }
 
-  ngAfterViewInit(){
-   window.scroll(0,0);
+  ngAfterViewInit() {
+    window.scroll(0, 0);
   }
 
 
@@ -213,27 +216,27 @@ export class ContractorProfileComponent implements OnInit {
   }
 
   drawExistingMap() {
-    if(this.commutablePolygun && this.commutablePolygun.length > 0){
-         this.commutablePolygonInst = new google.maps.Polygon({
-          paths: this.commutablePolygun,
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: "#ff0066",
-          strokeColor: "#ff6bcd",
-          fillOpacity: 0.35
-        });
-        this.commutablePolygonInst.setMap(this.map);
-    } 
+    if (this.commutablePolygun && this.commutablePolygun.length > 0) {
+      this.commutablePolygonInst = new google.maps.Polygon({
+        paths: this.commutablePolygun,
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#ff0066",
+        strokeColor: "#ff6bcd",
+        fillOpacity: 0.35
+      });
+      this.commutablePolygonInst.setMap(this.map);
+    }
 
-    if(this.relocateablePolygun && this.relocateablePolygun.length > 0){
+    if (this.relocateablePolygun && this.relocateablePolygun.length > 0) {
       this.relocatablePolygonInst = new google.maps.Polygon({
-          paths: this.relocateablePolygun,
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: "#00ccff",
-          strokeColor: "#09e4f9",
-          fillOpacity: 0.35
-        });
+        paths: this.relocateablePolygun,
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#00ccff",
+        strokeColor: "#09e4f9",
+        fillOpacity: 0.35
+      });
       this.relocatablePolygonInst.setMap(this.map);
     }
   }
@@ -474,8 +477,8 @@ export class ContractorProfileComponent implements OnInit {
           console.log("profiledtaa", data.data)
           this.profileData = data.data;
           this.setProfileData();
-          
-         // this.drawExistingMap()
+
+          // this.drawExistingMap()
           this._commonRequestService.setDataWithoutObserval(this.profileData, "contractorProfileData")
         }
       );
@@ -509,10 +512,10 @@ export class ContractorProfileComponent implements OnInit {
     var marker = new google.maps.Marker({
       position: { lat: this.lat, lng: this.lng }
     });
-    marker.setMap(this.map);   
+    marker.setMap(this.map);
     this.drawExistingMap();
-   
-    
+
+
   }
 
 
@@ -522,7 +525,7 @@ export class ContractorProfileComponent implements OnInit {
     this.emailAddress = this.profileData.emailAddress;
     this.securityClearance = this.profileData.securityClearance ? this.profileData.securityClearance : 0;
     this.euDrivingLicence = this.profileData.euDrivingLicence;
-    this.postCode = this.profileData.postCode && this.profileData.postCode !== 'null' ? this.profileData.postCode : '';
+    this.postCode = this.profileData.postcode && this.profileData.postcode !== 'null' ? this.profileData.postcode : '';
     this.dayRate1 = this.profileData.dayRate_min && this.profileData.dayRate_min !== 'null' ? this.profileData.dayRate_min : '';
     this.dayRate2 = this.profileData.dayRate_max && this.profileData.dayRate_max !== 'null' ? this.profileData.dayRate_max : '';
     this.availability = this.profileData.availability && this.profileData.availability !== 'null' ? this.profileData.availability : '';
@@ -544,9 +547,9 @@ export class ContractorProfileComponent implements OnInit {
     this.rate_max_hr = this.profileData.contractor_rate_max_hr;
 
     this.commutablePolygun = this.profileData.commutablePolygon ? JSON.parse(this.profileData.commutablePolygon) : [],
-    this.relocateablePolygun = this.profileData.relocatablePolygon ? JSON.parse(this.profileData.relocatablePolygon) : [],
+      this.relocateablePolygun = this.profileData.relocatablePolygon ? JSON.parse(this.profileData.relocatablePolygon) : [],
 
-    this.contractor_rate_min_relocatable = this.profileData.contractor_rate_min_relocatable;
+      this.contractor_rate_min_relocatable = this.profileData.contractor_rate_min_relocatable;
     this.contractor_rate_min_relocatable_hr = this.profileData.contractor_rate_min_relocatable_hr;
     this.contractor_rate_max_relocatable = this.profileData.contractor_rate_max_relocatable;
     this.contractor_rate_max_relocatable_hr = this.profileData.contractor_rate_max_relocatable_hr;
@@ -560,8 +563,13 @@ export class ContractorProfileComponent implements OnInit {
     this.coverLetterList = (this.profileData.uploadCoverLetter && this.profileData.uploadCoverLetter.length > 0) ? this.profileData.uploadCoverLetter : this.coverLetterList;
     this.industrySector = this.profileData.industrySector;
     this.selectedSkillArray = this.profileData['skill&Experience'].split(',');
+    this.lat = Number(this.profileData.latitude);
+    this.lng = Number(this.profileData.longitude);
+    this.display_town = this.profileData.display_town;
+    this.display_county = this.profileData.display_county;
+    this.display_name = this.profileData.display_name;
     this.initializeMap();
-   
+
   }
 
 
@@ -773,7 +781,7 @@ export class ContractorProfileComponent implements OnInit {
     }
   }
 
-  closeAccountClick(){
+  closeAccountClick() {
     $('#myModal').modal();
   }
 }
