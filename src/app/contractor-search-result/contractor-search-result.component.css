@@ -43,3 +43,30 @@
 .application_sort_by{
     margin-bottom: 0;
 }
+
+.display_none{
+    display: none;
+}
+.display_block{
+    display: block;
+}
+.padding_left_right_15 a {
+    padding: 7px 36px;
+}
+.position_relative .dropdown-menu {
+    top: 35px;
+    width: 96%;
+    margin: 0px 2px;
+    padding: 8px 15px;
+}
+.dropdown-menu>li>a {
+    display: inline-block;
+    padding: 0;
+}
+.home_page_inquery > div {
+    padding: 0;
+}
+.inp207 input, .txtarea206 textarea{
+    width: 100%;
+    margin-bottom: 6px;
+}

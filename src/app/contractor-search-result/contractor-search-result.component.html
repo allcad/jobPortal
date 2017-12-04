@@ -26,23 +26,23 @@
             </ion-range-slider>
           </div>
           <div class="col-sm-30">
-            <div class="pull-right application_sort_by position_relative padding_left_right_15"> <a href="javascript:void(0)" class="dropdown-toggle btn-primary font_capitaliz width_180px hover_white_pluse" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Search Option <i class="fa fa-angle-down plus_blue font_size_margin" aria-hidden="true"></i></a>
-              <ul class="dropdown-menu" style="cursor: pointer;">
+            <div class="pull-right application_sort_by position_relative padding_left_right_15"> <a href="javascript:void(0)" class="dropdown-toggle btn-primary font_capitaliz width_180px hover_white_pluse" (click)="searchClicked = !searchClicked">Search Option <i class="fa fa-angle-down plus_blue font_size_margin" aria-hidden="true"></i></a>
+              <ul class="dropdown-menu" style="cursor: pointer;" [ngStyle]="{'display': searchClicked ? 'block' : 'none'}">
                 <li (click)="newSearch()">New Search</li>
                 <li (click)="refineSearch()">Refine Search</li>
-                <li *ngIf="!isPublic">Save Search
-                  <a (click)="showSaveSearchBox = !showSaveSearchBox" href="javascript:void(0)" id="save_search"><i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                <li *ngIf="!isPublic" (click)="showSaveSearchBox = !showSaveSearchBox">Save Search
+                  <a  href="javascript:void(0)" id="save_search"><i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
                   <div class="home_page_inquery">
-                    <div id="hide_show_div" [ngClass]="showSaveSearchBox ? 'display_block' : 'display_none'">
+                    <div id="hide_show_div" [ngClass]="{'display_block'  : showSaveSearchBox , 'display_none' :  !showSaveSearchBox}">
                       <div class="after_login_menu">
                         <input type="text" placeholder="Enter Search Name" class="enter_border" [(ngModel)]="searchNameValue" name="searchNameValue">
-                        <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="saveSearchField()"><span>Save Search</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                        <a href="javascript:void(0);" style="padding: 4px 10px; margin-bottom: 10px;" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="saveSearchField()"><span>Save Search</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
                       </div>
                     </div>
                   </div>
                 </li>
                 <li class="saveSend last" (click)="showSendSearchBox = !showSendSearchBox"><a href="javascript:void(0)" >Send Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
-                  <div class="drop" [ngClass]="showSendSearchBox ? 'display_block' : 'display_none'" style="overflow: hidden">
+                  <div class="drop" [ngClass]="{'display_block'  : showSendSearchBox ,'display_none' :  !showSendSearchBox}" style="overflow: hidden">
                     <div id="send_search_result"></div>
                     <form method="post" action="saved_search.php" id="sendsearchform">
                       <div>
