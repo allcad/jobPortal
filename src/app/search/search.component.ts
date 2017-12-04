@@ -17,7 +17,11 @@ export class SearchComponent implements OnInit {
   constructor(private _router: Router, private _routes: ActivatedRoute, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) { }
 
   ngOnInit() {
-    this.loadLocationAutoData();
+    
+  }
+
+  ngAfterViewInit(){
+   // this.loadLocationAutoData();
   }
 
   searchContract(title,  minRate = "", maxRate = "") {
