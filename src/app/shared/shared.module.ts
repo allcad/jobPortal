@@ -46,6 +46,7 @@ import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/r
  import { ViewContractorProfileComponent } from '../view-contractor-profile/view-contractor-profile.component';
  //import { ChartModule } from 'angular-highcharts';
  import { RecruiterGuidesPageComponent } from '../recruiter-guides-page/recruiter-guides-page.component';
+  import { ShareButtonsModule } from 'ngx-sharebuttons';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,7 @@ import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/r
     SwiperModule,
     RouterModule,
     IonRangeSliderModule,
-    //ChartModule,
+    ShareButtonsModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyANYk-sxj7-P1W8cB94WahJhtxdw1gEUJA",
       libraries: ["places"]
@@ -123,8 +124,8 @@ import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/r
      RecruiterAdvancedSearchComponent,
      RecruiterSavedSearchComponent,
      ViewContractorProfileComponent,
-     RecruiterGuidesPageComponent
-     //ChartModule
+     RecruiterGuidesPageComponent,
+     ShareButtonsModule
   ],
   providers: [],
   bootstrap: []

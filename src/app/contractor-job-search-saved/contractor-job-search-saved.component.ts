@@ -234,7 +234,8 @@ export class ContractorJobSearchSavedComponent implements OnInit {
     this.mapsAPILoader.load().then(() => {
       //console.log("this.searchElementRef.nativeElement", this.searchElementRef.nativeElement);
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["geocode"]
+        types: ["geocode"],
+        componentRestrictions : {'country' : 'GB'}
       });
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {

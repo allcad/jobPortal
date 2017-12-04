@@ -20,6 +20,15 @@
         </div>
       </div>
       <div class="serch_results_rate">
+        <div class="errorbox" *ngIf="(sendSearchForm && sendSearchForm.form && sendSearchForm.form.controls && sendSearchForm.form.invalid  && sendSearchClick) || saveSearchInvalid || showErrorMsg"><b>The following error(s) occured:</b>
+          <br>
+          <li *ngIf="sendSearchForm.form.controls.yourname?.hasError('required') && !saveSearchInvalid">Please enter your name</li>
+          <li *ngIf="sendSearchForm.form.controls.email_address?.hasError('required') && !saveSearchInvalid">Please enter email address</li>
+          <li *ngIf="sendSearchForm.form.controls.email_address?.hasError('pattern') &&  !saveSearchInvalid">Please enter valid email address</li>
+          <li *ngIf="saveSearchInvalid">Please enter search name</li>
+          <li *ngIf="showErrorMsg">{{errorMsg}}</li>
+
+        </div>
         <div class="row">
           <div class="col-sm-70">
             <ion-range-slider type="double" prefix="£" class="width_100" (onFinish)="getRangeSliderValue($event)" #sliderElement min="0" value="100" max="2000" step="5" from="0" to="2000">
@@ -31,33 +40,33 @@
                 <li (click)="newSearch()">New Search</li>
                 <li (click)="refineSearch()">Refine Search</li>
                 <li *ngIf="!isPublic" (click)="showSaveSearchBox = !showSaveSearchBox">Save Search
-                  <a  href="javascript:void(0)" id="save_search"><i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                  <a href="javascript:void(0)" id="save_search"><i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
                   <div class="home_page_inquery">
                     <div id="hide_show_div" [ngClass]="{'display_block'  : showSaveSearchBox , 'display_none' :  !showSaveSearchBox}">
-                      <div class="after_login_menu">
+                      <div class="after_login_menu" (click)="$event.stopPropagation()">
                         <input type="text" placeholder="Enter Search Name" class="enter_border" [(ngModel)]="searchNameValue" name="searchNameValue">
-                        <a href="javascript:void(0);" style="padding: 4px 10px; margin-bottom: 10px;" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="saveSearchField()"><span>Save Search</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                        <a href="javascript:void(0);" style="padding: 4px 10px; margin-bottom: 10px;" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="saveSearch()"><span>Save Search</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
                       </div>
                     </div>
                   </div>
                 </li>
-                <li class="saveSend last" (click)="showSendSearchBox = !showSendSearchBox"><a href="javascript:void(0)" >Send Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                <li class="saveSend last" (click)="showSendSearchBox = !showSendSearchBox"><a href="javascript:void(0)">Send Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
                   <div class="drop" [ngClass]="{'display_block'  : showSendSearchBox ,'display_none' :  !showSendSearchBox}" style="overflow: hidden">
                     <div id="send_search_result"></div>
-                    <form method="post" action="saved_search.php" id="sendsearchform">
-                      <div>
+                    <form id="sendsearchform" #sendSearchForm="ngForm">
+                      <div (click)="$event.stopPropagation()">
                         <div>
                           <span class="inp207">
-            <input class="inpfocus save_search_input" type="text" name="yourname" id="yourname" placeholder="Your Name">
+            <input [(ngModel)]="sendSaerch.name" class="inpfocus save_search_input" type="text" name="yourname" id="yourname" placeholder="Your Name" required>
             </span> </div>
                         <div>
                           <span class="inp207">
-            <input class="inpfocus save_search_input" type="text" name="email_address" id="email_address" placeholder="Email Address">
+            <input class="inpfocus save_search_input" type="email" name="email_address" id="email_address" placeholder="Email Address" [(ngModel)]="sendSaerch.send_to" required  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
             </span> </div>
                         <span class="txtarea206">
-          <textarea name="message" id="message" placeholder="Message" class="save_search_input"></textarea>
+          <textarea name="message" id="message" placeholder="Message" class="save_search_input" [(ngModel)]="sendSaerch.message"></textarea>
           </span>
-                        <button type="submit" name="Send2" id="send2" value="Send" class="btn-primary hover_text_pink hover_white_pluse width_280px"> Send <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></button>
+                        <button type="submit" name="Send2" id="send2" value="Send" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="send(sendSearchForm);"> Send <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></button>
                       </div>
                     </form>
                   </div>
@@ -283,34 +292,4 @@
     </div>
   </div>
 </div>
-<div id="sendSearchModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Enter Details</h4>
-      </div>
-      <div class="modal-body">
-        <form method="post" action="saved_search.php" id="sendsearchform">
-          <div>
-            <div>
-              <span class="inp207">
-            <input [(ngModel)]="sendSaerch.name" class="inpfocus save_search_input" type="text" name="yourname" id="yourname" placeholder="Your Name">
-            </span> </div>
-            <div>
-              <span class="inp207">
-            <input class="inpfocus save_search_input" type="email" name="email_address" id="email_address" placeholder="Email Address" [(ngModel)]="sendSaerch.send_to" required>
-            </span> </div>
-            <span class="txtarea206">
-          <textarea name="message" id="message" placeholder="Message" class="save_search_input" [(ngModel)]="sendSaerch.message"></textarea>
-          </span>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="send()">Send</button>
-      </div>
-    </div>
-  </div>
-</div>
+

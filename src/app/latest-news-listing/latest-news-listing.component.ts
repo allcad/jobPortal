@@ -13,6 +13,7 @@ export class LatestNewsListingComponent implements OnInit {
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
   newsList;
   loading = true;
+  
   ngOnInit() {
   	this.getLatestNews()
   }
