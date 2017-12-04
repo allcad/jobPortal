@@ -42,18 +42,18 @@
                         <div class="col-sm-30">
                             <div class="your_options_profile margin_top_25">
                                 <div class="dropdown">
-                                    <button class="background_drop_downs" type="button" id="dropdownMenu_1" (click)="showSearchOptionFlag = !showSearchOptionFlag" [disabled]="searchOptionsDisabled">
+                                    <button class="background_drop_downs" type="button" id="dropdownMenu_1" (click)="showSearchOptionFlag = !showSearchOptionFlag">
                                         Search Options
                                     </button>
                                     <ul class="dropdown-menu max-width" id="dropdownMenu1" [ngClass]="showSearchOptionFlag == true ? 'display_block' : 'display_none'">
                                         <li (click)="goToAdvancedSearch()"><a href="javascript:void(0);">New Search</a></li>
                                         <li (click)="goToAdvancedSearch()"><a href="javascript:void(0);">Refine Search</a></li>
-                                        <li><a (click)="showSaveSearchBox = !showSaveSearchBox" href="javascript:void(0)" id="save_search">Save Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> 
+                                        <li [hidden]="searchOptionsDisabled"><a (click)="showSaveSearchBox = !showSaveSearchBox" href="javascript:void(0)" id="save_search">Save Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> 
                                             <div class="home_page_inquery">
                                                 <div id="hide_show_div" [ngClass]="showSaveSearchBox == true ? 'display_block' : 'display_none'">
                                                     <div class="after_login_menu">
-                                                        <input type="text" placeholder="Enter Search Name" class="enter_border">
-                                                        <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>Save Search</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                                                        <input type="text" placeholder="Enter Search Name" class="enter_border" [(ngModel)]="searchNameValue" name="searchNameValue">
+                                                        <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="saveSearchField()"><span>Save Search</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -75,8 +75,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="errorbox" *ngIf="searchNameErrorFlag"><b></b><br> 
+                    <li>Please Enter Search Name.</li>
+                </div>
                 <div class="errorbox" *ngIf="WSErrorMsg"><b></b><br> 
                     <li>{{WSErrorMsg}}</li>
+                </div>
+                <div class="alert alert-success margin-tp18" *ngIf="successMessageFlag">
+                  <a href="javascript:void(0)" class="close" title="close" (click)="successMessageFlag = !successMessageFlag">×</a><strong>{{successMessage}}</strong>
                 </div>
                 <div class="pager_section_searchresult">
                     <div class="row">

@@ -287,7 +287,7 @@ searchListErrorMsg = "";
   }
 
   getListOfSaveSearch() {
-    this.WSErrorMsg = "";
+    this.searchListErrorMsg = "";
     var input = {
      "email":"test@test7.com",
     "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu"
@@ -354,7 +354,7 @@ searchListErrorMsg = "";
       "recuriter_search_by_rate_max":this.maxRate?this.maxRate:'',
       "recuriter_search_by_rate_type":this.dailyHourlyValue?this.dailyHourlyValue:'',
       "recuriter_search_by_time_left":this.timeLeftOnCutCont?this.timeLeftOnCutCont:'',
-      "recuriter_search_by_unavailable":this.includeUnavailable ? 1 : 0,
+      "recuriter_search_by_unavailable":this.includeUnavailable == true ? 1 : 0,
       "recuriter_search_by_updated_contractor_since":this.showContractors?this.showContractors:'',
       "recuriter_search_by_contract_name":this.contractorName?this.contractorName:'',
       "recuriter_search_by_education":this.educationValue?this.educationValue:"",

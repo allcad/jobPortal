@@ -41,6 +41,12 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   showLoginMoreDetailsOptions = false;
   showWithoutLoginMoreOptions = false;
   currentUrl;
+  searchNameValue = "";
+  searchNameErrorFlag = false;
+  successMessage = "";
+  successMessageFlag = false;
+  saveSearchDataListing = [];
+  sameSearchNameFlag = false;
   constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService,
     private _commonService: CommonService, private router: Router) {
       this.currentUrl = router.url;
@@ -57,6 +63,7 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
     //         this.getSearchResultList();
     //       }
     //     });
+    //this.getListOfSaveSearch();
     if(this.router.url == "/public/searchresult-loggedin") {
       this.searchOptionsDisabled = true;
     }
@@ -342,6 +349,97 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
       this.getSearchResultList();
     //console.log("this.currentPageNo", this.currentPageNo);
     //this.getSearchResultList();
+  }
+
+  getListOfSaveSearch() {
+    this.WSErrorMsg = "";
+    var input = {
+     "email":"test@test7.com",
+    "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu"
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/save_search/list";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+          console.log("list save search--", data);
+          if(data && data.data && data.data.length > 0) {
+            this.saveSearchDataListing = data.data;
+            this.WSErrorMsg = "";
+          } else{
+               this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+             
+            }
+          //this.industryArrayData = data.data;
+          //this.recruiterNameArray = data.data;
+        } 
+    );
+  }
+
+   saveSearchField() {
+    this.WSErrorMsg = "";
+
+    if(this.searchNameValue) {
+      this.searchNameErrorFlag = false;
+    } else {
+      this.searchNameErrorFlag = true;
+    }
+    var savedSearchSaveJson = {
+      "email":"test@test8.com",
+      "loginToken":"$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y",
+      "recuriter_saved_search_name":this.searchNameValue,
+      "recuriter_search_add_to_watchdog":0,
+      "recuriter_search_job_title":'',
+      "recuriter_search_keywords":'',
+      "recuriter_search_stemmed_terms":0,
+      "recuriter_search_core_skills":'',
+      "recuriter_search_certifications":'',
+      "recuriter_search_dont_show_to_contractor":'',
+      "recuriter_search_location":'',
+      "recuriter_search_include_relocators": 0,
+      "recuriter_search_by_rate_min":'',
+      "recuriter_search_by_rate_max":'',
+      "recuriter_search_by_rate_type":'',
+      "recuriter_search_by_time_left":'',
+      "recuriter_search_by_unavailable":0,
+      "recuriter_search_by_updated_contractor_since":'',
+      "recuriter_search_by_contract_name":'',
+      "recuriter_search_by_education":"",
+      "recuriter_search_by_industry":[],
+      "recuriter_search_by_security_clearance":[],
+      "recuriter_search_by_driving_license": 0
+      // "postcode": this.postcode ? this.postcode : '',
+      // "display_town" : this.displayTown ? this.displayTown : '',
+      // "display_county": this.displayCountry ? this.displayCountry : '',
+      // "display_name" : this.displayLocationName ? this.displayLocationName : '',
+     
+    }
+          if(!this.searchNameErrorFlag) {
+              var inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/save_search";
+               this._commonRequestService.postData(inputUrl, savedSearchSaveJson).subscribe(
+                data => {
+                  //this.responseData = data;
+                  window.scroll(0,0);
+                  if(data && data.status === "TRUE"){
+                          this.WSErrorMsg = "";
+                          this.successMessageFlag = true;
+                              this.successMessage = "Search name saved successfully.";
+                              this.searchNameValue = "";
+                          // setInterval(()=>{
+                          //   this.successMessage = "";
+                          // },10000);
+                          
+                          this.showSearchOptionFlag = false;
+                          //this.errorSuccessMessage = "Saved succesfully !";
+                  }
+                  else{
+                    this.successMessageFlag = false;
+                    this.successMessage = "";
+                     this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+                  }
+                }
+              ); 
+            }
   }
 
 }
