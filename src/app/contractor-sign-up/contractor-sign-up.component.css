@@ -207,3 +207,9 @@ input[type="date"]::-webkit-outer-spin-button {
 
 }
 
+
+
+.signup_form_section .find_cv_from img {
+    
+    margin-right: 5px;
+}

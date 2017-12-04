@@ -36,3 +36,10 @@
     text-decoration: none !important;
     transition: all .0s;
 }
+
+.dropdown-menu{
+    cursor: pointer;
+}
+.application_sort_by{
+    margin-bottom: 0;
+}

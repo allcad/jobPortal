@@ -24,3 +24,12 @@
     color: #23527c;
     -webkit-transition: all 0.5s ease 0s;
 }
+
+.application_sort_by {
+    margin: 15px 0px 0;
+}
+
+.dropdown-menu {
+    padding: 8px;
+    cursor: pointer;
+}
