@@ -62,6 +62,11 @@ export class ContractorSignUpComponent implements OnInit {
   @ViewChild('permanent') permanentVariable;
   @ViewChild('inContract') inContractVariable;
   @ViewChild('outOfContract') outOfContractVariable;
+  postcode;
+  displayTown;
+  displayCountry;
+  displayLocationName;
+  marker;
   constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
@@ -70,8 +75,8 @@ export class ContractorSignUpComponent implements OnInit {
     this.getNoticePeriodData();
   }
 
-  ngAfterViewInit(){
-   window.scroll(0,0);
+  ngAfterViewInit() {
+    window.scroll(0, 0);
   }
 
   onFormSubmit(userForm) {
@@ -90,7 +95,7 @@ export class ContractorSignUpComponent implements OnInit {
       this.fd.append('contractor_rate_max', this.contractor_rate_max ? this.contractor_rate_max : "400");
       this.fd.append('fileForCv', this.CVFile);
       this.fd.append('contractor_job_title', this.contractor_job_title);
-      this.fd.append('contractor_key_skills', this.selectedSkillArray.join(',') ? this.selectedSkillArray.join(',') : (this.skill ? this.skill : '' ));
+      this.fd.append('contractor_key_skills', this.selectedSkillArray.join(',') ? this.selectedSkillArray.join(',') : (this.skill ? this.skill : ''));
       this.fd.append('contractor_employment_situation', this.contractor_employment_situation ? this.contractor_employment_situation : "permanant");
       this.fd.append('contractor_services', JSON.stringify(this.getSelecetdContractorServices()));
       this.fd.append('contractor_agree_terms_status', this.contractor_agree_terms_status);
@@ -98,8 +103,13 @@ export class ContractorSignUpComponent implements OnInit {
       this.fd.append('details_live', (this.contractor_employment_situation == 'in contract' && this.detailsLiveFrom) ? this.detailsLiveFrom : "");
       this.fd.append('notice_period', ((this.contractor_employment_situation == 'in contract' || this.contractor_employment_situation == "permanant") && this.detailsLiveFrom) ? this.noticePeriod : "");
       this.fd.append('happy_notice', (this.contractor_employment_situation == 'in contract' && this.useNoticePeriod) ? this.useNoticePeriod : "");
-      this.fd.append('longitude', -3.335724);
-      this.fd.append('latitude', 57.653484);
+      this.fd.append('longitude', this.marker.lng);
+      this.fd.append('latitude', this.marker.lat);
+      
+      this.fd.append('postcode', this.postcode);
+      this.fd.append('display_town', this.displayTown);
+      this.fd.append('display_county', this.displayCountry);
+      this.fd.append('display_name', this.displayLocationName);
 
       // this.fd.append('details_live_date',(this.contractor_employment_situation == 'in contract' && this.detailsLiveFrom) ? this.detailsLiveFrom ? null);
       this.inputUrl = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/signup";
@@ -172,7 +182,7 @@ export class ContractorSignUpComponent implements OnInit {
       this.contractorInvalid = true;
     }
 
-    
+
     if (!this.CVFile) {
       this.cvInvalid = true;
       this.contractorInvalid = true;
@@ -318,31 +328,59 @@ export class ContractorSignUpComponent implements OnInit {
   getLocation() {
     this.postalCodeInvalid = false;
     this.contractorInvalid = false;
-    if(this.contractor_post_code ){
+    if (this.contractor_post_code) {
       let url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this.contractor_post_code + "&key=AIzaSyCcc7ZyRGjRbAuDgsLSQGdTuFxvLW9FGiI&components=country:GB"
-    this._commonRequestService.getData(url)
-      .subscribe(data => {
-        if(data && data.results && data.status == 'OK'){
-          if(data.results[0].formatted_address !== 'United Kingdom'){
-            let locationJson = {
-              "post_code" : this.contractor_post_code,
-              "marker" : data.results[0].geometry.location,
-              "city" :  data.results[0].address_components.filter(item=>{
-                return item.types.indexOf('postal_town') > -1
-              })
+      this._commonRequestService.getData(url)
+        .subscribe(data => {
+          if (data && data.results && data.status == 'OK') {
+            if (data.results[0].formatted_address !== 'United Kingdom') {
+              let place = data.results[0];
+              // let locationJson = {
+              //   "postcode" : this.contractor_post_code,
+                 //,
+              //   "city" :  data.results[0].address_components.filter(item=>{
+              //     return item.types.indexOf('postal_town') > -1
+              //   })
+              // }
+              this.marker  = place.geometry.location;
+
+              if (place && place.address_components && place.address_components.length > 0 && place.formatted_address) {
+                for (var i = 0; i < place.address_components.length; i++) {
+                  for (var j = 0; j < place.address_components[i].types.length; j++) {
+                    if (place.address_components[i].types[j] == "postal_code") {
+                      this.postcode = place.address_components[i].long_name;
+                    }
+                    if (place.address_components[i].types[j] == "postal_town") {
+                      this.displayTown = place.address_components[i].long_name;
+                    }
+                    if (place.address_components[i].types[j] == "country") {
+                      this.displayCountry = place.address_components[i].long_name;
+                    }
+                    this.displayLocationName = this.displayTown + " " + this.postcode + "," + this.displayCountry;
+                  }
+                }
+              }
+
+
+              console.log(this.postcode);
+              console.log(this.displayTown);
+              console.log(this.displayCountry);
+              console.log(this.displayLocationName);
+              console.log(this.marker);
+
+
+              //console.log("locationJson", locationJson);
+            } else {
+              this.postalCodeInvalid = true;
+              this.contractorInvalid = true;
             }
-            console.log("locationJson",locationJson);
-          }else{
+          } else {
             this.postalCodeInvalid = true;
-            this.contractorInvalid = true;  
+            this.contractorInvalid = true;
           }
-        }else{
-          this.postalCodeInvalid = true;
-          this.contractorInvalid = true;
-        }
-      })
+        })
     }
-    
+
   }
 
   serviceChange(category) {
@@ -368,8 +406,8 @@ export class ContractorSignUpComponent implements OnInit {
       if (this.skill.split(',')[0] && this.selectedSkillArray.indexOf(this.skill.split(',')[0]) == -1) {
         this.selectedSkillArray.push(this.skill.split(',')[0])
       }
-        this.skill = "";  
-             
+      this.skill = "";
+
 
     }
   }

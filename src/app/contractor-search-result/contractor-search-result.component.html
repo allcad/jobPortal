@@ -12,11 +12,14 @@
               <li class="right_arrow">&gt;</li>
               <li class="active">RESULTS</li>
             </ul>
+            <div class="alert alert-success margin-tp18" *ngIf="showSuccessMsg">
+              <a href="javascript:void(0)" class="close" title="close" (click)="showSuccessMsg=false">×</a>{{successMsg}} <strong>succesfully!</strong>
+            </div>
             <div class="pull-right applied_jobs">This search returned <span>{{totalRecords}} </span>job(s)</div>
           </div>
         </div>
       </div>
-      <div class="serch_results_rate" >
+      <div class="serch_results_rate">
         <div class="row">
           <div class="col-sm-70">
             <ion-range-slider type="double" prefix="£" class="width_100" (onFinish)="getRangeSliderValue($event)" #sliderElement min="0" value="100" max="2000" step="5" from="0" to="2000">
@@ -27,12 +30,42 @@
               <ul class="dropdown-menu" style="cursor: pointer;">
                 <li (click)="newSearch()">New Search</li>
                 <li (click)="refineSearch()">Refine Search</li>
-                <li *ngIf="!isPublic">Save Search</li>
-                <li>Send Search</li>
+                <li *ngIf="!isPublic">Save Search
+                  <a (click)="showSaveSearchBox = !showSaveSearchBox" href="javascript:void(0)" id="save_search"><i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                  <div class="home_page_inquery">
+                    <div id="hide_show_div" [ngClass]="showSaveSearchBox ? 'display_block' : 'display_none'">
+                      <div class="after_login_menu">
+                        <input type="text" placeholder="Enter Search Name" class="enter_border" [(ngModel)]="searchNameValue" name="searchNameValue">
+                        <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="saveSearchField()"><span>Save Search</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="saveSend last" (click)="showSendSearchBox = !showSendSearchBox"><a href="javascript:void(0)" >Send Search <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                  <div class="drop" [ngClass]="showSendSearchBox ? 'display_block' : 'display_none'" style="overflow: hidden">
+                    <div id="send_search_result"></div>
+                    <form method="post" action="saved_search.php" id="sendsearchform">
+                      <div>
+                        <div>
+                          <span class="inp207">
+            <input class="inpfocus save_search_input" type="text" name="yourname" id="yourname" placeholder="Your Name">
+            </span> </div>
+                        <div>
+                          <span class="inp207">
+            <input class="inpfocus save_search_input" type="text" name="email_address" id="email_address" placeholder="Email Address">
+            </span> </div>
+                        <span class="txtarea206">
+          <textarea name="message" id="message" placeholder="Message" class="save_search_input"></textarea>
+          </span>
+                        <button type="submit" name="Send2" id="send2" value="Send" class="btn-primary hover_text_pink hover_white_pluse width_280px"> Send <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></button>
+                      </div>
+                    </form>
+                  </div>
+                </li>
               </ul>
             </div>
             <div class="pull-right application_sort_by width100 padding_left_right_15"> <a href="javascript:void(0)" class="dropdown-toggle btn-primary font_capitaliz hover_white_pluse" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <i class="fa fa-angle-down plus_blue font_size_margin" aria-hidden="true"></i></a>
-              <ul class="dropdown-menu" (change)="sortData()">
+              <ul class="dropdown-menu" style="cursor: pointer;">
                 <li *ngFor="let option of sortOptionsList" [value]="option.id" (click)="sort=option.id; getSearchData()">{{option.text}}</li>
               </ul>
             </div>
@@ -51,7 +84,7 @@
 <section>
   <div class="container">
     <div *ngIf="loading" class="row">
-     <img src="./assets/images/bx_loader.gif">
+      <img src="./assets/images/bx_loader.gif">
     </div>
     <div class="row">
       <div class="errorbox" *ngIf="totalRecords==0">
@@ -73,7 +106,7 @@
             <p><span>Rate:</span> £{{item.prefereedRate.minRate}} - £{{item.prefereedRate.maxRate}} p/{{item.prefereedRate.dailyHourlyRate == 'daily' ? 'd' : 'h'}}</p>
             <p><span>Start Date:</span> {{item.startDate | date }}</p>
             <p><span>Duration:</span> {{item.duration}} Days</p>
-            <p class="full_contant" innerHTML="{{item.jobDetail | slice : 0 : 200}}.."></p>
+            <p class="full_contant" innerHTML="{{item.jobDetail | slice : 0 : 200}}.." style="height: 90px;"></p>
           </div>
           <div class="footer_box">
             <div class="pull-left social_box_footer">
@@ -81,8 +114,11 @@
               <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a>
               <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
             </div>
-            <div class="pull-right view_company" *ngIf="!isPublic">
-              <a href="javascript:void(0)" (click)="applyJob(item)">{{item.applyed ? 'Applied' : 'Apply Now'}} <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
+            <div class="pull-right view_company" *ngIf="!isPublic && !item.applyed">
+              <a href="javascript:void(0)" (click)="applyJob(item)">Apply Now<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>
+            </div>
+            <div class="pull-right view_company" *ngIf="!isPublic && item.applyed">
+              <p class="call-to-view ctvpad" style="float:right;padding-right:10px;">You’ve already applied to this!</p>
             </div>
             <div class="pull-right view_company" *ngIf="isPublic">
               <p class="call-to-view ctvpad" style="float:right;padding-right:10px;"><a href="javascript:void(0)" (click)="login()">Login</a> or <a href="javascript: void(0)" (click)="signup()">Sign Up</a> to apply </p>
@@ -160,7 +196,7 @@
       </div> -->
     </div>
     <app-ad-space></app-ad-space>
-   <!--  <div class="row">
+    <!--  <div class="row">
       <div class="col-sm-33">
         <div class="ad_space">
           <img src="./assets/images/ad-space.png" alt="ads" title="ads" class="img-responsive">
@@ -243,6 +279,37 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="apply()">Apply Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="sendSearchModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Enter Details</h4>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="saved_search.php" id="sendsearchform">
+          <div>
+            <div>
+              <span class="inp207">
+            <input [(ngModel)]="sendSaerch.name" class="inpfocus save_search_input" type="text" name="yourname" id="yourname" placeholder="Your Name">
+            </span> </div>
+            <div>
+              <span class="inp207">
+            <input class="inpfocus save_search_input" type="email" name="email_address" id="email_address" placeholder="Email Address" [(ngModel)]="sendSaerch.send_to" required>
+            </span> </div>
+            <span class="txtarea206">
+          <textarea name="message" id="message" placeholder="Message" class="save_search_input" [(ngModel)]="sendSaerch.message"></textarea>
+          </span>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="send()">Send</button>
       </div>
     </div>
   </div>
