@@ -26,6 +26,7 @@ export class RecruiterViewApplicationsComponent implements OnInit {
   currentJobId = 0;
   maxPage;
   maxRecord;
+  loading = true;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService) { }
 
@@ -63,6 +64,7 @@ export class RecruiterViewApplicationsComponent implements OnInit {
   
 
   getApplicationList(pageLimit) {
+    this.loading = true;
     console.log("pageLimit--", pageLimit);
    var input = {
    	"email":"test@test7.com",
@@ -75,6 +77,7 @@ export class RecruiterViewApplicationsComponent implements OnInit {
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/application/list";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
+          this.loading = false;
         	this.firstArray = [];
          console.log("data from manage job list--", data);
          if(data && data.status === "TRUE") {

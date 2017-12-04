@@ -26,6 +26,7 @@ export class RecruiterManageJobsComponent implements OnInit {
   jobPostFlagError = false;
   totalPage;
   maxRecord;
+  loading = true;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService, private _commonService: CommonService) { }
 
@@ -87,6 +88,7 @@ export class RecruiterManageJobsComponent implements OnInit {
   }
 
   getManageJobsList(pageLimit) {
+    this.loading = true;
     console.log("pageLimit--", pageLimit);
    var input = {
    	"email":"test@test7.com",
@@ -98,6 +100,7 @@ export class RecruiterManageJobsComponent implements OnInit {
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/list";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
+          this.loading = false;
          console.log("data from manage job list--", data);
          if(data && data.status === "TRUE") {
            this.errorMsg = "";

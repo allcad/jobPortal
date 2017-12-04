@@ -28,7 +28,7 @@ maxRate: number;
 dailyHourlyValue;
 jobSpecificationTitle: any;
 jobSpecificationBody: any;
-recruiterName = "0";
+recruiterName = "";
 saveTemplateAs;
 jobReference;
 input;
@@ -64,6 +64,7 @@ displayLocationName = '';
     private ngZone: NgZone) { }
 
   ngOnInit() {
+    window.scroll(0,0);
     this.recruiterNameList();
     this.getIndustry();
     this.getTemplateData();
@@ -198,6 +199,7 @@ displayLocationName = '';
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
           this.templateData = data.data;
+          this.currentTemplate = this.templateData[0].id;
           console.log("templateData--", data);
         }
     );
@@ -267,6 +269,7 @@ displayLocationName = '';
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
           this.recruiterNameArray = data.data;
+          this.recruiterName = this.recruiterNameArray[0].recuriter_id;
         }
     );
        return this.recruiterName;

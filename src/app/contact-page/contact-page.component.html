@@ -13,6 +13,25 @@
                 <li class="active">contact us </li>
               </ul>
           </div>
+
+          <div class="errorbox" *ngIf="nameRequiredFlag || emailRequiredFlag || emailPatternFlag || messageRequiredFlag || humanBeingFlag"><b>The following error(s) occured:</b><br> 
+            <li *ngIf="nameRequiredFlag">Name Required.</li>
+            <li *ngIf="emailRequiredFlag">Please enter a valid email address.</li>
+            <li *ngIf="emailPatternFlag">Please enter a valid email address.</li>
+            <li *ngIf="messageRequiredFlag">Please enter a message.</li>
+            <li *ngIf="humanBeingFlag">Incorrect captcha code.</li>
+          </div>
+
+          <div class="errorbox" *ngIf="invalidErrorMsg"><b></b><br> 
+            <li>{{invalidErrorMsg}}</li>
+            <!-- <li *ngIf="emailNamePatternFlag">Please Enter valid email.</li>
+            <li *ngIf="passwordReqFlag">Please enter a password.</li>
+            <li *ngIf="humanKnowFlag">Are you human field is required.</li> -->
+          </div>
+
+          <div class="alert alert-success margin-tp18" *ngIf="succesLoginFlag">
+            <a href="javascript:void(0)" class="close" title="close" (click)="succesLoginFlag = !succesLoginFlag">×</a> Thank you, your message was successfully submitted. We will be in touch as soon as possible.
+          </div>
           <div class="login_form_section contact_us_page">
 		  <p><sup>"</sup> Here at ContractRecruit we are always happy to help and pride ourselves on our good customer care.
 If you have any issues or need advice, please do not hesitate to get in touch with one of our friendly staff <sup>"</sup></p>
@@ -20,40 +39,40 @@ If you have any issues or need advice, please do not hesitate to get in touch wi
               <div class="row">
                 <div class="col-sm-50">
                   <div class="form-group margin_bottom_30">
-                    <input type="text" class="form-control" id="exampleInputtext" placeholder="your name" style="color:#fff;">
+                    <input type="text" class="form-control" id="exampleInputtext" placeholder="your name" style="color:#fff;" [(ngModel)]="nameValue" name="nameValue">
                   </div>
                 </div>
                 <div class="col-sm-50">
                   <div class="form-group margin_bottom_30">
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="your email">
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="your email" [(ngModel)]="emailValue" name="emailValue" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
                   </div>
                 </div>
               </div>
 			  <div class="row">
 			    <div class="col-sm-100">
 				  <div class="form-group margin_bottom_30">
-                    <input type="text" class="form-control" id="exampleInputtext" placeholder="your subject" style="color:#fff;">
+                    <input type="text" class="form-control" id="exampleInputtext" placeholder="your subject" style="color:#fff;" [(ngModel)]="subjectValue" name="subjectValue">
                   </div>
 				</div>
 			  </div>
 			  <div class="row">
 			    <div class="col-sm-100">
 				  <div class="form-group margin_bottom_30">
-				  <textarea class="form-control your_message_here" placeholder="your message"></textarea>
+				  <textarea class="form-control your_message_here" placeholder="your message" [(ngModel)]="messageValue" name="messageValue"></textarea>
                   </div>
 				</div>
 			  </div>
               <div class="row">
                 <div class="col-sm-10 col-md-9 col-xs-25">
-                  <div class="form-group"> <span class="add_value">2 + 3 =</span> </div>
+                  <div class="form-group"> <span class="add_value">{{number}} + {{number2}} =</span> </div>
                 </div>
                 <div class="col-sm-40 col-md-41 col-xs-75">
                   <div class="form-group">
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="your answer">
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="your answer" [(ngModel)]="yourAnswer" name="yourAnswer">
                   </div>
                 </div>
                 <div class="col-sm-50">
-                  <div class="form-group form_login"> <a href="javascript:void(0)" class="btn-default">Send <i class="fa fa-plus" aria-hidden="true"></i></a> </div>
+                  <div class="form-group form_login"> <a (click)="sendMail()" href="javascript:void(0)" class="btn-default">Send <i class="fa fa-plus" aria-hidden="true"></i></a> </div>
                 </div>
               </div>
               

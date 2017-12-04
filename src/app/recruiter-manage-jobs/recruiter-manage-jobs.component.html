@@ -26,12 +26,15 @@
                     </div>
                 </div>
 
-                <div class="errorbox" *ngIf="listingData.length === 0"><br> 
+                <div class="errorbox" *ngIf="listingData.length === 0 && !loading"><br> 
                         <li>There is no record.</li>
                     </div>
+                    <div *ngIf="loading" class="row">
+                  <img src="./assets/images/bx_loader.gif">
+                </div>
                 <div class="pager_section">
                     <div class="row">
-                        <div class="col-sm-50" *ngIf="listingData.length !== 0">
+                        <div class="col-sm-50" *ngIf="listingData.length !== 0 && !loading">
                             <div class="pazer">
                                 <span>Show</span>                                
                                 <a href="javascript:void(0);" [ngClass]="9===currentPageNo ? 'active':''" (click)="onPageJobList('9')">9</a>
@@ -61,7 +64,7 @@
                 </div>
             </div>
             <!--contractor login end-->
-            <div class="container">
+            <div class="container" *ngIf="!loading">
                 <div class="row">
                     <div class=" col-md-33 col-sm-33"  *ngFor="let item of firstArray">
                         <div class="my_applications_box">

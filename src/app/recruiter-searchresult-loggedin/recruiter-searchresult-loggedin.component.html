@@ -34,7 +34,10 @@
                         <div class="col-sm-70">
                             <div class="">
                                 <!-- <img src="./assets/images/refind-rate.png" alt="" title="" class="img-responsive"> -->
-                                <ion-range-slider class="width_100" (onFinish)="getRangeSliderValue($event)" #searchResultElement min="200" value="100" max="800" step="10" from="300">
+                                <!-- <ion-range-slider class="width_100" (onFinish)="getRangeSliderValue($event)" #searchResultElement min="200" value="100" max="800" step="10" from="300">
+                                </ion-range-slider> -->
+
+                                <ion-range-slider type="double" prefix="£" class="width_100" (onFinish)="getRangeSliderValue($event)" #searchResultElement min="0" value="100" max="2000" step="5" from="0" to="2000">
                                 </ion-range-slider>
                                 
                             </div>
@@ -75,10 +78,13 @@
                         </div>
                     </div>
                 </div>
+                <div *ngIf="loading" class="row">
+                  <img src="./assets/images/bx_loader.gif">
+                </div>
                 <div class="errorbox" *ngIf="searchNameErrorFlag"><b></b><br> 
                     <li>Please Enter Search Name.</li>
                 </div>
-                <div class="errorbox" *ngIf="WSErrorMsg"><b></b><br> 
+                <div class="errorbox" *ngIf="WSErrorMsg && !loading"><b></b><br> 
                     <li>{{WSErrorMsg}}</li>
                 </div>
                 <div class="alert alert-success margin-tp18" *ngIf="successMessageFlag">
@@ -86,7 +92,7 @@
                 </div>
                 <div class="pager_section_searchresult">
                     <div class="row">
-                        <div class="col-sm-50" *ngIf="searchList.length > 0">
+                        <div class="col-sm-50" *ngIf="searchList.length > 0 && !loading">
                             <div class="pazer"> <span>Show</span> 
                                 <a href="javascript:void(0);" [ngClass]="12===pageLimit ? 'active':''" (click)="onPageClick('12')">12</a> 
                                 <a href="javascript:void(0);" [ngClass]="16===pageLimit ? 'active':''" (click)="onPageClick('16')">16</a> 
@@ -102,7 +108,7 @@
                 </div>
             </div>
             <!--contractor login end-->
-            <div class="container">
+            <div class="container" *ngIf="!loading">
                 <div class="row">
                     <div class="col-sm-50" *ngFor="let item of firstArrayValue;let i=index;">
                         <div class="recruiter_searchresult_box">

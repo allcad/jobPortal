@@ -17,16 +17,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="errorbox" *ngIf="errorMsg"><br> 
+                <div class="errorbox" *ngIf="errorMsg && !loading"><br> 
                         <li>{{errorMsg}}</li>
                     </div>
+
+                    <div *ngIf="loading" class="row">
+                  <img src="./assets/images/bx_loader.gif">
+                </div>
 
                 <div class="alert alert-success margin-tp18" *ngIf="successMessageFlag">
                   <a href="javascript:void(0)" class="close" title="close" (click)="successMessageFlag = !successMessageFlag">×</a><strong>Watchdog delete successfully.</strong>
                 </div>
                 <div class="pager_section">
                     <div class="row">
-                        <div class="col-sm-50" *ngIf="watchListDataArr.length !== 0">
+                        <div class="col-sm-50" *ngIf="watchListDataArr.length !== 0 && !loading">
                             <div class="pazer">
                                 <span>Show</span>
                                 <a href="javascript:void(0);" [ngClass]="10===currentPageNo ? 'active':''" (click)="onPageJobList('10')">10</a>
@@ -52,7 +56,7 @@
                 </div>
             </div>
             <!--contractor login end-->
-            <div class="recruiter_watchdog_main">
+            <div class="recruiter_watchdog_main" *ngIf="!loading">
                 <div class="watchdog_box" *ngFor="let item of watchListDataArr">
                     <div class="container">
                         <div class="row">

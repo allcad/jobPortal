@@ -16,7 +16,7 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   secondArray = [];
   thirdArray = [];
   pageLimit = 12;
-  savedResult;
+  savedResult:any;
   WSErrorMsg = "";
   sortByData;
   currentSortBy = 1;
@@ -49,6 +49,7 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   sameSearchNameFlag = false;
   emailValue = "";
   messageValue = "";
+  loading = true;
   constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService,
     private _commonService: CommonService, private router: Router) {
       this.currentUrl = router.url;
@@ -56,16 +57,6 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
 
   ngOnInit() {
     window.scroll(0,0);
-  	//this.getSearchResultList();
-    // this._commonDataShareService.advancedSerahcResult.subscribe((data) =>{
-    //   console.log("serach result--", data);
-    //       if(data) {
-    //         //this.setValue(data);
-    //         this.savedResult = data;
-    //         this.getSearchResultList();
-    //       }
-    //     });
-    //this.getListOfSaveSearch();
     if(this.router.url == "/public/searchresult-loggedin") {
       this.searchOptionsDisabled = true;
     }
@@ -192,49 +183,44 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
 
   showMoreDetails(index) {
     this.showMoreDetailsFlag[index] = !this.showMoreDetailsFlag[index];
-    //console.log("this.showMoreDetailsFlag[index]", this.showMoreDetailsFlag[index]);
-    // if(this.showMoreDetailsFlag[index]) {
-    //   this.addDynamicallyClass = "more-details-toggle";
-    // } else {
-    //   this.addDynamicallyClass = "";
-    // }
   }
 
   getSearchResultList() {
+    this.loading = true;
     console.log("value--", this.savedResult);
     var savedSearchSaveJson = {};
-    if(this.savedResult && typeof this.savedResult == 'string') {
-      this.showWithoutLoginMoreOptions = true;
-      this.showLoginMoreDetailsOptions = false;
-      savedSearchSaveJson = {
+    // if(this.savedResult && typeof this.savedResult == 'string') {
+    //   this.showWithoutLoginMoreOptions = true;
+    //   this.showLoginMoreDetailsOptions = false;
+    //   savedSearchSaveJson = {
         // "email":"test@test8.com",
         // "loginToken":"$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y",
         // "recuriter_saved_search_name":this.savedSearchName,
         // "recuriter_search_add_to_watchdog":this.addToWatchDogCheck === true ? 1 : 2,
-        "recuriter_search_job_title":this.savedResult ? this.savedResult :'',
-        "recuriter_search_keywords": '',
-        "recuriter_search_stemmed_terms":0,
-        "recuriter_search_core_skills": '',
-        "recuriter_search_certifications": '',
-        "recuriter_search_dont_show_to_contractor": '',
-        "recuriter_search_location": '',
-        "recuriter_search_include_relocators": 0,
-        "recuriter_search_by_rate_min": '',
-        "recuriter_search_by_rate_max": '',
-        "recuriter_search_by_rate_type": '',
-        "recuriter_search_by_time_left": '',
-        "recuriter_search_by_unavailable": 1,
-        "recuriter_search_by_updated_contractor_since": '',
-        "recuriter_search_by_contract_name": '',
-        "recuriter_search_by_education": '',
-        "recuriter_search_by_industry": '',
-        "recuriter_search_by_security_clearance": '',
-        "recuriter_search_by_driving_license": 0,
-        "page":this.pageNo,
-        "limit":this.pageLimit,
-        "sort":this.currentSortBy
-        }
-    } else if(this.savedResult && typeof this.savedResult == 'object') {
+        // "recuriter_search_job_title":this.savedResult ? this.savedResult :'',
+        // "recuriter_search_keywords": '',
+        // "recuriter_search_stemmed_terms":0,
+        // "recuriter_search_core_skills": '',
+        // "recuriter_search_certifications": '',
+        // "recuriter_search_dont_show_to_contractor": '',
+        // "recuriter_search_location": '',
+        // "recuriter_search_include_relocators": 0,
+        // "recuriter_search_by_rate_min": '',
+        // "recuriter_search_by_rate_max": '',
+        // "recuriter_search_by_rate_type": '',
+        // "recuriter_search_by_time_left": '',
+        // "recuriter_search_by_unavailable": 1,
+        // "recuriter_search_by_updated_contractor_since": '',
+        // "recuriter_search_by_contract_name": '',
+        // "recuriter_search_by_education": '',
+        // "recuriter_search_by_industry": '',
+        // "recuriter_search_by_security_clearance": '',
+        // "recuriter_search_by_driving_license": 0,
+        // "page":this.pageNo,
+        // "limit":this.pageLimit,
+        // "sort":this.currentSortBy
+    //     }
+    // } else if(this.savedResult && typeof this.savedResult == 'object') {
       this.showWithoutLoginMoreOptions = true;
       this.showLoginMoreDetailsOptions = false;
       console.log("currentSortBy", this.currentSortBy);
@@ -248,7 +234,7 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
         savedSearchSaveJson['email'] = "test@test8.com";
         savedSearchSaveJson['loginToken'] = "$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y";
       }
-    }
+    //}
     this.storeSaveSearchJson = savedSearchSaveJson;
     // this.searchList = [];
     // this.firstArrayValue = [];
@@ -262,6 +248,7 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
          this._commonRequestService.postData(inputUrl, savedSearchSaveJson).subscribe(
           data => {
             //this.responseData = data;
+            this.loading = false;
             console.log("search result--", data);
             window.scroll(0,0);
             if(data.status === "TRUE"){
@@ -323,7 +310,7 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
     input = {
      "send_to": this.emailValue ? this.emailValue : '',
       "message": this.messageValue ? this.messageValue : '',
-      //"recuriter_search_job_title":"sr. developer",
+      "recuriter_search_job_title":this.savedResult.recuriter_search_job_title ? this.savedResult.recuriter_search_job_title : '',
       "recuriter_search_keywords": this.savedResult && this.savedResult.recuriter_search_keywords ? this.savedResult.recuriter_search_keywords : '',
       "recuriter_search_stemmed_terms":this.savedResult && this.savedResult.recuriter_search_stemmed_terms ? this.savedResult.recuriter_search_stemmed_terms : '',
       "recuriter_search_core_skills":this.savedResult && this.savedResult.recuriter_search_core_skills ? this.savedResult.recuriter_search_core_skills : '',
@@ -346,15 +333,15 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
       "limit":this.pageLimit,
       "sort":this.currentSortBy
    };
-   if(this.savedResult && typeof this.savedResult == 'string') {
-      input['recuriter_search_job_title'] = this.savedResult ? this.savedResult : '';
-    } else if(this.savedResult && typeof this.savedResult == 'object') {
-      input['recuriter_search_job_title'] = this.savedResult.recuriter_search_job_title ? this.savedResult.recuriter_search_job_title : '';
+   // if(this.savedResult && typeof this.savedResult == 'string') {
+   //    input['recuriter_search_job_title'] = this.savedResult ? this.savedResult : '';
+   //  } else if(this.savedResult && typeof this.savedResult == 'object') {
+   //    input['recuriter_search_job_title'] = this.savedResult.recuriter_search_job_title ? this.savedResult.recuriter_search_job_title : '';
       if(this.router.url !== "/public/searchresult-loggedin") {
         input['email'] = "test@test8.com";
         input['loginToken'] = "$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y";
       }
-    }
+    //}
    console.log("input--", input);
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/send_search";
        this._commonRequestService.postData(wsUrl,input).subscribe(
@@ -384,8 +371,14 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
     this.getSearchResultList();
   }
 
-  getRangeSliderValue(event){
+  getRangeSliderValue(event) {
+    // this.filteredData = this.searchResult.filter(item=>{
+    //   return  item.prefereedRate.minRate>event.from && item.prefereedRate.maxRate<event.to
+    // })
 
+    this.savedResult.recuriter_search_by_rate_min = event.from;
+    this.savedResult.recuriter_search_by_rate_max = event.to;
+    this.getSearchResultList();
   }
 
    showMoreContractors() {

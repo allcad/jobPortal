@@ -24,6 +24,7 @@ export class RecruiterWatchListComponent implements OnInit {
 	thirdArray = [];
   maxPage;
   maxRecord;
+  loading = true;
   constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService,
     private _commonService: CommonService, private router: Router) { }
 
@@ -75,6 +76,7 @@ export class RecruiterWatchListComponent implements OnInit {
   }
 
   getWatchListData() {
+    this.loading = true;
   	var input = {
   		"email":"test@test7.com",
 		"loginToken":"$2y$10$ERdO743JuPZF6a4SfV8HQe69MqBJBtM3o3cz.ChfrZbcySNegW1e6",
@@ -87,6 +89,7 @@ export class RecruiterWatchListComponent implements OnInit {
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/watch_list";
        this._commonRequestService.postData(wsUrl, input).subscribe(
         data => {
+          this.loading = false;
          console.log("watch list--", data);
          // if(data) {
          //   this.watchListData = data.data;

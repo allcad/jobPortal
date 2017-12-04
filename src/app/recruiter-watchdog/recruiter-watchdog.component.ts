@@ -25,6 +25,7 @@ export class RecruiterWatchdogComponent implements OnInit {
   currentWatchdogDeleteId;
   openWatchdogPopupFlag = false;
   successMessageFlag = false;
+  loading = true;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
     private _commonDataSharedService: CommonDataSharedService, private commonService : CommonService) { }
 
@@ -47,6 +48,7 @@ export class RecruiterWatchdogComponent implements OnInit {
   }
 
   getWatchDogListData(pageNo) {
+    this.loading = true;
     console.log("currentSortBy--", this.currentSortBy);
      var input = {
      "email":"test@test7.com",
@@ -59,6 +61,7 @@ export class RecruiterWatchdogComponent implements OnInit {
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/watchdogs/list";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
+          this.loading = false;
          console.log("recruiterId--", data);
          if (data && data.status == 'TRUE') {  
          this.maxPage = data.TotalPage;         

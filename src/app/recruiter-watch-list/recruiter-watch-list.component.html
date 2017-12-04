@@ -26,10 +26,13 @@
                         </div>
                     </div>
                 </div>
-                  <div class="errorbox" *ngIf="errorMsg"><br> 
+                  <div class="errorbox" *ngIf="errorMsg && !loading"><br> 
                         <li>{{errorMsg}}</li>
                     </div>
-                <div class="pager_section" *ngIf="watchListData.length > 0">
+                    <div *ngIf="loading" class="row">
+                  <img src="./assets/images/bx_loader.gif">
+                </div>
+                <div class="pager_section" *ngIf="watchListData.length > 0 && !loading">
                     <div class="row">
                         <div class="col-sm-50">
                             <div class="pazer"> 
@@ -57,7 +60,7 @@
                 </div>
             </div>
             <!--contractor login end-->
-            <div class="container">
+            <div class="container" *ngIf="!loading">
                 <div class="row">
                     <div class="col-sm-50" *ngFor="let item of firstArray">
                         <div class="recruiter_watch_list_box">
