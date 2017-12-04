@@ -62,9 +62,9 @@
                                             <div class="home_page_inquery">
                                                 <div id="message_send" [ngClass]="showSendSearchBox == true ? 'display_block' : 'display_none'">
                                                     <div class="after_login_menu">
-                                                        <input type="text" placeholder="Enter Email Here" class="enter_border">
-                                                        <textarea placeholder="Message" class="enter_border"></textarea>
-                                                        <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>Share Search</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                                                        <input type="text" placeholder="Enter Email Here" class="enter_border" [(ngModel)]="emailValue" name="emailValue">
+                                                        <textarea placeholder="Message" class="enter_border" [(ngModel)]="messageValue" name="messageValue"></textarea>
+                                                        <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="shareSearchResult()"><span>Share Search</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -901,8 +901,8 @@
         <label for="notifyme">Notify me <span>(Choose Multiple)</span>:</label>
         <span class="inp-auto auto284"><span>
                         <select class="inpfocus2" name="notifyme" id="notifyMe" [(ngModel)]="notifyMeValue">
-                            <option value="24 hours">24 hours before live</option>
-                            <option value="2 days">2 days before live</option>
+                            <option value="24 hour">24 hours before live</option>
+                            <option value="2 day">2 days before live</option>
                             <option value="1 week">1 week before live</option>
                             <option value="all">All the above</option>
                         </select>

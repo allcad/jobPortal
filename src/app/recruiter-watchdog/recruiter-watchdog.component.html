@@ -12,7 +12,7 @@
                                 <li class="active">WatcHdogs</li>
                             </ul>
                             <div class="pull-right applied_jobs">
-                                <p>You have <span class="text_pink">{{watchListDataArrCount}}</span> Watchdogs
+                                <p>You have <span class="text_pink">{{watchListDataArr.length}}</span> Watchdogs
                             </div>
                         </div>
                     </div>
@@ -20,6 +20,10 @@
                 <div class="errorbox" *ngIf="errorMsg"><br> 
                         <li>{{errorMsg}}</li>
                     </div>
+
+                <div class="alert alert-success margin-tp18" *ngIf="successMessageFlag">
+                  <a href="javascript:void(0)" class="close" title="close" (click)="successMessageFlag = !successMessageFlag">×</a><strong>Watchdog delete successfully.</strong>
+                </div>
                 <div class="pager_section">
                     <div class="row">
                         <div class="col-sm-50" *ngIf="watchListDataArr.length !== 0">
@@ -106,7 +110,7 @@
                                                 <a href="javascript:void(0);" (click)="playButtonClick(item)"><img src="./assets/images/play-icon.png" alt="Job" title="Job"> </a>
                                                 <!-- [routerLink]="['../job-posting']"-->
                                                 <a href="javascript:void(0);" (click)="editJob(item?.id)"><img src="./assets/images/watchdog-edit-icon.png" alt="Job" title="Job"> </a>
-                                                <a href="javascript:void(0);" (click)="deleteWatchDog(item?.id)"><img src="./assets/images/delete-icon.png" alt="Job" title="Job"> </a>
+                                                <a href="javascript:void(0);" (click)="deleteWatchDogOpenPopup(item?.id)"><img src="./assets/images/delete-icon.png" alt="Job" title="Job"> </a>
                                             </div>
                                         </div>
                                     </div>
@@ -271,3 +275,18 @@
                 <a *ngIf="watchListDataArr.length > 9" href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="showMoreWatchDogs()"><span>SHOW MORE WATCHDOGS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
             </div>
         </section>
+
+
+<div id="confirm-container" class="simplemodal-container" *ngIf="openWatchdogPopupFlag">
+  <a href="javascript:void(0);" style="cursor: pointer;" title="Close" class="modal-close simplemodal-close" (click)="closeWatchdogDeletePopup()">X</a>
+  <div tabindex="-1" class="simplemodal-wrap">
+    <div id="confirm" class="simplemodal-data">
+      <h3 class="message"></h3>
+      <p>Are you sure you want to Delete watchdog ?</p>
+      <div class="buttons">
+        <div class="no simplemodal-close" (click)="closeWatchdogDeletePopup()">No</div>
+        <div class="yes" (click) = "deleteWatchDog()">Yes</div>
+      </div>
+    </div>
+  </div>
+</div>

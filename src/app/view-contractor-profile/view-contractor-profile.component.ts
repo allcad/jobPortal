@@ -86,7 +86,7 @@ export class ViewContractorProfileComponent implements OnInit {
       "loginToken":"$2y$10$ERdO743JuPZF6a4SfV8HQe69MqBJBtM3o3cz.ChfrZbcySNegW1e6",
       "contractor_id":this.currentContractorId,
       "Job_id":0,
-      "notify":null
+      "notify":"all"
 
 
    };

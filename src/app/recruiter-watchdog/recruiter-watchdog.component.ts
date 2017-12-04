@@ -22,6 +22,9 @@ export class RecruiterWatchdogComponent implements OnInit {
   errorMsg = "";
   maxPage;
   maxRecord;
+  currentWatchdogDeleteId;
+  openWatchdogPopupFlag = false;
+  successMessageFlag = false;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
     private _commonDataSharedService: CommonDataSharedService, private commonService : CommonService) { }
 
@@ -73,20 +76,44 @@ export class RecruiterWatchdogComponent implements OnInit {
     );
   }
 
-  deleteWatchDog(id) {
-    console.log("currentSortBy--", id);
+  deleteWatchDogOpenPopup(id) {
+    console.log("id--", id);
+    this.currentWatchdogDeleteId = id;
+    this.openWatchdogPopupFlag = true;
+  }
+
+  closeWatchdogDeletePopup() {
+    this.openWatchdogPopupFlag = false;
+  }
+
+  deleteWatchDog() {
+    this.errorMsg = "";
+    console.log("currentSortBy--", this.currentWatchdogDeleteId);
      var input = {
      "email":"test@test7.com",
   "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu",
-    "id":id
+    "id":this.currentWatchdogDeleteId
    };
    console.log("input--", input);
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/watchdogs/delete";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
          console.log("recruiterId--", data);
-         this.getWatchDogListData(this.pageNo);
-         this.router.navigate(['./recruiter/watchdog']);
+         window.scroll(0,0);
+         if(data && data.status == 'TRUE') {
+           this.openWatchdogPopupFlag = false;
+           this.successMessageFlag = true;
+           this.errorMsg = "";
+           this.pageNo = 1;
+           this.currentPageNo = 10;
+           this.watchListDataArr = [];
+           this.getWatchDogListData(this.currentPageNo);
+           //this.router.navigate(['./recruiter/watchdog']);
+         } else {
+           this.successMessageFlag = false;
+           this.openWatchdogPopupFlag = false;
+           this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+         }
         }
     );
   }
