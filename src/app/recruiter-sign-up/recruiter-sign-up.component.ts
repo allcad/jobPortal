@@ -117,10 +117,12 @@ export class RecruiterSignUpComponent implements OnInit {
       this.emailFlag = true;
     }
 
-    if(this.verifyEmailAddress) {
-      this.verifyEmailReqFlag = false;
-    } else {
-      this.verifyEmailReqFlag = true;
+    if(this.emailAddress) {
+      if(this.verifyEmailAddress) {
+        this.verifyEmailReqFlag = false;
+      } else {
+        this.verifyEmailReqFlag = true;
+      }
     }
 
     if(this.passwordValue) {
@@ -135,10 +137,12 @@ export class RecruiterSignUpComponent implements OnInit {
       this.keySkillFlag = true;
     }
 
-    if(this.verifyPasswordValue) {
-      this.verifyPasswordValueFlag = false;
-    } else {
-      this.verifyPasswordValueFlag = true;
+    if(this.passwordValue) {
+      if(this.verifyPasswordValue) {
+        this.verifyPasswordValueFlag = false;
+      } else {
+        this.verifyPasswordValueFlag = true;
+      }
     }
 
     if(this.termOfUse) {
@@ -158,7 +162,7 @@ export class RecruiterSignUpComponent implements OnInit {
     if(this.companyNameFlag || this.contactNameFlag || this.phoneNoFlag 
       || this.jobTitleFlag || this.emailFlag || this.passwordFlag || this.validPhoneNoFlag 
       || this.phoneNoMaxLengthFlag || this.validEmailFlag || this.passwordSameFlag || 
-      this.emailSameFlag || this.termsOfUseFlag) {
+      this.emailSameFlag || this.termsOfUseFlag || this.keySkillFlag || this.verifyEmailReqFlag || this.verifyPasswordValueFlag) {
       window.scroll(0,0);
       this.allErrorMsgFlag = true;
     } else {

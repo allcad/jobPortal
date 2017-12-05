@@ -51,7 +51,8 @@ export class RecruiterHomeComponent implements OnInit {
   loadLocationAutoData() {
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["geocode"]
+        types: ["geocode"],
+        componentRestrictions : {'country' : 'GB'}
       });
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {

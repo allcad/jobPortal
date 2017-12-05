@@ -4,7 +4,7 @@
   <div id="contractor-signup">
     <div class="container">
 
-      <div class="errorbox" *ngIf="companyNameFlag || contactNameFlag || phoneNoFlag || jobTitleFlag || emailFlag || passwordFlag || validPhoneNoFlag || phoneNoMaxLengthFlag || validEmailFlag || passwordSameFlag || emailSameFlag || termsOfUseFlag"><b>The following error(s) occured:</b><br> 
+      <div class="errorbox" *ngIf="companyNameFlag || contactNameFlag || phoneNoFlag || jobTitleFlag || emailFlag || passwordFlag || validPhoneNoFlag || phoneNoMaxLengthFlag || validEmailFlag || passwordSameFlag || emailSameFlag || termsOfUseFlag || keySkillFlag || verifyEmailReqFlag || verifyPasswordValueFlag"><b>The following error(s) occured:</b><br> 
           <li *ngIf="companyNameFlag">Company Name required.</li>
           <li *ngIf="contactNameFlag">Consultant name required.</li>
           <li *ngIf="phoneNoFlag">Please enter a telephone number.</li>
@@ -14,11 +14,11 @@
           <li *ngIf="emailFlag">Please enter an email address.</li>
           <li *ngIf="passwordFlag">Your password must be at least 6 characters in length.</li>
           <li *ngIf="termsOfUseFlag">Please agree to our terms of use.</li>
-          <!-- <li *ngIf="verifyPasswordValueFlag">Verify Password is required.</li>
-          <li *ngIf="keySkillFlag">Pass Code is required.</li> -->
+          <li *ngIf="verifyPasswordValueFlag">Verify Password is required.</li>
+          <li *ngIf="keySkillFlag">Pass Code required.</li>
           <li *ngIf="validEmailFlag">Please enter valid email.</li>
-          <!-- <li *ngIf="verifyEmailReqFlag">Verify email field is required.</li>
-          <li *ngIf="verifyEmailFlag">Please enter valid verify email.</li> -->
+          <li *ngIf="verifyEmailReqFlag">Verify email field is required.</li>
+          <!-- <li *ngIf="verifyEmailFlag">Please enter valid verify email.</li> -->
           <li *ngIf="passwordSameFlag">Password and verify password should be same.</li>
           <li *ngIf="emailSameFlag">Email and verify email should be same.</li>
       </div>
