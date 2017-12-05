@@ -100,10 +100,10 @@ export class ContractorNewsCategoryComponent implements OnInit {
 
   }
 
-  readMore(news) {
-    this._commonRequestService.setDataWithoutObserval(news._id, "newsId");
-    localStorage.setItem("newsId", news._id);
-    this._router.navigate(['../news'], { relativeTo: this._routes });
-  }
+  // readMore(news) {
+  //   this._commonRequestService.setDataWithoutObserval(news._id, "newsId");
+  //   localStorage.setItem("newsId", news._id);
+  //   this._router.navigate(['../news'], { relativeTo: this._routes });
+  // }
 
 }

@@ -33,111 +33,107 @@ import { ContractorForgotPasswordComponent } from '../contractor-forgot-password
 import { ContractorResetPasswordComponent } from '../contractor-reset-password/contractor-reset-password.component';
 
 const publicRoutes: Routes = [
-{
-    "path": "contractorSignup",
-    "component": ContractorSignUpComponent
-},{
-    "path": "contractorLogin",
-    "component": LoginComponent
-}, {
-    "path": "recruiterRegister",
-    "component": RecruiterSignUpComponent
-},{
-    "path": "recruiterLogin",
-    "component": LoginRecruiterComponent
-},{
-    "path" :"contractor-directory",
-    "component" :ContractorDirectoryComponent
-},{
-    "path": "companyProfile",
-    "component": ContractorRecuriterProfileComponent
-},{
-    "path": "home",
-    "component": ContentComponent
-},{
-    "path": "news",
-    "component" : ContractorNewsArticleComponent
-},{
-    "path": "news_category",
-    "component" : ContractorNewsCategoryComponent
-},{
-    "path": "terms_use",
-    "component" : TermUseComponent
-},{
-    "path": "contractor_hub_home",
-    "component" : ContractorHubHomeComponent
-}, {
-    "path": "recruiter-terms",
-    "component": RecruiterTermsComponent
-},{
-    "path": "about-recruiter",
-    "component": AboutRecruiterComponent
-}, {
-    "path": "contact-us",
-    "component": ContactPageComponent
-}, {
-    "path": "faq",
-    "component": FaqComponent
-},{
-    "path": "advice",
-    "component": ContractorAdviceCategoryComponent
-},{
-    "path": "adviceDetail",
-    "component": ContractorAdviceArticleComponent
-},{
-    "path": "guides",
-    "component": RecruiterGuidesPageComponent
-}, {
-    "path": "privacy-policy",
-    "component": PrivacyPolicyComponent
-} , {
-    "path": "site-map",
-    "component": SiteMapComponent
-},{
-    "path": "jobSearch",
-    "component": ContractorJobSearchComponent
-},{
-    "path" :"lastSearch",
-    "component" :ContractorJobSearchComponent
-}, {
-    "path": "searchResult",
-    "component": ContractorSearchResultComponent
-},{
-    "path": "searchresult-loggedin",
-    "component": RecruiterSearchresultLoggedinComponent,
-   // "resolve": {resolverData: ResolverService}
-},{
-    "path": "advanced-search",
-    "component": RecruiterAdvancedSearchComponent,
-    //"resolve": {resolverData: ResolverService}
-},{
-    "path": "saved-search",
-    "component": RecruiterSavedSearchComponent,
-    //"resolve": {resolverData: ResolverService}
-}, {
-    "path": "lost-password",
-    "component": RecruiterLostPasswordComponent,
-    //"resolve": {resolverData: ResolverService}
-},{
-    "path" : "cobtractor_forgot_password",
-    "component" : ContractorForgotPasswordComponent
-},{
-    "path" : "cobtractor_reset_password",
-    "component" : ContractorResetPasswordComponent
-},{
-    "path": "",
-    "redirectTo" : "home",
-    "pathMatch" : 'full'
-}, {
-    "path": '404', 
-    "component": NotFoundPageComponent
-},{
-    "path": '**', 
-    "redirectTo": '/404'
-},]
+    {
+        "path": "contractorSignup",
+        "component": ContractorSignUpComponent
+    }, {
+        "path": "contractorLogin",
+        "component": LoginComponent
+    }, {
+        "path": "recruiterRegister",
+        "component": RecruiterSignUpComponent
+    }, {
+        "path": "recruiterLogin",
+        "component": LoginRecruiterComponent
+    }, {
+        "path": "directory/:id",
+        "component": ContractorDirectoryComponent
+    }, {
+        "path": "companyProfile",
+        "component": ContractorRecuriterProfileComponent
+    }, {
+        "path": "home",
+        "component": ContentComponent
+    },
+
+    {
+        "path": "news",
+        "component": ContractorNewsCategoryComponent
+    }, {
+        "path": "news/:id",
+        "component": ContractorNewsArticleComponent
+    }, {
+        "path": "terms_use",
+        "component": TermUseComponent
+    }, {
+        "path": "contractor_hub_home",
+        "component": ContractorHubHomeComponent
+    }, {
+        "path": "recruiter-terms",
+        "component": RecruiterTermsComponent
+    }, {
+        "path": "about-recruiter",
+        "component": AboutRecruiterComponent
+    }, {
+        "path": "contact-us",
+        "component": ContactPageComponent
+    }, {
+        "path": "faq",
+        "component": FaqComponent
+    }, {
+        "path": "advice",
+        "component": ContractorAdviceCategoryComponent
+    }, {
+        "path": "advice/:id",
+        "component": ContractorAdviceArticleComponent
+    }, {
+        "path": "guides",
+        "component": RecruiterGuidesPageComponent
+    }, {
+        "path": "privacy-policy",
+        "component": PrivacyPolicyComponent
+    }, {
+        "path": "site-map",
+        "component": SiteMapComponent
+    }, {
+        "path": "jobSearch",
+        "component": ContractorJobSearchComponent
+    }, {
+        "path": "lastSearch",
+        "component": ContractorJobSearchComponent
+    }, {
+        "path": "searchResult",
+        "component": ContractorSearchResultComponent
+    }, {
+        "path": "searchresult-loggedin",
+        "component": RecruiterSearchresultLoggedinComponent,
+        // "resolve": {resolverData: ResolverService}
+    }, {
+        "path": "advanced-search",
+        "component": RecruiterAdvancedSearchComponent,
+        //"resolve": {resolverData: ResolverService}
+    }, {
+        "path": "saved-search",
+        "component": RecruiterSavedSearchComponent,
+        //"resolve": {resolverData: ResolverService}
+    }, {
+        "path": "lost-password",
+        "component": RecruiterLostPasswordComponent,
+        //"resolve": {resolverData: ResolverService}
+    }, {
+        "path": "cobtractor_forgot_password",
+        "component": ContractorForgotPasswordComponent
+    }, {
+        "path": "cobtractor_reset_password",
+        "component": ContractorResetPasswordComponent
+    }, {
+        "path": "",
+        "redirectTo": "home",
+        "pathMatch": 'full'
+    }]
 
 @NgModule({
-    imports:[RouterModule.forChild(publicRoutes)],
+    imports: [RouterModule.forChild(publicRoutes)],
     exports: [RouterModule]
 })
 export class PublicRoutingModule {

@@ -23,76 +23,74 @@ import { ResolverService } from '../resolver.service';
 const contractorRoutes: Routes = [{
     "path": "profile",
     "component": ContractorProfileComponent,
-    "resolve": {resolverData: ResolverService}
+    "resolve": { resolverData: ResolverService }
 }, {
     "path": "viewProfile",
     "component": ContractorViewProfileComponent,
-    "resolve": {resolverData: ResolverService}
-},{
-	"path" :"EditProfile",
-	"component" :ContractorProfileComponent,
-    "resolve": {resolverData: ResolverService}
-},{
-	"path" :"jobSearch",
-	"component" :ContractorJobSearchComponent,
-    "resolve": {resolverData: ResolverService}
-},{
-    "path" :"lastSearch",
-    "component" :ContractorJobSearchComponent,
-    "resolve": {resolverData: ResolverService}
-},{
-    "path" :"application",
-    "component" :ContractorApplicationsComponent,
-    "resolve": {resolverData: ResolverService}
-},{
-    "path" :"jobSavedSearch",
-    "component" :ContractorJobSearchSavedComponent,
-    "resolve": {resolverData: ResolverService}
+    "resolve": { resolverData: ResolverService }
+}, {
+	"path": "EditProfile",
+	"component": ContractorProfileComponent,
+    "resolve": { resolverData: ResolverService }
+}, {
+	"path": "jobSearch",
+	"component": ContractorJobSearchComponent,
+    "resolve": { resolverData: ResolverService }
+}, {
+    "path": "lastSearch",
+    "component": ContractorJobSearchComponent,
+    "resolve": { resolverData: ResolverService }
+}, {
+    "path": "application",
+    "component": ContractorApplicationsComponent,
+    "resolve": { resolverData: ResolverService }
+}, {
+    "path": "jobSavedSearch",
+    "component": ContractorJobSearchSavedComponent,
+    "resolve": { resolverData: ResolverService }
 },
 {
-    "path" :"hubHome",
-    "component" :ContractorHubHomeComponent
+    "path": "hubHome",
+    "component": ContractorHubHomeComponent
 }, {
-     "path" :"contractor-directory",
-    "component" :ContractorDirectoryComponent,
-    "resolve": {resolverData: ResolverService}
+    "path": "directory/:id",
+    "component": ContractorDirectoryComponent,
+    "resolve": { resolverData: ResolverService }
 }, {
     "path": "companyProfile",
     "component": ContractorRecuriterProfileComponent,
-    "resolve": {resolverData: ResolverService}
-},{
+    "resolve": { resolverData: ResolverService }
+}, {
     "path": "advice",
     "component": ContractorAdviceCategoryComponent,
-    "resolve": {resolverData: ResolverService}
-},{
+    "resolve": { resolverData: ResolverService }
+}, {
     "path": "adviceDetail",
     "component": ContractorAdviceArticleComponent,
-    "resolve": {resolverData: ResolverService}
-},{
+    "resolve": { resolverData: ResolverService }
+}, {
     "path": "searchResult",
     "component": ContractorSearchResultComponent,
-    "resolve": {resolverData: ResolverService}
-},{
-    "path": "news",
-    "component" : ContractorNewsArticleComponent,
-    "resolve": {resolverData: ResolverService}
+    "resolve": { resolverData: ResolverService }
 },
 {
     "path": "help",
-    "component" : ContractorHelpComponent,
-    "resolve": {resolverData: ResolverService}
-},{
-    "path": "news_category",
-    "component" : ContractorNewsCategoryComponent,
-    "resolve": {resolverData: ResolverService}
-},{
+    "component": ContractorHelpComponent,
+    "resolve": { resolverData: ResolverService }
+}, {
+    "path": "news",
+    "component": ContractorNewsCategoryComponent
+}, {
+    "path": "news/:id",
+    "component": ContractorNewsArticleComponent
+}, {
     "path": "about",
-    "component" : AboutContractorComponent,
-    "resolve" : {resolverData: ResolverService}
+    "component": AboutContractorComponent,
+    "resolve": { resolverData: ResolverService }
 }]
 
 @NgModule({
-    imports:[RouterModule.forChild(contractorRoutes)],
+    imports: [RouterModule.forChild(contractorRoutes)],
     exports: [RouterModule]
 })
 export class ContractorRoutingModule {

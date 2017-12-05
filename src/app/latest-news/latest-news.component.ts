@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonRequestService } from '../common-request.service';
-import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-latest-news',
@@ -9,15 +8,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LatestNewsComponent implements OnInit {
 
-  constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
+  constructor() { }
   
   ngOnInit() {
   	
   }
 
-  viewAllNews(){
-  	this._router.navigate(['../news_category'], {relativeTo: this._routes});
-  }
 
   
 

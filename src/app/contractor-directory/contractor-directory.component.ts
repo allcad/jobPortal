@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
-
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-contractor-directory',
@@ -11,24 +11,32 @@ export class ContractorDirectoryComponent implements OnInit {
 	selectedContractorHubCategory;
 	categoryData = [];
 	companyData;
-  constructor(private _commonRequestService: CommonRequestService) { }
+  constructor(private _commonRequestService: CommonRequestService, private _routes: ActivatedRoute, private _router: Router) { }
 
   ngOnInit() {
     this.getContarctorHubCategory();
-    this.selectedContractorHubCategory = this._commonRequestService.getDataWithoutObserval('category_hub_id');
-    if (this.selectedContractorHubCategory) {
-      this.getCompanyList();
-    }
+    this._routes.params.subscribe((params: Params) => {
+      this.selectedContractorHubCategory = params['id'];
+      if (this.selectedContractorHubCategory) {
+        this.getCompanyList();
+      }
+    })
+
+
+    //this.selectedContractorHubCategory = this._commonRequestService.getDataWithoutObserval('category_hub_id');
+
   }
 
-  ngAfterViewInit(){
-   window.scroll(0,0);
+  ngAfterViewInit() {
+    window.scroll(0, 0);
   }
 
   categoryClicked(categoryData) {
-    console.log(categoryData);
+    
     this.selectedContractorHubCategory = categoryData.contract_hub_category_id;
-    this.getCompanyList();
+    // this.getCompanyList();
+    this._router.navigate(['../' + this.selectedContractorHubCategory], {relativeTo: this._routes});
+
   }
 
   getCompanyList() {
@@ -56,10 +64,10 @@ export class ContractorDirectoryComponent implements OnInit {
     this._commonRequestService.postData(url, inputJson).subscribe(
       data => {
         this.categoryData = data.data;
-        if (!this.selectedContractorHubCategory) {
-          this.selectedContractorHubCategory = this.categoryData[0].contract_hub_category_id;
-          this.getCompanyList();
-        }
+        // if (!this.selectedContractorHubCategory) {
+        //   this.selectedContractorHubCategory = this.categoryData[0].contract_hub_category_id;
+        //   this.getCompanyList();
+        // }
       }
     );
   }

@@ -34,11 +34,11 @@ export class ContractorServiceMenuListingComponent implements OnInit {
   }
 
 
-  categoryClicked(categoryData){
-    console.log("categoryData", categoryData);
-    this._commonRequestService.setDataWithoutObserval(categoryData.contract_hub_category_id, 'category_hub_id');
-  	this._router.navigate(['../contractor-directory'], {relativeTo: this._routes})
-  }
+  // categoryClicked(categoryData){
+  //   console.log("categoryData", categoryData);
+  //   this._commonRequestService.setDataWithoutObserval(categoryData.contract_hub_category_id, 'category_hub_id');
+  // 	this._router.navigate(['../contractor-directory'], {relativeTo: this._routes})
+  // }
 
 
 }
