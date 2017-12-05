@@ -99,9 +99,14 @@ moveToSearchResult(value) {
         "recuriter_search_by_industry": '',
         "recuriter_search_by_security_clearance": '',
         "recuriter_search_by_driving_license": 0,
+        "postcode": '',
+        "display_town" : '',
+        "display_county": '',
+        "display_name" : ''
   }
+  console.log("searchJson", searchJson);
   this.commonService.setSearchResult(searchJson);
-  this._router.navigate(['/public/searchresult-loggedin']);
+  this._router.navigate(['/public/searchresult-loggedin/'+value]);
 }
 
   searchContract(key, value) {

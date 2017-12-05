@@ -256,26 +256,27 @@ searchListErrorMsg = "";
           //this.recruiterNameArray = data.data;
           if(data && data.data) {
             this.showDeleteButtonFlag = true;
-            this.savedSearchName = data.data.recuriter_saved_search_name;
+            this.savedSearchName = data.data.recuriter_saved_search_name ? data.data.recuriter_saved_search_name : '';
             this.addToWatchDogCheck = data.data.recuriter_search_add_to_watchdog === 1 ? true : false;
-            this.jobTitle = data.data.recuriter_search_job_title;
-            this.keywordSearch = data.data.recuriter_search_keywords;
+            this.jobTitle = data.data.recuriter_search_job_title ? data.data.recuriter_search_job_title : '';
+            this.keywordSearch = data.data.recuriter_search_keywords ? data.data.recuriter_search_keywords : '';
             this.stemmedTerms = data.data.recuriter_search_stemmed_terms === 1 ? true : false;
-            this.coreSkills = data.data.recuriter_search_core_skills;
-            this.certificationValues = data.data.recuriter_search_certifications;
-            this.dontShowContractor = data.data.recuriter_search_dont_show_to_contractor;
-            this.cityTownValue = data.data.recuriter_search_location;
+            this.coreSkills = data.data.recuriter_search_core_skills ? data.data.recuriter_search_core_skills : '';
+            this.certificationValues = data.data.recuriter_search_certifications ? data.data.recuriter_search_certifications : '';
+            this.dontShowContractor = data.data.recuriter_search_dont_show_to_contractor ? data.data.recuriter_search_dont_show_to_contractor : '';
+            //this.cityTownValue = data.data.recuriter_search_location;
+            this.searchElementRef.nativeElement.value = data.data.recuriter_search_location ? data.data.recuriter_search_location : '';
             this.includeRelocators = data.data.recuriter_search_include_relocators === 1 ? true : false;
-            this.minRate = data.data.recuriter_search_by_rate_min;
-            this.maxRate = data.data.recuriter_search_by_rate_max;
-            this.dailyHourlyValue = data.data.recuriter_search_by_rate_type;
-            this.timeLeftOnCutCont = data.data.recuriter_search_by_time_left;
-            this.includeUnavailable = data.data.recuriter_search_by_updated_contractor_since;
-            this.showContractors = data.data.recuriter_search_dont_show_to_contractor;
-            this.contractorName = data.data.recuriter_search_by_contract_name;
-            this.educationValue = data.data.recuriter_search_by_education;
-            this.industrySectorValue = data.data.recuriter_search_by_industry;
-            this.securityClearValue = data.data.recuriter_search_by_security_clearance;
+            this.minRate = data.data.recuriter_search_by_rate_min ? data.data.recuriter_search_by_rate_min : '';
+            this.maxRate = data.data.recuriter_search_by_rate_max ? data.data.recuriter_search_by_rate_max : '';
+            this.dailyHourlyValue = data.data.recuriter_search_by_rate_type ? data.data.recuriter_search_by_rate_type : '';
+            this.timeLeftOnCutCont = data.data.recuriter_search_by_time_left ? data.data.recuriter_search_by_time_left : '';
+            this.includeUnavailable = data.data.recuriter_search_by_updated_contractor_since ? data.data.recuriter_search_by_updated_contractor_since : '';
+            this.showContractors = data.data.recuriter_search_dont_show_to_contractor ? data.data.recuriter_search_dont_show_to_contractor : '';
+            this.contractorName = data.data.recuriter_search_by_contract_name ? data.data.recuriter_search_by_contract_name : '';
+            this.educationValue = data.data.recuriter_search_by_education ? data.data.recuriter_search_by_education : '';
+            this.industrySectorValue = data.data.recuriter_search_by_industry ? data.data.recuriter_search_by_industry : '';
+            this.securityClearValue = data.data.recuriter_search_by_security_clearance ? data.data.recuriter_search_by_security_clearance : '';
             this.drivingLicenceValue = data.data.recuriter_search_by_driving_license === 1 ? 'yes' : 'no';
           }
         }
@@ -349,7 +350,7 @@ searchListErrorMsg = "";
       "recuriter_search_core_skills":this.coreSkills?this.coreSkills:'',
       "recuriter_search_certifications":this.certificationValues?this.certificationValues:'',
       "recuriter_search_dont_show_to_contractor":this.dontShowContractor?this.dontShowContractor:'',
-      "recuriter_search_location":this.displayLocationName?this.displayLocationName:'',
+      "recuriter_search_location": this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value :'',
       "recuriter_search_include_relocators":this.includeRelocators ? 1 : 0,
       "recuriter_search_by_rate_min":this.minRate?this.minRate:'',
       "recuriter_search_by_rate_max":this.maxRate?this.maxRate:'',
@@ -361,11 +362,11 @@ searchListErrorMsg = "";
       "recuriter_search_by_education":this.educationValue?this.educationValue:"",
       "recuriter_search_by_industry":this.industrySectorValue?this.industrySectorValue:[],
       "recuriter_search_by_security_clearance":this.securityClearValue?this.securityClearValue:[],
-      "recuriter_search_by_driving_license":this.drivingLicenceValue == 'yes' ? 1 : 0
-      // "postcode": this.postcode ? this.postcode : '',
-      // "display_town" : this.displayTown ? this.displayTown : '',
-      // "display_county": this.displayCountry ? this.displayCountry : '',
-      // "display_name" : this.displayLocationName ? this.displayLocationName : '',
+      "recuriter_search_by_driving_license":this.drivingLicenceValue == 'yes' ? 1 : 0,
+      "postcode": this.postcode ? this.postcode : '',
+      "display_town" : this.displayTown ? this.displayTown : '',
+      "display_county": this.displayCountry ? this.displayCountry : '',
+      "display_name" : this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value :''
      
     }
 
@@ -486,7 +487,11 @@ searchListErrorMsg = "";
       "recuriter_search_by_education":this.educationValue?this.educationValue:"",
       "recuriter_search_by_industry":this.industrySectorValue ? this.industrySectorValue.toString() : "",
       "recuriter_search_by_security_clearance":this.securityClearValue ? this.securityClearValue.toString() : "",
-      "recuriter_search_by_driving_license":this.drivingLicenceValue == 'yes' ? 1 : 0
+      "recuriter_search_by_driving_license":this.drivingLicenceValue == 'yes' ? 1 : 0,
+      "postcode": this.postcode ? this.postcode : '',
+      "display_town" : this.displayTown ? this.displayTown : '',
+      "display_county": this.displayCountry ? this.displayCountry : '',
+      "display_name" : this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value :''
       //"page":1,
       //"limit":12
       //"sort":8

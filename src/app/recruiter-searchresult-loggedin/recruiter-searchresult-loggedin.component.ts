@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonDataSharedService } from '../commonDataSharedService';
 import { CommonRequestService } from '../common-request.service';
 import { CommonService } from '../commonService.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-recruiter-searchresult-loggedin',
@@ -50,8 +50,9 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   emailValue = "";
   messageValue = "";
   loading = true;
+  searchResultId;
   constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService,
-    private _commonService: CommonService, private router: Router) {
+    private _commonService: CommonService, private router: Router, private _routes: ActivatedRoute) {
       this.currentUrl = router.url;
      }
 
@@ -63,10 +64,24 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
     this.getSortByData();
     this.getJobList();
     this.savedResult = this._commonService.getSearchResult();
-    console.log("this.savedResult", this.savedResult)
-    if(this.savedResult) {
-      this.getSearchResultList();
-    }
+    console.log("this.savedResult", this.savedResult, "this.searchResultId", this.searchResultId);
+
+    this._routes.params.subscribe((params: Params) => {
+      this.searchResultId = params['id'];
+      console.log("this.searchResultId--", this.searchResultId);
+      if (this.searchResultId) {
+        //alert(1)
+        console.log("this.savedResult", this.savedResult);
+        if(this.savedResult) {
+          this.savedResult['recuriter_search_job_title'] = this.searchResultId;
+          this.getSearchResultList();
+        }
+        //this.getCompanyList();
+      } else if(this.savedResult) {
+        //alert(0)
+        this.getSearchResultList();
+       }
+    })
   }
 
   goToAdvancedSearch() {
@@ -228,7 +243,7 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
       savedSearchSaveJson['sort'] = this.currentSortBy;
       savedSearchSaveJson['page'] = this.pageNo;
       savedSearchSaveJson['limit'] = this.pageLimit;
-      if(this.router.url !== "/public/searchresult-loggedin") {
+      if(this.router.url !== "/public/searchresult-loggedin" && this.searchResultId == undefined) {
         this.showLoginMoreDetailsOptions = true;
         this.showWithoutLoginMoreOptions = false;
         savedSearchSaveJson['email'] = "test@test8.com";
@@ -378,6 +393,11 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
 
     this.savedResult.recuriter_search_by_rate_min = event.from;
     this.savedResult.recuriter_search_by_rate_max = event.to;
+    this.savedResult.recuriter_search_by_rate_type = this.savedResult.recuriter_search_by_rate_type ? this.savedResult.recuriter_search_by_rate_type : 'daily';
+    this.searchList = [];
+    this.firstArrayValue = [];
+    this.secondArray = [];
+    this.thirdArray = [];
     this.getSearchResultList();
   }
 
