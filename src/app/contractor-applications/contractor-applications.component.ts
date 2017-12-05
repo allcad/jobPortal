@@ -42,7 +42,7 @@ export class ContractorApplicationsComponent implements OnInit {
       "email": "test@test.com",
       "loginToken": "lsbdjaGUJ46fdsfJnLMjdfsdfssdfJG67",
       "page": this.currentPage,
-      "limit": 5,
+      "limit": 6,
       "sort_by": this.sortBy
     }
     var url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/applied_job/list";

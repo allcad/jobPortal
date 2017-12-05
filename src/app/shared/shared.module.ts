@@ -42,11 +42,11 @@ import { ContractorJobSearchComponent } from '../contractor-job-search/contracto
 import { RecruiterSearchresultLoggedinComponent } from '../recruiter-searchresult-loggedin/recruiter-searchresult-loggedin.component';
 import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/recruiter-advanced-search.component';
 // import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/recruiter-advanced-search.component';
- import { RecruiterSavedSearchComponent } from '../recruiter-saved-search/recruiter-saved-search.component';
- import { ViewContractorProfileComponent } from '../view-contractor-profile/view-contractor-profile.component';
- //import { ChartModule } from 'angular-highcharts';
- import { RecruiterGuidesPageComponent } from '../recruiter-guides-page/recruiter-guides-page.component';
-  import { ShareButtonsModule } from 'ngx-sharebuttons';
+import { RecruiterSavedSearchComponent } from '../recruiter-saved-search/recruiter-saved-search.component';
+import { ViewContractorProfileComponent } from '../view-contractor-profile/view-contractor-profile.component';
+//import { ChartModule } from 'angular-highcharts';
+import { RecruiterGuidesPageComponent } from '../recruiter-guides-page/recruiter-guides-page.component';
+import { ShareButtonsModule } from 'ngx-sharebuttons';
 
 @NgModule({
   declarations: [

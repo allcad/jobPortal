@@ -43,8 +43,8 @@ export class ContractorRecuriterProfileComponent implements OnInit {
     this._commonRequestService.postData(url, inputJson).subscribe(
       data => {
         this.companyDetail = data.data;
-        this.comapnySocial = JSON.parse(this.companyDetail.companySocial)
-        console.log("companyDetail", this.companyDetail);
+        this.comapnySocial =  this.companyDetail.companySocial && typeof(this.companyDetail.companySocial) == 'string'  ? JSON.parse(this.companyDetail.companySocial) : this.companyDetail.companySocial;
+        
       }
     );
   }
