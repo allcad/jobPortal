@@ -98,7 +98,13 @@ const publicRoutes: Routes = [
     }, {
         "path": "jobSearch",
         "component": ContractorJobSearchComponent
+    },{
+        "path": "jobSearch",
+        "component": ContractorJobSearchComponent
     }, {
+        "path" : "contractor_search",
+        "component" : ContractorJobSearchComponent
+    } ,{
         "path": "lastSearch",
         "component": ContractorJobSearchComponent
     }, {

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MapsAPILoader } from '@agm/core';
 @Component({
   selector: 'app-contractor-job-search',
@@ -42,6 +42,15 @@ export class ContractorJobSearchComponent implements OnInit {
     if (this._router.url.split('/')[1] == "public") {
       this.isPublic = true;
     }
+
+    // if(this._router.url.split('/')[2].indexOf('contractor_search') > -1){
+    //   this._routes.queryParams.subscribe((params: Params) => {
+    //     let paramss = params;
+    //     console.log("parameter",paramss);
+    //   });
+    // }
+    
+
     this.loadLocationAutoData();
   }
 
