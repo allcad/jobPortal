@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 declare var $: any;
 
@@ -46,6 +46,32 @@ export class ContractorSearchResultComponent implements OnInit {
     this.getSortList();
     if (this._router.url.split('/')[1] == "public") {
       this.isPublic = true;
+    }
+
+
+    if (this._router.url.split('/')[2].indexOf('contractor_search') > -1) {
+      this._routes.queryParams.subscribe((params: Params) => {
+        let paramData = params;
+        
+        let output = {};        
+
+        let keyArray = []
+        for (let prop in paramData) {
+            keyArray.push(prop); 
+        }
+
+        for(let i=0; i<keyArray.length; i++){
+          
+          output[keyArray[i]] = paramData[keyArray[i]] && paramData[keyArray[i]].indexOf('+')>-1 ? paramData[keyArray[i]].replace(/\+/g, ' ') : paramData[keyArray[i]];
+
+         
+          
+        }
+        this.searchJson = output;
+        this.getSearchData();
+        console.log("jbdjasd",output);
+
+      });
     }
 
 

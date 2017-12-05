@@ -43,13 +43,8 @@ export class ContractorJobSearchComponent implements OnInit {
       this.isPublic = true;
     }
 
-    // if(this._router.url.split('/')[2].indexOf('contractor_search') > -1){
-    //   this._routes.queryParams.subscribe((params: Params) => {
-    //     let paramss = params;
-    //     console.log("parameter",paramss);
-    //   });
-    // }
     
+
 
     this.loadLocationAutoData();
   }
@@ -196,7 +191,7 @@ export class ContractorJobSearchComponent implements OnInit {
       //console.log("this.searchElementRef.nativeElement", this.searchElementRef.nativeElement);
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["geocode"],
-        componentRestrictions : {'country' : 'GB'}
+        componentRestrictions: { 'country': 'GB' }
       });
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {

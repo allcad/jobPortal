@@ -103,7 +103,7 @@ const publicRoutes: Routes = [
         "component": ContractorJobSearchComponent
     }, {
         "path" : "contractor_search",
-        "component" : ContractorJobSearchComponent
+        "component" : ContractorSearchResultComponent
     } ,{
         "path": "lastSearch",
         "component": ContractorJobSearchComponent
