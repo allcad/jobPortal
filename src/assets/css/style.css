@@ -4212,3 +4212,27 @@ label.text_pink{margin-bottom: 15px;}
 .margin-tp{
 	margin-top: 16px; 
 }
+
+
+.share-buttons button{
+	background: transparent !important;
+	padding: 0 !important;
+	color: #03cdff !important;
+	font-size: 20px !important;
+}
+
+.share-buttons .sb-button{
+	min-width: auto !important;
+	padding: 0 6px !important;
+}
+
+.share-buttons .sb-style{
+	margin: 0 !important;
+}
+.share-buttons button i{
+	transition: all 0.5s ease 0s;
+}
+.share-buttons button i:hover{
+	background: transparent !important;
+	color: #000 !important;
+}
