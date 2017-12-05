@@ -172,7 +172,7 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-addon upto_border_none max-width100">-</div>
-                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Rate Max (£)" name="maxRate" [(ngModel)]="maxRate" required>
+                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Rate Max (£)" name="maxRate" [(ngModel)]="maxRate" [min]="minRate" required>
                                             </div>
                                         </div>
                                     </div>

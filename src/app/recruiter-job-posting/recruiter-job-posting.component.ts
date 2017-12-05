@@ -153,7 +153,7 @@ displayLocationName = '';
                 if(place.address_components[i].types[j] == "country") {
                   this.displayCountry = place.address_components[i].long_name;
                 }
-                this.displayLocationName = this.displayTown + " " + this.postcode + "," + this.displayCountry;
+                this.displayLocationName = this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value : '';
               }
             }
           }
@@ -329,6 +329,7 @@ displayLocationName = '';
      this.recruiterName = "0";
      this.saveTemplateAs = "";
      this.jobReference = "";
+     this.searchElementRef.nativeElement.value = "";
   }
 
   onJobPostSave(f:NgForm) {
@@ -409,11 +410,11 @@ displayLocationName = '';
   			"startDate": this.startDate,
   			"industrySectorId": this.industrySector,
   			"workEligibilityId" : this.workEligibility,
-  			"cityTown": this.displayLocationName,
+  			"cityTown": this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value : '',
         "postcode": this.postcode,
         "display_town" : this.displayTown,
         "display_county": this.displayCountry,
-        "display_name" : this.displayLocationName,
+        "display_name" : this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value : '',
   			"prefereedRate": {
   				"minRate": this.minRate,
   				"maxRate": this.maxRate,

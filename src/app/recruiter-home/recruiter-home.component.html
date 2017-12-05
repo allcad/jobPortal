@@ -102,7 +102,7 @@
                                 </div>
                                 <div class="col-sm-50 col-xs-50">
                                     <div class="home_recruiter_contant">
-                                        <p><a href="javascript:void(0);"><strong>PROFILE COMPLETION</strong> <span class="text_pink"><strong> {{quickLinkData?.profile}}%</strong></span></a></p>
+                                        <p><a href="javascript:void(0);"><strong>PROFILE COMPLETION</strong> <span class="text_pink"><strong> {{quickLinkData?.profile}}</strong></span></a></p>
                                         <p><a href="javascript:void(0);" [routerLink]="['/recruiter/view-profile']">View Profile</a></p>
                                         <p><a href="javascript:void(0);" [routerLink]="['/recruiter/profile']">Edit Profile</a></p>
                                         <p>Share Profile</p>
@@ -230,8 +230,8 @@
                             </div>
                             <div class="application_box_contant2">
                                 <p><span class="text_pink">Location:</span>{{item?.cityTown ? item?.cityTown : 'N/A'}}</p>
-                                <p><span class="text_pink">Rate:</span> £{{item?.prefereedRate?.minRate}} - £{{item?.prefereedRate?.maxRate}} p/<span *ngIf="item?.prefereedRate?.dailyHourlyRate === 'daily'">d</span>
-                                    <span *ngIf="item?.prefereedRate?.dailyHourlyRate === 'hourly'">h</span></p>
+                                <p><span class="text_pink">Rate:</span> £{{item?.prefereedRate?.minRate}} - £{{item?.prefereedRate?.maxRate}} p/<cite style="font-style: normal;"*ngIf="item?.prefereedRate?.dailyHourlyRate === 'daily'">d</cite>
+                                    <cite style="font-style: normal;" *ngIf="item?.prefereedRate?.dailyHourlyRate === 'hourly'">h</cite></p>
                                 <p><span class="text_pink">Start Date:</span>{{item?.startDate | date}}</p>
                                 <p><span class="text_pink">Duration:</span>{{item?.duration ? item?.duration : 'N/A'}}</p>
                                 <p class="full_contant" style="height: 90px;">{{item?.jobSpecification | slice:0:200}}...</p>

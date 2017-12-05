@@ -43,11 +43,12 @@ export class RecruiterSignUpComponent implements OnInit {
 
    onSignUp(userForm:NgForm){
      this.invalidErrorMsg = "";
-     var phoneRegex = /^\d{10}$/;
+     var phoneRegex = /^[0]\d{10}$/;
      var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
      if(this.phoneNo) {
-       if(phoneRegex.test(this.phoneNo)) {
+       //if(phoneRegex.test(this.phoneNo)) {
+        if(this.phoneNo.match(/^[0]\d{10}$/) || this.phoneNo.match(/^\d{10}$/)) {
           this.validPhoneNoFlag = false;
         } else {
           this.validPhoneNoFlag = true;
