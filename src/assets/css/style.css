@@ -4104,6 +4104,7 @@ position: absolute;
 .regional_stats_right h4{ margin-bottom:0px;}
 .margin_bottom_50{margin-bottom: 10px;}
 label.text_pink{margin-bottom: 15px;} 
+.input-group-addon.bordr_non{ display:none; }
 }
 /************************ responsive css***********************/
 
