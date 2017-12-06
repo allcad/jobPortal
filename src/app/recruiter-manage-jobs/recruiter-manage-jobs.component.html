@@ -66,7 +66,7 @@
             <!--contractor login end-->
             <div class="container" *ngIf="!loading">
                 <div class="row">
-                    <div class=" col-md-33 col-sm-33"  *ngFor="let item of firstArray">
+                    <div class=" col-md-33 col-sm-33"  *ngFor="let item of firstArray; let i=index;">
                         <div class="my_applications_box">
                             <div class="header_top">
                                 <img src="./assets/images/job-watchdogs.png" alt="ads" title="ads" class="img-responsive margin_top_five">
@@ -84,7 +84,7 @@
                             <div class="manage_job_footer">
                                 <a href="javascript:void(0);" [routerLink]="['../preview-job']" (click)="passJobIdForPreview(item?.jobid)"><img src="./assets/images/job-view.png" alt="" title=""></a>
                                 <a href="javascript:void(0);" [routerLink]="['../job-posting']" (click)="passJobId(item?.jobid)"><img src="./assets/images/job-edit.png" alt="" title=""></a>
-                                <a href="javascript:void(0);" (click)="refreshJob(item?.jobid)"><img src="./assets/images/job-referce.png" alt="" title=""></a>
+                                <a href="javascript:void(0);" (click)="refreshJob(item?.jobid, i)"><img src="./assets/images/job-referce.png" alt="" title=""></a>
                                 <a href="javascript:void(0);" (click)="deleteJob(item?.jobid)"><img src="./assets/images/job-delete.png" alt="" title=""></a>
                             </div>
                         </div>
@@ -158,7 +158,7 @@
                 <!-- </div> -->
                 <app-ad-space *ngIf="listingData.length !== 0"></app-ad-space>
                 <div class="row">
-                    <div class=" col-md-33 col-sm-33" *ngFor="let item of secondArray">
+                    <div class=" col-md-33 col-sm-33" *ngFor="let item of secondArray;let i=index;">
                         <div class="my_applications_box">
                             <div class="header_top">
                                 <img src="./assets/images/job-watchdogs.png" alt="ads" title="ads" class="img-responsive margin_top_five">
@@ -176,7 +176,7 @@
                             <div class="manage_job_footer">
                                 <a href="javascript:void(0);" [routerLink]="['../preview-job']" (click)="passJobId(item?.jobid)"><img src="./assets/images/job-view.png" alt="" title=""></a>
                                 <a href="javascript:void(0);" [routerLink]="['../job-posting']" (click)="passJobId(item?.jobid)"><img src="./assets/images/job-edit.png" alt="" title=""></a>
-                                <a href="javascript:void(0);" (click)="refreshJob(item?.jobid)"><img src="./assets/images/job-referce.png" alt="" title=""></a>
+                                <a href="javascript:void(0);" (click)="refreshJob(item?.jobid, i)"><img src="./assets/images/job-referce.png" alt="" title=""></a>
                                 <a href="javascript:void(0);" (click)="deleteJob(item?.jobid)"><img src="./assets/images/job-delete.png" alt="" title=""></a>
                             </div>
                         </div>
@@ -318,7 +318,7 @@
                 <!-- </div> -->
                 <app-ad-space *ngIf="secondArray.length > 0"></app-ad-space>
                 <div class="row">
-                    <div class=" col-md-33 col-sm-33" *ngFor="let item of thirdArray">
+                    <div class=" col-md-33 col-sm-33" *ngFor="let item of thirdArray;let i=index;">
                         <div class="my_applications_box">
                             <div class="header_top">
                                 <img src="./assets/images/job-watchdogs.png" alt="ads" title="ads" class="img-responsive margin_top_five">
@@ -336,7 +336,7 @@
                             <div class="manage_job_footer">
                                 <a href="javascript:void(0);" [routerLink]="['../preview-job']" (click)="passJobId(item?.jobid)"><img src="./assets/images/job-view.png" alt="" title=""></a>
                                 <a href="javascript:void(0);" [routerLink]="['../job-posting']" (click)="passJobId(item?.jobid)"><img src="./assets/images/job-edit.png" alt="" title=""></a>
-                                <a href="javascript:void(0);" (click)="refreshJob(item?.jobid)"><img src="./assets/images/job-referce.png" alt="" title=""></a>
+                                <a href="javascript:void(0);" (click)="refreshJob(item?.jobid, i)"><img src="./assets/images/job-referce.png" alt="" title=""></a>
                                 <a href="javascript:void(0);" (click)="deleteJob(item?.jobid)"><img src="./assets/images/job-delete.png" alt="" title=""></a>
                             </div>
                         </div>

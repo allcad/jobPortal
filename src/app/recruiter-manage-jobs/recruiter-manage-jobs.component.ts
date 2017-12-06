@@ -27,6 +27,9 @@ export class RecruiterManageJobsComponent implements OnInit {
   totalPage;
   maxRecord;
   loading = true;
+  firstFound;
+  secondFound;
+  thirdFound;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService, private _commonService: CommonService) { }
 
@@ -151,6 +154,27 @@ export class RecruiterManageJobsComponent implements OnInit {
     );
   }
 
+  checkAndAdd(name) {
+  //var id = arr.length + 1;
+  //var found:any;
+  this.firstFound = this.firstArray.some(function (el) {
+    console.log("el-", el);
+    return el.jobid === name;
+  });
+  this.secondFound = this.secondArray.some(function (el) {
+    console.log("el-", el);
+    return el.jobid === name;
+  });
+  this.thirdFound = this.thirdArray.some(function (el) {
+    console.log("el-", el);
+    return el.jobid === name;
+  });
+  console.log("firstFound", this.firstFound);
+  console.log("secondFound", this.secondFound);
+  console.log("thirdFound", this.thirdFound);
+  //if (!found) { arr.push({ id: id, username: name }); }
+}
+
   onPageJobList(pageNo) {
     this.currentPageNo = parseInt(pageNo);
     this.pageNo = 1;
@@ -178,7 +202,10 @@ export class RecruiterManageJobsComponent implements OnInit {
     this.getManageJobsList(this.currentPageNo);
   }
 
-  refreshJob(jobId) {
+  refreshJob(jobId, index) {
+    this.errorMsg = "";
+    console.log("jobid", jobId, "index--", index);
+    this.checkAndAdd(jobId);
      var input = {
      "email":"test@test7.com",
     "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu",
@@ -189,7 +216,20 @@ export class RecruiterManageJobsComponent implements OnInit {
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/view";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
-         console.log("jobList--", data);
+          console.log("data--", data);
+          if(data && data.status == 'TRUE') {
+            this.errorMsg = "";
+            if(this.firstFound) {
+              this.firstArray[index] = data.data;
+            } else if(this.secondFound) {
+              this.secondArray[index] = data.data;
+            } else if(this.thirdFound) {
+              this.thirdArray[index] = data.data;
+            }
+          } else {
+            this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+          }
+         console.log("jobList--", this.firstArray[index]);
         }
     );
   }
