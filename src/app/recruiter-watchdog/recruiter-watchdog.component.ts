@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule,NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CommonRequestService } from '../common-request.service';
 import { CommonDataSharedService } from '../commonDataSharedService';
 import { CommonService } from '../commonService.service';
@@ -27,7 +27,8 @@ export class RecruiterWatchdogComponent implements OnInit {
   successMessageFlag = false;
   loading = true;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
-    private _commonDataSharedService: CommonDataSharedService, private commonService : CommonService) { }
+    private _commonDataSharedService: CommonDataSharedService, private commonService : CommonService,
+    private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.getSortByData();
@@ -201,8 +202,11 @@ export class RecruiterWatchdogComponent implements OnInit {
         //"sort":8
       }
 
-      this.commonService.setSearchResult(savedSearchSaveJson);
-      this.router.navigate(['/recruiter/searchresult-loggedin']);
+      // this.commonService.setSearchResult(savedSearchSaveJson);
+      // this.router.navigate(['/recruiter/searchresult-loggedin']);
+      this.router.navigate(['/recruiter/recruiter-home'], { skipLocationChange: true }).then(() =>
+        this.router.navigate(['/recruiter/searchresult-loggedin'], { 'relativeTo': this.activateRoute, queryParams :  savedSearchSaveJson} )
+      );
     }
   }
 

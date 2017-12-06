@@ -33,9 +33,9 @@
                                         <div class="home_page_inquery">
                                             <div id="message_send" [ngClass]="showShareProfileBox == true ? 'display_block' : 'display_none'">
                                                 <div class="after_login_menu">
-                                                    <input type="text" placeholder="Enter Email Here" class="enter_border">
-                                                    <textarea placeholder="Message" class="enter_border"></textarea>
-                                                    <a href="javascript:void(0)" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>Share Search</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                                                    <input type="text" placeholder="Enter Email Here" class="enter_border" [(ngModel)]="emailContractor" name="emailContractor">
+                                                    <textarea placeholder="Message" class="enter_border" [(ngModel)]="messageValue" name="messageValue"></textarea>
+                                                    <a href="javascript:void(0)" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="shareContractorProfile()"><span>Share Search</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -46,6 +46,12 @@
                     </div>
                 </div>
             </div>
+            <div class="errorbox" *ngIf="emailValueFlag"><b></b><br> 
+                        <li>Please Enter Email.</li>
+                    </div>
+                    <div class="alert alert-success margin-tp18" *ngIf="successMessageFlag">
+                  <a href="javascript:void(0)" class="close" title="close" (click)="successMessageFlag = !successMessageFlag">×</a><strong>Share profile successfully.</strong>
+                </div>
             <!--contractor login end-->
             <div class="container">
                 <div class="row">

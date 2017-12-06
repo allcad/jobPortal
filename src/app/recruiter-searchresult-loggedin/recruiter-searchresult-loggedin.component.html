@@ -84,6 +84,9 @@
                 <div class="errorbox" *ngIf="searchNameErrorFlag"><b></b><br> 
                     <li>Please Enter Search Name.</li>
                 </div>
+                <div class="errorbox" *ngIf="emailValueFlag"><b></b><br> 
+                    <li>Please Enter Eamil.</li>
+                </div>
                 <div class="errorbox" *ngIf="WSErrorMsg && !loading"><b></b><br> 
                     <li>{{WSErrorMsg}}</li>
                 </div>

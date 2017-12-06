@@ -29,6 +29,10 @@ export class ViewContractorProfileComponent implements OnInit {
   map;
   showShareProfileBox = false;
   showSearchOptionFlag = false;
+  emailContractor;
+  messageValue;
+  emailValueFlag = false;
+  successMessageFlag = false;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService,
     private ngZone: NgZone) { }
@@ -135,17 +139,39 @@ export class ViewContractorProfileComponent implements OnInit {
     );
   }
 
-  
+  shareContractorProfile() {
+    this.errorMsg = "";
+    if(this.emailContractor) {
+      this.emailValueFlag = false;
+    } else {
+      this.emailValueFlag = true;
+    }
+      var input = {
+       "email":"test@test7.com",
+        "loginToken":"$2y$10$ERdO743JuPZF6a4SfV8HQe69MqBJBtM3o3cz.ChfrZbcySNegW1e6",
+        "contractor_id":this.currentContractorId,
+        "send_to": this.emailContractor,
+        "message" : this.messageValue
 
-  // private setCurrentPosition(latitude, longitude) {
-  //   if ("geolocation" in navigator) {
-  //     navigator.geolocation.getCurrentPosition((position) => {
-  //       this.latitude = latitude;
-  //       this.longitude = longitude;
-  //       this.zoom = 12;
-  //     });
-  //   }
-  // }
+   };
+   console.log("input--", input);
+   if(!this.emailValueFlag) {
+     var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/watch_delete";
+         this._commonRequestService.postData(wsUrl,input).subscribe(
+          data => {
+           console.log("unwatch--", data);
+           if(data && data.status == 'TRUE') {
+             this.errorMsg = "";
+             this.successMessageFlag = true;
+           } else if(data && data.status == 'FALSE'){
+             this.successMessageFlag = false;
+               this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+            }
+          }
+      );
+    }
+  }
+  
 
   moveToAnotherPage() {
     this.type = localStorage.getItem('currentContractorData') ? JSON.parse(localStorage.getItem('currentContractorData'))['type'] : null;    

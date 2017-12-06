@@ -105,8 +105,11 @@ moveToSearchResult(value) {
         "display_name" : ''
   }
   console.log("searchJson", searchJson);
-  this.commonService.setSearchResult(searchJson);
-  this._router.navigate(['/public/searchresult-loggedin/'+value]);
+  //this.commonService.setSearchResult(searchJson);
+  this._router.navigate(['../public/home'], { skipLocationChange: true }).then(() =>
+      this._router.navigate(['../public/searchresult-loggedin'], { 'relativeTo': this._routes, queryParams :  searchJson} )
+      );
+  //this._router.navigate(['/public/searchresult-loggedin/'+value]);
 }
 
   searchContract(key, value) {

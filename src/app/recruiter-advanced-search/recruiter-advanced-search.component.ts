@@ -348,12 +348,18 @@ displayLocationName = '';
     }
 
     //this._commonDataShareService.advancedSerahcResult.next(savedSearchSaveJson);
-    this.commonService.setSearchResult(savedSearchSaveJson);
+    //this.commonService.setSearchResult(savedSearchSaveJson);
     //this._route.navigate(['/recruiter/searchresult-loggedin']);
-    if(this._route.url == "/public/advanced-search") {
-      this._route.navigate(['/public/searchresult-loggedin']);
-    } else if(this._route.url == "/recruiter/advanced-search") {
-      this._route.navigate(['/recruiter/searchresult-loggedin']);
+    if(this._route.url.indexOf("/public/advanced-search") >= 0) {
+      this._route.navigate(['../public/home'], { skipLocationChange: true }).then(() =>
+        this._route.navigate(['/public/searchresult-loggedin'], { 'relativeTo': this.activateRoute, queryParams :  savedSearchSaveJson} )
+      );
+      //this._route.navigate(['/public/searchresult-loggedin']);
+    } else if(this._route.url.indexOf("/recruiter/advanced-search") >= 0) {
+      //this._route.navigate(['/recruiter/searchresult-loggedin']);
+      this._route.navigate(['/recruiter/recruiter-home'], { skipLocationChange: true }).then(() =>
+        this._route.navigate(['/recruiter/searchresult-loggedin'], { 'relativeTo': this.activateRoute, queryParams :  savedSearchSaveJson} )
+      );
     } 
 
 

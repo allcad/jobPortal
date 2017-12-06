@@ -51,6 +51,8 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   messageValue = "";
   loading = true;
   searchResultId;
+  currentUrlValue;
+  emailValueFlag = false;
   constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService,
     private _commonService: CommonService, private router: Router, private _routes: ActivatedRoute) {
       this.currentUrl = router.url;
@@ -58,65 +60,91 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
 
   ngOnInit() {
     window.scroll(0,0);
-    if(this.router.url == "/public/searchresult-loggedin") {
+    this.currentUrlValue = this.router.url.match("")
+    if(this.router.url.indexOf("/public/searchresult-loggedin") >= 0) {
       this.searchOptionsDisabled = true;
     }
-    var jsonForSearch = {
-      "recuriter_search_job_title": '',
-      "recuriter_search_keywords": '',
-      "recuriter_search_stemmed_terms": 0,
-      "recuriter_search_core_skills": '',
-      "recuriter_search_certifications": '',
-      "recuriter_search_dont_show_to_contractor": '',
-      "recuriter_search_location": '',
-      "recuriter_search_include_relocators": 0,
-      "recuriter_search_by_rate_min": '',
-      "recuriter_search_by_rate_max": '',
-      "recuriter_search_by_rate_type": '',
-      "recuriter_search_by_time_left": '',
-      "recuriter_search_by_unavailable": 1,
-      "recuriter_search_by_updated_contractor_since": '',
-      "recuriter_search_by_contract_name": '',
-      "recuriter_search_by_education": "",
-      "recuriter_search_by_industry": "",
-      "recuriter_search_by_security_clearance": "",
-      "recuriter_search_by_driving_license": 0,
-      "postcode": '',
-      "display_town" : '',
-      "display_county": '',
-      "display_name" : ''
-    }
+    // var jsonForSearch = {
+    //   "recuriter_search_job_title": '',
+    //   "recuriter_search_keywords": '',
+    //   "recuriter_search_stemmed_terms": 0,
+    //   "recuriter_search_core_skills": '',
+    //   "recuriter_search_certifications": '',
+    //   "recuriter_search_dont_show_to_contractor": '',
+    //   "recuriter_search_location": '',
+    //   "recuriter_search_include_relocators": 0,
+    //   "recuriter_search_by_rate_min": '',
+    //   "recuriter_search_by_rate_max": '',
+    //   "recuriter_search_by_rate_type": '',
+    //   "recuriter_search_by_time_left": '',
+    //   "recuriter_search_by_unavailable": 1,
+    //   "recuriter_search_by_updated_contractor_since": '',
+    //   "recuriter_search_by_contract_name": '',
+    //   "recuriter_search_by_education": "",
+    //   "recuriter_search_by_industry": "",
+    //   "recuriter_search_by_security_clearance": "",
+    //   "recuriter_search_by_driving_license": 0,
+    //   "postcode": '',
+    //   "display_town" : '',
+    //   "display_county": '',
+    //   "display_name" : ''
+    // }
     this.getSortByData();
     this.getJobList();
-    this.savedResult = this._commonService.getSearchResult();
-    console.log("this.savedResult", this.savedResult, "this.searchResultId", this.searchResultId);
-    if(!this.savedResult) {
-      console.log("on load search");
-      this.savedResult = jsonForSearch;
+    //this.savedResult = this._commonService.getSearchResult();
+    // console.log("this.savedResult", this.savedResult, "this.searchResultId", this.searchResultId);
+    // if(!this.savedResult) {
+    //   console.log("on load search");
+    //   this.savedResult = jsonForSearch;
+    // }
+
+    console.log("this.router.url", this.router.url);
+
+    if (this.router.url.split('/')[2].indexOf('searchresult-loggedin') > -1) {
+      this._routes.queryParams.subscribe((params: Params) => {
+        let paramData = params;
+        console.log("params--", params);
+        let output = {};        
+
+        let keyArray = []
+        for (let prop in paramData) {
+            keyArray.push(prop); 
+        }
+        console.log("keyArray--", keyArray);
+
+        for(let i=0; i<keyArray.length; i++){
+          
+          output[keyArray[i]] = paramData[keyArray[i]] && paramData[keyArray[i]].indexOf('+')>-1 ? paramData[keyArray[i]].replace(/\+/g, ' ') : paramData[keyArray[i]];
+        }
+         this.savedResult = output;
+        this.getSearchResultList();
+        console.log("jbdjasd",output);
+
+      });
     }
 
-    this._routes.params.subscribe((params: Params) => {
-      this.searchResultId = params['id'];
-      console.log("this.searchResultId--", this.searchResultId);
-      if (this.searchResultId) {
-        //alert(1)
-        console.log("this.savedResult", this.savedResult);
-        if(this.savedResult) {
-          this.savedResult['recuriter_search_job_title'] = this.searchResultId;
-          this.getSearchResultList();
-        }
-        //this.getCompanyList();
-      } else if(this.savedResult) {
-        //alert(0)
-        this.getSearchResultList();
-       }
-    })
+    // this._routes.params.subscribe((params: Params) => {
+    //   this.searchResultId = params['id'];
+    //   console.log("this.searchResultId--", this.searchResultId);
+    //   if (this.searchResultId) {
+    //     //alert(1)
+    //     console.log("this.savedResult", this.savedResult);
+    //     if(this.savedResult) {
+    //       this.savedResult['recuriter_search_job_title'] = this.searchResultId;
+    //       this.getSearchResultList();
+    //     }
+    //     //this.getCompanyList();
+    //   } else if(this.savedResult) {
+    //     //alert(0)
+    //     this.getSearchResultList();
+    //    }
+    // })
   }
 
   goToAdvancedSearch() {
-    if(this.router.url == "/public/searchresult-loggedin") {
+    if(this.router.url.indexOf("/public/searchresult-loggedin") >= 0) {
       this.router.navigate(['/public/advanced-search']);
-    } else if(this.router.url == "/recruiter/searchresult-loggedin") {
+    } else if(this.router.url.indexOf("/recruiter/searchresult-loggedin") >= 0) {
       this.router.navigate(['/recruiter/advanced-search']);
     } 
     //this.router.navigate(['./recruiter/advanced-search']);
@@ -238,38 +266,6 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
     this.loading = true;
     console.log("value--", this.savedResult);
     var savedSearchSaveJson = {};
-    // if(this.savedResult && typeof this.savedResult == 'string') {
-    //   this.showWithoutLoginMoreOptions = true;
-    //   this.showLoginMoreDetailsOptions = false;
-    //   savedSearchSaveJson = {
-        // "email":"test@test8.com",
-        // "loginToken":"$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y",
-        // "recuriter_saved_search_name":this.savedSearchName,
-        // "recuriter_search_add_to_watchdog":this.addToWatchDogCheck === true ? 1 : 2,
-        // "recuriter_search_job_title":this.savedResult ? this.savedResult :'',
-        // "recuriter_search_keywords": '',
-        // "recuriter_search_stemmed_terms":0,
-        // "recuriter_search_core_skills": '',
-        // "recuriter_search_certifications": '',
-        // "recuriter_search_dont_show_to_contractor": '',
-        // "recuriter_search_location": '',
-        // "recuriter_search_include_relocators": 0,
-        // "recuriter_search_by_rate_min": '',
-        // "recuriter_search_by_rate_max": '',
-        // "recuriter_search_by_rate_type": '',
-        // "recuriter_search_by_time_left": '',
-        // "recuriter_search_by_unavailable": 1,
-        // "recuriter_search_by_updated_contractor_since": '',
-        // "recuriter_search_by_contract_name": '',
-        // "recuriter_search_by_education": '',
-        // "recuriter_search_by_industry": '',
-        // "recuriter_search_by_security_clearance": '',
-        // "recuriter_search_by_driving_license": 0,
-        // "page":this.pageNo,
-        // "limit":this.pageLimit,
-        // "sort":this.currentSortBy
-    //     }
-    // } else if(this.savedResult && typeof this.savedResult == 'object') {
       this.showWithoutLoginMoreOptions = true;
       this.showLoginMoreDetailsOptions = false;
       console.log("currentSortBy", this.currentSortBy);
@@ -277,18 +273,13 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
       savedSearchSaveJson['sort'] = this.currentSortBy;
       savedSearchSaveJson['page'] = this.pageNo;
       savedSearchSaveJson['limit'] = this.pageLimit;
-      if(this.router.url !== "/public/searchresult-loggedin" && this.searchResultId == undefined) {
+      if(this.router.url.indexOf("/public/searchresult-loggedin") == -1) {
         this.showLoginMoreDetailsOptions = true;
         this.showWithoutLoginMoreOptions = false;
         savedSearchSaveJson['email'] = "test@test8.com";
         savedSearchSaveJson['loginToken'] = "$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y";
       }
-    //}
     this.storeSaveSearchJson = savedSearchSaveJson;
-    // this.searchList = [];
-    // this.firstArrayValue = [];
-    // this.secondArray = [];
-    // this.thirdArray = [];
     this.maxPageSize = '';
     this.totalRecords = '';
     //if(!this.sameSearchNameFlag) {
@@ -355,6 +346,11 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
 
   shareSearchResult() {
     this.WSErrorMsg = "";
+    if(this.emailValue) {
+      this.emailValueFlag = false;
+    } else {
+      this.emailValueFlag = true;
+    }
     var input = {};
     input = {
      "send_to": this.emailValue ? this.emailValue : '',
@@ -386,28 +382,34 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
    //    input['recuriter_search_job_title'] = this.savedResult ? this.savedResult : '';
    //  } else if(this.savedResult && typeof this.savedResult == 'object') {
    //    input['recuriter_search_job_title'] = this.savedResult.recuriter_search_job_title ? this.savedResult.recuriter_search_job_title : '';
-      if(this.router.url !== "/public/searchresult-loggedin") {
+      if(this.router.url.indexOf("/public/searchresult-loggedin") == -1) {
         input['email'] = "test@test8.com";
         input['loginToken'] = "$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y";
       }
     //}
    console.log("input--", input);
-   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/send_search";
-       this._commonRequestService.postData(wsUrl,input).subscribe(
-        data => {
-          console.log("share details--", data);
-          if(data && data.status == 'TRUE') {
-            //this.saveSearchDataListing = data.data;
-            this.WSErrorMsg = "";
-            this.showSearchOptionFlag = false;
-          } else{
-               this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
-             
-            }
-          //this.industryArrayData = data.data;
-          //this.recruiterNameArray = data.data;
-        } 
-    );
+   if(!this.emailValueFlag) {
+     var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/send_search";
+         this._commonRequestService.postData(wsUrl,input).subscribe(
+          data => {
+            console.log("share details--", data);
+            if(data && data.status == 'TRUE') {
+              //this.saveSearchDataListing = data.data;
+              this.successMessageFlag = true;
+              this.successMessage = "Send Search Successfully.";
+              this.WSErrorMsg = "";
+              this.showSearchOptionFlag = false;
+            } else{
+              this.successMessageFlag = false;
+              this.successMessage = "";
+                 this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+               
+              }
+            //this.industryArrayData = data.data;
+            //this.recruiterNameArray = data.data;
+          } 
+      );
+    }
   }
 
   onPageClick(pageNo) {

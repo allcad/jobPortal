@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { FormsModule,NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CommonRequestService } from '../common-request.service';
 import { CommonDataSharedService } from '../commonDataSharedService';
 import { CommonService } from '../commonService.service';
@@ -34,7 +34,7 @@ export class RecruiterHomeComponent implements OnInit {
   displayLocationName = '';
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService, private _commonService: CommonService,
-    private ngZone: NgZone) { }
+    private ngZone: NgZone, private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.getQuickLinksData();
@@ -244,8 +244,15 @@ export class RecruiterHomeComponent implements OnInit {
       //"sort":8
     }
 
-    this._commonService.setSearchResult(savedSearchSaveJson);
-    this.router.navigate(['/recruiter/searchresult-loggedin']);
+   // if(this.router.url.indexOf("/recruiter/advanced-search") >= 0) {
+      //this.router.navigate(['/recruiter/searchresult-loggedin']);
+      this.router.navigate(['/recruiter/recruiter-home'], { skipLocationChange: true }).then(() =>
+        this.router.navigate(['/recruiter/searchresult-loggedin'], { 'relativeTo': this.activateRoute, queryParams :  savedSearchSaveJson} )
+      );
+    //} 
+
+    // this._commonService.setSearchResult(savedSearchSaveJson);
+    // this.router.navigate(['/recruiter/searchresult-loggedin']);
   }
 
 }

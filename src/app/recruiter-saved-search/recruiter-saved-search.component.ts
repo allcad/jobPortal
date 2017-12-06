@@ -64,7 +64,7 @@ displayLocationName = '';
 searchListErrorMsg = "";
   constructor(public _commonRequestService: CommonRequestService, private _router: Router,
     private _commonDataShareService: CommonDataSharedService, private commonService: CommonService, 
-    private ngZone: NgZone) { }
+    private ngZone: NgZone, private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.getSecurityClearance();
@@ -500,43 +500,13 @@ searchListErrorMsg = "";
       //"sort":8
     }
 
+    this._router.navigate(['/recruiter/recruiter-home'], { skipLocationChange: true }).then(() =>
+        this._router.navigate(['/recruiter/searchresult-loggedin'], { 'relativeTo': this.activateRoute, queryParams :  savedSearchSaveJson} )
+      );
+
     //this._commonDataShareService.advancedSerahcResult.next(savedSearchSaveJson);
-    this.commonService.setSearchResult(savedSearchSaveJson);
-    this._router.navigate(['/recruiter/searchresult-loggedin']);
-
-
-    //if(!this.sameSearchNameFlag) {
-      //   console.log("savedSearchSaveJson00", savedSearchSaveJson)
-      //   var inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/search";
-      //    this._commonRequestService.postData(inputUrl, savedSearchSaveJson).subscribe(
-      //     data => {
-      //       //this.responseData = data;
-      //       console.log("search result--", data);
-      //       window.scroll(0,0);
-      //       if(data.status === "TRUE"){
-      //         this.WSErrorMsg = "";
-      //         this._router.navigate(['/recruiter/searchresult-loggedin']);
-      //               // this.succesMessageFlag =true;
-      //               // this.errorSuccessMessage = "Saved succesfully !";
-      //               // this.successMessageFlag  = true;
-      //               // this.errorMessageFlag = false;
-      //               // this.resetFields();
-      //               // this.getListOfSaveSearch();
-      //       //         this.ErrorMesageFlag =false
-      //       // this.profileData={};
-      //       // this.errorMsg = "";
-      //       }
-      //       else {
-      //         this.errorMessageFlag = true;
-      //         this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
-      //          // this.succesMessageFlag =false;
-      //          // this.errorSuccessMessage = data && data.error && data.error.length > 0 ? data.error[0] : '';
-      //          // this.successMessageFlag  = false;
-      //          // this.errorMessageFlag = true;
-      //       }
-      
-      //     }
-      // ); 
+    // this.commonService.setSearchResult(savedSearchSaveJson);
+    // this._router.navigate(['/recruiter/searchresult-loggedin']);
   }
 
 }
