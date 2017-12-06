@@ -32,7 +32,7 @@ dontShowContractor: any;
 cityTown;
 preferredMinRate: number;
 preferredMaxRate: number;
-dailyHourlyRate;
+dailyHourlyRate = 'daily';
 timeLeft = 0;
 includeContractor = false;
 showContractor = 0;

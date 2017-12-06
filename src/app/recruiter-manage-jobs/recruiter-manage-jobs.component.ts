@@ -189,25 +189,7 @@ export class RecruiterManageJobsComponent implements OnInit {
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/view";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
-          //this.jobPostFlag = false;
          console.log("jobList--", data);
-         // if(data && data.data) {
-         //   this.jobPostingDetails = data.data;
-         //   this.jobPostingJobTitle = this.jobPostingDetails.jobTitle;
-         //   this.jobPostingDuration = this.jobPostingDetails.duration;
-         //   this.startDate = (this.jobPostingDetails.startDate).split(' ')[0];
-         //   this.industrySector = this.jobPostingDetails.industrySectorId;
-         //   this.workEligibility = this.jobPostingDetails.workEligibilityId;
-         //   this.cityTownValue = this.jobPostingDetails.cityTown;
-         //   this.minRate = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.minRate ? this.jobPostingDetails.prefereedRate.minRate : 0;
-         //   this.maxRate = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.maxRate ? this.jobPostingDetails.prefereedRate.maxRate : 0
-         //   this.dailyHourlyValue = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.dailyHourlyRate ? this.jobPostingDetails.prefereedRate.dailyHourlyRate : '';
-         //   this.jobSpecificationTitle = this.jobPostingDetails.jobSpecificationTitle;
-         //   this.jobSpecificationBody = this.jobPostingDetails.jobSpecification;
-         //   this.recruiterName = this.jobPostingDetails.recruiterNameId;
-         //   this.saveTemplateAs = this.jobPostingDetails.saveTempleteAs;
-         //   this.jobReference = this.jobPostingDetails.jobReference;
-         // }
         }
     );
   }

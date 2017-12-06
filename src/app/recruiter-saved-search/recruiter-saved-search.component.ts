@@ -29,7 +29,7 @@ export class RecruiterSavedSearchComponent implements OnInit {
   includeRelocators = false;
   minRate;
   maxRate;
-  dailyHourlyValue;
+  dailyHourlyValue = 'daily';
   timeLeftOnCutCont="";
   includeUnavailable = false;
   showContractors="";
