@@ -3,8 +3,8 @@ import { CommonRequestService } from '../common-request.service';
 import { Router } from '@angular/router';
 import { FormsModule,NgForm, FormControl } from '@angular/forms';
 import { CommonService } from '../commonService.service';
-import { } from 'googlemaps';
-import { MapsAPILoader } from '@agm/core';
+// import { } from 'googlemaps';
+// import { MapsAPILoader } from '@agm/core';
 
 @Component({
   selector: 'app-recruiter-job-posting',
@@ -60,7 +60,7 @@ displayTown = '';
 displayCountry = '';
 displayLocationName = '';
   constructor(private router: Router, public _commonRequestService: CommonRequestService, 
-    private commonService: CommonService, private mapsAPILoader: MapsAPILoader,
+    private commonService: CommonService,
     private ngZone: NgZone) { }
 
   ngOnInit() {
@@ -68,7 +68,7 @@ displayLocationName = '';
     this.recruiterNameList();
     this.getIndustry();
     this.getTemplateData();
-    this.loadLocationAutoData();
+    //this.loadLocationAutoData();
     var localStorageData = JSON.parse(localStorage.getItem('recruiterJobData'));
     console.log("localStorageData--", localStorageData);
     // if(localStorageData && localStorageData.jobId) {
@@ -122,8 +122,12 @@ displayLocationName = '';
     // }
   }
 
+  ngAfterViewInit() {
+    this.loadLocationAutoData();
+  }
+
   loadLocationAutoData() {
-    this.mapsAPILoader.load().then(() => {
+    //this.mapsAPILoader.load().then(() => {
       //console.log("this.searchElementRef.nativeElement", this.searchElementRef.nativeElement);
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["geocode"],
@@ -169,7 +173,7 @@ displayLocationName = '';
         });
       });
       console.log("cityTownValue", this.cityTownValue);
-    });
+    //});
   }
  
   // getTemplateData() {
@@ -497,7 +501,7 @@ displayLocationName = '';
       "startDate": this.startDate ? this.startDate : '',
       "industrySectorId": this.industrySector ? this.industrySector : '0',
       "workEligibilityId" : this.workEligibility ? this.workEligibility : '0',
-      "cityTown": this.cityTownValue ? this.cityTownValue : '',
+      "cityTown": this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value : '',
       "prefereedRate": {
         "minRate": this.minRate ? this.minRate : '0',
         "maxRate": this.maxRate ? this.maxRate : '0',

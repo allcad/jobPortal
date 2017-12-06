@@ -4,8 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CommonDataSharedService } from '../commonDataSharedService';
 import { CommonService } from '../commonService.service';
 import { FormControl } from '@angular/forms';
-import { } from 'googlemaps';
-import { MapsAPILoader } from '@agm/core';
+// import { } from 'googlemaps';
+// import { MapsAPILoader } from '@agm/core';
 
 @Component({
   selector: 'app-recruiter-saved-search',
@@ -64,7 +64,6 @@ displayLocationName = '';
 searchListErrorMsg = "";
   constructor(public _commonRequestService: CommonRequestService, private _router: Router,
     private _commonDataShareService: CommonDataSharedService, private commonService: CommonService, 
-    private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone) { }
 
   ngOnInit() {
@@ -73,7 +72,7 @@ searchListErrorMsg = "";
     this.getTimeLeftData();
     this.getEducationData();
     this.getListOfSaveSearch();
-    this.loadLocationAutoData();
+    //this.loadLocationAutoData();
     // if(this.commonService.getLastSearchData()) {
     //   this.lastSearchResult = this.commonService.getLastSearchData();
     //   //this.savedSearchName = this.lastSearchResult.recuriter_search_by_contract_name ? this.lastSearchResult.recuriter_search_by_contract_name : '';
@@ -100,8 +99,12 @@ searchListErrorMsg = "";
     // }
   }
 
+  ngAfterViewInit() {
+    this.loadLocationAutoData();
+  }
+
   loadLocationAutoData() {
-    this.mapsAPILoader.load().then(() => {
+    //this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["geocode"],
         componentRestrictions : {'country' : 'GB'}
@@ -131,7 +134,7 @@ searchListErrorMsg = "";
                 if(place.address_components[i].types[j] == "country") {
                   this.displayCountry = place.address_components[i].long_name;
                 }
-                this.displayLocationName = this.displayTown + " " + this.postcode + "," + this.displayCountry;
+                this.displayLocationName = this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value : '';
               }
             }
           }
@@ -142,7 +145,7 @@ searchListErrorMsg = "";
         });
       });
       console.log("cityTownValue", this.cityTownValue);
-    });
+    //});
   }
 
   industrysectorChange() {

@@ -4,8 +4,8 @@ import { Routes, RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { CommonDataSharedService } from '../commonDataSharedService';
 import { CommonService } from '../commonService.service';
 import { FormsModule,NgForm, FormControl } from '@angular/forms';
-import { } from 'googlemaps';
-import { MapsAPILoader } from '@agm/core';
+// import { } from 'googlemaps';
+// import { MapsAPILoader } from '@agm/core';
 
 @Component({
   selector: 'app-recruiter-advanced-search',
@@ -57,7 +57,6 @@ displayLocationName = '';
 //displayLocationName = '';
   constructor(public _commonRequestService: CommonRequestService, private activateRoute: ActivatedRoute,
     private _route: Router, private commonService: CommonService, 
-    private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone) {
     console.log("activateRoute", _route.url);
     this.currentUrl = _route.url;
@@ -68,6 +67,10 @@ displayLocationName = '';
     this.getIndustry();
     this.getTimeLeftData();
     this.getSortByData();
+    //this.loadLocationAutoData();
+  }
+
+  ngAfterViewInit() {
     this.loadLocationAutoData();
   }
 
@@ -89,7 +92,7 @@ displayLocationName = '';
   }
 
   loadLocationAutoData() {
-    this.mapsAPILoader.load().then(() => {
+    //this.mapsAPILoader.load().then(() => {
       console.log("this.searchElementRef.nativeElement", this.searchElementRef.nativeElement);
       //if(this.mappingFlag) {
         let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
@@ -100,7 +103,7 @@ displayLocationName = '';
         autocomplete.addListener("place_changed", () => {
           this.ngZone.run(() => {
             //get the place result
-            alert(0)
+            //alert(0)
             let place: google.maps.places.PlaceResult = autocomplete.getPlace();
             console.log("place--", place);
             //verify result
@@ -127,7 +130,7 @@ displayLocationName = '';
           });
         });
       //}
-    });
+    //});
     // this.mapsAPILoader.load().then(() => {
     //   if(this.radialFlag) {
     //     let autocomplete1 = new google.maps.places.Autocomplete(this.searchElementRef1.nativeElement, {

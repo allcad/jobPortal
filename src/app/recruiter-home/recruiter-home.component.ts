@@ -6,8 +6,8 @@ import { CommonDataSharedService } from '../commonDataSharedService';
 import { CommonService } from '../commonService.service';
 //import { Chart } from 'angular-highcharts';
 import { FormControl } from '@angular/forms';
-import { } from 'googlemaps';
-import { MapsAPILoader } from '@agm/core';
+// import { } from 'googlemaps';
+// import { MapsAPILoader } from '@agm/core';
 
 
 @Component({
@@ -34,17 +34,21 @@ export class RecruiterHomeComponent implements OnInit {
   displayLocationName = '';
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService, private _commonService: CommonService,
-    private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone) { }
 
   ngOnInit() {
     this.getQuickLinksData();
-    this.loadLocationAutoData();
+    //this.loadLocationAutoData();
        
     this.getGraphData();
   	//this.getRecruiterCount();
   	this.getMostLeastJobs('least');
   }
+
+  ngAfterViewInit() {
+    this.loadLocationAutoData();
+  }
+
   passJobId(id) {
   	//this._commonDataSharedService.manageJobsJobId.next(id);
   	// var obj = {'jobId' : id};
@@ -53,7 +57,7 @@ export class RecruiterHomeComponent implements OnInit {
   }
 
   loadLocationAutoData() {
-    this.mapsAPILoader.load().then(() => {
+    //this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["geocode"],
         componentRestrictions : {'country' : 'GB'}
@@ -94,7 +98,7 @@ export class RecruiterHomeComponent implements OnInit {
         });
       });
       //console.log("cityTownValue", this.cityTownValue);
-    });
+    //});
   }
 
   // chart = new Chart({

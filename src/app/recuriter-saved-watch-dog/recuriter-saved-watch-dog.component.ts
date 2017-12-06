@@ -1,12 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone, AfterViewInit } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
 import { Router } from '@angular/router';
+// import { } from 'googlemaps';
+// import { MapsAPILoader } from '@agm/core';
 @Component({
   selector: 'app-recuriter-saved-watch-dog',
   templateUrl: './recuriter-saved-watch-dog.component.html',
   styleUrls: ['./recuriter-saved-watch-dog.component.css']
 })
-export class RecuriterSavedWatchDogComponent implements OnInit {
+export class RecuriterSavedWatchDogComponent implements OnInit, AfterViewInit {
+  @ViewChild("savedWatchdog")
+  public searchElementRef: ElementRef;
+
   savedSearchName: string;
   addToWatchDogCheck= false;
   jobTitle: string;
@@ -40,19 +45,78 @@ export class RecuriterSavedWatchDogComponent implements OnInit {
   errorMessage = "";
   industrySectorValue;
   securityClearValue;
-  constructor(public _commonRequestService: CommonRequestService, private router: Router) { }
+  postcode = '';
+  displayTown = '';
+  displayCountry = '';
+  displayLocationName = '';
+  constructor(public _commonRequestService: CommonRequestService, private router: Router,
+    private ngZone: NgZone) { }
 
   ngOnInit() {
     this.getSecurityClearance();
     this.getIndustry();
     this.getTimeLeftData();
     this.getEducationData();
+    //this.loadLocationAutoData();
     var localStorageData = JSON.parse(localStorage.getItem('watchDogData'));
     console.log("localStorageData--", localStorageData);
     if(localStorageData && localStorageData.watchDogData && localStorageData.watchDogData.watchDogId) {
       this.getSaveSearchDetails(localStorageData.watchDogData.watchDogId);
     }
 
+  }
+  ngAfterViewInit() {
+    this.loadLocationAutoData();
+  }
+
+  loadLocationAutoData() {
+    //this.mapsAPILoader.load().then(() => {
+      //console.log("this.searchElementRef.nativeElement", this.searchElementRef.nativeElement);
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["geocode"],
+        componentRestrictions : {'country' : 'GB'}
+      });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          console.log("place--", place);
+          this.postcode = "";
+          this.displayTown = "";
+          this.displayCountry = "";
+          this.displayLocationName = "";
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+          if(place && place.address_components && place.address_components.length > 0 && place.formatted_address) {
+            for(var i=0;i<place.address_components.length; i++) {
+              for(var j=0; j<place.address_components[i].types.length; j++) {
+                if(place.address_components[i].types[j] == "postal_code") {
+                  this.postcode = place.address_components[i].long_name;
+                }
+                if(place.address_components[i].types[j] == "postal_town") {
+                  this.displayTown = place.address_components[i].long_name;
+                }
+                if(place.address_components[i].types[j] == "country") {
+                  this.displayCountry = place.address_components[i].long_name;
+                }
+                this.displayLocationName = this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value : '';
+              }
+            }
+          }
+          console.log("this.postcode", this.postcode);
+          console.log("this.displayTown", this.displayTown);
+          console.log("this.displayCountry", this.displayCountry);
+          console.log("this.displayLocationName", this.displayLocationName);
+          //set latitude, longitude and zoom
+          // this.latitude = place.geometry.location.lat();
+          // this.longitude = place.geometry.location.lng();
+          // this.zoom = 12;
+        });
+      });
+      console.log("cityTownValue", this.cityTownValue);
+    //});
   }
 
   getTimeLeftData() {
@@ -167,6 +231,7 @@ export class RecuriterSavedWatchDogComponent implements OnInit {
             this.certificationValues = data.data.params.recuriter_search_core_skills;
             this.dontShowContractor = data.data.params.recuriter_search_certifications;
             this.cityTownValue = data.data.params.recuriter_search_location;
+            this.searchElementRef.nativeElement.value = data.data.params.recuriter_search_location;
             this.includeRelocators = data.data.params.recuriter_search_include_relocators === 1 ? true : false;
             this.minRate = data.data.params.recuriter_search_by_rate_min;
             this.maxRate = data.data.params.recuriter_search_by_rate_max;
@@ -242,7 +307,7 @@ export class RecuriterSavedWatchDogComponent implements OnInit {
       "recuriter_search_core_skills":this.coreSkills,
       "recuriter_search_certifications":this.certificationValues,
       "recuriter_search_dont_show_to_contractor":this.dontShowContractor,
-      "recuriter_search_location":this.cityTownValue,
+      "recuriter_search_location":this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value : '',
       "recuriter_search_include_relocators":this.includeRelocators ? 1 : 2,
       "recuriter_search_by_rate_min":this.minRate,
       "recuriter_search_by_rate_max":this.maxRate,
@@ -256,6 +321,12 @@ export class RecuriterSavedWatchDogComponent implements OnInit {
       "recuriter_search_by_security_clearance":this.securityClearValue?this.securityClearValue:[],
       "recuriter_search_by_driving_license":this.drivingLicenceValue == 'yes' ? 1 : 2,      
         }
+        // "location" : {
+        //   "postcode" : this.postcode ? this.postcode : '',
+        //   "display_name" : this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value : '',
+        //   "display_town" : this.displayTown ? this.displayTown : '',
+        //   "display_county" : this.displayCountry ? this.displayCountry : ''
+        // }
       }
 
     }

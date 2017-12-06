@@ -28,6 +28,7 @@ export class ViewContractorProfileComponent implements OnInit {
   qualification = [];
   map;
   showShareProfileBox = false;
+  showSearchOptionFlag = false;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService,
     private ngZone: NgZone) { }
@@ -62,9 +63,10 @@ export class ViewContractorProfileComponent implements OnInit {
            console.log("this.certification", this.certification);
            console.log("this.keySkills", this.keySkills);
            this.currentContractorFirstName = localStorage.getItem('currentContractorData') ? JSON.parse(localStorage.getItem('currentContractorData'))['currentContractorName'] : null;  	
-	         this.latitude = parseFloat(this.contractorData.latitude);
-           this.longitude = parseFloat(this.contractorData.longitude);
-           this.zoom = 3;
+	         this.latitude = this.contractorData.latitude;
+           this.longitude = this.contractorData.longitude;
+           this.initializeMap();
+           //this.zoom = 3;
            console.log("this.latitude", this.latitude, "this.longitude", this.longitude);
            
            //this.setCurrentPosition(this.latitude, this.longitude)
@@ -73,11 +75,25 @@ export class ViewContractorProfileComponent implements OnInit {
           } else {
             if(data && data.error && data.error.length > 0) {
             this.errorMsgFlag = true;
-              this.errorMsg = data.error[0];
+              this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
             }
           }
         }
     );
+  }
+
+  initializeMap() {
+    console.log("this.latitude", this.contractorData.latitude, "this.longitude", this.contractorData.longitude);
+    this.map = new google.maps.Map(document.getElementById('viewContractorProfile'), {
+      center: { lat: Number(this.contractorData.latitude), lng: Number(this.contractorData.longitude) },
+      zoom: 3
+    });
+
+    var marker = new google.maps.Marker({
+      position: { lat:Number(this.contractorData.latitude), lng: Number(this.contractorData.longitude) }
+    });
+    marker.setMap(this.map);
+    //this.drawExistingMap();
   }
 
   watchContractor() {

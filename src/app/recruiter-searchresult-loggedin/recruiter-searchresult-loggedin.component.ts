@@ -61,10 +61,39 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
     if(this.router.url == "/public/searchresult-loggedin") {
       this.searchOptionsDisabled = true;
     }
+    var jsonForSearch = {
+      "recuriter_search_job_title": '',
+      "recuriter_search_keywords": '',
+      "recuriter_search_stemmed_terms": 0,
+      "recuriter_search_core_skills": '',
+      "recuriter_search_certifications": '',
+      "recuriter_search_dont_show_to_contractor": '',
+      "recuriter_search_location": '',
+      "recuriter_search_include_relocators": 0,
+      "recuriter_search_by_rate_min": '',
+      "recuriter_search_by_rate_max": '',
+      "recuriter_search_by_rate_type": '',
+      "recuriter_search_by_time_left": '',
+      "recuriter_search_by_unavailable": 1,
+      "recuriter_search_by_updated_contractor_since": '',
+      "recuriter_search_by_contract_name": '',
+      "recuriter_search_by_education": "",
+      "recuriter_search_by_industry": "",
+      "recuriter_search_by_security_clearance": "",
+      "recuriter_search_by_driving_license": 0,
+      "postcode": '',
+      "display_town" : '',
+      "display_county": '',
+      "display_name" : ''
+    }
     this.getSortByData();
     this.getJobList();
     this.savedResult = this._commonService.getSearchResult();
     console.log("this.savedResult", this.savedResult, "this.searchResultId", this.searchResultId);
+    if(!this.savedResult) {
+      console.log("on load search");
+      this.savedResult = jsonForSearch;
+    }
 
     this._routes.params.subscribe((params: Params) => {
       this.searchResultId = params['id'];
@@ -85,7 +114,12 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   }
 
   goToAdvancedSearch() {
-    this.router.navigate(['./recruiter/advanced-search']);
+    if(this.router.url == "/public/searchresult-loggedin") {
+      this.router.navigate(['/public/advanced-search']);
+    } else if(this.router.url == "/recruiter/searchresult-loggedin") {
+      this.router.navigate(['/recruiter/advanced-search']);
+    } 
+    //this.router.navigate(['./recruiter/advanced-search']);
   }
 
   getSortByData() {
