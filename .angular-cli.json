@@ -34,7 +34,7 @@
         "../src/assets/js/jquery.bxslider.js",
         "../src/assets/js/jquery.mixitup.min.js",
         "../node_modules/ion-rangeslider/js/ion.rangeSlider.min.js",
-        "../node_modules/swiper/dist/js/swiper.js" 
+        "../node_modules/swiper/dist/js/swiper.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
-import { MapsAPILoader } from '@agm/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -38,13 +37,13 @@ export class ContractorJobSearchSavedComponent implements OnInit {
   displayCountry;
   displayLocationName;
   isPublic = false;
-  constructor(private _commonRequestService: CommonRequestService,private _router: Router, private _routes: ActivatedRoute, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) { }
+  constructor(private _commonRequestService: CommonRequestService,private _router: Router, private _routes: ActivatedRoute,  private ngZone: NgZone) { }
 
   ngOnInit() {
     this.gettimeSlotList();
     this.getIndustrySector();
     this.getListOfSavedSearch();
-    this.loadLocationAutoData();
+    
      if (this._router.url.split('/')[1] == "public") {
       this.isPublic = true;
     }
@@ -52,6 +51,7 @@ export class ContractorJobSearchSavedComponent implements OnInit {
 
   ngAfterViewInit(){
    window.scroll(0,0);
+   this.loadLocationAutoData();
   }
 
   getIndustrySector() {
@@ -231,7 +231,7 @@ export class ContractorJobSearchSavedComponent implements OnInit {
 
 
   loadLocationAutoData() {
-    this.mapsAPILoader.load().then(() => {
+    //this.mapsAPILoader.load().then(() => {
       //console.log("this.searchElementRef.nativeElement", this.searchElementRef.nativeElement);
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["geocode"],
@@ -268,7 +268,7 @@ export class ContractorJobSearchSavedComponent implements OnInit {
         });
       });
 
-    });
+    //});
   }
 
   runSearch() {

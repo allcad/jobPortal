@@ -8,7 +8,7 @@ import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
-import { AgmCoreModule, MapsAPILoader } from '@agm/core';
+//import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
 import { FindContractHubComponent } from '../find-contract-hub/find-contract-hub.component';
 import { ContractorServiceMenuListingComponent } from '../contractor-service-menu-listing/contractor-service-menu-listing.component';
@@ -91,10 +91,10 @@ import { ShareButtonsModule } from 'ngx-sharebuttons';
     RouterModule,
     IonRangeSliderModule,
     ShareButtonsModule.forRoot(),
-    AgmCoreModule.forRoot({
-      apiKey: "AIzaSyANYk-sxj7-P1W8cB94WahJhtxdw1gEUJA",
-      libraries: ["places"]
-    })
+    // AgmCoreModule.forRoot({
+    //   apiKey: "AIzaSyANYk-sxj7-P1W8cB94WahJhtxdw1gEUJA",
+    //   libraries: ["places"]
+    // })
   ],
   exports: [
   RouterModule,

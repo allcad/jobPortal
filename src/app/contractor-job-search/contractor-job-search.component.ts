@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { MapsAPILoader } from '@agm/core';
+//import { MapsAPILoader } from '@agm/core';
 @Component({
   selector: 'app-contractor-job-search',
   templateUrl: './contractor-job-search.component.html',
@@ -29,7 +29,7 @@ export class ContractorJobSearchComponent implements OnInit {
   displayCountry;
   displayLocationName;
   formNotValid = false;
-  constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) { }
+  constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute, private ngZone: NgZone) { }
 
   ngOnInit() {
     window.scroll(0, 0);
@@ -188,7 +188,7 @@ export class ContractorJobSearchComponent implements OnInit {
   }
 
   loadLocationAutoData() {
-    this.mapsAPILoader.load().then(() => {
+    //this.mapsAPILoader.load().then(() => {
       //console.log("this.searchElementRef.nativeElement", this.searchElementRef.nativeElement);
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["geocode"],
@@ -225,7 +225,7 @@ export class ContractorJobSearchComponent implements OnInit {
         });
       });
 
-    });
+    //});
   }
 
 }
