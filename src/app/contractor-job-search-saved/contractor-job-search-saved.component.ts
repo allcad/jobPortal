@@ -299,7 +299,8 @@ export class ContractorJobSearchSavedComponent implements OnInit {
       }
 
       localStorage.setItem("jobSearch", JSON.stringify(inputJson));
-      this._router.navigate(['../searchResult'], { 'relativeTo': this._routes });
+      //this._router.navigate(['../searchResult'], { 'relativeTo': this._routes });
+      this._router.navigate(['../contractor_search'], { 'relativeTo': this._routes, queryParams :  inputJson} )
   }
 
   gettimeSlotList() {

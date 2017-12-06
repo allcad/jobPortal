@@ -73,6 +73,12 @@ const contractorRoutes: Routes = [{
     "component": ContractorSearchResultComponent,
     "resolve": { resolverData: ResolverService }
 },
+
+{
+     "path": "contractor_search",
+    "component": ContractorSearchResultComponent,
+    "resolve": { resolverData: ResolverService }
+},
 {
     "path": "help",
     "component": ContractorHelpComponent,

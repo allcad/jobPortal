@@ -138,7 +138,7 @@ moveToSearchResult(value) {
     localStorage.setItem("jobSearch", JSON.stringify(inputJson));
 
     this._router.navigate(['../public/home'], { skipLocationChange: true }).then(() =>
-      this._router.navigate(['../public/searchResult'], { 'relativeTo': this._routes })
+      this._router.navigate(['../public/contractor_search'], { 'relativeTo': this._routes, queryParams :  inputJson} )
       );
     
     this.removeClass()

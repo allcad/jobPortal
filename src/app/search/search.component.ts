@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MapsAPILoader } from '@agm/core';
-import { } from 'googlemaps';
+// import { MapsAPILoader } from '@agm/core';
+// import { } from 'googlemaps';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -14,14 +14,14 @@ export class SearchComponent implements OnInit {
   displayTown;
   displayCountry;
   displayLocationName;
-  constructor(private _router: Router, private _routes: ActivatedRoute, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) { }
+  constructor(private _router: Router, private _routes: ActivatedRoute,  private ngZone: NgZone) { }
 
   ngOnInit() {
     
   }
 
   ngAfterViewInit(){
-   // this.loadLocationAutoData();
+    this.loadLocationAutoData();
   }
 
   searchContract(title,  minRate = "", maxRate = "") {
@@ -47,11 +47,12 @@ export class SearchComponent implements OnInit {
     }
 
     localStorage.setItem("jobSearch", JSON.stringify(inputJson));
-    this._router.navigate(['../searchResult'], { 'relativeTo': this._routes })
+    //this._router.navigate(['../searchResult'], { 'relativeTo': this._routes })
+    this._router.navigate(['../contractor_search'], { 'relativeTo': this._routes, queryParams :  inputJson} )
   }
 
   loadLocationAutoData() {
-    this.mapsAPILoader.load().then(() => {
+   // this.mapsAPILoader.load().then(() => {
       //console.log("this.searchElementRef.nativeElement", this.searchElementRef.nativeElement);
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["geocode"]
@@ -92,7 +93,7 @@ export class SearchComponent implements OnInit {
         });
       });
      
-    });
+    //});
   }
 
 }
