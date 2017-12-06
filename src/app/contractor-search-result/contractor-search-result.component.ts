@@ -39,6 +39,8 @@ export class ContractorSearchResultComponent implements OnInit {
   errorMsg;
   showSaveSearchBox = false;
   searchClicked = false;
+  fromRate = 0;
+  toRate = 2000;
   ngOnInit() {
     console.log(JSON.parse(localStorage.getItem("jobSearch")));
     this.searchJson = JSON.parse(localStorage.getItem("jobSearch"));
@@ -98,6 +100,8 @@ export class ContractorSearchResultComponent implements OnInit {
     this.searchJson.page = flag ? this.currentPage : 1;
     this.searchJson.limit = 6;
     this.loading = true;
+    this.fromRate = this.searchJson.contractor_search_by_rate_min ? this.searchJson.contractor_search_by_rate_min : 0;
+    this.toRate = this.searchJson.contractor_search_by_rate_max ? this.searchJson.contractor_search_by_rate_max : 2000;
     let url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/search";
     this._commonRequestService.postData(url, this.searchJson)
       .subscribe(data => {

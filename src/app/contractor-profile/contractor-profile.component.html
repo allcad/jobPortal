@@ -364,7 +364,7 @@
                           <span>Browse From
                               <img alt="search now" src="./assets/images/find-cv.png" title="search now" >
                             </span>
-                          <input type="file" class="upload" (change)="contractorCVFileChangeEvent($event)" />
+                          <input type="file" class="upload" (change)="contractorCVFileChangeEvent($event)" accept=".doc, .docx, .pdf, .otd, .rtf"/>
                         </div>
                       </div>
                       <div *ngIf="CV?.attachment_name" class="input-group">
@@ -404,7 +404,7 @@
                           <span>Browse From
                               <img alt="search now" src="./assets/images/find-cv.png" title="search now" >
                             </span>
-                          <input type="file" class="upload" (change)="contractorCoverLetterFileChangeEvent($event)"  />
+                          <input type="file" class="upload" (change)="contractorCoverLetterFileChangeEvent($event)"  accept=".doc, .docx, .pdf, .otd, .rtf"/>
                         </div>
                       </div>
                       <div *ngIf="coverLetter?.attachment_name" class="input-group">

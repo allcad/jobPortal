@@ -31,7 +31,7 @@
         </div>
         <div class="row">
           <div class="col-sm-70">
-            <ion-range-slider type="double" prefix="£" class="width_100" (onFinish)="getRangeSliderValue($event)" #sliderElement min="0" value="100" max="2000" step="5" from="0" to="2000">
+            <ion-range-slider type="double" prefix="£" class="width_100" (onFinish)="getRangeSliderValue($event)" #sliderElement min="0" value="100" max="2000" step="5" [from]="fromRate" [to]="toRate">
             </ion-range-slider>
           </div>
           <div class="col-sm-30">
@@ -114,7 +114,7 @@
             <p><span>Location:</span>{{item.cityTown}}</p>
             <p><span>Rate:</span> £{{item.prefereedRate.minRate}} - £{{item.prefereedRate.maxRate}} p/{{item.prefereedRate.dailyHourlyRate == 'daily' ? 'd' : 'h'}}</p>
             <p><span>Start Date:</span> {{item.startDate | date }}</p>
-            <p><span>Duration:</span> {{item.duration}} Days</p>
+            <p><span>Duration:</span> {{item.duration}} </p>
             <p class="full_contant" innerHTML="{{item.jobDetail | slice : 0 : 200}}.." style="height: 90px;"></p>
           </div>
           <div class="footer_box">

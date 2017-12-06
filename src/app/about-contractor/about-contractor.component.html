@@ -201,22 +201,22 @@ industry information and the best Contractor services easy.</span> </p>
             <div class="row">
               <div class="col-sm-50">
                 <div class="form-group">
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="ENTER SKILL OR JOB TITLE ">
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="ENTER SKILL OR JOB TITLE " [(ngModel)]="title" name="title">
                 </div>
               </div>
               <div class="col-sm-50">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="ENTER LOCATION">
+                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="ENTER LOCATION" name="location" autocorrect="off" autocapitalize="off" spellcheck="off" #search >
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-40 pull-right">
-                <div class="form-group form_login"> <a href="javascript:void(0)" class="btn-default">SEARCH <i class="fa fa-plus" aria-hidden="true"></i></a> </div>
+                <div class="form-group form_login" (click)="searchContract(title)"> <a href="javascript:void(0)" class="btn-default">SEARCH <i class="fa fa-plus" aria-hidden="true"></i></a> </div>
               </div>
               <div class="col-sm-60">
                 <div class="form-group">
-                  <label class="need_advanced">NEED A MORE ADVANCED SEARCH? <a href="javascript:void(0)" routerLink="../../public/jobSearch">CLICK HERE</a></label>
+                  <label class="need_advanced">NEED A MORE ADVANCED SEARCH? <a  href="javascript:void(0)" routerLink="../../public/jobSearch">CLICK HERE</a></label>
                 </div>
               </div>
             </div>
