@@ -8,7 +8,6 @@ import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
-//import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
 import { FindContractHubComponent } from '../find-contract-hub/find-contract-hub.component';
 import { ContractorServiceMenuListingComponent } from '../contractor-service-menu-listing/contractor-service-menu-listing.component';
@@ -26,11 +25,8 @@ import { ContractorRecuriterProfileComponent } from '../contractor-recuriter-pro
 import { ContractorDirectoryComponent } from '../contractor-directory/contractor-directory.component';
 import { ContractorNewsArticleComponent } from '../contractor-news-article/contractor-news-article.component';
 import { ContractorNewsCategoryComponent } from '../contractor-news-category/contractor-news-category.component';
-
 import { CountdownPipe } from '../countdown.pipe';
 import { SwiperModule } from 'angular2-useful-swiper';
-
-
 import { ContractorHubHomeComponent } from '../contractor-hub-home/contractor-hub-home.component';
 import { ContractorAdviceMenuListingComponent } from '../contractor-advice-menu-listing/contractor-advice-menu-listing.component';
 import { ContractorAdviceListingComponent } from '../contractor-advice-listing/contractor-advice-listing.component';
@@ -41,46 +37,45 @@ import { ContractorSearchResultComponent } from '../contractor-search-result/con
 import { ContractorJobSearchComponent } from '../contractor-job-search/contractor-job-search.component';
 import { RecruiterSearchresultLoggedinComponent } from '../recruiter-searchresult-loggedin/recruiter-searchresult-loggedin.component';
 import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/recruiter-advanced-search.component';
-// import { RecruiterAdvancedSearchComponent } from '../recruiter-advanced-search/recruiter-advanced-search.component';
 import { RecruiterSavedSearchComponent } from '../recruiter-saved-search/recruiter-saved-search.component';
 import { ViewContractorProfileComponent } from '../view-contractor-profile/view-contractor-profile.component';
-//import { ChartModule } from 'angular-highcharts';
 import { RecruiterGuidesPageComponent } from '../recruiter-guides-page/recruiter-guides-page.component';
 import { ShareButtonsModule } from 'ngx-sharebuttons';
 
+const sharedModuleList = [
+  FindContractHubComponent,
+  ContractorServicesComponent,
+  ContractorServiceListingComponent,
+  ContractorServiceListingDetailsComponent,
+  AdSpaceComponent,
+  LatestNewsComponent,
+  LatestNewsListingComponent,
+  LatestNewsListingDetailsComponent,
+  ContractorServiceMenuListingComponent,
+  ContractorRecuriterProfileComponent,
+  ContractorDirectoryComponent,
+  ContractorNewsArticleComponent,
+  ContentBottomLeftAdsComponent,
+  ContentBottomRightAdsComponent,
+  SocialMediaComponent,
+  CountdownPipe,
+  ContractorNewsCategoryComponent,
+  ContractorHubHomeComponent,
+  ContractorAdviceMenuListingComponent,
+  ContractorAdviceListingComponent,
+  ContractorAdviceComponent,
+  ContractorAdviceArticleComponent,
+  ContractorAdviceCategoryComponent,
+  ContractorSearchResultComponent,
+  ContractorJobSearchComponent,
+  RecruiterSearchresultLoggedinComponent,
+  RecruiterAdvancedSearchComponent,
+  RecruiterSavedSearchComponent,
+  ViewContractorProfileComponent,
+  RecruiterGuidesPageComponent]
+
 @NgModule({
-  declarations: [
-    FindContractHubComponent,
-    ContractorServicesComponent,
-    ContractorServiceListingComponent,
-    ContractorServiceListingDetailsComponent,
-    AdSpaceComponent,
-    LatestNewsComponent,
-    LatestNewsListingComponent,
-    LatestNewsListingDetailsComponent,
-    ContractorServiceMenuListingComponent,
-    ContractorRecuriterProfileComponent,
-    ContractorDirectoryComponent,
-    ContractorNewsArticleComponent,
-    ContentBottomLeftAdsComponent,
-    ContentBottomRightAdsComponent,
-    SocialMediaComponent,
-    CountdownPipe,
-    ContractorNewsCategoryComponent,
-    ContractorHubHomeComponent,
-    ContractorAdviceMenuListingComponent,
-    ContractorAdviceListingComponent,
-    ContractorAdviceComponent,
-    ContractorAdviceArticleComponent,
-    ContractorAdviceCategoryComponent,
-    ContractorSearchResultComponent,
-    ContractorJobSearchComponent,
-    RecruiterSearchresultLoggedinComponent,
-     RecruiterAdvancedSearchComponent,
-     RecruiterSavedSearchComponent,
-     ViewContractorProfileComponent,
-     RecruiterGuidesPageComponent
-  ],
+  declarations: sharedModuleList,
   imports: [
     FormsModule,
     ToolTipModule,
@@ -91,41 +86,14 @@ import { ShareButtonsModule } from 'ngx-sharebuttons';
     RouterModule,
     IonRangeSliderModule,
     ShareButtonsModule.forRoot(),
-    // AgmCoreModule.forRoot({
-    //   apiKey: "AIzaSyANYk-sxj7-P1W8cB94WahJhtxdw1gEUJA",
-    //   libraries: ["places"]
-    // })
+
   ],
   exports: [
-  RouterModule,
-    FindContractHubComponent,
-    ContractorServicesComponent,
-    ContractorServiceListingComponent,
-    ContractorServiceListingDetailsComponent,
-    AdSpaceComponent,
-    LatestNewsComponent,
-    LatestNewsListingComponent,
-    LatestNewsListingDetailsComponent,
-    ContractorServiceMenuListingComponent,
-    ContentBottomLeftAdsComponent,
-    ContentBottomRightAdsComponent,
-    SocialMediaComponent,
-    ContractorRecuriterProfileComponent,
-    ContractorDirectoryComponent,
-    CountdownPipe,
-    ContractorNewsArticleComponent,
-    ContractorNewsCategoryComponent,
+    RouterModule,
     SwiperModule,
     IonRangeSliderModule,
-    ContractorHubHomeComponent,
-    ContractorSearchResultComponent,
-    ContractorJobSearchComponent,
-    RecruiterSearchresultLoggedinComponent,
-     RecruiterAdvancedSearchComponent,
-     RecruiterSavedSearchComponent,
-     ViewContractorProfileComponent,
-     RecruiterGuidesPageComponent,
-     ShareButtonsModule
+    ShareButtonsModule,
+    sharedModuleList
   ],
   providers: [],
   bootstrap: []

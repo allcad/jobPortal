@@ -46,6 +46,7 @@ export class ContractorResetPasswordComponent implements OnInit {
 						this.successMsg = "Password change";
 						form.reset();
 						form.form.submitted = false;
+						
 					}
 					else {
 						this.succesMessageFlag = false;

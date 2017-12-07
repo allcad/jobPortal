@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {NgForm} from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import {ToolTipModule} from 'angular2-tooltip';
 import {TooltipModule} from "ng2-tooltip";
@@ -12,7 +12,7 @@ import { HeaderAdsComponent } from './header-ads/header-ads.component';
 import { HeaderLogoComponent } from './header-logo/header-logo.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
 import { FooterComponent } from './footer/footer.component';
-import {AppRoutingModule} from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
 import { CommonRequestService } from './common-request.service';
 import { PublicComponent } from './public/public.component';
