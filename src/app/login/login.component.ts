@@ -2,6 +2,7 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonRequestService } from '../common-request.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

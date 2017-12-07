@@ -16,10 +16,6 @@
           <div class="alert alert-success margin-tp18" *ngIf="succesLoginFlag">
             <a href="javascript:void(0)" class="close" title="close" (click)="succesLoginFlag = false;">×</a> You are Log in <strong>succesfully!</strong>
           </div>
-          <!-- <div class="alert alert-danger margin-tp18" *ngIf="errorMsgFlag">
-            <a href="javascript:void(0)" class="close" title="close" (click)="errorMsgFlag=false;">×</a>
-            <strong>Error!</strong> {{errorMsg}}
-          </div> -->
           <div class="login_form_section">
             <div class="errorbox" *ngIf="(((f && f.form && f.form.controls && f.form.invalid) || totalInvalid) && f.submitted && !errorMsgFlag) || errorMsgFlag"><b>The following error(s) occured:</b>
               <br>
@@ -30,31 +26,17 @@
               <li *ngIf="f.form.controls.addNumber?.hasError('required')">Incorrect captcha code.</li>
               <li *ngIf="!f.form.controls.addNumber?.hasError('required') && totalInvalid">Incorrect captcha code.</li>
             </div>
-
-            
-
-
             <form #f="ngForm" (ngSubmit)="onLogin(f)">
               <div class="row">
                 <div class="col-sm-50">
                   <div class="form-group">
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Email*" [(ngModel)]="email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" >
-                    <!-- <tooltip-content #emailTooltip>
-                      <span *ngIf="f?.form && f.form.controls && f.form.controls.email?.valid" style="color: white"> Email </span>
-                      <span *ngIf="!f.form.controls.email?.hasError('required')" style="color: white"> Email  is required!</span>
-                      <span *ngIf="!f.form.controls.email?.hasError('pattern')" style="color:white">Email invalid!</span>
-                      <span *ngIf="f.form.controls.password?.hasError('required')">Password Required</span>
-                    </tooltip-content> -->
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Email*" [(ngModel)]="email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
                   </div>
                 </div>
                 <div class="col-sm-50">
                   <div class="form-group">
                     <div class="input-group" style="width: 100%;">
-                      <input type="password" style="width: 100%;" class="form-control" id="Password" placeholder="Password*" [(ngModel)]="password" name="password" required >
-                      <!-- <tooltip-content #passwordTooltip>
-                        <span *ngIf="f?.form && f.form.controls && f.form.controls.password?.valid" style="color:white"> Password </span>
-                        <span [hidden]="!f.form.controls.password?.hasError('required')" style="color: white"> Password  is required!</span>
-                      </tooltip-content> -->
+                      <input type="password" style="width: 100%;" class="form-control" id="Password" placeholder="Password*" [(ngModel)]="password" name="password" required>
                     </div>
                   </div>
                 </div>
@@ -65,20 +47,18 @@
                 </div>
                 <div class="col-sm-40 col-md-41 col-xs-75">
                   <div class="form-group">
-                  <div class="input-group" style="width: 100%;">
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="ARE YOU HUMAN ? *" [(ngModel)]="addNumber" name="addNumber" required>
+                    <div class="input-group" style="width: 100%;">
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="ARE YOU HUMAN ? *" [(ngModel)]="addNumber" name="addNumber" required>
                     </div>
                   </div>
                 </div>
-                <!-- <span *ngIf="!valid && addNumber " style="color: #C21F39">{{errorMessage}} </span> -->
                 <div class="col-sm-50" style="text-align: right;">
                   <button type="submit" class="form-group form_login btn-default"> login <i class="fa fa-plus" aria-hidden="true"></i> </button>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-100">
-                  <!-- routerLink="../contractorSignup" -->
-                  <div class="form-group forgot_click_here"> FORGOT YOUR PASSWORD? <a href="javascript:void(0SS)" routerLink="../cobtractor_forgot_password">CLICK HERE</a> </div>
+                  <div class="form-group forgot_click_here"> FORGOT YOUR PASSWORD? <a href="javascript:void(0SS)" routerLink="../contractor_forgot_password">CLICK HERE</a> </div>
                 </div>
               </div>
             </form>
@@ -87,8 +67,6 @@
       </div>
     </div>
   </div>
-  <!--contractor login end-->
-  <!--contractor login section 2-->
   <div class="container">
     <div class="row">
       <div class="col-sm-100">

@@ -40,7 +40,7 @@ import { NotFoundPageComponent } from '../not-found-page/not-found-page.componen
 import { RecruiterLostPasswordComponent } from '../recruiter-lost-password/recruiter-lost-password.component';
 import { ContractorForgotPasswordComponent } from '../contractor-forgot-password/contractor-forgot-password.component';
 import { ContractorResetPasswordComponent } from '../contractor-reset-password/contractor-reset-password.component';
-
+import { AboutContractorComponent } from '../about-contractor/about-contractor.component';
 
 @NgModule({
 	declarations: [
@@ -65,7 +65,8 @@ import { ContractorResetPasswordComponent } from '../contractor-reset-password/c
 		NotFoundPageComponent,
 		RecruiterLostPasswordComponent,
 		ContractorForgotPasswordComponent,
-		ContractorResetPasswordComponent
+		ContractorResetPasswordComponent,
+		AboutContractorComponent
 	],
 	imports: [
 		PublicRoutingModule,

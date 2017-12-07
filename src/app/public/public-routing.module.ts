@@ -31,6 +31,7 @@ import { RecruiterSavedSearchComponent } from '../recruiter-saved-search/recruit
 import { RecruiterLostPasswordComponent } from '../recruiter-lost-password/recruiter-lost-password.component';
 import { ContractorForgotPasswordComponent } from '../contractor-forgot-password/contractor-forgot-password.component';
 import { ContractorResetPasswordComponent } from '../contractor-reset-password/contractor-reset-password.component';
+import { AboutContractorComponent } from '../about-contractor/about-contractor.component';
 
 const publicRoutes: Routes = [
     {
@@ -74,6 +75,9 @@ const publicRoutes: Routes = [
     }, {
         "path": "about-recruiter",
         "component": AboutRecruiterComponent
+    }, {
+        "path": "about-contractor",
+        "component": AboutContractorComponent
     }, {
         "path": "contact-us",
         "component": ContactPageComponent
@@ -131,10 +135,10 @@ const publicRoutes: Routes = [
         "component": RecruiterLostPasswordComponent,
         //"resolve": {resolverData: ResolverService}
     }, {
-        "path": "cobtractor_forgot_password",
+        "path": "contractor_forgot_password",
         "component": ContractorForgotPasswordComponent
     }, {
-        "path": "cobtractor_reset_password",
+        "path": "contractor_resetpassword/:id",
         "component": ContractorResetPasswordComponent
     }, {
         "path": "",

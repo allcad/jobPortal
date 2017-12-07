@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CommonDataSharedService } from '../commonDataSharedService';
 
 @Component({
   selector: 'app-about-contractor',
@@ -22,9 +23,37 @@ export class AboutContractorComponent implements OnInit {
   displayCountry;
   displayLocationName;
 
-  constructor(private _router: Router, private _routes: ActivatedRoute, private ngZone: NgZone) { }
+  constructor(private _router: Router, private _routes: ActivatedRoute, private ngZone: NgZone, private _commonDataSharedService: CommonDataSharedService) { }
 
   ngOnInit() {
+    this._commonDataSharedService.switchToDivSubject.subscribe((data) =>{
+          if(data) {
+            //console.log("data--", data);
+
+            if (data === 'contractRecruit') {
+              setTimeout(function(){
+              if ($('#contractrecurit') && $('#contractrecurit').offset())
+              $(window).scrollTop($('#contractrecurit').offset().top);
+             },100); 
+            }
+            if (data === "whoAreWe") {
+              setTimeout(function(){
+              if ($('#whoarewe') && $('#whoarewe').offset())
+             $(window).scrollTop($('#whoarewe').offset().top);
+             },100); 
+            }
+            if (data === "whatWeDo") {
+              setTimeout(function(){
+               if ($('#whatdowedo') && $('#whatdowedo').offset())
+               $(window).scrollTop($('#whatdowedo').offset().top); 
+              },100);
+            }
+
+            
+          }
+        });
+
+
 
     $(document).on('scroll', function() {
       let currentHeight = $(this).height();
@@ -86,7 +115,8 @@ export class AboutContractorComponent implements OnInit {
   loadLocationAutoData() {
 
     let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-      types: ["geocode"]
+      types: ["geocode"],
+      componentRestrictions: { 'country': 'GB' }
     });
     autocomplete.addListener("place_changed", () => {
       this.ngZone.run(() => {

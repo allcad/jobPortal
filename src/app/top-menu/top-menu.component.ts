@@ -39,9 +39,9 @@ export class TopMenuComponent implements OnInit {
 
   categoryClicked(categoryData) {
     this._commonRequestService.setDataWithoutObserval(categoryData.contract_hub_category_id, 'category_hub_id');
-    this._router.navigate(['../public/contractor-directory'], { relativeTo: this._routes });
+    this._router.navigate(['../public/directory/' + categoryData.contract_hub_category_id], { relativeTo: this._routes });
     this._router.navigate(['../public/home'], { skipLocationChange: true }).then(() =>
-      this._router.navigate(['../public/contractor-directory'], { relativeTo: this._routes })
+      this._router.navigate(['../public/directory/' +  categoryData.contract_hub_category_id], { relativeTo: this._routes })
     );
 
     
@@ -74,7 +74,7 @@ export class TopMenuComponent implements OnInit {
 
 moveToAboutPage(value) {
   this._commonDataShareService.switchToDivSubject.next(value);
-  this._router.navigate(['/public/about-recruiter']);
+  this._router.navigate(['/public/about-contractor']);
 }
 
 moveToSearchResult(value) {

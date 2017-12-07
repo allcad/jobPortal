@@ -31,7 +31,7 @@
         </div>
         <div class="row">
           <div class="col-sm-70">
-            <ion-range-slider type="double" prefix="£" class="width_100" (onFinish)="getRangeSliderValue($event)" #sliderElement min="0" value="100" max="2000" step="5" [from]="fromRate" [to]="toRate">
+            <ion-range-slider type="double" prefix="£" class="width_100" (onFinish)="getRangeSliderValue($event)" #sliderElement min="0" value="100" max="2000" step="5" [from]="fromRate" [to]="toRate" postfix=" / {{searchJson?.contractor_search_by_rate_type == 'daily' ? 'day' : 'hour'}}">
             </ion-range-slider>
           </div>
           <div class="col-sm-30">
@@ -102,9 +102,10 @@
       </div>
       <div class=" col-md-33 col-sm-33" *ngFor="let item of searchResult">
         <div class="my_applications_box">
-          <div class="header_top">
+          <div class="header_top" >
             <img src="./assets/images/location-map.png" alt="ads" title="ads" class="img-responsive">
-            <p><span>15</span> Miles from Home</p>
+            <p *ngIf="!isPublic"><span>15</span> Miles from Home</p>
+            <p *ngIf="isPublic">{{item.cityTown}}</p>
           </div>
           <div class="application_box_contant">
             <img style="height: 79px;" [src]="item.profileimage[0]?.attachment_url ? item.profileimage[0].attachment_url + '/' + item.profileimage[0].attachment_name : './assets/images/application1.png'" alt="ads" title="ads" class="img-responsive">
@@ -140,7 +141,7 @@
       </div>
       <div class="row" *ngIf="totalPage && (totalPage > currentPage)">
         <div class="col-sm-100">
-          <div class="show_more_application" (click)="currentPage=currentPage+1; getSearchData(true);"> <a href="javascript:void(0)" class="btn-primary hover_white_pluse"><span>SEE MORE APPLICATION</span> <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
+          <div class="show_more_application" (click)="currentPage=currentPage+1; getSearchData(true);"> <a href="javascript:void(0)" class="btn-primary hover_white_pluse"><span>SEE MORE JOBS</span> <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
         </div>
       </div>
       <!--  <div class="col-md-34 col-sm-34">

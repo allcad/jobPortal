@@ -14,7 +14,7 @@ export class ContractorJobSearchComponent implements OnInit {
   distance = "0";
   minRate;
   maxRate;
-  rateType = "";
+  rateType = "daily";
   jobPreferenceNumber;
   showContracts = "0";
   industrySectorData = [];
