@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
 @Component({
@@ -14,12 +14,13 @@ export class ContractorAdviceArticleComponent implements OnInit {
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
-  	this.articleId = this._commonRequestService.getDataWithoutObserval("adviceArticleId");
-  	if(!this.articleId){
-  		this.articleId = localStorage.getItem("adviceArticleId");
-  	}
-
-  	this.getArticleData(this.articleId)
+  	 
+     this._routes.params.subscribe((params: Params) => {
+      this.articleId = params['id'];
+      if (this.articleId) {
+        this.getArticleData(this.articleId)
+      }
+    })
   }
 
   ngAfterViewInit(){

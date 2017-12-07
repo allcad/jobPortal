@@ -41,10 +41,13 @@
                     <p [innerHTML]="article.description | slice : 0 : 200"></p>
                     <div class="row">
                       <div class="col-xs-50">
-                        <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> </div>
+                        <div class="letest_news_footer share-buttons"> 
+                          <!-- <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a>  -->
+                          <share-buttons [tumblr]='false'  [google]='false'  [whatsApp]='false' [pinterest]='false' [stumbleUpOn]='false' [reddit]='false' url="http://dev.contractrecruit.co.uk/contractor_site/#/public/article/{{article.id}}"></share-buttons >
+                        </div>
                       </div>
                       <div class="col-xs-50">
-                        <div class="letest_news_footer" (click)="readFullArticle(article)"> <a href="javascript:void(0)" class="news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
+                        <div class="letest_news_footer" routerLink="./{{article.id}}"> <a href="javascript:void(0)" class="news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
                       </div>
                     </div>
                   </li>
@@ -55,47 +58,7 @@
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
               </swiper>
-              <!-- slider -->
-              <!-- <li *ngFor="let article of articleList">
-                <h2>{{article.title}}</h2>
-                <p [innerHTML]="article.description"></p>
-                <div class="row">
-                  <div class="col-xs-50">
-                    <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> </div>
-                  </div>
-                  <div class="col-xs-50">
-                    <div class="letest_news_footer" routerLink="../adviceDetail"> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
-                  </div>
-                </div>
-              </li> -->
-              <!--  <li>
-                  <h2>IT Jobs Going abroad a concern <br>
-                    for it contractors </h2>
-                  <p>The offshoring of any jobs here in the UK should ignite concerns among all workers, those employed directly and contractors alike. However, the latest news from Lloyds Bank could well raise hackles among those involved in IT with the announcement that they will despatching around 90 IT jobs to India.</p>
-                  <p> Those 90 IT jobs were among 625 Lloyds plans to eliminate. Last week, the bank announced that a strategic review back in 2014 said that some 9,000 jobs.</p>
-                  <div class="row">
-                    <div class="col-xs-50">
-                      <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> </div>
-                    </div>
-                    <div class="col-xs-50">
-                      <div class="letest_news_footer"> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <h2>IT Jobs Going abroad a concern <br>
-                    for it contractors </h2>
-                  <p>The offshoring of any jobs here in the UK should ignite concerns among all workers, those employed directly and contractors alike. However, the latest news from Lloyds Bank could well raise hackles among those involved in IT with the announcement that they will despatching around 90 IT jobs to India.</p>
-                  <p> Those 90 IT jobs were among 625 Lloyds plans to eliminate. Last week, the bank announced that a strategic review back in 2014 said that some 9,000 jobs.</p>
-                  <div class="row">
-                    <div class="col-xs-50">
-                      <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> </div>
-                    </div>
-                    <div class="col-xs-50">
-                      <div class="letest_news_footer"> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
-                    </div>
-                  </div>
-                </li> -->
+             
             </ul>
           </div>
         </div>
@@ -104,13 +67,7 @@
             <h3>Popular Categories</h3>
             <ul>
               <li *ngFor="let adviceCategory of adviceCategoryData" (click)="this.selectedAdviceCategory=adviceCategory.id;searchClicked=true;getPostByCategory()"><a href="javascript:void(0)">{{adviceCategory.category_name}}</a></li>
-              <!-- <li><a href="javascript:void(0)">IR35 Advice</a></li>
-                <li><a href="javascript:void(0)">First Time Contractors</a></li>
-                <li><a href="javascript:void(0)">CV Writing</a></li>
-                <li><a href="javascript:void(0)">Learning / Studying Advice</a></li>
-                <li><a href="javascript:void(0)">Limited Company Guidance</a></li>
-                <li><a href="javascript:void(0)">Accountancy Advice</a></li>
-                <li><a href="javascript:void(0)">Insurance Advice</a></li> -->
+              
             </ul>
           </div>
         </div>
@@ -152,7 +109,11 @@
           <img [src]="adviceArticle.image" alt="" onError="this.src='./assets/images/advice-article-default.png'" alt="" title="" class="img-responsive">
           <h5>{{adviceArticle.title}}</h5>
           <p [innerHTML]="adviceArticle.description | slice : 0 : 100"></p>
-          <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
+          <div class="letest_news_footer share-buttons">
+
+            <share-buttons [tumblr]='false'  [google]='false'  [whatsApp]='false' [pinterest]='false' [stumbleUpOn]='false' [reddit]='false' url="http://dev.contractrecruit.co.uk/contractor_site/#/public/article/{{adviceArticle.id}}"></share-buttons >
+
+            <a href="javascript:void(0)" routerLink="./{{adviceArticle.id}}" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
         </div>
       </div>
       

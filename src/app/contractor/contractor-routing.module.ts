@@ -65,7 +65,7 @@ const contractorRoutes: Routes = [{
     "component": ContractorAdviceCategoryComponent,
     "resolve": { resolverData: ResolverService }
 }, {
-    "path": "adviceDetail",
+    "path": "advice/:id",
     "component": ContractorAdviceArticleComponent,
     "resolve": { resolverData: ResolverService }
 }, {

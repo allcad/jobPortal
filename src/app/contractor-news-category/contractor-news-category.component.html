@@ -17,7 +17,10 @@
                     <p style="color: #fff;" [innerHTML]="news.article_body | slice:0:300"> </p>
                     <div class="row">
                       <div class="col-xs-50">
-                        <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> </div>
+                        <div class="letest_news_footer share-buttons"> 
+                          <!-- <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a>  -->
+                           <share-buttons [tumblr]='false'  [google]='false'  [whatsApp]='false' [pinterest]='false' [stumbleUpOn]='false' [reddit]='false' url="http://dev.contractrecruit.co.uk/contractor_site/#/public/news/{{news._id}}"></share-buttons >
+                        </div>
                       </div>
                       <div class="col-xs-50">
                         <div class="letest_news_footer"> <a href="javascript:void(0)" class="btn-primary news_read_more" routerLink="./{{news._id}}">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
@@ -114,7 +117,12 @@
             <img src="{{news?.article_image}}" alt="" title="" class="img-responsive" onError="this.src='./assets/images/letest-news.png'" alt="" title="" class="img-responsive">
             <h5>{{news.article_title}}</h5>
             <p [innerHTML]="news.article_body | slice:0:100"> </p>
-            <div class="letest_news_footer"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a routerLink="./{{news._id}}" href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
+            <div class="letest_news_footer share-buttons"> 
+              <!-- <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a>  -->
+
+              <share-buttons [tumblr]='false'  [google]='false'  [whatsApp]='false' [pinterest]='false' [stumbleUpOn]='false' [reddit]='false' url="http://dev.contractrecruit.co.uk/contractor_site/#/public/news/{{news._id}}"></share-buttons >
+
+              <a routerLink="./{{news._id}}" href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
           </div>
         </div>
         
