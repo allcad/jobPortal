@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FormsModule,NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CommonRequestService } from '../common-request.service';
 import { CommonDataSharedService } from '../commonDataSharedService';
 import { } from 'googlemaps';
@@ -35,16 +35,39 @@ export class ViewContractorProfileComponent implements OnInit {
   successMessageFlag = false;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService,
-    private ngZone: NgZone) { }
+    private ngZone: NgZone, private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.zoom = 3;
     this.latitude = 39.8282;
     this.longitude = -98.5795;
 
-  	this.currentContractorId = localStorage.getItem('currentContractorData') ? JSON.parse(localStorage.getItem('currentContractorData'))['currentContractorId'] : null;
-	  console.log("this.currentContractorId", this.currentContractorId);
-  	this.getContractorData();
+    if (this.router.url.split('/')[2].indexOf('view-contractor-profile') > -1) {
+      this.activateRoute.queryParams.subscribe((params: Params) => {
+        let paramData = params;
+        console.log("params--", params);
+        let output = {};        
+
+        let keyArray = []
+        for (let prop in paramData) {
+            keyArray.push(prop); 
+        }
+        console.log("keyArray--", keyArray);
+
+        for(let i=0; i<keyArray.length; i++){
+          
+          output[keyArray[i]] = paramData[keyArray[i]] && paramData[keyArray[i]].indexOf('+')>-1 ? paramData[keyArray[i]].replace(/\+/g, ' ') : paramData[keyArray[i]];
+        }
+         this.currentContractorId = output['contractorId'];
+        this.getContractorData();
+        console.log("jbdjasd",output);
+
+      });
+    }
+
+  	// this.currentContractorId = localStorage.getItem('currentContractorData') ? JSON.parse(localStorage.getItem('currentContractorData'))['currentContractorId'] : null;
+	  // console.log("this.currentContractorId", this.currentContractorId);
+  	// this.getContractorData();
 
   }
 
@@ -66,7 +89,8 @@ export class ViewContractorProfileComponent implements OnInit {
            this.qualification = data && data.data['qualification'] ? data.data['qualification'].split(',') : [];
            console.log("this.certification", this.certification);
            console.log("this.keySkills", this.keySkills);
-           this.currentContractorFirstName = localStorage.getItem('currentContractorData') ? JSON.parse(localStorage.getItem('currentContractorData'))['currentContractorName'] : null;  	
+           //this.currentContractorFirstName = localStorage.getItem('currentContractorData') ? JSON.parse(localStorage.getItem('currentContractorData'))['currentContractorName'] : null;  	
+           this.currentContractorFirstName = this.contractorData && this.contractorData.userName ? this.contractorData.userName : ''; 
 	         this.latitude = this.contractorData.latitude;
            this.longitude = this.contractorData.longitude;
            this.initializeMap();

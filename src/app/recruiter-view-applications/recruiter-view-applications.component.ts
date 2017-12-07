@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule,NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CommonRequestService } from '../common-request.service';
 import { CommonDataSharedService } from '../commonDataSharedService';
 @Component({
@@ -28,7 +28,7 @@ export class RecruiterViewApplicationsComponent implements OnInit {
   maxRecord;
   loading = true;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
-  	private _commonDataSharedService: CommonDataSharedService) { }
+  	private _commonDataSharedService: CommonDataSharedService, private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
   	this.getApplicationList(12);
@@ -156,10 +156,17 @@ export class RecruiterViewApplicationsComponent implements OnInit {
   }
 
   viewContractorProfile(contractorId, firstName, lastName) {
-    var name = firstName + " " + lastName;
-  	var obj = {'currentContractorId' : contractorId, 'currentContractorName': name, 'type':'viewApplication'};
+    //var name = firstName + " " + lastName;
+    var contractorObj = {
+      "contractorId" : contractorId
+    }
+  	var obj = {'type':'viewApplication'};
+    console.log("contractorId", contractorObj);
+    this.router.navigate(['/recruiter/recruiter-home'], { skipLocationChange: true }).then(() =>
+        this.router.navigate(['/recruiter/view-contractor-profile'], { 'relativeTo': this.activateRoute, queryParams :  contractorObj} )
+      );
     localStorage.setItem('currentContractorData', JSON.stringify(obj));
-  	this.router.navigate(['./recruiter/view-contractor-profile']);
+  	//this.router.navigate(['./recruiter/view-contractor-profile']);
   }
 
 

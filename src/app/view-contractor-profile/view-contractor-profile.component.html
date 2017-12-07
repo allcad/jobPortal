@@ -20,10 +20,10 @@
                     <div class="col-sm-30">
                         <div class="your_options_profile your_options_profile_options">
                             <div class="dropdown">
-                                <button class="" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" (click)="showSearchOptionFlag = !showSearchOptionFlag">
+                                <button class="" type="button" (click)="showSearchOptionFlag = !showSearchOptionFlag">
                                     Your Options
                                 </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <ul class="dropdown-menu" [ngClass]="showSearchOptionFlag == true ? 'display_block' : 'display_none'">
                                     <li *ngIf="contractorData && contractorData?.uploadCV && contractorData?.uploadCV?.length > 0"><a href="{{contractorData?.uploadCV[0]['attachment_url']}}/{{contractorData?.uploadCV[0]['attachment_name']}}">Download CV</a></li>
                                     <li *ngIf="contractorData && contractorData?.uploadCV && contractorData?.uploadCV?.length == 0"><a href="javascript:void(0)">Download CV</a></li>
                                     <li><a href="mailto:someone@example.com?Subject=Hello%20again" target="_top">Email Contractor</a></li>

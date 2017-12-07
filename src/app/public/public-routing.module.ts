@@ -32,6 +32,7 @@ import { RecruiterLostPasswordComponent } from '../recruiter-lost-password/recru
 import { ContractorForgotPasswordComponent } from '../contractor-forgot-password/contractor-forgot-password.component';
 import { ContractorResetPasswordComponent } from '../contractor-reset-password/contractor-reset-password.component';
 import { AboutContractorComponent } from '../about-contractor/about-contractor.component';
+import { RecruiterResetPasswordComponent } from '../recruiter-reset-password/recruiter-reset-password.component';
 
 const publicRoutes: Routes = [
     {
@@ -140,6 +141,9 @@ const publicRoutes: Routes = [
     }, {
         "path": "contractor_resetpassword/:id",
         "component": ContractorResetPasswordComponent
+    }, {
+        "path": "recruiter_resetpassword/:id",
+        "component": RecruiterResetPasswordComponent
     }, {
         "path": "",
         "redirectTo": "home",

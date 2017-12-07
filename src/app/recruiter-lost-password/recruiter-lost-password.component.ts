@@ -38,6 +38,7 @@ export class RecruiterLostPasswordComponent implements OnInit {
 	          //this.templateData = data.data;
 	          if(data && data.status === "TRUE") {
 	          	console.log("forget password--", data);
+              this.emailId = "";
 	          	this.WSErrorMsg = "";
 	          } else {
 	          	this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;

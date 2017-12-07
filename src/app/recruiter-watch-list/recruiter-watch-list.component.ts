@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonDataSharedService } from '../commonDataSharedService';
 import { CommonRequestService } from '../common-request.service';
 import { CommonService } from '../commonService.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-recruiter-watch-list',
@@ -26,7 +26,7 @@ export class RecruiterWatchListComponent implements OnInit {
   maxRecord;
   loading = true;
   constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService,
-    private _commonService: CommonService, private router: Router) { }
+    private _commonService: CommonService, private router: Router, private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
   	this.getSortByData();
@@ -161,10 +161,17 @@ export class RecruiterWatchListComponent implements OnInit {
   }
 
   watchContractorProfile(contractorId, firstName, lastName) {
-    var name = firstName + " " + lastName;
-    var obj = {'currentContractorId' : contractorId, 'currentContractorName': name, 'type':'watchList'};
+    //var name = firstName + " " + lastName;
+    var contractorObj = {
+      "contractorId" : contractorId
+    }
+    var obj = {'type':'watchList'};
     localStorage.setItem('currentContractorData', JSON.stringify(obj));
-    this.router.navigate(['./recruiter/view-contractor-profile']);
+    //this.router.navigate(['./recruiter/view-contractor-profile']);
+
+    this.router.navigate(['/recruiter/recruiter-home'], { skipLocationChange: true }).then(() =>
+        this.router.navigate(['/recruiter/view-contractor-profile'], { 'relativeTo': this.activateRoute, queryParams :  contractorObj} )
+      );
   }
 
 }

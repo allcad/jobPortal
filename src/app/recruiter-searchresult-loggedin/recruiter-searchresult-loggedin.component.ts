@@ -253,9 +253,16 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   }
 
   goToContractorProfile(contractorId, name) {
-    var obj = {'currentContractorId' : contractorId, 'currentContractorName': name, 'type':'search-result'};
+     var contractorObj = {
+      "contractorId" : contractorId
+    }
+    var obj = {'type':'search-result'};
     localStorage.setItem('currentContractorData', JSON.stringify(obj));
-    this.router.navigate(['./recruiter/view-contractor-profile']);
+    //this.router.navigate(['./recruiter/view-contractor-profile']);
+
+    this.router.navigate(['/recruiter/recruiter-home'], { skipLocationChange: true }).then(() =>
+        this.router.navigate(['/recruiter/view-contractor-profile'], { 'relativeTo': this._routes, queryParams :  contractorObj} )
+      );
   }
 
   showMoreDetails(index) {
