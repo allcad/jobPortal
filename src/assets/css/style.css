@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'MyriadPro-Regular';
-    src: url('../fonts/MyriadPro-Regular.woff');
-    src: url('../fonts/MyriadPro-Regular.eot') format('embedded-opentype');
+    src: url('MyriadPro-Regular.woff');
+    src: url('MyriadPro-Regular.eot') format('embedded-opentype');
     font-weight: normal;
     font-style: normal;
 

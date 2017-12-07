@@ -20,9 +20,9 @@ import { ContractorComponent } from './contractor/contractor.component';
 import { RecruiterComponent } from './recruiter/recruiter.component';
 import { ContractorHeaderComponent } from './contractor-header/contractor-header.component';
 import { RecruiterHeaderComponent } from './recruiter-header/recruiter-header.component';
-import {PublicModule} from './public/public.module';
-import {RecruiterModule} from './recruiter/recruiter.module';
-import {ContractorModule} from './contractor/contractor.module';
+// import {PublicModule} from './public/public.module';
+// import {RecruiterModule} from './recruiter/recruiter.module';
+// import {ContractorModule} from './contractor/contractor.module';
 import { ContractorAccountComponent } from './contractor-account/contractor-account.component';
 import { ContractorLoginFullJobComponent } from './contractor-login-full-job/contractor-login-full-job.component';
 import { CommonDataSharedService } from './commonDataSharedService';
@@ -52,10 +52,7 @@ import { CommonService } from './commonService.service';
     FormsModule,
     ToolTipModule,
     TooltipModule,
-    HttpModule,
-    PublicModule,
-    RecruiterModule,
-    ContractorModule
+    HttpModule
   ],
   providers: [CommonRequestService, CommonDataSharedService, ResolverService, CommonService],
   bootstrap: [AppComponent]

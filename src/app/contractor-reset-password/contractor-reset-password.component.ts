@@ -13,6 +13,8 @@ export class ContractorResetPasswordComponent implements OnInit {
 	ErrorMesageFlag;
 	successMsg;
 	errorMsg;
+	password;
+	confirmPassword;
 	constructor(private _router: Router, private _routes: ActivatedRoute, private _commonRequestService: CommonRequestService) { }
 
 	ngOnInit() {
@@ -32,7 +34,7 @@ export class ContractorResetPasswordComponent implements OnInit {
 			let accountJson = {
 				"token": this.uniqueId,
 				"newPassword": form.value.password,
-				"confirmPassword": form.value.confirmPassword 
+				"confirmPassword": form.value.confirmPassword
 			}
 			let inputUrl = " http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/forget_password/submit";
 			this._commonRequestService.postData(inputUrl, accountJson).subscribe(
