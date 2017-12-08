@@ -54,6 +54,8 @@ postcode = '';
 displayTown = '';
 displayCountry = '';
 displayLocationName = '';
+showRadialDescription = true;
+showMappingDescription = true;
 //displayLocationName = '';
   constructor(public _commonRequestService: CommonRequestService, private activateRoute: ActivatedRoute,
     private _route: Router, private commonService: CommonService, 
@@ -72,6 +74,11 @@ displayLocationName = '';
 
   ngAfterViewInit() {
     this.loadLocationAutoData();
+  }
+
+  closeDescription() {
+    this.showMappingDescription = false;
+    this.showRadialDescription = false;
   }
 
   getTimeLeftData() {
@@ -274,6 +281,8 @@ displayLocationName = '';
   mappingClick() {
   	this.mappingFlag = true;
   	this.radialFlag = false;
+    this.showMappingDescription = true;
+    this.showRadialDescription = false;
     this.milesValue = 0;
     // if(this.searchMiles && this.searchMiles.nativeElement) {
     //   this.searchMiles.nativeElement.value = 0;
@@ -287,6 +296,8 @@ displayLocationName = '';
     // if(this.searchMiles && this.searchMiles.nativeElement) {
     //   this.searchMiles.nativeElement.value = 5;
     // }
+    this.showMappingDescription = false;
+    this.showRadialDescription = true;
     this.milesValue = 5;
     this.loadLocationAutoData();
   }

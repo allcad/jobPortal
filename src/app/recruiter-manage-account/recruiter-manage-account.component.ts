@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { NgForm} from '@angular/forms';
 import { CommonRequestService } from '../common-request.service';
 
@@ -7,7 +7,7 @@ import { CommonRequestService } from '../common-request.service';
   templateUrl: './recruiter-manage-account.component.html',
   styleUrls: ['./recruiter-manage-account.component.css']
 })
-export class RecruiterManageAccountComponent implements OnInit {
+export class RecruiterManageAccountComponent implements OnInit, AfterViewInit {
   name: string;
   jobTitle: string;
   telePhone;
@@ -27,6 +27,9 @@ export class RecruiterManageAccountComponent implements OnInit {
 
   ngOnInit() {
     this.recruiterAccountDetails();
+  }
+  ngAfterViewInit() {
+    window.scroll(0,0);
   }
 
   recruiterAccountDetails() {
@@ -52,6 +55,7 @@ export class RecruiterManageAccountComponent implements OnInit {
   }
 
   saveRecruiterAccountForm(form: NgForm) {
+    window.scroll(0,0);
     this.WSErrorMsg = "";
     if(this.name) {
       this.nameFlag = false;
@@ -71,10 +75,12 @@ export class RecruiterManageAccountComponent implements OnInit {
       this.telephoneFlag = true;
     }
 
-    if(!this.telePhone.match(/^\d{10}$/)) {
-      this.telephoneValidFlag = true;
-    } else {
-      this.telephoneValidFlag = false;
+    if(this.telePhone) {
+      if(this.telePhone.match(/^\d{10}$/) || this.telePhone.match(/^[0]\d{10}$/)) {
+        this.telephoneValidFlag = false;
+      } else {
+        this.telephoneValidFlag = true;
+      }
     }
 
     if(this.nameFlag || this.jobTitleFlag || this.telephoneFlag || this.telephoneValidFlag) {

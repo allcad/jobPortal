@@ -11,7 +11,7 @@
           <li *ngIf="addressLine1Flag">Address Line1 is required.</li>
           <li *ngIf="addressLine2Flag">Address Line2 is required.</li>
           <li *ngIf="cityFlag">City is required.</li>
-          <li *ngIf="countryFlag">Country is required.</li>
+          <li *ngIf="countryFlag">Nationality is required.</li>
           <li *ngIf="postCodeFlag">Post Code is required.</li>
           <li *ngIf="telephoneFlag">Telephone is required.</li>
           <li *ngIf="companyDescFlag">Company Description is required.</li>
@@ -181,7 +181,7 @@
                       <div class="input-group-addon"><img src="./assets/images/county-icon.png" alt="" title="" class="img-responsive"></div>
 
                       <select class="form-control minimal background_drop_down box_padding_3 box_height_30" [(ngModel)]="country" name="country" required [disabled]="companyEditableId == 0">
-                        <option value="">Country</option>
+                        <option value="">Nationality</option>
                         <option value="{{item?.id}}" *ngFor="let item of countryValueArray">{{item?.name}}</option>
                       </select>
 
@@ -265,7 +265,7 @@
                       <!-- <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="COUNTRY" [(ngModel)]="postalCountry" name="postalCountry"> -->
 
                       <select class="form-control minimal background_drop_down box_padding_3 box_height_30" [(ngModel)]="postalCountry" name="postalCountry" [disabled]="companyEditableId == 0">
-                        <option value="">Country</option>
+                        <option value="">Nationality</option>
                         <option value="{{item?.id}}" *ngFor="let item of countryValueArray">{{item?.name}}</option>
                       </select>
                     </div>
@@ -334,7 +334,7 @@
                           <!-- <input type="text" class="form-control box_padding_3 box_height_30" placeholder="COUNTRY" [(ngModel)]="addMulAddArray[i].country" name="addMulAddArray[i].countryName"> -->
                           
                           <select class="form-control minimal background_drop_down box_padding_3 box_height_30" [(ngModel)]="addMulAddArray[i].country" name="addMulAddArray[i].countryName" [disabled]="companyEditableId == 0">
-                          <option value="">Country</option>
+                          <option value="">Nationality</option>
                           <option value="{{item?.id}}" *ngFor="let item of countryValueArray">{{item?.name}}</option>
                           </select>
 

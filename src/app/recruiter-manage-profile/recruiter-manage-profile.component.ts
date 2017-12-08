@@ -319,10 +319,10 @@ WSErrorMsg = "";
     }
 
     if(this.telephone) {
-      if(!this.telephone.match(/^\d{10}$/)) {
-        this.telephoneValidationFlag = true;
-      } else {
+      if(this.telephone.match(/^[0]\d{10}$/) || this.telephone.match(/^\d{10}$/)) {
         this.telephoneValidationFlag = false;
+      } else {
+        this.telephoneValidationFlag = true;
       }
     }
 

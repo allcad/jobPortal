@@ -1375,7 +1375,7 @@ select {
 .signup_form_section .group_inline_rights .radio-inline{
 	margin-top:0px;
 }
-.signup_form_section .input-group-addon img{ cursor:pointer;}
+.signup_form_section .input-group-addon img{ cursor:inherit;}
 .margin_top_7{ margin-top:7px;}
 .industry_min_heights {
     border: 1px solid #ccc !important;

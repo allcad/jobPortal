@@ -11,7 +11,7 @@
                             <ul class="breadcomb">
                                 <li><a href="javascript:void(0)" [routerLink]="currentUrl == '/public/advanced-search' ? '/public/recruiterLogin' : '/recruiter/recruiter-home'" class="hover_text_pink">Home</a></li>
                                 <li class="right_arrow text_pink">&gt;</li>
-                                <li><a href="javascript:void(0);" class="hover_text_pink">Recruiter </a></li>
+                                <li>Recruiter</li>
                                 <li class="right_arrow text_pink">&gt;</li>
                                 <li class="active">Advanced Search</li>
                             </ul>
@@ -107,11 +107,11 @@
                     </div>
                 </div>
             </div>
-            <div class="mapping_view">
+            <div class="mapping_view"  *ngIf="showMappingDescription">
                 <div id="mapping_view_page">
                     <div class="container">
                         <div class="signup_form_section padding_top0">
-                            <div class="close_mapping"><img src="./assets/images/location-close.png" alt="ads" title="ads" class="img-responsive"></div>
+                            <div class="close_mapping" (click)="closeDescription()"><img src="./assets/images/location-close.png" alt="ads" title="ads" class="img-responsive"></div>
                             <div class="col-sm-9">
                                 <div class="location_image_part"><img src="./assets/images/location-rate.png" alt="ads" title="ads" class="img-responsive"></div>
                             </div>
@@ -124,11 +124,11 @@
                     </div>
                 </div>
             </div>
-            <div class="home_page_inquerys">
+            <div class="home_page_inquerys"  *ngIf="showRadialDescription">
                 <div id="inquerymaindivs" style="display: none;">
                     <div class="container">
                         <div class="signup_form_section padding_top0">
-                            <div class="close_inquerys"><img src="./assets/images/location-close.png" alt="ads" title="ads" class="img-responsive"></div>
+                            <div class="close_inquerys" (click)="closeDescription()"><img src="./assets/images/location-close.png" alt="ads" title="ads" class="img-responsive"></div>
                             <div class="col-sm-9">
                                 <div class="location_image_part"><img src="./assets/images/location-rate.png" alt="ads" title="ads" class="img-responsive"></div>
                             </div>
@@ -278,7 +278,7 @@
                                             <div class="input-group-addon bordr_non"><img src="./assets/images/inform.png" alt="" data-toggle="tooltip" data-placement="top" title="CTRL + click to select multiple sectors"></div>
                                         </div>
                                         <select class="form-control industry_min_heights padding_none" name="industrySectorValue" [(ngModel)]="industrySectorValue" multiple>
-                                            <option value="">Industry Sector(S)</option>
+                                            <!-- <option value="">Industry Sector(S)</option> -->
                                             <option value="{{item?.id}}" *ngFor="let item of industryArrayData">{{item?.industry}}</option>
                                         </select>
                                         <!-- <ul class="form-control industry_min_heights padding_none">
@@ -292,7 +292,7 @@
                                             <div class="input-group-addon bordr_non"></div>
                                         </div>
                                         <select class="form-control industry_min_heights padding_none" name="securityClearValue" [(ngModel)]="securityClearValue" multiple>
-                                            <option value="">Security Clearance</option>
+                                            <!-- <option value=""></option> -->
                                             <option value="{{item?.id}}" *ngFor="let item of securityClearanceArray">{{item?.name}}</option>
                                         </select>
                                         <!-- <ul class="form-control industry_min_heights padding_none">

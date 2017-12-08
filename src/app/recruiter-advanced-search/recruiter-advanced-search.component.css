@@ -38,8 +38,8 @@
 }
 
 :host/deep/.form-control > option:first-child{
-    background: #ff4c94;
-    color: #fff;
+    /*background: #ff4c94;
+    color: #fff;*/
     -webkit-transition: all 0.2s ease 0s;
 }
 
