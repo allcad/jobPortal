@@ -44,7 +44,7 @@
                                 <div class="form-group">
                                     <div class="input-group responsive_width_100">
                                         <div class="input-group-addon upto_border_none">Sort By:</div>
-                                        <select class="form-control minimal background_drop_down box_height_30 box_padding_3" (change)="getWatchDogListData(onPageClick)" [(ngModel)]="currentSortBy" name="currentSortBy">
+                                        <select class="form-control minimal background_drop_down box_height_30 box_padding_3" (change)="watchDogChange(onPageClick)" [(ngModel)]="currentSortBy" name="currentSortBy">
                                             <option value="{{item.id}}" *ngFor="let item of sortByData;">{{item.text}}</option>
                                             
                                         </select>

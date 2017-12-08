@@ -35,10 +35,18 @@ export class RecruiterWatchListComponent implements OnInit {
   }
 
   filterByJobChange() {
+    this.watchListData = [];
+    this.firstArray = [];
+    this.secondArray = [];
+    this.thirdArray = [];
   	this.getWatchListData();
   }
 
   sortChange() {
+    this.watchListData = [];
+    this.firstArray = [];
+    this.secondArray = [];
+    this.thirdArray = [];
   	this.getWatchListData();
   }
 

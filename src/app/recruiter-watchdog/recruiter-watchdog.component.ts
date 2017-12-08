@@ -48,6 +48,11 @@ export class RecruiterWatchdogComponent implements OnInit {
     );
   }
 
+  watchDogChange(page) {
+    this.watchListDataArr = [];
+    this.getWatchDogListData(page);
+  }
+
   getWatchDogListData(pageNo) {
     this.loading = true;
     console.log("currentSortBy--", this.currentSortBy);

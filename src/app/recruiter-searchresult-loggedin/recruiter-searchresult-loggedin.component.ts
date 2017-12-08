@@ -229,6 +229,10 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   }
 
   sortChange() {
+    this.searchList = [];
+    this.firstArrayValue = [];
+    this.secondArray = [];
+    this.thirdArray = [];
     this.getSearchResultList();
   }
 

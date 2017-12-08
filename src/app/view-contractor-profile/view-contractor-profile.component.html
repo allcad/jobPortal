@@ -78,7 +78,14 @@
                         <div class="recruiter_view_profile_right">
                             <h5>Availability</h5>
                             <p>{{contractorData?.availability ? contractorData?.availability : 'N/A'}}</p>
-                            <img src="./assets/images/days.png" alt="" title="">
+
+                            <div class="graph_img">
+                                <span>10</span>
+                                Days
+                            </div>
+
+
+                            <!-- <img src="./assets/images/days.png" alt="" title=""> -->
                             <p class="font_size14">My Notice Period is </p>
                             <h3>{{contractorData?.notice_period ? contractorData?.notice_period : 'N/A'}}</h3>
                             <p class="font_size12">I am happy to use my notice period : {{contractorData?.happy_notice ? contractorData?.happy_notice : 'N/A'}}</p>
