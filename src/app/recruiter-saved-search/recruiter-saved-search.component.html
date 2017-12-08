@@ -185,7 +185,7 @@
                       <div class="input-group responsive_width_100">
                         <div class="input-group-addon upto_border_none">Time left on current Contract</div>
                         <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none" name="timeLeftOnCutCont" [(ngModel)]="timeLeftOnCutCont">
-                          <option value="">Time left on current Contract</option>
+                          <option value="">All</option>
                           <option value="{{item?.id}}" *ngFor="let item of timeLeftData">{{item?.text}}</option>
                           <!-- <option value="1">124536</option>
                                                             <option value="5">5124536</option>
@@ -215,7 +215,7 @@
                                                             <option value="5">5124536</option>
                                                             <option value="10">10124536</option>
                                                             <option value="20">20124536</option> -->
-                          <option value="">Show contractors updated Since</option>
+                          <option value="">All</option>
                           <option value="{{item?.id}}" *ngFor="let item of timeLeftData">{{item?.text}}</option>
                         </select>
                       </div>
@@ -260,7 +260,7 @@
                         </div>
                       </div>
                       <select class="form-control industry_min_heights padding_none" name="industrySectorValue" [(ngModel)]="industrySectorValue" multiple (change)="industrysectorChange()">
-                        <option value="" [disabled]="true">Industry Sector(S)</option>
+                        <!-- <option value="" [disabled]="true">Industry Sector(S)</option> -->
                         <option value="{{item?.id}}" *ngFor="let item of industryArrayData">{{item?.industry}}</option>
                       </select>
                       <!-- <ul class="form-control industry_min_heights padding_none">
@@ -274,7 +274,7 @@
                         <div class="input-group-addon bordr_non"></div>
                       </div>
                       <select class="form-control industry_min_heights padding_none" name="securityClearValue" [(ngModel)]="securityClearValue" multiple (change)="industrysectorChange()">
-                        <option value="" [disabled]="true">Security Clearance</option>
+                       <!--  <option value="" [disabled]="true">Security Clearance</option> -->
                         <option value="{{item?.id}}" *ngFor="let item of securityClearanceArray">{{item?.name}}</option>
                       </select>
                       <!-- <ul class="form-control industry_min_heights padding_none">

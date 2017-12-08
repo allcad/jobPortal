@@ -54,7 +54,7 @@ postcode = '';
 displayTown = '';
 displayCountry = '';
 displayLocationName = '';
-showRadialDescription = true;
+showRadialDescription = false;
 showMappingDescription = true;
 //displayLocationName = '';
   constructor(public _commonRequestService: CommonRequestService, private activateRoute: ActivatedRoute,

@@ -125,7 +125,7 @@
                 </div>
             </div>
             <div class="home_page_inquerys"  *ngIf="showRadialDescription">
-                <div id="inquerymaindivs" style="display: none;">
+                <div id="inquerymaindivs">
                     <div class="container">
                         <div class="signup_form_section padding_top0">
                             <div class="close_inquerys" (click)="closeDescription()"><img src="./assets/images/location-close.png" alt="ads" title="ads" class="img-responsive"></div>
@@ -171,7 +171,7 @@
                                             <!-- <img src="./assets/images/distanc-from-location.png" alt="distanc-from-location" title="distanc-from-location" class="img-responsive">  -->
                                             <!-- <ion-range-slider class="width_100" (onFinish)="getRangeSliderValue($event)" #sliderElement min="200" value="100" max="800" step="10" from="300">
                                             </ion-range-slider> -->
-                                            <ion-range-slider type="single" prefix="£" class="width_100" (onFinish)="getRangeSliderValue($event)" #searchResultElement min="0" value="100" max="20" step="1" from="5" to="20">
+                                            <ion-range-slider type="single" prefix="" class="width_100" (onFinish)="getRangeSliderValue($event)" #searchResultElement min="0" value="100" max="20" step="1" from="5" to="20">
                                             </ion-range-slider>
                                         </div>
                                     </div>
@@ -214,7 +214,7 @@
                                         <div class="input-group responsive_width_100 ">
                                             <div class="input-group-addon upto_border_none padding_right_38">Time left on current Contract</div>
                                             <select class="form-control minimal background_drop_down box_padding_3 box_height_30 padding_left_none" name="timeLeft" [(ngModel)]="timeLeft">
-                                                <option value="0">Time left on current Contract</option>
+                                                <option value="0">All</option>
                                                 <option value="{{item?.id}}" *ngFor="let item of timeLeftData">{{item?.text}}</option>
                                                 <!-- <option value="5">5124536</option>
                                                 <option value="10">10124536</option>
@@ -239,7 +239,7 @@
                                         <div class="input-group responsive_width_100">
                                             <div class="input-group-addon upto_border_none">Show contractors updated Since</div>
                                             <select class="form-control minimal background_drop_down box_padding_3 box_height_30 padding_left_none" name="showContractor" [(ngModel)]="showContractor">
-                                                <option value="0">Show contractors updated Since</option>
+                                                <option value="0">All</option>
                                                 <option value="{{item?.id}}" *ngFor="let item of timeLeftData">{{item?.text}}</option>
                                                 <!-- <option value="1">124536</option>
                                                 <option value="5">5124536</option>
