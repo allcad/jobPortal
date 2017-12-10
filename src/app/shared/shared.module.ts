@@ -41,6 +41,7 @@ import { RecruiterSavedSearchComponent } from '../recruiter-saved-search/recruit
 import { ViewContractorProfileComponent } from '../view-contractor-profile/view-contractor-profile.component';
 import { RecruiterGuidesPageComponent } from '../recruiter-guides-page/recruiter-guides-page.component';
 import { ShareButtonsModule } from 'ngx-sharebuttons';
+import { ContractorJobDetailComponent } from '../contractor-job-detail/contractor-job-detail.component';
 
 const sharedModuleList = [
   FindContractHubComponent,
@@ -72,7 +73,9 @@ const sharedModuleList = [
   RecruiterAdvancedSearchComponent,
   RecruiterSavedSearchComponent,
   ViewContractorProfileComponent,
-  RecruiterGuidesPageComponent]
+  RecruiterGuidesPageComponent,
+  ContractorJobDetailComponent
+  ]
 
 @NgModule({
   declarations: sharedModuleList,

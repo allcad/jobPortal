@@ -33,6 +33,7 @@ import { ContractorForgotPasswordComponent } from '../contractor-forgot-password
 import { ContractorResetPasswordComponent } from '../contractor-reset-password/contractor-reset-password.component';
 import { AboutContractorComponent } from '../about-contractor/about-contractor.component';
 import { RecruiterResetPasswordComponent } from '../recruiter-reset-password/recruiter-reset-password.component';
+import { ContractorJobDetailComponent } from '../contractor-job-detail/contractor-job-detail.component';
 
 const publicRoutes: Routes = [
     {
@@ -103,18 +104,18 @@ const publicRoutes: Routes = [
     }, {
         "path": "jobSearch",
         "component": ContractorJobSearchComponent
-    },{
-        "path": "jobSearch",
-        "component": ContractorJobSearchComponent
     }, {
-        "path" : "contractor_search",
-        "component" : ContractorSearchResultComponent
-    } ,{
+        "path": "contractor_search",
+        "component": ContractorSearchResultComponent
+    }, {
         "path": "lastSearch",
         "component": ContractorJobSearchComponent
-    }, {
+    },  {
         "path": "searchResult",
         "component": ContractorSearchResultComponent
+    },{
+        "path": "contractor_search/:id",
+        "component": ContractorJobDetailComponent
     }, {
         "path": "searchresult-loggedin",
         "component": RecruiterSearchresultLoggedinComponent,

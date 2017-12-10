@@ -28,6 +28,8 @@ import { ContractorLoginFullJobComponent } from './contractor-login-full-job/con
 import { CommonDataSharedService } from './commonDataSharedService';
 import { ResolverService } from './resolver.service';
 import { CommonService } from './commonService.service';
+
+// import { ContractorJobDetailComponent } from './contractor-job-detail/contractor-job-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +45,7 @@ import { CommonService } from './commonService.service';
     RecruiterHeaderComponent,
     ContractorAccountComponent,
     ContractorLoginFullJobComponent,
+    //ContractorJobDetailComponent,
   ],
   imports: [
     BrowserModule,

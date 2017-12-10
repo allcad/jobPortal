@@ -19,6 +19,7 @@ import { ContractorHelpComponent } from '../contractor-help/contractor-help.comp
 import { ContractorNewsCategoryComponent } from '../contractor-news-category/contractor-news-category.component';
 //import { AboutContractorComponent } from '../about-contractor/about-contractor.component';
 import { ResolverService } from '../resolver.service';
+import { ContractorJobDetailComponent } from '../contractor-job-detail/contractor-job-detail.component';
 
 const contractorRoutes: Routes = [{
     "path": "profile",
@@ -72,11 +73,15 @@ const contractorRoutes: Routes = [{
     "path": "searchResult",
     "component": ContractorSearchResultComponent,
     "resolve": { resolverData: ResolverService }
-},
+}, 
 
 {
-     "path": "contractor_search",
+    "path": "contractor_search",
     "component": ContractorSearchResultComponent,
+    "resolve": { resolverData: ResolverService }
+},{
+    "path": "contractor_search/:id",
+    "component": ContractorJobDetailComponent,
     "resolve": { resolverData: ResolverService }
 },
 {
@@ -90,11 +95,11 @@ const contractorRoutes: Routes = [{
     "path": "news/:id",
     "component": ContractorNewsArticleComponent
 }
-// {
-//     "path": "about",
-//     "component": AboutContractorComponent,
-//     "resolve": { resolverData: ResolverService }
-// }
+    // {
+    //     "path": "about",
+    //     "component": AboutContractorComponent,
+    //     "resolve": { resolverData: ResolverService }
+    // }
 ]
 
 @NgModule({
