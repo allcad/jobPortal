@@ -40,7 +40,8 @@ export class RecruiterLostPasswordComponent implements OnInit {
 	          	console.log("forget password--", data);
               this.emailId = "";
 	          	this.WSErrorMsg = "";
-	          } else {
+	          } else if(data && data.status == 'FALSE'){
+              this.commonService.goToRecruiterLogin(data);
 	          	this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
 	          }
 	        }

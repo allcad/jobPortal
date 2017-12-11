@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule,NgForm } from '@angular/forms';
 import { CommonRequestService } from '../common-request.service';
 import { Router } from '@angular/router';
+import { CommonService } from '../commonService.service';
 
 @Component({
   selector: 'app-recruiter-sign-up',
@@ -34,7 +35,8 @@ export class RecruiterSignUpComponent implements OnInit {
   invalidErrorMsg = "";
   termsOfUseFlag = false;
   inputData; JobTitle; phoneNo; emailAddress; passwordValue; keySkill; termOfUse = false; inputUrl; status; succesMessageFlag = false;
-  constructor(public _commonRequestService: CommonRequestService, private router: Router) { }
+  constructor(public _commonRequestService: CommonRequestService, private router: Router,
+    private commonService: CommonService) { }
 
   ngOnInit() {
   }
@@ -202,10 +204,11 @@ export class RecruiterSignUpComponent implements OnInit {
               this.invalidErrorMsg = "";
               this.router.navigate(['./public/recruiterLogin']);
             }
-            else{
+            else if(data && data.status == 'FALSE'){
                this.succesMessageFlag =false;
                 this.ErrorMesageFlag =true;
                 this.invalidErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+               this.commonService.goToRecruiterLogin(data);
             }
             console.log("rercu_sign: ", this.status);
           }

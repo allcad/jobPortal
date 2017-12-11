@@ -163,7 +163,11 @@ searchListErrorMsg = "";
        this._commonRequestService.getData(wsUrl).subscribe(
         data => {
           console.log("timeLeftData--", data);
-          this.timeLeftData = data.data;
+          if(data && data.status == 'TRUE') {
+            this.timeLeftData = data.data;
+          } else if(data && data.status == 'FALSE') {
+           this.commonService.goToRecruiterLogin(data);
+         }
           //this.recruiterNameArray = data.data;
         }
     );
@@ -180,7 +184,11 @@ searchListErrorMsg = "";
        this._commonRequestService.getData(wsUrl).subscribe(
         data => {
           console.log("education data--", data);
-          this.educationData = data.data;
+          if(data && data.status == 'TRUE') {
+            this.educationData = data.data;
+          } else if(data && data.status == 'FALSE') {
+           this.commonService.goToRecruiterLogin(data);
+         }
           //this.recruiterNameArray = data.data;
         }
     );
@@ -197,7 +205,11 @@ searchListErrorMsg = "";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
           console.log("securityClearanceArray--", data);
-          this.securityClearanceArray = data.data;
+          if(data && data.status == 'TRUE') {
+            this.securityClearanceArray = data.data;
+          } else if(data && data.status == 'FALSE') {
+           this.commonService.goToRecruiterLogin(data);
+         }
           //this.recruiterNameArray = data.data;
         }
     );
@@ -214,7 +226,11 @@ searchListErrorMsg = "";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
           console.log("industryArrayData--", data);
-          this.industryArrayData = data.data;
+          if(data && data.status == 'TRUE') {
+            this.industryArrayData = data.data;
+          } else if(data && data.status == 'FALSE') {
+           this.commonService.goToRecruiterLogin(data);
+         }
           //this.recruiterNameArray = data.data;
         }
     );
@@ -231,10 +247,14 @@ searchListErrorMsg = "";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
           console.log("delete data--", data);
-          this.getListOfSaveSearch();
-          this.resetFields();
-          this.successMessageFlag =  true;
-          this.errorSuccessMessage = "Saved Search Delete Successfully";
+          if(data && data.status == 'TRUE') {
+            this.getListOfSaveSearch();
+            this.resetFields();
+            this.successMessageFlag =  true;
+            this.errorSuccessMessage = "Saved Search Delete Successfully";
+          } else if(data && data.status == 'FALSE') {
+           this.commonService.goToRecruiterLogin(data);
+         }
           window.scroll(0,0);
           //this.industryArrayData = data.data;
           //this.recruiterNameArray = data.data;
@@ -281,7 +301,9 @@ searchListErrorMsg = "";
             this.industrySectorValue = data.data.recuriter_search_by_industry ? data.data.recuriter_search_by_industry : '';
             this.securityClearValue = data.data.recuriter_search_by_security_clearance ? data.data.recuriter_search_by_security_clearance : '';
             this.drivingLicenceValue = data.data.recuriter_search_by_driving_license === 1 ? 'yes' : 'no';
-          }
+          } else if(data && data.status == 'FALSE') {
+           this.commonService.goToRecruiterLogin(data);
+         }
         }
     );
   }
@@ -306,7 +328,8 @@ searchListErrorMsg = "";
           if(data && data.data && data.data.length > 0) {
             this.saveSearchDataListing = data.data;
             this.searchListErrorMsg = "";
-          } else{
+          } else if(data && data.status == 'FALSE'){
+               this.commonService.goToRecruiterLogin(data);
                this.searchListErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
              
             }
@@ -383,7 +406,8 @@ searchListErrorMsg = "";
           this.errorSuccessMessage = "This Saved Search name is already exist.";
           this.sameSearchNameFlag = true;
           break;
-        } else {
+        } else{
+
           this.sameSearchNameFlag = false;
           this.errorMessageFlag = false;
           this.errorSuccessMessage = "";
@@ -415,7 +439,8 @@ searchListErrorMsg = "";
             // this.profileData={};
             // this.errorMsg = "";
             }
-            else{
+            else if(data && data.status == 'FALSE'){
+                this.commonService.goToRecruiterLogin(data);
                this.succesMessageFlag =false;
                this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
                this.successMessageFlag  = false;
@@ -447,9 +472,10 @@ searchListErrorMsg = "";
                 // this.profileData={};
                 // this.errorMsg = "";
                 }
-                else{
+                else if(data && data.status == 'FALSE'){
                    this.succesMessageFlag =false;
                    this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+                   this.commonService.goToRecruiterLogin(data);
                    this.successMessageFlag  = false;
                    this.errorMessageFlag = true;
                     //this.ErrorMesageFlag =true;

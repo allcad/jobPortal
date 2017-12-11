@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
+import { CommonService } from '../commonService.service';
 
 @Component({
   selector: 'app-recruiter-manage-user',
@@ -27,7 +28,7 @@ export class RecruiterManageUserComponent implements OnInit {
   openPopupFlag = false;
   currentDeleteId;
   userAllowed = '';
-  constructor(public _commonRequestService: CommonRequestService) {
+  constructor(public _commonRequestService: CommonRequestService, private commonService: CommonService) {
   	//this.addMulUserArray.splice(0,1);
    }
 
@@ -66,7 +67,8 @@ export class RecruiterManageUserComponent implements OnInit {
            this.telephoneV = "";
            this.WSErrorMsg = "";
            this.makeSubUser();
-         } else {
+         } else if(data && data.status == 'FALSE'){
+             this.commonService.goToRecruiterLogin(data);
            this.successMessageFlag = false;
            this.errorMessageFlag = true;
            this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
@@ -93,7 +95,8 @@ export class RecruiterManageUserComponent implements OnInit {
            // this.successMessage = "Sub User Created Succesfully!";
            // this.successMessageFlag = true;
            // this.errorMessageFlag = false;
-         } else {
+         } else if(data && data.status == 'FALSE'){
+           this.commonService.goToRecruiterLogin(data);
            this.WSErrorMsg = "Error While Creating Sub User";
            this.successMessageFlag = false;
            this.errorMessageFlag = true;
@@ -120,10 +123,11 @@ export class RecruiterManageUserComponent implements OnInit {
            this.makeSubUser();
            this.WSErrorMsg = "";
            //this.makeSubUser();
-         } else {
+         } else if(data && data.status == 'FALSE'){
            this.WSErrorMsg = "Error While Creating Super User!";
            this.successMessageFlag = false;
            this.errorMessageFlag = true;
+           this.commonService.goToRecruiterLogin(data);
          }
          window.scroll(0,0);
         }
@@ -147,10 +151,11 @@ export class RecruiterManageUserComponent implements OnInit {
            this.errorMessageFlag = false;
            this.WSErrorMsg = "";
            this.makeSubUser();
-         } else {
+         } else if(data && data.status == 'FALSE'){
            this.WSErrorMsg = "Error While Deleting Super User!";
            this.successMessageFlag = false;
            this.errorMessageFlag = true;
+           this.commonService.goToRecruiterLogin(data);
          }
          window.scroll(0,0);
         }

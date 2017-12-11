@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm} from '@angular/forms';
 import { CommonRequestService } from '../common-request.service';
 import * as jquery from 'jquery';
+import { CommonService } from '../commonService.service';
+
 @Component({
   selector: 'app-recruiter-manage-profile',
   templateUrl: './recruiter-manage-profile.component.html',
@@ -87,7 +89,7 @@ addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio'
 fd;
 companyEditableId;
 WSErrorMsg = "";
-  constructor(public _commonRequestService: CommonRequestService) {
+  constructor(public _commonRequestService: CommonRequestService, private commonService: CommonService) {
     this.addMulAddArray.splice(0,1);
     this.addMulSocialArray.splice(0,1);
    }
@@ -111,7 +113,11 @@ WSErrorMsg = "";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
           console.log("company size--", data);
-          this.companySizeArray = data.data;
+          if(data && data.status == 'TRUE') {
+            this.companySizeArray = data.data;
+          } else if(data && data.status == 'FALSE'){
+             this.commonService.goToRecruiterLogin(data);
+           }
           //this.recruiterNameArray = data.data;
         }
     );
@@ -128,7 +134,11 @@ WSErrorMsg = "";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
           console.log("country size--", data);
-          this.countryValueArray = data.data;
+          if(data && data.status == 'TRUE') {
+            this.countryValueArray = data.data;
+          } else if(data && data.status == 'FALSE'){
+             this.commonService.goToRecruiterLogin(data);
+           }
           //this.recruiterNameArray = data.data;
         }
     );
@@ -515,7 +525,8 @@ WSErrorMsg = "";
           this.WSErrorMsg = "";
           this.getProfileDta();
           }
-          else{
+          else if(data && data.status == 'FALSE'){
+             this.commonService.goToRecruiterLogin(data);
              this.succesMessageFlag =false;
               this.ErrorMesageFlag =true;
               this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;;
@@ -602,7 +613,9 @@ getProfileDta(){
             console.log('this.addMulAddArray--', this.addMulAddArray);
           }
 
-          } 
+          } else if(data && data.status == 'FALSE') {
+            this.commonService.goToRecruiterLogin(data);
+          }
         }
     );
 

@@ -213,7 +213,7 @@
               <div class="form-group">
                 <div class="input-group responsive_width_100 ">
                   <div class="input-group-addon upto_border_none padding_right_38">Time left on current Contract</div>
-                  <select class="form-control minimal background_drop_down box_padding_3 box_height_30 padding_left_none" name="timeLeft" [(ngModel)]="timeLeft">
+                  <select class="form-control minimal background_drop_down box_padding_3 box_height_30 padding_left_none" name="timeLeft" [(ngModel)]="timeLeft" [disabled]="includeContractor">
                     <option value="0">All</option>
                     <option value="{{item?.id}}" *ngFor="let item of timeLeftData">{{item?.text}}</option>
                     <!-- <option value="5">5124536</option>

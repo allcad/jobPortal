@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { NgForm} from '@angular/forms';
 import { CommonRequestService } from '../common-request.service';
+import { CommonService } from '../commonService.service';
 
 @Component({
   selector: 'app-recruiter-manage-account',
@@ -23,7 +24,7 @@ export class RecruiterManageAccountComponent implements OnInit, AfterViewInit {
   manageErrorFlag = false;
   accountSuperUserName;
   WSErrorMsg = "";
-  constructor(public _commonRequestService: CommonRequestService) { }
+  constructor(public _commonRequestService: CommonRequestService, private commonService: CommonService) { }
 
   ngOnInit() {
     this.recruiterAccountDetails();
@@ -49,6 +50,8 @@ export class RecruiterManageAccountComponent implements OnInit, AfterViewInit {
            this.telePhone = data.data.contactDetails && data.data.contactDetails.telephone ? data.data.contactDetails.telephone : "";
            this.accountCreatedValue = data.data.personalDetails && data.data.personalDetails.accountCreated ? data.data.personalDetails.accountCreated : "";
            this.accountSuperUserName = data.data.personalDetails && data.data.personalDetails.name ? data.data.personalDetails.name : "";
+         } else if(data && data.status == 'FALSE') {
+           this.commonService.goToRecruiterLogin(data);
          }
         }
     );
@@ -114,10 +117,11 @@ export class RecruiterManageAccountComponent implements OnInit, AfterViewInit {
              this.telePhone = "";
              this.WSErrorMsg = "";
              this.recruiterAccountDetails();
-           } else {
+           } else if(data && data.status == 'FALSE'){
              this.manageErrorFlag = true;
              this.manageAccountFlag = false;
              this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+             this.commonService.goToRecruiterLogin(data);
            }
           }
       );

@@ -72,7 +72,9 @@ export class RecruiterPreviewJobComponent implements OnInit {
          if(data && data.status == 'TRUE') {
            this.previewDataList = data.data;
            console.log("this.previewDataList--", this.previewDataList);
-         } 
+         } else if(data && data.status == 'FALSE') {
+           this.commonService.goToRecruiterLogin(data);
+         }
         }
     );
   }
@@ -122,8 +124,9 @@ export class RecruiterPreviewJobComponent implements OnInit {
                 this.jobPostFlag = false;
                 this.previewJobErrorMsg = "";
                 this.router.navigate(['/recruiter/manage-jobs']);
-              } else if(data && data.error){
+              } else if(data && data.status == 'FALSE'){
                 this.previewJobErrorMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
+                this.commonService.goToRecruiterLogin(data);
                 this.jobPostFlag = true;
               }
               //this.jobPostFlag = true;
@@ -140,8 +143,9 @@ export class RecruiterPreviewJobComponent implements OnInit {
                 this.jobPostFlag = false;
                 this.previewJobErrorMsg = "";
                 this.router.navigate(['/recruiter/manage-jobs']);
-              } else if(data && data.error){
+              } else if(data && data.status == 'FALSE'){
                 this.previewJobErrorMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
+                this.commonService.goToRecruiterLogin(data);
                 this.jobPostFlag = true;
               }
               //this.jobPostFlag = true;

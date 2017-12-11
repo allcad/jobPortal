@@ -3,6 +3,8 @@ import { FormsModule,NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonRequestService } from '../common-request.service';
 import { CommonDataSharedService } from '../commonDataSharedService';
+import { CommonService } from '../commonService.service';
+
 @Component({
   selector: 'app-recruiter-view-applications',
   templateUrl: './recruiter-view-applications.component.html',
@@ -28,7 +30,8 @@ export class RecruiterViewApplicationsComponent implements OnInit {
   maxRecord;
   loading = true;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
-  	private _commonDataSharedService: CommonDataSharedService, private activateRoute: ActivatedRoute) { }
+  	private _commonDataSharedService: CommonDataSharedService, private activateRoute: ActivatedRoute,
+    private commonService: CommonService) { }
 
   ngOnInit() {
   	this.getApplicationList(12);
@@ -56,7 +59,9 @@ export class RecruiterViewApplicationsComponent implements OnInit {
          if(data) {
            this.filterByJobData = data.data;
            
-        }
+        } else if(data && data.status == 'FALSE') {
+           this.commonService.goToRecruiterLogin(data);
+         }
       }
     );
   }
@@ -120,11 +125,10 @@ export class RecruiterViewApplicationsComponent implements OnInit {
            // console.log("firstarray", this.firstArray);
            // console.log("secondArray", this.secondArray);
            // console.log("thirdArray", this.thirdArray);
-          } else {
-            if(data && data.error && data.error.length > 0) {
+          } else if(data && data.status == 'FALSE'){
+             this.commonService.goToRecruiterLogin(data);
             this.errorMsgFlag = true;
               this.errorMsg = this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
-            }
           }
         }
     );

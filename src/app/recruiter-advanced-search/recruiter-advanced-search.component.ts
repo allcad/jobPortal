@@ -92,7 +92,11 @@ showMappingDescription = true;
        this._commonRequestService.getData(wsUrl).subscribe(
         data => {
           console.log("timeLeftData--", data);
-          this.timeLeftData = data.data;
+          if(data && data.status == 'TRUE') {
+            this.timeLeftData = data.data;
+          } else if(data && data.status == 'FALSE') {
+            this.commonService.goToRecruiterLogin(data);
+          }
           //this.recruiterNameArray = data.data;
         }
     );
@@ -192,7 +196,11 @@ showMappingDescription = true;
        this._commonRequestService.getData(wsUrl).subscribe(
         data => {
           console.log("sort by--", data);
-          this.sortByData = data.data;
+          if(data && data.status == 'TRUE') {
+            this.sortByData = data.data;
+          } else if(data && data.status == 'FALSE') {
+            this.commonService.goToRecruiterLogin(data);
+          }
           //this.recruiterNameArray = data.data;
         }
     );
@@ -209,7 +217,11 @@ showMappingDescription = true;
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
           console.log("securityClearanceArray--", data);
-          this.securityClearanceArray = data.data;
+          if(data && data.status == 'TRUE') {
+            this.securityClearanceArray = data.data;
+          } else if(data && data.status == 'FALSE') {
+            this.commonService.goToRecruiterLogin(data);
+          }
           //this.recruiterNameArray = data.data;
         }
     );
@@ -249,6 +261,8 @@ showMappingDescription = true;
             //this.currentLocation = data.data.recuriter_search_job_title
             this.industrySectorValue = data.data.recuriter_search_by_industry ? data.data.recuriter_search_by_industry : '';
             this.securityClearValue = data.data.recuriter_search_by_security_clearance ? data.data.recuriter_search_by_security_clearance : '';
+          } else if(data && data.status == 'FALSE') {
+            this.commonService.goToRecruiterLogin(data);
           }
           // if(this._route.url == "/public/advanced-search") {
           //   this._route.navigate(['/public/saved-search']);
@@ -272,7 +286,11 @@ showMappingDescription = true;
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
           console.log("industryArrayData--", data);
-          this.industryArrayData = data.data;
+          if(data && data.status == 'TRUE') {
+            this.industryArrayData = data.data;
+          } else if(data && data.status == 'FALSE') {
+            this.commonService.goToRecruiterLogin(data);
+          }
           //this.recruiterNameArray = data.data;
         }
     );

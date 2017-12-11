@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone, AfterViewInit } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
 import { Router } from '@angular/router';
+import { CommonService } from '../commonService.service';
 // import { } from 'googlemaps';
 // import { MapsAPILoader } from '@agm/core';
 @Component({
@@ -50,7 +51,7 @@ export class RecuriterSavedWatchDogComponent implements OnInit, AfterViewInit {
   displayCountry = '';
   displayLocationName = '';
   constructor(public _commonRequestService: CommonRequestService, private router: Router,
-    private ngZone: NgZone) { }
+    private ngZone: NgZone, private commonService: CommonService) { }
 
   ngOnInit() {
     this.getSecurityClearance();
@@ -130,7 +131,11 @@ export class RecuriterSavedWatchDogComponent implements OnInit, AfterViewInit {
        this._commonRequestService.getData(wsUrl).subscribe(
         data => {
           console.log("timeLeftData--", data);
-          this.timeLeftData = data.data;
+          if(data && data.status == 'TRUE') {
+            this.timeLeftData = data.data;
+          } else if(data && data.status == 'FALSE') {
+            this.commonService.goToRecruiterLogin(data);
+          }
           //this.recruiterNameArray = data.data;
         }
     );
@@ -147,7 +152,11 @@ export class RecuriterSavedWatchDogComponent implements OnInit, AfterViewInit {
        this._commonRequestService.getData(wsUrl).subscribe(
         data => {
           console.log("education data--", data);
-          this.educationData = data.data;
+          if(data && data.status == 'TRUE') {
+            this.educationData = data.data;
+          } else if(data && data.status == 'FALSE') {
+            this.commonService.goToRecruiterLogin(data);
+          }
           //this.recruiterNameArray = data.data;
         }
     );
@@ -164,7 +173,12 @@ export class RecuriterSavedWatchDogComponent implements OnInit, AfterViewInit {
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
           console.log("securityClearanceArray--", data);
-          this.securityClearanceArray = data.data;
+          if(data && data.status == 'TRUE') {
+            this.securityClearanceArray = data.data;
+          }
+          else if(data && data.status == 'FALSE') {
+            this.commonService.goToRecruiterLogin(data);
+          }
           //this.recruiterNameArray = data.data;
         }
     );
@@ -181,7 +195,11 @@ export class RecuriterSavedWatchDogComponent implements OnInit, AfterViewInit {
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
           console.log("industryArrayData--", data);
-          this.industryArrayData = data.data;
+          if(data && data.status == 'TRUE') {
+            this.industryArrayData = data.data;
+          }  else if(data && data.status == 'FALSE') {
+            this.commonService.goToRecruiterLogin(data);
+          }
           //this.recruiterNameArray = data.data;
         }
     );
@@ -198,8 +216,12 @@ export class RecuriterSavedWatchDogComponent implements OnInit, AfterViewInit {
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
           console.log("delete data--", data);
-          this.getSaveSearchList();
-          this.resetFields();
+          if(data && data.status == 'TRUE') {
+            this.getSaveSearchList();
+            this.resetFields();
+          } else if(data && data.status == 'FALSE') {
+            this.commonService.goToRecruiterLogin(data);
+          }
           //this.industryArrayData = data.data;
           //this.recruiterNameArray = data.data;
         }
@@ -221,6 +243,7 @@ export class RecuriterSavedWatchDogComponent implements OnInit, AfterViewInit {
           console.log("save search details--", data);
           //this.industryArrayData = data.data;
           //this.recruiterNameArray = data.data;
+          if(data && data.status == 'TRUE') {
           if(data && data.data && data.data.params) {
             this.savedSearchName = data.data.name;
             this.addToWatchDogCheck = data.data.params.recuriter_search_add_to_watchdog === 1 ? true : false;
@@ -245,6 +268,9 @@ export class RecuriterSavedWatchDogComponent implements OnInit, AfterViewInit {
             this.industrySectorValue = data.data.params.recuriter_search_by_industry? data.data.params.recuriter_search_by_industry : [];
             this.securityClearValue = data.data.params.recuriter_search_by_security_clearance ? data.data.params.recuriter_search_by_security_clearance : [];
           }
+        } else if(data && data.status == 'FALSE') {
+            this.commonService.goToRecruiterLogin(data);
+          }
         }
     );
   }
@@ -263,6 +289,8 @@ export class RecuriterSavedWatchDogComponent implements OnInit, AfterViewInit {
           if(data && data.data && data.data.length > 0) {
             this.searchListDataFlag = true;
             this.searchListData = data.data;
+          } else if(data && data.status == 'FALSE') {
+            this.commonService.goToRecruiterLogin(data);
           }
           //this.industryArrayData = data.data;
           //this.recruiterNameArray = data.data;
@@ -350,7 +378,8 @@ export class RecuriterSavedWatchDogComponent implements OnInit, AfterViewInit {
           // this.profileData={};
           // this.errorMsg = "";
           }
-          else{
+          else if(data && data.status == 'FALSE'){
+            this.commonService.goToRecruiterLogin(data);
              this.succesMessageFlag =false;
              this.errorMessageFlag = true;
              this.errorMessage = "Error while saving Watch Dog";

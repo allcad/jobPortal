@@ -328,3 +328,39 @@
                 </div>
             </div>
         </section>
+
+<div *ngIf="showWatchPopup" id="watchContractor" class="modalbox modbox2 window " style="display: block;">
+  <h3>Watch Contractor <span class="closex shut3" style="cursor: pointer;" (click)="closePopup()">X</span></h3>
+  <div class="modal-inner">
+    <div class="inputrowx">
+      <div class="formgroup">
+        <label for="notifyme">Notify me <span>(Choose Multiple)</span>:</label>
+        <span class="inp-auto auto284"><span>
+                        <select class="inpfocus2" name="notifyme" id="notifyMe" [(ngModel)]="notifyMeValue">
+                            <option value="24 hour">24 hours before live</option>
+                            <option value="2 day">2 days before live</option>
+                            <option value="1 week">1 week before live</option>
+                            <option value="all">All the above</option>
+                        </select>
+                    </span></span>
+      </div>
+    </div>
+    <div class="inputrowx">
+      <div class="formgroup">
+        <label for="attach-specific">Attach to specific job:</label>
+        <span class="inp-auto auto284"><span>
+                        <select class="inpfocus2" name="attachToJob" id="attachToJob" [(ngModel)]="currentJobId">
+                            <option value="0">All Jobs</option>
+                            <option value="{{item?.jobid}}" *ngFor="let item of jobListData;">{{item?.jobTitle}}</option>
+                        </select>
+                    </span></span>
+      </div>
+    </div>
+  </div>
+  <div class="modalbase">
+    <p class="modalview">View <a href="javascript:void(0);" [routerLink]="['../watch-list']">Watching Folder</a></p>
+    <div class="saveProfile">
+      <input class="shut4 watchContractorSubmit" (click)="addToWatchList()" type="submit" name="watchCon" id="watchCon" value="Watch">
+    </div>
+  </div>
+</div>

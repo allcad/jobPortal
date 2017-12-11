@@ -23,6 +23,7 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   pageNo = 1;
   addDynamicallyClass;
   showMoreDetailsFlag: boolean[];
+  showPhoneFlag: boolean[];
   jobListData;
   showWatchPopup = false;
   notifyMeValue = "24 hours";
@@ -206,6 +207,9 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
          console.log("add watch list--", data);
          // this.getWatchDogListData(this.pageNo);
           this.router.navigate(['./recruiter/watch-list']);
+          if(data && data.status == 'FALSE') {
+           this._commonService.goToRecruiterLogin(data);
+         }
         }
     );
   }
@@ -222,6 +226,9 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
         data => {
          console.log("unwatch--", data);
          this.unwatchPopupFlag = false;
+         if(data && data.status == 'FALSE') {
+           this._commonService.goToRecruiterLogin(data);
+         }
          // this.getWatchDogListData(this.pageNo);
           //this.router.navigate(['./recruiter/watch-list']);
         }
@@ -251,7 +258,9 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
          if(data) {
            this.jobListData = data.data;
            
-        }
+        } else if(data && data.status == 'FALSE') {
+           this._commonService.goToRecruiterLogin(data);
+         }
       }
     );
   }
@@ -310,6 +319,7 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
                 this.searchList.push(data.data[i]);
               }
               this.showMoreDetailsFlag = Array(this.searchList.length).fill(false);
+              this.showPhoneFlag = Array(this.searchList.length).fill(false);
               console.log("this.searchList", this.searchList);
              for(var i=0;i<4;i++) {
                if(this.searchList && this.searchList[i]) {
@@ -344,8 +354,9 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
 
               this.WSErrorMsg = "";
             }
-            else {
+            else if(data && data.status == 'FALSE'){
               // this.errorMessageFlag = true;
+               this._commonService.goToRecruiterLogin(data);
 
                this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
             }
@@ -410,10 +421,12 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
               this.successMessage = "Send Search Successfully.";
               this.WSErrorMsg = "";
               this.showSearchOptionFlag = false;
-            } else{
+            } else if(data && data.status == 'FALSE'){
               this.successMessageFlag = false;
               this.successMessage = "";
                  this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+                 this._commonService.goToRecruiterLogin(data);
+
                
               }
             //this.industryArrayData = data.data;
@@ -485,8 +498,9 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
           if(data && data.data && data.data.length > 0) {
             this.saveSearchDataListing = data.data;
             this.WSErrorMsg = "";
-          } else{
+          } else if(data && data.status == 'FALSE'){
                this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+               this._commonService.goToRecruiterLogin(data);
              
             }
           //this.industryArrayData = data.data;
@@ -551,19 +565,24 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
                           this.showSearchOptionFlag = false;
                           //this.errorSuccessMessage = "Saved succesfully !";
                   }
-                  else{
+                  else if(data && data.status == 'FALSE'){
                     this.successMessageFlag = false;
                     this.successMessage = "";
                      this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+                     this._commonService.goToRecruiterLogin(data);
                   }
                 }
               ); 
             }
   }
 
-  slidePhoneNumber() {
+  slidePhoneNumber(index) {
     // $( "#slidePhone" ).slide( "slide" );
-     $("#slidePhone").animate({width:"toggle"});
+    //this.showPhoneFlag[index] = !this.showPhoneFlag[index];
+    //if(this.showPhoneFlag[index]) {
+     $(".box_"+index).css('display','inline-block');
+     $("#slidePhone_"+index).animate({width:"toggle"});
+    //}
 
   }
 

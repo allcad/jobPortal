@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm} from '@angular/forms';
 import { CommonRequestService } from '../common-request.service';
 import { Router } from '@angular/router';
+import { CommonService } from '../commonService.service';
 
 @Component({
   selector: 'app-recruiter-manage-password',
@@ -18,7 +19,7 @@ export class RecruiterManagePasswordComponent implements OnInit {
   allErrorMessageFlag = false;
   errorMessageValue = "";
   WSErrorMsg = "";
-  constructor(public _commonRequestService: CommonRequestService, private router: Router) { }
+  constructor(public _commonRequestService: CommonRequestService, private router: Router, private commonService: CommonService) { }
 
   ngOnInit() {
   }
@@ -69,8 +70,8 @@ export class RecruiterManagePasswordComponent implements OnInit {
              this.newPassword = "";
              this.confirmPassword = "";
              this.WSErrorMsg = "";
-           } else {
-             console.log("data----", data.error);
+           } else if(data && data.status == 'FALSE'){
+             this.commonService.goToRecruiterLogin(data);
              this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
            }
           }
