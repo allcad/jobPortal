@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from '../commonService.service';
 
 @Component({
   selector: 'app-recruiter-header',
@@ -7,12 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecruiterHeaderComponent implements OnInit {
 	showMenu = false;
-  constructor() { }
+  constructor(private commonService: CommonService) { }
 
   ngOnInit() {
   }
 
   postJobs() {
+    this.commonService.setJobIdForJobPosting('');
   	var obj = {'jobId' : ''};
     localStorage.setItem('recruiterJobData', JSON.stringify(obj));
 

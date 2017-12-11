@@ -15,10 +15,13 @@ export class RecruiterPreviewJobComponent implements OnInit {
   previewJobErrorMsg;
   jobPostFlag = false;
   uniqueJobId;
+  postJobButtonFlag = false;
+  loading = true;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService, private commonService: CommonService) { }
 
   ngOnInit() {
+    this.loading = true;
   	// this._commonDataSharedService.manageJobsJobId.subscribe(data=> {
   	// 	console.log("data--", data);
   	// 	if(data) {
@@ -41,12 +44,19 @@ export class RecruiterPreviewJobComponent implements OnInit {
     if(jobPostingLocalStorage && jobPostingLocalStorage.jobPreviewData) {
       this.previewDataList = jobPostingLocalStorage.jobPreviewData;
       this.uniqueJobId = this.previewDataList && this.previewDataList.jobId ? this.previewDataList.jobId : '';
+      this.loading = false;
       console.log("this.previewDataList from local", this.previewDataList)
 
+    }
+    if(this.uniqueJobId) {
+      this.postJobButtonFlag = false;
+    } else {
+      this.postJobButtonFlag = true;
     }
   }
 
   jobList(jobId) {
+    this.loading = true;
   	 var input = {
    	"email":"test@test7.com",
 	"loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu",
@@ -57,9 +67,12 @@ export class RecruiterPreviewJobComponent implements OnInit {
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/view";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
+          this.loading = false;
          console.log("jobList--", data);
-         this.previewDataList = data.data;
-         console.log("this.previewDataList--", this.previewDataList);
+         if(data && data.status == 'TRUE') {
+           this.previewDataList = data.data;
+           console.log("this.previewDataList--", this.previewDataList);
+         } 
         }
     );
   }

@@ -25,3 +25,11 @@ input[type=date]::-webkit-outer-spin-button {
   margin: 0; 
 
 }
+
+.foralaeditor {
+    color: #000;
+    padding: 16px;
+    box-sizing: border-box;
+    overflow-x: auto;
+    min-height: 200px;
+}

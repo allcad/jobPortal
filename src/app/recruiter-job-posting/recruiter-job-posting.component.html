@@ -4,16 +4,16 @@
             <div id="contractor-signup" class="recruiter_job_posting_manage">
                
                 <form #recruiterJobPostingForm="ngForm" (ngSubmit)="onJobPostSave(recruiterJobPostingForm)">
-                    <div class="errorbox" *ngIf="jobPostingTiteFlag || jobPostingDurationFlag || startDateFlag || industrySectorFlag || workEliFlag || cityFlag || maxRateFlag || minRateFlag || jobSpecificationFlag"><b>The following error(s) occured:</b><br> 
+                    <div class="errorbox" *ngIf="jobPostingTiteFlag || jobPostingDurationFlag || startDateFlag || cityFlag || jobSpecificationFlag"><b>The following error(s) occured:</b><br> 
                         <li *ngIf="jobPostingTiteFlag">Job Title is required.</li>
                         <li *ngIf="jobPostingDurationFlag">Job Duration is required.</li>
                         <li *ngIf="startDateFlag">Start Date is required.</li>
-                        <li *ngIf="industrySectorFlag">Industry Sector is required.</li>
-                        <li *ngIf="workEliFlag">Work Eligibility is required.</li>
-                        <li *ngIf="cityFlag">City is required.</li>
-                        <li *ngIf="maxRateFlag">Max rate is required.</li>
-                        <li *ngIf="minRateFlag">Min rate is required.</li>
-                        <li *ngIf="jobSpecificationFlag">Job Specification title and body is required.</li>
+                        <!-- <li *ngIf="industrySectorFlag">Industry Sector is required.</li>
+                        <li *ngIf="workEliFlag">Work Eligibility is required.</li> -->
+                        <li *ngIf="cityFlag">Location is required.</li>
+                        <!-- <li *ngIf="maxRateFlag">Max rate is required.</li>
+                        <li *ngIf="minRateFlag">Min rate is required.</li> -->
+                        <li *ngIf="jobSpecificationFlag">Job Specification is required.</li>
                     </div>
                     <div class="container">
                         <div class="row">
@@ -198,7 +198,7 @@
                                     <div class="col-sm-100">
                                         <div class="form-group paste_job_specification">
                                             <label>Paste Job Specification</label>
-                                            <div class="textarea_header">
+                                            <!-- <div class="textarea_header">
                                                 <ul>
                                                     <li><a href="javascript:void(0);"><img src="./assets/images/text-bold.png" alt="" title=""></a></li>
                                                     <li><a href="javascript:void(0);"><img src="./assets/images/text-itl.png" alt="" title=""></a></li>
@@ -208,13 +208,15 @@
                                                     <li><a href="javascript:void(0);"><img src="./assets/images/text-delete.png" alt="" title=""></a></li>
                                                 </ul>
                                                 <div class="text_box_hide"> <a href="javascript:void(0);"><i class="fa fa-angle-up" aria-hidden="true"></i></a> </div>
-                                            </div>
-                                            <div class="textarea_footer">
+                                            </div> -->
+                                            <!-- <div class="textarea_footer">
                                                 <textarea type="text" class="form-control" rows="1" name="jobSpecificationTitle" [(ngModel)]="jobSpecificationTitle"> </textarea>
                                             </div>
                                             <div class="text_area_larg">
                                                 <textarea class="form-control" rows="10" name="jobSpecificationBody" [(ngModel)]="jobSpecificationBody">body</textarea>
-                                            </div>
+                                            </div> -->
+                                            <!-- <div class="frola" id="previewFroala" [froalaEditor]="froalaOptionsPreview" name="previewContent"></div> -->
+                                            <div [froalaEditor]="froalaOptionsPreview" [(froalaModel)]="jobSpecificationValue"></div>
                                         </div>
                                     </div>
                                 </div>
