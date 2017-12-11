@@ -62,29 +62,10 @@
     vertical-align: middle;
 }
 
-.optn {
-    font-size: 13px !important;    
-    padding-bottom: 0px;
-    padding-top: 0px;    
-    padding-right: 24px;
-    padding-left: 10px;
-    border-radius: 5px;
-    font-weight: normal;
-    border: 1px solid #00ccff;
-    text-transform: uppercase;
-    box-sizing: border-box;
-    background-image: url(dropdownarrow.png);
- 	background-repeat: none;
- 	background-repeat: no-repeat;
-    background-position: right;
-    margin-left: 2px;
-     color:#aaaaaa !important;
-    width: 120px;
-}
 
 #ext.rg_row {
     width: 570px;
-    margin-bottom: 90px;
+    
 }
 
 .rg_row {
@@ -212,4 +193,10 @@ input[type="date"]::-webkit-outer-spin-button {
 .signup_form_section .find_cv_from img {
     
     margin-right: 5px;
+}
+
+.date-holder{
+    position: absolute;
+    right: -232px;
+    z-index: 9;
 }

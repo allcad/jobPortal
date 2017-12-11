@@ -15,6 +15,12 @@ export class ContractorJobDetailComponent implements OnInit {
 	coverList;
 	selectedCv;
 	selectedCover;
+	pageNo = 1;
+	jobList = [];
+	totalPage;
+	appliedJob;
+	showSuccessMsg;
+	successMsg;
 	constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
 	ngOnInit() {
@@ -28,6 +34,13 @@ export class ContractorJobDetailComponent implements OnInit {
 		if (this._router.url.split('/')[1] == "public") {
 			this.isPublic = true;
 		}
+
+		this.getJobList();
+	}
+
+
+	ngAfterViewInit() {
+		window.scroll(0, 0);
 	}
 
 
@@ -53,8 +66,9 @@ export class ContractorJobDetailComponent implements OnInit {
 	}
 
 
-	applyJob() {
-		if (this.jobData.applied !== 1) {
+	applyJob(job) {
+		this.appliedJob = job;
+		if (this.appliedJob.applied !== 1) {
 			$('#myModal').modal();
 			//this.jobDetail = jobDetail;
 			this.getCVList()
@@ -80,6 +94,7 @@ export class ContractorJobDetailComponent implements OnInit {
 	}
 
 	apply() {
+		this.showSuccessMsg = false;
 		var url = " http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/job/apply";
 		var inputJson = {
 			"email": "test@gmail.com",
@@ -90,8 +105,31 @@ export class ContractorJobDetailComponent implements OnInit {
 		}
 		this._commonRequestService.postData(url, inputJson).subscribe(
 			data => {
-				this.jobData.applied = 1;
-				console.log("applied")
+				this.appliedJob.applied = 1;
+				this.showSuccessMsg = true;
+				this.successMsg = "Job applied";
+			}
+		);
+	}
+
+
+	getJobList() {
+		var url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/job/list";
+		var inputJson = {
+			"email": "test@gmail.com",
+			"loginToken": "$2y$10$S.H5i.UJ5CkSBHjinFY.VuWZ2kR8pDEcZGNtRrb1/lNBBNcw7gFBK",
+			"page": this.pageNo,
+			"limit": 3
+
+		}
+		this._commonRequestService.postData(url, inputJson).subscribe(
+			data => {
+				if (data.status == 'TRUE') {
+					this.jobList = this.jobList.concat(data.data);
+					this.totalPage = data.TotalPage;
+				}
+
+
 			}
 		);
 	}

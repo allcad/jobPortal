@@ -107,11 +107,11 @@
             <p *ngIf="!isPublic"><span>15</span> Miles from Home</p>
             <p *ngIf="isPublic">{{item.cityTown}}</p>
           </div>
-          <div class="application_box_contant" routerLink="./{{item.jobid}}">
+          <div class="application_box_contant" routerLink="./{{item.jobid}}" style="cursor: pointer;">
             <img style="height: 79px;" [src]="item.profileimage[0]?.attachment_url ? item.profileimage[0].attachment_url + '/' + item.profileimage[0].attachment_name : './assets/images/application1.png'" alt="ads" title="ads" class="img-responsive">
             <h2>{{item.jobTitle}}</h2>
           </div>
-          <div class="application_box_contant2">
+          <div class="application_box_contant2" routerLink="./{{item.jobid}}" style="cursor: pointer;">
             <p><span>Location:</span>{{item.cityTown}}</p>
             <p><span>Rate:</span> £{{item.prefereedRate.minRate}} - £{{item.prefereedRate.maxRate}} p/{{item.prefereedRate.dailyHourlyRate == 'daily' ? 'd' : 'h'}}</p>
             <p><span>Start Date:</span> {{item.startDate | date }}</p>
@@ -120,10 +120,6 @@
           </div>
           <div class="footer_box">
             <div class="pull-left social_box_footer share-buttons">
-              <!-- <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-              <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-              <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> -->
-
               <share-buttons [tumblr]='false' [google]='false' [whatsApp]='false' [pinterest]='false' [stumbleUpOn]='false' [reddit]='false' url="http://dev.contractrecruit.co.uk/contractor_site/#/public/contractor_search/{{item.jobid}}"></share-buttons>
             </div>
             <div class="pull-right view_company" *ngIf="!isPublic && !item.applyed">

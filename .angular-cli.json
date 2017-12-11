@@ -26,7 +26,8 @@
         "../src/assets/css/jquery.bxslider.css",
         "../node_modules/ion-rangeslider/css/ion.rangeSlider.css",
         "../node_modules/ion-rangeslider/css/ion.rangeSlider.skinFlat.css",
-        "../node_modules/swiper/dist/css/swiper.css"  
+        "../node_modules/swiper/dist/css/swiper.css",
+        "../src/assets/css/jquery-ui.css"
       ],
       "scripts": [
         "../src/assets/js/jquery-1.11.1.min.js",

@@ -2,7 +2,7 @@ import { Component, OnInit, NgModule, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonRequestService } from '../common-request.service';
 import { Router, ActivatedRoute } from '@angular/router';
-// import * as $ from 'jquery';
+//import * as $ from 'jquery';
 declare var $: any;
 
 @Component({
@@ -67,6 +67,7 @@ export class ContractorSignUpComponent implements OnInit {
   displayCountry;
   displayLocationName;
   marker;
+  defaultDatePickerStatus = false;
   constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
@@ -85,11 +86,36 @@ export class ContractorSignUpComponent implements OnInit {
     
   }
 
-  // showDatePicker(){
+   showDatePicker(){
   // //  $("#datepicker").datepicker();
-  //  $("#datepicker").datepicker();
-  //   $("#datepicker").datepicker("show");
-  // }
+   
+    // $('#datepicker').datepicker({
+    //     format: "dd/mm/yyyy",
+    //     autoclose: true
+    // });
+    let that = this;
+    this.defaultDatePickerStatus = !this.defaultDatePickerStatus;
+    if (this.defaultDatePickerStatus) {
+      $('#datepicker').show();
+       $('#datepicker').datepicker({
+        format: "dd-mm-yyyy"
+      }).on('change', function(){
+
+        that.defaultDatePickerStatus = false;
+        that.contractEndDate = $('#datepicker').val();
+          $('#datepicker').hide();
+      });
+    } else {
+      $('#datepicker').hide();
+    }
+    
+   
+
+   }
+
+   // hideDatePicker(){
+   //    $('#datepicker').hide();
+   // }
 
   onFormSubmit(userForm) {
     console.log("this.permanentVariable--", this.permanentVariable);

@@ -162,7 +162,7 @@
 }*/
 
 :host/deep/.form-control{ padding: 0px; }
-:host/deep/select{border-radius: 0px !important;}
+
 
 :host/deep/.font_capitaliz {
     text-transform: uppercase !important;
