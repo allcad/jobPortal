@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 // import 'rxjs/Rx';
 // import { Subject } from 'rxjs/Subject';
 
@@ -10,6 +11,9 @@ import { Observable } from 'rxjs/Observable';
 // import { CommonDataSharedService } from './components/shared/commonDataSharedService'
 @Injectable()
 export class CommonService {
+  constructor(private router: Router) {
+    
+  }
 
   setSearchResultData;
   jobIdForPreview;
@@ -46,6 +50,12 @@ export class CommonService {
 
   getLastSearchData() {
     return this.lastSearchData;
+  }
+
+  goToRecruiterLogin(data) {
+    if(data.auth_error) {
+      this.router.navigate(['/public/recruiterLogin']);
+    }
   }
 
 

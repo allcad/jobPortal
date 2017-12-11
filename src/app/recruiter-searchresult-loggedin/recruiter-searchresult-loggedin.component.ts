@@ -561,4 +561,10 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
             }
   }
 
+  slidePhoneNumber() {
+    // $( "#slidePhone" ).slide( "slide" );
+     $("#slidePhone").animate({width:"toggle"});
+
+  }
+
 }

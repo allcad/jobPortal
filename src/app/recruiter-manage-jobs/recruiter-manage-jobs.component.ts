@@ -60,8 +60,18 @@ export class RecruiterManageJobsComponent implements OnInit {
        this._commonRequestService.getData(wsUrl).subscribe(
         data => {
           console.log("sort by--", data);
-          this.sortByData = data.data;
+          if(data && data.status == 'TRUE') {
+            this.sortByData = data.data;
+          }
           //this.recruiterNameArray = data.data;
+          else if(data && data.status === "FALSE") {
+            this.errorMsgFlag = true;
+              this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+              this._commonService.goToRecruiterLogin(data);
+              // if(data.auth_error) {
+              //   this.router.navigate(['/public/recruiterLogin']);
+              // }
+            }
         }
     );
   }
@@ -77,12 +87,21 @@ export class RecruiterManageJobsComponent implements OnInit {
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
          console.log("recruiterId--", data);
-         for(var i=0;i<data.data.length;i++) {
-         	if(data.data[i].recuriter_id === parseInt(recruiterId)) {
-         		this.recruiterName = data.data[i].recuriter_contact_name
-         	}
-         }
-         console.log("this.recruiterName", this.recruiterName);
+         if(data && data.status == 'TRUE') {
+           for(var i=0;i<data.data.length;i++) {
+           	if(data.data[i].recuriter_id === parseInt(recruiterId)) {
+           		this.recruiterName = data.data[i].recuriter_contact_name
+           	}
+           }
+           console.log("this.recruiterName", this.recruiterName);
+         } else if(data && data.status === "FALSE") {
+            this.errorMsgFlag = true;
+              this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+              this._commonService.goToRecruiterLogin(data);
+              // if(data.auth_error) {
+              //   this.router.navigate(['/public/recruiterLogin']);
+              // }
+            }
          //this.listingData = data.data;
          
         }
@@ -144,12 +163,14 @@ export class RecruiterManageJobsComponent implements OnInit {
            console.log("firstarray", this.firstArray);
            console.log("secondArray", this.secondArray);
            console.log("thirdArray", this.thirdArray);
-          } else {
-            if(data && data.error) {
+          } else if(data && data.status === "FALSE") {
             this.errorMsgFlag = true;
               this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+              this._commonService.goToRecruiterLogin(data);
+              // if(data.auth_error) {
+              //   this.router.navigate(['/public/recruiterLogin']);
+              // }
             }
-          }
         }
     );
   }
@@ -226,9 +247,14 @@ export class RecruiterManageJobsComponent implements OnInit {
             } else if(this.thirdFound) {
               this.thirdArray[index] = data.data;
             }
-          } else {
-            this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
-          }
+          } else if(data && data.status === "FALSE") {
+              //this.errorMsgFlag = true;
+              this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+              this._commonService.goToRecruiterLogin(data);
+              // if(data.auth_error) {
+              //   this.router.navigate(['/public/recruiterLogin']);
+              // }
+            }
          console.log("jobList--", this.firstArray[index]);
         }
     );
@@ -250,9 +276,12 @@ export class RecruiterManageJobsComponent implements OnInit {
            this.jobPostFlag = true;
            this.jobPostFlagError = false;
            this.getManageJobsList(this.currentPageNo);
-         } else {
+         } else if(data && data.status === "FALSE"){
            this.jobPostFlag = false;
-           this.jobPostFlagError = true;           
+           this.jobPostFlagError = true; 
+           this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+           this._commonService.goToRecruiterLogin(data); 
+                  
          }
         }
     );
