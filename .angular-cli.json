@@ -26,7 +26,8 @@
         "../src/assets/css/jquery.bxslider.css",
         "../node_modules/ion-rangeslider/css/ion.rangeSlider.css",
         "../node_modules/ion-rangeslider/css/ion.rangeSlider.skinFlat.css",
-        "../node_modules/swiper/dist/css/swiper.css"  
+        "../node_modules/swiper/dist/css/swiper.css",
+        "../node_modules/froala-editor/css/froala_editor.pkgd.min.css"  
       ],
       "scripts": [
         "../src/assets/js/jquery-1.11.1.min.js",
@@ -35,7 +36,8 @@
         "../src/assets/js/jquery.bxslider.js",
         "../src/assets/js/jquery.mixitup.min.js",
         "../node_modules/ion-rangeslider/js/ion.rangeSlider.min.js",
-        "../node_modules/swiper/dist/js/swiper.js"
+        "../node_modules/swiper/dist/js/swiper.js",
+        "../node_modules/froala-editor/js/froala_editor.pkgd.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

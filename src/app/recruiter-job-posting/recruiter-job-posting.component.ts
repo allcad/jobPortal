@@ -59,6 +59,15 @@ postcode = '';
 displayTown = '';
 displayCountry = '';
 displayLocationName = '';
+jobSpecificationValue = '';
+public froalaOptionsPreview: any = {
+    placeHolderText: 'Edit Your Content Here',
+    charCounterCount: false,
+    toolbarButtons: ['bold', 'fullscreen', 'italic', 'strikeThrough', 'subscript', 'superscript', 'L', 'underline', 'paragraphFormat', 'alert', 'undo', 'redo', 'outdent', 'indent', 'clearFormatting', 'insertTable', 'html', 'fontFamily', 'fontSize', 'color', 'formatBlock', 'blockStyle', 'inlineStyle', 'align', 'insertOrderedList', 'insertUnorderedList', 'formatUL', 'formatOL', 'selectAll', 'createLink', 'insertImage', 'insertVideo', 'table', 'save', 'insertHorizontalRule', 'uploadFile', 'removeFormat', 'specialCharacters', 'spellChecker', 'insertHR', '-', 'quote', 'selectAll', 'insertLink', 'help', 'print', 'clearFormatting'],
+    toolbarButtonsXS: ['bold', 'fullscreen', 'italic', 'strikeThrough', 'subscript', 'superscript', 'L', 'underline', 'paragraphFormat', 'alert', 'undo', 'redo', 'outdent', 'indent', 'clearFormatting', 'insertTable', 'html', 'fontFamily', 'fontSize', 'color', 'formatBlock', 'blockStyle', 'inlineStyle', 'align', 'insertOrderedList', 'insertUnorderedList', 'formatUL', 'formatOL', 'selectAll', 'createLink', 'insertImage', 'insertVideo', 'table', 'save', 'insertHorizontalRule', 'uploadFile', 'removeFormat', 'specialCharacters', 'spellChecker', 'insertHR', '-', 'quote', 'selectAll', 'insertLink', 'help', 'print', 'clearFormatting'],
+    toolbarButtonsSM: ['bold', 'fullscreen', 'italic', 'strikeThrough', 'subscript', 'superscript', 'L', 'underline', 'paragraphFormat', 'alert', 'undo', 'redo', 'outdent', 'indent', 'clearFormatting', 'insertTable', 'html', 'fontFamily', 'fontSize', 'color', 'formatBlock', 'blockStyle', 'inlineStyle', 'align', 'insertOrderedList', 'insertUnorderedList', 'formatUL', 'formatOL', 'selectAll', 'createLink', 'insertImage', 'insertVideo', 'table', 'save', 'insertHorizontalRule', 'uploadFile', 'removeFormat', 'specialCharacters', 'spellChecker', 'insertHR', '-', 'quote', 'selectAll', 'insertLink', 'help', 'print', 'clearFormatting'],
+    toolbarButtonsMD: ['bold', 'fullscreen', 'italic', 'strikeThrough', 'subscript', 'superscript', 'L', 'underline', 'paragraphFormat', 'alert', 'undo', 'redo', 'outdent', 'indent', 'clearFormatting', 'insertTable', 'html', 'fontFamily', 'fontSize', 'color', 'formatBlock', 'blockStyle', 'inlineStyle', 'align', 'insertOrderedList', 'insertUnorderedList', 'formatUL', 'formatOL', 'selectAll', 'createLink', 'insertImage', 'insertVideo', 'table', 'save', 'insertHorizontalRule', 'uploadFile', 'removeFormat', 'specialCharacters', 'spellChecker', 'insertHR', '-', 'quote', 'selectAll', 'insertLink', 'help', 'print', 'clearFormatting']
+  };
   constructor(private router: Router, public _commonRequestService: CommonRequestService, 
     private commonService: CommonService,
     private ngZone: NgZone) { }
@@ -78,7 +87,7 @@ displayLocationName = '';
      if(this.commonService.getJobIdForJobPosting()) {
        console.log("this.commonService.getJobIdForJobPosting()", this.commonService.getJobIdForJobPosting());
       this.jobPostingJobId = this.commonService.getJobIdForJobPosting();
-      //this.jobPostingData(this.jobPostingJobId);
+      this.jobPostingData(this.jobPostingJobId);
     }
     console.log("this.jobPostingJobId", this.jobPostingJobId);
     if(this.jobPostingJobId && typeof this.jobPostingJobId == 'object') {
@@ -91,8 +100,9 @@ displayLocationName = '';
        this.minRate = this.jobPostingJobId && this.jobPostingJobId['prefereedRate'] && this.jobPostingJobId['prefereedRate'].minRate ? this.jobPostingJobId['prefereedRate'].minRate : 0;
        this.maxRate = this.jobPostingJobId && this.jobPostingJobId['prefereedRate'] && this.jobPostingJobId['prefereedRate'].maxRate ? this.jobPostingJobId['prefereedRate'].maxRate : 0
        this.dailyHourlyValue = this.jobPostingJobId && this.jobPostingJobId['prefereedRate'] && this.jobPostingJobId['prefereedRate'].dailyHourlyRate ? this.jobPostingJobId['prefereedRate'].dailyHourlyRate : '';
-       this.jobSpecificationTitle = this.jobPostingJobId['jobSpecificationTitle'];
-       this.jobSpecificationBody = this.jobPostingJobId['jobSpecification'];
+       // this.jobSpecificationTitle = this.jobPostingJobId['jobSpecificationTitle'];
+       // this.jobSpecificationBody = this.jobPostingJobId['jobSpecification'];
+       this.jobSpecificationValue = this.jobPostingJobId['jobSpecificationTitle'] + ' ' + this.jobPostingJobId['jobSpecification'];
        this.recruiterName = this.jobPostingJobId['recruiter_Id'];
        this.saveTemplateAs = this.jobPostingJobId['saveTempleteAs'];
        this.jobReference = this.jobPostingJobId['jobReference'];
@@ -203,9 +213,11 @@ displayLocationName = '';
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/template_list";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
-          this.templateData = data.data;
-          this.currentTemplate = this.templateData[0].id;
-          console.log("templateData--", data);
+          if(data && data.status == 'TRUE') {
+            this.templateData = data.data;
+            this.currentTemplate = this.templateData[0].id;
+            console.log("templateData--", data);
+          }
         }
     );
   }
@@ -232,8 +244,9 @@ displayLocationName = '';
        this.minRate = this.renderTemmplateData && this.renderTemmplateData.rate_from  ? this.renderTemmplateData.rate_from : 0;
        this.maxRate = this.renderTemmplateData && this.renderTemmplateData.rate_to  ? this.renderTemmplateData.rate_to : 0
        this.dailyHourlyValue = this.renderTemmplateData && this.renderTemmplateData.rate_type ? this.renderTemmplateData.rate_type : '';
-       this.jobSpecificationTitle = this.renderTemmplateData.job_title;
-       this.jobSpecificationBody = this.renderTemmplateData.job_description;
+       // this.jobSpecificationTitle = this.renderTemmplateData.job_title;
+       // this.jobSpecificationBody = this.renderTemmplateData.job_description;
+       this.jobSpecificationValue = this.renderTemmplateData.job_title + ' ' + this.renderTemmplateData.job_description;
        this.recruiterName = this.renderTemmplateData.recruiter_Id;
        this.saveTemplateAs = this.renderTemmplateData.template_name;
        this.jobReference = this.renderTemmplateData.jobReference;
@@ -273,8 +286,10 @@ displayLocationName = '';
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/list";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
-          this.recruiterNameArray = data.data;
-          this.recruiterName = this.recruiterNameArray[0].recuriter_id;
+          if(data && data.status == 'TRUE') {
+            this.recruiterNameArray = data.data;
+            this.recruiterName = this.recruiterNameArray[0].recuriter_id;
+          }
         }
     );
        return this.recruiterName;
@@ -307,8 +322,9 @@ displayLocationName = '';
              this.minRate = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.minRate ? this.jobPostingDetails.prefereedRate.minRate : 0;
              this.maxRate = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.maxRate ? this.jobPostingDetails.prefereedRate.maxRate : 0
              this.dailyHourlyValue = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.dailyHourlyRate ? this.jobPostingDetails.prefereedRate.dailyHourlyRate : '';
-             this.jobSpecificationTitle = this.jobPostingDetails.jobSpecificationTitle;
-             this.jobSpecificationBody = this.jobPostingDetails.jobSpecification;
+             // this.jobSpecificationTitle = this.jobPostingDetails.jobSpecificationTitle;
+             // this.jobSpecificationBody = this.jobPostingDetails.jobSpecification;
+             this.jobSpecificationValue = this.jobPostingDetails.jobSpecificationTitle + ' ' + this.jobPostingDetails.jobSpecification;
              this.recruiterName = this.jobPostingDetails.recruiter_Id;
              this.saveTemplateAs = this.jobPostingDetails.saveTempleteAs;
              this.jobReference = this.jobPostingDetails.jobReference;
@@ -329,8 +345,9 @@ displayLocationName = '';
      this.minRate = 0;
      this.maxRate = 0;
      this.dailyHourlyValue = "";
-     this.jobSpecificationTitle = "";
-     this.jobSpecificationBody = "";
+     // this.jobSpecificationTitle = "";
+     // this.jobSpecificationBody = "";
+     this.jobSpecificationValue = "";
      this.recruiterName = "0";
      this.saveTemplateAs = "";
      this.jobReference = "";
@@ -389,15 +406,17 @@ displayLocationName = '';
       this.workEliFlag = true;
     }
 
-    if(this.jobSpecificationTitle && this.jobSpecificationBody) {
-      this.jobSpecificationFlag = false;
-    } else {
-      this.jobSpecificationFlag = true;
+    if(!this.jobPostingDurationFlag && !this.jobPostingTiteFlag && !this.startDateFlag && 
+      !this.cityFlag) {
+      if(this.jobSpecificationValue) {
+        this.jobSpecificationFlag = false;
+      } else {
+        this.jobSpecificationFlag = true;
+      }
     }
 
     if(this.jobPostingDurationFlag || this.jobPostingTiteFlag || this.startDateFlag || 
-      this.industrySectorFlag || this.workEliFlag || this.cityFlag || this.maxRateFlag || this.minRateFlag
-      || this.jobSpecificationFlag) {
+      this.cityFlag || this.jobSpecificationFlag) {
       this.allErrorFlag = true;
     } else {
       this.allErrorFlag = false;
@@ -425,8 +444,8 @@ displayLocationName = '';
   				"maxRate": this.maxRate,
   				"dailyHourlyRate": this.dailyHourlyValue
   			},
-  			"jobSpecification": this.jobSpecificationBody,
-  			"jobSpecificationTitle": this.jobSpecificationTitle,
+  			"jobSpecification": this.jobSpecificationValue,
+  			"jobSpecificationTitle": this.jobSpecificationValue,
   			"recruiterNameId": this.recruiterName ? this.recruiterName : '',
   			"saveTempleteAs": this.recruiterName ? this.recruiterName : '',
   			"jobReference": this.jobReference ? this.jobReference : '',
@@ -507,8 +526,8 @@ displayLocationName = '';
         "maxRate": this.maxRate ? this.maxRate : '0',
         "dailyHourlyRate": this.dailyHourlyValue ? this.dailyHourlyValue : ''
       },
-      "jobSpecification": this.jobSpecificationBody ? this.jobSpecificationBody : '',
-      "jobSpecificationTitle": this.jobSpecificationTitle ? this.jobSpecificationTitle : '',
+      "jobSpecification": this.jobSpecificationValue ? this.jobSpecificationValue : '',
+      "jobSpecificationTitle": '',
       "recruiterNameId": this.recruiterName ? this.recruiterName : '0',
       "saveTempleteAs": this.saveTemplateAs ? this.saveTemplateAs : '',
       "jobReference": this.jobReference ? this.jobReference : '',

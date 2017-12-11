@@ -50,3 +50,27 @@
 :host/deep/.irs-bar{background: #ff0066;}
 :host/deep/.irs-bar-edge{background: #ff0066; border-radius: 5px 0 0 5px; left:-5px;}
 :host/deep/.irs-slider{ width:2px; background: #ff0066;  }
+
+.text_pink{
+    cursor: pointer;
+        padding-top: 8px;
+}
+.text_pink .tooltiptext_part{
+    width: 296px;
+    bottom: 28px;
+
+}
+.text_pink .tooltiptext_part::after {
+    right: 50%;
+    left: auto;
+}
+
+
+.text_pink a{
+    color: #ff0066 !important;
+}
+
+.text_pink:hover .tooltiptext_part{
+    visibility: visible;
+    opacity: 1;
+}

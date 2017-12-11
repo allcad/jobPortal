@@ -42,6 +42,7 @@ import { ViewContractorProfileComponent } from '../view-contractor-profile/view-
 import { RecruiterGuidesPageComponent } from '../recruiter-guides-page/recruiter-guides-page.component';
 import { ShareButtonsModule } from 'ngx-sharebuttons';
 import { ContractorJobDetailComponent } from '../contractor-job-detail/contractor-job-detail.component';
+import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 
 const sharedModuleList = [
   FindContractHubComponent,
@@ -89,6 +90,8 @@ const sharedModuleList = [
     RouterModule,
     IonRangeSliderModule,
     ShareButtonsModule.forRoot(),
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot()
 
   ],
   exports: [
@@ -96,7 +99,9 @@ const sharedModuleList = [
     SwiperModule,
     IonRangeSliderModule,
     ShareButtonsModule,
-    sharedModuleList
+    sharedModuleList,
+    FroalaEditorModule,
+    FroalaViewModule
   ],
   providers: [],
   bootstrap: []
