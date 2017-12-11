@@ -23,6 +23,13 @@ export class ContactPageComponent implements OnInit {
  emailPatternFlag = false;
  saveFlag = false;
  succesLoginFlag = false;
+ config: SwiperOptions = {
+    pagination: '.swiper-pagination',
+    paginationClickable: true,
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev',
+    spaceBetween: 30
+  }
   constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
