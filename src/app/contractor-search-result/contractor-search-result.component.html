@@ -119,10 +119,12 @@
             <p class="full_contant" innerHTML="{{item.jobDetail | slice : 0 : 200}}.." style="height: 90px;"></p>
           </div>
           <div class="footer_box">
-            <div class="pull-left social_box_footer">
-              <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <div class="pull-left social_box_footer share-buttons">
+              <!-- <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a>
               <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-              <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+              <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> -->
+
+              <share-buttons [tumblr]='false' [google]='false' [whatsApp]='false' [pinterest]='false' [stumbleUpOn]='false' [reddit]='false' url="http://dev.contractrecruit.co.uk/contractor_site/#/public/contractor_search/{{item.jobid}}"></share-buttons>
             </div>
             <div class="pull-right view_company" *ngIf="!isPublic && !item.applyed">
               <a href="javascript:void(0)" (click)="applyJob(item)">Apply Now<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a>

@@ -12,23 +12,23 @@
       <div id="inquerymaindiv">
         <div class="after_login_menu">
           <ul id="recuriter_logged_in_nav" class="navigation-lists">
-            <li [routerLink]="['../contractor/viewProfile']">
+            <li [routerLink]="['../contractor/viewProfile']" (click)="toggleMenu()">
               <a href="javascript:void(0)"><span class="icon-user-icon"></span><span class="nav-menu-heading">Profile</span></a>              
             </li>
-            <li [routerLink]="['../contractor/jobSearch']"><a href="javascript:void(0)"><span class="icon-search2"></span><span class="nav-menu-heading">Search</span></a>
+            <li [routerLink]="['../contractor/jobSearch']" (click)="toggleMenu()"><a href="javascript:void(0)"><span class="icon-search2"></span><span class="nav-menu-heading">Search</span></a>
               
             </li>
-            <li [routerLink]="['../contractor/application']"><a href="javascript:void(0)"><span class="icon-applications"></span><span class="nav-menu-heading">Applications</span></a>
+            <li [routerLink]="['../contractor/application']" (click)="toggleMenu()"><a href="javascript:void(0)"><span class="icon-applications"></span><span class="nav-menu-heading">Applications</span></a>
               
             </li>
-            <li [routerLink]="['../contractor/jobSavedSearch']"><a href="javascript:void(0)"><span class="icon-search-plus"></span><span class="nav-menu-heading">Saved Search</span></a>
+            <li [routerLink]="['../contractor/jobSavedSearch']" (click)="toggleMenu()"><a href="javascript:void(0)"><span class="icon-search-plus"></span><span class="nav-menu-heading">Saved Search</span></a>
               
             </li>
-            <li [routerLink]="['../contractor/hubHome']"><a href="javascript:void(0)"><span class="icon-msg-icon"></span><span class="nav-menu-heading"><b>Contract</b>Hub</span></a>
+            <li [routerLink]="['../contractor/hubHome']" (click)="toggleMenu()"><a href="javascript:void(0)"><span class="icon-msg-icon"></span><span class="nav-menu-heading"><b>Contract</b>Hub</span></a>
               
             </li>
 
-            <li [routerLink]="['../contractor/help']"><a href="javascript:void(0)"><span class="icon-msg-icon"></span><span class="nav-menu-heading">Help</span></a>
+            <li [routerLink]="['../contractor/help']" (click)="toggleMenu()"><a href="javascript:void(0)"><span class="icon-msg-icon"></span><span class="nav-menu-heading">Help</span></a>
               
             </li>
 

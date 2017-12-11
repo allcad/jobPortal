@@ -31,6 +31,7 @@
       "scripts": [
         "../src/assets/js/jquery-1.11.1.min.js",
         "../src/assets/js/bootstrap.min.js",
+        "../src/assets/js/jquery-ui.js",
         "../src/assets/js/jquery.bxslider.js",
         "../src/assets/js/jquery.mixitup.min.js",
         "../node_modules/ion-rangeslider/js/ion.rangeSlider.min.js",

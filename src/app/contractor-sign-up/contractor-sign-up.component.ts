@@ -2,7 +2,8 @@ import { Component, OnInit, NgModule, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonRequestService } from '../common-request.service';
 import { Router, ActivatedRoute } from '@angular/router';
-
+// import * as $ from 'jquery';
+declare var $: any;
 
 @Component({
   selector: 'app-contractor-sign-up',
@@ -72,11 +73,23 @@ export class ContractorSignUpComponent implements OnInit {
     this.getKeySkillData();
     this.getContractorServices();
     this.getNoticePeriodData();
+   
+    //$("#datepicker").datepicker();
   }
 
   ngAfterViewInit() {
     window.scroll(0, 0);
+    var currentDate = new Date();
+
+    
+    
   }
+
+  // showDatePicker(){
+  // //  $("#datepicker").datepicker();
+  //  $("#datepicker").datepicker();
+  //   $("#datepicker").datepicker("show");
+  // }
 
   onFormSubmit(userForm) {
     console.log("this.permanentVariable--", this.permanentVariable);
@@ -447,5 +460,8 @@ export class ContractorSignUpComponent implements OnInit {
 
    // let dbx = new Dropbox({accessToken: 'sp6wj9n6kf6r0ma'})
   }
+
+
+
 
 }

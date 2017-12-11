@@ -145,8 +145,8 @@
                       </div>
                     </div>
                   </div>
-                  <div style="margin-top: -35px;text-align: right;font-family: arial;">
-                    <a style="font-family: FacilePro; font-size:11px;color:#FF0066;">.DOC</a>
+                  <div style="margin-top: -35px;text-align: right;font-family: arial;cursor: inherit;">
+                    <a style="font-family: FacilePro; font-size:11px;color:#FF0066; ">.DOC</a>
                     <a style="font-family: FacilePro; font-size:11px;color:#999999;">, </a>
                     <a style="font-family: FacilePro; font-size:11px;color:#FF0066;">.DOCX</a>
                     <a style="font-family: FacilePro; font-size:11px;color:#999999;">, </a>
@@ -243,6 +243,7 @@
               <div class="rg_row" id="ext" style="display: block;" *ngIf="contractor_employment_situation == 'in contract'">
                 <div class="showdate rest_data_show show_ui_picker" style="float: right; display: none;">{{dateSelected | date: 'short'}}</div>
                 <div class="text-00 clear imtn">Contract End Date :</div>
+                <!-- <img src="./assets/images/a1.jpg" (click)="showDatePicker()"> -->
                 <input type="date" [(ngModel)]="contractEndDate" name="contract_end_date" id="datepicker" class="hasDatepicker" style="float: left;">
                 <div class="text-00 text-438" style="padding-left:0;float: left;">MAKE MY DETAILS LIVE FROM?</div>
                 <div>

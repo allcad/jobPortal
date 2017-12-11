@@ -13,6 +13,8 @@ uniqueId;
 	ErrorMesageFlag;
 	successMsg;
 	errorMsg;
+	password;
+	confirmPassword;
 	constructor(private _router: Router, private _routes: ActivatedRoute, private _commonRequestService: CommonRequestService) { }
 
 	ngOnInit() {

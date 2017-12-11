@@ -154,12 +154,12 @@
     padding: 4px 20px 4px 10px;
     font-family: 'HelveticaNeue';
 }
-
+/*
 :host/deep/.form-control .contractor_profile > option:first-child{
     background: #4cdbff none repeat scroll 0 0;
     color: #fff;
     -webkit-transition: all 0.2s ease 0s;
-}
+}*/
 
 :host/deep/.form-control{ padding: 0px; }
 :host/deep/select{border-radius: 0px !important;}
