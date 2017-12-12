@@ -32,11 +32,14 @@ export class RecruiterHomeComponent implements OnInit {
   displayTown = '';
   displayCountry = '';
   displayLocationName = '';
+  accountName;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService, private _commonService: CommonService,
     private ngZone: NgZone, private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    let localStorageData = localStorage.getItem("loginDetail") ?  JSON.parse(localStorage.getItem("loginDetail")) : ""; 
+    this.accountName = localStorageData && localStorageData.name ? localStorageData.name : '';
     this.getQuickLinksData();
     //this.loadLocationAutoData();
        
