@@ -52,8 +52,8 @@ export class ContractorJobDetailComponent implements OnInit {
 				"jobid": jobId,
 			};
 			if (!this.isPublic) {
-				input['email'] = "test@gmail.com",
-					input['loginToken'] = "tdfdsfsGUkl7789ljdoa"
+				input['email'] = "test@gmail.com";
+				input['loginToken'] = "tdfdsfsGUkl7789ljdoa"
 			}
 			let url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/job/view";
 
@@ -120,12 +120,14 @@ export class ContractorJobDetailComponent implements OnInit {
 	getJobList() {
 		var url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/job/list";
 		var inputJson = {
-			"email": "test@gmail.com",
-			"loginToken": "$2y$10$S.H5i.UJ5CkSBHjinFY.VuWZ2kR8pDEcZGNtRrb1/lNBBNcw7gFBK",
 			"page": this.pageNo,
 			"limit": 3
 
 		}
+		if (!this.isPublic) {
+				inputJson['email'] = "test@gmail.com";
+				inputJson['loginToken'] = "tdfdsfsGUkl7789ljdoa"
+			}
 		this._commonRequestService.postData(url, inputJson).subscribe(
 			data => {
 				if (data.status == 'TRUE') {

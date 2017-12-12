@@ -13,7 +13,7 @@ export class UploadCvComponent implements OnInit {
     
     setInterval(()=>{
       this.getLiveContactor();  
-    },60000)
+    },10000)
     
   }
 

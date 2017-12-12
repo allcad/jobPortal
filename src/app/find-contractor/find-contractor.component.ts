@@ -13,7 +13,7 @@ export class FindContractorComponent implements OnInit {
   ngOnInit() {
     setInterval(()=>{
       this.getLiveContactor();  
-    },60000)
+    },10000)
     
   }
 
