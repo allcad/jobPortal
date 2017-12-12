@@ -3928,7 +3928,7 @@ position: absolute;
 .recruiter_add_sub_skills a img{ float:right; margin-top:5px;}
 .text_color_black a{ width:100%;}
 .number_of_application{ right:0px;}
-
+.input-group-addon.bordr_non{ display:none; }
 }
 @media(max-width:767px){
 .signup_form_section .form-group .radio-inline-part{ margin-right:8px;}	

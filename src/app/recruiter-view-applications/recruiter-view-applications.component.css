@@ -23,3 +23,8 @@
 .watch_list_content p {
     overflow: hidden;
 }
+@media (max-width: 1024px){
+    .watch_list_hadding {
+        font-size: 14px;
+    }
+}

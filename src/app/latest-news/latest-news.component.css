@@ -5,3 +5,11 @@
     text-decoration: none;
     -webkit-transition: all 0.5s ease 0s;
 }
+
+.letest_news_box h5 {
+	height: 43px;
+}
+
+.letest_news_box p {
+    height: 75px;
+}
