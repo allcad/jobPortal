@@ -65,3 +65,11 @@
 .anchor_disable {
     pointer-events: none;
 }
+
+@media (max-width:767px){
+    
+    .manage_top_buttons ul li{
+
+        width: 100% !important;
+    }
+}

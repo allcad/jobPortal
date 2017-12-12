@@ -74,3 +74,14 @@
     visibility: visible;
     opacity: 1;
 }
+
+
+@media (max-width: 767px){
+        
+        .job_search {
+    width: 100% !important;
+    float: left !important;
+}
+
+ .text_pink{ padding-top: 0 !important }
+}
