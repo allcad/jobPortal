@@ -31,6 +31,7 @@
               <li *ngIf="userForm.form.controls.contractor_email?.hasError('pattern')">Valid Email required</li>
               <li *ngIf="userForm.form.controls.contractor_tel_no?.hasError('required')">Invalid mobile number.</li>
               <li *ngIf="userForm.form.controls.contractor_tel_no?.hasError('pattern')">Invalid mobile number</li>
+              <li *ngIf="telNoInvalid">Please enter valid mobile number </li>
               <li *ngIf="userForm.form.controls.contractor_current_password?.hasError('required') || passwordInvalid">Your password must be at least 6 characters in length.</li>
               <li *ngIf="userForm.form.controls.contractor_job_title?.hasError('required')">Please enter Recent Job Title</li>
               <li *ngIf="userForm.form.controls.contractor_postal_title?.hasError('required')">Please enter a postcode.</li>
@@ -94,7 +95,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/mobile-number.png" alt="Telephone Number"  class="img-responsive"></div>
-                      <input type="number" class="form-control"  placeholder="Enter Mobile Number" name="contractor_tel_no" [(ngModel)]="contractor_tel_no" pattern="[0-9]*" min="0" required >
+                      <input type="number" class="form-control"  placeholder="Enter Mobile Number" name="contractor_tel_no" [(ngModel)]="contractor_tel_no" pattern="[0-9]*"  required >
                       <!-- <tooltip-content #phoneTooltip>
                         <span *ngIf="userForm?.form && userForm.form.controls && userForm.form.controls.contractor_tel_no?.valid " style="color: #C21F39">Contractor's Mobile No </span>
                         <span [hidden]="!userForm.form.controls.contractor_tel_no?.hasError('required')" style="color: #C21F39"> Mobile No is required! </span>

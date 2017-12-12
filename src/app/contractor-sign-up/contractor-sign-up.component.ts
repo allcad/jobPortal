@@ -56,6 +56,7 @@ export class ContractorSignUpComponent implements OnInit {
   contractorEndDateInvalid = false;
   postalCodeInvalid = false;
   invalidFile = false;
+  telNoInvalid = false;
   currentEmploymentSituationCheck;
   fileName;
   @ViewChild('myInput') myInputVariable;
@@ -215,8 +216,14 @@ export class ContractorSignUpComponent implements OnInit {
     this.contractorServicesInavlid = false;
     this.contractorInvalid = false;
     this.contractorEndDateInvalid = false;
+    this.telNoInvalid = false;
     if (this.contractor_current_password && this.contractor_current_password.length > 0 && this.contractor_current_password.length < 6) {
       this.passwordInvalid = true;
+      this.contractorInvalid = true;
+    }
+
+    if(this.contractor_tel_no && (this.contractor_tel_no.toString().length > 11 || this.contractor_tel_no.toString().length < 10)){
+      this.telNoInvalid = true;
       this.contractorInvalid = true;
     }
 
@@ -265,6 +272,7 @@ export class ContractorSignUpComponent implements OnInit {
   fileChangeEvent(fileInput: any) {
     this.CVFile = fileInput.target.files[0];
     this.fileName = this.CVFile.name;
+    this.cvInvalid = false;
   }
 
 

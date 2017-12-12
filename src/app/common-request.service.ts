@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import {  Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';  // we need to import this now
 @Injectable()
 export class CommonRequestService {
 	inputUrl; inputData;
 	objectData = {}
-
+	// headers = new Headers({
+	// 	'X-CSRF-Token': undefined
+	// }); // variable used to store headers field values
+	// options = new RequestOptions({ headers: this.headers });
 
 	constructor(private _http: Http) {
 

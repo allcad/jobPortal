@@ -70,43 +70,28 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/account-pass.png" alt="Enter Password" title="Password" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail1" placeholder="User Name" type="text" [(ngModel)]="userName" name="userName" [tooltip]="userNameTooltip" [disabled]="true">
-                      <tooltip-content #userNameTooltip>
-                        <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.userName?.valid " style="color: #C21F39">User Name</span>
-                        <!--  <span [hidden]="!contractorProfile.form.controls.userName?.hasError('required')" style="color: #C21F39">User Name is required.</span> -->
-                        <!-- <span [hidden]="!contractorProfile.form.controls.userName?.hasError('minlength')" style="color: #C21F39">Contractor First Name min length is 3.</span> -->
-                        <!-- <span [hidden]="!contractorProfile.form.controls.userName?.hasError('pattern')" style="color: #C21F39">Contractor First Name not valid!</span> -->
-                      </tooltip-content>
+                      <input class="form-control" id="exampleInputEmail1" placeholder="User Name" type="text" [(ngModel)]="userName" name="userName" [disabled]="true">
+                     
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/mail-address.png" alt="Email" title="Email" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail1" placeholder="Email Address" type="email" [(ngModel)]="emailAddress" name="emailAddress" [tooltip]="emailAddressTooltip" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [disabled]="true">
-                      <tooltip-content #emailAddressTooltip>
-                        <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.emailAddress?.valid " style="color: #C21F39">Email Address</span>
-                        <!-- <span [hidden]="!contractorProfile.form.controls.emailAddress?.hasError('required')" style="color: #C21F39">Email Address is required.</span> -->
-                        <!-- <span [hidden]="!contractorProfile.form.controls.emailAddress?.hasError('pattern')" style="color: #C21F39">Email Address not valid!</span> -->
-                      </tooltip-content>
+                      <input class="form-control" id="exampleInputEmail2" placeholder="Email Address" type="email" [(ngModel)]="emailAddress" name="emailAddress" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [disabled]="true">
+                      
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/security-clearance.png" alt="Enter Password" title="Password" class="img-responsive"></div>
-                      <select class="form-control minimal background_drop_down" [(ngModel)]="securityClearance" name="securityClearance" [tooltip]="securityClearanceTooltip" required>
+                      <select class="form-control minimal background_drop_down" [(ngModel)]="securityClearance" name="securityClearance"  required>
                         <option [value]="0">Security Clearance?</option>
                         <option *ngFor="let item of securityClearenceData" value="{{item.id}}">
                           {{item.name}}
                         </option>
-                        <!--  <option value="1">124536</option>
-                        <option value="5">5124536</option>
-                        <option value="10">10124536</option>
-                        <option value="20">20124536</option> -->
+                        
                       </select>
-                      <tooltip-content #securityClearanceTooltip>
-                        <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.securityClearance?.valid" style="color: #C21F39">Security Clearance</span>
-                        <span [hidden]="!contractorProfile.form.controls.securityClearance?.hasError('required')" style="color: #C21F39">Security Clearance is required.</span>
-                      </tooltip-content>
+                      
                     </div>
                   </div>
                   <div class="form-group margin_bottom_16px">
@@ -124,93 +109,81 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/post-code.png" alt="Post Code" title="Post Code" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail1" placeholder="Post Code" type="text" [(ngModel)]="postCode" name="postCode" [tooltip]="postCodeTooltip">
-                      <tooltip-content #postCodeTooltip>
-                        <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.postCode?.valid" style="color: #C21F39">Post Code </span>
-                        <span [hidden]="!contractorProfile.form.controls.postCode?.hasError('required')" style="color: #C21F39">Post Code is required.</span>
-                      </tooltip-content>
+                      <input class="form-control" id="exampleInputEmail3" placeholder="Post Code" type="text" [(ngModel)]="postCode" name="postCode">
+                     
                     </div>
                   </div>
                   <div class="form-group row">
                     <div class="col-xs-62">
                       <div class="input-group">
                         <div class="input-group-addon upto_border_none day_rate_align"><img src="./assets/images/day-rate.png" alt="Post Code" title="Post Code" class="img-responsive"> Day Rate (&euro;)</div>
-                        <input class="form-control" id="exampleInputEmail1" placeholder="" type="text" [(ngModel)]="dayRate1" name="dayRate1" [tooltip]="dayRate1Tolltop">
-                        <tooltip-content #dayRate1Tolltop>
-                          <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.dayRate1?.valid" style="color: #C21F39">Minimum </span>
-                          <span [hidden]="!contractorProfile.form.controls.dayRate1?.hasError('required')" style="color: #C21F39">Min Rate Required</span>
-                        </tooltip-content>
+                        <input class="form-control" id="exampleInputEmail4" placeholder="" type="text" [(ngModel)]="dayRate1" name="dayRate1" >
+                       
                       </div>
                     </div>
                     <div class="col-xs-38">
                       <div class="input-group">
                         <div class="input-group-addon upto_border_none">-</div>
-                        <input class="form-control" id="exampleInputEmail1" placeholder="" type="text" [(ngModel)]="dayRate2" name="dayRate2" [tooltip]="dayRate2tooltip">
-                        <tooltip-content #dayRate2tooltip>
-                          <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.dayRate2?.valid" style="color: #C21F39">Maximum </span>
-                          <span [hidden]="!contractorProfile.form.controls.dayRate2?.hasError('required')" style="color: #C21F39">Max Rate Required</span>
-                        </tooltip-content>
+                        <input class="form-control" id="exampleInputEmail5" placeholder="" type="text" [(ngModel)]="dayRate2" name="dayRate2" >
+                        
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/availability.png" alt="Availability" title="Availability" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail1" placeholder="Availability" type="text" [(ngModel)]="availability" name="availability" [tooltip]="availabilityTooltip">
-                      <tooltip-content #availabilityTooltip>
-                        <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.availability?.valid" style="color: #C21F39">Availability </span>
-                        <span [hidden]="!contractorProfile.form.controls.availability?.hasError('required')" style="color: #C21F39">Availability is Required</span>
-                      </tooltip-content>
+                      <!-- <input class="form-control" id="exampleInputEmail6" placeholder="Availability" type="text" [(ngModel)]="availability" name="availability" > -->
+                      <select class="form-control minimal background_drop_down" [(ngModel)]="availability" name="availability"  >
+                        <option value="" disabled checked>Availability</option>
+                        <option value="Immediate">Immediate</option>
+                        <option value="1 Week">1 Week</option>
+                        <option value="2 Week">2 Week</option>
+                        <option value="4 Week">4 Week</option>
+                        <option value="6 Week">6 Week</option>
+                        <option value="2 Months">2 Months</option>
+                        <option value="3 Months">3 Months</option>
+                          <!-- <option *ngFor="let item of securityClearenceData" value="{{item.id}}">
+                          {{item.name}}
+                        </option> -->
+                        
+                      </select>
+
+                     
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/web-address.png" alt="Web Address" title="Web Address" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail1" placeholder="Enter Web Address" type="url" pattern="https?://.+" [(ngModel)]="webAddress" name="webAddress" [tooltip]="webAddressTooltip">
-                      <tooltip-content #webAddressTooltip>
-                        <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.webAddress?.valid " style="color: #C21F39">Web Address</span>
-                        <span [hidden]="!contractorProfile.form.controls.webAddress?.hasError('pattern')" style="color: #C21F39">Web Address not valid!</span>
-                      </tooltip-content>
+                      <input class="form-control" id="exampleInputEmail7" placeholder="Enter Web Address" type="url" pattern="https?://.+" [(ngModel)]="webAddress" name="webAddress" >
+                      
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/stack-overflo.png" alt="Stack Overflow Web Address" title="Stack Overflow Web Address" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail1" placeholder="Stack Overflow Web Address" type="url" pattern="https?://.+" [(ngModel)]="stackOverWebAdd" name="stackOverWebAdd" [tooltip]="stackOverWebAddTooltip">
-                      <tooltip-content #stackOverWebAddTooltip>
-                        <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.stackOverWebAdd?.valid " style="color: #C21F39">StackOver WebAddress</span>
-                        <span [hidden]="!contractorProfile.form.controls.stackOverWebAdd?.hasError('pattern')" style="color: #C21F39">StackOver WebAddress not valid!</span>
-                      </tooltip-content>
+                      <input class="form-control" id="exampleInputEmail8" placeholder="Stack Overflow Web Address" type="url" pattern="https?://.+" [(ngModel)]="stackOverWebAdd" name="stackOverWebAdd" >
+                     
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/GitHub-Web.png" alt="Enter GitHub Web Address" title="Enter GitHub Web Address" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail1" placeholder="Enter GitHub Web Address" type="url" pattern="https?://.+" [(ngModel)]="gitHubWebAdd" name="gitHubWebAdd" [tooltip]="gitHubWebAddTooltip">
-                      <tooltip-content #gitHubWebAddTooltip>
-                        <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.gitHubWebAdd?.valid " style="color: #C21F39">GitHub WebAddress</span>
-                        <span [hidden]="!contractorProfile.form.controls.gitHubWebAdd?.hasError('pattern')" style="color: #C21F39"> GitHub address not valid!</span>
-                      </tooltip-content>
+                      <input class="form-control" id="exampleInputEmail9" placeholder="Enter GitHub Web Address" type="url" pattern="https?://.+" [(ngModel)]="gitHubWebAdd" name="gitHubWebAdd" >
+                      
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/Linkedin-Web.png" alt="Enter Linkedin Web Address" title="Enter Linkedin Web Address" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail1" placeholder="Enter Linkedin Web Address" type="url" pattern="https?://.+" [(ngModel)]="linkedinWebAdd" name="linkedinWebAdd" [tooltip]="linkedinWebAddTooltip">
-                      <tooltip-content #linkedinWebAddTooltip>
-                        <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.linkedinWebAdd?.valid " style="color: #C21F39">Linkedin WebAddress</span>
-                        <span [hidden]="!contractorProfile.form.controls.linkedinWebAdd?.hasError('pattern')" style="color: #C21F39"> Linkedin  address not valid!</span>
-                      </tooltip-content>
+                      <input class="form-control" id="exampleInputEmail10" placeholder="Enter Linkedin Web Address" type="url" pattern="https?://.+" [(ngModel)]="linkedinWebAdd" name="linkedinWebAdd">
+                      
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/Behance-Web.png" alt="Enter Behance Web Address" title="Enter Behance Web Address" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail1" placeholder="Enter Behance Web Address" type="text" pattern="https?://.+" [(ngModel)]="behanceWebAdd" name="behanceWebAdd" [tooltip]="behanceWebAddTooltip">
-                      <tooltip-content #behanceWebAddTooltip>
-                        <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.behanceWebAdd?.valid " style="color: #C21F39">Behance WebAddress</span>
-                        <span [hidden]="!contractorProfile.form.controls.behanceWebAdd?.hasError('pattern')" style="color: #C21F39"> behance WebAddress not valid!</span>
-                      </tooltip-content>
+                      <input class="form-control" id="exampleInputEmail11" placeholder="Enter Behance Web Address" type="text" pattern="https?://.+" [(ngModel)]="behanceWebAdd" name="behanceWebAdd">
+                      
                     </div>
                   </div>
                 </div>
@@ -219,17 +192,13 @@
             <div class="col-md-70 col-sm-60">
               <div class="preferred_job_titles">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">What are your preferred job titles?</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter job title" [(ngModel)]="preferredJobTitle" name="preferredJobTitle">
+                  <label for="preferredJob">What are your preferred job titles?</label>
+                  <input type="text" class="form-control" id="preferredJob" placeholder="Enter job title" [(ngModel)]="preferredJobTitle" name="preferredJobTitle">
                 </div>
                 <div class="preferred_skip_submit"> <a href="javascript:void(0)" class="btn-info hover_white_pluse">Skip <i class="fa fa-angle-double-right plus_black" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-info hover_white_pluse" (click)="savePreferredJobTitle()">Submit <i class="fa fa-plus plus_black img_ioc" aria-hidden="true"></i></a> </div>
               </div>
               <div class="profile_map">
-                <!-- <img src="./assets/images/map.png" alt="map" title="map" class="img-responsive"> -->
-                <!-- agm-map [latitude]="lat" [longitude]="lng">
-                  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-                  <agm-polygon [paths]="polygonPath" [editable]="true" [draggable]="true"></agm-polygon>
-                </agm-map> -->
+                
                 <div id="profileMap"></div>
               </div>
               <div class="signup_form_section width_auto">
@@ -249,13 +218,13 @@
                       <div class="col-xs-55">
                         <div class="input-group">
                           <div class="input-group-addon upto_border_none">Rate(&euro;)</div>
-                          <input class="form-control" id="exampleInputEmail1" placeholder="" type="text" [(ngModel)]="rate1" name="rate1" (keyup)="minRateKeyup()">
+                          <input class="form-control" id="exampleInputEmaildd" placeholder="" type="text" [(ngModel)]="rate1" name="rate1" (keyup)="minRateKeyup()">
                         </div>
                       </div>
                       <div class="col-xs-45">
                         <div class="input-group">
                           <div class="input-group-addon upto_border_none">-</div>
-                          <input class="form-control" id="exampleInputEmail1" placeholder="" type="text" [(ngModel)]="rate2" name="rate2" (keyup)="maxRateKeyup()">
+                          <input class="form-control" id="exampleInputEmailff" placeholder="" type="text" [(ngModel)]="rate2" name="rate2" (keyup)="maxRateKeyup()">
                         </div>
                       </div>
                     </div>
@@ -280,14 +249,14 @@
                 <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-addon"><img src="./assets/images/current-job-title.png" alt="Current Job Title" title="Current Job Title" class="img-responsive"></div>
-                    <input class="form-control" id="exampleInputEmail1" placeholder="Current Job Title" type="text" [(ngModel)]="currentJobTitle" name="currentJobTitle">
+                    <input class="form-control" id="exampleInputEmail1d" placeholder="Current Job Title" type="text" [(ngModel)]="currentJobTitle" name="currentJobTitle">
                   </div>
                 </div>
               </div>
               <div class="job_search_keywords signup_form_section width_auto">
                 <h2>Skills & Experience</h2>
                 <div class="enter_your_skills">
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Key Skills (Separated with commas)" (keyup)="addSkill($event)" [(ngModel)]="selectedSkill" name="skill">
+                  <input type="text" class="form-control" id="exampleInputEmail1dfr" placeholder="Enter Key Skills (Separated with commas)" (keyup)="addSkill($event)" [(ngModel)]="selectedSkill" name="skill">
                   <!-- <select class="form-control minimal background_drop_down" style="width: 96%; float: left;" [(ngModel)]="selectedSkill" name="skills" (change)="selectSkill()">
                     <option value="">Select Skill</option>
                     <option *ngFor="let skill of skillData" [value]="skill.skill_id">{{skill.skill_name}}</option>
@@ -335,19 +304,19 @@
                 <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-addon"><img src="./assets/images/certification-icon.png" alt="Certification" title="Certification" class="img-responsive"></div>
-                    <input class="form-control" id="exampleInputEmail1" placeholder="Certification (Separated with Comma)" type="text" [(ngModel)]="certification" name="certification">
+                    <input class="form-control" id="certification" placeholder="Certification (Separated with Comma)" type="text" [(ngModel)]="certification" name="certification">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-addon"><img src="./assets/images/qualification-icon.png" alt="Qualification" title="Qualification" class="img-responsive"></div>
-                    <input class="form-control" id="exampleInputEmail1" placeholder="Qualification (Separated with Comma)" type="text" [(ngModel)]="qualification" name="qualification">
+                    <input class="form-control" id="qualification" placeholder="Qualification (Separated with Comma)" type="text" [(ngModel)]="qualification" name="qualification">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-addon"><img src="./assets/images/current-job-title.png" alt="Preferred Job" title="Preferred Job" class="img-responsive"></div>
-                    <input class="form-control" id="exampleInputEmail1" placeholder="Preferred Job Title" type="text" [(ngModel)]="preferredJobTitleValue" name="preferredJobTitleValue">
+                    <input class="form-control" id="prferred" placeholder="Preferred Job Title" type="text" [(ngModel)]="preferredJobTitleValue" name="preferredJobTitleValue">
                   </div>
                 </div>
               </div>
@@ -446,10 +415,8 @@
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/account-pass.png" alt="Enter Password" title="Password" class="img-responsive"></div>
-                        <input class="form-control" id="exampleInputEmail1" placeholder="Enter Current Password" type="password" [(ngModel)]="currentPassword" name="currentPassword" [tooltip]="currentPassTooltip">
-                        <tooltip-content #currentPassTooltip>
-                          <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.currentPassword?.valid " style="color: #C21F39">Current Password</span>
-                        </tooltip-content>
+                        <input class="form-control" id="currentPassword" placeholder="Enter Current Password" type="password" [(ngModel)]="currentPassword" name="currentPassword" >
+                       
                       </div>
                     </div>
                   </div>
@@ -459,10 +426,8 @@
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/account-pass.png" alt="Enter Password" title="Password" class="img-responsive"></div>
-                        <input class="form-control" id="exampleInputEmail1" placeholder="Enter New Password" type="password" [(ngModel)]="newPassword" name="newPassword" [tooltip]="newPasswordTooltip">
-                        <tooltip-content #newPasswordTooltip>
-                          <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.newPassword?.valid " style="color: #C21F39">New Password</span>
-                        </tooltip-content>
+                        <input class="form-control" id="newPassword" placeholder="Enter New Password" type="password" [(ngModel)]="newPassword" name="newPassword">
+                        
                       </div>
                     </div>
                   </div>
@@ -470,10 +435,8 @@
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/account-pass.png" alt="Enter Password" title="Password" class="img-responsive"></div>
-                        <input class="form-control" id="exampleInputEmail1" placeholder="Confirm New Password" type="password" [(ngModel)]="confirmNewPassword" name="confirmNewPassword" [tooltip]="confirmNewPasswordTooltip" onpaste="return false;">
-                        <tooltip-content #confirmNewPasswordTooltip>
-                          <span *ngIf="contractorProfile?.form && contractorProfile.form.controls && contractorProfile.form.controls.confirmNewPassword?.valid " style="color: #C21F39"> Password</span>
-                        </tooltip-content>
+                        <input class="form-control" id="confirmNewPassword" placeholder="Confirm New Password" type="password" [(ngModel)]="confirmNewPassword" name="confirmNewPassword"  onpaste="return false;">
+                        
                       </div>
                     </div>
                   </div>
