@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import {  Http, Response } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/map';  // we need to import this now
 @Injectable()
 export class CommonRequestService {
@@ -11,7 +12,7 @@ export class CommonRequestService {
 	// }); // variable used to store headers field values
 	// options = new RequestOptions({ headers: this.headers });
 
-	constructor(private _http: Http) {
+	constructor(private _http: Http, private _router: Router, private _routes: ActivatedRoute) {
 
 	}
 
@@ -35,8 +36,20 @@ export class CommonRequestService {
 			.map(
 			(response: Response) => {
 				const data = response.json();
-				if (data)
+				if(data.auth_error && data.auth_error == 1){
+					const localStorageData = localStorage.getItem('loginDetail') ?  JSON.parse(localStorage.getItem('loginDetail')) : "";
+					if(localStorageData && localStorageData.role === 'contractor'){
+						this._router.navigate(['/public/contractorLogin']);
+					} else if(localStorageData && localStorageData.role === 'recuriter'){
+						this._router.navigate(['/public/recruiterLogin']);
+					}else{
+						this._router.navigate(['/public/home']);
+					}
+					localStorage.removeItem('loginDetail');
+				}
+				else if (data){
 					return data;
+				}
 			})
 	}
 

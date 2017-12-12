@@ -24,16 +24,18 @@ export class ContractorJobDetailComponent implements OnInit {
 	constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
 	ngOnInit() {
+
 		this._routes.params.subscribe((params: Params) => {
+			if (this._router.url.split('/')[1] == "public") {
+				this.isPublic = true;
+			}
 			this.jobId = params['id'];
 			if (this.jobId) {
 				this.jobDetail(this.jobId)
 			}
 		})
 
-		if (this._router.url.split('/')[1] == "public") {
-			this.isPublic = true;
-		}
+
 
 		this.getJobList();
 	}
@@ -48,9 +50,11 @@ export class ContractorJobDetailComponent implements OnInit {
 		if (jobId) {
 			let input = {
 				"jobid": jobId,
-				"loginToken": "awawdeaSADSAI8Y9dDKQIasfsa",
-				"email": "test@gmail.com"
 			};
+			if (!this.isPublic) {
+				input['email'] = "test@gmail.com",
+					input['loginToken'] = "tdfdsfsGUkl7789ljdoa"
+			}
 			let url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/job/view";
 
 			this._commonRequestService.postData(url, input)
