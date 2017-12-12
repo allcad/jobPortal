@@ -303,7 +303,7 @@
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon"><img src="./assets/images/address-name-icon.png" alt="" title="" class="img-responsive"></div>
-                          <input type="text" class="form-control box_padding_3 box_height_30" placeholder="Address Line 1" [(ngModel)]="addMulAddArray[i].addresslLine1" name="addMulAddArray[i].addressLine1Name" [disabled]="companyEditableId == 0">
+                          <input type="text" class="form-control box_padding_3 box_height_30" placeholder="Address Line 1" [(ngModel)]="addMulAddArray[i].addresslLine1" name="line1_{{i}}" [disabled]="companyEditableId == 0">
                         </div>
                       </div>
                     </div>
@@ -313,7 +313,7 @@
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon"><img src="./assets/images/address-name-icon.png" alt="" title="" class="img-responsive"></div>
-                          <input type="text" class="form-control box_padding_3 box_height_30" placeholder="Address Line 2" [(ngModel)]="addMulAddArray[i].addressLine2" name="addMulAddArray[i].addressLine2Name" [disabled]="companyEditableId == 0">
+                          <input type="text" class="form-control box_padding_3 box_height_30" placeholder="Address Line 2" [(ngModel)]="addMulAddArray[i].addressLine2" name="line2_{{i}}" [disabled]="companyEditableId == 0">
                         </div>
                       </div>
                     </div>
@@ -323,7 +323,7 @@
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon"><img src="./assets/images/recruiter-city-pastcode.png" alt="" title="" class="img-responsive"></div>
-                          <input type="text" class="form-control box_padding_3 box_height_30" placeholder="City, Town" [(ngModel)]="addMulAddArray[i].city" name="addMulAddArray[i].cityName" [disabled]="companyEditableId == 0">
+                          <input type="text" class="form-control box_padding_3 box_height_30" placeholder="City, Town" [(ngModel)]="addMulAddArray[i].city" name="city_{{i}}" [disabled]="companyEditableId == 0">
                         </div>
                       </div>
                     </div>
@@ -333,7 +333,7 @@
                           <div class="input-group-addon"><img src="./assets/images/county-icon.png" alt="" title="" class="img-responsive"></div>
                           <!-- <input type="text" class="form-control box_padding_3 box_height_30" placeholder="COUNTRY" [(ngModel)]="addMulAddArray[i].country" name="addMulAddArray[i].countryName"> -->
                           
-                          <select class="form-control minimal background_drop_down box_padding_3 box_height_30" [(ngModel)]="addMulAddArray[i].country" name="addMulAddArray[i].countryName" [disabled]="companyEditableId == 0">
+                          <select class="form-control minimal background_drop_down box_padding_3 box_height_30" [(ngModel)]="addMulAddArray[i].country" name="country_{{i}}" [disabled]="companyEditableId == 0">
                           <option value="">Nationality</option>
                           <option value="{{item?.id}}" *ngFor="let item of countryValueArray">{{item?.name}}</option>
                           </select>
@@ -347,7 +347,7 @@
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon"><img src="./assets/images/post-code-icon.png" alt="" title="" class="img-responsive"></div>
-                          <input type="text" class="form-control box_padding_3 box_height_30" placeholder="Post Code" [(ngModel)]="addMulAddArray[i].postCode" name="addMulAddArray[i].postName" [disabled]="companyEditableId == 0">
+                          <input type="text" class="form-control box_padding_3 box_height_30" placeholder="Post Code" [(ngModel)]="addMulAddArray[i].postCode" name="postcode_{{i}}" [disabled]="companyEditableId == 0">
                         </div>
                       </div>
                     </div>
@@ -355,7 +355,7 @@
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon"><img src="./assets/images/telephone-icon.png" alt="" title="" class="img-responsive"></div>
-                          <input type="text" class="form-control box_padding_3 box_height_30" placeholder="Telephone" [(ngModel)]="addMulAddArray[i].telephone" name="addMulAddArray[i].telephone1" (change)="otherTelephoneValidation(addMulAddArray[i].telephone)" [disabled]="companyEditableId == 0">
+                          <input type="text" class="form-control box_padding_3 box_height_30" placeholder="Telephone" [(ngModel)]="addMulAddArray[i].telephone" name="telephone_{{i}}" (change)="otherTelephoneValidation(addMulAddArray[i].telephone)" [disabled]="companyEditableId == 0">
                           <!-- <tooltip-content #otherTelephoneTooltip>
                            <span *ngIf="otherTelephoneValidationFlag" style="color: #C21F39">Please Enter Valid Phone No.</span>
                         </tooltip-content> -->
@@ -364,7 +364,7 @@
                     </div>
                   </div>
                   <div class="sign_up_right_side margin_top_-30px">
-                    <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="removeAddress(item)" [ngClass]="companyEditableId == 0 ? 'anchor_disable': ''">Remove
+                    <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="removeAddress(i)" [ngClass]="companyEditableId == 0 ? 'anchor_disable': ''">Remove
                       <i class="fa fa-minus plus_blue text_pink" aria-hidden="true"></i>
                     </a>
                   </div>
@@ -544,7 +544,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/link-icons.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1{{i}}" placeholder="Other Social Link Name" [(ngModel)]="addMulSocialArray[i].otherSocialLink" name="addMulSocialArray[i].otherSocialLink" [disabled]="companyEditableId == 0">
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1{{i}}" placeholder="Other Social Link Name" [(ngModel)]="addMulSocialArray[i].otherSocialLink" name="socialLink_{{i}}" [disabled]="companyEditableId == 0">
                       <!-- <tooltip-content #otherLinkedinTooltip>
                      
                       <span *ngIf="linkedinValidationFlag" style="color: #C21F39">Please Enter Valid Social Link</span>
@@ -556,7 +556,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/twitter-account-icon.png" alt="" title="" class="img-responsive"></div>
-                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Other Account Name" [(ngModel)]="addMulSocialArray[i].otherSocialFeed" name="addMulSocialArray[i].otherSocialFeed" [disabled]="companyEditableId == 0">
+                      <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Other Account Name" [(ngModel)]="addMulSocialArray[i].otherSocialFeed" name="socialFeed_{{i}}" [disabled]="companyEditableId == 0">
                      <!--  <tooltip-content #otherFullLinkedinTooltip>
                       <span *ngIf="fullLinkedinValidationFlag" style="color: #C21F39">Please Enter Valid Twitter Account Name</span>
                     </tooltip-content> -->
@@ -564,16 +564,16 @@
                     <div class="feed_profile_page">
                       <p class="">Display feed on profile page?</p>
                       <div class="input-group group_inline_rights">
-                        <input value="otherYes" id="prepaidyes_{{i}}" name="service_type3" checked="" type="radio" [(ngModel)]="addMulSocialArray[i].otherRadio" name="addMulSocialArray[i].otherRadio" [disabled]="companyEditableId == 0">
+                        <input value="otherYes" id="prepaidyes_{{i}}" name="service_type_{{i}}" checked="" type="radio" [(ngModel)]="addMulSocialArray[i].otherRadio" [disabled]="companyEditableId == 0">
                         <label for="prepaidyes_{{i}}" class="radio-inline"><span></span> Yes </label>
-                        <input value="otherNo" id="prepaidno_{{i}}" name="service_type3" type="radio" [(ngModel)]="addMulSocialArray[i].otherRadio" name="addMulSocialArray[i].otherRadio" [disabled]="companyEditableId == 0" >
+                        <input value="otherNo" id="prepaidno_{{i}}" name="service_type3_{{i}}" type="radio" [(ngModel)]="addMulSocialArray[i].otherRadio" [disabled]="companyEditableId == 0" >
                         <label for="prepaidno_{{i}}" class="radio-inline"><span></span> No </label>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="sign_up_right_side margin_top_-30px"> 
-                  <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="removeSocialLink(item)" [ngClass]="companyEditableId == 0 ? 'anchor_disable': ''">Remove<i class="fa fa-minus plus_blue text_pink" aria-hidden="true"></i></a>
+                  <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_180px" (click)="removeSocialLink(i)" [ngClass]="companyEditableId == 0 ? 'anchor_disable': ''">Remove<i class="fa fa-minus plus_blue text_pink" aria-hidden="true"></i></a>
                 </div>
               </div>
 

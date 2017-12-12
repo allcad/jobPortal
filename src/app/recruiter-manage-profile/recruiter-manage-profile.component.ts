@@ -84,14 +84,14 @@ companyDescFlag = false;
 companyUrlFlag = false;
 companyEmailFlag = false;
 allErrorMsgFlag = false;
-addMulAddArray = [{'addresslLine1': 'line1', 'addressLine1Name': 'address1', 'addressLine2': 'line2', 'addressLine2Name': 'address2', 'city': 'city', 'cityName': 'cityN', 'country': 'cou', 'countryName': 'country1', 'postCode': '12', 'postName': 'postN', 'telephone': '134', 'telephone1': 'teleP'}]
-addMulSocialArray = [{'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio': '', 'otherName':''}];
+addMulAddArray = []
+addMulSocialArray = [];
 fd;
 companyEditableId;
 WSErrorMsg = "";
   constructor(public _commonRequestService: CommonRequestService, private commonService: CommonService) {
-    this.addMulAddArray.splice(0,1);
-    this.addMulSocialArray.splice(0,1);
+    //this.addMulAddArray.splice(0,1);
+    //this.addMulSocialArray.splice(0,1);
    }
 
   ngOnInit() {
@@ -146,7 +146,7 @@ WSErrorMsg = "";
     // console.log("this.list--", this.list);
     var newItem = this.addMulAddArray.length + 1;
     console.log("this.addMulAddArray before", this.addMulAddArray)
-    this.addMulAddArray.push({'addresslLine1': '', 'addressLine1Name': 'address1'+newItem, 'addressLine2': '', 'addressLine2Name': 'address2'+newItem, 'city': '', 'cityName': 'cityN'+newItem, 'country': '', 'countryName': 'country1'+newItem, 'postCode': '', 'postName': 'postN'+newItem, 'telephone': '', 'telephone1': 'teleP'+newItem})
+    this.addMulAddArray.push({'addresslLine1': '', 'addressLine2': '', 'city': '', 'country': '', 'postCode': '', 'telephone': ''})
     //newItem + 1;
     //this.showMultipleAddress = true;
     console.log("this.addMulAddArray afetr", this.addMulAddArray)
@@ -155,25 +155,27 @@ WSErrorMsg = "";
   addAnotherSocialLink() {
     var newItem = this.addMulSocialArray.length + 1;
     console.log("this.addMulAddArray before", this.addMulSocialArray);
-    this.addMulSocialArray.push({'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio': '', 'otherName': 'other'+newItem});
+    this.addMulSocialArray.push({'otherSocialLink': '', 'otherSocialFeed': '', 'otherRadio': ''});
   }
 
-  removeFunction(myObjects,prop,valu){
-     return myObjects.filter(function (val) {
-          return val[prop] !== valu;
-      });
-    }
+  // removeFunction(myObjects,prop,valu){
+  //    return myObjects.filter(function (val) {
+  //         return val[prop] !== valu;
+  //     });
+  //   }
 
-  removeAddress(value) {
-    console.log("value--", value);
-    console.log("this.addMulAddArray", this.addMulAddArray)
-    this.addMulAddArray = this.removeFunction(this.addMulAddArray,"addressLine1Name",value.addressLine1Name);
+  removeAddress(index) {
+    this.addMulAddArray.splice(index, 1);
+    // console.log("value--", value);
+    // console.log("this.addMulAddArray", this.addMulAddArray)
+    // this.addMulAddArray = this.removeFunction(this.addMulAddArray,"addressLine1Name",value.addressLine1Name);
   }
 
-  removeSocialLink(value) {
-    console.log("value--", value);
-    console.log("this.addMulSocialArray", this.addMulSocialArray)
-    this.addMulSocialArray = this.removeFunction(this.addMulSocialArray,"otherName",value.otherName);
+  removeSocialLink(index) {
+    this.addMulSocialArray.splice(index, 1);
+    // console.log("value--", value);
+    // console.log("this.addMulSocialArray", this.addMulSocialArray)
+    // this.addMulSocialArray = this.removeFunction(this.addMulSocialArray,"otherName",value.otherName);
   }
 
   samePermanentAdd() {
@@ -547,6 +549,8 @@ getProfileDta(){
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
           console.log("profiledta--", data);
+          this.addMulAddArray = [];
+          this.addMulSocialArray = [];
           var companySocialData;
           if(data && data.data) {
             this.profileData = data.data;
@@ -592,8 +596,8 @@ getProfileDta(){
           if(companySocialData && companySocialData.otherSocialData && companySocialData.otherSocialData.length > 0) {
             for(var i = 0; i< companySocialData.otherSocialData.length; i++) {
               if(companySocialData.otherSocialData[i].Url) {
-                var newItem = i;
-                this.addMulSocialArray.push({'otherSocialLink': companySocialData.otherSocialData[i].Url, 'otherSocialFeed': companySocialData.otherSocialData[i].fullUrl, 'otherRadio': companySocialData.otherSocialData[i].displayFeed, 'otherName': 'other'+newItem});
+                //var newItem = i;
+                this.addMulSocialArray.push({'otherSocialLink': companySocialData.otherSocialData[i].Url, 'otherSocialFeed': companySocialData.otherSocialData[i].fullUrl, 'otherRadio': companySocialData.otherSocialData[i].displayFeed});
               }
             }
           }
@@ -601,8 +605,8 @@ getProfileDta(){
           if(this.profileData['otherAddress'] && this.profileData['otherAddress'].length > 0) {
             for(var i = 0; i< this.profileData['otherAddress'].length; i++) {
               if(this.profileData['otherAddress'][i].addressLine1) {
-                var newItem = i;
-                this.addMulAddArray.push({'addresslLine1': this.profileData['otherAddress'][i].addressLine1, 'addressLine1Name': 'address1'+newItem, 'addressLine2': this.profileData['otherAddress'][i].addressLine2, 'addressLine2Name': 'address2'+newItem, 'city': this.profileData['otherAddress'][i].city, 'cityName': 'cityN'+newItem, 'country': this.profileData['otherAddress'][i].country, 'countryName': 'country1'+newItem, 'postCode': this.profileData['otherAddress'][i].postCode, 'postName': 'postN'+newItem, 'telephone': this.profileData['otherAddress'][i].telephone, 'telephone1': 'teleP'+newItem})
+                //var newItem = i;
+                this.addMulAddArray.push({'addresslLine1': this.profileData['otherAddress'][i].addressLine1, 'addressLine2': this.profileData['otherAddress'][i].addressLine2, 'city': this.profileData['otherAddress'][i].city, 'country': this.profileData['otherAddress'][i].country, 'postCode': this.profileData['otherAddress'][i].postCode, 'telephone': this.profileData['otherAddress'][i].telephone})
               }
             }
             console.log('this.addMulAddArray--', this.addMulAddArray);
