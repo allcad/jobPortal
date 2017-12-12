@@ -128,5 +128,5 @@
                     </div>                    
                 </div>             
             </div>
-            <div class="show_more_application"> <a *ngIf="listingData.length > 11" href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="showMoreJobs()"><span>SHOW MORE APPLICATIONS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
+            <div class="show_more_application"> <a *ngIf="maxRecord > listingData.length" href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="showMoreJobs()"><span>SHOW MORE APPLICATIONS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
         </section>

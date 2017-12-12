@@ -73,7 +73,6 @@ export class RecruiterPreviewJobComponent implements OnInit {
            this.previewDataList = data.data;
            console.log("this.previewDataList--", this.previewDataList);
          } else if(data && data.status == 'FALSE') {
-           this.commonService.goToRecruiterLogin(data);
          }
         }
     );
@@ -105,8 +104,8 @@ export class RecruiterPreviewJobComponent implements OnInit {
           "maxRate": this.previewDataList.prefereedRate.maxRate ? this.previewDataList.prefereedRate.maxRate: '',
           "dailyHourlyRate": this.previewDataList.prefereedRate.dailyHourlyRate ? this.previewDataList.prefereedRate.dailyHourlyRate: ''
         },
-        "jobSpecification": this.previewDataList.jobSpecificationTitle ? this.previewDataList.jobSpecificationTitle: "",
-        "jobSpecificationTitle": this.previewDataList.jobSpecification !== "" ? this.previewDataList.jobSpecification: this.previewDataList.jobTitle,
+        "jobSpecification": this.previewDataList.jobSpecification ? this.previewDataList.jobSpecification: "",
+        "jobSpecificationTitle": "",
         "recruiterNameId": this.previewDataList.recruiterNameId ? this.previewDataList.recruiterNameId: '',
         "saveTempleteAs": this.previewDataList.saveTempleteAs ? this.previewDataList.saveTempleteAs: '',
         "jobReference": this.previewDataList.jobReference ? this.previewDataList.jobReference: '',
@@ -126,7 +125,6 @@ export class RecruiterPreviewJobComponent implements OnInit {
                 this.router.navigate(['/recruiter/manage-jobs']);
               } else if(data && data.status == 'FALSE'){
                 this.previewJobErrorMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
-                this.commonService.goToRecruiterLogin(data);
                 this.jobPostFlag = true;
               }
               //this.jobPostFlag = true;
@@ -145,7 +143,6 @@ export class RecruiterPreviewJobComponent implements OnInit {
                 this.router.navigate(['/recruiter/manage-jobs']);
               } else if(data && data.status == 'FALSE'){
                 this.previewJobErrorMsg = data && data.error && data.error.length > 0 ? data.error[0] : '';
-                this.commonService.goToRecruiterLogin(data);
                 this.jobPostFlag = true;
               }
               //this.jobPostFlag = true;

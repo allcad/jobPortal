@@ -11,7 +11,7 @@
                                 <li class="right_arrow text_pink">&gt;</li>
                                 <li class="active">WATCHLIST</li>
                             </ul>
-                            <div class="signup_form_section width_auto choose_template text-right width_auto" *ngIf="watchListData.length > 0">
+                            <div class="signup_form_section width_auto choose_template text-right width_auto">
                                 <label>Filter By Job:</label>
                                 <select class="form-control minimal background_drop_down box_height_30 box_padding_3 padding_left_none java_developer" [(ngModel)]="filterByJobId" (change)="filterByJobChange()">
                                     <option value="0">All Jobs</option>
@@ -570,5 +570,5 @@
                     </div>
                 </div> -->
             </div>
-            <div *ngIf="watchListData.length > 11" (click)="showMoreList()" class="show_more_application"> <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>SHOW MORE APPLICATIONS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
+            <div *ngIf="maxRecord > watchListData.length" (click)="showMoreList()" class="show_more_application"> <a href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px"><span>SHOW MORE APPLICATIONS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a> </div>
         </section>

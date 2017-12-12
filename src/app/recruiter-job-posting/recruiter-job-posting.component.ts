@@ -217,8 +217,6 @@ public froalaOptionsPreview: any = {
             this.templateData = data.data;
             this.currentTemplate = this.templateData[0].id;
             console.log("templateData--", data);
-          } else if(data && data.status == 'FALSE') {
-            this.commonService.goToRecruiterLogin(data);
           }
         }
     );
@@ -255,9 +253,7 @@ public froalaOptionsPreview: any = {
            this.jobReference = this.renderTemmplateData.jobReference;
            this.editJobId = this.renderTemmplateData.id;
            this.recruiterName = this.renderTemmplateData.consultant_id;
-         } else if(data && data.status == 'FALSE') {
-            this.commonService.goToRecruiterLogin(data);
-          }
+         }
 
         }
     );
@@ -278,9 +274,7 @@ public froalaOptionsPreview: any = {
           console.log("industryArrayData--", data);
           if(data && data.status == 'TRUE') {
             this.industryDataArray = data.data;
-          } else if(data && data.status == 'FALSE') {
-            this.commonService.goToRecruiterLogin(data);
-          }
+          } 
           //this.recruiterNameArray = data.data;
         }
     );
@@ -299,8 +293,6 @@ public froalaOptionsPreview: any = {
           if(data && data.status == 'TRUE') {
             this.recruiterNameArray = data.data;
             this.recruiterName = this.recruiterNameArray[0].recuriter_id;
-          } else if(data && data.status == 'FALSE') {
-            this.commonService.goToRecruiterLogin(data);
           }
         }
     );
@@ -340,9 +332,7 @@ public froalaOptionsPreview: any = {
              this.recruiterName = this.jobPostingDetails.recruiter_Id;
              this.saveTemplateAs = this.jobPostingDetails.saveTempleteAs;
              this.jobReference = this.jobPostingDetails.jobReference;
-         } else if(data && data.status == 'FALSE') {
-            this.commonService.goToRecruiterLogin(data);
-          }
+         }
         }
     );
   }
@@ -490,7 +480,6 @@ public froalaOptionsPreview: any = {
                   // var obj1 = {'jobPreviewData' : ''};
                   // localStorage.setItem('editJobPost', JSON.stringify(obj1));
                 } else if(data && data.status == 'FALSE'){
-                  this.commonService.goToRecruiterLogin(data);
                   this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
                 }
                 }
@@ -519,7 +508,6 @@ public froalaOptionsPreview: any = {
                 } else if(data && data.status == 'FALSE'){
                   //this.previewJobErrorMsg = data.error;
                   //this.jobPostFlag = true;
-                  this.commonService.goToRecruiterLogin(data);
                   this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
                 }
                 //this.jobPostFlag = true;

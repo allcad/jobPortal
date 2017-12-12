@@ -78,7 +78,7 @@
                                 <p><span class="text_pink">Watching </span> {{item?.watching ? item?.watching : '0'}}</p>
                                 <p><span class="text_gray">Reference Number  </span> {{item?.jobReference ? item?.jobReference : 'N/A'}}</p>
                                 <p><span class="text_gray">Date (Posted)    </span> {{item?.recuriter_job_created_at | date}}</p>
-                                <p><span class="text_gray">Date (Expiration)  </span> {{ item?.expireDate | date}}</p>
+                                <p><span class="text_gray">Date (Expiration)  </span> {{ item?.expiry_date | date}}</p>
                                 <p><span class="text_gray" >Posted By     </span>{{item?.recruiterNameId ? item?.recruiterNameId : 'N/A'}}</p>
                             </div>
                             <div class="manage_job_footer">
@@ -170,7 +170,7 @@
                                 <p><span class="text_pink">Watching </span> {{item?.watching ? item?.watching : '0'}}</p>
                                 <p><span class="text_gray">Reference Number  </span> {{item?.jobReference ? item?.jobReference : 'N/A'}}</p>
                                 <p><span class="text_gray">Date (Posted)    </span> {{item?.recuriter_job_created_at | date}}</p>
-                                <p><span class="text_gray">Date (Expiration)  </span> {{item?.expireDate | date}}</p>
+                                <p><span class="text_gray">Date (Expiration)  </span> {{item?.expiry_date | date}}</p>
                                 <p><span class="text_gray">Posted By     </span> {{item?.recruiterNameId ? item?.recruiterNameId : 'N/A'}}</p>
                             </div>
                             <div class="manage_job_footer">
@@ -330,7 +330,7 @@
                                 <p><span class="text_pink">Watching </span> {{item?.watching ? item?.watching : '0'}}</p>
                                 <p><span class="text_gray">Reference Number  </span> {{item?.jobReference ? item?.jobReference : 'N/A'}}</p>
                                 <p><span class="text_gray">Date (Posted)    </span> {{item?.recuriter_job_created_at | date}}</p>
-                                <p><span class="text_gray">Date (Expiration)  </span> {{ item?.expireDate | date}}</p>
+                                <p><span class="text_gray">Date (Expiration)  </span> {{ item?.expiry_date | date}}</p>
                                 <p><span class="text_gray">Posted By     </span> {{item?.recruiterNameId ? item?.recruiterNameId : 'N/A'}}</p>
                             </div>
                             <div class="manage_job_footer">
@@ -390,6 +390,6 @@
                 </div>
             </div>
             <div class="show_more_application">
-                <a *ngIf="listingData.length > 8" href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="showMoreJobs()"><span>SHOW MORE JOBS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                <a *ngIf="maxRecord > listingData.length" href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="showMoreJobs()"><span>SHOW MORE JOBS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
             </div>
         </section>

@@ -59,9 +59,7 @@ export class RecruiterViewApplicationsComponent implements OnInit {
          if(data) {
            this.filterByJobData = data.data;
            
-        } else if(data && data.status == 'FALSE') {
-           this.commonService.goToRecruiterLogin(data);
-         }
+        }
       }
     );
   }
@@ -126,7 +124,6 @@ export class RecruiterViewApplicationsComponent implements OnInit {
            // console.log("secondArray", this.secondArray);
            // console.log("thirdArray", this.thirdArray);
           } else if(data && data.status == 'FALSE'){
-             this.commonService.goToRecruiterLogin(data);
             this.errorMsgFlag = true;
               this.errorMsg = this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
           }

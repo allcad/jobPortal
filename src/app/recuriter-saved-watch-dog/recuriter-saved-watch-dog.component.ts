@@ -133,8 +133,6 @@ export class RecuriterSavedWatchDogComponent implements OnInit, AfterViewInit {
           console.log("timeLeftData--", data);
           if(data && data.status == 'TRUE') {
             this.timeLeftData = data.data;
-          } else if(data && data.status == 'FALSE') {
-            this.commonService.goToRecruiterLogin(data);
           }
           //this.recruiterNameArray = data.data;
         }
@@ -154,8 +152,6 @@ export class RecuriterSavedWatchDogComponent implements OnInit, AfterViewInit {
           console.log("education data--", data);
           if(data && data.status == 'TRUE') {
             this.educationData = data.data;
-          } else if(data && data.status == 'FALSE') {
-            this.commonService.goToRecruiterLogin(data);
           }
           //this.recruiterNameArray = data.data;
         }
@@ -176,9 +172,6 @@ export class RecuriterSavedWatchDogComponent implements OnInit, AfterViewInit {
           if(data && data.status == 'TRUE') {
             this.securityClearanceArray = data.data;
           }
-          else if(data && data.status == 'FALSE') {
-            this.commonService.goToRecruiterLogin(data);
-          }
           //this.recruiterNameArray = data.data;
         }
     );
@@ -197,8 +190,6 @@ export class RecuriterSavedWatchDogComponent implements OnInit, AfterViewInit {
           console.log("industryArrayData--", data);
           if(data && data.status == 'TRUE') {
             this.industryArrayData = data.data;
-          }  else if(data && data.status == 'FALSE') {
-            this.commonService.goToRecruiterLogin(data);
           }
           //this.recruiterNameArray = data.data;
         }
@@ -219,8 +210,6 @@ export class RecuriterSavedWatchDogComponent implements OnInit, AfterViewInit {
           if(data && data.status == 'TRUE') {
             this.getSaveSearchList();
             this.resetFields();
-          } else if(data && data.status == 'FALSE') {
-            this.commonService.goToRecruiterLogin(data);
           }
           //this.industryArrayData = data.data;
           //this.recruiterNameArray = data.data;
@@ -268,9 +257,7 @@ export class RecuriterSavedWatchDogComponent implements OnInit, AfterViewInit {
             this.industrySectorValue = data.data.params.recuriter_search_by_industry? data.data.params.recuriter_search_by_industry : [];
             this.securityClearValue = data.data.params.recuriter_search_by_security_clearance ? data.data.params.recuriter_search_by_security_clearance : [];
           }
-        } else if(data && data.status == 'FALSE') {
-            this.commonService.goToRecruiterLogin(data);
-          }
+        }
         }
     );
   }
@@ -289,8 +276,6 @@ export class RecuriterSavedWatchDogComponent implements OnInit, AfterViewInit {
           if(data && data.data && data.data.length > 0) {
             this.searchListDataFlag = true;
             this.searchListData = data.data;
-          } else if(data && data.status == 'FALSE') {
-            this.commonService.goToRecruiterLogin(data);
           }
           //this.industryArrayData = data.data;
           //this.recruiterNameArray = data.data;

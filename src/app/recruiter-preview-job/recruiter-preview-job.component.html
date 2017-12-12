@@ -3,11 +3,16 @@
             <!--contractor login-->
             <div id="contractor-signup">
                 <div class="container">
-                    <div *ngIf="previewJobErrorMsg">
+                    <!-- <div *ngIf="previewJobErrorMsg">
                         <div class="alert alert-danger margin-tp18">
                             <a href="javascript:void(0)" class="close" title="close" (click)="previewJobErrorMsg =!previewJobErrorMsg">×</a> {{previewJobErrorMsg}}
                         </div>
+                    </div> -->
+
+                      <div class="errorbox" *ngIf="previewJobErrorMsg"><br> 
+                        <li>{{previewJobErrorMsg}}</li>
                     </div>
+                    
                     <div class="row">
                         <div class="col-sm-100">
                             <div class="contractor_signup befourlogin_fontsize">
@@ -61,8 +66,8 @@
                         </div>
                         <div class="col-md-60 col-sm-50 col-md-offset-1">
                             <div class="job_full_details">
-                                <h2>{{previewDataList?.jobSpecificationTitle}}</h2>
-                                {{previewDataList?.jobSpecification}}
+                                <h2><p [innerHTML]="previewDataList?.jobSpecificationTitle"></p></h2>
+                                <p [innerHTML] = "previewDataList?.jobSpecification"></p>
                                <!--  <p> The person hired for the position of Network Engineer will be responsible for the support of the global UTM and remote access environment. In this role the analyst will support Check Point UTMs, Cisco ASA Firewalls, Cisco ASA VPNs and Juniper SSL gateways.</p> -->
                                 <!-- <ul>
                                     Primary Responsibilities include but are not limited to the following:

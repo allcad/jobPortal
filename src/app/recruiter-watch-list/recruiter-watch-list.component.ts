@@ -78,9 +78,7 @@ export class RecruiterWatchListComponent implements OnInit {
          if(data) {
            this.filterByJobData = data.data;
            
-        } else if(data && data.status == 'FALSE') {
-           this._commonService.goToRecruiterLogin(data);
-         }
+        }
       }
     );
   }
@@ -145,7 +143,6 @@ export class RecruiterWatchListComponent implements OnInit {
           } else {
             if(data && data.status === 'FALSE') {
             //this.errorMsgFlag = true;
-             this._commonService.goToRecruiterLogin(data);
               this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
             }
           }

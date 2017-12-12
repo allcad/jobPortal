@@ -72,12 +72,12 @@ export class RecruiterWatchdogComponent implements OnInit {
          if (data && data.status == 'TRUE') {  
          this.maxPage = data.TotalPage;         
            //this.watchListDataArr = data.data;
+           this.maxRecord = data.recordsTotal;
            for(var i =0;i<data.data.length;i++) {
              this.watchListDataArr.push(data.data[i]);
            }
            this.watchListDataArrCount = data.data.length;
          } else if(data && data.status == 'FALSE'){
-           this.commonService.goToRecruiterLogin(data);
            this.watchListDataArr = [];
            this.watchListDataArrCount = 0;
          }
@@ -122,7 +122,6 @@ export class RecruiterWatchdogComponent implements OnInit {
          } else if(data && data.status == 'FALSE'){
            this.successMessageFlag = false;
            this.openWatchdogPopupFlag = false;
-           this.commonService.goToRecruiterLogin(data);
            this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
          }
         }
@@ -148,7 +147,6 @@ export class RecruiterWatchdogComponent implements OnInit {
            this.errorMsg = "";
          } else if(data && data.status === 'FALSE'){
            this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
-           this.commonService.goToRecruiterLogin(data);
          }
          // this.getWatchDogListData(this.pageNo);
          // this.router.navigate(['./recruiter/watchdog']);

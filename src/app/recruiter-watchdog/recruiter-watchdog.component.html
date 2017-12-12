@@ -276,7 +276,7 @@
             <app-ad-space *ngIf="watchListDataArr.length !== 0"></app-ad-space>
             
             <div class="show_more_application">
-                <a *ngIf="watchListDataArr.length > 9" href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="showMoreWatchDogs()"><span>SHOW MORE WATCHDOGS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                <a *ngIf="maxRecord > watchListDataArr.length" href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="showMoreWatchDogs()"><span>SHOW MORE WATCHDOGS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
             </div>
         </section>
 

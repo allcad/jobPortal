@@ -45,17 +45,21 @@ export class RecruiterSignUpComponent implements OnInit {
 
    onSignUp(userForm:NgForm){
      this.invalidErrorMsg = "";
-     var phoneRegex = /^[0]\d{10}$/;
+     var phoneRegex = /^[0-9]\d{10}$/;
+     var phoneRegex1 = /^\d{10}$/;
      var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
      if(this.phoneNo) {
        //if(phoneRegex.test(this.phoneNo)) {
-        if(this.phoneNo.match(/^[0]\d{10}$/) || this.phoneNo.match(/^\d{10}$/)) {
+        //if(this.phoneNo.match(/^[0]\d{10}$/) || this.phoneNo.match(/^\d{10}$/)) {
+        if(phoneRegex.test(this.phoneNo) || phoneRegex1.test(this.phoneNo)) {
           this.validPhoneNoFlag = false;
         } else {
           this.validPhoneNoFlag = true;
         }
       }
+
+      
 
       if(this.emailAddress) {
         if(emailRegex.test(this.emailAddress)) {
@@ -182,7 +186,7 @@ export class RecruiterSignUpComponent implements OnInit {
           "passcode":this.keySkill,
           "recuriter_tems_status":this.termOfUse
         }
-        console.log( this.inputData,"fdf");
+        //console.log( this.inputData,"fdf");
      this.inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/signup";
          this._commonRequestService.postData(this.inputUrl, this.inputData).subscribe(
           data => {
@@ -210,7 +214,7 @@ export class RecruiterSignUpComponent implements OnInit {
                 this.invalidErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
                this.commonService.goToRecruiterLogin(data);
             }
-            console.log("rercu_sign: ", this.status);
+            //console.log("rercu_sign: ", this.status);
           }
       );     
     }

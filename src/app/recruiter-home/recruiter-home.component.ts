@@ -141,7 +141,6 @@ export class RecruiterHomeComponent implements OnInit {
           } else {
             if(data && data.status === "FALSE") {
               this.wsError = typeof (data.error) == 'object' ? data.error[0] : data.error;
-              this._commonService.goToRecruiterLogin(data);
             // this.errorMsgFlag = true;
             //   this.errorMsg = data.error[0];
             }
@@ -166,7 +165,6 @@ export class RecruiterHomeComponent implements OnInit {
            this.wsError = "";
           } else {
             if(data && data.status === "FALSE") {
-              this._commonService.goToRecruiterLogin(data);
               this.wsError = typeof (data.error) == 'object' ? data.error[0] : data.error;
             }
           }
@@ -196,7 +194,6 @@ export class RecruiterHomeComponent implements OnInit {
            this.wsError = "";
           } else {
             if(data && data.status === "FALSE") {
-              this._commonService.goToRecruiterLogin(data);
               this.wsError = typeof (data.error) == 'object' ? data.error[0] : data.error;
             }
           }

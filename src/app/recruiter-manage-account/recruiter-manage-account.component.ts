@@ -50,8 +50,6 @@ export class RecruiterManageAccountComponent implements OnInit, AfterViewInit {
            this.telePhone = data.data.contactDetails && data.data.contactDetails.telephone ? data.data.contactDetails.telephone : "";
            this.accountCreatedValue = data.data.personalDetails && data.data.personalDetails.accountCreated ? data.data.personalDetails.accountCreated : "";
            this.accountSuperUserName = data.data.personalDetails && data.data.personalDetails.name ? data.data.personalDetails.name : "";
-         } else if(data && data.status == 'FALSE') {
-           this.commonService.goToRecruiterLogin(data);
          }
         }
     );
@@ -121,7 +119,6 @@ export class RecruiterManageAccountComponent implements OnInit, AfterViewInit {
              this.manageErrorFlag = true;
              this.manageAccountFlag = false;
              this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
-             this.commonService.goToRecruiterLogin(data);
            }
           }
       );

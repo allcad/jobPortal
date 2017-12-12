@@ -26,7 +26,7 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   showPhoneFlag: boolean[];
   jobListData;
   showWatchPopup = false;
-  notifyMeValue = "24 hours";
+  notifyMeValue = "24 hour";
   currentContractorId;
   currentJobId;
   unwatchPopupFlag = false;
@@ -118,8 +118,14 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
           output[keyArray[i]] = paramData[keyArray[i]] && paramData[keyArray[i]].indexOf('+')>-1 ? paramData[keyArray[i]].replace(/\+/g, ' ') : paramData[keyArray[i]];
         }
          this.savedResult = output;
-        this.getSearchResultList();
         console.log("jbdjasd",output);
+         if(parseInt(output['recuriter_search_by_rate_min']) === 0) {
+          this.savedResult['recuriter_search_by_rate_min'] = "null";
+        };
+        if(parseInt(output['recuriter_search_by_rate_max']) === 0) {
+          this.savedResult['recuriter_search_by_rate_max'] = "null";
+        }
+        this.getSearchResultList();
 
       });
     }
@@ -207,9 +213,6 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
          console.log("add watch list--", data);
          // this.getWatchDogListData(this.pageNo);
           this.router.navigate(['./recruiter/watch-list']);
-          if(data && data.status == 'FALSE') {
-           this._commonService.goToRecruiterLogin(data);
-         }
         }
     );
   }
@@ -226,9 +229,6 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
         data => {
          console.log("unwatch--", data);
          this.unwatchPopupFlag = false;
-         if(data && data.status == 'FALSE') {
-           this._commonService.goToRecruiterLogin(data);
-         }
          // this.getWatchDogListData(this.pageNo);
           //this.router.navigate(['./recruiter/watch-list']);
         }
@@ -258,9 +258,7 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
          if(data) {
            this.jobListData = data.data;
            
-        } else if(data && data.status == 'FALSE') {
-           this._commonService.goToRecruiterLogin(data);
-         }
+        }
       }
     );
   }
@@ -356,7 +354,6 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
             }
             else if(data && data.status == 'FALSE'){
               // this.errorMessageFlag = true;
-               this._commonService.goToRecruiterLogin(data);
 
                this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
             }
@@ -425,7 +422,6 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
               this.successMessageFlag = false;
               this.successMessage = "";
                  this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
-                 this._commonService.goToRecruiterLogin(data);
 
                
               }
@@ -450,7 +446,12 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
     // this.filteredData = this.searchResult.filter(item=>{
     //   return  item.prefereedRate.minRate>event.from && item.prefereedRate.maxRate<event.to
     // })
-
+    if(event && event.from === 0) {
+      event.from = "null";
+    }
+    if(event && event.to === 0) {
+      event.to = "null";
+    }
     this.savedResult.recuriter_search_by_rate_min = event.from;
     this.savedResult.recuriter_search_by_rate_max = event.to;
     this.savedResult.recuriter_search_by_rate_type = this.savedResult.recuriter_search_by_rate_type ? this.savedResult.recuriter_search_by_rate_type : 'daily';
@@ -500,7 +501,6 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
             this.WSErrorMsg = "";
           } else if(data && data.status == 'FALSE'){
                this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
-               this._commonService.goToRecruiterLogin(data);
              
             }
           //this.industryArrayData = data.data;
@@ -569,7 +569,6 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
                     this.successMessageFlag = false;
                     this.successMessage = "";
                      this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
-                     this._commonService.goToRecruiterLogin(data);
                   }
                 }
               ); 

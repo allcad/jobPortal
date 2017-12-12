@@ -115,9 +115,7 @@ WSErrorMsg = "";
           console.log("company size--", data);
           if(data && data.status == 'TRUE') {
             this.companySizeArray = data.data;
-          } else if(data && data.status == 'FALSE'){
-             this.commonService.goToRecruiterLogin(data);
-           }
+          }
           //this.recruiterNameArray = data.data;
         }
     );
@@ -136,9 +134,7 @@ WSErrorMsg = "";
           console.log("country size--", data);
           if(data && data.status == 'TRUE') {
             this.countryValueArray = data.data;
-          } else if(data && data.status == 'FALSE'){
-             this.commonService.goToRecruiterLogin(data);
-           }
+          }
           //this.recruiterNameArray = data.data;
         }
     );
@@ -329,7 +325,7 @@ WSErrorMsg = "";
     }
 
     if(this.telephone) {
-      if(this.telephone.match(/^[0]\d{10}$/) || this.telephone.match(/^\d{10}$/)) {
+      if(this.telephone.match(/^[0-9]\d{10}$/) || this.telephone.match(/^\d{10}$/)) {
         this.telephoneValidationFlag = false;
       } else {
         this.telephoneValidationFlag = true;
@@ -526,7 +522,6 @@ WSErrorMsg = "";
           this.getProfileDta();
           }
           else if(data && data.status == 'FALSE'){
-             this.commonService.goToRecruiterLogin(data);
              this.succesMessageFlag =false;
               this.ErrorMesageFlag =true;
               this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;;
@@ -613,8 +608,6 @@ getProfileDta(){
             console.log('this.addMulAddArray--', this.addMulAddArray);
           }
 
-          } else if(data && data.status == 'FALSE') {
-            this.commonService.goToRecruiterLogin(data);
           }
         }
     );

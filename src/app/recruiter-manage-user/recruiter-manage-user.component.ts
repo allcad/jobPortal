@@ -68,7 +68,6 @@ export class RecruiterManageUserComponent implements OnInit {
            this.WSErrorMsg = "";
            this.makeSubUser();
          } else if(data && data.status == 'FALSE'){
-             this.commonService.goToRecruiterLogin(data);
            this.successMessageFlag = false;
            this.errorMessageFlag = true;
            this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
@@ -96,7 +95,6 @@ export class RecruiterManageUserComponent implements OnInit {
            // this.successMessageFlag = true;
            // this.errorMessageFlag = false;
          } else if(data && data.status == 'FALSE'){
-           this.commonService.goToRecruiterLogin(data);
            this.WSErrorMsg = "Error While Creating Sub User";
            this.successMessageFlag = false;
            this.errorMessageFlag = true;
@@ -127,7 +125,6 @@ export class RecruiterManageUserComponent implements OnInit {
            this.WSErrorMsg = "Error While Creating Super User!";
            this.successMessageFlag = false;
            this.errorMessageFlag = true;
-           this.commonService.goToRecruiterLogin(data);
          }
          window.scroll(0,0);
         }
@@ -155,7 +152,6 @@ export class RecruiterManageUserComponent implements OnInit {
            this.WSErrorMsg = "Error While Deleting Super User!";
            this.successMessageFlag = false;
            this.errorMessageFlag = true;
-           this.commonService.goToRecruiterLogin(data);
          }
          window.scroll(0,0);
         }

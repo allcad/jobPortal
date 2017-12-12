@@ -67,7 +67,6 @@ export class RecruiterManageJobsComponent implements OnInit {
           else if(data && data.status === "FALSE") {
             this.errorMsgFlag = true;
               this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
-              this._commonService.goToRecruiterLogin(data);
               // if(data.auth_error) {
               //   this.router.navigate(['/public/recruiterLogin']);
               // }
@@ -97,7 +96,6 @@ export class RecruiterManageJobsComponent implements OnInit {
          } else if(data && data.status === "FALSE") {
             this.errorMsgFlag = true;
               this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
-              this._commonService.goToRecruiterLogin(data);
               // if(data.auth_error) {
               //   this.router.navigate(['/public/recruiterLogin']);
               // }
@@ -166,7 +164,6 @@ export class RecruiterManageJobsComponent implements OnInit {
           } else if(data && data.status === "FALSE") {
             this.errorMsgFlag = true;
               this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
-              this._commonService.goToRecruiterLogin(data);
               // if(data.auth_error) {
               //   this.router.navigate(['/public/recruiterLogin']);
               // }
@@ -250,7 +247,6 @@ export class RecruiterManageJobsComponent implements OnInit {
           } else if(data && data.status === "FALSE") {
               //this.errorMsgFlag = true;
               this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
-              this._commonService.goToRecruiterLogin(data);
               // if(data.auth_error) {
               //   this.router.navigate(['/public/recruiterLogin']);
               // }
@@ -280,7 +276,6 @@ export class RecruiterManageJobsComponent implements OnInit {
            this.jobPostFlag = false;
            this.jobPostFlagError = true; 
            this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
-           this._commonService.goToRecruiterLogin(data); 
                   
          }
         }

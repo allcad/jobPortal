@@ -39,9 +39,7 @@ export class RecruiterViewProfileComponent implements OnInit {
             this.webAddress = this.companyProfileView && this.companyProfileView['companySocial'] && this.companyProfileView['companySocial'].webAddress ? this.companyProfileView['companySocial'].webAddress : '';
             this.email = this.companyProfileView && this.companyProfileView['companySocial'] && this.companyProfileView['companySocial'].emailAddress ? this.companyProfileView['companySocial'].emailAddress : '';
             this.companyAdd = this.companyProfileView && this.companyProfileView['companyDetails'] && this.companyProfileView['companyDetails'].companyAddress ? this.companyProfileView['companyDetails'].companyAddress : '';
-          } else if(data && data.status == 'FALSE') {
-           this.commonService.goToRecruiterLogin(data);
-         }
+          }
           //this.countryValueArray = data.data;
           //this.recruiterNameArray = data.data;
         }
@@ -68,9 +66,7 @@ export class RecruiterViewProfileComponent implements OnInit {
             		}
             	}
             }
-          } else if(data && data.status == 'FALSE') {
-           this.commonService.goToRecruiterLogin(data);
-         }
+          }
           //this.recruiterNameArray = data.data;
         }
     );

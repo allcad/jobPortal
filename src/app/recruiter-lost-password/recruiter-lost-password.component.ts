@@ -41,7 +41,6 @@ export class RecruiterLostPasswordComponent implements OnInit {
               this.emailId = "";
 	          	this.WSErrorMsg = "";
 	          } else if(data && data.status == 'FALSE'){
-              this.commonService.goToRecruiterLogin(data);
 	          	this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
 	          }
 	        }
