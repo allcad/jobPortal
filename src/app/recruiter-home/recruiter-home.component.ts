@@ -33,6 +33,7 @@ export class RecruiterHomeComponent implements OnInit {
   displayCountry = '';
   displayLocationName = '';
   accountName;
+  showShareProfilePopup = false;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService, private _commonService: CommonService,
     private ngZone: NgZone, private activateRoute: ActivatedRoute) { }
@@ -50,6 +51,14 @@ export class RecruiterHomeComponent implements OnInit {
 
   ngAfterViewInit() {
     this.loadLocationAutoData();
+  }
+
+  shareProfile() {
+    this.showShareProfilePopup = true;
+  }
+
+  closePopup() {
+    this.showShareProfilePopup = false;
   }
 
   passJobId(id) {

@@ -42,6 +42,7 @@ import { ContractorForgotPasswordComponent } from '../contractor-forgot-password
 import { ContractorResetPasswordComponent } from '../contractor-reset-password/contractor-reset-password.component';
 import { AboutContractorComponent } from '../about-contractor/about-contractor.component';
 import { RecruiterResetPasswordComponent } from '../recruiter-reset-password/recruiter-reset-password.component';
+import { PayrollComponent } from '../payroll/payroll.component';
 
 @NgModule({
 	declarations: [
@@ -68,7 +69,8 @@ import { RecruiterResetPasswordComponent } from '../recruiter-reset-password/rec
 		ContractorForgotPasswordComponent,
 		ContractorResetPasswordComponent,
 		AboutContractorComponent,
-		RecruiterResetPasswordComponent
+		RecruiterResetPasswordComponent,
+		PayrollComponent
 	],
 	imports: [
 		PublicRoutingModule,

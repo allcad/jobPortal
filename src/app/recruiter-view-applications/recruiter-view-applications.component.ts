@@ -64,6 +64,13 @@ export class RecruiterViewApplicationsComponent implements OnInit {
     );
   }
 
+  onChangeFilterJobs() {
+    this.listingData = [];
+    this.firstArray = [];
+     this.secondArray = [];
+    this.getApplicationList(this.currentPageNo);
+  }
+
   
 
   getApplicationList(pageLimit) {

@@ -34,6 +34,7 @@ import { ContractorResetPasswordComponent } from '../contractor-reset-password/c
 import { AboutContractorComponent } from '../about-contractor/about-contractor.component';
 import { RecruiterResetPasswordComponent } from '../recruiter-reset-password/recruiter-reset-password.component';
 import { ContractorJobDetailComponent } from '../contractor-job-detail/contractor-job-detail.component';
+import { PayrollComponent } from '../payroll/payroll.component';
 
 const publicRoutes: Routes = [
     {
@@ -145,6 +146,9 @@ const publicRoutes: Routes = [
     }, {
         "path": "recruiter_resetpassword/:id",
         "component": RecruiterResetPasswordComponent
+    }, {
+        "path": "payroll",
+        "component": PayrollComponent
     }, {
         "path": "",
         "redirectTo": "home",

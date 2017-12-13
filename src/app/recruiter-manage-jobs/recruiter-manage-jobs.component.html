@@ -44,13 +44,13 @@
                             </div>
                         </div>
                         <div class="col-sm-50">
-                            <div class="signup_form_section sort_by_watchdog choose_template responsive_size_widht_auto" *ngIf="listingData.length !== 0">
+                            <div class="signup_form_section sort_by_watchdog choose_template responsive_size_widht_auto">
                                 <div class="form-group">
                                     <div class="input-group responsive_width_100">
                                         <div class="input-group-addon upto_border_none">Sort By:</div>
-                                        <select class="form-control minimal background_drop_down box_height_30 box_padding_3">
+                                        <select class="form-control minimal background_drop_down box_height_30 box_padding_3" (change)="onChangeManageJob()" [(ngModel)]="jobsSortByValue">
                                             <!-- <option value="">SHOW LIVE JOBS</option> -->
-                                            <option value="{{item?.short_text}}" *ngFor="let item of sortByData">{{item?.short_name}}</option>
+                                            <option value="{{item?.id}}" *ngFor="let item of sortByData">{{item?.text}}</option>
                                             <!-- <option value="1">124536</option>
                                             <option value="5">5124536</option>
                                             <option value="10">10124536</option>
@@ -390,6 +390,6 @@
                 </div>
             </div>
             <div class="show_more_application">
-                <a *ngIf="maxRecord > listingData.length" href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="showMoreJobs()"><span>SHOW MORE JOBS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                <a *ngIf="listingData.length > 0 && maxRecord > listingData.length" href="javascript:void(0);" class="btn-primary hover_text_pink hover_white_pluse width_280px" (click)="showMoreJobs()"><span>SHOW MORE JOBS</span> <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
             </div>
         </section>

@@ -180,7 +180,7 @@ export class ViewContractorProfileComponent implements OnInit {
    };
    console.log("input--", input);
    if(!this.emailValueFlag) {
-     var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/watch_delete";
+     var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/send_contractor_by_email";
          this._commonRequestService.postData(wsUrl,input).subscribe(
           data => {
            console.log("unwatch--", data);

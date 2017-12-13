@@ -18,12 +18,12 @@ export class FaqComponent implements OnInit {
   		if($("#"+id).parent().find('span').hasClass('glyphicon-minus')) {
   			$("#"+id).parent().find('span').removeClass('glyphicon-minus');
   			$("#"+id).parent().find('span').addClass('glyphicon-plus');
-  			$("#"+id).removeClass('in');
-  		} else {
-  			$("#"+id).parent().find('span').removeClass('glyphicon-plus');
-  			$("#"+id).parent().find('span').addClass('glyphicon-minus')
+  			//$("#"+id).removeClass('in');
   		}
-  	} 
+  	} else {
+        $("#"+id).parent().find('span').removeClass('glyphicon-plus');
+        $("#"+id).parent().find('span').addClass('glyphicon-minus')
+      }
   }
 
 }

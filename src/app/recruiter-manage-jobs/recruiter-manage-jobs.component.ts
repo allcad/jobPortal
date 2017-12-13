@@ -30,6 +30,7 @@ export class RecruiterManageJobsComponent implements OnInit {
   firstFound;
   secondFound;
   thirdFound;
+  jobsSortByValue = 1;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService, private _commonService: CommonService) { }
 
@@ -49,6 +50,14 @@ export class RecruiterManageJobsComponent implements OnInit {
     this._commonService.setJobIdForPreview(id);
   }
 
+  onChangeManageJob() {
+    this.listingData = [];
+    this.firstArray = [];
+     this.secondArray = [];
+     this.thirdArray = [];
+    this.getManageJobsList(this.currentPageNo);
+  }
+
   getSortByData() {
      var input = {
      "email":"test@test7.com",
@@ -56,7 +65,7 @@ export class RecruiterManageJobsComponent implements OnInit {
 
    };
    console.log("input--", input);
-   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/short_by";
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/jobs_sort_by";
        this._commonRequestService.getData(wsUrl).subscribe(
         data => {
           console.log("sort by--", data);
@@ -114,7 +123,8 @@ export class RecruiterManageJobsComponent implements OnInit {
    	"email":"test@test7.com",
 	"loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu",
    	"page":this.pageNo,
-	"limit":pageLimit
+	"limit":pageLimit,
+  "sort": this.jobsSortByValue
    };
    console.log("input--", input);
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/job/list";
