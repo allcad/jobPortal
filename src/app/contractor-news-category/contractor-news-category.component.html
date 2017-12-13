@@ -8,7 +8,7 @@
           </div>
         </div>
         <div class="col-sm-80 col-md-85">
-          <div >
+          <div>
             <swiper [config]="config">
               <div class="swiper-wrapper">
                 <div *ngFor="let news of featuredNewsList" class="swiper-slide" style="background: url(./assets/images/advice-category-banner-bg.png) no-repeat; background-size: cover; background-position: center;">
@@ -17,9 +17,9 @@
                     <p style="color: #fff;" [innerHTML]="news.article_body | slice:0:300"> </p>
                     <div class="row">
                       <div class="col-xs-50">
-                        <div class="letest_news_footer share-buttons"> 
+                        <div class="letest_news_footer share-buttons">
                           <!-- <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a>  -->
-                           <share-buttons [tumblr]='false'  [google]='false'  [whatsApp]='false' [pinterest]='false' [stumbleUpOn]='false' [reddit]='false' url="http://dev.contractrecruit.co.uk/contractor_site/#/public/news/{{news._id}}"></share-buttons >
+                          <share-buttons [tumblr]='false' [google]='false' [whatsApp]='false' [pinterest]='false' [stumbleUpOn]='false' [reddit]='false' url="http://dev.contractrecruit.co.uk/contractor_site/#/public/news/{{news._id}}"></share-buttons>
                         </div>
                       </div>
                       <div class="col-xs-50">
@@ -91,7 +91,7 @@
               <div class="timeline-panel"></div>
               <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" (click)="dataToShow = newsList;">Latest news</a></li>
               <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" (click)="dataToShow = popularNewsList;">Popular</a></li>
-              <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" (click)="dataToShow = featuredNewsList;" >FEATURED ARTICLES</a></li>
+              <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" (click)="dataToShow = featuredNewsList;">FEATURED ARTICLES</a></li>
             </ul>
           </div>
           <div class="col-md-45 col-sm-30">
@@ -110,6 +110,9 @@
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane active" id="home">
     <div class="container">
+      <div *ngIf="loading">
+        <img src="./assets/images/bx_loader.gif">
+      </div>
       <div class="row" *ngIf="dataToShow && dataToShow.length > 0">
         <div class=" col-md-33 col-sm-33" *ngFor="let news of dataToShow">
           <div class="letest_news_box">
@@ -117,15 +120,12 @@
             <img src="{{news?.article_image}}" alt="" title="" class="img-responsive" onError="this.src='./assets/images/letest-news.png'" alt="" title="" class="img-responsive">
             <h5>{{news.article_title}}</h5>
             <p [innerHTML]="news.article_body | slice:0:100"> </p>
-            <div class="letest_news_footer share-buttons"> 
+            <div class="letest_news_footer share-buttons">
               <!-- <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a>  -->
-
-              <share-buttons [tumblr]='false'  [google]='false'  [whatsApp]='false' [pinterest]='false' [stumbleUpOn]='false' [reddit]='false' url="http://dev.contractrecruit.co.uk/contractor_site/#/public/news/{{news._id}}"></share-buttons >
-
+              <share-buttons [tumblr]='false' [google]='false' [whatsApp]='false' [pinterest]='false' [stumbleUpOn]='false' [reddit]='false' url="http://dev.contractrecruit.co.uk/contractor_site/#/public/news/{{news._id}}"></share-buttons>
               <a routerLink="./{{news._id}}" href="javascript:void(0)" class="btn-primary news_read_more">READ MORE<i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
           </div>
         </div>
-        
         <!-- <div class="col-md-34 col-sm-34">
           <div class="letest_news_box">
             <div class="book_mark"><a href="javascript:void(0)"><img src="./assets/images/it-news.png" alt="" title=""></a></div>
@@ -145,10 +145,9 @@
           </div>
         </div> -->
       </div>
-
-      <div  class="row"  *ngIf="dataToShow && dataToShow.length == 0 ">
-          <span><strong>No Result Found</strong></span>
-        </div>
+      <div class="row" *ngIf="dataToShow && dataToShow.length == 0 ">
+        <span><strong>No Result Found</strong></span>
+      </div>
       <!-- <div class="row">
         <div class=" col-md-33 col-sm-33">
           <div class="letest_news_box">

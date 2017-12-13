@@ -89,6 +89,7 @@ export class ContractorProfileComponent implements OnInit {
   display_town;
   display_county;
   display_name;
+  deleteAttchmentArray = [];
   constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
@@ -344,6 +345,9 @@ export class ContractorProfileComponent implements OnInit {
         data => {
           this.responseData = data;
           if (this.responseData.status === "TRUE") {
+            if(this.deleteAttchmentArray.length>0){
+              this.deleteAttacment(this.deleteAttchmentArray.toString());
+            }
             this.succesMessageFlag = true;
             this.ErrorMesageFlag = false
             this.profileData = {};
@@ -590,19 +594,23 @@ export class ContractorProfileComponent implements OnInit {
   }
 
   removeElement(array, index) {
+    this.deleteAttacment(array[index].attachment_relation.toString())
+    array.splice(index, 1);
+  }
+
+
+  deleteAttacment(id){
     let dataUrl = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/remove_attachment";
-    let input = {
+     let input = {
       "email": "john@gmail.com",
       "loginToken": "sdkndjhaKHK68768khkhYjU",
-      "attachment_id": array[index].attachment_relation
+      "attachment_id": id
     }
     this._commonRequestService.postData(dataUrl, input).subscribe(
       data => {
         console.log(data.data);
       }
     )
-    array.splice(index, 1);
-
   }
 
   addAnotherCoverLetter() {
@@ -686,11 +694,15 @@ export class ContractorProfileComponent implements OnInit {
   }
 
   editcv(index) {
-    this.contratorCVList[index] = { 'id': index + 1 }
+    this.deleteAttchmentArray.push(this.contratorCVList[index]['attachment_relation']);
+    console.log(this.deleteAttchmentArray);
+    this.contratorCVList[index] = { 'id': index + 1 };
   }
 
   editCover(index) {
-    this.coverLetterList[index] = { 'id': index + 1 }
+    this.deleteAttchmentArray.push(this.coverLetterList[index]['attachment_relation']);
+    console.log(this.deleteAttchmentArray);
+    this.coverLetterList[index] = { 'id': index + 1 };
   }
 
   applyCrop() {

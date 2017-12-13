@@ -387,7 +387,7 @@
                     </div>
                   </div>
                   <div class="col-md-41 col-sm-100">
-                    <div class="current_rate_signup margin_top_10 margin_left_blue10"> <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse" (click)="editCoverLetter(i)">Edit <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> <a *ngIf="i!==0" href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse" (click)="removeElement(coverLetterList, i)">Remove <i class="fa fa-minus plus_blue" aria-hidden="true"></i></a> </div>
+                    <div class="current_rate_signup margin_top_10 margin_left_blue10"> <a href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse" (click)="editCover(i)">Edit <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> <a *ngIf="i!==0" href="javascript:void(0)" class="btn-primary font_capitaliz hover_white_pluse" (click)="removeElement(coverLetterList, i)">Remove <i class="fa fa-minus plus_blue" aria-hidden="true"></i></a> </div>
                     <div class="add_another_cv" *ngIf="i==coverLetterList.length-1" (click)="addAnotherCoverLetter()"> <a href="javascript:void(0)" class="pink_color"><i class="fa fa-plus" aria-hidden="true"></i> Add Another Cover Letter</a> </div>
                   </div>
                 </div>

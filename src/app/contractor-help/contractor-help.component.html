@@ -9,15 +9,21 @@
           <div class="login_form_section">
             <form>
               <div class="row">
-                <div class="col-sm-23">
-                  <div class="dropdown dropdown_help"> <a href="javascript:void(0)" class="btn-default dropdown-toggle advice_dropdown" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> CONTRACTORS <span class="caret"></span> </a>
-                    <ul class="dropdown-menu dropdown-menu-help" aria-labelledby="dropdownMenu1">
+                <div class="col-sm-23 text-right">
+                  <!-- <div class="dropdown dropdown_help"> <a href="javascript:void(0)" class="btn-default dropdown-toggle advice_dropdown" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> CONTRACTORS <span class="caret"></span> </a> -->
+                  <select class="optn" [(ngModel)]="searchType" name="searchType">
+                    <option *ngFor="let help of helpCategoryList" [value]="help.category_type">{{help.category_name}}</option>
+                    <!--  <option value="recruiter">Recruiters</option>
+                      <option value="general">General</option> -->
+                  </select>
+                  <!-- <ul class="dropdown-menu dropdown-menu-help" aria-labelledby="dropdownMenu1">
                       <li><a href="javascript:void(0)">Contractor</a></li>
                       <li><a href="javascript:void(0)">Recruiter</a></li>
-                     <!--  <li><a href="javascript:void(0)">Something else here</a></li>
-                      <li><a href="javascript:void(0)">Separated link</a></li> -->
-                    </ul>
-                  </div>
+                      <li><a href="javascript:void(0)">General</a></li>
+                       <li><a href="javascript:void(0)">Something else here</a></li>
+                      <li><a href="javascript:void(0)">Separated link</a></li> 
+                    </ul> -->
+                  <!-- </div> -->
                 </div>
                 <div class="col-sm-77">
                   <div class="form-group">
@@ -125,11 +131,22 @@
           </li> -->
         </ul>
       </div>
-      <div class="col-sm-60 col-md-68 col-md-offset-2">
+      <div class="col-sm-60 col-md-68 col-md-offset-2" *ngIf="helpData && helpData.length>0">
         <div class="contractor_help_view" *ngFor="let help of helpData">
           <h2>{{help.help_article_title}}</h2>
           <p [innerHTML]="help.help_article_body"></p>
         </div>
+      </div>
+
+      <div class="col-sm-60 col-md-68 col-md-offset-2" *ngIf="helpData && helpData.length==0">
+        
+          <h2>No Results Found</h2>
+        
+        
+      </div>
+
+      <div *ngIf="loading">
+        <img src="./assets/images/bx_loader.gif">
       </div>
     </div>
   </div>
@@ -140,28 +157,25 @@
     <div class="row">
       <div class="col-sm-100">
         <div class="panel-group trems_use_main signup_form_section" id="accordion">
-      <div class="panel panel-default" *ngFor="let helpCategory of helpCategoryList;let i = index;" (click)="getHelpByCategoryId(helpCategory._id)">
-        <div class="panel-heading">
-          <h4 class="panel-title">
+          <div class="panel panel-default" *ngFor="let helpCategory of helpCategoryList;let i = index;" (click)="getHelpByCategoryId(helpCategory._id)">
+            <div class="panel-heading">
+              <h4 class="panel-title">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{i}}">
           {{helpCategory?.category_name}}
       <span class="glyphicon glyphicon-minus"></span>
         </a>
       </h4>
-        </div>
-        <div id="collapse{{i}}" class="panel-collapse collapse">
-          <div class="panel-body" >
-            <div *ngFor="let help of helpData"> 
-              <h2>{{help?.help_article_title}}</h2>
-            <p [innerHTML]="help?.help_article_body"></p>  
             </div>
-            
+            <div id="collapse{{i}}" class="panel-collapse collapse">
+              <div class="panel-body">
+                <div *ngFor="let help of helpData">
+                  <h2>{{help?.help_article_title}}</h2>
+                  <p [innerHTML]="help?.help_article_body"></p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-
-
-        <!-- <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <!-- <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
           <div class="panel panel-default" *ngFor="let helpCategory of helpCategoryList;let i = index;">
             <div class="panel-heading" role="tab" id="headingOne">
               <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> <img src="images/applying-contract.png" alt="" title="" class="menu_bar"> <span>{{helpCategory.category_name}}</span> <i class="fa fa-caret-down drop_down_arrow" aria-hidden="true"></i></a> </h4>

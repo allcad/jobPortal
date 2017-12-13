@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ContractorAdviceListingComponent implements OnInit {
 	latestArticleList = [];
+  loading = true;
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
@@ -21,6 +22,7 @@ export class ContractorAdviceListingComponent implements OnInit {
   }
 
   getLatestArticle(){
+    this.loading = true;
   	let input = {
   		page: 1,
   		limit : 2
@@ -30,16 +32,10 @@ export class ContractorAdviceListingComponent implements OnInit {
         data => {
           this.latestArticleList = data.data;
           console.log(this.latestArticleList);
+          this.loading = false;
         }
     );  	
   }
 
-  readMore(item){
-    console.log(item);
-    localStorage.setItem("adviceArticleId", item.id);
-    this._commonRequestService.setDataWithoutObserval(item.id, "adviceArticleId");
-    this._router.navigate(['../adviceDetail'], {relativeTo: this._routes});
-     //routerLink="../adviceDetail"
-  }
 
 }

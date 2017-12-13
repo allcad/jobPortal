@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { CommonRequestService } from '../common-request.service';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-contractor-header',
   templateUrl: './contractor-header.component.html',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContractorHeaderComponent implements OnInit {
   showMenu = false;
-  constructor() { }
+  constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
   	
@@ -22,7 +23,11 @@ export class ContractorHeaderComponent implements OnInit {
   }
 
   logoutContractor(){
-    localStorage.removeItem("loginDetail");
+    this._commonRequestService.postData("http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/signout", {email: "test@gmail.com", loginToken : "kbasgdkadk"})
+      .subscribe(data=>{
+        localStorage.removeItem("loginDetail");
+        this._router.navigate(['/public'], {relativeTo : this._routes});
+      })
   }
 
 }

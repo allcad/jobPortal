@@ -18,8 +18,9 @@ export class ContractorNewsCategoryComponent implements OnInit {
   newsList = [];
   featuredNewsList = [];
   popularNewsList = [];
-  dataToShow = [];
+  dataToShow;
   searchKeyword;
+  loading = true;
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
@@ -33,6 +34,7 @@ export class ContractorNewsCategoryComponent implements OnInit {
   }
  
   getLatestNews() {
+    this.loading = true;
     var inputJson = {
       page: 1,
       limit: -1
@@ -40,6 +42,7 @@ export class ContractorNewsCategoryComponent implements OnInit {
     var url = "http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/articles";
     this._commonRequestService.postData(url, inputJson).subscribe(
       data => {
+        this.loading = false;
         this.newsList = data.data;
         this.dataToShow = this.newsList;
         console.log("newsList", this.newsList);
@@ -49,6 +52,7 @@ export class ContractorNewsCategoryComponent implements OnInit {
 
 
   getPopularNews() {
+    this.loading = true;
     var inputJson = {
       page: 1,
       limit: -1
@@ -57,12 +61,14 @@ export class ContractorNewsCategoryComponent implements OnInit {
     this._commonRequestService.postData(url, inputJson).subscribe(
       data => {
         this.popularNewsList = data.data;
+        this.loading = false;
         console.log("popularNewsList", this.popularNewsList);
       }
     );
   }
 
   getFeaturedNews() {
+    this.loading = true;
     var inputJson = {
       page: 1,
       limit: -1
@@ -71,6 +77,7 @@ export class ContractorNewsCategoryComponent implements OnInit {
     this._commonRequestService.postData(url, inputJson).subscribe(
       data => {
         this.featuredNewsList = data.data;
+        this.loading = false;
         console.log("featuredNewsList", this.featuredNewsList);
       }
     );
@@ -84,9 +91,11 @@ export class ContractorNewsCategoryComponent implements OnInit {
       limit: -1,
       search: searchKeyword
     }
+    this.loading = true;
     var url = "http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/articles_search";
     this._commonRequestService.postData(url, inputJson).subscribe(
       data => {
+        this.loading = false;
         if(data.status == 'TRUE'){
           this.dataToShow = data.data;
         }else{

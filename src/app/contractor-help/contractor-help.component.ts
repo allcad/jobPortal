@@ -10,6 +10,8 @@ export class ContractorHelpComponent implements OnInit {
 	helpCategoryList;
   helpData;
   searchKeyword;
+  searchType = "Contractors";
+  loading = true;
   constructor(private _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -33,6 +35,7 @@ export class ContractorHelpComponent implements OnInit {
 
 
   getHelpByCategoryId(categoryId) {
+    this.loading = true;
     this.helpData = [];
     let input = {
       category: categoryId,
@@ -44,6 +47,7 @@ export class ContractorHelpComponent implements OnInit {
       data => {
         this.helpData = data.data;
         console.log(this.helpData);
+        this.loading = false;
       }, err => {
         console.log("err", err);
       }
@@ -52,17 +56,24 @@ export class ContractorHelpComponent implements OnInit {
 
 
   searchHelp() {
+     this.loading = true;
      let input = {
       "page": 1,
       "limit": -1,
-      "category_type": "contractor",
+      "category_type": this.searchType,
       "search": this.searchKeyword
 
     };
     let url = "http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/help_article_by_category_type";
     this._commonRequestService.postData(url, input).subscribe(
       data => {
-        console.log(data);
+        if(data.status == "TRUE"){
+          this.helpData = data.data;
+        }else{
+          this.helpData = [];
+        }
+        this.loading = false;
+        
       }, err => {
         console.log("err", err);
       }

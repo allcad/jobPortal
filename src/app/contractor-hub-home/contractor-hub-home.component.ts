@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CommonRequestService } from '../common-request.service';
 
 @Component({
   selector: 'app-contractor-hub-home',
@@ -8,7 +9,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ContractorHubHomeComponent implements OnInit {
 	isPublic;
-  constructor(private _router: Router, private _routes: ActivatedRoute) { }
+  keyWord;
+  constructor(private _router: Router, private _routes: ActivatedRoute, private _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
 
@@ -28,6 +30,27 @@ export class ContractorHubHomeComponent implements OnInit {
   	}else{
   		this._router.navigate(['../EditProfile'], {relativeTo: this._routes})
   	}
+  }
+
+
+  search(){
+    if(this.keyWord){
+      let input = {
+      "page": 1,
+      "limit": -1,
+      "category_type": "contractor",
+      "search": this.keyWord
+
+    };
+    let url = "http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/help_article_by_category_type";
+    this._commonRequestService.postData(url, input).subscribe(
+      data => {
+        console.log(data);
+      }, err => {
+        console.log("err", err);
+      }
+    );
+    }
   }
 
 }

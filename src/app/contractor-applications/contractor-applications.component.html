@@ -49,7 +49,7 @@
             <p><span>Rate:</span> £{{job.prefereedRate.minRate}} - £{{job.prefereedRate.maxRate}} p/{{job.prefereedRate.dailyHourlyRate =='daily'? 'd' :'h'}}</p>
             <p><span>Start Date:</span> {{job.startDate| date:'medium' :'MM-dd-yyyy' }}</p>
             <p><span>Duration:</span> {{job.duration}}</p>
-            <p class="full_contant" style="height: 90px;">{{job.jobSpecification | slice:0:200}}...</p>
+            <p class="full_contant" style="height: 90px;" [innerHTML]="job.jobSpecification | slice:0:200"></p>
           </div>
           <div class="footer_box">
             <div class="pull-left social_box_footer">

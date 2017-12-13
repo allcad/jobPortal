@@ -718,9 +718,9 @@ select {
 }
 .application_box_contant2 p span {
     display: inline-block;
-    width: 35%;
+    width: 26%;
 	color:#00ccff;
-	 font-weight:bold;
+	font-weight:bold;
 }
 .application_box_contant2 .full_contant{
 	margin:20px 0px 10px;
