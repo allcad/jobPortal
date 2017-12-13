@@ -8,5 +8,13 @@
 
 }
 
+@media(max-width: 1024px){
+	#after_login{
+
+		padding: 20px 31px;
+	}
+
+}
+
 .home_page_inquery{ width:100%; }
 #inquerymaindiv .after_login_menu ul li{overflow: -webkit-paged-x;}

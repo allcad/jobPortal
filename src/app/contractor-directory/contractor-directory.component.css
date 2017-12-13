@@ -67,3 +67,68 @@
   -o-transition: width 1s ease;
   transition: width 1s ease;
 }
+
+.directory_box_footer ul{
+
+    margin:0;
+    padding:0;
+}
+
+
+    .directory_box_footer li {
+    font-size: 11px;
+    color: #666;
+    padding: 0px 5px;
+    border-right: 1px solid #00cc33;
+    display: inline;
+
+}
+
+@media(max-width:767px){
+
+    #services-nav-menu li{
+        width: 32% !important;
+        display: inline-flex !important;
+    }
+
+    #services-nav-menu li a .content{
+
+        width: 100% !important;
+        padding:5px 0 10px 0!important;
+    }   
+
+    #services-nav-menu li a .content h4{
+
+        font-size: 13px !important;
+        font-weight: normal;
+    }
+
+    #services-nav-menu li a .icon{
+
+    padding: 0 !important;
+    width: 100% !important;
+    text-align: center !important;
+    
+    }
+
+    #services-nav-menu .hover-active-state .icon{
+
+        min-height: 91px !important;
+        margin-bottom: 0px !important;
+    }
+
+    #services-nav-menu .hover-active-state .icon img{
+        height: 81px !important;
+    }
+
+    .directory_ads{
+
+        display: none;
+    }
+
+    .recommended_companies h2{
+
+        font-size: 19px !important;
+        margin: 14px 0 0 0 !important;
+    }
+}

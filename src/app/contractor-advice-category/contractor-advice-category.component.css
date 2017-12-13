@@ -19,12 +19,12 @@
 		padding-top:33px !important;
 		text-align: center;
 	}
+	
+	.featured_advice img{
 
-	.advice_category_slider .bxslider li p{
-
-		padding: 1px 31px !important;
+		display: initial !important;
 	}
-
+	
 	.advice_category_slider .bxslider li h2{
 
 	padding: 21px 0 0 0 !important;
@@ -46,6 +46,15 @@
 		margin-bottom: 10px !important;
 
 	}
-
 	
+	.advice_category_slider .bxslider li p{
+
+		padding: 0 28px !important;
+	}
+
+	.advice_category_slider .bxslider li .letest_news_footer{
+
+		padding: 0 13px !important
+	}
+
 }
