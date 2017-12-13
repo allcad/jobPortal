@@ -13,3 +13,21 @@
 .text-right{
 	text-align: right;
 }
+
+#mobile_responsive{
+
+	display: none;
+}
+
+@media(max-width: 1024px){
+
+	#mobile_responsive{
+
+	display: block;
+}
+#web_page_help_section{
+
+	display: none !important;	
+}
+
+}
