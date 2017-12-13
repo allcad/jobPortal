@@ -40,3 +40,30 @@
     
     width: 100%;
 }
+
+.content-more-less{
+
+    height:40px;
+    overflow: hidden;
+}
+
+.more-content{
+
+    width:100% !important;
+    -webkit-transition: width 1s ease;
+  -moz-transition: width 1s ease;
+  -ms-transition: width 1s ease;
+  -o-transition: width 1s ease;
+  transition: width 1s ease;
+
+}
+
+.read-less{
+
+    width:50%;
+    -webkit-transition: width 1s ease;
+  -moz-transition: width 1s ease;
+  -ms-transition: width 1s ease;
+  -o-transition: width 1s ease;
+  transition: width 1s ease;
+}

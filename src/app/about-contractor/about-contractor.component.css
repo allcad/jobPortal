@@ -11,3 +11,22 @@
 .swiper-pagination-bullets {
     bottom: -6px;
 }
+
+@media (max-width: 767px){
+
+.contractor_about {
+    margin-top: 27px !important;
+}
+
+	.roket{
+		top:15px !important;
+	}
+
+	.slider_right_part{
+		padding: 0 0 0 37px;
+	}
+	.roket_arrow{
+		right: 166px !important;
+    	top: 68px !important;
+	}
+}

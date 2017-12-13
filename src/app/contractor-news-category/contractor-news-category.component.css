@@ -6,3 +6,29 @@
 .letest_news_box p {
     height: 70px;
 }
+
+@media( max-width:767px){
+	.letest_news_footer{
+
+		margin-left:0px !important;
+	}
+	.letest_news_footer .news_read_more{
+
+		margin-bottom:14px !important;
+	}
+
+	.advice_categories_search_area .nav > li > a{
+
+		    padding: 5px 11px 0 !important;
+	}
+
+	.margin-tp{
+	width: 100% !important;
+    margin-bottom: 16px !important;
+	}
+	.hover_button{ 
+		margin-top:10px;
+	 }
+
+	 
+}

@@ -7,3 +7,28 @@
 	opacity: 1;
     -webkit-transition: all 0.1s ease 0s;
 }
+
+@media(max-width:767px){
+
+	.contracting_right .position_rotade{
+
+		left: 13% !important;
+		top: 7% !important;
+		font-size: 19px;
+	}
+
+	.contracting_right .position_rotade span{
+
+		font-size: 15px;
+	}
+
+	.contracting_contant p{
+		font-size: 13px;
+	}
+
+	.contracting_social a{
+
+		margin-right:9px;
+	}
+
+	}

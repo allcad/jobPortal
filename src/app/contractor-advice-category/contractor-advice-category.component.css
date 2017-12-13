@@ -12,3 +12,40 @@
 .banner_find_out_more a {
        margin-right: 20px;
 }
+
+@media(max-width:767px){
+
+	.featured_advice{
+		padding-top:33px !important;
+		text-align: center;
+	}
+
+	.advice_category_slider .bxslider li p{
+
+		padding: 1px 31px !important;
+	}
+
+	.advice_category_slider .bxslider li h2{
+
+	padding: 21px 0 0 0 !important;
+    font-size: 16px !important;
+    line-height: 17px !important;
+	}
+
+	.hover_button{
+	text-align: center !important;
+    margin: 0 0 22px 0 !important;
+	}
+	.weekly_newsletter .more_sign_up span{
+
+		font-size: 12px !important;
+	}
+		
+	.login_form_section .form-control{
+		
+		margin-bottom: 10px !important;
+
+	}
+
+	
+}

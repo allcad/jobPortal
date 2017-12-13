@@ -11,6 +11,7 @@
     min-height: 260px;
     overflow: auto;
     padding: 15px 0;
+    float: left !important;
 }
 
 .form-control.contractor_profile > option:hover {
@@ -40,4 +41,30 @@
 
 .font_capitaliz {
     text-transform: uppercase !important;
+}
+
+@media (max-width: 767px){
+
+    .job_search a{
+
+        margin-top: 0px !important;
+    }
+
+    .pull-right.job_search{
+
+        margin-top: 10px !important;
+    }
+
+    .summary_industry_box{
+            margin-top: 0;
+    float: left;
+    width: 100% !important;
+
+    }
+
+   :host /deep/ .contractor_profile{
+
+        float: left !important;
+    }
+
 }

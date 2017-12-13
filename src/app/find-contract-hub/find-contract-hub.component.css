@@ -3,3 +3,14 @@
 	opacity: 1;
     -webkit-transition: all 0.1s ease 0s;
 }
+@media(max-width: 767px){
+
+	.header_contracthub{
+		padding: 0 !important;
+	}
+
+	.contracthub_listine{
+
+		margin: 1px 13px 37px;
+	}
+}

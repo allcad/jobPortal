@@ -77,5 +77,22 @@ export class ContractorDirectoryComponent implements OnInit {
   }
 
 
+  readMore(company, index){
+    if(!company.showMore){
+      document.querySelector('.dir_content' + index).classList.remove('read-less');
+      document.querySelector('.dir_content' + index).classList.add('more-content');
+
+    }else{
+      document.querySelector('.dir_content' + index).classList.remove('more-content');
+      document.querySelector('.dir_content' + index).classList.add('read-less');
+    }
+
+    setTimeout(()=>{
+      company.showMore = ! company.showMore; 
+    },500)
+    
+  }
+
+
 
 }

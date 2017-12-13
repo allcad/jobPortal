@@ -177,3 +177,10 @@ hr {
 .navbar-collapse{
     padding-left: 16px !important;
 }
+
+@media(max-width: 767px){
+
+    .navbar-collapse{
+         padding-left: 0 !important;
+    }
+}

@@ -6,3 +6,12 @@
 }
 
 .update_your_availability a:hover {color:#00ccff;}
+
+@media(max-width:767px){
+
+	.more_services_div{
+
+	text-align: center !important;
+    margin-bottom: 15px !important;
+	}
+}
