@@ -17,11 +17,15 @@
       </div>
     </div>
   </div>
+  <div class="errorbox" *ngIf="WSErrorMsg"><b></b>
+    <br>
+    <li>{{WSErrorMsg}}</li>
+  </div>
   <!--contractor login end-->
   <div class="container">
     <div class="signup_form_section">
       <div class="guides_videos">
-      	<iframe width="100%" height="380" src="https://www.youtube.com/embed/84xWnoy9ZCw" frameborder="0" gesture="media" allowfullscreen></iframe>
+        <iframe width="100%" height="380" src="https://www.youtube.com/embed/84xWnoy9ZCw" frameborder="0" gesture="media" allowfullscreen></iframe>
         <h3>Welcome to our site</h3>
         <p>
           Welcome to ContractRecruit. We want you to get the most out of your time here, so we have created a range of instructional videos covering the use of every part of our site.</p>
@@ -29,7 +33,6 @@
           ContractRecruit contains some of the best Contractor functionality around, in order to help you find your next perfect Contract.</p>
         <p>Best of all, you can be assured that all of the positions advertised on ContractRecruit are IT Contracts, so there will always be something here just for you.
         </p>
-        
       </div>
     </div>
   </div>
@@ -42,11 +45,11 @@
           </div>
           <div class="col-md-39 col-sm-77">
             <div class="form-group mergin_bottom_none">
-              <input class="form-control" id="exampleInputEmail2" placeholder="Enter Email Address Here" type="email">
+              <input class="form-control" id="exampleInputEmail2" placeholder="Enter Email Address Here" type="email" [(ngModel)]="emailValue" name="emailValue">
             </div>
           </div>
           <div class="col-md-16 col-sm-23">
-            <a href="#" type="submit" class="btn btn-default font_capitaliz hover_white_pluse">Share <i class="fa fa-plus font_color_white" aria-hidden="true"></i></a>
+            <a href="#" type="submit" class="btn btn-default font_capitaliz hover_white_pluse" (click)="shareGuide()">Share <i class="fa fa-plus font_color_white" aria-hidden="true"></i></a>
           </div>
         </div>
       </form>
