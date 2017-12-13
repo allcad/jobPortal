@@ -152,3 +152,20 @@
 .auto284 input{
 	padding-right: 51px;
 }
+
+#share {
+    /*    width: 82px;
+        height: 29px;*/
+    margin: 0 10px;
+
+    border: 0;  
+    text-transform: capitalize;
+    _background: url("../../assets/images/share.png") no-repeat 0 0;
+    overflow: hidden;
+}
+/*#share:hover {
+    background-position: 0 100%}*/
+p.needwatch a, p.needwatch a:visited {
+    color: #00cbff;
+    font-weight: 700;
+}
