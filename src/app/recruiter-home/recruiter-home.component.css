@@ -19,3 +19,136 @@
 .display_none{
 	display: none;
 }
+
+
+
+.modbox2 {
+    position: fixed;
+    z-index: 99999;
+    background: #f6f6f6;
+    left: 50% !important;
+    margin-left: -255px !important;
+}
+
+.modbox2 {
+    width: 510px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -205px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background: #e5e5e5;
+    font-size: 12px;
+    color: #393939;
+    overflow: hidden;
+    min-height: 215px;
+    height: auto;
+    margin-top: -103px;
+    border: 2px solid #333;
+    display: none;
+}
+
+.modbox2 h3 {
+    color: #393939;
+    margin: 0 0 15px;
+    border-bottom: 2px solid #666;
+    position: relative;
+    background: #f6f6f6;
+    font-size: 13px;
+    text-align: left;
+    padding: 7px 0 5px 10px;
+}
+
+.modbox2 .modal-inner {
+    width: auto;
+    padding: 15px 0 0;
+}
+.modal-inner {
+    width: 420px;
+    margin: auto;
+}
+
+.modbox2 .modalbase {
+    background: #fff;
+    margin-top: 0;
+    overflow: hidden;
+}
+
+.modalbase {
+    margin-top: 10px;
+}
+
+.modalbase {
+    border-top: 2px solid #666;
+    clear: both;
+    float: left;
+    margin: 30px 0 0;
+    overflow: visible;
+    width: 100%;
+}
+
+.inputrowx {
+    margin-bottom: 15px;
+}
+.modbox2 label {
+    display: inline-block;
+    width: 185px;
+    padding: 8px 8px 0 0;
+    vertical-align: top;
+    font-size: 12px;
+    text-align: right;
+}
+.modbox2 label span {
+    color: #393939;
+}
+
+.closex {
+    border: 0;
+    padding: 0;
+    position: absolute;
+    right: 7px;
+    top: 8px;
+    width: 21px;
+    height: 21px;
+    
+}
+.modbox2 p.modalview {
+    float: left;
+    text-align: left;
+}
+#modalbox p, .modbox2 p {
+    margin: 10px 17px 5px;
+    color: #393939;
+    font-size: 13px;
+}
+
+.modalbase .saveProfile, .modbox2 input, .modalbase .saveProfile, .modbox2 textarea {
+    background-color: white;
+    border: thin solid blue;
+    border-radius: 4px;
+    display: inline-block;
+    font: inherit;
+    line-height: 1.5em;
+    padding: 0.5em 3.5em 0.5em 1em;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.modalbase .saveProfile .watchContractorSubmit {
+    background: #FF0066;
+    padding: 2px 5px;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+}
+
+#share_bottom{
+	text-align: center;
+}
+.auto284 input{
+	padding-right: 51px;
+}
