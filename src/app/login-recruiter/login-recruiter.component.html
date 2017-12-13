@@ -19,6 +19,9 @@
             <li *ngIf="passwordReqFlag">Please enter a password.</li>
             <li *ngIf="humanKnowFlag">Are you human field is required.</li>
           </div>
+           <div class="errorbox" *ngIf="sessionExpireMessageFlag"><b></b><br> 
+            <li>Session Expired! please login</li>
+          </div>
           
           <div id="contractor_about_us" class="contractor_login contractor_signup">
             <h2>Recruiter <span class="text_pink">lOGIN</span></h2>

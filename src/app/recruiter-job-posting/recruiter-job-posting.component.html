@@ -4,7 +4,7 @@
             <div id="contractor-signup" class="recruiter_job_posting_manage">
                
                 <form #recruiterJobPostingForm="ngForm" (ngSubmit)="onJobPostSave(recruiterJobPostingForm)">
-                    <div class="errorbox" *ngIf="jobPostingTiteFlag || jobPostingDurationFlag || startDateFlag || cityFlag || jobSpecificationFlag"><b>The following error(s) occured:</b><br> 
+                    <div class="errorbox" *ngIf="jobPostingTiteFlag || jobPostingDurationFlag || startDateFlag || cityFlag || jobSpecificationFlag || preferredRateFlag"><b>The following error(s) occured:</b><br> 
                         <li *ngIf="jobPostingTiteFlag">Job Title is required.</li>
                         <li *ngIf="jobPostingDurationFlag">Job Duration is required.</li>
                         <li *ngIf="startDateFlag">Start Date is required.</li>
@@ -14,7 +14,11 @@
                         <!-- <li *ngIf="maxRateFlag">Max rate is required.</li>
                         <li *ngIf="minRateFlag">Min rate is required.</li> -->
                         <li *ngIf="jobSpecificationFlag">Job Specification is required.</li>
+                        <li *ngIf="preferredRateFlag">Max rate should be greater than min rate.</li>
                     </div>
+                    <!-- <div class="errorbox" *ngIf="preferredRateFlag"><b></b><br> 
+                        <li>Max rate should be greater than min rate.</li>
+                    </div> -->
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-50">
@@ -172,7 +176,7 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-addon upto_border_none max-width100">-</div>
-                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Rate Max (£)" name="maxRate" [(ngModel)]="maxRate" [min]="minRate" required>
+                                                <input type="text" class="form-control box_height_30 box_padding_3" id="exampleInputEmail1" placeholder="Rate Max (£)" name="maxRate" [(ngModel)]="maxRate" required>
                                             </div>
                                         </div>
                                     </div>

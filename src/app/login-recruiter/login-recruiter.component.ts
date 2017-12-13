@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule,NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonRequestService } from '../common-request.service';
+import { CommonDataSharedService } from '../commonDataSharedService';
 
 @Component({
   selector: 'app-login-recruiter',
@@ -20,11 +21,17 @@ passwordReqFlag = false;
 humanKnowFlag = false;
 saveFlag = false;
 invalidErrorMsg = "";
-  constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
+sessionExpireMessageFlag = false;
+  constructor(private router: Router, public _commonRequestService: CommonRequestService,
+    private commonDataSharedService: CommonDataSharedService) { }
 
   ngOnInit() {
     window.scroll(0,0);
   this.generate();
+  this.commonDataSharedService.loginMessage.subscribe(data => {
+    //alert(0)
+    this.sessionExpireMessageFlag = true;
+  })
   }
 
     onLogin(f:NgForm){

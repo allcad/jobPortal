@@ -60,6 +60,7 @@ displayTown = '';
 displayCountry = '';
 displayLocationName = '';
 jobSpecificationValue = '';
+preferredRateFlag = false;
 public froalaOptionsPreview: any = {
     placeHolderText: 'Edit Your Content Here',
     charCounterCount: false,
@@ -362,6 +363,12 @@ public froalaOptionsPreview: any = {
     console.log("this.searchElementRef.nativeElement.value", this.searchElementRef.nativeElement.value);
     this.WSErrorMsg = "";
     window.scroll(0,0);
+    if(this.minRate > this.maxRate) {
+      this.preferredRateFlag = true;
+    } else {
+      this.preferredRateFlag = false;
+    }
+
     if(this.jobPostingJobTitle) {
       this.jobPostingTiteFlag = false;
     } else {
@@ -420,7 +427,7 @@ public froalaOptionsPreview: any = {
     }
 
     if(this.jobPostingDurationFlag || this.jobPostingTiteFlag || this.startDateFlag || 
-      this.cityFlag || this.jobSpecificationFlag) {
+      this.cityFlag || this.jobSpecificationFlag || this.preferredRateFlag) {
       this.allErrorFlag = true;
     } else {
       this.allErrorFlag = false;

@@ -56,6 +56,7 @@ displayCountry = '';
 displayLocationName = '';
 showRadialDescription = false;
 showMappingDescription = true;
+preferredRateFlag = false;
 //displayLocationName = '';
   constructor(public _commonRequestService: CommonRequestService, private activateRoute: ActivatedRoute,
     private _route: Router, private commonService: CommonService, 
@@ -333,6 +334,13 @@ showMappingDescription = true;
   }
 
   saveAdvanceSearch() {
+    window.scroll(0,0);
+    if(this.preferredMinRate > this.preferredMaxRate) {
+      this.preferredRateFlag = true;
+    } else {
+      this.preferredRateFlag = false;
+    }
+
     var savedSearchSaveJson = {
       // "email":"test@test8.com",
       // "loginToken":"$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y",
@@ -369,17 +377,19 @@ showMappingDescription = true;
     //this._commonDataShareService.advancedSerahcResult.next(savedSearchSaveJson);
     //this.commonService.setSearchResult(savedSearchSaveJson);
     //this._route.navigate(['/recruiter/searchresult-loggedin']);
-    if(this._route.url.indexOf("/public/advanced-search") >= 0) {
-      this._route.navigate(['../public/home'], { skipLocationChange: true }).then(() =>
-        this._route.navigate(['/public/searchresult-loggedin'], { 'relativeTo': this.activateRoute, queryParams :  savedSearchSaveJson} )
-      );
-      //this._route.navigate(['/public/searchresult-loggedin']);
-    } else if(this._route.url.indexOf("/recruiter/advanced-search") >= 0) {
-      //this._route.navigate(['/recruiter/searchresult-loggedin']);
-      this._route.navigate(['/recruiter/recruiter-home'], { skipLocationChange: true }).then(() =>
-        this._route.navigate(['/recruiter/searchresult-loggedin'], { 'relativeTo': this.activateRoute, queryParams :  savedSearchSaveJson} )
-      );
-    } 
+    if(!this.preferredRateFlag) {
+      if(this._route.url.indexOf("/public/advanced-search") >= 0) {
+        this._route.navigate(['../public/home'], { skipLocationChange: true }).then(() =>
+          this._route.navigate(['/public/searchresult-loggedin'], { 'relativeTo': this.activateRoute, queryParams :  savedSearchSaveJson} )
+        );
+        //this._route.navigate(['/public/searchresult-loggedin']);
+      } else if(this._route.url.indexOf("/recruiter/advanced-search") >= 0) {
+        //this._route.navigate(['/recruiter/searchresult-loggedin']);
+        this._route.navigate(['/recruiter/recruiter-home'], { skipLocationChange: true }).then(() =>
+          this._route.navigate(['/recruiter/searchresult-loggedin'], { 'relativeTo': this.activateRoute, queryParams :  savedSearchSaveJson} )
+        );
+      } 
+    }
 
 
   }

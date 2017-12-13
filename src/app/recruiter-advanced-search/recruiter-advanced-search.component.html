@@ -27,6 +27,10 @@
                                     <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
               </div>
             </div>
+
+            <div class="errorbox" *ngIf="preferredRateFlag"><b></b><br> 
+                        <li>Max rate should be greater than min rate.</li>
+                    </div>
             <div class="signup_form_section">
               <div class="job_search_keywords">
                 <h2>Keywords</h2>

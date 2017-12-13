@@ -62,6 +62,7 @@ displayTown = '';
 displayCountry = '';
 displayLocationName = '';
 searchListErrorMsg = "";
+preferredRateFlag = false;
   constructor(public _commonRequestService: CommonRequestService, private _router: Router,
     private _commonDataShareService: CommonDataSharedService, private commonService: CommonService, 
     private ngZone: NgZone, private activateRoute: ActivatedRoute) { }
@@ -101,6 +102,13 @@ searchListErrorMsg = "";
 
   ngAfterViewInit() {
     this.loadLocationAutoData();
+  }
+
+  checkPreferredRate() {
+    if(parseInt(this.minRate) > parseInt(this.maxRate)) {
+       return true;
+    } 
+      return false;
   }
 
   loadLocationAutoData() {
@@ -351,7 +359,9 @@ searchListErrorMsg = "";
   }
 
   saveSearch() {
+    window.scroll(0,0);
     this.WSErrorMsg = "";
+    this.preferredRateFlag = this.checkPreferredRate();
     var savedSearchSaveJson = {
       "email":"test@test8.com",
       "loginToken":"$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y",
@@ -403,81 +413,86 @@ searchListErrorMsg = "";
       }
     }
     console.log("this.sameSearchNameFlag", this.sameSearchNameFlag);
+    console.log("preferref reyaenc", this.preferredRateFlag);
 
-    
-      if (this.recentRecruiterSaveId) {
-        savedSearchSaveJson["search_id"] = this.recentRecruiterSaveId ? this.recentRecruiterSaveId : '';
-        console.log("savedSearchSaveJson00", savedSearchSaveJson)
-        var inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/save_search/update";
-         this._commonRequestService.postData(inputUrl, savedSearchSaveJson).subscribe(
-          data => {
-            this.responseData = data;
-            window.scroll(0,0);
-            if(this.responseData.status === "TRUE"){
-                    this.succesMessageFlag =true;
-                    this.WSErrorMsg = "";
-                    this.errorSuccessMessage = "Update succesfully !";
-                    this.showDeleteButtonFlag = false;
-                    this.successMessageFlag  = true;
-                    this.errorMessageFlag = false;
-                    this.resetFields();
-                    this.getListOfSaveSearch();
-            //         this.ErrorMesageFlag =false
-            // this.profileData={};
-            // this.errorMsg = "";
-            }
-            else if(data && data.status == 'FALSE'){
-               this.succesMessageFlag =false;
-               this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
-               this.successMessageFlag  = false;
-               this.errorMessageFlag = true;
-                //this.ErrorMesageFlag =true;
-                //this.errorMsg = this.responseData.error[0];
-            }
-      
-            // console.log("keySkill: ", this.listSignUpData);
-          }
-      ); 
-      } else {
-         if(!this.sameSearchNameFlag) {
-            var inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/save_search";
-             this._commonRequestService.postData(inputUrl, savedSearchSaveJson).subscribe(
-              data => {
-                this.responseData = data;
-                window.scroll(0,0);
-                if(this.responseData.status === "TRUE"){
-                        this.succesMessageFlag =true;
-                        this.WSErrorMsg = "";
-                        this.errorSuccessMessage = "Saved succesfully !";
-                        this.showDeleteButtonFlag = false;
-                        this.successMessageFlag  = true;
-                        this.errorMessageFlag = false;
-                        this.resetFields();
-                        this.getListOfSaveSearch();
-                //         this.ErrorMesageFlag =false
-                // this.profileData={};
-                // this.errorMsg = "";
-                }
-                else if(data && data.status == 'FALSE'){
-                   this.succesMessageFlag =false;
-                   this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
-                   this.successMessageFlag  = false;
-                   this.errorMessageFlag = true;
-                    //this.ErrorMesageFlag =true;
-                    //this.errorMsg = this.responseData.error[0];
-                }
-          
-                // console.log("keySkill: ", this.listSignUpData);
+
+    if(!this.preferredRateFlag) {
+        if (this.recentRecruiterSaveId) {
+          savedSearchSaveJson["search_id"] = this.recentRecruiterSaveId ? this.recentRecruiterSaveId : '';
+          console.log("savedSearchSaveJson00", savedSearchSaveJson)
+          var inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/save_search/update";
+           this._commonRequestService.postData(inputUrl, savedSearchSaveJson).subscribe(
+            data => {
+              this.responseData = data;
+              window.scroll(0,0);
+              if(this.responseData.status === "TRUE"){
+                      this.succesMessageFlag =true;
+                      this.WSErrorMsg = "";
+                      this.errorSuccessMessage = "Update succesfully !";
+                      this.showDeleteButtonFlag = false;
+                      this.successMessageFlag  = true;
+                      this.errorMessageFlag = false;
+                      this.resetFields();
+                      this.getListOfSaveSearch();
+              //         this.ErrorMesageFlag =false
+              // this.profileData={};
+              // this.errorMsg = "";
               }
-          ); 
+              else if(data && data.status == 'FALSE'){
+                 this.succesMessageFlag =false;
+                 this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+                 this.successMessageFlag  = false;
+                 this.errorMessageFlag = true;
+                  //this.ErrorMesageFlag =true;
+                  //this.errorMsg = this.responseData.error[0];
+              }
+        
+              // console.log("keySkill: ", this.listSignUpData);
+            }
+        ); 
+        } else {
+           if(!this.sameSearchNameFlag) {
+              var inputUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/save_search";
+               this._commonRequestService.postData(inputUrl, savedSearchSaveJson).subscribe(
+                data => {
+                  this.responseData = data;
+                  window.scroll(0,0);
+                  if(this.responseData.status === "TRUE"){
+                          this.succesMessageFlag =true;
+                          this.WSErrorMsg = "";
+                          this.errorSuccessMessage = "Saved succesfully !";
+                          this.showDeleteButtonFlag = false;
+                          this.successMessageFlag  = true;
+                          this.errorMessageFlag = false;
+                          this.resetFields();
+                          this.getListOfSaveSearch();
+                  //         this.ErrorMesageFlag =false
+                  // this.profileData={};
+                  // this.errorMsg = "";
+                  }
+                  else if(data && data.status == 'FALSE'){
+                     this.succesMessageFlag =false;
+                     this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+                     this.successMessageFlag  = false;
+                     this.errorMessageFlag = true;
+                      //this.ErrorMesageFlag =true;
+                      //this.errorMsg = this.responseData.error[0];
+                  }
+            
+                  // console.log("keySkill: ", this.listSignUpData);
+                }
+            ); 
+        }
       }
-    }
+  }
     //console.log("savedSearchSaveJson", savedSearchSaveJson);
 
     
   }
 
   searchResult() {
+    window.scroll(0,0);
+    this.preferredRateFlag = this.checkPreferredRate();
     var savedSearchSaveJson = {
       // "email":"test@test8.com",
       // "loginToken":"$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y",
@@ -511,9 +526,11 @@ searchListErrorMsg = "";
       //"sort":8
     }
 
-    this._router.navigate(['/recruiter/recruiter-home'], { skipLocationChange: true }).then(() =>
-        this._router.navigate(['/recruiter/searchresult-loggedin'], { 'relativeTo': this.activateRoute, queryParams :  savedSearchSaveJson} )
-      );
+    if(!this.preferredRateFlag) {
+      this._router.navigate(['/recruiter/recruiter-home'], { skipLocationChange: true }).then(() =>
+          this._router.navigate(['/recruiter/searchresult-loggedin'], { 'relativeTo': this.activateRoute, queryParams :  savedSearchSaveJson} )
+        );
+    }
 
     //this._commonDataShareService.advancedSerahcResult.next(savedSearchSaveJson);
     // this.commonService.setSearchResult(savedSearchSaveJson);

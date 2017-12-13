@@ -41,6 +41,9 @@
         <div class="errorbox" *ngIf="WSErrorMsg"><b></b><br> 
           <li>{{WSErrorMsg}}</li>
         </div>
+        <div class="errorbox" *ngIf="preferredRateFlag"><b></b><br> 
+          <li>Max rate should be greater than min rate.</li>
+        </div>
         <div class="errorbox" *ngIf="searchListErrorMsg && showSaveSearchList"><b></b><br> 
           <li>{{searchListErrorMsg}}</li>
         </div>
