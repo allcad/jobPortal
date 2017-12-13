@@ -16,6 +16,10 @@
           <div class="alert alert-success margin-tp18" *ngIf="succesLoginFlag">
             <a href="javascript:void(0)" class="close" title="close" (click)="succesLoginFlag = false;">×</a> You are Log in <strong>succesfully!</strong>
           </div>
+          <div class="alert alert-error margin-tp18" *ngIf="sessionExpireMessageFlag">
+            <a href="javascript:void(0)" class="close" title="close" (click)="sessionExpireMessageFlag = false;">×</a> Your session has been expired <strong>info!</strong>
+          </div>
+
           <div class="login_form_section">
             <div class="errorbox" *ngIf="(((f && f.form && f.form.controls && f.form.invalid) || totalInvalid) && f.submitted && !errorMsgFlag) || errorMsgFlag"><b>The following error(s) occured:</b>
               <br>

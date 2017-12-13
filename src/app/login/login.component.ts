@@ -2,6 +2,7 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonRequestService } from '../common-request.service';
+import { CommonDataSharedService } from '../commonDataSharedService';
 
 @Component({
   selector: 'app-login',
@@ -16,10 +17,14 @@ export class LoginComponent implements OnInit {
   inputData; min; max; addNumber; number; number2; errorMessage; inputUrl; status; succesLoginFlag = false; errorMsgFlag = false;
   errorMsg;
   totalInvalid = false;
-  constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
+  sessionExpireMessageFlag;
+  constructor(private router: Router, public _commonRequestService: CommonRequestService, private _commonDataSharedService: CommonDataSharedService) { }
 
   ngOnInit() {
     this.generate();
+    this._commonDataSharedService.loginMessage.subscribe(data => {
+      this.sessionExpireMessageFlag = true;
+  })
   }
 
   ngAfterViewInit(){

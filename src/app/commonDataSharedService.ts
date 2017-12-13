@@ -7,6 +7,7 @@ export class CommonDataSharedService{
 	switchToDivSubject = new Subject();
 	advancedSerahcResult = new Subject();
 	loginMessage = new Subject();
+	contractorHubSearch = new Subject();
 }
 
 /*PlanProgressDataService*/

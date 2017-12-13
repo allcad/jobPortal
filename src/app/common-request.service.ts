@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonDataSharedService } from './commonDataSharedService';
 import 'rxjs/add/operator/map';  // we need to import this now
+
+
 @Injectable()
 export class CommonRequestService {
 	inputUrl; inputData;
@@ -41,6 +43,7 @@ export class CommonRequestService {
 				if(data.auth_error && data.auth_error == 1){
 					const localStorageData = localStorage.getItem('loginDetail') ?  JSON.parse(localStorage.getItem('loginDetail')) : "";
 					if(localStorageData && localStorageData.role === 'contractor'){
+						this.commonDataSharedService.loginMessage.next(true);
 						this._router.navigate(['/public/contractorLogin']);
 					} else if(localStorageData && localStorageData.role === 'recuriter'){
 						this.commonDataSharedService.loginMessage.next(true);
