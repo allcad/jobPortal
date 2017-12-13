@@ -60,7 +60,7 @@ preferredRateFlag = false;
 //displayLocationName = '';
   constructor(public _commonRequestService: CommonRequestService, private activateRoute: ActivatedRoute,
     private _route: Router, private commonService: CommonService, 
-    private ngZone: NgZone) {
+    private ngZone: NgZone) { 
     console.log("activateRoute", _route.url);
     this.currentUrl = _route.url;
    }
