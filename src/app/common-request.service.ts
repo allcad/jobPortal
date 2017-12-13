@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CommonDataSharedService } from './commonDataSharedService';
+import { CommonService } from './commonService.service';
 import 'rxjs/add/operator/map';  // we need to import this now
 @Injectable()
 export class CommonRequestService {
@@ -14,7 +14,7 @@ export class CommonRequestService {
 	// options = new RequestOptions({ headers: this.headers });
 
 	constructor(private _http: Http, private _router: Router, private _routes: ActivatedRoute,
-		private commonDataSharedService: CommonDataSharedService) {
+		private commonService: CommonService) {
 
 	}
 
@@ -43,7 +43,7 @@ export class CommonRequestService {
 					if(localStorageData && localStorageData.role === 'contractor'){
 						this._router.navigate(['/public/contractorLogin']);
 					} else if(localStorageData && localStorageData.role === 'recuriter'){
-						this.commonDataSharedService.loginMessage.next(true);
+						this.commonService.setSessionData(true);
 						this._router.navigate(['/public/recruiterLogin']);
 					}else{
 						this._router.navigate(['/public/home']);

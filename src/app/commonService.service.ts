@@ -19,6 +19,7 @@ export class CommonService {
   jobIdForPreview;
   jobIdForJobPosting;
   lastSearchData;
+  sessionData;
 
   setSearchResult(data) {
     this.setSearchResultData = data;
@@ -50,6 +51,14 @@ export class CommonService {
 
   getLastSearchData() {
     return this.lastSearchData;
+  }
+
+  setSessionData(data) {
+    this.sessionData = data;
+  }
+
+  getSessionData() {
+    return this.sessionData;
   }
 
   goToRecruiterLogin(data) {
