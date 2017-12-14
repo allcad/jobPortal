@@ -55,7 +55,33 @@
     display: block;
     width: 90%;
     margin-left: 15px;
+}
+
+/*.hover a .icon{
+    font-size: 23px;
+    margin-top: 10px;
+}
+
+.hover a .icon img{
+    height: 80px !important;
+    width: 80px !important;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
 } 
+
+.hover a .content h4 {
+    margin-top: 0px;
+    text-align: center ;
+}
+
+.hover a .content p {
+    display: block !important;
+    width: 90%;
+    margin-left: 15px;
+}*/
+
+
 
 
 @media(max-width: 1024px){

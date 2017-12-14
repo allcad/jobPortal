@@ -52,4 +52,9 @@ export class SearchLocationComponent implements OnInit {
 		this.selectText.emit(location);
 	}
 
+
+	updateText(text){
+		this.location = text;
+	}
+
 }

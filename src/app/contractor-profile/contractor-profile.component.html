@@ -17,10 +17,7 @@
             <div class="alert alert-success margin-tp18" *ngIf="succesMessageFlag">
               <a href="javascript:void(0)" class="close" title="close" (click)="succesMessageFlag=false">×</a>{{successMsg}} <strong>succesfully!</strong>
             </div>
-            <!-- <div class="alert alert-danger margin-tp18" *ngIf="ErrorMesageFlag">
-              <a href="javascript:void(0)" class="close" title="close" (click)="ErrorMesageFlag=false">×</a>
-              <strong>Error!</strong> {{errorMsg}}
-            </div> -->
+           
             <div class="pull-right job_search"> <a href="javascript:void(0)" class="btn-primary hover_white_pluse" [routerLink]="['../viewProfile']">View Profile <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> <a href="javascript:void(0);" class="btn-info hover_white_pluse">Edit Profile <i class="fa fa-plus plus_black" aria-hidden="true"></i></a> </div>
           </div>
         </div>
@@ -39,6 +36,12 @@
           <br>
           <li>Job title required</li>
           
+        </div>
+
+        <div class="errorbox" *ngIf="invalidFile">
+          <b>The following error(s) occured:</b>
+          <br>
+          <li>Invalid file type</li>
         </div>
 
 
@@ -154,35 +157,35 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/web-address.png" alt="Web Address" title="Web Address" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail7" placeholder="Enter Web Address" type="url" pattern="https?://.+" [(ngModel)]="webAddress" name="webAddress" >
+                      <input class="form-control" id="exampleInputEmail7" placeholder="Enter Web Address" type="url" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" [(ngModel)]="webAddress" name="webAddress" >
                       
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/stack-overflo.png" alt="Stack Overflow Web Address" title="Stack Overflow Web Address" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail8" placeholder="Stack Overflow Web Address" type="url" pattern="https?://.+" [(ngModel)]="stackOverWebAdd" name="stackOverWebAdd" >
+                      <input class="form-control" id="exampleInputEmail8" placeholder="Stack Overflow Web Address" type="url" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" [(ngModel)]="stackOverWebAdd" name="stackOverWebAdd" >
                      
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/GitHub-Web.png" alt="Enter GitHub Web Address" title="Enter GitHub Web Address" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail9" placeholder="Enter GitHub Web Address" type="url" pattern="https?://.+" [(ngModel)]="gitHubWebAdd" name="gitHubWebAdd" >
+                      <input class="form-control" id="exampleInputEmail9" placeholder="Enter GitHub Web Address" type="url" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" [(ngModel)]="gitHubWebAdd" name="gitHubWebAdd" >
                       
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/Linkedin-Web.png" alt="Enter Linkedin Web Address" title="Enter Linkedin Web Address" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail10" placeholder="Enter Linkedin Web Address" type="url" pattern="https?://.+" [(ngModel)]="linkedinWebAdd" name="linkedinWebAdd">
+                      <input class="form-control" id="exampleInputEmail10" placeholder="Enter Linkedin Web Address" type="url" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" [(ngModel)]="linkedinWebAdd" name="linkedinWebAdd">
                       
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/Behance-Web.png" alt="Enter Behance Web Address" title="Enter Behance Web Address" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail11" placeholder="Enter Behance Web Address" type="text" pattern="https?://.+" [(ngModel)]="behanceWebAdd" name="behanceWebAdd">
+                      <input class="form-control" id="exampleInputEmail11" placeholder="Enter Behance Web Address" type="text" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" [(ngModel)]="behanceWebAdd" name="behanceWebAdd">
                       
                     </div>
                   </div>

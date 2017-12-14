@@ -24,11 +24,13 @@ export class ContractorJobSearchComponent implements OnInit {
   timeSlotList = [];
   isPublic = false;
   @ViewChild("search") public searchElementRef: ElementRef;
+  @ViewChild("searchBox") serachBox;
   postcode;
   displayTown;
   displayCountry;
   displayLocationName;
   formNotValid = false;
+  text = "LOndon";
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute, private ngZone: NgZone) { }
 
   ngOnInit() {
@@ -227,5 +229,10 @@ export class ContractorJobSearchComponent implements OnInit {
 
     //});
   }
+
+
+  // textChnage(){
+  //   this.serachBox.updateText("new Text")
+  // }
 
 }
