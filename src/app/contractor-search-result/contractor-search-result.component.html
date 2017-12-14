@@ -112,11 +112,11 @@
             <h2>{{item.jobTitle}}</h2>
           </div>
           <div class="application_box_contant2" routerLink="./{{item.jobid}}" style="cursor: pointer;">
-            <p><span>Location:</span>{{item.cityTown}}</p>
+            <p><span>Location:</span>{{item.cityTown | slice : 0 : 32}}{{item.cityTown.length > 32 ? '..' : ''}}</p>
             <p><span>Rate:</span> £{{item.prefereedRate.minRate}} - £{{item.prefereedRate.maxRate}} p/{{item.prefereedRate.dailyHourlyRate == 'daily' ? 'd' : 'h'}}</p>
             <p><span>Start Date:</span> {{item.startDate | date }}</p>
             <p><span>Duration:</span> {{item.duration}} </p>
-            <p class="full_contant" innerHTML="{{item.jobDetail | slice : 0 : 200}}.." style="height: 90px;"></p>
+            <p class="full_contant" innerHTML="{{item.jobDetail | slice : 0 : 200}}{{item.jobDetail.length > 200 ? '..' : ''}}" style="height: 90px;"></p>
           </div>
           <div class="footer_box">
             <div class="pull-left social_box_footer share-buttons">

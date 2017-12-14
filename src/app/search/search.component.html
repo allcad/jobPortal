@@ -15,7 +15,7 @@
                   </div>
                 </div>
                 <div class="col-sm-50">
-                  <app-search-location  [placeHolder]="'search City, Town, PostCode'" (blank)="searchBoxBlank()" (select)="locationSelecetd($event)" (change)="changeText($event)"></app-search-location>
+                  <app-search-location  [placeHolder]="'search City, Town, PostCode'"  (select)="locationSelecetd($event)" (change)="changeText($event)"></app-search-location>
                   <!-- <div class="form-group" style="position: relative;">
                     <input type="text" class="form-control txt_cap" id="exampleInputPassword1" placeholder="ENTER LOCATION..." name="location" [(ngModel)]="location" (keyup)="searchLocation()">
                     <div class="location_results_search" *ngIf="(searchResult && searchResult.length>0 && !selecetd) ">
