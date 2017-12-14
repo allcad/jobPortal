@@ -105,7 +105,7 @@
     <div class="row">
       <div class=" col-md-33 col-sm-33" *ngFor="let adviceArticle of articleToShow">
         <div class="letest_news_box">
-          <div class="book_mark" routerLink="../adviceDetail"><a href="javascript:void(0)"><img src="./assets/images/artical-message.png" alt="" title=""></a></div>
+          <div class="book_mark" routerLink="../adviceDetail"><a routerLink="./{{adviceArticle.id}}" href="javascript:void(0)"><img src="./assets/images/artical-message.png" alt="" title=""></a></div>
           <img [src]="adviceArticle.image" alt="" onError="this.src='./assets/images/advice-article-default.png'" alt="" title="" class="img-responsive">
           <h5>{{adviceArticle.title}}</h5>
           <p [innerHTML]="adviceArticle.description | slice : 0 : 100"></p>
