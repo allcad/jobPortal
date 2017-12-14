@@ -72,7 +72,6 @@
 
 .modbox2 .modalbase {
     background: #fff;
-    margin-top: 0;
     overflow: hidden;
 }
 
@@ -148,24 +147,52 @@
 
 #share_bottom{
 	text-align: center;
+    padding: 4px;
 }
 .auto284 input{
 	padding-right: 51px;
 }
 
-#share {
-    /*    width: 82px;
-        height: 29px;*/
-    margin: 0 10px;
 
-    border: 0;  
-    text-transform: capitalize;
-    _background: url("../../assets/images/share.png") no-repeat 0 0;
-    overflow: hidden;
-}
 /*#share:hover {
     background-position: 0 100%}*/
 p.needwatch a, p.needwatch a:visited {
     color: #00cbff;
     font-weight: 700;
 }
+
+.shareRecruiterShare{
+        padding: 9px 0;
+    text-align: right;
+    float: right;
+
+}
+
+#share_bottom{
+
+    width: 100%;
+    float: left;
+    text-align: right;
+}
+
+#share_bottom a span{
+
+        background: #333;
+    padding: 7px 16px 10px;
+    color: #fff;
+    font-size: 14px;
+}
+
+#share_bottom a:hover{
+
+    text-decoration: none !important;
+}
+
+#share_bottom a:hover span{
+
+    background: #00ccff;
+    text-decoration:none !important;
+    
+   
+}
+
