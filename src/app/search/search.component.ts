@@ -52,58 +52,6 @@ export class SearchComponent implements OnInit {
     this._router.navigate(['../contractor_search'], { 'relativeTo': this._routes, queryParams: inputJson })
   }
 
-  // loadLocationAutoData() {
-  //   // this.mapsAPILoader.load().then(() => {
-  //   //console.log("this.searchElementRef.nativeElement", this.searchElementRef.nativeElement);
-  //   let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-  //     types: ["geocode"],
-  //     componentRestrictions: { 'country': 'GB' }
-  //   });
-  //   autocomplete.addListener("place_changed", () => {
-  //     this.ngZone.run(() => {
-  //       //get the place result
-  //       let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-  //       console.log("place--", place);
-  //       this.postcode = "";
-  //       this.displayTown = "";
-  //       this.displayCountry = "";
-  //       this.displayLocationName = "";
-  //       //verify result
-  //       if (place.geometry === undefined || place.geometry === null) {
-  //         return;
-  //       }
-  //       if (place && place.address_components && place.address_components.length > 0 && place.formatted_address) {
-  //         for (var i = 0; i < place.address_components.length; i++) {
-  //           for (var j = 0; j < place.address_components[i].types.length; j++) {
-  //             if (place.address_components[i].types[j] == "postal_code") {
-  //               this.postcode = place.address_components[i].long_name;
-  //             }
-  //             if (place.address_components[i].types[j] == "postal_town") {
-  //               this.displayTown = place.address_components[i].long_name;
-  //             }
-  //             if (place.address_components[i].types[j] == "country") {
-  //               this.displayCountry = place.address_components[i].long_name;
-  //             }
-  //             this.displayLocationName = this.displayTown + " " + this.postcode + "," + this.displayCountry;
-  //           }
-  //         }
-  //       }
-  //       console.log("this.postcode", this.postcode);
-  //       console.log("this.displayTown", this.displayTown);
-  //       console.log("this.displayCountry", this.displayCountry);
-  //       console.log("this.displayLocationName", this.displayLocationName);
-  //     });
-  //   });
-
-  //   //});
-  // }
-
-  searchBoxBlank(){
-    //alert("blank")
-  }
-
-
-
   locationSelecetd(location) {
     this.postcode = location.postcode;
     this.displayTown = location.town_name;

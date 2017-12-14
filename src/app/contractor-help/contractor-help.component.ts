@@ -27,7 +27,12 @@ export class ContractorHelpComponent implements OnInit {
     this._commonRequestService.getData(url).subscribe(
       data => {
         this.helpCategoryList = data.data;
-        this.getHelpByCategoryId(this.helpCategoryList[0]._id)
+        for(let i=0; i<this.helpCategoryList.length; i++){
+          if(this.helpCategoryList[i].category_type.toLowerCase().includes('contra')){
+            this.getHelpByCategoryId(this.helpCategoryList[i]._id)    
+          }
+        }
+        
         console.log("this.helpCategoryList", this.helpCategoryList)
       }
     );

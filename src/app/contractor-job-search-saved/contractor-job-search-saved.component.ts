@@ -31,7 +31,7 @@ export class ContractorJobSearchSavedComponent implements OnInit {
   errorMsg = "";
   successMsg = "";
   searchNameExist = false;
-  @ViewChild("search") public searchElementRef: ElementRef;
+  @ViewChild("searchBox")  searchElementRef;
   postcode;
   displayTown;
   displayCountry;
@@ -51,7 +51,6 @@ export class ContractorJobSearchSavedComponent implements OnInit {
 
   ngAfterViewInit(){
    window.scroll(0,0);
-   this.loadLocationAutoData();
   }
 
   getIndustrySector() {
@@ -94,14 +93,14 @@ export class ContractorJobSearchSavedComponent implements OnInit {
         "contractor_search_by_keywords": this.keywords ? this.keywords : null,
         "contractor_search_by_rate_max": this.maxRate ? this.maxRate : null,
         "contractor_search_by_rate_min": this.minRate ? this.minRate : null,
-        "contractor_search_by_location": (this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value) ? (this.displayLocationName || "") : "",
+        "contractor_search_by_location": this.displayLocationName,
         "contractor_search_by_rate_type": this.rateType,
         "contractor_search_by_posted_contact_since": this.postDuration ? this.postDuration : null,
         "contractor_search_by_industry_sector": this.industrySector,
-        "postcode": (this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value) ? (this.postcode || "") : "",
-        "display_town": (this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value) ? (this.displayTown || "") : "",
-        "display_county": (this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value) ? (this.displayCountry || "") : "",
-        "display_name": (this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value) ? (this.displayLocationName || "") : "",
+        "postcode": this.postcode,
+        "display_town": this.displayTown,
+        "display_county": this.displayCountry,
+        "display_name": this.displayLocationName ,
       }
       if (this.seletecSearchId) {
         inputJson['contractor_search_id'] = this.seletecSearchId;
@@ -162,7 +161,7 @@ export class ContractorJobSearchSavedComponent implements OnInit {
     this.keywords = "";
     this.maxRate = "";
     this.minRate = "";
-    this.searchElementRef.nativeElement.value = "";
+    this.searchElementRef.updateText("");
     this.postDuration = "";
     this.industrySector = [];
     this.seletecSearchId = 0;
@@ -189,7 +188,7 @@ export class ContractorJobSearchSavedComponent implements OnInit {
         this.keywords = searchData.contractor_search_by_keywords;
         this.maxRate = searchData.contractor_search_by_rate_max;
         this.minRate = searchData.contractor_search_by_rate_min;
-        this.searchElementRef.nativeElement.value = searchData.display_name;
+        this.searchElementRef.updateText(searchData.display_name);
         this.postcode = searchData.postcode;
         this.displayTown = searchData.display_town;
         this.displayCountry = searchData.display_county;
@@ -230,46 +229,7 @@ export class ContractorJobSearchSavedComponent implements OnInit {
   }
 
 
-  loadLocationAutoData() {
-    //this.mapsAPILoader.load().then(() => {
-      //console.log("this.searchElementRef.nativeElement", this.searchElementRef.nativeElement);
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["geocode"],
-        componentRestrictions : {'country' : 'GB'}
-      });
-      autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          //get the place result
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          this.postcode = "";
-          this.displayTown = "";
-          this.displayCountry = "";
-          this.displayLocationName = "";
-          //verify result
-          if (place.geometry === undefined || place.geometry === null) {
-            return;
-          }
-          if (place && place.address_components && place.address_components.length > 0 && place.formatted_address) {
-            for (var i = 0; i < place.address_components.length; i++) {
-              for (var j = 0; j < place.address_components[i].types.length; j++) {
-                if (place.address_components[i].types[j] == "postal_code") {
-                  this.postcode = place.address_components[i].long_name;
-                }
-                if (place.address_components[i].types[j] == "postal_town") {
-                  this.displayTown = place.address_components[i].long_name;
-                }
-                if (place.address_components[i].types[j] == "country") {
-                  this.displayCountry = place.address_components[i].long_name;
-                }
-                this.displayLocationName = this.displayTown + " " + this.postcode + "," + this.displayCountry;
-              }
-            }
-          }
-        });
-      });
 
-    //});
-  }
 
   runSearch() {
     var inputJson = {
@@ -277,17 +237,17 @@ export class ContractorJobSearchSavedComponent implements OnInit {
         contractor_search_by_keywords: this.keywords ? this.keywords : "",
         contractor_search_by_exclude_words: this.excludingWords ? this.excludingWords : "",
         contractor_search_by_miles: this.distance && this.distance != '0' ? this.distance : "",
-        contractor_search_by_location:  (this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value) ? (this.displayLocationName || "") : "",
+        contractor_search_by_location:  this.displayLocationName,
         contractor_search_by_rate_min: this.minRate ? this.minRate : "",
         contractor_search_by_rate_max: this.maxRate ? this.maxRate : "",
         contractor_search_by_rate_type: this.rateType ? this.rateType : "",
         contractor_search_by_job_reference_number: this.jobRefNumber ? this.jobRefNumber : "",
         contractor_search_by_posted_contact_since: this.postDuration && this.postDuration !== '0' ? this.postDuration : "",
         contractor_search_by_industry_sector: this.industrySector ? this.industrySector : "",
-        postcode: (this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value) ? (this.postcode || "") : "",
-        display_town: (this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value) ? (this.displayTown || "") : "",
-        display_county: (this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value) ? (this.displayCountry || "") : "",
-        display_name: (this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value) ? (this.displayLocationName || "") : "",
+        postcode: this.postcode,
+        display_town: this.displayTown ,
+        display_county: this.displayCountry,
+        display_name: this.displayLocationName,
         page: 1,
         limit: 10,
         sort: 1
@@ -311,6 +271,21 @@ export class ContractorJobSearchSavedComponent implements OnInit {
 
       }
     );
+  }
+
+
+  locationSelecetd(location) {
+    this.postcode = location.postcode;
+    this.displayTown = location.town_name;
+    this.displayCountry = location.country;
+    this.displayLocationName = location.town_name + ',' + location.country;
+  }
+
+  changeText(text){
+    this.postcode = "";
+    this.displayTown = "";
+    this.displayCountry = "";
+    this.displayLocationName = "";
   }
 
 }

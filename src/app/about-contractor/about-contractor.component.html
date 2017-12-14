@@ -206,7 +206,9 @@ industry information and the best Contractor services easy.</span> </p>
               </div>
               <div class="col-sm-50">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="ENTER LOCATION" name="location" autocorrect="off" autocapitalize="off" spellcheck="off" #search >
+                  <!-- <input type="text" class="form-control" id="exampleInputPassword1" placeholder="ENTER LOCATION" name="location" autocorrect="off" autocapitalize="off" spellcheck="off" #search > -->
+
+                  <app-search-location  [placeHolder]="'ENTER LOCATION'" (blank)="searchBoxBlank()" (select)="locationSelecetd($event)" (change)="changeText($event)"></app-search-location>
                 </div>
               </div>
             </div>
