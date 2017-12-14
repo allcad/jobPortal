@@ -155,7 +155,8 @@
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/recruiter-city-pastcode.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
                       <!-- <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="City, Town Or Postcode" name="cityTown" [(ngModel)]="cityTown"> -->
-                      <input placeholder="City, Town or PostCode" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control box_height_30 box_padding_3" #advancedSearch required>
+                      <!-- <input placeholder="City, Town or PostCode" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control box_height_30 box_padding_3" #advancedSearch required> -->
+                      <app-search-location  [placeHolder]="'City, Town or PostCode'" (blank)="searchBoxBlank()" (select)="locationSelecetd($event)" (change)="changeText($event)" [text]="displayLocationName"></app-search-location>
                     </div>
                   </div>
                 </div>
@@ -165,7 +166,8 @@
                                         <div class="input-group">
                                             <div class="input-group-addon"><img src="./assets/images/recruiter-city-pastcode.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
                                             <!-- <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Current Location" name="currentLocation" [(ngModel)]="currentLocation"> -->
-                                             <input placeholder="Current Location"  autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control box_height_30 box_padding_3" #advancedSearch required>
+                                             <!-- <input placeholder="Current Location"  autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control box_height_30 box_padding_3" #advancedSearch required> -->
+                                             <app-search-location  [placeHolder]="'Current Location'" (blank)="searchBoxBlank()" (select)="locationSelecetd($event)" (change)="changeText($event)" [text]="displayLocationName"></app-search-location>
                                         </div>
                                     </div>
                                 </div>

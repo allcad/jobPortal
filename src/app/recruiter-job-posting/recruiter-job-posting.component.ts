@@ -61,6 +61,7 @@ displayCountry = '';
 displayLocationName = '';
 jobSpecificationValue = '';
 preferredRateFlag = false;
+locationArray = [];
 public froalaOptionsPreview: any = {
     placeHolderText: 'Edit Your Content Here',
     charCounterCount: false,
@@ -78,6 +79,7 @@ public froalaOptionsPreview: any = {
     this.recruiterNameList();
     this.getIndustry();
     this.getTemplateData();
+    this.getLocationValue();
     //this.loadLocationAutoData();
     var localStorageData = JSON.parse(localStorage.getItem('recruiterJobData'));
     console.log("localStorageData--", localStorageData);
@@ -97,7 +99,7 @@ public froalaOptionsPreview: any = {
        this.startDate = this.jobPostingJobId['startDate'];
        this.industrySector = this.jobPostingJobId['industrySectorId'];
        this.workEligibility = this.jobPostingJobId['workEligibilityId'];
-       this.cityTownValue = this.jobPostingJobId['cityTown'];
+       this.displayLocationName = this.jobPostingJobId['cityTown'];
        this.minRate = this.jobPostingJobId && this.jobPostingJobId['prefereedRate'] && this.jobPostingJobId['prefereedRate'].minRate ? this.jobPostingJobId['prefereedRate'].minRate : 0;
        this.maxRate = this.jobPostingJobId && this.jobPostingJobId['prefereedRate'] && this.jobPostingJobId['prefereedRate'].maxRate ? this.jobPostingJobId['prefereedRate'].maxRate : 0
        this.dailyHourlyValue = this.jobPostingJobId && this.jobPostingJobId['prefereedRate'] && this.jobPostingJobId['prefereedRate'].dailyHourlyRate ? this.jobPostingJobId['prefereedRate'].dailyHourlyRate : '';
@@ -134,57 +136,87 @@ public froalaOptionsPreview: any = {
   }
 
   ngAfterViewInit() {
-    this.loadLocationAutoData();
+    //this.loadLocationAutoData();
   }
 
-  loadLocationAutoData() {
-    //this.mapsAPILoader.load().then(() => {
-      //console.log("this.searchElementRef.nativeElement", this.searchElementRef.nativeElement);
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["geocode"],
-        componentRestrictions : {'country' : 'GB'}
-      });
-      autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          //get the place result
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          console.log("place--", place);
-          this.postcode = "";
-          this.displayTown = "";
-          this.displayCountry = "";
-          this.displayLocationName = "";
-          //verify result
-          if (place.geometry === undefined || place.geometry === null) {
-            return;
+  // loadLocationAutoData() {
+  //   //this.mapsAPILoader.load().then(() => {
+  //     //console.log("this.searchElementRef.nativeElement", this.searchElementRef.nativeElement);
+  //     let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+  //       types: ["geocode"],
+  //       componentRestrictions : {'country' : 'GB'}
+  //     });
+  //     autocomplete.addListener("place_changed", () => {
+  //       this.ngZone.run(() => {
+  //         //get the place result
+  //         let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+  //         console.log("place--", place);
+  //         this.postcode = "";
+  //         this.displayTown = "";
+  //         this.displayCountry = "";
+  //         this.displayLocationName = "";
+  //         //verify result
+  //         if (place.geometry === undefined || place.geometry === null) {
+  //           return;
+  //         }
+  //         if(place && place.address_components && place.address_components.length > 0 && place.formatted_address) {
+  //           for(var i=0;i<place.address_components.length; i++) {
+  //             for(var j=0; j<place.address_components[i].types.length; j++) {
+  //               if(place.address_components[i].types[j] == "postal_code") {
+  //                 this.postcode = place.address_components[i].long_name;
+  //               }
+  //               if(place.address_components[i].types[j] == "postal_town") {
+  //                 this.displayTown = place.address_components[i].long_name;
+  //               }
+  //               if(place.address_components[i].types[j] == "country") {
+  //                 this.displayCountry = place.address_components[i].long_name;
+  //               }
+  //               this.displayLocationName = this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value : '';
+  //             }
+  //           }
+  //         }
+  //       });
+  //     });
+  //     console.log("cityTownValue", this.cityTownValue);
+  // }
+
+  searchBoxBlank(){
+    //alert("blank")
+  }
+
+
+
+  locationSelecetd(location) {
+    this.postcode = location.postcode;
+    this.displayTown = location.town_name;
+    this.displayCountry = location.country;
+    this.displayLocationName = location.town_name + ',' + location.country;
+  }
+
+  changeText(text){
+    this.postcode = "";
+    this.displayTown = "";
+    this.displayCountry = "";
+    this.displayLocationName = "";
+  }
+
+  getLocationValue() {
+     var input = {
+      "location":"sw1a 2aa"
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/fatch_location_list";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+          console.log("data--", data);
+          if(data && data.status == 'TRUE') {
+            this.locationArray = data.data.map((item) => item.text);
+            // this.templateData = data.data;
+            // this.currentTemplate = this.templateData[0].id;
+            // console.log("templateData--", data);
           }
-          if(place && place.address_components && place.address_components.length > 0 && place.formatted_address) {
-            for(var i=0;i<place.address_components.length; i++) {
-              for(var j=0; j<place.address_components[i].types.length; j++) {
-                if(place.address_components[i].types[j] == "postal_code") {
-                  this.postcode = place.address_components[i].long_name;
-                }
-                if(place.address_components[i].types[j] == "postal_town") {
-                  this.displayTown = place.address_components[i].long_name;
-                }
-                if(place.address_components[i].types[j] == "country") {
-                  this.displayCountry = place.address_components[i].long_name;
-                }
-                this.displayLocationName = this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value : '';
-              }
-            }
-          }
-          console.log("this.postcode", this.postcode);
-          console.log("this.displayTown", this.displayTown);
-          console.log("this.displayCountry", this.displayCountry);
-          console.log("this.displayLocationName", this.displayLocationName);
-          //set latitude, longitude and zoom
-          // this.latitude = place.geometry.location.lat();
-          // this.longitude = place.geometry.location.lng();
-          // this.zoom = 12;
-        });
-      });
-      console.log("cityTownValue", this.cityTownValue);
-    //});
+        }
+    );
   }
  
   // getTemplateData() {
@@ -242,7 +274,7 @@ public froalaOptionsPreview: any = {
            this.startDate = this.renderTemmplateData.date_added ? this.renderTemmplateData.date_added.split(' ')[0] : '';
            this.industrySector = this.renderTemmplateData.industry;
            this.workEligibility = this.renderTemmplateData.WorkEligibility;
-           this.cityTownValue = this.renderTemmplateData.show_location;
+           this.displayLocationName = this.renderTemmplateData.show_location;
            this.minRate = this.renderTemmplateData && this.renderTemmplateData.rate_from  ? this.renderTemmplateData.rate_from : 0;
            this.maxRate = this.renderTemmplateData && this.renderTemmplateData.rate_to  ? this.renderTemmplateData.rate_to : 0
            this.dailyHourlyValue = this.renderTemmplateData && this.renderTemmplateData.rate_type ? this.renderTemmplateData.rate_type : '';
@@ -322,14 +354,14 @@ public froalaOptionsPreview: any = {
              this.industrySector = this.jobPostingDetails.industrySectorId;
              this.workEligibility = this.jobPostingDetails.workEligibilityId;
              //this.cityTownValue = this.jobPostingDetails.cityTown;
-             this.searchElementRef.nativeElement.value = this.jobPostingDetails.location && this.jobPostingDetails.location.display_name ? this.jobPostingDetails.location.display_name : ''; 
-             this.displayLocationName = this.jobPostingDetails.display_name ? this.jobPostingDetails.display_name : ''; 
+             //this.searchElementRef.nativeElement.value = this.jobPostingDetails.location && this.jobPostingDetails.location.display_name ? this.jobPostingDetails.location.display_name : ''; 
+             this.displayLocationName = this.jobPostingDetails.location && this.jobPostingDetails.location.display_name ? this.jobPostingDetails.location.display_name : ''; 
              this.minRate = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.minRate ? this.jobPostingDetails.prefereedRate.minRate : 0;
              this.maxRate = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.maxRate ? this.jobPostingDetails.prefereedRate.maxRate : 0
              this.dailyHourlyValue = this.jobPostingDetails && this.jobPostingDetails.prefereedRate && this.jobPostingDetails.prefereedRate.dailyHourlyRate ? this.jobPostingDetails.prefereedRate.dailyHourlyRate : '';
              // this.jobSpecificationTitle = this.jobPostingDetails.jobSpecificationTitle;
              // this.jobSpecificationBody = this.jobPostingDetails.jobSpecification;
-             this.jobSpecificationValue = this.jobPostingDetails.jobSpecificationTitle + ' ' + this.jobPostingDetails.jobSpecification;
+             this.jobSpecificationValue =  this.jobPostingDetails.jobSpecification;
              this.recruiterName = this.jobPostingDetails.recruiter_Id;
              this.saveTemplateAs = this.jobPostingDetails.saveTempleteAs;
              this.jobReference = this.jobPostingDetails.jobReference;
@@ -356,11 +388,11 @@ public froalaOptionsPreview: any = {
      this.recruiterName = "0";
      this.saveTemplateAs = "";
      this.jobReference = "";
-     this.searchElementRef.nativeElement.value = "";
+     this.displayLocationName = "";
   }
 
   onJobPostSave(f:NgForm) {
-    console.log("this.searchElementRef.nativeElement.value", this.searchElementRef.nativeElement.value);
+//    console.log("this.searchElementRef.nativeElement.value", this.searchElementRef.nativeElement.value);
     this.WSErrorMsg = "";
     window.scroll(0,0);
     if(this.minRate > this.maxRate) {
@@ -381,7 +413,7 @@ public froalaOptionsPreview: any = {
       this.jobPostingDurationFlag = true;
     }
 
-    if(this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value) {
+    if(this.displayLocationName) {
       this.cityFlag = false;
     } else {
       this.cityFlag = true;
@@ -445,11 +477,11 @@ public froalaOptionsPreview: any = {
   			"startDate": this.startDate,
   			"industrySectorId": this.industrySector,
   			"workEligibilityId" : this.workEligibility,
-  			"cityTown": this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value : '',
+  			"cityTown": this.displayLocationName ? this.displayLocationName : '',
         "postcode": this.postcode,
         "display_town" : this.displayTown,
         "display_county": this.displayCountry,
-        "display_name" : this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value : '',
+        "display_name" : this.displayLocationName ? this.displayLocationName : '',
   			"prefereedRate": {
   				"minRate": this.minRate,
   				"maxRate": this.maxRate,
@@ -531,7 +563,7 @@ public froalaOptionsPreview: any = {
       "startDate": this.startDate ? this.startDate : '',
       "industrySectorId": this.industrySector ? this.industrySector : '0',
       "workEligibilityId" : this.workEligibility ? this.workEligibility : '0',
-      "cityTown": this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value : '',
+      "cityTown": this.displayLocationName ? this.displayLocationName : '',
       "prefereedRate": {
         "minRate": this.minRate ? this.minRate : '0',
         "maxRate": this.maxRate ? this.maxRate : '0',

@@ -34,6 +34,8 @@ export class RecruiterHomeComponent implements OnInit {
   displayLocationName = '';
   accountName;
   showShareProfilePopup = false;
+  emailAddressValue;
+  messageValue;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService, private _commonService: CommonService,
     private ngZone: NgZone, private activateRoute: ActivatedRoute) { }
@@ -50,7 +52,7 @@ export class RecruiterHomeComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.loadLocationAutoData();
+    //this.loadLocationAutoData();
   }
 
   shareProfile() {
@@ -61,6 +63,36 @@ export class RecruiterHomeComponent implements OnInit {
     this.showShareProfilePopup = false;
   }
 
+  shareProfileClick() {
+    window.scroll(0,0);
+    this.wsError = "";
+   var input = {
+     "email":"dharmendar.rao8@gmail.com",
+    "loginToken":"$2y$10$nyBeG9Hdkxz0de.4zJGYIu2w6tAkrPWcgRXIGhadURWzhAT1/buem",
+    "send_to": this.emailAddressValue,
+    "message": this.messageValue ? this.messageValue : ''
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/send_profile_by_email";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+         console.log("share profile data", data);
+         if(data && data.status === "TRUE") {
+           this.emailAddressValue = "";
+           this.messageValue = "";
+           this.showShareProfilePopup = false;
+           this.wsError = "";
+          } else {
+            if(data && data.status === "FALSE") {
+              this.wsError = typeof (data.error) == 'object' ? data.error[0] : data.error;
+              this.showShareProfilePopup = false;
+            }
+          }
+        }
+    );
+  }
+
   passJobId(id) {
   	//this._commonDataSharedService.manageJobsJobId.next(id);
   	// var obj = {'jobId' : id};
@@ -68,49 +100,24 @@ export class RecruiterHomeComponent implements OnInit {
    this._commonService.setJobIdForJobPosting(id);
   }
 
-  loadLocationAutoData() {
-    //this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["geocode"],
-        componentRestrictions : {'country' : 'GB'}
-      });
-      autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          //get the place result
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          console.log("place--", place);
-          // this.postcode = "";
-          // this.displayTown = "";
-          // this.displayCountry = "";
-          // this.displayLocationName = "";
-          //verify result
-          if (place.geometry === undefined || place.geometry === null) {
-            return;
-          }
-          if(place && place.address_components && place.address_components.length > 0 && place.formatted_address) {
-            for(var i=0;i<place.address_components.length; i++) {
-              for(var j=0; j<place.address_components[i].types.length; j++) {
-                if(place.address_components[i].types[j] == "postal_code") {
-                  this.postcode = place.address_components[i].long_name;
-                }
-                if(place.address_components[i].types[j] == "postal_town") {
-                  this.displayTown = place.address_components[i].long_name;
-                }
-                if(place.address_components[i].types[j] == "country") {
-                  this.displayCountry = place.address_components[i].long_name;
-                }
-                this.displayLocationName = this.displayTown + " " + this.postcode + "," + this.displayCountry;
-              }
-            }
-          }
-          // console.log("this.postcode", this.postcode);
-          // console.log("this.displayTown", this.displayTown);
-          // console.log("this.displayCountry", this.displayCountry);
-          // console.log("this.displayLocationName", this.displayLocationName);
-        });
-      });
-      //console.log("cityTownValue", this.cityTownValue);
-    //});
+  searchBoxBlank(){
+    //alert("blank")
+  }
+
+
+
+  locationSelecetd(location) {
+    this.postcode = location.postcode;
+    this.displayTown = location.town_name;
+    this.displayCountry = location.country;
+    this.displayLocationName = location.town_name + ',' + location.country;
+  }
+
+  changeText(text){
+    this.postcode = "";
+    this.displayTown = "";
+    this.displayCountry = "";
+    this.displayLocationName = "";
   }
 
   // chart = new Chart({
@@ -234,7 +241,7 @@ export class RecruiterHomeComponent implements OnInit {
       "recuriter_search_core_skills":'',
       "recuriter_search_certifications":'',
       "recuriter_search_dont_show_to_contractor":'',
-      "recuriter_search_location":this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value : '',
+      "recuriter_search_location": this.displayLocationName ? this.displayLocationName : '',
       "recuriter_search_include_relocators":0,
       "recuriter_search_by_rate_min": '',
       "recuriter_search_by_rate_max": '',
@@ -250,7 +257,7 @@ export class RecruiterHomeComponent implements OnInit {
       "postcode": this.postcode ? this.postcode : '',
       "display_town" : this.displayTown ? this.displayTown : '',
       "display_county": this.displayCountry ? this.displayCountry : '',
-      "display_name" : this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value :''
+      "display_name" : this.displayLocationName ? this.displayLocationName : ''
       //"page":1,
       //"limit":12
       //"sort":8

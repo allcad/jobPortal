@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../commonService.service';
+import { CommonRequestService } from '../common-request.service';
 
 @Component({
   selector: 'app-recruiter-header',
@@ -8,7 +9,7 @@ import { CommonService } from '../commonService.service';
 })
 export class RecruiterHeaderComponent implements OnInit {
 	showMenu = false;
-  constructor(private commonService: CommonService) { }
+  constructor(private commonService: CommonService, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
   }
@@ -23,7 +24,23 @@ export class RecruiterHeaderComponent implements OnInit {
   }
 
   logoutRecruiter(){
-    localStorage.removeItem("loginDetail");
+     var input = {
+     "email":"test@test7.com",
+    "loginToken":"$2y$10$X12zQ8t.VhdVF68dSukD..WGaDyk87NB0ttZ2f42CZEiBPmr1IKWu"
+
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/signout";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+          console.log("securityClearanceArray--", data);
+          if(data && data.status == 'TRUE') {
+            //this.securityClearanceArray = data.data;
+            localStorage.removeItem("loginDetail");
+          }
+          //this.recruiterNameArray = data.data;
+        }
+    );
   }
 
 }

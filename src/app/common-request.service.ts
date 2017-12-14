@@ -43,7 +43,7 @@ export class CommonRequestService {
 				if(data.auth_error && data.auth_error == 1){
 					const localStorageData = localStorage.getItem('loginDetail') ?  JSON.parse(localStorage.getItem('loginDetail')) : "";
 					if(localStorageData && localStorageData.role === 'contractor'){
-						this.commonDataSharedService.loginMessage.next(true);
+						//this.commonDataSharedService.loginMessage.next(true);
 						this._router.navigate(['/public/contractorLogin']);
 					} else if(localStorageData && localStorageData.role === 'recuriter'){
 						this.commonService.setSessionData(true);

@@ -74,7 +74,7 @@ preferredRateFlag = false;
   }
 
   ngAfterViewInit() {
-    this.loadLocationAutoData();
+    //this.loadLocationAutoData();
   }
 
   closeDescription() {
@@ -101,70 +101,29 @@ preferredRateFlag = false;
     );
   }
 
-  loadLocationAutoData() {
-    //this.mapsAPILoader.load().then(() => {
-      console.log("this.searchElementRef.nativeElement", this.searchElementRef.nativeElement);
-      //if(this.mappingFlag) {
-        let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-          types: ["geocode"],
-          componentRestrictions : {'country' : 'GB'}
-        });
-        console.log("autocomplete", autocomplete);
-        autocomplete.addListener("place_changed", () => {
-          this.ngZone.run(() => {
-            //get the place result
-            //alert(0)
-            let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-            console.log("place--", place);
-            //verify result
-            if (place.geometry === undefined || place.geometry === null) {
-              return;
-            }
-
-            if(place && place.address_components && place.address_components.length > 0 && place.formatted_address) {
-            for(var i=0;i<place.address_components.length; i++) {
-              for(var j=0; j<place.address_components[i].types.length; j++) {
-                if(place.address_components[i].types[j] == "postal_code") {
-                  this.postcode = place.address_components[i].long_name;
-                }
-                if(place.address_components[i].types[j] == "postal_town") {
-                  this.displayTown = place.address_components[i].long_name;
-                }
-                if(place.address_components[i].types[j] == "country") {
-                  this.displayCountry = place.address_components[i].long_name;
-                }
-                this.displayLocationName = this.displayTown + " " + this.postcode + "," + this.displayCountry;
-              }
-            }
-          }
-          });
-        });
-      //}
-    //});
-    // this.mapsAPILoader.load().then(() => {
-    //   if(this.radialFlag) {
-    //     let autocomplete1 = new google.maps.places.Autocomplete(this.searchElementRef1.nativeElement, {
-    //       types: ["geocode"],
-    //       componentRestrictions : {'country' : 'GB'}
-    //     });
-    //     autocomplete1.addListener("place_changed", () => {
-    //       this.ngZone.run(() => {
-    //         //get the place result
-    //         let place: google.maps.places.PlaceResult = autocomplete1.getPlace();
-    //         console.log("place--", place);
-    //         //verify result
-    //         if (place.geometry === undefined || place.geometry === null) {
-    //           return;
-    //         }
-    //       });
-    //     });
-    //   }
-    // });
-  }
-
   getRangeSliderValue(e) {
     console.log("e--", e);
     this.milesValue = e.from;
+  }
+
+  searchBoxBlank(){
+    //alert("blank")
+  }
+
+
+
+  locationSelecetd(location) {
+    this.postcode = location.postcode;
+    this.displayTown = location.town_name;
+    this.displayCountry = location.country;
+    this.displayLocationName = location.town_name + ',' + location.country;
+  }
+
+  changeText(text){
+    this.postcode = "";
+    this.displayTown = "";
+    this.displayCountry = "";
+    this.displayLocationName = "";
   }
 
   // getSortByData() {
@@ -242,7 +201,7 @@ preferredRateFlag = false;
             this.certifications = data.data.recuriter_search_certifications ? data.data.recuriter_search_certifications : '';
             this.dontShowContractor = data.data.recuriter_search_dont_show_to_contractor ? data.data.recuriter_search_dont_show_to_contractor : '';
             //this.cityTown = data.data.recuriter_search_location ? data.data.recuriter_search_location : '';
-            this.searchElementRef.nativeElement.value = data.data.recuriter_search_location ? data.data.recuriter_search_location : '';
+            this.displayLocationName = data.data.recuriter_search_location ? data.data.recuriter_search_location : '';
             //this.searchElementRef1.nativeElement.value = data.data.recuriter_search_location ? data.data.recuriter_search_location : '';
             this.preferredMinRate = data.data.recuriter_search_by_rate_min ? data.data.recuriter_search_by_rate_min : '';
             this.preferredMaxRate = data.data.recuriter_search_by_rate_max ? data.data.recuriter_search_by_rate_max : '';
@@ -296,7 +255,7 @@ preferredRateFlag = false;
     // if(this.searchMiles && this.searchMiles.nativeElement) {
     //   this.searchMiles.nativeElement.value = 0;
     // }
-    this.loadLocationAutoData();
+    //this.loadLocationAutoData();
   }
 
   radialClick() {
@@ -308,7 +267,7 @@ preferredRateFlag = false;
     this.showMappingDescription = false;
     this.showRadialDescription = true;
     this.milesValue = 5;
-    this.loadLocationAutoData();
+    //this.loadLocationAutoData();
   }
 
   resetSearch() {
@@ -331,6 +290,7 @@ preferredRateFlag = false;
   this.currentLocation = '';
   this.industrySectorValue = [];
   this.securityClearValue = [];
+  this.displayLocationName = "";
   }
 
   saveAdvanceSearch() {
@@ -352,7 +312,7 @@ preferredRateFlag = false;
       "recuriter_search_core_skills":this.coreSkills ? this.coreSkills :'',
       "recuriter_search_certifications":this.certifications ? this.certifications : '',
       "recuriter_search_dont_show_to_contractor":this.dontShowContractor ? this.dontShowContractor : '',
-      "recuriter_search_location":this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value : '',
+      "recuriter_search_location":this.displayLocationName ? this.displayLocationName : '',
       "recuriter_search_include_relocators":0,
       "recuriter_search_by_rate_min":this.preferredMinRate ? this.preferredMinRate : '',
       "recuriter_search_by_rate_max":this.preferredMaxRate ? this.preferredMaxRate : '',
@@ -368,7 +328,7 @@ preferredRateFlag = false;
       "postcode": this.postcode ? this.postcode : '',
       "display_town" : this.displayTown ? this.displayTown : '',
       "display_county": this.displayCountry ? this.displayCountry : '',
-      "display_name" : this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value :''
+      "display_name" : this.displayLocationName ? this.displayLocationName : ''
       // "page":1,
       // "limit":10,
       // "sort":8

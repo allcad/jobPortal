@@ -14,8 +14,7 @@ import { FormControl } from '@angular/forms';
 })
 export class RecruiterSavedSearchComponent implements OnInit {
   public searchControl: FormControl;
-  @ViewChild("savedSearch")
-  public searchElementRef: ElementRef;
+  @ViewChild("savedSearch") searchElementRef;
 
   savedSearchName: string;
   addToWatchDogCheck= false;
@@ -73,35 +72,6 @@ preferredRateFlag = false;
     this.getTimeLeftData();
     this.getEducationData();
     this.getListOfSaveSearch();
-    //this.loadLocationAutoData();
-    // if(this.commonService.getLastSearchData()) {
-    //   this.lastSearchResult = this.commonService.getLastSearchData();
-    //   //this.savedSearchName = this.lastSearchResult.recuriter_search_by_contract_name ? this.lastSearchResult.recuriter_search_by_contract_name : '';
-    //   this.addToWatchDogCheck = this.lastSearchResult.recuriter_search_by_contract_name;
-    //   this.jobTitle = this.lastSearchResult.recuriter_search_job_title;
-    //   this.keywordSearch = this.lastSearchResult.recuriter_search_keywords;
-    //   this.stemmedTerms = this.lastSearchResult.recuriter_search_stemmed_terms == 1 ? true : false;
-    //   this.coreSkills = this.lastSearchResult.recuriter_search_core_skills;
-    //   this.certificationValues = this.lastSearchResult.recuriter_search_certifications;
-    //   this.dontShowContractor = this.lastSearchResult.recuriter_search_dont_show_to_contractor;
-    //   this.cityTownValue = this.lastSearchResult.recuriter_search_location;
-    //   this.includeRelocators = this.lastSearchResult.recuriter_search_include_relocators == 1 ? true : false;
-    //   this.minRate = this.lastSearchResult.recuriter_search_by_rate_min;
-    //   this.maxRate = this.lastSearchResult.recuriter_search_by_rate_max;
-    //   this.dailyHourlyValue = this.lastSearchResult.recuriter_search_by_rate_type;
-    //   this.timeLeftOnCutCont = this.lastSearchResult.recuriter_search_by_time_left;
-    //   this.includeUnavailable = this.lastSearchResult.recuriter_search_by_unavailable;
-    //   // this.showContractors = this.lastSearchResult.recuriter_search_by_contract_name
-    //   // this.contractorName = this.lastSearchResult.recuriter_search_by_contract_name
-    //   this.educationValue = this.lastSearchResult.recuriter_search_by_education ? this.lastSearchResult.recuriter_search_by_education : '';
-    //   this.drivingLicenceValue = this.lastSearchResult.recuriter_search_by_driving_license === 1 ? 'yes' : 'no';
-    //   this.industrySectorValue = this.lastSearchResult.recuriter_search_by_industry;
-    //   this.securityClearValue = this.lastSearchResult.recuriter_search_by_security_clearance;
-    // }
-  }
-
-  ngAfterViewInit() {
-    this.loadLocationAutoData();
   }
 
   checkPreferredRate() {
@@ -110,50 +80,25 @@ preferredRateFlag = false;
     } 
       return false;
   }
+  searchBoxBlank(){
+    //alert("blank")
+  }
 
-  loadLocationAutoData() {
-    //this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["geocode"],
-        componentRestrictions : {'country' : 'GB'}
-      });
-      autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          //get the place result
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          console.log("place--", place);
-          // this.postcode = "";
-          // this.displayTown = "";
-          // this.displayCountry = "";
-          // this.displayLocationName = "";
-          //verify result
-          if (place.geometry === undefined || place.geometry === null) {
-            return;
-          }
-          if(place && place.address_components && place.address_components.length > 0 && place.formatted_address) {
-            for(var i=0;i<place.address_components.length; i++) {
-              for(var j=0; j<place.address_components[i].types.length; j++) {
-                if(place.address_components[i].types[j] == "postal_code") {
-                  this.postcode = place.address_components[i].long_name;
-                }
-                if(place.address_components[i].types[j] == "postal_town") {
-                  this.displayTown = place.address_components[i].long_name;
-                }
-                if(place.address_components[i].types[j] == "country") {
-                  this.displayCountry = place.address_components[i].long_name;
-                }
-                this.displayLocationName = this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value : '';
-              }
-            }
-          }
-          console.log("this.postcode", this.postcode);
-          console.log("this.displayTown", this.displayTown);
-          console.log("this.displayCountry", this.displayCountry);
-          console.log("this.displayLocationName", this.displayLocationName);
-        });
-      });
-      console.log("cityTownValue", this.cityTownValue);
-    //});
+
+
+  locationSelecetd(location) {
+    console.log("location-", location);
+    this.postcode = location.postcode;
+    this.displayTown = location.town_name;
+    this.displayCountry = location.country;
+    this.displayLocationName = location.town_name + ',' + location.country;
+  }
+
+  changeText(text){
+    this.postcode = "";
+    this.displayTown = "";
+    this.displayCountry = "";
+    this.displayLocationName = "";
   }
 
   industrysectorChange() {
@@ -286,7 +231,7 @@ preferredRateFlag = false;
             this.certificationValues = data.data.recuriter_search_certifications ? data.data.recuriter_search_certifications : '';
             this.dontShowContractor = data.data.recuriter_search_dont_show_to_contractor ? data.data.recuriter_search_dont_show_to_contractor : '';
             //this.cityTownValue = data.data.recuriter_search_location;
-            this.searchElementRef.nativeElement.value = data.data.recuriter_search_location ? data.data.recuriter_search_location : '';
+            this.displayLocationName = data.data.recuriter_search_location ? data.data.recuriter_search_location : '';
             this.includeRelocators = data.data.recuriter_search_include_relocators === 1 ? true : false;
             this.minRate = data.data.recuriter_search_by_rate_min ? data.data.recuriter_search_by_rate_min : '';
             this.maxRate = data.data.recuriter_search_by_rate_max ? data.data.recuriter_search_by_rate_max : '';
@@ -299,7 +244,9 @@ preferredRateFlag = false;
             this.industrySectorValue = data.data.recuriter_search_by_industry ? data.data.recuriter_search_by_industry : '';
             this.securityClearValue = data.data.recuriter_search_by_security_clearance ? data.data.recuriter_search_by_security_clearance : '';
             this.drivingLicenceValue = data.data.recuriter_search_by_driving_license === 1 ? 'yes' : 'no';
+            this.searchElementRef.updateText(this.displayLocationName);
           }
+          console.log("this.displayLocationName", this.displayLocationName);
         }
     );
   }
@@ -356,6 +303,7 @@ preferredRateFlag = false;
     this.drivingLicenceValue = "";
     this.industrySectorValue = [];
     this.securityClearValue = [];
+    this.displayLocationName = "";
   }
 
   saveSearch() {
@@ -373,7 +321,7 @@ preferredRateFlag = false;
       "recuriter_search_core_skills":this.coreSkills?this.coreSkills:'',
       "recuriter_search_certifications":this.certificationValues?this.certificationValues:'',
       "recuriter_search_dont_show_to_contractor":this.dontShowContractor?this.dontShowContractor:'',
-      "recuriter_search_location": this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value :'',
+      "recuriter_search_location": this.displayLocationName ? this.displayLocationName : '',
       "recuriter_search_include_relocators":this.includeRelocators ? 1 : 0,
       "recuriter_search_by_rate_min":this.minRate?this.minRate:'',
       "recuriter_search_by_rate_max":this.maxRate?this.maxRate:'',
@@ -389,7 +337,7 @@ preferredRateFlag = false;
       "postcode": this.postcode ? this.postcode : '',
       "display_town" : this.displayTown ? this.displayTown : '',
       "display_county": this.displayCountry ? this.displayCountry : '',
-      "display_name" : this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value :''
+      "display_name" : this.displayLocationName ? this.displayLocationName : ''
      
     }
 
@@ -504,7 +452,7 @@ preferredRateFlag = false;
       "recuriter_search_core_skills":this.coreSkills ? this.coreSkills:'',
       "recuriter_search_certifications":this.certificationValues ? this.certificationValues:'',
       "recuriter_search_dont_show_to_contractor":this.dontShowContractor?this.dontShowContractor:'',
-      "recuriter_search_location":this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value : '',
+      "recuriter_search_location":this.displayLocationName ? this.displayLocationName : '',
       "recuriter_search_include_relocators":this.includeRelocators ? 1 : 0,
       "recuriter_search_by_rate_min":this.minRate?this.minRate:'',
       "recuriter_search_by_rate_max":this.maxRate?this.maxRate:'',
@@ -520,7 +468,7 @@ preferredRateFlag = false;
       "postcode": this.postcode ? this.postcode : '',
       "display_town" : this.displayTown ? this.displayTown : '',
       "display_county": this.displayCountry ? this.displayCountry : '',
-      "display_name" : this.searchElementRef && this.searchElementRef.nativeElement && this.searchElementRef.nativeElement.value ? this.searchElementRef.nativeElement.value :''
+      "display_name" : this.displayLocationName ? this.displayLocationName : ''
       //"page":1,
       //"limit":12
       //"sort":8
