@@ -90,6 +90,7 @@ export class ContractorProfileComponent implements OnInit {
   display_county;
   display_name;
   deleteAttchmentArray = [];
+  invalidFile;
   constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
@@ -259,14 +260,23 @@ export class ContractorProfileComponent implements OnInit {
     reader.readAsDataURL(this.imageFile);
   }
   contractorCoverLetterFileChangeEvent(fileInput: any) {
-    this.coverLetterFile = fileInput.target.files[0];
-    this.uploadedCoverLetter.push(this.coverLetterFile);
+    if(!this.checkFileValid(fileInput.target.files[0].name)){
+      this.coverLetterFile = fileInput.target.files[0];
+      this.uploadedCoverLetter.push(this.coverLetterFile);  
+    }else{
+      this.coverLetterList.pop();
+    }
+    
   }
 
   contractorCVFileChangeEvent(fileInput) {
-    this.CVFile = fileInput.target.files[0];
-
-    this.uploadedCvArray.push(this.CVFile);
+    if(!this.checkFileValid(fileInput.target.files[0].name)){
+      this.CVFile = fileInput.target.files[0];  
+      this.uploadedCvArray.push(this.CVFile);
+    }else{
+      this.contratorCVList.pop();
+    }
+    
   }
 
   saveContractorProfile(form: NgForm) {
@@ -795,5 +805,25 @@ export class ContractorProfileComponent implements OnInit {
 
   closeAccountClick() {
     $('#myModal').modal();
+  }
+
+
+  checkFileValid(file) {
+    let accetpableFile = ['doc', 'docx', 'pdf', 'rtf', 'odt'];
+    let fileExtention = file.split('.');
+    fileExtention = fileExtention[fileExtention.length - 1];
+    this.invalidFile = false;
+    if (accetpableFile.indexOf(fileExtention.toLowerCase()) == -1) {
+      this.invalidFile = true;
+      setTimeout(()=>{
+        this.invalidFile = false;
+      },1000)
+      window.scroll(0,0);
+      return true;
+    } else {
+      this.invalidFile = false;
+      return false;
+    }
+
   }
 }

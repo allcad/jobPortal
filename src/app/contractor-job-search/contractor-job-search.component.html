@@ -85,7 +85,8 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon upto_border_none">From</div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="City, Town, or PostCode" name="from" autocorrect="off" autocapitalize="off" spellcheck="off" #search>
+                      <!-- <input type="text" class="form-control" id="exampleInputEmail1" placeholder="City, Town, or PostCode" name="from" autocorrect="off" autocapitalize="off" spellcheck="off" #search> -->
+                      <app-search-location #searchBox  [placeHolder]="'City, Town, or PostCode'" (blank)="searchBoxBlank()" (select)="locationSelecetd($event)" (change)="changeText($event)"></app-search-location>
                     </div>
                   </div>
                 </div>
@@ -110,9 +111,10 @@
                 <div class="col-sm-50">
                   <div class="form-group">
                     <div class="input-group">
-                      <input value="daily" id="prepaid" name="rateTypeDaily" onchange="prepaidF()" checked="" type="radio" [(ngModel)]="rateType">
+                      <input value="daily" id="prepaid" name="rateTypeDaily" checked="" type="radio" [(ngModel)]="rateType">
                       <label for="prepaid" class="radio-inline"><span></span> Daily Rate </label>
-                      <input value="hourly" id="postpaid" name="rateTypeHourly" onchange="postpaidF()" type="radio" [(ngModel)]="rateType">
+                      <input value="hourly" id="postpaid" name="rateTypeHourly" 
+                       type="radio" [(ngModel)]="rateType">
                       <label for="postpaid" class="radio-inline"><span></span> Hourly Rate </label>
                     </div>
                   </div>

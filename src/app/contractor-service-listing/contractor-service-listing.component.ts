@@ -35,9 +35,10 @@ export class ContractorServiceListingComponent implements OnInit {
     );
   }
 
-  // categoryClicked(categoryData){
-  //   this._commonRequestService.setDataWithoutObserval(categoryData.contract_hub_category_id, 'category_hub_id');
-  //   this._router.navigate(['../contractor-directory'], {relativeTo: this._routes})
-  // }
+  focusOn(){
+
+  }
+
+  
 
 }
