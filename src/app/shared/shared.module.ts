@@ -43,6 +43,7 @@ import { RecruiterGuidesPageComponent } from '../recruiter-guides-page/recruiter
 import { ShareButtonsModule } from 'ngx-sharebuttons';
 import { ContractorJobDetailComponent } from '../contractor-job-detail/contractor-job-detail.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
+import { SearchLocationComponent } from '../search-location/search-location.component';
 
 const sharedModuleList = [
   FindContractHubComponent,
@@ -75,7 +76,8 @@ const sharedModuleList = [
   RecruiterSavedSearchComponent,
   ViewContractorProfileComponent,
   RecruiterGuidesPageComponent,
-  ContractorJobDetailComponent
+  ContractorJobDetailComponent,
+  SearchLocationComponent
   ]
 
 @NgModule({

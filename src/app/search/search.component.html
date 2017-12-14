@@ -15,9 +15,14 @@
                   </div>
                 </div>
                 <div class="col-sm-50">
-                  <div class="form-group">
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="ENTER LOCATION..." name="location" autocorrect="off" autocapitalize="off" spellcheck="off" #search>
-                  </div>
+                  <app-search-location  [placeHolder]="'search City, Town, PostCode'" (blank)="searchBoxBlank()" (select)="locationSelecetd($event)" (change)="changeText($event)"></app-search-location>
+                  <!-- <div class="form-group" style="position: relative;">
+                    <input type="text" class="form-control txt_cap" id="exampleInputPassword1" placeholder="ENTER LOCATION..." name="location" [(ngModel)]="location" (keyup)="searchLocation()">
+                    <div class="location_results_search" *ngIf="(searchResult && searchResult.length>0 && !selecetd) ">
+                      <a (click)="locationSelected(location)" *ngFor="let location of searchResult" [innerHTML]="location.text">
+                      </a>
+                    </div>
+                  </div> -->
                 </div>
               </div>
               <div class="row">

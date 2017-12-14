@@ -1,0 +1,29 @@
+                        
+.location_results_search {
+    background: #ffffff;
+    position: absolute;
+    z-index: 99;
+    left: 0;
+    right: 15px;
+    top: 36px;
+    width: 100%;
+    max-height: 125px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.location_results_search a {
+    color: #000000;
+    padding-top: 4px;
+    cursor: pointer;
+    display: block;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.location_results_search a:hover {
+    text-decoration: none;
+}
+
+.txt_cap{
+    text-transform: uppercase;
+}
