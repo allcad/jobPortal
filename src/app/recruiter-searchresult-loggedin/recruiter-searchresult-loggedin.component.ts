@@ -414,6 +414,8 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
             console.log("share details--", data);
             if(data && data.status == 'TRUE') {
               //this.saveSearchDataListing = data.data;
+              this.emailValue = "";
+              this.messageValue = "";
               this.successMessageFlag = true;
               this.successMessage = "Send Search Successfully.";
               this.WSErrorMsg = "";

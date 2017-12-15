@@ -34,8 +34,8 @@ export class RecruiterPreviewJobComponent implements OnInit {
    //    this.uniqueJobId = localStorageData.jobId;
   	// 	this.jobList(localStorageData.jobId);
   	// }
-    if(this.commonService.getJobIdForPreview()) {
       console.log("this.commonService.getJobIdForPreview()", this.commonService.getJobIdForPreview());
+    if(this.commonService.getJobIdForPreview()) {
       this.uniqueJobId = this.commonService.getJobIdForPreview();
       this.jobList(this.uniqueJobId);
     }
