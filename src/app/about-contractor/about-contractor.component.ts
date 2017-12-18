@@ -121,5 +121,9 @@ export class AboutContractorComponent implements OnInit {
     this._router.navigate(['../contractor_search'], { 'relativeTo': this._routes, queryParams :  inputJson} )
   }
 
+  searchBoxBlank(){
+    
+  }
+
 
 }

@@ -288,4 +288,8 @@ export class ContractorJobSearchSavedComponent implements OnInit {
     this.displayLocationName = "";
   }
 
+  searchBoxBlank(){
+    
+  }
+
 }

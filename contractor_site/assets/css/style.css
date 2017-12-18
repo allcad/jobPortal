@@ -718,9 +718,9 @@ select {
 }
 .application_box_contant2 p span {
     display: inline-block;
-    width: 35%;
+    width: 26%;
 	color:#00ccff;
-	 font-weight:bold;
+	font-weight:bold;
 }
 .application_box_contant2 .full_contant{
 	margin:20px 0px 10px;
@@ -3928,7 +3928,7 @@ position: absolute;
 .recruiter_add_sub_skills a img{ float:right; margin-top:5px;}
 .text_color_black a{ width:100%;}
 .number_of_application{ right:0px;}
-
+.input-group-addon.bordr_non{ display:none; }
 }
 @media(max-width:767px){
 .signup_form_section .form-group .radio-inline-part{ margin-right:8px;}	
@@ -4283,5 +4283,27 @@ label.text_pink{margin-bottom: 15px;}
 .input-group-addon.bordr_non:hover .tooltiptext_part{
     visibility: visible;
     opacity: 1;
+}
+
+
+
+.optn {
+    font-size: 13px !important;    
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;    
+    padding-right: 24px !important;
+    padding-left: 10px !important;
+    border-radius: 5px !important;
+    font-weight: normal;
+    border: 1px solid #00ccff !important;
+    text-transform: uppercase;
+    box-sizing: border-box !important ;
+    background-image: url(../images/dropdownarrow.png);
+ 	background-repeat: none;
+ 	background-repeat: no-repeat;
+    background-position: right;
+    margin-left: 2px !important;
+    color:#aaaaaa !important;
+    width: 120px !important;
 }
 

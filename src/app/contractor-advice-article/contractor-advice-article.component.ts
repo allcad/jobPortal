@@ -13,7 +13,7 @@ export class ContractorAdviceArticleComponent implements OnInit {
   articleData;
   latestAdviceArticleList;
   totalPage;
-  pageSize = 3;
+  currentPage = 1;
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
@@ -53,8 +53,8 @@ export class ContractorAdviceArticleComponent implements OnInit {
 
   getLatestAdviceArticle() {
     let input = {
-      page: 1,
-      limit: this.pageSize
+      page: this.currentPage,
+      limit: 3
     }
     var url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/page/advice/article/all";
     this._commonRequestService.postData(url, input).subscribe(

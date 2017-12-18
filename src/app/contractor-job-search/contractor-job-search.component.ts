@@ -180,5 +180,9 @@ export class ContractorJobSearchComponent implements OnInit {
     this.displayCountry = "";
     this.displayLocationName = "";
   }
+
+  searchBoxBlank(){
+    
+  }
   
 }
