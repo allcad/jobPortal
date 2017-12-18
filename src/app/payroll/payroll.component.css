@@ -92,3 +92,11 @@ h2, .h2 {
     	margin: 30px auto;
 	}
 }
+
+.displayBlock {
+	display: block;
+}
+
+.displayNone {
+	display: none;
+}

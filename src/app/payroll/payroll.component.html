@@ -1,4 +1,8 @@
 <section id="main-background-payroll">
+    <div class="errorbox" *ngIf="wsError"><b></b><br> 
+        <li>{{wsError}}</li>
+        
+    </div>
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
@@ -535,14 +539,14 @@
                 <div class="col-md-5">
                     <h3>Enter your details below, or call us now</h3>
                     <div class="home-page-form">
-                        <form action="" method="post" id="frmPage" onsubmit="return false;">
+                        <form action="" method="post" id="frmPage" onsubmit="return false;" *ngIf="formPage">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="glyphicon glyphicon-user"></i>
                                         </div>
-                                        <input class="form-control" required id="yournm" type="text" placeholder="FULL NAME" aria-describedby="basic-addon1" onfocus="this.placeholder=''" onblur="this.placeholder='FULL NAME'">
+                                        <input class="form-control" required id="yournm" type="text" placeholder="FULL NAME" aria-describedby="basic-addon1" onfocus="this.placeholder=''" onblur="this.placeholder='FULL NAME'" [(ngModel)]="fullName" name="fullName">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -550,7 +554,7 @@
                                         <div class="input-group-addon">
                                             <i class="glyphicon glyphicon-envelope"></i>
                                         </div>
-                                        <input class="form-control" required id="youremail" type="email" placeholder="EMAIL ADDRESS" aria-describedby="basic-addon1" onfocus="this.placeholder=''" onblur="this.placeholder='EMAIL ADDRESS'">
+                                        <input class="form-control" required id="youremail" type="email" placeholder="EMAIL ADDRESS" aria-describedby="basic-addon1" onfocus="this.placeholder=''" onblur="this.placeholder='EMAIL ADDRESS'" [(ngModel)]="emailAddress" name="emailAddress">
                                     </div>
                                 </div>
                             </div>
@@ -560,7 +564,7 @@
                                         <div class="input-group-addon">
                                             <i class="glyphicon glyphicon-earphone"></i>
                                         </div>
-                                        <input class="form-control" required id="yourtelephone" class="form-control" placeholder="PHONE NUMBER" aria-describedby="basic-addon1" onfocus="this.placeholder=''" onblur="this.placeholder='PHONE NUMBER'">
+                                        <input class="form-control" required id="yourtelephone" class="form-control" placeholder="PHONE NUMBER" aria-describedby="basic-addon1" onfocus="this.placeholder=''" onblur="this.placeholder='PHONE NUMBER'" [(ngModel)]="phoneNo" name="phoneNo">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -578,7 +582,7 @@
   c-3.3-11.8-7-23.5-9.2-35.5C0,56.8,5.2,40.5,16.5,26.2C28.6,10.9,44.7,2.7,64,0.6c1-0.1,1.9-0.4,2.9-0.6C69.6,0,72.4,0,75.1,0z" />
                                             </svg>
                                         </div>
-                                        <input class="form-control" required id="yourdayrate" class="form-control" placeholder="DAY RATE eg £500" aria-describedby="basic-addon1" onfocus="this.placeholder=''" onblur="this.placeholder='DAY RATE eg £500'">
+                                        <input class="form-control" required id="yourdayrate" class="form-control" placeholder="DAY RATE eg £500" aria-describedby="basic-addon1" onfocus="this.placeholder=''" onblur="this.placeholder='DAY RATE eg £500'" [(ngModel)]="dayRate" name="dayRate">
                                     </div>
                                 </div>
                             </div>
@@ -588,7 +592,7 @@
                                         <div class="input-group-addon">
                                             <i class="glyphicon glyphicon-comment" style="position:absolute;top:10px;left:10px"></i>
                                         </div>
-                                        <textarea id="reqdetails" rows="4" class="form-control" placeholder="TELL US A LITTLE MORE ABOUT YOUR ENQUIRY..." aria-describedby="basic-addon1" onfocus="this.placeholder=''" onblur="this.placeholder='TELL US A LITTLE MORE ABOUT YOUR ENQUIRY...'"></textarea>
+                                        <textarea id="reqdetails" rows="4" class="form-control" placeholder="TELL US A LITTLE MORE ABOUT YOUR ENQUIRY..." aria-describedby="basic-addon1" onfocus="this.placeholder=''" onblur="this.placeholder='TELL US A LITTLE MORE ABOUT YOUR ENQUIRY...'" [(ngModel)]="yourEnquiry" name="yourEnquiry"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -597,8 +601,8 @@
                                 <div class="col-lg-6"><b>Where do you usually work?</b></div>
                                 <div class="col-lg-6" style="padding-right:60px;color:gray;">
                                     UK
-                                    <input type="checkbox" id="UNITED" name="UNITED" style="margin-left: 4px;">&nbsp; INTERNATIONAL
-                                    <input type="checkbox" id="international" style="margin-left: 4px;">
+                                    <input type="checkbox" id="UNITED" name="UNITED" style="margin-left: 4px;" [(ngModel)]="usuallyWorkUK" name="usuallyWorkUK" value="uk" (change)="usuallyWorkChange('uk')">&nbsp; INTERNATIONAL
+                                    <input type="checkbox" id="international" style="margin-left: 4px;" [(ngModel)]="usuallyWorkInternational" name="usuallyWorkInternational" value="international" (change)="usuallyWorkChange('international')">
                                 </div>
                             </div>
                             <br>
@@ -606,14 +610,16 @@
                                 <div class="col-lg-6"><b>When should we contact you?</b></div>
                                 <div class="col-lg-6" style="padding-right:60px;color:gray;">
                                     AM
-                                    <input type="checkbox" id="am" style="margin-left: 4px;">&nbsp; PM
-                                    <input type="checkbox" id="pm" style="margin-left: 4px;">
+                                    <input type="checkbox" id="am" style="margin-left: 4px;" [(ngModel)]="contactYou" name="contactYou" value="am">&nbsp; PM
+                                    <input type="checkbox" id="pm" style="margin-left: 4px;" [(ngModel)]="contactYou" name="contactYou" value="pm">
                                 </div>
                             </div>
                             <p id="submit-form">
-                                <input type="submit" id="btnSubmitPage" name="submit" value="REQUEST A FREE ILLUSTRATION" class="cr-btn"><span class="glyphicon glyphicon-plus"></span></p>
+                                <input type="submit" id="btnSubmitPage" name="submit" value="REQUEST A FREE ILLUSTRATION" class="cr-btn" (click)="requestAFreeIllustration()"><span class="glyphicon glyphicon-plus"></span></p>
                         </form>
-                        <div class="sucess-form-sent" id="sucess_page_div">
+
+
+                        <div class="sucess-form-sent" id="sucess_page_div" [ngClass]="formPage == false ? 'displayBlock' : 'displayNone'">
                             <svg version="1.1" id="Icon_Set" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 109.5 130.7" enable-background="new 0 0 109.5 130.7" xml:space="preserve">
                                 <g>
                                     <g>
