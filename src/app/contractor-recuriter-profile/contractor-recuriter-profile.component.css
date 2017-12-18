@@ -1,3 +1,19 @@
 .font_capitaliz {
     text-transform: uppercase !important;
 }
+.recruiter_profile_social{
+	text-align: right;
+	padding-right: 8px;
+}
+
+.recruiter_profile_social a i{
+
+	font-size:23px;
+    color: #ff0066;
+    margin: 0 5px;
+}
+
+.latest_contarctor_profile h3{
+
+	margin-top: 0px;
+}

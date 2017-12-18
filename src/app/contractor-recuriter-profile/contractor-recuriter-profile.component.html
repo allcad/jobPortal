@@ -60,11 +60,11 @@
             <img src="./assets/images/location-map.png" alt="ads" title="ads" class="img-responsive">
             <p><span>15</span> Miles from Home</p>
           </div>
-          <div class="application_box_contant">
+          <div class="application_box_contant" routerLink="../contractor_search/{{job.jobid}}">
             <img style="height: 87px;" [src]="job.profileimage[0]?.attachment_url + '/' + job.profileimage[0]?.attachment_name ||    './assets/images/application1.png'" onError="this.src='./assets/images/application1.png'" alt="ads" title="ads" class="img-responsive">
             <h2>{{job.jobTitle}}</h2>
           </div>
-          <div class="application_box_contant2">
+          <div class="application_box_contant2" routerLink="../contractor_search/{{job.jobid}}">
             <p><span>Location:</span> {{job.cityTown | slice : 0 : 32}}{{job.cityTown.length>32 ? '..' : ''}}</p>
             <p><span>Rate:</span> £{{job.prefereedRate.minRate}} - £{{job.prefereedRate.maxRate}} p/{{job.prefereedRate.dailyHourlyRate =='daily'? 'd' :'h'}}</p>
             <p><span>Start Date:</span> {{job.startDate| date:'medium' :'MM-dd-yyyy' }}</p>
@@ -72,10 +72,8 @@
             <p class="full_contant" style="height: 53px;" innerHTML="{{job.jobSpecification | slice:0:200}}{{job.jobSpecification.length > 200 ? '..' : ''}}"></p>
           </div>
           <div class="footer_box">
-            <div class="pull-left social_box_footer">
-              <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-              <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-              <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+            <div class="pull-left social_box_footer share-buttons">
+              <share-buttons [tumblr]='false' [google]='false' [whatsApp]='false' [pinterest]='false' [stumbleUpOn]='false' [reddit]='false' url="http://dev.contractrecruit.co.uk/contractor_site/#/public/contractor_search/{{job.jobid}}"></share-buttons>
             </div>
             <div class="pull-right view_company" (click)="applyJob(job)">
               <a href="javascript:void(0)">{{job.applied == 0 ? 'Apply Now': 'Applied'}} <i class="fa fa-plus plus_blue margin_left_20" aria-hidden="true"></i></a>

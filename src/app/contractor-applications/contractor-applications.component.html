@@ -52,10 +52,12 @@
             <p class="full_contant" style="height: 90px;" innerHTML="{{job.jobSpecification | slice:0:200}} {{job.jobSpecification.length > 200 ? '..' : ''}}"></p>
           </div>
           <div class="footer_box">
-            <div class="pull-left social_box_footer">
-              <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <div class="pull-left social_box_footer share-buttons">
+
+              <share-buttons [tumblr]='false' [google]='false' [whatsApp]='false' [pinterest]='false' [stumbleUpOn]='false' [reddit]='false' url="http://dev.contractrecruit.co.uk/contractor_site/#/public/contractor_search/{{job.jobid}}"></share-buttons>
+              <!-- <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a>
               <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-              <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+              <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> -->
             </div>
             <div class="pull-right view_company" (click)="viewCompany(job)">
               <a href="javascript:void(0)">View Company <i class="fa fa-plus plus_blue margin_left_20" aria-hidden="true"></i></a>

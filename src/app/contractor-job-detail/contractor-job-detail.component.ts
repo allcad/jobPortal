@@ -31,7 +31,8 @@ export class ContractorJobDetailComponent implements OnInit {
 			}
 			this.jobId = params['id'];
 			if (this.jobId) {
-				this.jobDetail(this.jobId)
+				this.jobDetail(this.jobId);
+				window.scroll(0,0);
 			}
 		})
 

@@ -10,25 +10,21 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class ContractorNewsArticleComponent implements OnInit {
   articleId;
   articleData;
+  loading = false;
+  newsList = [];
+  currentPage = 1;
+  totalPage;
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
 
     this._routes.params.subscribe((params: Params) => {
       this.articleId = params['id'];
-      console.log(this.articleId);
+      this.getArticle(this.articleId);  
     })
 
-
-
-
-
-
-    //  this.articleId = this._commonRequestService.getDataWithoutObserval("newsId");
-    // if(!this.articleId){
-    // 	this.articleId = localStorage.getItem("newsId");
-    // }
-    this.getArticle(this.articleId);
+    
+    this.getLatestNews();
     window.scroll(0, 0);
 
   }
@@ -46,6 +42,25 @@ export class ContractorNewsArticleComponent implements OnInit {
       data => {
         this.articleData = data.data;
         console.log("newsArticle", this.articleData);
+        window.scroll(0,0);
+      }
+    );
+  }
+
+
+  getLatestNews() {
+    this.loading = true;
+    var inputJson = {
+      page: this.currentPage,
+      limit: 3
+    }
+    var url = "http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/articles";
+    this._commonRequestService.postData(url, inputJson).subscribe(
+      data => {
+        this.loading = false;
+        this.totalPage = data.TotalPage;
+        this.newsList = this.newsList.concat(data.data)  ;
+        console.log("newsList", this.newsList);
       }
     );
   }
