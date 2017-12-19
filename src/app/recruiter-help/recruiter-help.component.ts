@@ -10,7 +10,7 @@ export class RecruiterHelpComponent implements OnInit {
 helpCategoryList;
   helpData;
   searchKeyword;
-  searchType = "Contractors";
+  searchType = "Recruiters";
   loading = true;
   constructor(private _commonRequestService: CommonRequestService) { }
 
