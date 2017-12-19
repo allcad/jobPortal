@@ -247,7 +247,7 @@ export class RecruiterHomeComponent implements OnInit {
       "recuriter_search_by_rate_max": '',
       "recuriter_search_by_rate_type": '',
       "recuriter_search_by_time_left": '',
-      "recuriter_search_by_unavailable": 1,
+      "recuriter_search_by_unavailable": 0,
       "recuriter_search_by_updated_contractor_since": '',
       "recuriter_search_by_contract_name": '',
       "recuriter_search_by_education": "",

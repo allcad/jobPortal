@@ -1,7 +1,7 @@
-<header id="before_login">
+<header *ngIf="!showRecruiterMenus" id="before_login">
   <app-header></app-header>
 </header>
-<div id="navigation-main">
+<div id="navigation-main" *ngIf="!showRecruiterMenus">
   <div class="container">
     <div class="row">
       <div class="col-sm-100 padding_left_right_none">
@@ -10,5 +10,6 @@
     </div>
   </div>
 </div> 
+<app-recruiter-header *ngIf="showRecruiterMenus"></app-recruiter-header>
 <router-outlet></router-outlet>
 <app-footer></app-footer>

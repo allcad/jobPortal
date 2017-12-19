@@ -20,6 +20,7 @@ export class CommonService {
   jobIdForJobPosting;
   lastSearchData;
   sessionData;
+  loginSessionFlag;
 
   setSearchResult(data) {
     this.setSearchResultData = data;
@@ -65,6 +66,14 @@ export class CommonService {
     if(data.auth_error) {
       this.router.navigate(['/public/recruiterLogin']);
     }
+  }
+
+  setLoginSessionData(data) {
+    this.loginSessionFlag = data;
+  }
+
+  getLoginSessionData() {
+    return this.loginSessionFlag;
   }
 
 

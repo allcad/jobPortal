@@ -94,6 +94,7 @@ sessionExpireMessageFlag = false;
              this.errorMsgFlag =false;
              localStorage.setItem("loginDetail", JSON.stringify({"token": data.data.loginToken, "email": data.data.email, "role": data.data.type, 'isCompanyEditable':data.data.is_company_editable, 'name':data.data.name}))
               this.succesLoginFlag =true;
+              this.commonService.setLoginSessionData(true);
               this.router.navigate(['/recruiter/recruiter-home']);
               //this.getViewProfileDta();
              

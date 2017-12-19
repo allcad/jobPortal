@@ -512,7 +512,7 @@ public froalaOptionsPreview: any = {
                   this.resetData();
                   this.WSErrorMsg = "";
                   this.jobPostingJobId = "";
-                  this.postJobSuccessMsg = 'Post Job Save succesfully!';
+                  this.postJobSuccessMsg = 'Job Posted Successfully!';
                   //  var obj = {'jobId' : ''};
                   // localStorage.setItem('recruiterJobData', JSON.stringify(obj));
 

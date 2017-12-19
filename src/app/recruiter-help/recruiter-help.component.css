@@ -1,0 +1,33 @@
+.optn {
+    background: #000 url("sort-drop.png") no-repeat right center;
+    border-radius: 0 !important;
+    padding: 9px 10px 6px 10px !important;
+    outline: 1px solid #00ccff !important;
+    border: 0px solid #000 !important;
+    border-right: 6px solid #000 !important;
+    width: 140px !important;
+    color: #fff !important;
+}
+
+
+.text-right{
+	text-align: right;
+}
+
+#mobile_responsive{
+
+	display: none;
+}
+
+@media(max-width: 1024px){
+
+	#mobile_responsive{
+
+	display: block;
+}
+#web_page_help_section{
+
+	display: none !important;	
+}
+
+}

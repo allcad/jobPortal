@@ -8,7 +8,7 @@
                             <div class="contractor_signup recruiter_signup">
                                 <h2 class="font_capitalizs color_white">Recruiter <span class="text_pink">Home</span></h2>
                                 <ul class="breadcomb color_active">
-                                    <li><a href="javascript:void(0);">Home</a></li>
+                                    <li><a href="javascript:void(0);" [routerLink]="['/public/home']">Home</a></li>
                                     <li class="right_arrow text_pink">&gt;</li>
                                     <li>CONTRACTOR SEARCH</li>
                                     <li class="right_arrow text_pink">&gt;</li>
@@ -103,7 +103,7 @@
                                         <p><a href="javascript:void(0);" [routerLink]="['/recruiter/job-posting']">Post a Job </a><span class="text_pink"><strong>{{quickLinkData?.job?.job_post}}</strong></span></p>
                                         <p><a href="javascript:void(0);" [routerLink]="['/recruiter/manage-jobs']">Manage Jobs <span class="text_pink"><strong>{{quickLinkData?.job?.job_post}}</strong></span></a></p>
                                         <p><a href="javascript:void(0);" [routerLink]="['../view-applications']">View Applications </a><span class="text_pink"><strong>{{quickLinkData?.job?.job_application}}</strong></span></p>
-                                        <p><a href="javascript:void(0);" [routerLink]="['/recruiter/job-posting']">Post a Premium Job</a><span class="text_pink"><strong> {{quickLinkData?.job?.premiumjob}}</strong></span></p>
+                                        <!-- <p><a href="javascript:void(0);" [routerLink]="['/recruiter/job-posting']">Post a Premium Job</a><span class="text_pink"><strong> {{quickLinkData?.job?.premiumjob}}</strong></span></p> -->
                                     </div>
                                 </div>
                             </div>
