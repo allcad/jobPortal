@@ -601,8 +601,8 @@
                                 <div class="col-lg-6"><b>Where do you usually work?</b></div>
                                 <div class="col-lg-6" style="padding-right:60px;color:gray;">
                                     UK
-                                    <input type="checkbox" id="UNITED" name="UNITED" style="margin-left: 4px;" [(ngModel)]="usuallyWorkUK" name="usuallyWorkUK" value="uk" (change)="usuallyWorkChange('uk')">&nbsp; INTERNATIONAL
-                                    <input type="checkbox" id="international" style="margin-left: 4px;" [(ngModel)]="usuallyWorkInternational" name="usuallyWorkInternational" value="international" (change)="usuallyWorkChange('international')">
+                                    <input type="checkbox" id="UNITED" name="UNITED" style="margin-left: 4px;" [(ngModel)]="usuallyWorkUK" name="usuallyWorkUK" value="uk" (change)="usuallyUKWorkChange()">&nbsp; INTERNATIONAL
+                                    <input type="checkbox" id="international" style="margin-left: 4px;" [(ngModel)]="usuallyWorkInternational" name="usuallyWorkInternational" value="international" (change)="usuallyInterWorkChange()">
                                 </div>
                             </div>
                             <br>
@@ -610,8 +610,8 @@
                                 <div class="col-lg-6"><b>When should we contact you?</b></div>
                                 <div class="col-lg-6" style="padding-right:60px;color:gray;">
                                     AM
-                                    <input type="checkbox" id="am" style="margin-left: 4px;" [(ngModel)]="contactYou" name="contactYou" value="am">&nbsp; PM
-                                    <input type="checkbox" id="pm" style="margin-left: 4px;" [(ngModel)]="contactYou" name="contactYou" value="pm">
+                                    <input type="checkbox" id="am" style="margin-left: 4px;" [(ngModel)]="contactYouAm" name="contactYouAm" value="am" (change)="contactYouAmChange()">&nbsp; PM
+                                    <input type="checkbox" id="pm" style="margin-left: 4px;" [(ngModel)]="contactYouPm" name="contactYouPm" value="pm" (change)="contactYouPmChange()">
                                 </div>
                             </div>
                             <p id="submit-form">

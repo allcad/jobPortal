@@ -44,6 +44,7 @@ import { ShareButtonsModule } from 'ngx-sharebuttons';
 import { ContractorJobDetailComponent } from '../contractor-job-detail/contractor-job-detail.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 import { SearchLocationComponent } from '../search-location/search-location.component';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 const sharedModuleList = [
   FindContractHubComponent,
@@ -93,7 +94,8 @@ const sharedModuleList = [
     IonRangeSliderModule,
     ShareButtonsModule.forRoot(),
     FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot()
+    FroalaViewModule.forRoot(),
+    CKEditorModule
 
   ],
   exports: [
@@ -103,7 +105,8 @@ const sharedModuleList = [
     ShareButtonsModule,
     sharedModuleList,
     FroalaEditorModule,
-    FroalaViewModule
+    FroalaViewModule,
+    CKEditorModule
   ],
   providers: [],
   bootstrap: []

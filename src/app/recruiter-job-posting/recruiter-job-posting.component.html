@@ -222,7 +222,18 @@
                                                 <textarea class="form-control" rows="10" name="jobSpecificationBody" [(ngModel)]="jobSpecificationBody">body</textarea>
                                             </div> -->
                                             <!-- <div class="frola" id="previewFroala" [froalaEditor]="froalaOptionsPreview" name="previewContent"></div> -->
-                                            <div [froalaEditor]="froalaOptionsPreview" [(froalaModel)]="jobSpecificationValue"></div>
+                                            <!-- <div [froalaEditor]="froalaOptionsPreview" [(froalaModel)]="jobSpecificationValue"></div> -->
+                                            <!-- <wysihtml-toolbar #toolbar>
+                                                  <a data-wysihtml5-command="bold">bold</a>
+                                                  <a data-wysihtml5-command="italic">italic</a>
+                                                  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1">H1</a>
+                                                  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="p">P</a>
+                                            </wysihtml-toolbar>
+                                            <wysihtml-editor [value]="''" [placeholder]="'This is a placeholder'" [toolbar]="toolbar">
+                                            </wysihtml-editor> -->
+                                              <ckeditor [(ngModel)]="jobSpecificationValue" debounce="500" name="jobSpecificationValue" [config]="config">
+                                                        
+                                                </ckeditor>
                                         </div>
                                     </div>
                                 </div>

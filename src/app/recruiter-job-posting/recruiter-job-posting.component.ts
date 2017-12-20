@@ -62,6 +62,7 @@ displayLocationName = '';
 jobSpecificationValue = '';
 preferredRateFlag = false;
 locationArray = [];
+config;
 public froalaOptionsPreview: any = {
     placeHolderText: 'Edit Your Content Here',
     charCounterCount: false,
@@ -72,7 +73,25 @@ public froalaOptionsPreview: any = {
   };
   constructor(private router: Router, public _commonRequestService: CommonRequestService, 
     private commonService: CommonService,
-    private ngZone: NgZone) { }
+    private ngZone: NgZone) {
+       this.config = {toolbar : [
+    //{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+    //{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+    //{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+    //{ name: 'forms', groups: [ 'forms' ] },
+    //'/',
+    { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'RemoveFormat']},
+    { name: 'paragraph', items: [ 'NumberedList', 'BulletedList']},
+    //{ name: 'links', groups: [ 'links' ] },
+    //{ name: 'insert', groups: [ 'insert' ] },
+    // '/',
+    // { name: 'styles', groups: [ 'styles' ] },
+    // { name: 'colors', groups: [ 'colors' ] },
+    // { name: 'tools', groups: [ 'tools' ] },
+    // { name: 'others', groups: [ 'others' ] },
+    // { name: 'about', groups: [ 'about' ] }
+  ]};
+     }
 
   ngOnInit() {
     window.scroll(0,0);
