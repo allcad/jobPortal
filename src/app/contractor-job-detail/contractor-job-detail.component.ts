@@ -141,4 +141,10 @@ export class ContractorJobDetailComponent implements OnInit {
 		);
 	}
 
+	viewCompanyProfile() {
+		this._commonRequestService.setDataWithoutObserval(this.jobData.company_id, "viewCompanyId");
+	    localStorage.setItem("viewCompanyId", this.jobData.company_id);
+	    this._router.navigate(['/contractor/companyProfile'], { relativeTo: this._routes });
+	}
+
 }

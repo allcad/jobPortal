@@ -104,7 +104,7 @@
         <div class="my_applications_box">
           <div class="header_top" >
             <img src="./assets/images/location-map.png" alt="ads" title="ads" class="img-responsive">
-            <p *ngIf="!isPublic"><span>15</span> Miles from Home</p>
+            <p *ngIf="!isPublic"><span>{{item.distance}}</span> Miles from Home</p>
             <p *ngIf="isPublic">{{item.cityTown}}</p>
           </div>
           <div class="application_box_contant" routerLink="./{{item.jobid}}" style="cursor: pointer;">

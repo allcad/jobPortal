@@ -55,11 +55,12 @@
     </div>
     <div class="row">
       <div class=" col-md-33 col-sm-33" *ngFor="let job of jobList">
-        <div class="my_applications_box" (click)="viewCompanyProfile()">
+        <div class="my_applications_box">
           <div class="header_top">
             <img src="./assets/images/location-map.png" alt="ads" title="ads" class="img-responsive">
             <p><span>15</span> Miles from Home</p>
           </div>
+          <div (click)="viewCompanyProfile()" style="cursor: pointer;">
           <div class="application_box_contant" routerLink="../contractor_search/{{job.jobid}}">
             <img style="height: 87px;" [src]="job.profileimage[0]?.attachment_url + '/' + job.profileimage[0]?.attachment_name ||    './assets/images/application1.png'" onError="this.src='./assets/images/application1.png'" alt="ads" title="ads" class="img-responsive">
             <h2>{{job.jobTitle}}</h2>
@@ -79,6 +80,7 @@
               <a href="javascript:void(0)">{{job.applied == 0 ? 'Apply Now': 'Applied'}} <i class="fa fa-plus plus_blue margin_left_20" aria-hidden="true"></i></a>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>

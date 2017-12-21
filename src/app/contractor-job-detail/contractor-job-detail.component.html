@@ -45,7 +45,7 @@
           </div>
         </div>
         <div class="col-md-25 col-sm-30">
-          <div class="experis"> <img [src]="jobData?.profileimage[0]?.attachment_url + '/' + jobData?.profileimage[0]?.attachment_name" alt="search" title="search" class="img-responsive"> </div>
+          <div class="experis" style="cursor: pointer;" (click)="viewCompanyProfile()"> <img [src]="jobData?.profileimage[0]?.attachment_url + '/' + jobData?.profileimage[0]?.attachment_name" alt="search" title="search" class="img-responsive"> </div>
         </div>
       </div>
     </div>
