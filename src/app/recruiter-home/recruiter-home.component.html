@@ -24,13 +24,24 @@
                         </div>
                         <div class="col-sm-20 col-md-20">
                             <div class="add_filter">
-                                <a href="javascript:void(0)"><img src="./assets/images/add-icon.png" alt="add" title="add"></a>
+                                <a href="javascript:void(0)" (click)="addMoreDetailsFlag = !addMoreDetailsFlag"><img src="./assets/images/add-icon.png" alt="add" title="add"></a>
                                 <a href="javascript:void(0)"><img src="./assets/images/filter-icon.png" alt="filter" title="filter"></a>
                             </div>
                         </div>
                         <div class="col-sm-80 col-md-80">
                             <div class="recruiter_add_sub_skills">
                                 <img src="./assets/images/graph-img.png" alt="Close" title="Close" class="img-responsive">
+                                
+                                <!-- <canvas nvd3 style="fill:#e4b447;stroke:#e4b447" baseChart width="400" height="400"
+                                            [datasets]="lineChartData"
+                                            [labels]="lineChartLabels"
+                                            [options]="lineChartOptions"
+                                            [colors]="lineChartColors"
+                                            [legend]="lineChartLegend"
+                                            [chartType]="lineChartType"
+                                            (chartHover)="chartHovered($event)"
+                                            (chartClick)="chartClicked($event)"></canvas> -->
+                             
                                 <!-- <button (click)="add()">Add Point!</button> -->
                                 <!-- <div [chart]="chart"></div> -->
                             </div>
@@ -41,22 +52,30 @@
                                     <li><i class="fa fa-circle-o color_1" aria-hidden="true"></i> Number of Applications</li>
                                     <li><i class="fa fa-circle-o color_2" aria-hidden="true"></i> Number of Jobs Posted </li>
                                     <li><i class="fa fa-circle-o color_3" aria-hidden="true"></i> Number of Jobs Viewed</li>
-                                   <!--  <li>
-                                        <i class="fa fa-angle-down color_2" aria-hidden="true"></i> Account users
-                                        <ul class="open_ul">
+                                    <li *ngIf="addMoreDetailsFlag">
+                                        <i class="fa fa-angle-down color_2" aria-hidden="true" (click)="accountUserFlag = !accountUserFlag"></i> Account users
+                                        <ul class="open_ul" *ngIf="accountUserFlag">
                                             <li class="active">Overall Team</li>
-                                            <li>Overall Team</li>
-                                            <li>Overall Team</li>
-                                            <li>Overall Team</li>
+                                            <li>Luke Clothier</li>
+                                            <li>Chris Oldham</li>
+                                            <li>Steve Edwards</li>
                                         </ul>
                                     </li>
-                                    <li>
-                                        <i class="fa fa-angle-down color_2" aria-hidden="true"></i> User Metrics
+                                    <li *ngIf="addMoreDetailsFlag">
+                                        <i class="fa fa-angle-down color_2" aria-hidden="true" (click)="userMetricsFlag = !userMetricsFlag"></i> User Metrics
+                                        <ul class="open_ul" *ngIf="userMetricsFlag">
+                                            <li class="active">Number of Applications</li>
+                                            <li>Number of Jobs Posted</li>
+                                        </ul>
                                     </li>
-                                    <li>
-                                        <i class="fa fa-angle-down color_2" aria-hidden="true"></i> Time Period
+                                    <li *ngIf="addMoreDetailsFlag">
+                                        <i class="fa fa-angle-down color_2" aria-hidden="true" (click)="timePeriodFlag = !timePeriodFlag"></i> Time Period
+                                        <ul class="open_ul" *ngIf="timePeriodFlag">
+                                            <li class="active">1 Month</li>
+                                            <li>3 Months</li>
+                                        </ul>
                                     </li>
- -->
+
                                 </ul>
                             </div>
                         </div>

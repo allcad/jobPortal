@@ -349,9 +349,9 @@
         L286.717,91.065z M120.327,23.717h26.483h45.741h26.483V7.979h-98.708V23.717z"></path>
                 </svg><span class="nav-menu-heading">WatchDogs</span></a>
             </li>
-            <li (click)="showMenu = !showMenu"> <a class="" [routerLink]="['/recruiter/saved-search']"><span class="icon-search-plus"></span><span class="nav-menu-heading">Saved Search</span></a></li>
-            <li (click)="showMenu = !showMenu"> <a class="" [routerLink]="['/recruiter/watch-list']"><span class="icon-watchlist"></span><span class="nav-menu-heading">Watch List</span></a></li>
-            <li (click)="showMenu = !showMenu"> <a class="" [routerLink]="['/recruiter/view-applications']"><span class="icon-watchlist"></span><span class="nav-menu-heading">View Applications ({{quickLinkData?.job?.job_application}})</span></a></li>
+            <li (click)="showMenu = !showMenu"> <a class="" [routerLink]="['/recruiter/saved-search']"><span class="icon-saved-search-img"></span><span class="nav-menu-heading">Saved Search</span></a></li>
+            <li (click)="showMenu = !showMenu"> <a class="" [routerLink]="['/recruiter/watch-list']"><span class="icon-watch-list-img"></span><span class="nav-menu-heading">Watch List</span></a></li>
+            <li (click)="showMenu = !showMenu"> <a class="" [routerLink]="['/recruiter/view-applications']"><span class="icon-view-application-img"></span><span class="nav-menu-heading">View Applications <cite class="counter">{{quickLinkData?.job?.job_application}}</cite></span></a></li>
             <li (click)="showMenu = !showMenu"> <a class="" [routerLink]="['/recruiter/manage-jobs']"><span class="icon-files"></span><span class="nav-menu-heading">Manage Jobs</span></a></li>
             <li (click)="showMenu = !showMenu"> <a class="" [routerLink]="['/recruiter/job-posting']" (click)="postJobs()"><span class="icon-applications"></span><span class="nav-menu-heading">Post Jobs</span></a></li>
             <li (click)="showMenu = !showMenu"> <a class="" [routerLink]="['/recruiter/help']"><span class="icon-msg-icon"></span><span class="nav-menu-heading">Help</span></a></li>

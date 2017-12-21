@@ -196,3 +196,7 @@ p.needwatch a, p.needwatch a:visited {
    
 }
 
+.nv-y .tick.zero line { stroke: blue; }
+
+.nv-y .nv-axis g path.domain { stroke: blue; }
+

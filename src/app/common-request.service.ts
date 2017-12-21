@@ -47,6 +47,7 @@ export class CommonRequestService {
 						this._router.navigate(['/public/contractorLogin']);
 					} else if(localStorageData && localStorageData.role === 'recuriter'){
 						this.commonService.setSessionData(true);
+						this.commonService.setLoginSessionData(false);
 						this._router.navigate(['/public/recruiterLogin']);
 					}else{
 						this._router.navigate(['/public/home']);

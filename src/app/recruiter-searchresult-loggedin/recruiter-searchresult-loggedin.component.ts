@@ -90,8 +90,10 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
     //   "display_county": '',
     //   "display_name" : ''
     // }
+    if(this.router.url.indexOf("/public/searchresult-loggedin") == -1) {
+        this.getJobList();
+      }
     this.getSortByData();
-    this.getJobList();
     //this.savedResult = this._commonService.getSearchResult();
     // console.log("this.savedResult", this.savedResult, "this.searchResultId", this.searchResultId);
     // if(!this.savedResult) {

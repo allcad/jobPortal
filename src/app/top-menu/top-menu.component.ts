@@ -20,6 +20,7 @@ export class TopMenuComponent implements OnInit {
 
   ngOnInit() {
     this.getServiceCategory();
+    
   }
 
 
@@ -50,6 +51,7 @@ export class TopMenuComponent implements OnInit {
 
 
   removeClass() {
+    this.commonService.setSessionData(false);
     $(".navigation-dropdown").slideUp();
   }
 

@@ -18,3 +18,31 @@
 
 .home_page_inquery{ width:100%; }
 #inquerymaindiv .after_login_menu ul li{overflow: -webkit-paged-x;}
+
+.icon-saved-search-img{
+	background: url(../../assets/images/saved-search.jpg);
+	width: 45px;
+	height: 45px;
+}
+.icon-watch-list-img{
+	background: url(../../assets/images/watch-list.jpg);
+	width: 45px;
+	height: 45px;
+}
+.icon-view-application-img{
+	background: url(../../assets/images/view-application.jpg);
+	width: 45px;
+	height: 45px;
+}
+.counter {
+    background: #09c;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    display: block;
+    font-size: 12px;
+    font-style: inherit;
+    padding: 5px 0 0 0;
+    text-align: center;
+    margin: 0 auto;
+}

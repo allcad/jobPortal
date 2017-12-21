@@ -63,14 +63,6 @@ jobSpecificationValue = '';
 preferredRateFlag = false;
 locationArray = [];
 config;
-public froalaOptionsPreview: any = {
-    placeHolderText: 'Edit Your Content Here',
-    charCounterCount: false,
-    toolbarButtons: ['bold', 'fullscreen', 'italic', 'strikeThrough', 'subscript', 'superscript', 'L', 'underline', 'paragraphFormat', 'alert', 'undo', 'redo', 'outdent', 'indent', 'clearFormatting', 'insertTable', 'html', 'fontFamily', 'fontSize', 'color', 'formatBlock', 'blockStyle', 'inlineStyle', 'align', 'insertOrderedList', 'insertUnorderedList', 'formatUL', 'formatOL', 'selectAll', 'createLink', 'insertImage', 'insertVideo', 'table', 'save', 'insertHorizontalRule', 'uploadFile', 'removeFormat', 'specialCharacters', 'spellChecker', 'insertHR', '-', 'quote', 'selectAll', 'insertLink', 'help', 'print', 'clearFormatting'],
-    toolbarButtonsXS: ['bold', 'fullscreen', 'italic', 'strikeThrough', 'subscript', 'superscript', 'L', 'underline', 'paragraphFormat', 'alert', 'undo', 'redo', 'outdent', 'indent', 'clearFormatting', 'insertTable', 'html', 'fontFamily', 'fontSize', 'color', 'formatBlock', 'blockStyle', 'inlineStyle', 'align', 'insertOrderedList', 'insertUnorderedList', 'formatUL', 'formatOL', 'selectAll', 'createLink', 'insertImage', 'insertVideo', 'table', 'save', 'insertHorizontalRule', 'uploadFile', 'removeFormat', 'specialCharacters', 'spellChecker', 'insertHR', '-', 'quote', 'selectAll', 'insertLink', 'help', 'print', 'clearFormatting'],
-    toolbarButtonsSM: ['bold', 'fullscreen', 'italic', 'strikeThrough', 'subscript', 'superscript', 'L', 'underline', 'paragraphFormat', 'alert', 'undo', 'redo', 'outdent', 'indent', 'clearFormatting', 'insertTable', 'html', 'fontFamily', 'fontSize', 'color', 'formatBlock', 'blockStyle', 'inlineStyle', 'align', 'insertOrderedList', 'insertUnorderedList', 'formatUL', 'formatOL', 'selectAll', 'createLink', 'insertImage', 'insertVideo', 'table', 'save', 'insertHorizontalRule', 'uploadFile', 'removeFormat', 'specialCharacters', 'spellChecker', 'insertHR', '-', 'quote', 'selectAll', 'insertLink', 'help', 'print', 'clearFormatting'],
-    toolbarButtonsMD: ['bold', 'fullscreen', 'italic', 'strikeThrough', 'subscript', 'superscript', 'L', 'underline', 'paragraphFormat', 'alert', 'undo', 'redo', 'outdent', 'indent', 'clearFormatting', 'insertTable', 'html', 'fontFamily', 'fontSize', 'color', 'formatBlock', 'blockStyle', 'inlineStyle', 'align', 'insertOrderedList', 'insertUnorderedList', 'formatUL', 'formatOL', 'selectAll', 'createLink', 'insertImage', 'insertVideo', 'table', 'save', 'insertHorizontalRule', 'uploadFile', 'removeFormat', 'specialCharacters', 'spellChecker', 'insertHR', '-', 'quote', 'selectAll', 'insertLink', 'help', 'print', 'clearFormatting']
-  };
   constructor(private router: Router, public _commonRequestService: CommonRequestService, 
     private commonService: CommonService,
     private ngZone: NgZone) {

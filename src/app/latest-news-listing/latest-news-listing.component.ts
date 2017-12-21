@@ -76,7 +76,9 @@ export class LatestNewsListingComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscribeIns.unsubscribe();
+    if(this.subscribeIns) {
+      this.subscribeIns.unsubscribe();
+    }
   }
 
 }

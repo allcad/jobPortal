@@ -120,11 +120,9 @@ const publicRoutes: Routes = [
     }, {
         "path": "searchresult-loggedin",
         "component": RecruiterSearchresultLoggedinComponent,
-        // "resolve": {resolverData: ResolverService}
     }, {
         "path": "searchresult-loggedin/:id",
         "component": RecruiterSearchresultLoggedinComponent,
-        // "resolve": {resolverData: ResolverService}
     }, {
         "path": "advanced-search",
         "component": RecruiterAdvancedSearchComponent,
