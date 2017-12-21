@@ -42,7 +42,18 @@
     display: block;
     font-size: 12px;
     font-style: inherit;
-    padding: 5px 0 0 0;
+    padding: 3px 0 0 0;
     text-align: center;
     margin: 0 auto;
+
+    position: absolute;
+	top: -27px;
+	right: 17px;
+	border: 2px solid #000;
+}
+
+#inquerymaindiv .navigation-lists li {
+    padding: 24px 15px;
+    /*margin: 15px;
+    display: inline-block;*/
 }
