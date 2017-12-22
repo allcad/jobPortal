@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../commonService.service';
 import { CommonRequestService } from '../common-request.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recruiter-header',
@@ -12,10 +13,15 @@ export class RecruiterHeaderComponent implements OnInit {
   wsError;
   quickLinkData;
 
-  constructor(private commonService: CommonService, public _commonRequestService: CommonRequestService) { }
+  constructor(private commonService: CommonService, public _commonRequestService: CommonRequestService, private router: Router) { }
 
   ngOnInit() {
     this.getQuickLinksData();
+  }
+
+  goToHome() {
+    // this.commonService.setLoginSessionData(true);
+    // this.router.navigate(['/public/home']);
   }
 
   postJobs() {

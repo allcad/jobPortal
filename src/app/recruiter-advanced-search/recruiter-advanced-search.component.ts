@@ -37,7 +37,7 @@ timeLeft = 0;
 includeContractor = false;
 showContractor = 0;
 contractorName: string;
-contractorEducation;
+contractorEducation = "";
 drivingLicence;
 mappingFlag = true;
 radialFlag = false;
@@ -57,6 +57,7 @@ displayLocationName = '';
 showRadialDescription = false;
 showMappingDescription = true;
 preferredRateFlag = false;
+educationData;
 //displayLocationName = '';
   constructor(public _commonRequestService: CommonRequestService, private activateRoute: ActivatedRoute,
     private _route: Router, private commonService: CommonService, 
@@ -70,6 +71,7 @@ preferredRateFlag = false;
     this.getIndustry();
     this.getTimeLeftData();
     this.getSortByData();
+    this.getEducationData();
     //this.loadLocationAutoData();
   }
 
@@ -158,6 +160,18 @@ preferredRateFlag = false;
             this.sortByData = data.data;
           }
           //this.recruiterNameArray = data.data;
+        }
+    );
+  }
+
+  getEducationData() {
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/education_level";
+       this._commonRequestService.getData(wsUrl).subscribe(
+        data => {
+          console.log("education--", data);
+          if(data && data.status == 'TRUE') {
+            this.educationData = data.data;
+          }
         }
     );
   }

@@ -547,7 +547,7 @@ config;
                   this.getTemplateData();
                   this.WSErrorMsg = "";
                   this.jobPostingJobId = "";
-                  this.postJobSuccessMsg = 'Post Job Update succesfully!'
+                  this.postJobSuccessMsg = 'Job Updated succesfully!'
                   // var obj = {'jobId' : ''};
                   // localStorage.setItem('recruiterJobData', JSON.stringify(obj));
 

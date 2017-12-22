@@ -272,7 +272,15 @@
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-addon"><img src="./assets/images/recruiter-education.png" alt="Job Reference Number" title="Job Reference Number" class="img-responsive"></div>
-                  <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Education" name="contractorEducation" [(ngModel)]="contractorEducation">
+                  <!-- <input type="text" class="form-control box_padding_3 box_height_30" id="exampleInputEmail1" placeholder="Education" name="contractorEducation" [(ngModel)]="contractorEducation"> -->
+                  <select class="form-control minimal background_drop_down box_padding_3 box_height_30 padding_left_none" name="contractorEducation" [(ngModel)]="contractorEducation">
+                    <option value="">Education</option>
+                    <option value="{{item?.id}}" *ngFor="let item of educationData">{{item?.name}}</option>
+                    <!-- <option value="1">124536</option>
+                                                <option value="5">5124536</option>
+                                                <option value="10">10124536</option>
+                                                <option value="20">20124536</option> -->
+                  </select>
                 </div>
               </div>
             </div>

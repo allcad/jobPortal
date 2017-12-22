@@ -122,10 +122,10 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
          this.savedResult = output;
         console.log("jbdjasd",output);
          if(parseInt(output['recuriter_search_by_rate_min']) === 0) {
-          this.savedResult['recuriter_search_by_rate_min'] = "null";
+          this.savedResult['recuriter_search_by_rate_min'] = "";
         };
         if(parseInt(output['recuriter_search_by_rate_max']) === 0) {
-          this.savedResult['recuriter_search_by_rate_max'] = "null";
+          this.savedResult['recuriter_search_by_rate_max'] = "";
         }
         this.getSearchResultList();
 
@@ -451,10 +451,10 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
     //   return  item.prefereedRate.minRate>event.from && item.prefereedRate.maxRate<event.to
     // })
     if(event && event.from === 0) {
-      event.from = "null";
+      event.from = "";
     }
     if(event && event.to === 0) {
-      event.to = "null";
+      event.to = "";
     }
     this.savedResult.recuriter_search_by_rate_min = event.from;
     this.savedResult.recuriter_search_by_rate_max = event.to;

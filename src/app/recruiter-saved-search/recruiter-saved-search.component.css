@@ -74,3 +74,12 @@
 }
 
 option:hover {background: #ff4c94; color: #FFF;}
+
+
+@media (max-width: 767px)
+{
+
+.job_search a {
+    width: 100% !important;
+}
+}

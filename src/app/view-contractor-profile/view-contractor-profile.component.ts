@@ -38,6 +38,7 @@ export class ViewContractorProfileComponent implements OnInit {
     private ngZone: NgZone, private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    window.scroll(0,0);
     this.zoom = 3;
     this.latitude = 39.8282;
     this.longitude = -98.5795;
