@@ -582,8 +582,8 @@ export class ContractorProfileComponent implements OnInit {
     this.coverLetterList = (this.profileData.uploadCoverLetter && this.profileData.uploadCoverLetter.length > 0) ? this.profileData.uploadCoverLetter : this.coverLetterList;
     this.industrySector = this.profileData.industrySector;
     this.selectedSkillArray = this.profileData['skill&Experience'].split(',');
-    this.lng = Number(this.profileData.latitude);
-    this.lat = Number(this.profileData.longitude);
+    this.lng = Number(this.profileData.longitude);
+    this.lat = Number(this.profileData.latitude);
     this.display_town = this.profileData.display_town;
     this.display_county = this.profileData.display_county;
     this.display_name = this.profileData.display_name;

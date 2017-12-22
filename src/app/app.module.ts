@@ -28,6 +28,7 @@ import { ContractorLoginFullJobComponent } from './contractor-login-full-job/con
 import { CommonDataSharedService } from './commonDataSharedService';
 import { ResolverService } from './resolver.service';
 import { CommonService } from './commonService.service';
+
 //import { SearchLocationComponent } from './search-location/search-location.component';
 //import { PayrollComponent } from './payroll/payroll.component';
 

@@ -11,10 +11,16 @@ export class ContractorServiceListingComponent implements OnInit {
 	categoryData = [];
   loading = true;
   selectedCategoryId;
+  upperLimit;
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes:ActivatedRoute ) { }
 
   ngOnInit() {
   	this.getContarctorHubCategory();
+    if (this._router.url.split('/')[2] == "home") {
+      this.upperLimit = 4;
+    }else{
+      this.upperLimit = 8;
+    }
   }
 
   ngAfterViewInit(){

@@ -13,7 +13,8 @@ export class ContractorNewsCategoryComponent implements OnInit {
     paginationClickable: true,
     nextButton: '.swiper-button-next',
     prevButton: '.swiper-button-prev',
-    spaceBetween: 30
+    spaceBetween: 30,
+    autoplay: 3000
   }
   newsList = [];
   featuredNewsList = [];

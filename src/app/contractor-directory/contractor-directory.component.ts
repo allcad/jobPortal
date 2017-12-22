@@ -36,7 +36,7 @@ export class ContractorDirectoryComponent implements OnInit {
     this.selectedContractorHubCategory = categoryData.contract_hub_category_id;
     // this.getCompanyList();
     this._router.navigate(['../' + this.selectedContractorHubCategory], {relativeTo: this._routes});
-
+    window.scroll(0,0);
   }
 
   getCompanyList() {

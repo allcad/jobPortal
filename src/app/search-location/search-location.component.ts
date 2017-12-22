@@ -47,7 +47,7 @@ export class SearchLocationComponent implements OnInit {
 
 
 	locationSelected(location) {
-		this.location = location.town_name + ',' + location.country;
+		this.location = location.town_name + ', ' + location.country;
 		this.selecetd = true;
 		this.selectText.emit(location);
 	}

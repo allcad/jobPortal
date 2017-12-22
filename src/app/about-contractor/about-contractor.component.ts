@@ -13,11 +13,13 @@ export class AboutContractorComponent implements OnInit {
     paginationClickable: true,
     nextButton: '.swiper-button-next',
     prevButton: '.swiper-button-prev',
-    spaceBetween: 30
+    spaceBetween: 30,
+    autoplay : 3000
   }
 
   title;
   @ViewChild("search") public searchElementRef: ElementRef;
+
   postcode;
   displayTown;
   displayCountry;
@@ -74,6 +76,9 @@ export class AboutContractorComponent implements OnInit {
 
       }
     })
+
+   
+    
   }
 
   

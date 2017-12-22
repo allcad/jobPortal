@@ -69,7 +69,10 @@ export class ContractorSignUpComponent implements OnInit {
   displayLocationName;
   marker;
   defaultDatePickerStatus = false;
-  constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
+
+  constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { 
+   
+  }
 
   ngOnInit() {
     this.getKeySkillData();

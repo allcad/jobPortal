@@ -7,10 +7,10 @@ import { ToolTipModule } from 'angular2-tooltip';
 import { TooltipModule } from "ng2-tooltip";
 import { HttpModule } from '@angular/http';
 
-import { ContentComponent } from '../content/content.component';
-import { SearchComponent } from '../search/search.component';
-import { UploadCvComponent } from '../upload-cv/upload-cv.component';
-import { FindContractorComponent } from '../find-contractor/find-contractor.component';
+// import { ContentComponent } from '../content/content.component';
+// import { SearchComponent } from '../search/search.component';
+// import { UploadCvComponent } from '../upload-cv/upload-cv.component';
+// import { FindContractorComponent } from '../find-contractor/find-contractor.component';
 
 // import { FindContractHubComponent } from '../find-contract-hub/find-contract-hub.component';
 
@@ -42,14 +42,14 @@ import { ContractorForgotPasswordComponent } from '../contractor-forgot-password
 import { ContractorResetPasswordComponent } from '../contractor-reset-password/contractor-reset-password.component';
 import { AboutContractorComponent } from '../about-contractor/about-contractor.component';
 import { RecruiterResetPasswordComponent } from '../recruiter-reset-password/recruiter-reset-password.component';
-import { PayrollComponent } from '../payroll/payroll.component';
+
 
 @NgModule({
 	declarations: [
-		ContentComponent,
-		SearchComponent,
-		UploadCvComponent,
-		FindContractorComponent,
+		//ContentComponent,
+		// SearchComponent,
+		// UploadCvComponent,
+		// FindContractorComponent,
 		TermUseComponent,
 		ContractorSignUpComponent,
 		LoginComponent,
@@ -69,8 +69,7 @@ import { PayrollComponent } from '../payroll/payroll.component';
 		ContractorForgotPasswordComponent,
 		ContractorResetPasswordComponent,
 		AboutContractorComponent,
-		RecruiterResetPasswordComponent,
-		PayrollComponent
+		RecruiterResetPasswordComponent
 	],
 	imports: [
 		PublicRoutingModule,

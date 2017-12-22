@@ -46,6 +46,12 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 import { SearchLocationComponent } from '../search-location/search-location.component';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { ChartsModule } from 'ng2-charts';
+import { ContentComponent } from '../content/content.component';
+
+import { SearchComponent } from '../search/search.component';
+import { UploadCvComponent } from '../upload-cv/upload-cv.component';
+import { FindContractorComponent } from '../find-contractor/find-contractor.component';
+import { PayrollComponent } from '../payroll/payroll.component';
 
 const sharedModuleList = [
   FindContractHubComponent,
@@ -79,8 +85,13 @@ const sharedModuleList = [
   ViewContractorProfileComponent,
   RecruiterGuidesPageComponent,
   ContractorJobDetailComponent,
-  SearchLocationComponent
-  ]
+  SearchLocationComponent,
+  ContentComponent,
+  SearchComponent,
+  UploadCvComponent,
+  FindContractorComponent,
+  PayrollComponent
+]
 
 @NgModule({
   declarations: sharedModuleList,

@@ -63,11 +63,7 @@ export class ContractorSearchResultComponent implements OnInit {
         }
 
         for(let i=0; i<keyArray.length; i++){
-          
-          output[keyArray[i]] = paramData[keyArray[i]] && paramData[keyArray[i]].indexOf('+')>-1 ? paramData[keyArray[i]].replace(/\+/g, ' ') : paramData[keyArray[i]];
-
-         
-          
+          output[keyArray[i]] = paramData[keyArray[i]] && paramData[keyArray[i]].indexOf('+')>-1 ? paramData[keyArray[i]].replace(/\+/g, ' ') : paramData[keyArray[i]];          
         }
         this.searchJson = output;
         this.getSearchData();
@@ -188,7 +184,7 @@ export class ContractorSearchResultComponent implements OnInit {
   }
 
   login() {
-    this._router.navigate(['../contractorLogin'], { relativeTo: this._routes });
+    this._router.navigate(['../contractorLogin'], { relativeTo: this._routes, queryParams :  this.searchJson });
   }
 
   signup() {

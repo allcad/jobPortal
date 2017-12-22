@@ -1,9 +1,9 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CommonRequestService } from '../common-request.service';
 import { CommonDataSharedService } from '../commonDataSharedService';
-
+import 'rxjs/add/operator/pairwise';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,7 +18,18 @@ export class LoginComponent implements OnInit {
   errorMsg;
   totalInvalid = false;
   sessionExpireMessageFlag;
-  constructor(private router: Router, public _commonRequestService: CommonRequestService, private _commonDataSharedService: CommonDataSharedService) { }
+  param;
+  constructor(private router: Router, public _commonRequestService: CommonRequestService, private _commonDataSharedService: CommonDataSharedService, private _routes: ActivatedRoute) {
+     
+    this._routes.queryParams.subscribe((params: Params) => {
+       this.param =  params;
+    })
+   }
+
+   routerOnActivate(next, prev){
+     console.log("next",next);
+     console.log("prev",prev)
+   }
 
   ngOnInit() {
     this.generate();
@@ -50,7 +61,12 @@ export class LoginComponent implements OnInit {
             this.succesLoginFlag = true;
             this.errorMsgFlag = false;
             localStorage.setItem("loginDetail", JSON.stringify({ "token": data.data.loginToken, "email": email, "role": data.data.type }))
-            this.router.navigate(['../contractor/viewProfile']);
+            
+            if(this.param){
+              this.router.navigate(['../contractor/contractor_search'], {queryParams : this.param});
+            }else{
+              this.router.navigate(['../contractor/viewProfile']);
+            }
           }
           else {
             this.errorMsgFlag = true;

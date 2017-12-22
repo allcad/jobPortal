@@ -20,6 +20,8 @@ import { ContractorNewsCategoryComponent } from '../contractor-news-category/con
 //import { AboutContractorComponent } from '../about-contractor/about-contractor.component';
 import { ResolverService } from '../resolver.service';
 import { ContractorJobDetailComponent } from '../contractor-job-detail/contractor-job-detail.component';
+import { ContractorHomeComponent } from '../contractor-home/contractor-home.component';
+import { PayrollComponent } from '../payroll/payroll.component';
 
 const contractorRoutes: Routes = [{
     "path": "profile",
@@ -51,7 +53,7 @@ const contractorRoutes: Routes = [{
     "resolve": { resolverData: ResolverService }
 },
 {
-    "path": "hubHome",
+    "path": "contractor_hub_home",
     "component": ContractorHubHomeComponent
 }, {
     "path": "directory/:id",
@@ -94,7 +96,13 @@ const contractorRoutes: Routes = [{
 }, {
     "path": "news/:id",
     "component": ContractorNewsArticleComponent
-}
+},{
+    "path" : "home",
+    "component": ContractorHomeComponent
+}, {
+        "path": "payroll",
+        "component": PayrollComponent
+    }, 
     // {
     //     "path": "about",
     //     "component": AboutContractorComponent,

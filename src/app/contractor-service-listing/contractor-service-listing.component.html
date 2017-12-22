@@ -1,5 +1,5 @@
 <ul *ngIf="!loading" id="services-nav-menu" class="clearfix">
-  <li [ngClass]="{'hover' : category.contract_hub_category_id == selectedCategoryId}" *ngFor="let category of categoryData | slice:0:4" routerLink="../directory/{{category.contract_hub_category_id" (mouseenter)="focusOn(category)">
+  <li [ngClass]="{'hover' : category.contract_hub_category_id == selectedCategoryId}" *ngFor="let category of categoryData | slice:0: upperLimit" routerLink="../directory/{{category.contract_hub_category_id}}" (mouseenter)="focusOn(category)">
     <a href="javascript:void(0)" >
       <div class="icon"> <img [src]="category.contract_hub_small_icon" alt="" title="" class="menu_bar" style="height:57px; width:57px;" onError="this.src='./assets/images/ContractMap-icon.png'"> </div>
       <div class="content">
