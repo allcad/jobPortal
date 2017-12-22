@@ -8,9 +8,9 @@
           <div class="contractor_signup">
             <h2 class="font_capitalizs">Contract<span>Hub</span> Advice</h2>
             <ul class="breadcomb">
-              <li><a href="javascript:void(0)">Home</a></li>
+              <li><a href="javascript:void(0)" routerLink="../home">Home</a></li>
               <li class="right_arrow">></li>
-              <li><a href="javascript:void(0)">CONTRACTHUB </a></li>
+              <li><a href="javascript:void(0)" routerLink="../contractor_hub_home">CONTRACTHUB </a></li>
               <li class="right_arrow">></li>
               <li class="active">ADVICE </li>
             </ul>
@@ -120,7 +120,7 @@
     </div>
     <div class="row" *ngIf="totalPage && totalPage > currentPage">
       <div class="col-sm-100" style="text-align: center; margin-bottom: 40px;" (click)="currentPage = currentPage+1; getLatestAdviceArticle()">
-        <button class="btn-primary news_read_more" *ngIf="!searchClicked">See More Article<i class="fa fa-plus plus_blue" aria-hidden="true"></i></button>
+        <button class="btn-primary news_read_more" *ngIf="!searchClicked">See More Articles<i class="fa fa-plus plus_blue" aria-hidden="true"></i></button>
       </div>
     </div>
   </div>

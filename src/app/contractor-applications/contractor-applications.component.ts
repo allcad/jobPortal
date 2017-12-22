@@ -58,8 +58,7 @@ export class ContractorApplicationsComponent implements OnInit {
           this.totalPage = data.TotalPage;
 
         } else {
-          if (data.error == "No Record Found") {
-
+          if (data.error == "Job not found") {
             this.totalPage = 0;
             this.appliedJobList = [];
           }

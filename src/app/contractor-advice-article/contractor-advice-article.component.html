@@ -9,7 +9,7 @@
         <div class="col-md-56 col-sm-50 col-md-offset-1">
           <div class="job_full_details advice_article_headding">
             <h2>{{articleData?.title}}</h2>
-            <p class="date_content"><span>{{articleData?.updated_at | date : 'dd/MM/yyyy'}}</span> | <span>{{articleData?.author}}</span></p>
+            <p class="date_content"><span>{{articleData?.updated_at | date : 'dd/MM/yyyy'}}</span>  <span *ngIf="articleData?.author"> |{{articleData?.author}}</span></p>
             <p [innerHTML]="articleData?.description"> </p>
             <div class="contant_footer">
               <div class="row">
