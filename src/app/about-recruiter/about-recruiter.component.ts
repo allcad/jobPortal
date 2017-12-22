@@ -8,7 +8,15 @@ import * as $ from 'jquery';
   styleUrls: ['./about-recruiter.component.css']
 })
 export class AboutRecruiterComponent implements OnInit {
-
+ config: any = {
+    pagination: '.swiper-pagination',
+    paginationClickable: true,
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev',
+    spaceBetween: 30,
+    autoplay: true,
+    speed: 5000
+  }
   constructor(private _commonDataShareService: CommonDataSharedService) { }
 
   ngOnInit() {

@@ -54,6 +54,7 @@ export class RecruiterWatchdogComponent implements OnInit {
   }
 
   getWatchDogListData(pageNo) {
+    this.errorMsg = "";
     this.loading = true;
     console.log("currentSortBy--", this.currentSortBy);
      var input = {
@@ -70,6 +71,7 @@ export class RecruiterWatchdogComponent implements OnInit {
           this.loading = false;
          console.log("recruiterId--", data);
          if (data && data.status == 'TRUE') {  
+           this.errorMsg = "";
          this.maxPage = data.TotalPage;         
            //this.watchListDataArr = data.data;
            this.maxRecord = data.recordsTotal;
@@ -80,6 +82,7 @@ export class RecruiterWatchdogComponent implements OnInit {
          } else if(data && data.status == 'FALSE'){
            this.watchListDataArr = [];
            this.watchListDataArrCount = 0;
+           this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
          }
          
         }

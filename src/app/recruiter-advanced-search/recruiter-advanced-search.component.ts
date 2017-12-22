@@ -49,7 +49,7 @@ sortByData;
 industrySectorValue;
 securityClearValue;
 currentUrl;
-milesValue;
+milesValue = 0;
 postcode = '';
 displayTown = '';
 displayCountry = '';
@@ -58,6 +58,8 @@ showRadialDescription = false;
 showMappingDescription = true;
 preferredRateFlag = false;
 educationData;
+searchName = "mapping";
+displayRadialLocationName = "";
 //displayLocationName = '';
   constructor(public _commonRequestService: CommonRequestService, private activateRoute: ActivatedRoute,
     private _route: Router, private commonService: CommonService, 
@@ -118,14 +120,22 @@ educationData;
     this.postcode = location.postcode;
     this.displayTown = location.town_name;
     this.displayCountry = location.country;
-    this.displayLocationName = location.town_name + ',' + location.country;
+    if(this.searchName == "mapping") {
+      this.displayLocationName = location.town_name + ',' + location.country;
+    } else {
+      this.displayRadialLocationName = location.town_name + ',' + location.country;
+    }
   }
 
   changeText(text){
     this.postcode = "";
     this.displayTown = "";
     this.displayCountry = "";
-    this.displayLocationName = "";
+    if(this.searchName == "mapping") {
+      this.displayLocationName = "";
+    } else {
+      this.displayRadialLocationName = "";
+    }
   }
 
   // getSortByData() {
@@ -215,7 +225,7 @@ educationData;
             this.certifications = data.data.recuriter_search_certifications ? data.data.recuriter_search_certifications : '';
             this.dontShowContractor = data.data.recuriter_search_dont_show_to_contractor ? data.data.recuriter_search_dont_show_to_contractor : '';
             //this.cityTown = data.data.recuriter_search_location ? data.data.recuriter_search_location : '';
-            this.displayLocationName = data.data.recuriter_search_location ? data.data.recuriter_search_location : '';
+            //this.displayLocationName = data.data.recuriter_search_location ? data.data.recuriter_search_location : '';
             //this.searchElementRef1.nativeElement.value = data.data.recuriter_search_location ? data.data.recuriter_search_location : '';
             this.preferredMinRate = data.data.recuriter_search_by_rate_min ? data.data.recuriter_search_by_rate_min : '';
             this.preferredMaxRate = data.data.recuriter_search_by_rate_max ? data.data.recuriter_search_by_rate_max : '';
@@ -229,6 +239,21 @@ educationData;
             //this.currentLocation = data.data.recuriter_search_job_title
             this.industrySectorValue = data.data.recuriter_search_by_industry ? data.data.recuriter_search_by_industry : '';
             this.securityClearValue = data.data.recuriter_search_by_security_clearance ? data.data.recuriter_search_by_security_clearance : '';
+            if(data.data.search_name == 'radial') {
+              this.radialFlag = true;
+              this.showRadialDescription = true;
+              this.mappingFlag = false;
+              this.showMappingDescription = false;
+            } else {
+              this.mappingFlag = true;
+              this.showMappingDescription = true;
+              this.radialFlag = false;
+              this.showRadialDescription = false;
+            };
+            this.searchName = data.data.search_name;
+            this.milesValue = data.datarecruiter_search_radial_radius;
+            this.displayLocationName = data.data.recuriter_search_location;
+            this.displayRadialLocationName = data.data.recruiter_radial_post_code;
           }
           // if(this._route.url == "/public/advanced-search") {
           //   this._route.navigate(['/public/saved-search']);
@@ -266,6 +291,7 @@ educationData;
     this.showMappingDescription = true;
     this.showRadialDescription = false;
     this.milesValue = 0;
+    this.searchName = "mapping";
     // if(this.searchMiles && this.searchMiles.nativeElement) {
     //   this.searchMiles.nativeElement.value = 0;
     // }
@@ -280,7 +306,8 @@ educationData;
     // }
     this.showMappingDescription = false;
     this.showRadialDescription = true;
-    this.milesValue = 5;
+    this.milesValue = 15;
+    this.searchName = "radial";
     //this.loadLocationAutoData();
   }
 
@@ -326,7 +353,7 @@ educationData;
       "recuriter_search_core_skills":this.coreSkills ? this.coreSkills :'',
       "recuriter_search_certifications":this.certifications ? this.certifications : '',
       "recuriter_search_dont_show_to_contractor":this.dontShowContractor ? this.dontShowContractor : '',
-      "recuriter_search_location":this.displayLocationName ? this.displayLocationName : '',
+      "recuriter_search_location": this.searchName == 'mapping' ? this.displayLocationName : '',
       "recuriter_search_include_relocators":0,
       "recuriter_search_by_rate_min":this.preferredMinRate ? this.preferredMinRate : '',
       "recuriter_search_by_rate_max":this.preferredMaxRate ? this.preferredMaxRate : '',
@@ -342,7 +369,10 @@ educationData;
       "postcode": this.postcode ? this.postcode : '',
       "display_town" : this.displayTown ? this.displayTown : '',
       "display_county": this.displayCountry ? this.displayCountry : '',
-      "display_name" : this.displayLocationName ? this.displayLocationName : ''
+      "display_name" : this.searchName == 'mapping' ? this.displayLocationName : this.displayRadialLocationName,
+      "search_name" : this.searchName ? this.searchName : '',
+      "recruiter_search_radial_radius" : this.milesValue ? this.milesValue : 0,
+      "recruiter_radial_post_code": this.searchName == 'radial' ? this.displayRadialLocationName : ''
       // "page":1,
       // "limit":10,
       // "sort":8

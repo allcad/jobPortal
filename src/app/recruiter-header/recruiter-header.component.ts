@@ -41,6 +41,11 @@ export class RecruiterHeaderComponent implements OnInit {
 
    };
    console.log("input--", input);
+   // if(this.router.url.indexOf("public") > -1) {
+   //   this.router.navigate(['#']);
+   // } else {
+   //   this.router.navigate(['/public/home']);
+   // }
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/signout";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {

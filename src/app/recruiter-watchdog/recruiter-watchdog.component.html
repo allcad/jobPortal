@@ -17,13 +17,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="errorbox" *ngIf="errorMsg && !loading"><br> 
-                        <li>{{errorMsg}}</li>
-                    </div>
-
-                    <div *ngIf="loading" class="row">
-                  <img src="./assets/images/bx_loader.gif">
-                </div>
 
                 <div class="alert alert-success margin-tp18" *ngIf="successMessageFlag">
                   <a href="javascript:void(0)" class="close" title="close" (click)="successMessageFlag = !successMessageFlag">×</a><strong>Watchdog delete successfully.</strong>
@@ -52,9 +45,18 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
+
             </div>
+            <div class="errorbox" *ngIf="errorMsg && !loading"><br> 
+                        <li>{{errorMsg}}</li>
+                    </div>
+
+                    <div *ngIf="loading" class="row">
+                  <img src="./assets/images/bx_loader.gif">
+                </div>
             <!--contractor login end-->
             <div class="recruiter_watchdog_main" *ngIf="!loading">
                 <div class="watchdog_box" *ngFor="let item of watchListDataArr">

@@ -65,7 +65,7 @@
                                     </div>
                                     <div class="col-md-64 col-sm-64">
                                         <div class="header_right_side">
-                                            <p><span>Viewable on</span> {{item?.contractor_visible_on ? item?.contractor_visible_on : 'N/A'}}</p>
+                                            <p><span>Viewable on</span> {{item?.contractor_visible_on | date :'medium'}}</p>
                                             <!-- <a href="javascript:void(0);"> <img src="./assets/images/whatch-close-icon.png" alt="" title=""></a>  -->
                                         </div>
                                     </div>
