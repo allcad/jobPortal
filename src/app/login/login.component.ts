@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
             this.errorMsgFlag = false;
             localStorage.setItem("loginDetail", JSON.stringify({ "token": data.data.loginToken, "email": email, "role": data.data.type }))
             
-            if(this.param){
+            if(this.param && this.param.contractor_search_by_job_title != undefined){
               this.router.navigate(['../contractor/contractor_search'], {queryParams : this.param});
             }else{
               this.router.navigate(['../contractor/viewProfile']);
