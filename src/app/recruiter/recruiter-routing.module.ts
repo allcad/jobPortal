@@ -25,6 +25,7 @@ import { ResolverService } from '../resolver.service';
 import { RecuriterSavedWatchDogComponent } from '../recuriter-saved-watch-dog/recuriter-saved-watch-dog.component';
 import { RecruiterHomeComponent } from '../recruiter-home/recruiter-home.component';
 import { RecruiterGuidesPageComponent } from '../recruiter-guides-page/recruiter-guides-page.component';
+import { ContractorHomeComponent } from '../contractor-home/contractor-home.component';
 
 const recruiterRoutes: Routes = [{
     "path": "manage-password",
@@ -105,6 +106,10 @@ const recruiterRoutes: Routes = [{
     "path": "guides",
     "component": RecruiterGuidesPageComponent,
     "resolve": {resolverData: ResolverService}
+},
+{
+    "path" : "home",
+    "component": ContractorHomeComponent
 }
 ]
 

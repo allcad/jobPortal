@@ -30,7 +30,7 @@ import { ContractorHelpComponent } from '../contractor-help/contractor-help.comp
 //import { LyResizingCroppingImagesModule } from 'angular2-resizing-cropping-image';
 
 import { ImageCropperModule } from 'ng2-img-cropper';
-import { ContractorHomeComponent } from '../contractor-home/contractor-home.component';
+//import { ContractorHomeComponent } from '../contractor-home/contractor-home.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,7 @@ import { ContractorHomeComponent } from '../contractor-home/contractor-home.comp
     // ContractorAdviceCategoryComponent,
     //AboutContractorComponent,
     ContractorHelpComponent,
-    ContractorHomeComponent
+    //ContractorHomeComponent
 
   ],
   imports: [

@@ -21,7 +21,7 @@ export class RecruiterHeaderComponent implements OnInit {
 
   goToHome() {
     // this.commonService.setLoginSessionData(true);
-    // this.router.navigate(['/public/home']);
+     this.router.navigate(['/recruiter/home']);
   }
 
   postJobs() {
@@ -41,11 +41,6 @@ export class RecruiterHeaderComponent implements OnInit {
 
    };
    console.log("input--", input);
-   // if(this.router.url.indexOf("public") > -1) {
-   //   this.router.navigate(['#']);
-   // } else {
-   //   this.router.navigate(['/public/home']);
-   // }
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/signout";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
@@ -53,6 +48,15 @@ export class RecruiterHeaderComponent implements OnInit {
           if(data && data.status == 'TRUE') {
             //this.securityClearanceArray = data.data;
             localStorage.removeItem("loginDetail");
+            //this.router.navigate(['/public/home']);
+            console.log("this.router.url.indexOf", this.router.url.indexOf("public"))
+            this.router.navigate(['/public/home']);
+           //  if(this.router.url.indexOf("public") > -1) {
+           //    this.commonService.setLoginSessionData(false);
+           //   this.router.navigate(['/public/recruiterLogin']);
+           // } else {
+           //   this.router.navigate(['/public/home']);
+           // }
           }
           //this.recruiterNameArray = data.data;
         }
