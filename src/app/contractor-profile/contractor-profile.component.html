@@ -112,11 +112,11 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/post-code.png" alt="Post Code" title="Post Code" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail3" placeholder="Post Code" type="text" [(ngModel)]="postCode" name="postCode">
+                      <input class="form-control" id="exampleInputEmail3" placeholder="Post Code" type="text" [(ngModel)]="postCode" name="postCode" (blur)="checkPostCode()">
                      
                     </div>
                   </div>
-                  <div class="form-group row">
+                  <!-- <div class="form-group row">
                     <div class="col-xs-62">
                       <div class="input-group">
                         <div class="input-group-addon upto_border_none day_rate_align"><img src="./assets/images/day-rate.png" alt="Post Code" title="Post Code" class="img-responsive"> Day Rate (&euro;)</div>
@@ -131,7 +131,7 @@
                         
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/availability.png" alt="Availability" title="Availability" class="img-responsive"></div>

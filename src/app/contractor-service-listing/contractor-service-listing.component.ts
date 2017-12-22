@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ContractorServiceListingComponent implements OnInit {
 	categoryData = [];
   loading = true;
+  selectedCategoryId;
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes:ActivatedRoute ) { }
 
   ngOnInit() {
@@ -29,14 +30,15 @@ export class ContractorServiceListingComponent implements OnInit {
   	}
        this._commonRequestService.postData(url, inputJson).subscribe(
         data => {
-          this.categoryData = data.data; 
+          this.categoryData = data.data;
+          this.selectedCategoryId = this.categoryData[0].contract_hub_category_id
           this.loading = false;
         }
     );
   }
 
-  focusOn(){
-
+  focusOn(category){
+     this.selectedCategoryId = category.contract_hub_category_id;
   }
 
   

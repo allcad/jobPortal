@@ -91,6 +91,9 @@ export class ContractorProfileComponent implements OnInit {
   display_name;
   deleteAttchmentArray = [];
   invalidFile;
+  displayTown;
+  displayCountry;
+  displayLocationName;
   constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
@@ -260,27 +263,27 @@ export class ContractorProfileComponent implements OnInit {
     reader.readAsDataURL(this.imageFile);
   }
   contractorCoverLetterFileChangeEvent(fileInput: any) {
-    if(!this.checkFileValid(fileInput.target.files[0].name)){
+    if (!this.checkFileValid(fileInput.target.files[0].name)) {
       this.coverLetterFile = fileInput.target.files[0];
-      this.uploadedCoverLetter.push(this.coverLetterFile);  
-    }else{
+      this.uploadedCoverLetter.push(this.coverLetterFile);
+    } else {
       this.coverLetterList.pop();
     }
-    
+
   }
 
   contractorCVFileChangeEvent(fileInput) {
-    if(!this.checkFileValid(fileInput.target.files[0].name)){
-      this.CVFile = fileInput.target.files[0];  
+    if (!this.checkFileValid(fileInput.target.files[0].name)) {
+      this.CVFile = fileInput.target.files[0];
       this.uploadedCvArray.push(this.CVFile);
-    }else{
+    } else {
       this.contratorCVList.pop();
     }
-    
+
   }
 
   saveContractorProfile(form: NgForm) {
-    if (form.valid) {
+    if (form.valid && !this.ErrorMesageFlag) {
       this.fd = new FormData();
       this.fd.append('loginToken', (localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).token) ? JSON.parse(localStorage.getItem('loginDetail')).token : "nsakdlallas1232mk123b2k1390iq2ekq");
       this.fd.append('email', (localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).email) ? JSON.parse(localStorage.getItem('loginDetail')).email : "test@gmail.com");
@@ -340,12 +343,14 @@ export class ContractorProfileComponent implements OnInit {
 
 
       //this.fd.append('uploadCoverLetter',this.coverLetterFile);
-      this.fd.append('longitude', this.lat);
-      this.fd.append('latitude', this.lng);
+      this.fd.append('longitude', this.lng);
+      this.fd.append('latitude', this.lat);
 
       this.fd.append('commutablePolygon', JSON.stringify(this.commutablePolygun));
       this.fd.append('relocatablePolygon', JSON.stringify(this.relocateablePolygun))
-
+      this.fd.append('display_town', this.displayTown);
+      this.fd.append('display_county', this.displayCountry);
+      this.fd.append('display_name', this.displayLocationName);
       this.inputUrl = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/profile/submit";
 
       console.log(this.fd);
@@ -355,7 +360,7 @@ export class ContractorProfileComponent implements OnInit {
         data => {
           this.responseData = data;
           if (this.responseData.status === "TRUE") {
-            if(this.deleteAttchmentArray.length>0){
+            if (this.deleteAttchmentArray.length > 0) {
               this.deleteAttacment(this.deleteAttchmentArray.toString());
             }
             this.succesMessageFlag = true;
@@ -577,8 +582,8 @@ export class ContractorProfileComponent implements OnInit {
     this.coverLetterList = (this.profileData.uploadCoverLetter && this.profileData.uploadCoverLetter.length > 0) ? this.profileData.uploadCoverLetter : this.coverLetterList;
     this.industrySector = this.profileData.industrySector;
     this.selectedSkillArray = this.profileData['skill&Experience'].split(',');
-    this.lat = Number(this.profileData.latitude);
-    this.lng = Number(this.profileData.longitude);
+    this.lng = Number(this.profileData.latitude);
+    this.lat = Number(this.profileData.longitude);
     this.display_town = this.profileData.display_town;
     this.display_county = this.profileData.display_county;
     this.display_name = this.profileData.display_name;
@@ -609,9 +614,9 @@ export class ContractorProfileComponent implements OnInit {
   }
 
 
-  deleteAttacment(id){
+  deleteAttacment(id) {
     let dataUrl = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/remove_attachment";
-     let input = {
+    let input = {
       "email": "john@gmail.com",
       "loginToken": "sdkndjhaKHK68768khkhYjU",
       "attachment_id": id
@@ -815,15 +820,39 @@ export class ContractorProfileComponent implements OnInit {
     this.invalidFile = false;
     if (accetpableFile.indexOf(fileExtention.toLowerCase()) == -1) {
       this.invalidFile = true;
-      setTimeout(()=>{
+      setTimeout(() => {
         this.invalidFile = false;
-      },1000)
-      window.scroll(0,0);
+      }, 1000)
+      window.scroll(0, 0);
       return true;
     } else {
       this.invalidFile = false;
       return false;
     }
 
+  }
+
+
+  checkPostCode() {
+    this.ErrorMesageFlag = false;
+    if (this.postCode && this.postCode.trim().length > 0) {
+      var url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/check_post_code";
+      this._commonRequestService.postData(url, { postcode: this.postCode.replace(/ /g, '') }).subscribe(
+        data => {
+          if (data && data.status == 'FALSE') {
+            this.ErrorMesageFlag = true;
+            this.errorMsg = "Post code invalid";
+          } else {
+            this.displayTown = data.data[0].town;
+            this.displayCountry = data.data[0].county;
+            this.displayLocationName = data.data[0].town + ', ' + data.data[0].region + ', ' + data.data[0].county;
+            this.lat =  data.data[0].latitude;
+            this.lng = data.data[0].longitude;
+
+          }
+
+        }
+      );
+    }
   }
 }

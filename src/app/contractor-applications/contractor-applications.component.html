@@ -40,11 +40,11 @@
             <img src="./assets/images/location-map.png" alt="ads" title="ads" class="img-responsive">
             <p><span>15</span> Miles from Home</p>
           </div>
-          <div class="application_box_contant">
+          <div class="application_box_contant" routerLink="../contractor_search/{{job.jobid}}">
             <img style="height: 75px;" [src]="job.profileimage[0]?.attachment_url + '/'+ job.profileimage[0]?.attachment_name" onError="this.src='./assets/images/application1.png'" alt="ads" title="ads" class="img-responsive">
             <h2>{{job.jobTitle}}</h2>
           </div>
-          <div class="application_box_contant2">
+          <div class="application_box_contant2" routerLink="../contractor_search/{{job.jobid}}">
             <p><span>Location:</span> {{job.cityTown | slice :0:32}} {{job.cityTown.length > 32 ? '..' : ''}}</p>
             <p><span>Rate:</span> £{{job.prefereedRate.minRate}} - £{{job.prefereedRate.maxRate}} p/{{job.prefereedRate.dailyHourlyRate =='daily'? 'd' :'h'}}</p>
             <p><span>Start Date:</span> {{job.startDate| date:'medium' :'MM-dd-yyyy' }}</p>

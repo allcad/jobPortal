@@ -31,13 +31,15 @@
 #services-nav-menu li a .content p {
     display: none;
 }
-
+/*
 #services-nav-menu li:hover a .icon{
 	float: left;
     width: 30%;
     padding: 5%;
     margin-top: 7px;
 }
+
+
 
 #services-nav-menu li:hover a .icon img {
     height: 80px !important;
@@ -56,10 +58,12 @@
     width: 90%;
     margin-left: 15px;
 }
-
-/*.hover a .icon{
-    font-size: 23px;
-    margin-top: 10px;
+*/
+.hover a .icon{
+    float: left;
+    width: 30%;
+    padding: 5%;
+    margin-top: 7px;
 }
 
 .hover a .icon img{
@@ -79,7 +83,7 @@
     display: block !important;
     width: 90%;
     margin-left: 15px;
-}*/
+}
 
 
 

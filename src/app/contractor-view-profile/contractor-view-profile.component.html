@@ -49,8 +49,8 @@
                       
                     </div>
                   </div>
-                  <div class="form-group">
-                    <div class="input-group" *ngIf="profileData && securityClearenceData">
+                  <div class="form-group" >
+                    <div class="input-group" *ngIf="profileData &&profileData.securityClearance &&  securityClearenceData">
                       <div class="input-group-addon"><img src="./assets/images/security-clearance.png" alt="Enter Password" title="Password" class="img-responsive"></div>
                       <label [tooltip]="securityClearance" class="form-control">{{getSecurityClearnceName(profileData) ? getSecurityClearnceName(profileData) : 'NA'}}</label>
                       <!-- <tooltip-content #securityClearance>
@@ -72,7 +72,7 @@
                       
                     </div>
                   </div>
-                  <div class="form-group row" >
+                  <!-- <div class="form-group row" >
                     <div class="col-xs-60">
                       <div class="input-group" *ngIf="profileData && profileData.dayRate_min">
                         <div class="input-group-addon upto_border_none day_rate_align"><img src="./assets/images/day-rate.png" alt="Post Code" title="Post Code" class="img-responsive"> Day Rate</div>
@@ -87,7 +87,7 @@
                         
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="form-group" *ngIf="profileData && profileData.availability">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/availability.png" alt="Availability" title="Availability" class="img-responsive"></div>
@@ -200,7 +200,7 @@
                 </div>
                 <!--            <div class="add_sub_skills"> <span>PHP <img src="./assets/images/close-icon.png" alt="Close" title="Close"></span> <span>java <img src="./assets/images/close-icon.png" alt="Close" title="Close"></span> <span>JAVASCRIPT <img src="./assets/images/close-icon.png" alt="Close" title="Close"></span> </div> -->
               </div>
-              <div class="signup_form_section summary_industry_box width_auto">
+              <div class="signup_form_section summary_industry_box width_auto" *ngIf="profileData?.summary">
                 <div class="row">
                   <div class="col-sm-50">
                     <div class="form-group">

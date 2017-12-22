@@ -75,7 +75,7 @@ export class ContractorSignUpComponent implements OnInit {
     this.getKeySkillData();
     this.getContractorServices();
     this.getNoticePeriodData();
-   
+
     //$("#datepicker").datepicker();
   }
 
@@ -83,13 +83,13 @@ export class ContractorSignUpComponent implements OnInit {
     window.scroll(0, 0);
     var currentDate = new Date();
 
-    
-    
+
+
   }
 
-   showDatePicker(){
-  // //  $("#datepicker").datepicker();
-   
+  showDatePicker() {
+    // //  $("#datepicker").datepicker();
+
     // $('#datepicker').datepicker({
     //     format: "dd/mm/yyyy",
     //     autoclose: true
@@ -98,25 +98,25 @@ export class ContractorSignUpComponent implements OnInit {
     this.defaultDatePickerStatus = !this.defaultDatePickerStatus;
     if (this.defaultDatePickerStatus) {
       $('#datepicker').show();
-       $('#datepicker').datepicker({
+      $('#datepicker').datepicker({
         format: "dd-mm-yyyy"
-      }).on('change', function(){
+      }).on('change', function() {
 
         that.defaultDatePickerStatus = false;
         that.contractEndDate = $('#datepicker').val();
-          $('#datepicker').hide();
+        $('#datepicker').hide();
       });
     } else {
       $('#datepicker').hide();
     }
-    
-   
 
-   }
 
-   // hideDatePicker(){
-   //    $('#datepicker').hide();
-   // }
+
+  }
+
+  // hideDatePicker(){
+  //    $('#datepicker').hide();
+  // }
 
   onFormSubmit(userForm) {
     console.log("this.permanentVariable--", this.permanentVariable);
@@ -144,7 +144,7 @@ export class ContractorSignUpComponent implements OnInit {
       this.fd.append('happy_notice', (this.contractor_employment_situation == 'in contract' && this.useNoticePeriod) ? this.useNoticePeriod : "");
       this.fd.append('longitude', this.marker.lng);
       this.fd.append('latitude', this.marker.lat);
-      
+
       this.fd.append('postcode', this.postcode);
       this.fd.append('display_town', this.displayTown);
       this.fd.append('display_county', this.displayCountry);
@@ -222,7 +222,7 @@ export class ContractorSignUpComponent implements OnInit {
       this.contractorInvalid = true;
     }
 
-    if(this.contractor_tel_no && (this.contractor_tel_no.toString().length > 11 || this.contractor_tel_no.toString().length < 10)){
+    if (this.contractor_tel_no && (this.contractor_tel_no.toString().length > 11 || this.contractor_tel_no.toString().length < 10)) {
       this.telNoInvalid = true;
       this.contractorInvalid = true;
     }
@@ -374,58 +374,80 @@ export class ContractorSignUpComponent implements OnInit {
   getLocation() {
     this.postalCodeInvalid = false;
     this.contractorInvalid = false;
-    if (this.contractor_post_code) {
-      let url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this.contractor_post_code + "&key=AIzaSyCcc7ZyRGjRbAuDgsLSQGdTuFxvLW9FGiI&components=country:GB"
-      this._commonRequestService.getData(url)
-        .subscribe(data => {
-          if (data && data.results && data.status == 'OK') {
-            if (data.results[0].formatted_address !== 'United Kingdom') {
-              let place = data.results[0];
-              // let locationJson = {
-              //   "postcode" : this.contractor_post_code,
-                 //,
-              //   "city" :  data.results[0].address_components.filter(item=>{
-              //     return item.types.indexOf('postal_town') > -1
-              //   })
-              // }
-              this.marker  = place.geometry.location;
+    // if (this.contractor_post_code) {
+    //   let url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this.contractor_post_code + "&key=AIzaSyCcc7ZyRGjRbAuDgsLSQGdTuFxvLW9FGiI&components=country:GB"
+    //   this._commonRequestService.getData(url)
+    //     .subscribe(data => {
+    //       if (data && data.results && data.status == 'OK') {
+    //         if (data.results[0].formatted_address !== 'United Kingdom') {
+    //           let place = data.results[0];
+    //           // let locationJson = {
+    //           //   "postcode" : this.contractor_post_code,
+    //              //,
+    //           //   "city" :  data.results[0].address_components.filter(item=>{
+    //           //     return item.types.indexOf('postal_town') > -1
+    //           //   })
+    //           // }
+    //           this.marker  = place.geometry.location;
 
-              if (place && place.address_components && place.address_components.length > 0 && place.formatted_address) {
-                for (var i = 0; i < place.address_components.length; i++) {
-                  for (var j = 0; j < place.address_components[i].types.length; j++) {
-                    if (place.address_components[i].types[j] == "postal_code") {
-                      this.postcode = place.address_components[i].long_name;
-                    }
-                    if (place.address_components[i].types[j] == "postal_town") {
-                      this.displayTown = place.address_components[i].long_name;
-                    }
-                    if (place.address_components[i].types[j] == "country") {
-                      this.displayCountry = place.address_components[i].long_name;
-                    }
-                    this.displayLocationName = this.displayTown + " " + this.postcode + "," + this.displayCountry;
-                  }
-                }
-              }
-
-
-              console.log(this.postcode);
-              console.log(this.displayTown);
-              console.log(this.displayCountry);
-              console.log(this.displayLocationName);
-              console.log(this.marker);
+    //           if (place && place.address_components && place.address_components.length > 0 && place.formatted_address) {
+    //             for (var i = 0; i < place.address_components.length; i++) {
+    //               for (var j = 0; j < place.address_components[i].types.length; j++) {
+    //                 if (place.address_components[i].types[j] == "postal_code") {
+    //                   this.postcode = place.address_components[i].long_name;
+    //                 }
+    //                 if (place.address_components[i].types[j] == "postal_town") {
+    //                   this.displayTown = place.address_components[i].long_name;
+    //                 }
+    //                 if (place.address_components[i].types[j] == "country") {
+    //                   this.displayCountry = place.address_components[i].long_name;
+    //                 }
+    //                 this.displayLocationName = this.displayTown + " " + this.postcode + "," + this.displayCountry;
+    //               }
+    //             }
+    //           }
 
 
-              //console.log("locationJson", locationJson);
-            } else {
-              this.postalCodeInvalid = true;
-              this.contractorInvalid = true;
-            }
-          } else {
+    //           console.log(this.postcode);
+    //           console.log(this.displayTown);
+    //           console.log(this.displayCountry);
+    //           console.log(this.displayLocationName);
+    //           console.log(this.marker);
+
+
+    //           //console.log("locationJson", locationJson);
+    //         } else {
+    //           this.postalCodeInvalid = true;
+    //           this.contractorInvalid = true;
+    //         }
+    //       } else {
+    //         this.postalCodeInvalid = true;
+    //         this.contractorInvalid = true;
+    //       }
+    //     })
+    // }
+
+    if (this.contractor_post_code && this.contractor_post_code.trim().length > 0) {
+      var url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/check_post_code";
+      this._commonRequestService.postData(url, { postcode: this.contractor_post_code.replace(/ /g, '') }).subscribe(
+        data => {
+          if (data && data.status == 'FALSE') {
             this.postalCodeInvalid = true;
             this.contractorInvalid = true;
+          }else{
+            this.postcode = this.contractor_post_code;
+            this.displayTown = data.data[0].town;
+            this.displayCountry  = data.data[0].county;
+            this.displayLocationName = data.data[0].town +', '+ data.data[0].region + ', ' + data.data[0].county;
+            this.marker = {'lat' : data.data[0].latitude, 'lng' : data.data[0].longitude}
+
           }
-        })
+
+        }
+      );
     }
+
+
 
   }
 
@@ -458,41 +480,41 @@ export class ContractorSignUpComponent implements OnInit {
     }
   }
 
-  chooseFromDropBox(){
-//     let dropbox = new Dropbox({})
-//    let options = {
+  chooseFromDropBox() {
+    //     let dropbox = new Dropbox({})
+    //    let options = {
 
-//     // Required. Called when a user selects an item in the Chooser.
-//     success: function(files) {
-//         alert("Here's the file link: " + files[0].link)
-//     },
+    //     // Required. Called when a user selects an item in the Chooser.
+    //     success: function(files) {
+    //         alert("Here's the file link: " + files[0].link)
+    //     },
 
-//     // Optional. Called when the user closes the dialog without selecting a file
-//     // and does not include any parameters.
-//     cancel: function() {
+    //     // Optional. Called when the user closes the dialog without selecting a file
+    //     // and does not include any parameters.
+    //     cancel: function() {
 
-//     },
+    //     },
 
-//     // Optional. "preview" (default) is a preview link to the document for sharing,
-//     // "direct" is an expiring link to download the contents of the file. For more
-//     // information about link types, see Link types below.
-//     linkType: "preview", // or "direct"
+    //     // Optional. "preview" (default) is a preview link to the document for sharing,
+    //     // "direct" is an expiring link to download the contents of the file. For more
+    //     // information about link types, see Link types below.
+    //     linkType: "preview", // or "direct"
 
-//     // Optional. A value of false (default) limits selection to a single file, while
-//     // true enables multiple file selection.
-//     multiselect: false, // or true
+    //     // Optional. A value of false (default) limits selection to a single file, while
+    //     // true enables multiple file selection.
+    //     multiselect: false, // or true
 
-//     // Optional. This is a list of file extensions. If specified, the user will
-//     // only be able to select files with these extensions. You may also specify
-//     // file types, such as "video" or "images" in the list. For more information,
-//     // see File types below. By default, all extensions are allowed.
-//     extensions: ['.pdf', '.doc', '.docx'],
-// };
+    //     // Optional. This is a list of file extensions. If specified, the user will
+    //     // only be able to select files with these extensions. You may also specify
+    //     // file types, such as "video" or "images" in the list. For more information,
+    //     // see File types below. By default, all extensions are allowed.
+    //     extensions: ['.pdf', '.doc', '.docx'],
+    // };
 
 
-//     Dropbox.choose(options);
+    //     Dropbox.choose(options);
 
-   // let dbx = new Dropbox({accessToken: 'sp6wj9n6kf6r0ma'})
+    // let dbx = new Dropbox({accessToken: 'sp6wj9n6kf6r0ma'})
   }
 
 

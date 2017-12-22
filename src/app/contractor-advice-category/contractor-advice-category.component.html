@@ -118,8 +118,8 @@
       </div>
       
     </div>
-    <div class="row">
-      <div class="col-sm-100" style="text-align: center; margin-bottom: 40px;">
+    <div class="row" *ngIf="totalPage && totalPage > currentPage">
+      <div class="col-sm-100" style="text-align: center; margin-bottom: 40px;" (click)="currentPage = currentPage+1; getLatestAdviceArticle()">
         <button class="btn-primary news_read_more" *ngIf="!searchClicked">See More Article<i class="fa fa-plus plus_blue" aria-hidden="true"></i></button>
       </div>
     </div>
