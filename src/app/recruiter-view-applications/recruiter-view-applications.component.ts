@@ -34,6 +34,7 @@ export class RecruiterViewApplicationsComponent implements OnInit {
     private commonService: CommonService) { }
 
   ngOnInit() {
+    window.scroll(0,0);
   	this.getApplicationList(12);
     this.getFilterbyJobData();
   }
