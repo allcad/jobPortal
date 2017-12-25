@@ -6,9 +6,9 @@
           <div id="contractor_about_us" class="contractor_signup">
             <h2 class="font_capitalizs">About <span>Us</span></h2>
             <ul class="breadcomb">
-              <li><a href="javascript:void(0)" routerLink="../home">Home</a></li>
+              <li><a href="javascript:void(0)">Home</a></li>
               <li class="right_arrow">&gt;</li>
-              <li class="active">Contractor </li>
+              <li><a href="javascript:void(0)">Contractor </a></li>
               <li class="right_arrow">&gt;</li>
               <li class="active">About Us </li>
             </ul>
@@ -46,7 +46,7 @@ industry information and the best Contractor services easy.</span> </p>
   <div class="contractRecruit_slider">
     <h2>Why choose Contractrecruit?</h2>
     <div class="container">
-      <swiper [config]="config" >
+      <swiper [config]="config">
         <div class="swiper-wrapper">
           <li class="swiper-slide">
             <div class="row">
@@ -206,9 +206,7 @@ industry information and the best Contractor services easy.</span> </p>
               </div>
               <div class="col-sm-50">
                 <div class="form-group">
-                  <!-- <input type="text" class="form-control" id="exampleInputPassword1" placeholder="ENTER LOCATION" name="location" autocorrect="off" autocapitalize="off" spellcheck="off" #search > -->
-
-                  <app-search-location  [placeHolder]="'ENTER LOCATION'" (blank)="searchBoxBlank()" (select)="locationSelecetd($event)" (change)="changeText($event)"></app-search-location>
+                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="ENTER LOCATION" name="location" autocorrect="off" autocapitalize="off" spellcheck="off" #search >
                 </div>
               </div>
             </div>

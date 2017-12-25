@@ -73,3 +73,17 @@
 .application_sort_by.width100 .dropdown-menu{
     padding:8px 15px;
 }
+
+@media(max-width: 767px){
+
+    .cvrow select{
+
+        display: block;
+        width: 100%;
+    }
+
+    .cvrow label{
+
+        margin-top:5px;
+    }
+}

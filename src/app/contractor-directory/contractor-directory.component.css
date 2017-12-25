@@ -89,6 +89,7 @@
     #services-nav-menu li{
         width: 32% !important;
         display: inline-flex !important;
+        min-height:117px;
     }
 
     #services-nav-menu li a .content{
@@ -113,7 +114,7 @@
 
     #services-nav-menu .hover-active-state .icon{
 
-        min-height: 91px !important;
+        min-height: 105px !important;
         margin-bottom: 0px !important;
     }
 

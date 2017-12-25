@@ -6,11 +6,23 @@
 @media(max-width: 767px){
 
 	.header_contracthub{
-		padding: 0 !important;
+	 	    padding: 17px 0 0 11px !important;
 	}
 
 	.contracthub_listine{
 
 		margin: 1px 13px 37px;
+	}
+
+	.header_contracthub img{
+
+		margin-right: 16px;
+    	padding-right: 12px;
+	}
+
+	.header_contracthub h4{
+
+		font-size: 17px;
+		font-weight: normal;
 	}
 }
