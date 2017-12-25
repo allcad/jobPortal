@@ -167,7 +167,13 @@ export class RecruiterHomeComponent implements OnInit {
   	//this._commonDataSharedService.manageJobsJobId.next(id);
   	// var obj = {'jobId' : id};
    //  localStorage.setItem('recruiterJobData', JSON.stringify(obj));
-   this._commonService.setJobIdForJobPosting(id);
+   //this._commonService.setJobIdForJobPosting(id);
+   var jobId = {
+      "jobId": id
+    }
+    this.router.navigate(['/recruiter/recruiter-home'], { skipLocationChange: true }).then(() =>
+     this.router.navigate(['/recruiter/job-posting'], { 'relativeTo': this.activateRoute, queryParams :  jobId} )
+     );
   }
 
   searchBoxBlank(){

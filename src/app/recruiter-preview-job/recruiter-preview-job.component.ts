@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule,NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CommonRequestService } from '../common-request.service';
 import { CommonDataSharedService } from '../commonDataSharedService';
 import { CommonService } from '../commonService.service';
@@ -18,7 +18,8 @@ export class RecruiterPreviewJobComponent implements OnInit {
   postJobButtonFlag = false;
   loading = true;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
-  	private _commonDataSharedService: CommonDataSharedService, private commonService: CommonService) { }
+  	private _commonDataSharedService: CommonDataSharedService, private commonService: CommonService,
+    private _routes: ActivatedRoute) { }
 
   ngOnInit() {
     this.loading = true;
@@ -30,29 +31,45 @@ export class RecruiterPreviewJobComponent implements OnInit {
   	// })
   	var localStorageData = JSON.parse(localStorage.getItem('recruiterJobData'));
   	console.log("localStorageData--", localStorageData);
+
+    if (this.router.url.split('/')[2].indexOf('preview-job') > -1) {
+      this._routes.queryParams.subscribe((params: Params) => {
+        let paramData = params;
+        console.log("params--", params);
+        this.uniqueJobId = params.jobId;
+        this.jobList(this.uniqueJobId);
+        this.postJobButtonFlag = false;
+      //   if(this.uniqueJobId) {
+      // } else {
+      //   this.postJobButtonFlag = true;
+      // }
+
+      });
+    }
   	// if(localStorageData && localStorageData.jobId) {
    //    this.uniqueJobId = localStorageData.jobId;
   	// 	this.jobList(localStorageData.jobId);
   	// }
       console.log("this.commonService.getJobIdForPreview()", this.commonService.getJobIdForPreview());
-    if(this.commonService.getJobIdForPreview()) {
-      this.uniqueJobId = this.commonService.getJobIdForPreview();
-      this.jobList(this.uniqueJobId);
-    }
+    // if(this.commonService.getJobIdForPreview()) {
+    //   this.uniqueJobId = this.commonService.getJobIdForPreview();
+    //   this.jobList(this.uniqueJobId);
+    // }
     var jobPostingLocalStorage = JSON.parse(localStorage.getItem('jobPostingData'));
     console.log("jobPostingLocalStorage--", jobPostingLocalStorage);
     if(jobPostingLocalStorage && jobPostingLocalStorage.jobPreviewData) {
       this.previewDataList = jobPostingLocalStorage.jobPreviewData;
       this.uniqueJobId = this.previewDataList && this.previewDataList.jobId ? this.previewDataList.jobId : '';
       this.loading = false;
+      if(this.uniqueJobId) {
+        this.postJobButtonFlag = false;
+      } else {
+        this.postJobButtonFlag = true;
+      }
       console.log("this.previewDataList from local", this.previewDataList)
 
     }
-    if(this.uniqueJobId) {
-      this.postJobButtonFlag = false;
-    } else {
-      this.postJobButtonFlag = true;
-    }
+    console.log("this.uniqueJobId", this.uniqueJobId);
   }
 
   jobList(jobId) {
@@ -71,6 +88,7 @@ export class RecruiterPreviewJobComponent implements OnInit {
          console.log("jobList--", data);
          if(data && data.status == 'TRUE') {
            this.previewDataList = data.data;
+           this.postJobButtonFlag = false;
            console.log("this.previewDataList--", this.previewDataList);
          } else if(data && data.status == 'FALSE') {
          }
@@ -79,6 +97,7 @@ export class RecruiterPreviewJobComponent implements OnInit {
   }
 
   goToJobPosting() {
+    console.log("this.previewDataList", this.previewDataList);
     //if(!this.uniqueJobId) {
       var obj = {'jobPreviewData' : this.previewDataList};
       // localStorage.setItem('editJobPost', JSON.stringify(obj));

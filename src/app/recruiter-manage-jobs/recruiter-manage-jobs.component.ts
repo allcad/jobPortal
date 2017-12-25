@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule,NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CommonRequestService } from '../common-request.service';
 import { CommonService } from '../commonService.service';
 import { CommonDataSharedService } from '../commonDataSharedService';
@@ -32,7 +32,8 @@ export class RecruiterManageJobsComponent implements OnInit {
   thirdFound;
   jobsSortByValue = 1;
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
-  	private _commonDataSharedService: CommonDataSharedService, private _commonService: CommonService) { }
+  	private _commonDataSharedService: CommonDataSharedService, private _commonService: CommonService,
+    private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
   	this.getManageJobsList(9);
@@ -43,11 +44,23 @@ export class RecruiterManageJobsComponent implements OnInit {
   	//this._commonDataSharedService.manageJobsJobId.next(id);
   	// var obj = {'jobId' : id};
    //  localStorage.setItem('recruiterJobData', JSON.stringify(obj));
-    this._commonService.setJobIdForJobPosting(id);
+    //this._commonService.setJobIdForJobPosting(id);
+     var jobId = {
+      "jobId": id
+    }
+    this.router.navigate(['/recruiter/recruiter-home'], { skipLocationChange: true }).then(() =>
+     this.router.navigate(['/recruiter/job-posting'], { 'relativeTo': this.activateRoute, queryParams :  jobId} )
+     );
   }
 
   passJobIdForPreview(id) {
-    this._commonService.setJobIdForPreview(id);
+    //this._commonService.setJobIdForPreview(id);
+    var jobId = {
+      "jobId": id
+    }
+    this.router.navigate(['/recruiter/recruiter-home'], { skipLocationChange: true }).then(() =>
+     this.router.navigate(['/recruiter/preview-job'], { 'relativeTo': this.activateRoute, queryParams :  jobId} )
+     );
   }
 
   onChangeManageJob() {

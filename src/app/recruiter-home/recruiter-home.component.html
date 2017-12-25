@@ -8,9 +8,9 @@
                             <div class="contractor_signup recruiter_signup">
                                 <h2 class="font_capitalizs color_white">Recruiter <span class="text_pink">Home</span></h2>
                                 <ul class="breadcomb color_active">
-                                    <li><a href="javascript:void(0);" [routerLink]="['/recruiter/home']">Home</a></li>
+                                    <li><a href="javascript:void(0);" [routerLink]="['/recruiter/home']">HOME</a></li>
                                     <li class="right_arrow text_pink">&gt;</li>
-                                    <li>CONTRACTOR SEARCH</li>
+                                    <li>RECRUITER</li>
                                     <li class="right_arrow text_pink">&gt;</li>
                                     <li class="active">RECRUITER HOME</li>
                                 </ul>
@@ -270,14 +270,14 @@
                                     <cite style="font-style: normal;" *ngIf="item?.prefereedRate?.dailyHourlyRate === 'hourly'">h</cite></p>
                                 <p><span class="text_pink">Start Date:</span>{{item?.startDate | date}}</p>
                                 <p><span class="text_pink">Duration:</span>{{item?.duration ? item?.duration : 'N/A'}}</p>
-                                <p class="full_contant" style="height: 90px;">{{item?.jobSpecification | slice:0:200}}...</p>
+                                <p class="full_contant" style="height: 90px;" [innerHTML]="item?.jobSpecification | slice:0:200">...</p>
                             </div>
                             <div class="footer_box">
                                 <div class="pull-left social_box_footer">
                                     <p><span class="text_pink">{{item?.applied ? item?.applied : 'N/A'}}</span> Applications</p>
                                 </div>
                                 <div class="pull-right view_company">
-                                    <a href="javascript:void(0)" [routerLink]="['../job-posting']" (click)="passJobId(item?.jobid)" class="hover_text_pink">Edit Posting <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
+                                    <a href="javascript:void(0)" (click)="passJobId(item?.jobid)" class="hover_text_pink">Edit Posting <i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </div>
