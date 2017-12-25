@@ -15,7 +15,7 @@ export class SearchComponent implements OnInit {
   location;
   searchResult;
   selecetd;
-  constructor(private _router: Router, private _routes: ActivatedRoute,  private _commonRequestService: CommonRequestService) { }
+  constructor(private _router: Router, private _routes: ActivatedRoute, private _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
 
@@ -59,10 +59,13 @@ export class SearchComponent implements OnInit {
     this.displayLocationName = location.town_name + ',' + location.country;
   }
 
-  changeText(text){
-    this.postcode = "";
-    this.displayTown = "";
-    this.displayCountry = "";
-    this.displayLocationName = "";
+  changeText(text) {
+    if (typeof text == "string") {
+      this.postcode = "";
+      this.displayTown = "";
+      this.displayCountry = "";
+      this.displayLocationName = text;
+    }
+
   }
 }

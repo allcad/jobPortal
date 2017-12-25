@@ -346,8 +346,8 @@ export class ContractorProfileComponent implements OnInit {
       this.fd.append('longitude', this.lng);
       this.fd.append('latitude', this.lat);
 
-      this.fd.append('commutablePolygon', JSON.stringify(this.commutablePolygun));
-      this.fd.append('relocatablePolygon', JSON.stringify(this.relocateablePolygun))
+      this.fd.append('commutablePolygon',this.commutablePolygun && this.commutablePolygun.length > 0 ?  JSON.stringify(this.commutablePolygun) : '');
+      this.fd.append('relocatablePolygon', this.relocateablePolygun && this.relocateablePolygun.length > 0 ?  JSON.stringify(this.relocateablePolygun) : '');
       this.fd.append('display_town', this.displayTown);
       this.fd.append('display_county', this.displayCountry);
       this.fd.append('display_name', this.displayLocationName);
@@ -566,9 +566,9 @@ export class ContractorProfileComponent implements OnInit {
     this.rate_max_hr = this.profileData.contractor_rate_max_hr;
 
     this.commutablePolygun = this.profileData.commutablePolygon ? JSON.parse(this.profileData.commutablePolygon) : [],
-      this.relocateablePolygun = this.profileData.relocatablePolygon ? JSON.parse(this.profileData.relocatablePolygon) : [],
+    this.relocateablePolygun = this.profileData.relocatablePolygon ? JSON.parse(this.profileData.relocatablePolygon) : [],
 
-      this.contractor_rate_min_relocatable = this.profileData.contractor_rate_min_relocatable;
+    this.contractor_rate_min_relocatable = this.profileData.contractor_rate_min_relocatable;
     this.contractor_rate_min_relocatable_hr = this.profileData.contractor_rate_min_relocatable_hr;
     this.contractor_rate_max_relocatable = this.profileData.contractor_rate_max_relocatable;
     this.contractor_rate_max_relocatable_hr = this.profileData.contractor_rate_max_relocatable_hr;
@@ -584,9 +584,9 @@ export class ContractorProfileComponent implements OnInit {
     this.selectedSkillArray = this.profileData['skill&Experience'].split(',');
     this.lng = Number(this.profileData.longitude);
     this.lat = Number(this.profileData.latitude);
-    this.display_town = this.profileData.display_town;
-    this.display_county = this.profileData.display_county;
-    this.display_name = this.profileData.display_name;
+    this.displayTown = this.profileData.display_town;
+    this.displayCountry = this.profileData.display_county;
+    this.displayLocationName = this.profileData.display_name;
     this.initializeMap();
 
   }

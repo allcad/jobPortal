@@ -1,4 +1,4 @@
-<div class="services_header"> <img src="./assets/images/contractor-services-icon.png" alt="" title=""> <span>CONTRACTOR SERVICES</span> <a  href="javascript:void(0)"><img src="./assets/images/services-menu.png" alt="" title="" class="menu_bar"></a>
+<div class="services_header"> <img src="./assets/images/contractor-services-icon.png" alt="" title=""> <span>CONTRACTOR SERVICES</span> <a (click)="toggleList()"  href="javascript:void(0)"><img src="./assets/images/services-menu.png" alt="" title="" class="menu_bar"></a>
   <div class="navigation_services">
     <ul>
       <li *ngFor="let category of categoryData" routerLink="../directory/{{category.contract_hub_category_id}}"><a href="javascript:void(0)">{{category.contract_hub_category_name}}</a></li>

@@ -281,11 +281,14 @@ export class ContractorJobSearchSavedComponent implements OnInit {
     this.displayLocationName = location.town_name + ',' + location.country;
   }
 
-  changeText(text){
-    this.postcode = "";
-    this.displayTown = "";
-    this.displayCountry = "";
-    this.displayLocationName = "";
+  changeText(text) {
+    if (typeof text == "string") {
+      this.postcode = "";
+      this.displayTown = "";
+      this.displayCountry = "";
+      this.displayLocationName = text;
+    }
+
   }
 
   searchBoxBlank(){

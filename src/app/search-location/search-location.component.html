@@ -1,5 +1,5 @@
 <div style="position: relative;">
-  <input type="text"  class="form-control txt_cap" id="exampleInputPassword1" [placeholder]="placeHolder" name="location" [(ngModel)]="location" (keyup)="searchLocation()">
+  <input type="text"  class="form-control txt_cap" id="exampleInputPassword1" [placeholder]="placeHolder" name="location" [(ngModel)]="location" (keyup)="searchLocation()" autocomplete="off">
   <div class="location_results_search" *ngIf="(searchResult && searchResult.length>0 && !selecetd) ">
     <a (click)="locationSelected(location)" *ngFor="let location of searchResult" [innerHTML]="location.text"></a>
   </div>

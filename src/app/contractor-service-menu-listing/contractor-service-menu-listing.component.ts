@@ -34,6 +34,11 @@ export class ContractorServiceMenuListingComponent implements OnInit {
   }
 
 
+  toggleList(){
+    document.querySelector('.services_header').classList.toggle('show');
+  }
+
+
   // categoryClicked(categoryData){
   //   console.log("categoryData", categoryData);
   //   this._commonRequestService.setDataWithoutObserval(categoryData.contract_hub_category_id, 'category_hub_id');

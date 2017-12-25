@@ -140,6 +140,8 @@ moveToSearchResult(value) {
       inputJson[key] = value;
     }
 
+    inputJson.contractor_search_by_location = inputJson.display_name;
+
     localStorage.setItem("jobSearch", JSON.stringify(inputJson));
 
     this._router.navigate(['../public/home'], { skipLocationChange: true }).then(() =>

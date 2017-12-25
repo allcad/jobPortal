@@ -10,7 +10,7 @@
             <li>
               <h2 class="hidden-xs">IT Contract Search</h2>
               <ul>
-                <li><a (click)="removeClass()" href="javascript:void(0)" routerLink="../public/jobSearch">Advanced Job Search</a></li>
+                <li><a (click)="removeClass(firstUl)" href="javascript:void(0)" routerLink="../public/jobSearch">Advanced Job Search</a></li>
                 <hr class="visible-xs">
                 <li><a (click)="searchContract(null, null)" href="javascript:void(0)">View Newest Contracts</a></li>
                 <hr class="visible-xs">
@@ -42,17 +42,17 @@
             <li class="hidden-xs">
               <h2>Search IT Contracts By Location</h2>
               <ul>
-                <li><a (click)="searchContract(null, null)" href="javascript:void(0)">IT Contracts in London</a></li>
+                <li><a (click)="searchContract('display_name', 'London, London')" href="javascript:void(0)">IT Contracts in London</a></li>
                 <hr class="visible-xs">
-                <li><a (click)="searchContract(null, null)" href="javascript:void(0)">IT Contracts in Leeds</a></li>
+                <li><a (click)="searchContract('display_name', 'Leeds, West Yorkshire')" href="javascript:void(0)">IT Contracts in Leeds</a></li>
                 <hr class="visible-xs">
-                <li><a (click)="searchContract(null, null)" href="javascript:void(0)">IT Contracts in Manchester</a></li>
+                <li><a (click)="searchContract('display_name', 'Manchester, Greater Manchester')" href="javascript:void(0)">IT Contracts in Manchester</a></li>
                 <hr class="visible-xs">
-                <li><a (click)="searchContract(null, null)" href="javascript:void(0)">IT Contracts in Glasgow</a></li>
+                <li><a (click)="searchContract('display_name', 'Glasgow, Glasgow')" href="javascript:void(0)">IT Contracts in Glasgow</a></li>
                 <hr class="visible-xs">
-                <li><a (click)="searchContract(null, null)" href="javascript:void(0)">IT Contracts in Bristol</a></li>
+                <li><a (click)="searchContract('display_name', 'Bristol, Bristol')" href="javascript:void(0)">IT Contracts in Bristol</a></li>
                 <hr class="visible-xs">
-                <li><a (click)="searchContract(null, null)" href="javascript:void(0)">IT Contracts in Edinburgh</a></li>
+                <li><a (click)="searchContract('display_name', 'Edinburgh, Edinburgh')" href="javascript:void(0)">IT Contracts in Edinburgh</a></li>
                 <hr class="visible-xs">
                 <li><a (click)="searchContract(null, null)" href="javascript:void(0)">View IT Contracts for all Locations</a></li>
               </ul>
