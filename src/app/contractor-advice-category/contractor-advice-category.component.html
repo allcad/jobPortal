@@ -38,7 +38,7 @@
                 <div class="swiper-wrapper">
                   <li class="swiper-slide" *ngFor="let article of articleList" style="background: url(./assets/images/advice-category-banner-bg.png) no-repeat; background-size: cover; background-position: center;">
                     <h2>{{article.title}}</h2>
-                    <p [innerHTML]="article.description | slice : 0 : 200"></p>
+                    <p [innerHTML]="article.description | slice : 0 : 200" class="rmv-pading"></p>
                     <div class="row">
                       <div class="col-xs-50">
                         <div class="letest_news_footer share-buttons"> 

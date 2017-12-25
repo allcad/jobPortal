@@ -47,14 +47,19 @@
 
 	}
 	
-	.advice_category_slider .bxslider li p{
+:host /deep/ 	.advice_category_slider .bxslider li p{
 
-		padding: 0 28px !important;
+		padding: 0 21px !important;
 	}
 
 	.advice_category_slider .bxslider li .letest_news_footer{
 
 		padding: 0 13px !important
 	}
+	
 
+	:host /deep/  .rmv-pading p{
+
+		padding: 0 8px !important;
+	}
 }

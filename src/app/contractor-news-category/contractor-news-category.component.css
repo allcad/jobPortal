@@ -30,5 +30,15 @@
 		margin-top:10px;
 	 }
 
-	 
+	 .login_form_section li{
+
+	 	width: 100%;
+    	display: block;
+    	margin-top:5px;
+	 }
+
+	 .advice_categories_search_area .nav > li > a{
+
+	 	border:1px solid #a5a5a5 !important;
+	 }
 }

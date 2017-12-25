@@ -2,3 +2,12 @@
     border-top: 0 solid #000;
     height: 119px;
 }
+
+@media(max-width:767px){
+
+	#before_login {
+    
+    height:151px;
+}
+
+}
