@@ -302,19 +302,19 @@
             <span>Still not found what you’re looking for?</span>
           </div>
         </div>
-        <div class="col-sm-60">
+        <div class="col-sm-60" style="cursor: pointer;">
           <div class="not_found_loking_right">
-            <span (click)="categoryClicked(category)" *ngFor="let category of categoryData | slice : 0 : 3; let i = index" class="color{{i+1}}">{{category.contract_hub_category_name}}</span> 
+            <span (click)="categoryClicked(category)" *ngFor="let category of categoryData | slice : 0 : 3; let i = index" class="color{{i+1}}">{{category.contract_hub_category_name.split(' ')[0]}}</span> 
             <!-- <span class="color2">Insurance</span> 
             <span class="color3">Training </span> -->
             <br>
-            <span (click)="categoryClicked(category)" *ngFor="let category of categoryData | slice : 3 : 6; let i = index" class="color{{i+4}}">{{category.contract_hub_category_name}}</span> 
+            <span (click)="categoryClicked(category)" *ngFor="let category of categoryData | slice : 3 : 6; let i = index" class="color{{i+4}}">{{category.contract_hub_category_name.split(' ')[0]}}</span> 
 
 
             <!-- <span class="color5">mortgages</span> 
             <span class="color6">CV Help </span> -->
             <br>
-            <span (click)="categoryClicked(category)" *ngFor="let category of categoryData | slice : 6 : 9; let i = index" class="color{{i+7}}">{{category.contract_hub_category_name}}</span>
+            <span (click)="categoryClicked(category)" *ngFor="let category of categoryData | slice : 6 : 9; let i = index" class="color{{i+7}}">{{category.contract_hub_category_name.split(' ')[0]}}</span>
           </div>
         </div>
       </div>

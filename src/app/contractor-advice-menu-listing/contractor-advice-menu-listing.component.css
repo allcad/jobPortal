@@ -7,3 +7,9 @@
 
 	font-weight: normal;
 }
+
+@media(max-width: 1024px) {
+  .show .navigation_services {
+    display: block;
+  }
+}

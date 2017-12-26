@@ -54,8 +54,8 @@ export class ContractorProfileComponent implements OnInit {
   imageFile;
   CVFile;
   coverLetterFile;
-  contratorCVList = [{ id: 0 }];
-  coverLetterList = [{ id: 1 }];
+  contratorCVList = [{ attachment_relation: 0 }];
+  coverLetterList = [{ attachment_relation: 0 }];
   industrySectorData = [];
   securityClearenceData = [];
   uploadedCvArray = [];
@@ -94,6 +94,8 @@ export class ContractorProfileComponent implements OnInit {
   displayTown;
   displayCountry;
   displayLocationName;
+  preferredCVId=206;
+  preferredCoverId=0;
   constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
@@ -272,9 +274,10 @@ export class ContractorProfileComponent implements OnInit {
 
   }
 
-  contractorCVFileChangeEvent(fileInput) {
+  contractorCVFileChangeEvent(fileInput, i) {
     if (!this.checkFileValid(fileInput.target.files[0].name)) {
       this.CVFile = fileInput.target.files[0];
+      //this.uploadedCvArray.push({index: i, file: this.CVFile});
       this.uploadedCvArray.push(this.CVFile);
     } else {
       this.contratorCVList.pop();
@@ -283,7 +286,7 @@ export class ContractorProfileComponent implements OnInit {
   }
 
   saveContractorProfile(form: NgForm) {
-    if (form.valid && !this.ErrorMesageFlag) {
+    if (form.valid && !this.ErrorMesageFlag && this.postCode.trim().length > 5) {
       this.fd = new FormData();
       this.fd.append('loginToken', (localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).token) ? JSON.parse(localStorage.getItem('loginDetail')).token : "nsakdlallas1232mk123b2k1390iq2ekq");
       this.fd.append('email', (localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).email) ? JSON.parse(localStorage.getItem('loginDetail')).email : "test@gmail.com");
@@ -384,6 +387,12 @@ export class ContractorProfileComponent implements OnInit {
         }
       );
     } else {
+      if(!this.postCode || this.postCode.trim().length <= 5 || this.ErrorMesageFlag){
+        this.ErrorMesageFlag = true;
+        this.errorMsg = "Post code invalid";
+      }else{
+        this.ErrorMesageFlag = false;
+      }
       window.scroll(0, 0);
     }
 
@@ -605,7 +614,7 @@ export class ContractorProfileComponent implements OnInit {
   }
 
   addAnotherCV() {
-    this.contratorCVList.push({ id: this.contratorCVList.length + 1 })
+    this.contratorCVList.push({ attachment_relation: this.contratorCVList.length + 1 })
   }
 
   removeElement(array, index) {
@@ -629,7 +638,7 @@ export class ContractorProfileComponent implements OnInit {
   }
 
   addAnotherCoverLetter() {
-    this.coverLetterList.push({ id: this.coverLetterList.length + 1 })
+    this.coverLetterList.push({ attachment_relation: this.coverLetterList.length + 1 })
   }
 
   getIndustrySector() {
@@ -711,13 +720,13 @@ export class ContractorProfileComponent implements OnInit {
   editcv(index) {
     this.deleteAttchmentArray.push(this.contratorCVList[index]['attachment_relation']);
     console.log(this.deleteAttchmentArray);
-    this.contratorCVList[index] = { 'id': index + 1 };
+    this.contratorCVList[index] = { 'attachment_relation': index + 1 };
   }
 
   editCover(index) {
     this.deleteAttchmentArray.push(this.coverLetterList[index]['attachment_relation']);
     console.log(this.deleteAttchmentArray);
-    this.coverLetterList[index] = { 'id': index + 1 };
+    this.coverLetterList[index] = { 'attachment_relation': index + 1 };
   }
 
   applyCrop() {
@@ -835,7 +844,7 @@ export class ContractorProfileComponent implements OnInit {
 
   checkPostCode() {
     this.ErrorMesageFlag = false;
-    if (this.postCode && this.postCode.trim().length > 0) {
+    if (this.postCode && this.postCode.trim().length > 5) {
       var url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/check_post_code";
       this._commonRequestService.postData(url, { postcode: this.postCode.replace(/ /g, '') }).subscribe(
         data => {
@@ -854,5 +863,14 @@ export class ContractorProfileComponent implements OnInit {
         }
       );
     }
+  }
+
+
+  chengePrefernence(cv, index){
+      for(let i=0; i<this.uploadedCvArray.length; i++){
+        if(index == this.uploadedCvArray[i].index){
+          console.log("index", i);
+        }
+      }
   }
 }

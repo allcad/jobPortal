@@ -1,4 +1,5 @@
-<div id="map"></div><section id="min_height">
+<div id="map"></div>
+<section id="min_height">
   <!--navigation top end-->
   <!--contractor login-->
   <div id="contractor-signup">
@@ -17,7 +18,6 @@
             <div class="alert alert-success margin-tp18" *ngIf="succesMessageFlag">
               <a href="javascript:void(0)" class="close" title="close" (click)="succesMessageFlag=false">×</a>{{successMsg}} <strong>succesfully!</strong>
             </div>
-           
             <div class="pull-right job_search"> <a href="javascript:void(0)" class="btn-primary hover_white_pluse" [routerLink]="['../viewProfile']">View Profile <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> <a href="javascript:void(0);" class="btn-info hover_white_pluse">Edit Profile <i class="fa fa-plus plus_black" aria-hidden="true"></i></a> </div>
           </div>
         </div>
@@ -35,16 +35,12 @@
         <div class="errorbox" *ngIf="preferredJobTitleFlag"><b>The following error(s) occured:</b>
           <br>
           <li>Job title required</li>
-          
         </div>
-
         <div class="errorbox" *ngIf="invalidFile">
           <b>The following error(s) occured:</b>
           <br>
           <li>Invalid file type</li>
         </div>
-
-
         <form (ngSubmit)="saveContractorProfile(contractorProfile)" #contractorProfile="ngForm">
           <div class="row">
             <div class="col-md-30 col-sm-40">
@@ -63,7 +59,7 @@
                       <input type="file" class="upload" (change)="contractorImageFileChangeEvent($event)" /> -->
                   </div>
                   <div class="second">
-                    <img-cropper #cropper  [image]="data" [settings]="cropperSettings">
+                    <img-cropper #cropper [image]="data" [settings]="cropperSettings">
                     </img-cropper>
                     <button type="button" class="btn-primary" style="padding: 5px 30px 4px; margin-bottom: 6px;" (click)="applyCrop()">Apply</button>
                   </div>
@@ -74,27 +70,23 @@
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/account-pass.png" alt="Enter Password" title="Password" class="img-responsive"></div>
                       <input class="form-control" id="exampleInputEmail1" placeholder="User Name" type="text" [(ngModel)]="userName" name="userName" [disabled]="true">
-                     
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/mail-address.png" alt="Email" title="Email" class="img-responsive"></div>
                       <input class="form-control" id="exampleInputEmail2" placeholder="Email Address" type="email" [(ngModel)]="emailAddress" name="emailAddress" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [disabled]="true">
-                      
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/security-clearance.png" alt="Enter Password" title="Password" class="img-responsive"></div>
-                      <select class="form-control minimal background_drop_down" [(ngModel)]="securityClearance" name="securityClearance"  required>
+                      <select class="form-control minimal background_drop_down" [(ngModel)]="securityClearance" name="securityClearance" required>
                         <option [value]="0">Security Clearance?</option>
                         <option *ngFor="let item of securityClearenceData" value="{{item.id}}">
                           {{item.name}}
                         </option>
-                        
                       </select>
-                      
                     </div>
                   </div>
                   <div class="form-group margin_bottom_16px">
@@ -102,7 +94,7 @@
                       <div class="input-group-addon border_bottom_none"><img src="./assets/images/eu-driving-licence.png" alt="Enter Password" title="Password" class="img-responsive"></div>
                       <label class="eu_driving_licence">EU Driving Licence?</label>
                       <div class="input-group group_inline_right">
-                        <input  id="prepaid1" name="service_type3" [checked]="euDrivingLicence==1" type="radio" [(ngModel)]="euDrivingLicence" name="euDrivingLicence1" [value]="1">
+                        <input id="prepaid1" name="service_type3" [checked]="euDrivingLicence==1" type="radio" [(ngModel)]="euDrivingLicence" name="euDrivingLicence1" [value]="1">
                         <label for="prepaid1" class="radio-inline"><span></span> Yes </label>
                         <input id="postpaid2" name="service_type3" type="radio" [(ngModel)]="euDrivingLicence" name="euDrivingLicence2" [value]="0" [checked]="euDrivingLicence==0">
                         <label for="postpaid2" class="radio-inline"><span></span> No </label>
@@ -112,8 +104,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/post-code.png" alt="Post Code" title="Post Code" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail3" placeholder="Post Code" type="text" [(ngModel)]="postCode" name="postCode" (blur)="checkPostCode()">
-                     
+                      <input class="form-control" id="exampleInputEmail3" placeholder="Post Code" type="text" [(ngModel)]="postCode" name="postCode" (keyup)="checkPostCode()">
                     </div>
                   </div>
                   <!-- <div class="form-group row">
@@ -136,7 +127,7 @@
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/availability.png" alt="Availability" title="Availability" class="img-responsive"></div>
                       <!-- <input class="form-control" id="exampleInputEmail6" placeholder="Availability" type="text" [(ngModel)]="availability" name="availability" > -->
-                      <select class="form-control minimal background_drop_down" [(ngModel)]="availability" name="availability"  >
+                      <select class="form-control minimal background_drop_down" [(ngModel)]="availability" name="availability">
                         <option value="" disabled checked>Availability</option>
                         <option value="Immediate">Immediate</option>
                         <option value="1 Week">1 Week</option>
@@ -145,63 +136,47 @@
                         <option value="6 Week">6 Week</option>
                         <option value="2 Months">2 Months</option>
                         <option value="3 Months">3 Months</option>
-                          <!-- <option *ngFor="let item of securityClearenceData" value="{{item.id}}">
+                        <!-- <option *ngFor="let item of securityClearenceData" value="{{item.id}}">
                           {{item.name}}
                         </option> -->
-                        
                       </select>
-
-                     
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/web-address.png" alt="Web Address" title="Web Address" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail7" placeholder="Enter Web Address" type="url" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" [(ngModel)]="webAddress" name="webAddress" >
-                      
+                      <input class="form-control" id="exampleInputEmail7" placeholder="Enter Web Address" type="url" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" [(ngModel)]="webAddress" name="webAddress">
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/stack-overflo.png" alt="Stack Overflow Web Address" title="Stack Overflow Web Address" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail8" placeholder="Stack Overflow Web Address" type="url" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" [(ngModel)]="stackOverWebAdd" name="stackOverWebAdd" >
-                     
+                      <input class="form-control" id="exampleInputEmail8" placeholder="Stack Overflow Web Address" type="url" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" [(ngModel)]="stackOverWebAdd" name="stackOverWebAdd">
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/GitHub-Web.png" alt="Enter GitHub Web Address" title="Enter GitHub Web Address" class="img-responsive"></div>
-                      <input class="form-control" id="exampleInputEmail9" placeholder="Enter GitHub Web Address" type="url" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" [(ngModel)]="gitHubWebAdd" name="gitHubWebAdd" >
-                      
+                      <input class="form-control" id="exampleInputEmail9" placeholder="Enter GitHub Web Address" type="url" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" [(ngModel)]="gitHubWebAdd" name="gitHubWebAdd">
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/Linkedin-Web.png" alt="Enter Linkedin Web Address" title="Enter Linkedin Web Address" class="img-responsive"></div>
                       <input class="form-control" id="exampleInputEmail10" placeholder="Enter Linkedin Web Address" type="url" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" [(ngModel)]="linkedinWebAdd" name="linkedinWebAdd">
-                      
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/Behance-Web.png" alt="Enter Behance Web Address" title="Enter Behance Web Address" class="img-responsive"></div>
                       <input class="form-control" id="exampleInputEmail11" placeholder="Enter Behance Web Address" type="text" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" [(ngModel)]="behanceWebAdd" name="behanceWebAdd">
-                      
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-md-70 col-sm-60">
-              <!-- <div class="preferred_job_titles">
-                <div class="form-group">
-                  <label for="preferredJob">What are your preferred job titles?</label>
-                  <input type="text" class="form-control" id="preferredJob" placeholder="Enter job title" [(ngModel)]="preferredJobTitle" name="preferredJobTitle">
-                </div>
-                <div class="preferred_skip_submit"> <a href="javascript:void(0)" class="btn-info hover_white_pluse">Skip <i class="fa fa-angle-double-right plus_black" aria-hidden="true"></i></a> <a href="javascript:void(0)" class="btn-info hover_white_pluse" (click)="savePreferredJobTitle()">Submit <i class="fa fa-plus plus_black img_ioc" aria-hidden="true"></i></a> </div>
-              </div> -->
               <div class="profile_map">
-                
                 <div id="profileMap"></div>
               </div>
               <div class="signup_form_section width_auto">
@@ -260,11 +235,6 @@
                 <h2>Skills & Experience</h2>
                 <div class="enter_your_skills">
                   <input type="text" class="form-control" id="exampleInputEmail1dfr" placeholder="Enter Key Skills (Separated with commas)" (keyup)="addSkill($event)" [(ngModel)]="selectedSkill" name="skill">
-                  <!-- <select class="form-control minimal background_drop_down" style="width: 96%; float: left;" [(ngModel)]="selectedSkill" name="skills" (change)="selectSkill()">
-                    <option value="">Select Skill</option>
-                    <option *ngFor="let skill of skillData" [value]="skill.skill_id">{{skill.skill_name}}</option>
-                  </select>
-                  <a href="javascript:void(0)" style="float: left; margin-left: 7px; margin-top: 3px;" (click)="addSkill()"><img src="./assets/images/your-skills.png" alt="Enter your skills" title="Enter your skills"></a> -->
                 </div>
                 <div class="add_sub_skills">
                   <a href="javascript:void(0)" *ngFor="let selectedSkill of selectedSkillArray; let i = index">
@@ -272,13 +242,6 @@
                    <img src="./assets/images/close-icon.png" alt="Close" title="Close" (click)="removeSelectedSkill(i)"></a>
                 </div>
               </div>
-              <!-- <div class="job_search_keywords signup_form_section width_auto">
-                <h2>Skills &amp; Experience</h2>
-                <div class="enter_your_skills">
-                  <label>Enter your skills:</label>
-                  <a href="javascript:void(0)"><img src="./assets/images/your-skills.png" alt="Enter your skills" title="Enter your skills"></a> </div>
-                <div class="add_sub_skills"> <a href="javascript:void(0)">PHP <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a> <a href="javascript:void(0)">java <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a> <a href="javascript:void(0)">JAVASCRIPT <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a> </div>
-              </div> -->
               <div class="signup_form_section summary_industry_box width_auto">
                 <div class="row">
                   <div class="col-sm-50">
@@ -324,36 +287,23 @@
                 </div>
               </div>
               <div class="signup_form_section width_auto current_rate_signup situation35">
-
-                
-
                 <div class="job_search_keywords">
                   <h2>CV &amp; COVER LETTER</h2>
                 </div>
-
                 <div class="row" *ngFor="let CV of contratorCVList; let i = index">
-                <div class="checkbox-inline">
-                  <input type="radio" id="permanent3" name="optradio">
-                  <label for="permanent3" class="radio-inline"><span></span> Prefer </label>
-                </div>
+                  <!-- <div class="checkbox-inline">
+                    <input type="radio" id="cv_radio{{i}}" name="cv_radio" [checked]="preferredCVId == CV.attachment_relation" (change)="chengePrefernence(CV, i)" >
+                    <label for="cv_radio{{i}}" class="radio-inline"><span></span> Prefer </label>
+                  </div> -->
                   <div class="col-md-59 col-sm-100">
-
-                    <!-- <div class="checkbox-inline">
-                      
-                      <input _ngcontent-c6=""  name="optradio" type="radio" class="ng-untouched ng-pristine ng-valid">
-                      <label _ngcontent-c6="" class="radio-inline" for="permanent"><span _ngcontent-c6=""></span> </label>
-                    </div> -->
                     <div class="form-group magin_bottomo768">
-                       
-
-                     
                       <div *ngIf="!CV?.attachment_name" class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/upload-cv.png" alt="Upload CV" title="Upload CV" class="img-responsive"></div>
                         <div class="filecv">
                           <span>Browse From
                               <img alt="search now" src="./assets/images/find-cv.png" title="search now" >
                             </span>
-                          <input type="file" class="upload" (change)="contractorCVFileChangeEvent($event)" accept=".doc, .docx, .pdf, .otd, .rtf"/>
+                          <input type="file" class="upload" (change)="contractorCVFileChangeEvent($event, i)" accept=".doc, .docx, .pdf, .otd, .rtf" />
                         </div>
                       </div>
                       <div *ngIf="CV?.attachment_name" class="input-group">
@@ -368,44 +318,23 @@
                     <div class="add_another_cv" *ngIf="i==contratorCVList.length-1" (click)="addAnotherCV()"> <a href="javascript:void(0)" class="pink_color"><i class="fa fa-plus" aria-hidden="true"></i> Add Another CV</a> </div>
                   </div>
                 </div>
-                <!-- <div class="row">
-                  <div class="col-md-59 col-sm-100"> 
-                  <div class="col-md-41 col-sm-100">
-                    <div class="add_another_cv" (click)="addAnotherCV()"> <a href="javascript:void(0)" class="pink_color"><i class="fa fa-plus" aria-hidden="true"></i> Add Another CV</a> </div>
-                  </div>-->
-                <!-- /div> 
-                </div>-->
                 <div class="row" *ngFor="let coverLetter of coverLetterList; let i = index;">
-                <div class="checkbox-inline">
-                  <input type="radio" id="permanent" name="optradio">
-                  <label for="permanent" class="radio-inline"><span></span> Prefer </label>
-                </div>
+                  <!-- <div class="checkbox-inline">
+                    <input type="radio" id="cover_radio_{{i}}" name="cover_radio" checked="{{preferredCVId == coverLetter.attachment_relation}}">
+                    <label for="cover_radio_{{i}}" class="radio-inline"><span></span> Prefer </label>
+                  </div> -->
                   <div class="col-md-59 col-sm-100">
                     <div class="form-group magin_bottomo768">
-                      <!-- <div class="input-group">
-                        <div class="input-group-addon"><img src="./assets/images/upload-cv.png" alt="Upload CV" title="Upload CV" class="img-responsive"></div>
-                        <div class="filecv">
-                          <span>Browse From
-                              <img alt="search now" src="./assets/images/find-cv.png" title="search now">
-                            </span>
-                          <input type="file" class="upload" />
-                        </div>
-                      </div> -->
-                      
                       <div *ngIf="!coverLetter?.attachment_name" class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/upload-cv.png" alt="Upload CV" title="Upload CV" class="img-responsive"></div>
                         <div class="filecv">
                           <span>Browse From
                               <img alt="search now" src="./assets/images/find-cv.png" title="search now" >
                             </span>
-                          <input type="file" class="upload" (change)="contractorCoverLetterFileChangeEvent($event)"  accept=".doc, .docx, .pdf, .otd, .rtf"/>
+                          <input type="file" class="upload" (change)="contractorCoverLetterFileChangeEvent($event)" accept=".doc, .docx, .pdf, .otd, .rtf" />
                         </div>
                       </div>
                       <div *ngIf="coverLetter?.attachment_name" class="input-group">
-                        <!-- <div class="input-group-addon"><img src="./assets/images/upload-cv.png" alt="Upload CV" title="Upload CV" class="img-responsive"></div>
-                        <div class="filecv">
-                          <label>{{coverLetter?.attachment_name}}</label>
-                        </div> -->
                         <div class="input-group-addon"><img src="./assets/images/download-icon.png" alt="Download" title="Download" class="img-responsive"></div>
                         <label class="form-control">{{coverLetter?.attachment_name}}</label>
                       </div>
@@ -416,11 +345,6 @@
                     <div class="add_another_cv" *ngIf="i==coverLetterList.length-1" (click)="addAnotherCoverLetter()"> <a href="javascript:void(0)" class="pink_color"><i class="fa fa-plus" aria-hidden="true"></i> Add Another Cover Letter</a> </div>
                   </div>
                 </div>
-                <!-- <div class="row">
-                  <div class="col-md-41 col-sm-100">
-                    <div class="add_another_cv" (click)="addAnotherCoverLetter()"> <a href="javascript:void(0)" class="pink_color"><i class="fa fa-plus" aria-hidden="true"></i> Add Another Cover Letter</a> </div>
-                  </div>
-                </div> -->
                 <div class="row">
                   <div class="col-sm-100">
                     <div class="save_change margin_left_blue10">
@@ -440,8 +364,7 @@
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/account-pass.png" alt="Enter Password" title="Password" class="img-responsive"></div>
-                        <input class="form-control" id="currentPassword" placeholder="Enter Current Password" type="password" [(ngModel)]="currentPassword" name="currentPassword" >
-                       
+                        <input class="form-control" id="currentPassword" placeholder="Enter Current Password" type="password" [(ngModel)]="currentPassword" name="currentPassword">
                       </div>
                     </div>
                   </div>
@@ -452,7 +375,6 @@
                       <div class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/account-pass.png" alt="Enter Password" title="Password" class="img-responsive"></div>
                         <input class="form-control" id="newPassword" placeholder="Enter New Password" type="password" [(ngModel)]="newPassword" name="newPassword">
-                        
                       </div>
                     </div>
                   </div>
@@ -460,8 +382,7 @@
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/account-pass.png" alt="Enter Password" title="Password" class="img-responsive"></div>
-                        <input class="form-control" id="confirmNewPassword" placeholder="Confirm New Password" type="password" [(ngModel)]="confirmNewPassword" name="confirmNewPassword"  onpaste="return false;">
-                        
+                        <input class="form-control" id="confirmNewPassword" placeholder="Confirm New Password" type="password" [(ngModel)]="confirmNewPassword" name="confirmNewPassword" onpaste="return false;">
                       </div>
                     </div>
                   </div>
@@ -505,14 +426,13 @@
       <div class="modal-body">
         <form id="CVchoices" action="apply.php">
           <div class="modal3-mid">
-            Are you sure to close your account 
-            (you will not be able to access this account further) ?
+            Are you sure to close your account (you will not be able to access this account further) ?
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeAccount()">Yes</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal" >No</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
       </div>
     </div>
   </div>

@@ -39,4 +39,8 @@ export class ContractorAdviceMenuListingComponent implements OnInit {
      this._router.navigate(['../advice'], {relativeTo: this._routes})
   }
 
+  toggleList(){
+    document.querySelector('.advice_header').classList.toggle('show');
+  }
+
 }
