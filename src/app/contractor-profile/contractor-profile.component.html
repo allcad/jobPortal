@@ -323,19 +323,19 @@
                   </div>
                 </div>
               </div>
-              <div class="signup_form_section width_auto">
+              <div class="signup_form_section width_auto current_rate_signup situation35">
 
-                <div  class="checkbox-inline">
-                  <input  id="permanent" name="optradio" type="radio" value="CV" >
-                  <label  class="radio-inline" for="permanent"><span ></span></label>
                 
-                </div>
-
 
                 <div class="job_search_keywords">
                   <h2>CV &amp; COVER LETTER</h2>
                 </div>
+
                 <div class="row" *ngFor="let CV of contratorCVList; let i = index">
+                <div class="checkbox-inline">
+                  <input type="radio" id="permanent3" name="optradio">
+                  <label for="permanent3" class="radio-inline"><span></span> Prefer </label>
+                </div>
                   <div class="col-md-59 col-sm-100">
 
                     <!-- <div class="checkbox-inline">
@@ -376,6 +376,10 @@
                 <!-- /div> 
                 </div>-->
                 <div class="row" *ngFor="let coverLetter of coverLetterList; let i = index;">
+                <div class="checkbox-inline">
+                  <input type="radio" id="permanent" name="optradio">
+                  <label for="permanent" class="radio-inline"><span></span> Prefer </label>
+                </div>
                   <div class="col-md-59 col-sm-100">
                     <div class="form-group magin_bottomo768">
                       <!-- <div class="input-group">
