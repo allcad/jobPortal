@@ -38,7 +38,7 @@ export class TopMenuComponent implements OnInit {
     );
   }
 
-  categoryClicked(categoryData) {
+  categoryClicked(categoryData, event) {
     this._commonRequestService.setDataWithoutObserval(categoryData.contract_hub_category_id, 'category_hub_id');
     this._router.navigate(['../public/directory/' + categoryData.contract_hub_category_id], { relativeTo: this._routes });
     this._router.navigate(['../public/home'], { skipLocationChange: true }).then(() =>
@@ -46,19 +46,51 @@ export class TopMenuComponent implements OnInit {
     );
 
     
-    this.removeClass();
+    this.removeClass('secondli', event);
   }
 
 
-  removeClass() {
-    this.commonService.setSessionData(false);
-    $(".navigation-dropdown").slideUp();
+  removeClass(className, event?) {
+    // this.commonService.setSessionData(false);
+    // $(".navigation-dropdown").slideUp();
+
+    document.querySelector('.' + className).classList.remove('show');
+    document.querySelector('.' + className).classList.remove('showM');
+    event.stopPropagation();
+  }
+
+
+  toggleMenu(className){
+    // if(className == 'firstli'){
+    //   document.querySelector('.secondli').classList.remove('showM');
+    //   document.querySelector('.thirdli').classList.remove('showM');
+    //   document.querySelector('.fourli').classList.remove('showM');
+    // }
+    // else if(className == 'secondli'){
+    //   document.querySelector('.firstli').classList.remove('showM');
+    //   document.querySelector('.thirdli').classList.remove('showM');
+    //   document.querySelector('.fourli').classList.remove('showM');
+    // }
+    alert("")
+    document.querySelector('.' + className).classList.toggle('showM');     
+
+    // let menuGroup = ['firstli', 'secondli', 'thirdli', 'fourli'];
+    // for(let i=0; i<menuGroup.length; i++){
+    //   if(menuGroup[i] != className){
+    //      document.querySelector('.' + className).classList.remove('showM');     
+    //   }else{
+    //    document.querySelector('.' + className).classList.toggle('showM');     
+    //   }
+    // }
+   
+
   }
 
   mouseEnter(className) {
-    let cName = className;
-    console.log("mousse enter--", $(this), className);
-    $("." + cName).children().slideDown();
+    document.querySelector('.' + className).classList.add('show');
+    // let cName = className;
+    // console.log("mousse enter--", $(this), className);
+    // $("." + cName).children().slideDown();
     //$(".navigation-dropdown").parent().slideDown();
   }
 
@@ -114,7 +146,7 @@ moveToSearchResult(value) {
   //this._router.navigate(['/public/searchresult-loggedin/'+value]);
 }
 
-  searchContract(key, value) {
+  searchContract(key, value, event) {
     let inputJson = {
       contractor_search_by_job_title: "",
       contractor_search_by_keywords: "",
@@ -148,7 +180,7 @@ moveToSearchResult(value) {
       this._router.navigate(['../public/contractor_search'], { 'relativeTo': this._routes, queryParams :  inputJson} )
       );
     
-    this.removeClass()
+    this.removeClass('firstli', event)
   }
 
 }

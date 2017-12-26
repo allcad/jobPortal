@@ -168,14 +168,22 @@ hr {
     width: 100%;
 }
 
-.navbar-nav>li:hover .navigation-dropdown{
-    display: block;
-    z-index: 100000;
-}
 
 
 .navbar-collapse{
     padding-left: 16px !important;
+}
+
+@media(min-width: 1025px){
+    /*.navbar-nav>li:hover .navigation-dropdown{
+        display: block;
+        z-index: 100000;
+    }*/
+
+    .show ul{
+        display: block;
+    }
+
 }
 
 @media(max-width: 767px){
@@ -183,4 +191,12 @@ hr {
     .navbar-collapse{
          padding-left: 0 !important;
     }
+
+
+    .showM ul{
+        display: block;
+    }
+
 }
+
+
