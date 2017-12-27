@@ -114,6 +114,7 @@ export class RecruiterHomeComponent implements OnInit {
     let localStorageData = localStorage.getItem("loginDetail") ?  JSON.parse(localStorage.getItem("loginDetail")) : ""; 
     this.accountName = localStorageData && localStorageData.name ? localStorageData.name : '';
     this.getQuickLinksData();
+    this.getMapData();
     //this.loadLocationAutoData();
        
     this.getGraphData();
@@ -280,10 +281,38 @@ export class RecruiterHomeComponent implements OnInit {
 
    };
    console.log("input--", input);
-   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin//api/post/recruiter/deashboard_graph";
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/deashboard_graph";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
          console.log("Graph data", data);
+         if(data && data.status === "TRUE") {
+           //this.quickLinkData = data.data;
+           this.wsError = "";
+          } else {
+            if(data && data.status === "FALSE") {
+              this.wsError = typeof (data.error) == 'object' ? data.error[0] : data.error;
+            }
+          }
+        }
+    );
+  }
+
+  getMapData() {
+    this.wsError = "";
+   var input = {
+     "email":"test@test7.com",
+    "loginToken":"$2y$10$QTgvT3EZ2c9nejMN0nXQyukZflChwM.qqcp1n.sdXvE8kRMMleJ.e",
+    "month":"1",
+    "recruiter_id":"0",
+    "number_of_application":"1",
+    "number_of_job_posted":"1",
+    "number_of_job_viewed":"1"
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/state_user_and_application";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+         console.log("map data", data);
          if(data && data.status === "TRUE") {
            //this.quickLinkData = data.data;
            this.wsError = "";
