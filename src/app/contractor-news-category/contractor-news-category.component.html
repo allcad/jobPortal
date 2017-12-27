@@ -1,6 +1,13 @@
 <section>
+  <div class="alert alert-success margin-tp18" *ngIf="subscriptionFlag">
+    <a href="javascript:void(0)" class="close" title="close" (click)="subscriptionFlag = false;">×</a> You are subscribed <strong>succesfully!</strong>
+  </div>
   <div class="advice_category_banner">
     <div class="container">
+      <div class="errorbox" *ngIf="errorMsgFlag"><b>The following error(s) occured:</b>
+      <br>
+      <li>{{errorMsg}}</li>
+    </div>
       <div class="row">
         <div class="col-sm-20 col-md-15">
           <div class="featured_advice featured_artical"> <img src="./assets/images/featured-article-icon.png" alt="ads" title="ads" class="img-responsive">
@@ -226,10 +233,10 @@
             </div>
             <div class="col-md-39 col-sm-77">
               <div class="form-group mergin_bottom_none">
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="ENTER YOUR EMAIL ADDRESS HERE...">
+                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="ENTER YOUR EMAIL ADDRESS HERE..." name="email" [(ngModel)]="email">
               </div>
             </div>
-            <div class="col-md-16 col-sm-23 hover_button"> <a href="javascript:void(0)" type="submit" class="">SIGN UP NOW <i class="fa fa-plus font_color_white" aria-hidden="true"></i></a> </div>
+            <div class="col-md-16 col-sm-23 hover_button"> <a href="javascript:void(0)" type="button" (click)="subscribeNewsLetter()" class="">SIGN UP NOW <i class="fa fa-plus font_color_white" aria-hidden="true"></i></a> </div>
           </div>
         </form>
       </div>

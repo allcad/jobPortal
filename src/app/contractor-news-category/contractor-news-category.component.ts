@@ -22,6 +22,10 @@ export class ContractorNewsCategoryComponent implements OnInit {
   dataToShow;
   searchKeyword;
   loading = true;
+  errorMsgFlag = false;
+  email;
+errorMsg;
+subscriptionFlag = false;
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
@@ -110,10 +114,45 @@ export class ContractorNewsCategoryComponent implements OnInit {
 
   }
 
-  // readMore(news) {
-  //   this._commonRequestService.setDataWithoutObserval(news._id, "newsId");
-  //   localStorage.setItem("newsId", news._id);
-  //   this._router.navigate(['../news'], { relativeTo: this._routes });
-  // }
+  subscribeNewsLetter(){
+    this.errorMsgFlag = false;
+    if(this.email && (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email))){
+      this._commonRequestService.getData("https://api.ipify.org?format=json")
+        .subscribe(data=>{
+          this.callSubscription(data.ip, this.email);
+        })
+    }else{
+      this.errorMsgFlag = true;
+      this.errorMsg = "Please enter valid email";
+      window.scroll(0,0);
+      setTimeout(()=>{
+        this.errorMsgFlag = false;
+      },2000)
+    }
+  }
+
+
+  callSubscription(ipAddress, email){
+    var inputJson = {
+      'email_subscriber': email,
+      'ip': ipAddress
+    }
+    var url = " http://dev.contractrecruit.co.uk/contractor_admin/api/post/newslatter";
+    this._commonRequestService.postData(url, inputJson).subscribe(
+      data => {
+         this.email = "";
+         window.scroll(0,0);
+         if(data.status == 'TRUE'){
+           this.subscriptionFlag = true;
+           setTimeout(()=>{this.subscriptionFlag = false;},3000)  
+         }else{
+           this.errorMsgFlag = true;
+           this.errorMsg = data.error;
+           setTimeout(()=>{this.errorMsgFlag = false;},3000)  
+         }
+         
+      }
+    );
+  }
 
 }
