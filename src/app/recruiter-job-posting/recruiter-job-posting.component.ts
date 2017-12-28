@@ -155,6 +155,7 @@ jobPostingPreviewData;
   }
 
   changeText(text){
+    console.log("text--", text);
     this.postcode = "";
     this.displayTown = "";
     this.displayCountry = "";

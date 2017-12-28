@@ -20,7 +20,12 @@
       </div>
       <div class="row">
         <div class="col-sm-80 col-md-80">
-          <div class="recruiter_add_sub_skills"> <a href="javascript:void(0)">Overall Team  <img src="./assets/images/close-box.png" alt="Close" title="Close"></a> <a href="javascript:void(0)">Number of Applications  <img src="./assets/images/close-box.png" alt="Close" title="Close"></a> <a href="javascript:void(0)">Number of Jobs Posted  <img src="./assets/images/close-box.png" alt="Close" title="Close"></a> <a href="javascript:void(0)">Number of Jobs Viewed  <img src="./assets/images/close-box.png" alt="Close" title="Close"></a> </div>
+          <div class="recruiter_add_sub_skills"> 
+            <a href="javascript:void(0)" *ngFor="let item of defaultArray;let i=index;">{{item}}<img src="./assets/images/close-box.png" alt="Close" title="Close" (click)="removeGraphItem(i)"></a> 
+            <!-- <a href="javascript:void(0)">Number of Applications  <img src="./assets/images/close-box.png" alt="Close" title="Close"></a> 
+            <a href="javascript:void(0)">Number of Jobs Posted  <img src="./assets/images/close-box.png" alt="Close" title="Close"></a> 
+            <a href="javascript:void(0)">Number of Jobs Viewed  <img src="./assets/images/close-box.png" alt="Close" title="Close"></a>  -->
+          </div>
         </div>
         <div class="col-sm-20 col-md-20">
           <div class="add_filter">
@@ -29,17 +34,15 @@
           </div>
         </div>
         <div class="col-sm-80 col-md-80">
-          <div class="recruiter_add_sub_skills">
-            <img src="./assets/images/graph-img.png" alt="Close" title="Close" class="img-responsive">
-            <!-- <canvas nvd3 style="fill:#e4b447;stroke:#e4b447" baseChart width="400" height="400"
+          <div class="recruiter_add_sub_skills" *ngIf="lineChartData.length > 0">
+            <!-- <img src="./assets/images/graph-img.png" alt="Close" title="Close" class="img-responsive"> -->
+            <canvas nvd3 style="fill:#e4b447;stroke:#e4b447" baseChart width="400" height="400"
                                             [datasets]="lineChartData"
                                             [labels]="lineChartLabels"
-                                            [options]="lineChartOptions"
-                                            [colors]="lineChartColors"
-                                            [legend]="lineChartLegend"
+                                            
+                                            
                                             [chartType]="lineChartType"
-                                            (chartHover)="chartHovered($event)"
-                                            (chartClick)="chartClicked($event)"></canvas> -->
+                                            ></canvas>
             <!-- <button (click)="add()">Add Point!</button> -->
             <!-- <div [chart]="chart"></div> -->
           </div>
@@ -53,24 +56,24 @@
               <li *ngIf="addMoreDetailsFlag">
                 <i class="fa fa-angle-down color_2" aria-hidden="true" (click)="accountUserFlag = !accountUserFlag"></i> Account users
                 <ul class="open_ul" *ngIf="accountUserFlag">
-                  <li class="active">Overall Team</li>
-                  <li>Luke Clothier</li>
-                  <li>Chris Oldham</li>
-                  <li>Steve Edwards</li>
+                  <li style="cursor:pointer" [ngClass]="defaultArray.indexOf('Overall Team') > -1 ? 'active' : ''" (click)="reflectionOnGraph('Overall Team')">Overall Team</li>
+                  <li style="cursor:pointer" [ngClass]="defaultArray.indexOf(item?.recuriter_contact_name) > -1 ? 'active' : ''" *ngFor="let item of allRecruiterData" (click)="reflectionOnGraph(item, 'user')">{{item?.recuriter_contact_name}}</li>
+                  <!-- <li>Chris Oldham</li>
+                  <li>Steve Edwards</li> -->
                 </ul>
               </li>
               <li *ngIf="addMoreDetailsFlag">
                 <i class="fa fa-angle-down color_2" aria-hidden="true" (click)="userMetricsFlag = !userMetricsFlag"></i> User Metrics
                 <ul class="open_ul" *ngIf="userMetricsFlag">
-                  <li class="active">Number of Applications</li>
-                  <li>Number of Jobs Posted</li>
+                  <li style="cursor:pointer" [ngClass]="defaultArray.indexOf('Number of Applications') > -1 ? 'active' : ''" (click)="reflectionOnGraph('Number of Applications')">Number of Applications</li>
+                  <li style="cursor:pointer" [ngClass]="defaultArray.indexOf('Number of Jobs Posted') > -1 ? 'active' : ''" (click)="reflectionOnGraph('Number of Jobs Posted')">Number of Jobs Posted</li>
                 </ul>
               </li>
               <li *ngIf="addMoreDetailsFlag">
                 <i class="fa fa-angle-down color_2" aria-hidden="true" (click)="timePeriodFlag = !timePeriodFlag"></i> Time Period
                 <ul class="open_ul" *ngIf="timePeriodFlag">
-                  <li class="active">1 Month</li>
-                  <li>3 Months</li>
+                  <li style="cursor:pointer" [ngClass]="defaultArray.indexOf('1 Month') > -1 ? 'active' : ''" (click)="reflectionOnGraph('1 Month')">1 Month</li>
+                  <li style="cursor:pointer" [ngClass]="defaultArray.indexOf('3 Months') > -1 ? 'active' : ''" (click)="reflectionOnGraph('3 Months')">3 Months</li>
                 </ul>
               </li>
             </ul>
@@ -298,7 +301,7 @@
             </p>
             <p><span class="text_pink">Start Date:</span>{{item?.startDate | date}}</p>
             <p><span class="text_pink">Duration:</span>{{item?.duration ? item?.duration : 'N/A'}}</p>
-            <p class="full_contant" style="height: 90px;" [innerHTML]="item?.jobSpecification | slice:0:200">...</p>
+            <p class="full_contant" style="height: 90px;" [innerHTML]="item?.jobSpecification | slice:0:200"><cite *ngIf="item?.jobSpecification.length > 200">...</cite></p>
           </div>
           <div class="footer_box">
             <div class="pull-left social_box_footer">

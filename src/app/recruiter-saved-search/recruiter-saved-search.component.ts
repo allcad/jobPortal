@@ -61,6 +61,7 @@ displayTown = '';
 displayCountry = '';
 displayLocationName = '';
 searchListErrorMsg = "";
+freeTextValue = "";
 preferredRateFlag = false;
   constructor(public _commonRequestService: CommonRequestService, private _router: Router,
     private _commonDataShareService: CommonDataSharedService, private commonService: CommonService, 
@@ -95,6 +96,9 @@ preferredRateFlag = false;
   }
 
   changeText(text){
+    if(typeof text !== 'object') {
+      this.freeTextValue = text;
+    }
     this.postcode = "";
     this.displayTown = "";
     this.displayCountry = "";
@@ -452,7 +456,7 @@ preferredRateFlag = false;
       "recuriter_search_core_skills":this.coreSkills ? this.coreSkills:'',
       "recuriter_search_certifications":this.certificationValues ? this.certificationValues:'',
       "recuriter_search_dont_show_to_contractor":this.dontShowContractor?this.dontShowContractor:'',
-      "recuriter_search_location":this.displayLocationName ? this.displayLocationName : '',
+      "recuriter_search_location":this.displayLocationName ? this.displayLocationName : this.freeTextValue,
       "recuriter_search_include_relocators":this.includeRelocators ? 1 : 0,
       "recuriter_search_by_rate_min":this.minRate?this.minRate:'',
       "recuriter_search_by_rate_max":this.maxRate?this.maxRate:'',
@@ -468,7 +472,7 @@ preferredRateFlag = false;
       "postcode": this.postcode ? this.postcode : '',
       "display_town" : this.displayTown ? this.displayTown : '',
       "display_county": this.displayCountry ? this.displayCountry : '',
-      "display_name" : this.displayLocationName ? this.displayLocationName : ''
+      "display_name" : this.displayLocationName ? this.displayLocationName : this.freeTextValue
       //"page":1,
       //"limit":12
       //"sort":8

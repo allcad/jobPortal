@@ -40,12 +40,20 @@ export class RecruiterHomeComponent implements OnInit {
   accountUserFlag = false;
   userMetricsFlag = false;
   timePeriodFlag = false;
-   public lineChartData:Array<any> = [
-    {data: [0, 59, 80, 81, 56, 55, 200], label: 'Series A'},
-    {data: [0, 48, 40, 19, 86, 27, 90], label: 'Series B'},
-    {data: [0, 48, 77, 9, 100, 27, 40], label: 'Series C'},
-  ];
-  public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  freeTextValue = "";
+  allRecruiterData;
+  recruiterIdArray = [];
+  // applicationCountArray = [];
+  // jobCountArray = [];
+  defaultArray = ['Overall Team', 'Number of Applications', 'Number of Jobs Posted', '1 Month'];
+  public lineChartData:Array<any> = [];
+  //  public lineChartData:Array<any> = [
+  //   {data: [0, 59, 80, 81, 56, 55, 200], label: 'Series A'},
+  //   {data: [0, 48, 40, 19, 86, 27, 90], label: 'Series B'},
+  //   {data: [0, 48, 77, 9, 100, 27, 40], label: 'Series C'},
+  // ];
+   //lineChartLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartLabels:Array<any> = [];
   public lineChartOptions:any = {
     responsive: true,
     scaleShowVerticalLines: true,
@@ -111,8 +119,10 @@ export class RecruiterHomeComponent implements OnInit {
     private ngZone: NgZone, private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    window.scroll(0,0);
     let localStorageData = localStorage.getItem("loginDetail") ?  JSON.parse(localStorage.getItem("loginDetail")) : ""; 
     this.accountName = localStorageData && localStorageData.name ? localStorageData.name : '';
+    this.getAllRecruiterName();
     this.getQuickLinksData();
     this.getMapData();
     //this.loadLocationAutoData();
@@ -132,6 +142,26 @@ export class RecruiterHomeComponent implements OnInit {
 
   closePopup() {
     this.showShareProfilePopup = false;
+  }
+
+  removeGraphItem(index) {
+    this.defaultArray.splice(index, 1);
+    this.getGraphData();
+  }
+
+  reflectionOnGraph(item, value) {
+    if(value) {
+      if(this.defaultArray.indexOf(item['recuriter_contact_name']) == -1) {
+        this.defaultArray.push(item['recuriter_contact_name']);
+        this.recruiterIdArray.push(item['recuriter_id']);
+      }
+    } else {
+      if(this.defaultArray.indexOf(item) == -1) {
+        this.defaultArray.push(item);
+      }
+    }
+    this.getGraphData();
+    console.log("this.defaultArray", this.defaultArray);
   }
 
   shareProfileClick() {
@@ -191,6 +221,9 @@ export class RecruiterHomeComponent implements OnInit {
   }
 
   changeText(text){
+    if(typeof text !== 'object') {
+      this.freeTextValue = text;
+    }
     this.postcode = "";
     this.displayTown = "";
     this.displayCountry = "";
@@ -268,17 +301,40 @@ export class RecruiterHomeComponent implements OnInit {
     );
   }
 
-  getGraphData() {
+  getAllRecruiterName() {
     this.wsError = "";
    var input = {
      "email":"test@test7.com",
-    "loginToken":"$2y$10$QTgvT3EZ2c9nejMN0nXQyukZflChwM.qqcp1n.sdXvE8kRMMleJ.e",
-    "overall_team":1,
-    "number_applications":1,
-    "job_posted":1,
-    "job_viewed":1,
-    "date":"2017-11"
+    "loginToken":"$2y$10$WGsOK7LOBpmlMgYPI/3W6eHI0bZf.YW6mS2WxGNlTDcWXAnhNY3Be"
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/all_user_for_dashboard";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+         console.log("all users data", data);
+         if(data && data.status === "TRUE") {
+           this.allRecruiterData = data.data;
+           this.wsError = "";
+          } else {
+            if(data && data.status === "FALSE") {
+              this.wsError = typeof (data.error) == 'object' ? data.error[0] : data.error;
+            }
+          }
+        }
+    );
+  }
 
+  getGraphData() {
+    this.wsError = "";
+   var input = {
+    "email":"test@test7.com",
+    "loginToken":"$2y$10$4li93s8LmXXJ52bCsoIFwO/xtDfrAFAwh4novW7AZovPk8lRfivvK",
+    "overall_team": 0,
+    "number_applications":this.defaultArray.indexOf('Number of Applications') > -1 ? 1 : 0,
+    "job_posted":this.defaultArray.indexOf('Number of Jobs Posted') > -1 ? 1 : 0,
+    "job_viewed":0,
+    "recruiter_id":this.defaultArray.indexOf('Overall Team') > -1 ? 0 : this.recruiterIdArray.toString().trim(),
+    "month": this.defaultArray.indexOf('3 Months') > 0 ? "3" : "1"
    };
    console.log("input--", input);
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/deashboard_graph";
@@ -286,7 +342,31 @@ export class RecruiterHomeComponent implements OnInit {
         data => {
          console.log("Graph data", data);
          if(data && data.status === "TRUE") {
-           //this.quickLinkData = data.data;
+            let applicationArray = [];
+            let JobPostArray = [];
+            if(data && data.data && data.data.application_counts && data.data.application_counts.length > 0 && Object.keys(data.data).indexOf("application_counts") > 0) {
+              applicationArray = data.data.application_counts.map(o => {
+                return o.count;
+              });
+            }
+            if(data && data.data && data.data.job_counts && data.data.job_counts.length > 0 && Object.keys(data.data).indexOf("job_counts") > 0) {
+              JobPostArray = data.data.job_counts.map(o => {
+                return o.count;
+              });
+            }
+            console.log("this.lineChartData", this.lineChartData);
+            console.log("applicationArray", applicationArray);
+            console.log("JobPostArray", JobPostArray);
+            this.lineChartData = [
+              {data: applicationArray, label: 'application_counts'},
+              {data: JobPostArray, label: 'job_counts'}
+            ]
+            console.log("this.lineChartData", this.lineChartData);
+            if(data && data.data && (data.data.job_counts && data.data.job_counts.length > 0 || data.data.application_counts && data.data.application_counts.length > 0)) {
+              this.lineChartLabels = data.data.job_counts.map(o => {
+                return o.date;
+              });
+            }
            this.wsError = "";
           } else {
             if(data && data.status === "FALSE") {
@@ -346,7 +426,7 @@ export class RecruiterHomeComponent implements OnInit {
       "recuriter_search_core_skills":'',
       "recuriter_search_certifications":'',
       "recuriter_search_dont_show_to_contractor":'',
-      "recuriter_search_location": this.displayLocationName ? this.displayLocationName : '',
+      "recuriter_search_location": this.displayLocationName ? this.displayLocationName : this.freeTextValue,
       "recuriter_search_include_relocators":0,
       "recuriter_search_by_rate_min": '',
       "recuriter_search_by_rate_max": '',
@@ -362,7 +442,7 @@ export class RecruiterHomeComponent implements OnInit {
       "postcode": this.postcode ? this.postcode : '',
       "display_town" : this.displayTown ? this.displayTown : '',
       "display_county": this.displayCountry ? this.displayCountry : '',
-      "display_name" : this.displayLocationName ? this.displayLocationName : ''
+      "display_name" : this.displayLocationName ? this.displayLocationName : this.freeTextValue
       //"page":1,
       //"limit":12
       //"sort":8
