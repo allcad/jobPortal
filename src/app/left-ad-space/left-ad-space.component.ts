@@ -2,13 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
 
 @Component({
-  selector: 'app-header-ads',
-  templateUrl: './header-ads.component.html',
-  styleUrls: ['./header-ads.component.css']
+  selector: 'app-left-ad-space',
+  templateUrl: './left-ad-space.component.html',
+  styleUrls: ['./left-ad-space.component.css']
 })
-export class HeaderAdsComponent implements OnInit {
-
-  add;
+export class LeftAdSpaceComponent implements OnInit {
+	add;
   constructor(private _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
@@ -25,5 +24,6 @@ export class HeaderAdsComponent implements OnInit {
         }
     );
   }
+
 
 }

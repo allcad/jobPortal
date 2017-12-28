@@ -53,6 +53,7 @@ import { UploadCvComponent } from '../upload-cv/upload-cv.component';
 import { FindContractorComponent } from '../find-contractor/find-contractor.component';
 import { PayrollComponent } from '../payroll/payroll.component';
 import { ContractorHomeComponent } from '../contractor-home/contractor-home.component';
+import { LeftAdSpaceComponent } from '../left-ad-space/left-ad-space.component';
 
 const sharedModuleList = [
   FindContractHubComponent,
@@ -92,7 +93,8 @@ const sharedModuleList = [
   UploadCvComponent,
   FindContractorComponent,
   PayrollComponent,
-  ContractorHomeComponent
+  ContractorHomeComponent,
+  LeftAdSpaceComponent
 ]
 
 @NgModule({
