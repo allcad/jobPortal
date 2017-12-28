@@ -150,10 +150,15 @@ export class RecruiterHomeComponent implements OnInit {
   }
 
   reflectionOnGraph(item, value) {
+    console.log("value--", value);
     if(value) {
-      if(this.defaultArray.indexOf(item['recuriter_contact_name']) == -1) {
+      if(item && item['recuriter_contact_name'] && this.defaultArray.indexOf(item['recuriter_contact_name']) == -1) {
         this.defaultArray.push(item['recuriter_contact_name']);
         this.recruiterIdArray.push(item['recuriter_id']);
+      }
+      if(value > -1) {
+        this.defaultArray.splice(value, 1);
+        this.defaultArray.push(item);
       }
     } else {
       if(this.defaultArray.indexOf(item) == -1) {

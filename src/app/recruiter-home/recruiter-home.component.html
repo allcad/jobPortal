@@ -72,8 +72,8 @@
               <li *ngIf="addMoreDetailsFlag">
                 <i class="fa fa-angle-down color_2" aria-hidden="true" (click)="timePeriodFlag = !timePeriodFlag"></i> Time Period
                 <ul class="open_ul" *ngIf="timePeriodFlag">
-                  <li style="cursor:pointer" [ngClass]="defaultArray.indexOf('1 Month') > -1 ? 'active' : ''" (click)="reflectionOnGraph('1 Month')">1 Month</li>
-                  <li style="cursor:pointer" [ngClass]="defaultArray.indexOf('3 Months') > -1 ? 'active' : ''" (click)="reflectionOnGraph('3 Months')">3 Months</li>
+                  <li style="cursor:pointer" [ngClass]="defaultArray.indexOf('1 Month') > -1 ? 'active' : ''" (click)="reflectionOnGraph('1 Month', defaultArray.indexOf('3 Months'))">1 Month</li>
+                  <li style="cursor:pointer" [ngClass]="defaultArray.indexOf('3 Months') > -1 ? 'active' : ''" (click)="reflectionOnGraph('3 Months', defaultArray.indexOf('1 Month'))">3 Months</li>
                 </ul>
               </li>
             </ul>
