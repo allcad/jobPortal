@@ -153,6 +153,8 @@ export class RecruiterHomeComponent implements OnInit {
     console.log("value--", value);
     if(value) {
       if(item && item['recuriter_contact_name'] && this.defaultArray.indexOf(item['recuriter_contact_name']) == -1) {
+        let index = this.defaultArray.indexOf('Overall Team');
+        this.defaultArray.splice(index, 1);
         this.defaultArray.push(item['recuriter_contact_name']);
         this.recruiterIdArray.push(item['recuriter_id']);
       }
@@ -347,6 +349,7 @@ export class RecruiterHomeComponent implements OnInit {
         data => {
          console.log("Graph data", data);
          if(data && data.status === "TRUE") {
+          this.lineChartLabels = [];
             let applicationArray = [];
             let JobPostArray = [];
             if(data && data.data && data.data.application_counts && data.data.application_counts.length > 0 && Object.keys(data.data).indexOf("application_counts") > 0) {
@@ -359,9 +362,9 @@ export class RecruiterHomeComponent implements OnInit {
                 return o.count;
               });
             }
-            console.log("this.lineChartData", this.lineChartData);
-            console.log("applicationArray", applicationArray);
-            console.log("JobPostArray", JobPostArray);
+            // console.log("this.lineChartData", this.lineChartData);
+            // console.log("applicationArray", applicationArray);
+            // console.log("JobPostArray", JobPostArray);
             this.lineChartData = [
               {data: applicationArray, label: 'application_counts'},
               {data: JobPostArray, label: 'job_counts'}

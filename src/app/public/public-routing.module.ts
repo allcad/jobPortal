@@ -128,7 +128,7 @@ const publicRoutes: Routes = [
         "path": "searchresult-loggedin",
         "component": RecruiterSearchresultLoggedinComponent,
     }, {
-        "path": "searchresult-loggedin/:id",
+        "path": "searchresult-loggedin/:skill",
         "component": RecruiterSearchresultLoggedinComponent,
     }, {
         "path": "advanced-search",
