@@ -3,6 +3,8 @@ import { CommonDataSharedService } from '../commonDataSharedService';
 import { CommonRequestService } from '../common-request.service';
 import { CommonService } from '../commonService.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+//import { RouterExtensions, PageRoute } from "nativescript-angular/router";
+//import { Page } from 'ui/page'
 
 @Component({
   selector: 'app-recruiter-searchresult-loggedin',
@@ -54,9 +56,45 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   searchResultId;
   currentUrlValue;
   emailValueFlag = false;
+  id;
   constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService,
     private _commonService: CommonService, private router: Router, private _routes: ActivatedRoute) {
       this.currentUrl = router.url;
+      this._routes.params
+      .forEach((params) => { 
+        console.log("params cons", params);
+        if(params && params.skill) {
+          if (this.router.url.split('/')[2].indexOf('searchresult-loggedin') > -1) {
+            var searchJson = {
+              "recuriter_search_job_title": params.skill ? params.skill : '',
+              "recuriter_search_keywords": '',
+              "recuriter_search_stemmed_terms": 0,
+              "recuriter_search_core_skills": '',
+              "recuriter_search_certifications": '',
+              "recuriter_search_dont_show_to_contractor": '',
+              "recuriter_search_location": '',
+              "recuriter_search_include_relocators": 0,
+              "recuriter_search_by_rate_min": '',
+              "recuriter_search_by_rate_max": '',
+              "recuriter_search_by_rate_type": '',
+              "recuriter_search_by_time_left": '',
+              "recuriter_search_by_unavailable": 1,
+              "recuriter_search_by_updated_contractor_since": '',
+              "recuriter_search_by_contract_name": '',
+              "recuriter_search_by_education": '',
+              "recuriter_search_by_industry": '',
+              "recuriter_search_by_security_clearance": '',
+              "recuriter_search_by_driving_license": 0,
+              "postcode": '',
+              "display_town": '',
+              "display_county": '',
+              "display_name": ''
+            }
+            this.savedResult = searchJson;
+            this.getSearchResultList();
+          }
+        }
+      });
      }
 
   ngOnInit() {
@@ -65,89 +103,42 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
     if(this.router.url.indexOf("/public/searchresult-loggedin") >= 0) {
       this.searchOptionsDisabled = true;
     }
-    // var jsonForSearch = {
-    //   "recuriter_search_job_title": '',
-    //   "recuriter_search_keywords": '',
-    //   "recuriter_search_stemmed_terms": 0,
-    //   "recuriter_search_core_skills": '',
-    //   "recuriter_search_certifications": '',
-    //   "recuriter_search_dont_show_to_contractor": '',
-    //   "recuriter_search_location": '',
-    //   "recuriter_search_include_relocators": 0,
-    //   "recuriter_search_by_rate_min": '',
-    //   "recuriter_search_by_rate_max": '',
-    //   "recuriter_search_by_rate_type": '',
-    //   "recuriter_search_by_time_left": '',
-    //   "recuriter_search_by_unavailable": 1,
-    //   "recuriter_search_by_updated_contractor_since": '',
-    //   "recuriter_search_by_contract_name": '',
-    //   "recuriter_search_by_education": "",
-    //   "recuriter_search_by_industry": "",
-    //   "recuriter_search_by_security_clearance": "",
-    //   "recuriter_search_by_driving_license": 0,
-    //   "postcode": '',
-    //   "display_town" : '',
-    //   "display_county": '',
-    //   "display_name" : ''
-    // }
     if(this.router.url.indexOf("/public/searchresult-loggedin") == -1) {
         this.getJobList();
       }
     this.getSortByData();
-    //this.savedResult = this._commonService.getSearchResult();
-    // console.log("this.savedResult", this.savedResult, "this.searchResultId", this.searchResultId);
-    // if(!this.savedResult) {
-    //   console.log("on load search");
-    //   this.savedResult = jsonForSearch;
-    // }
-
     console.log("this.router.url", this.router.url);
 
     if (this.router.url.split('/')[2].indexOf('searchresult-loggedin') > -1) {
       this._routes.queryParams.subscribe((params: Params) => {
-        let paramData = params;
-        console.log("params--", params);
-        let output = {};        
+        if(Object.keys(params).length > 0) {
+          let paramData = params;
+          console.log("params init--", params);
+          let output = {};        
 
-        let keyArray = []
-        for (let prop in paramData) {
-            keyArray.push(prop); 
-        }
-        console.log("keyArray--", keyArray);
+          let keyArray = []
+          for (let prop in paramData) {
+              keyArray.push(prop); 
+          }
+          console.log("keyArray--", keyArray);
 
-        for(let i=0; i<keyArray.length; i++){
-          
-          output[keyArray[i]] = paramData[keyArray[i]] && paramData[keyArray[i]].indexOf('+')>-1 ? paramData[keyArray[i]].replace(/\+/g, ' ') : paramData[keyArray[i]];
+          for(let i=0; i<keyArray.length; i++){
+            
+            output[keyArray[i]] = paramData[keyArray[i]] && paramData[keyArray[i]].indexOf('+')>-1 ? paramData[keyArray[i]].replace(/\+/g, ' ') : paramData[keyArray[i]];
+          }
+          this.savedResult = output;
+          console.log("jbdjasd",output);
+          if(parseInt(output['recuriter_search_by_rate_min']) === 0) {
+            this.savedResult['recuriter_search_by_rate_min'] = "";
+          };
+          if(parseInt(output['recuriter_search_by_rate_max']) === 0) {
+            this.savedResult['recuriter_search_by_rate_max'] = "";
+          }
+          this.getSearchResultList();
         }
-         this.savedResult = output;
-        console.log("jbdjasd",output);
-         if(parseInt(output['recuriter_search_by_rate_min']) === 0) {
-          this.savedResult['recuriter_search_by_rate_min'] = "";
-        };
-        if(parseInt(output['recuriter_search_by_rate_max']) === 0) {
-          this.savedResult['recuriter_search_by_rate_max'] = "";
-        }
-        this.getSearchResultList();
 
       });
     }
-
-    // this._routes.params.subscribe((params: Params) => {
-    //   this.searchResultId = params['id'];
-    //   console.log("this.searchResultId--", this.searchResultId);
-    //   if (this.searchResultId) {
-    //     //alert(1)
-    //     console.log("this.savedResult", this.savedResult);
-    //     if(this.savedResult) {
-    //       this.savedResult['recuriter_search_job_title'] = this.searchResultId;
-    //       this.getSearchResultList();
-    //     }
-    //     //this.getCompanyList();
-    //   } else if(this.savedResult) {
-    //     //alert(0)
-    //     this.getSearchResultList();
-    //    }
-    // })
   }
 
   goToAdvancedSearch() {
