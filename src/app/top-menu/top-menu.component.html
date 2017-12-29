@@ -2,21 +2,21 @@
   <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
   <nav style="height: 1px;" aria-expanded="false" id="bs-navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
-      <li class="firstli" (mouseenter)="mouseEnter('firstli')" (mouseleave)="removeClass('firstli', $event)" >
-        <a href="javascript:void(0);" (click)="toggleMenu('firstli');">Job Search <span class="caret"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"> </a>
+      <li *ngFor="let menu of menuList; let i=index" class="firstli_{{i}}" (mouseenter)="mouseEnter('firstli_'+i)" (mouseleave)="removeClass('firstli_'+i, $event)">
+        <a href="javascript:void(0);" (click)="toggleMenu('firstli_'+i);">{{menu.manu_label}} <span class="caret"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"> </a>
         <ul class="navigation-dropdown">
           <div class="dropdown-nav-wrap">
-            <li>
-              <h2 class="hidden-xs">IT Contract Search</h2>
+            <li *ngFor="let subMenu of menu.subpages">
+              <h2 class="hidden-xs">{{subMenu.manu_label}}</h2>
               <ul>
-                <li><a (click)="removeClass('firstli', $event)" href="javascript:void(0)" routerLink="../public/jobSearch">Advanced Job Search</a></li>
+                <li *ngFor="let item of subMenu.pages"><a (click)="removeClass('firstli_'+i, $event)" href="javascript:void(0)" routerLink="/{{item.menu_link}}">{{item.manu_label}}</a></li>
                 <hr class="visible-xs">
-                <li><a (click)="searchContract(null, null, $event)" href="javascript:void(0)">View Newest Contracts</a></li>
+                <!-- <li><a (click)="searchContract(null, null, $event)" href="javascript:void(0)">View Newest Contracts</a></li>
                 <hr class="visible-xs">
-                <li><a (click)="searchContract('sort', 2,  $event)" href="javascript:void(0)">View all IT Contracts</a></li>
+                <li><a (click)="searchContract('sort', 2,  $event)" href="javascript:void(0)">View all IT Contracts</a></li> -->
               </ul>
             </li>
-            <li class="hidden-xs">
+            <!-- <li class="hidden-xs">
               <h2>Search IT Contract By Skill</h2>
               <ul>
                 <li><a (click)="searchContract('contractor_search_by_keywords', 'php', $event)" href="javascript:void(0)">PHP Contract Jobs</a></li>
@@ -55,12 +55,12 @@
                 <hr class="visible-xs">
                 <li><a (click)="searchContract(null, null,  $event)" href="javascript:void(0)">View IT Contracts for all Locations</a></li>
               </ul>
-            </li>
+            </li> -->
           </div>
         </ul>
       </li>
-      <li class="secondli" (mouseenter)="mouseEnter('secondli')" (mouseleave)="removeClass('secondli', $event)" >
-        <a  href="javascript:void(0);" (click)="toggleMenu('secondli');">IT Contractors <span class="caret"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"></a>
+    <!--   <li class="secondli" (mouseenter)="mouseEnter('secondli')" (mouseleave)="removeClass('secondli', $event)">
+        <a href="javascript:void(0);" (click)="toggleMenu('secondli');">IT Contractors <span class="caret"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"></a>
         <ul class="navigation-dropdown">
           <div class="dropdown-nav-wrap">
             <li>
@@ -106,7 +106,7 @@
         </ul>
       </li>
       <li class="color-pink thirdli" (mouseenter)="mouseEnter('thirdli')" (mouseleave)="removeClass('thirdli', $event)" (click)="toggleMenu('thirdli');">
-        <a  href="javascript:void(0);">IT Recruiters <span class="caret pink"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"></a>
+        <a href="javascript:void(0);">IT Recruiters <span class="caret pink"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"></a>
         <ul class="navigation-dropdown">
           <div class="dropdown-nav-wrap">
             <li>
@@ -117,7 +117,7 @@
                 <li><a (click)="removeClass('thirdli', $event)" href="javascript:void(0)" routerLink="./recruiterRegister">Sign Up</a></li>
                 <hr class="visible-xs">
                 <li class="hidden-xs"><a (click)="removeClass('thirdli', $event)" routerLink="./about-recruiter" href="javascript:void(0)">Why Should I Sign Up</a></li>
-                <!-- <li><a (click)="removeClass('thirdli', $event)" href="javascript:void(0)">Why use <span class="stong">Contract</span>Recruit?</a></li> -->
+                <li><a (click)="removeClass('thirdli', $event)" href="javascript:void(0)">Why use <span class="stong">Contract</span>Recruit?</a></li>
                 <hr class="visible-xs">
                 <li class="visible-xs"><a (click)="removeClass('thirdli', $event)" href="javascript:void(0)">Advanced Contractor Search</a></li>
               </ul>
@@ -125,24 +125,24 @@
             <li class="hidden-xs">
               <h2 class="hidden-xs">Search IT Contractors</h2>
               <ul class="hidden-xs">
-                <!--  routerLink="/recruiter/advanced-search" -->
+                
                 <li><a (click)="removeClass('thirdli', $event)" routerLink="/public/advanced-search" href="javascript:void(0)">Advanced Contractor Search</a></li>
               </ul>
               <h2 class="hidden-xs">Quick Search</h2>
               <ul class="hidden-xs">
-                <!--  routerLink="/recruiter/searchresult-loggedin" -->
+                
                 <li><a (click)="removeClass('thirdli', $event);moveToSearchResult('Web Developers')" href="javascript:void(0)">Contract Web Developers</a></li>
                 <hr class="visible-xs">
-                <!--  routerLink="/recruiter/searchresult-loggedin" -->
+                
                 <li><a (click)="removeClass('thirdli', $event);moveToSearchResult('Project Managers')" href="javascript:void(0)">Contract Project Managers</a></li>
                 <hr class="visible-xs">
-                <!--  routerLink="/recruiter/searchresult-loggedin" -->
+                
                 <li><a (click)="removeClass('thirdli', $event);moveToSearchResult('Analysts')" href="javascript:void(0)">Contract Analysts</a></li>
                 <hr class="visible-xs">
-                <!--  routerLink="/recruiter/searchresult-loggedin"-->
+                
                 <li><a (click)="removeClass('thirdli', $event);moveToSearchResult('Designers')" href="javascript:void(0)">Contract Designers</a></li>
                 <hr class="visible-xs">
-                <!--  routerLink="/recruiter/searchresult-loggedin" -->
+                
                 <li><a (click)="removeClass('thirdli', $event);moveToSearchResult('Software Developers')" href="javascript:void(0)">Contract Software Developers</a></li>
               </ul>
             </li>
@@ -151,7 +151,7 @@
               <ul>
                 <li><a (click)="removeClass('thirdli', $event)" routerLink="./guides" href="javascript:void(0)">How to Use ContractRecruit</a></li>
                 <hr class="visible-xs">
-                <!--  routerLink="/public/faq" -->
+                
                 <li><a (click)="removeClass('thirdli', $event)" routerLink="./faq" href="javascript:void(0)">Recruiter FAQs</a></li>
               </ul>
             </li>
@@ -159,7 +159,7 @@
         </ul>
       </li>
       <li class="fourli" (mouseenter)="mouseEnter('fourli')" (mouseleave)="removeClass('fourli', $event)" (click)="toggleMenu('fourli');">
-        <a  href="javascript:void(0);">About ContractRecruit <span class="caret"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"></a>
+        <a href="javascript:void(0);">About ContractRecruit <span class="caret"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"></a>
         <ul class="navigation-dropdown col-one">
           <div class="dropdown-nav-wrap">
             <li>
@@ -182,29 +182,7 @@
             </li>
           </div>
         </ul>
-        <!--   <div class="cntrct-hub-nav" *ngIf="aboutContractRecruitFlag">
-          <ul>
-            <li class="hub-lst">
-              <div class="lst-news">
-                <h2><a>About ContractRecruit</a></h2>
-                <ul class="menu-cust-des">
-                  <li><a (click)="removeClass('fourli', $event)" class=navigation-menu href="javascript:void(0)" routerLink="../about-recruiter">What is ContractRecruit?</a></li>
-                  <li><a (click)="removeClass('fourli', $event)" class=navigation-menu href="javascript:void(0)" routerLink="../about-recruiter">Who are we?</a></li>
-                  <li><a (click)="removeClass('fourli', $event)" class=navigation-menu href="javascript:void(0)" routerLink="../about-recruiter">What do we do?</a></li>
-                </ul>
-              </div>
-              <div class="mobile-app">
-                <h2><a>Site Usage</a></h2>
-                <ul class="menu-cust-des">
-                  <li><a (click)="removeClass()" class=navigation-menu href="https://aws.contractrecruit.co.uk/terms">Terms of Use</a></li>
-                  <li><a (click)="removeClass()" class=navigation-menu href="https://aws.contractrecruit.co.uk/privacy-policy">Privacy Policy</a></li>
-                  <li><a (click)="removeClass()" class=navigation-menu href="https://aws.contractrecruit.co.uk/sitemap">Site Map</a></li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </div> -->
-      </li>
+      </li> -->
     </ul>
   </nav>
 </div>

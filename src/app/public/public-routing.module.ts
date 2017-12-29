@@ -107,14 +107,21 @@ const publicRoutes: Routes = [
         "component": ContractorJobSearchComponent
     }, {
         "path": "contractor_search",
-        "component": ContractorSearchResultComponent
+        "component": ContractorSearchResultComponent,
+
+    }, {
+        "path": "contractor_search/skill/:skill",
+        "component": ContractorSearchResultComponent,
+    }, {
+        "path": "contractor_search/location/:location",
+        "component": ContractorSearchResultComponent,
     }, {
         "path": "lastSearch",
         "component": ContractorJobSearchComponent
-    },  {
+    }, {
         "path": "searchResult",
         "component": ContractorSearchResultComponent
-    },{
+    }, {
         "path": "contractor_search/:id",
         "component": ContractorJobDetailComponent
     }, {

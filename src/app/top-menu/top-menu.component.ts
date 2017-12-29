@@ -15,14 +15,33 @@ export class TopMenuComponent implements OnInit {
   itContractorFlag = false;
   aboutContractRecruitFlag = false;
   categoryData = [];
+  menuList;
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute,
     private _commonDataShareService: CommonDataSharedService, private commonService: CommonService) { }
 
   ngOnInit() {
     this.getServiceCategory();
-    
+    this.getMenuData()
   }
 
+  getMenuData() {
+    let url = "http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/menu";
+    this._commonRequestService.getData(url).subscribe(
+      data => {
+        this.menuList = data.data;
+        console.log("this.menuList", this.menuList);
+        for(let i=0; i<this.menuList.length; i++){
+          if(this.menuList[i].manu_label == 'IT Contractors'){
+            this.menuList[i].subpages.unshift({"manu_label" : "Join Us on ContractRecruit", "pages": [{"manu_label" : "Login", "menu_link": "public/contractorLogin"}, {"manu_label" : "Sign Up", "menu_link": "public/contractorSignup"}]});
+          }else if(this.menuList[i].manu_label == 'IT Recruiters'){
+            this.menuList[i].subpages.unshift({"manu_label" : "Join Us on ContractRecruit", "pages": [{"manu_label" : "Login", "menu_link": "public/recruiterLogin"}, {"manu_label" : "Sign Up", "menu_link": "public/recruiterRegister"}, {"manu_label" : "Why Should I Sign Up", "menu_link": "public/about-recruiter"}]});
+          }
+        }
+
+        console.log("this.menuList", this.menuList)
+      }
+    );
+  }
 
   getServiceCategory() {
     var url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/hub/category";
@@ -42,10 +61,10 @@ export class TopMenuComponent implements OnInit {
     this._commonRequestService.setDataWithoutObserval(categoryData.contract_hub_category_id, 'category_hub_id');
     this._router.navigate(['../public/directory/' + categoryData.contract_hub_category_id], { relativeTo: this._routes });
     this._router.navigate(['../public/home'], { skipLocationChange: true }).then(() =>
-      this._router.navigate(['../public/directory/' +  categoryData.contract_hub_category_id], { relativeTo: this._routes })
+      this._router.navigate(['../public/directory/' + categoryData.contract_hub_category_id], { relativeTo: this._routes })
     );
 
-    
+
     this.removeClass('secondli', event);
   }
 
@@ -60,7 +79,7 @@ export class TopMenuComponent implements OnInit {
   }
 
 
-  toggleMenu(className){
+  toggleMenu(className) {
     // if(className == 'firstli'){
     //   document.querySelector('.secondli').classList.remove('showM');
     //   document.querySelector('.thirdli').classList.remove('showM');
@@ -71,8 +90,7 @@ export class TopMenuComponent implements OnInit {
     //   document.querySelector('.thirdli').classList.remove('showM');
     //   document.querySelector('.fourli').classList.remove('showM');
     // }
-    alert("")
-    document.querySelector('.' + className).classList.toggle('showM');     
+    document.querySelector('.' + className).classList.toggle('showM');
 
     // let menuGroup = ['firstli', 'secondli', 'thirdli', 'fourli'];
     // for(let i=0; i<menuGroup.length; i++){
@@ -82,7 +100,7 @@ export class TopMenuComponent implements OnInit {
     //    document.querySelector('.' + className).classList.toggle('showM');     
     //   }
     // }
-   
+
 
   }
 
@@ -99,52 +117,52 @@ export class TopMenuComponent implements OnInit {
     $("." + cName).slideUp();
   }
 
- moveToTerms(value) {
-   var obj = {'value' : value};
+  moveToTerms(value) {
+    var obj = { 'value': value };
     localStorage.setItem('termsValue', JSON.stringify(obj));
     this._commonDataShareService.termsAndUsePage.next(value);
     this._router.navigate(['/public/privacy-policy']);
-}
-
-moveToAboutPage(value) {
-  this._commonDataShareService.switchToDivSubject.next(value);
-  this._router.navigate(['/public/about-contractor']);
-}
-
-moveToSearchResult(value) {
-  //this._commonDataShareService.advancedSerahcResult.next(value);
-  var searchJson = {
-    "recuriter_search_job_title":value ? value :'',
-        "recuriter_search_keywords": '',
-        "recuriter_search_stemmed_terms":0,
-        "recuriter_search_core_skills": '',
-        "recuriter_search_certifications": '',
-        "recuriter_search_dont_show_to_contractor": '',
-        "recuriter_search_location": '',
-        "recuriter_search_include_relocators": 0,
-        "recuriter_search_by_rate_min": '',
-        "recuriter_search_by_rate_max": '',
-        "recuriter_search_by_rate_type": '',
-        "recuriter_search_by_time_left": '',
-        "recuriter_search_by_unavailable": 1,
-        "recuriter_search_by_updated_contractor_since": '',
-        "recuriter_search_by_contract_name": '',
-        "recuriter_search_by_education": '',
-        "recuriter_search_by_industry": '',
-        "recuriter_search_by_security_clearance": '',
-        "recuriter_search_by_driving_license": 0,
-        "postcode": '',
-        "display_town" : '',
-        "display_county": '',
-        "display_name" : ''
   }
-  console.log("searchJson", searchJson);
-  //this.commonService.setSearchResult(searchJson);
-  this._router.navigate(['../public/home'], { skipLocationChange: true }).then(() =>
-      this._router.navigate(['../public/searchresult-loggedin'], { 'relativeTo': this._routes, queryParams :  searchJson} )
-      );
-  //this._router.navigate(['/public/searchresult-loggedin/'+value]);
-}
+
+  moveToAboutPage(value) {
+    this._commonDataShareService.switchToDivSubject.next(value);
+    this._router.navigate(['/public/about-contractor']);
+  }
+
+  moveToSearchResult(value) {
+    //this._commonDataShareService.advancedSerahcResult.next(value);
+    var searchJson = {
+      "recuriter_search_job_title": value ? value : '',
+      "recuriter_search_keywords": '',
+      "recuriter_search_stemmed_terms": 0,
+      "recuriter_search_core_skills": '',
+      "recuriter_search_certifications": '',
+      "recuriter_search_dont_show_to_contractor": '',
+      "recuriter_search_location": '',
+      "recuriter_search_include_relocators": 0,
+      "recuriter_search_by_rate_min": '',
+      "recuriter_search_by_rate_max": '',
+      "recuriter_search_by_rate_type": '',
+      "recuriter_search_by_time_left": '',
+      "recuriter_search_by_unavailable": 1,
+      "recuriter_search_by_updated_contractor_since": '',
+      "recuriter_search_by_contract_name": '',
+      "recuriter_search_by_education": '',
+      "recuriter_search_by_industry": '',
+      "recuriter_search_by_security_clearance": '',
+      "recuriter_search_by_driving_license": 0,
+      "postcode": '',
+      "display_town": '',
+      "display_county": '',
+      "display_name": ''
+    }
+    console.log("searchJson", searchJson);
+    //this.commonService.setSearchResult(searchJson);
+    this._router.navigate(['../public/home'], { skipLocationChange: true }).then(() =>
+      this._router.navigate(['../public/searchresult-loggedin'], { 'relativeTo': this._routes, queryParams: searchJson })
+    );
+    //this._router.navigate(['/public/searchresult-loggedin/'+value]);
+  }
 
   searchContract(key, value, event) {
     let inputJson = {
@@ -159,10 +177,10 @@ moveToSearchResult(value) {
       contractor_search_by_job_reference_number: "",
       contractor_search_by_posted_contact_since: "",
       contractor_search_by_industry_sector: "",
-      postcode : "",
-      display_town : "",
-      display_county : "",
-      display_name : "",
+      postcode: "",
+      display_town: "",
+      display_county: "",
+      display_name: "",
       page: 1,
       limit: 10,
       sort: 1
@@ -177,9 +195,9 @@ moveToSearchResult(value) {
     localStorage.setItem("jobSearch", JSON.stringify(inputJson));
 
     this._router.navigate(['../public/home'], { skipLocationChange: true }).then(() =>
-      this._router.navigate(['../public/contractor_search'], { 'relativeTo': this._routes, queryParams :  inputJson} )
-      );
-    
+      this._router.navigate(['../public/contractor_search'], { 'relativeTo': this._routes, queryParams: inputJson })
+    );
+
     this.removeClass('firstli', event)
   }
 
