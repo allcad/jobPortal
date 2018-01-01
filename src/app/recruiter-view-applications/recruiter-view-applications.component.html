@@ -24,10 +24,6 @@
                 <div *ngIf="loading" class="row">
                   <img src="./assets/images/bx_loader.gif">
                 </div>
-
-                 <div class="errorbox" *ngIf="listingData.length === 0 && !loading"><b></b><br> 
-                        <li>There is no record.</li>
-                    </div>
                 <div class="pager_section">
                     <div class="row">
                         <div class="col-sm-50" *ngIf="listingData.length !== 0 && !loading">
@@ -51,6 +47,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="errorbox" *ngIf="listingData.length === 0 && !loading"><b></b><br> 
+                    <li>There is no record.</li>
                 </div>
             </div>
             <!--contractor login end-->

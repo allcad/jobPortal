@@ -209,4 +209,35 @@ export class ViewContractorProfileComponent implements OnInit {
     }
   }
 
+  goToSearchResultPage() {
+    var savedSearchSaveJson = {
+      "recuriter_search_job_title":"",
+      "recuriter_search_keywords":'',
+      "recuriter_search_stemmed_terms":0,
+      "recuriter_search_core_skills":'',
+      "recuriter_search_certifications":'',
+      "recuriter_search_dont_show_to_contractor":'',
+      "recuriter_search_location": "",
+      "recuriter_search_include_relocators":0,
+      "recuriter_search_by_rate_min": '',
+      "recuriter_search_by_rate_max": '',
+      "recuriter_search_by_rate_type": '',
+      "recuriter_search_by_time_left": '',
+      "recuriter_search_by_unavailable": 0,
+      "recuriter_search_by_updated_contractor_since": '',
+      "recuriter_search_by_contract_name": '',
+      "recuriter_search_by_education": "",
+      "recuriter_search_by_industry": "",
+      "recuriter_search_by_security_clearance": "",
+      "recuriter_search_by_driving_license": 0,
+      "postcode": "",
+      "display_town" : "",
+      "display_county": "",
+      "display_name" : ""
+    }
+      this.router.navigate(['/recruiter/recruiter-home'], { skipLocationChange: true }).then(() =>
+        this.router.navigate(['/recruiter/searchresult-loggedin'], { 'relativeTo': this.activateRoute, queryParams :  savedSearchSaveJson} )
+      );
+  }
+
 }

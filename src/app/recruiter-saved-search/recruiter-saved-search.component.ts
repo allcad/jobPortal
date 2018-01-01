@@ -200,6 +200,7 @@ preferredRateFlag = false;
             this.getListOfSaveSearch();
             this.resetFields();
             this.successMessageFlag =  true;
+            this.showDeleteButtonFlag = false;
             this.errorSuccessMessage = "Saved Search Delete Successfully";
           }
           window.scroll(0,0);
@@ -276,6 +277,9 @@ preferredRateFlag = false;
             this.saveSearchDataListing = data.data;
             this.searchListErrorMsg = "";
           } else if(data && data.status == 'FALSE'){
+              if(data && data.data.length == 0) {
+                this.saveSearchDataListing = [];
+              }
                this.searchListErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
              
             }

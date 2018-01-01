@@ -9,9 +9,9 @@
                             <ul class="breadcomb color_active">
                                 <li><a href="javascript:void(0);" [routerLink]="['../recruiter-home']">Home</a></li>
                                 <li class="right_arrow text_pink">&gt;</li>
-                                <li><a href="javascript:void(0)">Saved Search</a></li>
+                                <li><a href="javascript:void(0)" [routerLink]="['/recruiter/saved-search']">Saved Search</a></li>
                                 <li class="right_arrow text_pink">&gt;</li>
-                                <li><a href="javascript:void(0)">Search Results</a></li>
+                                <li><a href="javascript:void(0)" (click)="goToSearchResultPage()">Search Results</a></li>
                                 <li class="right_arrow text_pink">&gt;</li>
                                 <li class="active">profile</li>
                             </ul>
@@ -114,7 +114,9 @@
                             <h3>Key Skills </h3>
                             <div class="add_sub_skills margin_bottom_none">
                                 <p *ngIf="keySkills.length == 0">N/A</p>
-                                <p *ngIf="keySkills.length > 0"> <a href="javascript:void(0)" *ngFor="let item of keySkills">{{item}} <img src="./assets/images/close-icon.png" alt="Close" title="Close"></a></p>                                
+                                <p *ngIf="keySkills.length > 0"> <a href="javascript:void(0)" *ngFor="let item of keySkills">{{item}} 
+                                    <!-- <img src="./assets/images/close-icon.png" alt="Close" title="Close"> -->
+                                </a></p>                                
                             </div>
                             <div class="profile_education">
                                 <h3>Education </h3>

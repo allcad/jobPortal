@@ -372,9 +372,14 @@ export class RecruiterHomeComponent implements OnInit {
             console.log("this.lineChartData", this.lineChartData);
             if(data && data.data && (data.data.job_counts && data.data.job_counts.length > 0 || data.data.application_counts && data.data.application_counts.length > 0)) {
               this.lineChartLabels = data.data.job_counts.map(o => {
-                return o.date;
+                if(o && o.date){
+                  return o.date;
+                } else if(o && o.month) {
+                  return o.month;
+                }
               });
             }
+            console.log("this.lineChartLabels", this.lineChartLabels);
            this.wsError = "";
           } else {
             if(data && data.status === "FALSE") {
