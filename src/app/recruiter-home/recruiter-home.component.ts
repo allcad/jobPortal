@@ -43,6 +43,10 @@ export class RecruiterHomeComponent implements OnInit {
   freeTextValue = "";
   allRecruiterData;
   recruiterIdArray = [];
+  addMapFlag = false;
+  accountUserMapFlag = false;
+  userMetricsMapFlag = false;
+  timePeriodMapFlag = false;
   // applicationCountArray = [];
   // jobCountArray = [];
   defaultArray = ['Overall Team', 'Number of Applications', 'Number of Jobs Posted', '1 Month'];
@@ -202,10 +206,6 @@ export class RecruiterHomeComponent implements OnInit {
   }
 
   passJobId(id) {
-  	//this._commonDataSharedService.manageJobsJobId.next(id);
-  	// var obj = {'jobId' : id};
-   //  localStorage.setItem('recruiterJobData', JSON.stringify(obj));
-   //this._commonService.setJobIdForJobPosting(id);
    var jobId = {
       "jobId": id
     }
@@ -362,9 +362,6 @@ export class RecruiterHomeComponent implements OnInit {
                 return o.count;
               });
             }
-            // console.log("this.lineChartData", this.lineChartData);
-            // console.log("applicationArray", applicationArray);
-            // console.log("JobPostArray", JobPostArray);
             this.lineChartData = [
               {data: applicationArray, label: 'application_counts'},
               {data: JobPostArray, label: 'job_counts'}
@@ -418,21 +415,8 @@ export class RecruiterHomeComponent implements OnInit {
     );
   }
 
-  // showMoreJobs() {
-  //   // var pageNo = 1;
-  //   // pageNo += 1;
-  //   this.pageNo += 1;
-  //   //this.pageLimit = this.pageLimit * this.pageNo;
-  //   console.log("this.pageLimit", this.pageLimit)
-  //   this.getMostLeastJobs(this.sortType)
-  // }
-
   searchResultHomePage() {
     var savedSearchSaveJson = {
-      // "email":"test@test8.com",
-      // "loginToken":"$2y$10$id2kG9VqsF.lID3xkphOfOqCXO.nrVDxyrt4JhrBKEoXEr2yrxX.y",
-      // "recuriter_saved_search_name":this.savedSearchName,
-      // "recuriter_search_add_to_watchdog":this.addToWatchDogCheck === true ? 1 : 2,
       "recuriter_search_job_title":this.jobTitleValue?this.jobTitleValue:'',
       "recuriter_search_keywords":'',
       "recuriter_search_stemmed_terms":0,
@@ -456,20 +440,10 @@ export class RecruiterHomeComponent implements OnInit {
       "display_town" : this.displayTown ? this.displayTown : '',
       "display_county": this.displayCountry ? this.displayCountry : '',
       "display_name" : this.displayLocationName ? this.displayLocationName : this.freeTextValue
-      //"page":1,
-      //"limit":12
-      //"sort":8
     }
-
-   // if(this.router.url.indexOf("/recruiter/advanced-search") >= 0) {
-      //this.router.navigate(['/recruiter/searchresult-loggedin']);
       this.router.navigate(['/recruiter/recruiter-home'], { skipLocationChange: true }).then(() =>
         this.router.navigate(['/recruiter/searchresult-loggedin'], { 'relativeTo': this.activateRoute, queryParams :  savedSearchSaveJson} )
       );
-    //} 
-
-    // this._commonService.setSearchResult(savedSearchSaveJson);
-    // this.router.navigate(['/recruiter/searchresult-loggedin']);
   }
 
 }

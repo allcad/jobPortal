@@ -15,7 +15,7 @@ export class AboutRecruiterComponent implements OnInit {
     prevButton: '.swiper-button-prev',
     spaceBetween: 30,
     autoplay: true,
-    speed: 5000
+    speed: 10000
   }
   constructor(private _commonDataShareService: CommonDataSharedService) { }
 

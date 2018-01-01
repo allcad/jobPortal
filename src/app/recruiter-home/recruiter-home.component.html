@@ -169,7 +169,7 @@
             <h4>Regional <span class="text_pink">Stats</span></h4>
             <div class="graph_listing number_of_application">
               <div class="add_filter margin_bottom_50">
-                <a href="javascript:void(0)"><img src="./assets/images/add-icon.png" alt="add" title="add"></a>
+                <a href="javascript:void(0)" (click)="addMapFlag = !addMapFlag"><img src="./assets/images/add-icon.png" alt="add" title="add"></a>
                 <a href="javascript:void(0)"><img src="./assets/images/filter-icon.png" alt="filter" title="filter"></a>
               </div>
               <p><a href="javascript:void(0);" [routerLink]="['../view-applications']">Number of Applications</a></p>
@@ -180,35 +180,35 @@
                 <li><i class="fa fa-circle color_4" aria-hidden="true"></i>
                   <25 </li>
               </ul>
-             <!--  <div class="col-sm-20 col-md-20">
+              <div class="col-sm-20 col-md-20">
                 <div class="graph_listing">
                   <ul>
-                    <li *ngIf="addMoreDetailsFlag">
-                      <i class="fa fa-angle-down color_2" aria-hidden="true" (click)="accountUserFlag = !accountUserFlag"></i> Account users
-                      <ul class="open_ul" *ngIf="accountUserFlag">
+                    <li *ngIf="addMapFlag">
+                      <i class="fa fa-angle-down color_2" aria-hidden="true" (click)="accountUserMapFlag = !accountUserMapFlag"></i> Account users
+                      <ul class="open_ul" *ngIf="accountUserMapFlag">
                         <li class="active">Overall Team</li>
                         <li>Luke Clothier</li>
                         <li>Chris Oldham</li>
                         <li>Steve Edwards</li>
                       </ul>
                     </li>
-                    <li *ngIf="addMoreDetailsFlag">
-                      <i class="fa fa-angle-down color_2" aria-hidden="true" (click)="userMetricsFlag = !userMetricsFlag"></i> User Metrics
-                      <ul class="open_ul" *ngIf="userMetricsFlag">
+                    <li *ngIf="addMapFlag">
+                      <i class="fa fa-angle-down color_2" aria-hidden="true" (click)="userMetricsMapFlag = !userMetricsMapFlag"></i> User Metrics
+                      <ul class="open_ul" *ngIf="userMetricsMapFlag">
                         <li class="active">Number of Applications</li>
                         <li>Number of Jobs Posted</li>
                       </ul>
                     </li>
-                    <li *ngIf="addMoreDetailsFlag">
-                      <i class="fa fa-angle-down color_2" aria-hidden="true" (click)="timePeriodFlag = !timePeriodFlag"></i> Time Period
-                      <ul class="open_ul" *ngIf="timePeriodFlag">
+                    <li *ngIf="addMapFlag">
+                      <i class="fa fa-angle-down color_2" aria-hidden="true" (click)="timePeriodMapFlag = !timePeriodMapFlag"></i> Time Period
+                      <ul class="open_ul" *ngIf="timePeriodMapFlag">
                         <li class="active">1 Month</li>
                         <li>3 Months</li>
                       </ul>
                     </li>
                   </ul>
                 </div>
-              </div> -->
+              </div>
             </div>
             <img src="./assets/images/regional-stats.jpg" alt="" title="" class="img-responsive">
           </div>

@@ -8,20 +8,34 @@ import { CommonRequestService } from '../common-request.service';
 })
 export class HeaderLogoComponent implements OnInit {
   logoImage;
+  wsError = "";
   constructor(private _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
-   // this.getLogoData();
+    this.getLogoData();
   }
 
-  // getLogoData(){
-  // 	let url ="http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/logo";
-  //     this._commonRequestService.getData(url).subscribe(
-  //       data => {
-  //         this.logoImage = data.data;
-  //         console.log("logoImage",this.logoImage);
-  //       }
-  //   );
-  // }
+  getLogoData(){
+    this.wsError = "";
+   var input = {
+    "page":1,
+    "limit":-1
+   };
+   console.log("input--", input);
+   var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/get/staticpages/logo";
+       this._commonRequestService.postData(wsUrl,input).subscribe(
+        data => {
+         console.log("all logo data", data);
+         if(data && data.status === "TRUE") {
+          this.logoImage = data.data[0];
+           this.wsError = "";
+          } else {
+            if(data && data.status === "FALSE") {
+              this.wsError = typeof (data.error) == 'object' ? data.error[0] : data.error;
+            }
+          }
+        }
+    );
+  }
 
 }

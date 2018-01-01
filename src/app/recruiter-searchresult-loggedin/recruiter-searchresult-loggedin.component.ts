@@ -57,6 +57,7 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   currentUrlValue;
   emailValueFlag = false;
   id;
+  showPhoneNoFlag = false;
   constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService,
     private _commonService: CommonService, private router: Router, private _routes: ActivatedRoute) {
       this.currentUrl = router.url;
@@ -574,8 +575,14 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
     // $( "#slidePhone" ).slide( "slide" );
     //this.showPhoneFlag[index] = !this.showPhoneFlag[index];
     //if(this.showPhoneFlag[index]) {
-     $(".box_"+index).css('display','inline-block');
-     $("#slidePhone_"+index).animate({width:"toggle"});
+    //  $(".box_"+index).css('display','inline-block');
+    //  $("#slidePhone_"+index).animate({width:"toggle"});
+    var displayMode = $( ".box_"+index ).css( "display" );
+    if (displayMode === 'inline-block') {
+      $(".box_"+index).css('display','none');
+    } else {
+      $(".box_"+index).css('display','inline-block');
+    }
     //}
 
   }
