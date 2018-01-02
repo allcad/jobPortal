@@ -19,3 +19,16 @@
     margin-left: 15px;
     color: #ffffff;
 }
+
+.job_article_img{
+
+    margin-bottom: 30px;
+}
+
+@media(max-width: 767px){
+
+    .job_full_details p{
+
+    text-align: justify;
+}
+}

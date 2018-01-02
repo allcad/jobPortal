@@ -32,3 +32,9 @@
     margin-left: 15px;
     color: #ffffff;
 }
+
+.form-group.form_login{
+
+    float: right !Important;
+    text-align: right !Important;
+}

@@ -73,6 +73,10 @@
 .application_sort_by.width100 .dropdown-menu{
     padding:8px 15px;
 }
+.select161 select{
+
+    width:100%;
+}
 
 @media(max-width: 767px){
 
@@ -85,5 +89,13 @@
     .cvrow label{
 
         margin-top:5px;
+    }
+    .modal-dialog{
+            padding: 10px;
+    }
+    .modal-content{
+
+        width: 94%;
+        top: 10px;
     }
 }

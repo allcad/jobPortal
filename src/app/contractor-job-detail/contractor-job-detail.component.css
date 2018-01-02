@@ -7,3 +7,8 @@
 .my_applications_box .footer_box .view_company p a {
     width: auto;
 }
+
+.job_full_details p{
+
+	text-align: justify;
+}

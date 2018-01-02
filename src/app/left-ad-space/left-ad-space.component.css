@@ -1,3 +1,12 @@
-.ad-width{
-    width:100%
+.job_search_ads{
+
+	float: left;
+	margin-right:5px;
+}
+
+.job_full_details p{
+
+	float: left;
+    margin-left: 6px;
+    text-align: justify;
 }
