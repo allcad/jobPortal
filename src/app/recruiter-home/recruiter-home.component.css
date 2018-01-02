@@ -200,3 +200,12 @@ p.needwatch a, p.needwatch a:visited {
 
 .nv-y .nv-axis g path.domain { stroke: blue; }
 
+
+
+@media (min-width: 992px){
+
+.graph-sec {
+    width: 100% !important;
+}
+
+}

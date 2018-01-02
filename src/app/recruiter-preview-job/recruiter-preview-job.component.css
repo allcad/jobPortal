@@ -19,3 +19,11 @@
     margin-left: 15px;
     color: #ffffff;
 }
+
+@media (max-width: 767px){
+
+.job_search_ads {
+    width: 36%;
+    margin: 0 auto;
+}
+}

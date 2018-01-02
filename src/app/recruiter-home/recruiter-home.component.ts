@@ -9,7 +9,7 @@ import { FormControl } from '@angular/forms';
 // import { } from 'googlemaps';
 // import { MapsAPILoader } from '@agm/core';
 
-
+declare var require : any;
 @Component({
   selector: 'app-recruiter-home',
   templateUrl: './recruiter-home.component.html',
@@ -43,13 +43,18 @@ export class RecruiterHomeComponent implements OnInit {
   freeTextValue = "";
   allRecruiterData;
   recruiterIdArray = [];
+  recruiterIdArrayForMap = [];
   addMapFlag = false;
   accountUserMapFlag = false;
   userMetricsMapFlag = false;
   timePeriodMapFlag = false;
+  loading = true;
+  
+  
   // applicationCountArray = [];
   // jobCountArray = [];
   defaultArray = ['Overall Team', 'Number of Applications', 'Number of Jobs Posted', '1 Month'];
+  defaultArrayForMap = ['Overall Team', 'Number of Applications', 'Number of Jobs Posted', '1 Month'];
   public lineChartData:Array<any> = [];
   //  public lineChartData:Array<any> = [
   //   {data: [0, 59, 80, 81, 56, 55, 200], label: 'Series A'},
@@ -98,6 +103,7 @@ export class RecruiterHomeComponent implements OnInit {
   ];
   public lineChartLegend:boolean = true;
   public lineChartType:string = 'line';
+  options;
  
   public randomize():void {
     // let _lineChartData:Array<any> = new Array(this.lineChartData.length);
@@ -120,7 +126,71 @@ export class RecruiterHomeComponent implements OnInit {
   }
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService, private _commonService: CommonService,
-    private ngZone: NgZone, private activateRoute: ActivatedRoute) { }
+    private ngZone: NgZone, private activateRoute: ActivatedRoute) {
+      //const Highcharts = require('highcharts');
+      // this.options = {
+      //   chart: {
+      //     spacingBottom: 20
+      // },
+      // title: {
+      //     text: 'Europe time zones'
+      // },
+  
+      // legend: {
+      //     enabled: true
+      // },
+  
+      // plotOptions: {
+      //     map: {
+      //         allAreas: false,
+      //         joinBy: ['iso-a2', 'code'],
+      //         dataLabels: {
+      //             enabled: true,
+      //             color: '#FFFFFF',
+      //             formatter: function () {
+      //                 if (this.point.properties && this.point.properties.labelrank.toString() < 5) {
+      //                     return this.point.properties['iso-a2'];
+      //                 }
+      //             },
+      //             format: null,
+      //             style: {
+      //                 fontWeight: 'bold'
+      //             }
+      //         },
+      //         mapData: Highcharts.maps['custom/europe'],
+      //         tooltip: {
+      //             headerFormat: '',
+      //             pointFormat: '{point.name}: <b>{series.name}</b>'
+      //         }
+  
+      //     }
+      // },
+  
+      // series: [{
+      //     name: 'UTC',
+      //     data: $.map(['IE', 'IS', 'GB', 'PT'], function (code) {
+      //         return { code: code };
+      //     })
+      // }, {
+      //     name: 'UTC + 1',
+      //     data: $.map(['NO', 'SE', 'DK', 'DE', 'NL', 'BE', 'LU', 'ES', 'FR', 'PL', 'CZ', 'AT', 'CH', 'LI', 'SK', 'HU',
+      //             'SI', 'IT', 'SM', 'HR', 'BA', 'YF', 'ME', 'AL', 'MK'], function (code) {
+      //         return { code: code };
+      //     })
+      // }, {
+      //     name: 'UTC + 2',
+      //     data: $.map(['FI', 'EE', 'LV', 'LT', 'BY', 'UA', 'MD', 'RO', 'BG', 'GR', 'TR', 'CY'], function (code) {
+      //         return { code: code };
+      //     })
+      // }, {
+      //     name: 'UTC + 3',
+      //     data: $.map(['RU'], function (code) {
+      //         return { code: code };
+      //     })
+      // }]
+      // };
+
+     }
 
   ngOnInit() {
     window.scroll(0,0);
@@ -153,6 +223,12 @@ export class RecruiterHomeComponent implements OnInit {
     this.getGraphData();
   }
 
+  removeMapItem(index) {
+    console.log("this.defaultArrayForMap", this.defaultArrayForMap);
+    this.defaultArrayForMap.splice(index, 1);
+    this.getMapData();
+  }
+
   reflectionOnGraph(item, value) {
     console.log("value--", value);
     if(value) {
@@ -173,6 +249,28 @@ export class RecruiterHomeComponent implements OnInit {
     }
     this.getGraphData();
     console.log("this.defaultArray", this.defaultArray);
+  }
+
+  reflectionOnMap(item, value) {
+    console.log("value--", value);
+    if(value) {
+      if(item && item['recuriter_contact_name'] && this.defaultArrayForMap.indexOf(item['recuriter_contact_name']) == -1) {
+        let index = this.defaultArrayForMap.indexOf('Overall Team');
+        this.defaultArrayForMap.splice(index, 1);
+        this.defaultArrayForMap.push(item['recuriter_contact_name']);
+        this.recruiterIdArrayForMap.push(item['recuriter_id']);
+      }
+      if(value > -1) {
+        this.defaultArrayForMap.splice(value, 1);
+        this.defaultArrayForMap.push(item);
+      }
+    } else {
+      if(this.defaultArrayForMap.indexOf(item) == -1) {
+        this.defaultArrayForMap.push(item);
+      }
+    }
+    this.getMapData();
+    console.log("this.defaultArrayForMap", this.defaultArrayForMap);
   }
 
   shareProfileClick() {
@@ -332,6 +430,9 @@ export class RecruiterHomeComponent implements OnInit {
   }
 
   getGraphData() {
+    this.loading = true;
+    this.lineChartData = [];
+    this.lineChartLabels.length = 0;
     this.wsError = "";
    var input = {
     "email":"test@test7.com",
@@ -347,9 +448,10 @@ export class RecruiterHomeComponent implements OnInit {
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/deashboard_graph";
        this._commonRequestService.postData(wsUrl,input).subscribe(
         data => {
+          this.loading = false;
          console.log("Graph data", data);
          if(data && data.status === "TRUE") {
-          this.lineChartLabels = [];
+          
             let applicationArray = [];
             let JobPostArray = [];
             if(data && data.data && data.data.application_counts && data.data.application_counts.length > 0 && Object.keys(data.data).indexOf("application_counts") > 0) {
@@ -368,13 +470,16 @@ export class RecruiterHomeComponent implements OnInit {
             ]
             console.log("this.lineChartData", this.lineChartData);
             if(data && data.data && (data.data.job_counts && data.data.job_counts.length > 0 || data.data.application_counts && data.data.application_counts.length > 0)) {
-              this.lineChartLabels = data.data.job_counts.map(o => {
-                if(o && o.date){
-                  return o.date;
-                } else if(o && o.month) {
-                  return o.month;
-                }
-              });
+              //setTimeout(function() {
+                const newLabel = data.data.job_counts.map(o => {
+                  if(o && o.date){
+                    return o.date;
+                  } else if(o && o.month) {
+                    return o.month;
+                  }
+                });
+                this.lineChartLabels = newLabel;
+              //}, 0)
             }
             console.log("this.lineChartLabels", this.lineChartLabels);
            this.wsError = "";
@@ -392,11 +497,11 @@ export class RecruiterHomeComponent implements OnInit {
    var input = {
      "email":"test@test7.com",
     "loginToken":"$2y$10$QTgvT3EZ2c9nejMN0nXQyukZflChwM.qqcp1n.sdXvE8kRMMleJ.e",
-    "month":"1",
-    "recruiter_id":"0",
-    "number_of_application":"1",
-    "number_of_job_posted":"1",
-    "number_of_job_viewed":"1"
+    "month":this.defaultArrayForMap.indexOf('3 Months') > 0 ? "3" : "1",
+    "recruiter_id":this.defaultArrayForMap.indexOf('Overall Team') > -1 ? 0 : this.recruiterIdArrayForMap.toString().trim(),
+    "number_of_application":this.defaultArrayForMap.indexOf('Number of Applications') > -1 ? 1 : 0,
+    "number_of_job_posted":this.defaultArrayForMap.indexOf('Number of Jobs Posted') > -1 ? 1 : 0,
+    "number_of_job_viewed":0
    };
    console.log("input--", input);
    var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/recruiter/state_user_and_application";

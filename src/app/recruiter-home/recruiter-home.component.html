@@ -34,8 +34,10 @@
           </div>
         </div>
         <div class="col-sm-80 col-md-80">
-          vjc {{lineChartLabels.length}}
-          <div class="recruiter_add_sub_skills" *ngIf="lineChartData.length > 0">
+          <div *ngIf="loading" class="row">
+            <img src="./assets/images/bx_loader.gif">
+          </div>
+          <div class="recruiter_add_sub_skills" *ngIf="lineChartData.length > 0 && !loading">
             <!-- <img src="./assets/images/graph-img.png" alt="Close" title="Close" class="img-responsive"> -->
             <canvas nvd3 style="fill:#e4b447;stroke:#e4b447" baseChart width="400" height="400"
                                             [datasets]="lineChartData"
@@ -180,30 +182,28 @@
                 <li><i class="fa fa-circle color_4" aria-hidden="true"></i>
                   <25 </li>
               </ul>
-              <div class="col-sm-20 col-md-20">
+              <div class="col-sm-20 col-md-20 graph-sec">
                 <div class="graph_listing">
                   <ul>
                     <li *ngIf="addMapFlag">
                       <i class="fa fa-angle-down color_2" aria-hidden="true" (click)="accountUserMapFlag = !accountUserMapFlag"></i> Account users
                       <ul class="open_ul" *ngIf="accountUserMapFlag">
-                        <li class="active">Overall Team</li>
-                        <li>Luke Clothier</li>
-                        <li>Chris Oldham</li>
-                        <li>Steve Edwards</li>
+                        <li [ngClass]="defaultArrayForMap.indexOf('Overall Team') > -1 ? 'active' : ''" (click)="reflectionOnMap('Overall Team')">Overall Team</li>
+                        <li [ngClass]="defaultArrayForMap.indexOf(item?.recuriter_contact_name) > -1 ? 'active' : ''" (click)="reflectionOnMap(item, 'user')" *ngFor="let item of allRecruiterData">{{item?.recuriter_contact_name}}</li>
                       </ul>
                     </li>
                     <li *ngIf="addMapFlag">
                       <i class="fa fa-angle-down color_2" aria-hidden="true" (click)="userMetricsMapFlag = !userMetricsMapFlag"></i> User Metrics
                       <ul class="open_ul" *ngIf="userMetricsMapFlag">
-                        <li class="active">Number of Applications</li>
-                        <li>Number of Jobs Posted</li>
+                        <li [ngClass]="defaultArrayForMap.indexOf('Number of Applications') > -1 ? 'active' : ''" (click)="reflectionOnMap('Number of Applications')">Number of Applications</li>
+                        <li [ngClass]="defaultArrayForMap.indexOf('Number of Jobs Posted') > -1 ? 'active' : ''" (click)="reflectionOnMap('Number of Jobs Posted')">Number of Jobs Posted</li>
                       </ul>
                     </li>
                     <li *ngIf="addMapFlag">
                       <i class="fa fa-angle-down color_2" aria-hidden="true" (click)="timePeriodMapFlag = !timePeriodMapFlag"></i> Time Period
                       <ul class="open_ul" *ngIf="timePeriodMapFlag">
-                        <li class="active">1 Month</li>
-                        <li>3 Months</li>
+                        <li [ngClass]="defaultArrayForMap.indexOf('1 Month') > -1 ? 'active' : ''" (click)="reflectionOnMap('1 Month')">1 Month</li>
+                        <li [ngClass]="defaultArrayForMap.indexOf('3 Months') > -1 ? 'active' : ''" (click)="reflectionOnMap('3 Months')">3 Months</li>
                       </ul>
                     </li>
                   </ul>
@@ -211,8 +211,13 @@
               </div>
             </div>
             <img src="./assets/images/regional-stats.jpg" alt="" title="" class="img-responsive">
+            <!-- <chart type="Map" [options]="options"></chart> -->
           </div>
-          <div class="recruiter_add_sub_skills text_color_black"> <a href="javascript:void(0)">Overall Team   <img src="./assets/images/close-box.png" alt="Close" title="Close"></a> <a href="javascript:void(0)">Number of Applications  <img src="./assets/images/close-box.png" alt="Close" title="Close"></a> <a href="javascript:void(0)">1 Month   <img src="./assets/images/close-box.png" alt="Close" title="Close"></a> </div>
+          <div class="recruiter_add_sub_skills text_color_black"> 
+            <a href="javascript:void(0)" *ngFor="let item of defaultArrayForMap;let i=index;">{{item}}<img src="./assets/images/close-box.png" alt="Close" title="Close" (click)="removeMapItem(i)"></a> 
+            <!-- <a href="javascript:void(0)">Number of Applications  <img src="./assets/images/close-box.png" alt="Close" title="Close"></a>
+             <a href="javascript:void(0)">1 Month   <img src="./assets/images/close-box.png" alt="Close" title="Close"></a>  -->
+            </div>
         </div>
         <div class="col-sm-20">
         </div>

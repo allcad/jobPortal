@@ -36,7 +36,7 @@
                                 <!-- <img src="./assets/images/refind-rate.png" alt="" title="" class="img-responsive"> -->
                                 <!-- <ion-range-slider class="width_100" (onFinish)="getRangeSliderValue($event)" #searchResultElement min="200" value="100" max="800" step="10" from="300">
                                 </ion-range-slider> -->
-                                <ion-range-slider type="double" prefix="£" class="width_100" (onFinish)="getRangeSliderValue($event)" #searchResultElement min="0" value="100" max="2000" step="5" from="0" to="2000" [postfix]="savedResult['recuriter_search_by_rate_type'] == 'hourly' ? ' per hour' : ' per day'">
+                                <ion-range-slider type="double" prefix="£" class="width_100" (onFinish)="getRangeSliderValue($event)" #searchResultElement min="0" value="100" max="2000" step="5" [from]=ionSliderFrom [to]=ionSliderTo [postfix]="savedResult['recuriter_search_by_rate_type'] == 'hourly' ? ' per hour' : ' per day'">
                                 </ion-range-slider>
                                 
                             </div>

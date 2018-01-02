@@ -124,9 +124,9 @@ freeTextLocationValueRadial = "";
     this.displayTown = location.town_name;
     this.displayCountry = location.country;
     if(this.searchName == "mapping") {
-      this.displayLocationName = location.town_name + ',' + location.country;
+      this.displayLocationName = location.town_name + ', ' + location.country;
     } else {
-      this.displayRadialLocationName = location.town_name + ',' + location.country;
+      this.displayRadialLocationName = location.town_name + ', ' + location.country;
     }
   }
 

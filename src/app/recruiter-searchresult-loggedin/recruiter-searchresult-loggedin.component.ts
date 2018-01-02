@@ -58,6 +58,8 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
   emailValueFlag = false;
   id;
   showPhoneNoFlag = false;
+  ionSliderFrom = '0';
+  ionSliderTo = '2000';
   constructor(private _commonDataShareService: CommonDataSharedService, public _commonRequestService: CommonRequestService,
     private _commonService: CommonService, private router: Router, private _routes: ActivatedRoute) {
       this.currentUrl = router.url;
@@ -92,6 +94,8 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
               "display_name": ''
             }
             this.savedResult = searchJson;
+            this.ionSliderFrom = this.savedResult && this.savedResult['recuriter_search_by_rate_min'] ? this.savedResult['recuriter_search_by_rate_min'] : '0';
+            this.ionSliderTo = this.savedResult && this.savedResult['recuriter_search_by_rate_max'] ? this.savedResult['recuriter_search_by_rate_max'] : '2000';
             this.getSearchResultList();
           }
         }
@@ -135,6 +139,8 @@ export class RecruiterSearchresultLoggedinComponent implements OnInit {
           if(parseInt(output['recuriter_search_by_rate_max']) === 0) {
             this.savedResult['recuriter_search_by_rate_max'] = "";
           }
+          this.ionSliderFrom = this.savedResult && this.savedResult['recuriter_search_by_rate_min'] ? this.savedResult['recuriter_search_by_rate_min'] : '0';
+          this.ionSliderTo = this.savedResult && this.savedResult['recuriter_search_by_rate_max'] ? this.savedResult['recuriter_search_by_rate_max'] : '2000';
           this.getSearchResultList();
         }
 
