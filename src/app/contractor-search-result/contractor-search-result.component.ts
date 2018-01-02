@@ -42,37 +42,79 @@ export class ContractorSearchResultComponent implements OnInit {
   fromRate = 0;
   toRate = 2000;
   ngOnInit() {
-    console.log(JSON.parse(localStorage.getItem("jobSearch")));
-    this.searchJson = JSON.parse(localStorage.getItem("jobSearch"));
-    this.getSearchData();
+    //console.log(JSON.parse(localStorage.getItem("jobSearch")));
+    //this.searchJson = JSON.parse(localStorage.getItem("jobSearch"));
+    this.initializeSearchJson();
+    //this.getSearchData();
     this.getSortList();
     if (this._router.url.split('/')[1] == "public") {
       this.isPublic = true;
     }
 
 
-    if (this._router.url.split('/')[2].indexOf('contractor_search') > -1) {
+    if (this._router.url.split('/')[2].indexOf('contractor_search?') > -1) {
       this._routes.queryParams.subscribe((params: Params) => {
         let paramData = params;
-        
-        let output = {};        
+
+        let output = {};
 
         let keyArray = []
         for (let prop in paramData) {
-            keyArray.push(prop); 
+          keyArray.push(prop);
         }
 
-        for(let i=0; i<keyArray.length; i++){
-          output[keyArray[i]] = paramData[keyArray[i]] && paramData[keyArray[i]].indexOf('+')>-1 ? paramData[keyArray[i]].replace(/\+/g, ' ') : paramData[keyArray[i]];          
+        for (let i = 0; i < keyArray.length; i++) {
+          output[keyArray[i]] = paramData[keyArray[i]] && paramData[keyArray[i]].indexOf('+') > -1 ? paramData[keyArray[i]].replace(/\+/g, ' ') : paramData[keyArray[i]];
         }
         this.searchJson = output;
         this.getSearchData();
-        console.log("jbdjasd",output);
 
       });
     }
 
 
+    this._routes.params.subscribe((params: Params) => {
+      if (this._router.url.split('/')[2].indexOf('contractor_search?') == -1) {
+        this.searchResult = [];
+        this.initializeSearchJson();
+        if (params['skill']) {
+          this.searchJson.contractor_search_by_keywords = params['skill'];
+        } else if (params['location']) {
+          this.searchJson.display_name = params['location'];
+          this.searchJson.contractor_search_by_location = params['location'];
+          // this.getSearchData();
+        }
+        this.getSearchData();
+      }
+    })
+
+
+
+  }
+
+
+
+  initializeSearchJson() {
+    this.searchJson = {
+      contractor_search_by_job_title: "",
+      contractor_search_by_keywords: "",
+      contractor_search_by_exclude_words: "",
+      contractor_search_by_miles: "",
+      contractor_search_by_location: "",
+      contractor_search_by_rate_min: "",
+      contractor_search_by_rate_max: "",
+      contractor_search_by_rate_type: "",
+      contractor_search_by_job_reference_number: "",
+      contractor_search_by_posted_contact_since: "",
+      contractor_search_by_industry_sector: "",
+      postcode: "",
+      display_town: "",
+      display_county: "",
+      display_name: "",
+      page: 1,
+      limit: 10,
+      sort: 1
+    }
   }
 
   getSortList() {
@@ -99,6 +141,7 @@ export class ContractorSearchResultComponent implements OnInit {
     this.fromRate = this.searchJson.contractor_search_by_rate_min ? this.searchJson.contractor_search_by_rate_min : 0;
     this.toRate = this.searchJson.contractor_search_by_rate_max ? this.searchJson.contractor_search_by_rate_max : 2000;
     let url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/search";
+    localStorage.setItem("jobSearch", JSON.stringify(this.searchJson))
     this._commonRequestService.postData(url, this.searchJson)
       .subscribe(data => {
         this.loading = false;
@@ -175,24 +218,7 @@ export class ContractorSearchResultComponent implements OnInit {
   }
 
 
-  refineSearch() {
-    this._router.navigate(['../lastSearch'], { relativeTo: this._routes });
-  }
 
-  newSearch() {
-    this._router.navigate(['../jobSearch'], { relativeTo: this._routes });
-  }
-
-  login() {
-    this._router.navigate(['../contractorLogin'], { relativeTo: this._routes, queryParams :  this.searchJson });
-  }
-
-  signup() {
-    this._router.navigate(['../contractorSignup'], { relativeTo: this._routes });
-  }
-
-
- 
 
 
   send(form) {
@@ -258,6 +284,15 @@ export class ContractorSearchResultComponent implements OnInit {
     } else {
       window.scroll(0, 0);
       this.saveSearchInvalid = true;
+    }
+  }
+
+
+  changeRoute(path) {
+    if (this.isPublic) {
+      this._router.navigate(['/public/' + path], { relativeTo: this._routes })
+    } else {
+      this._router.navigate(['/contractor/' + path], { relativeTo: this._routes })
     }
   }
 }

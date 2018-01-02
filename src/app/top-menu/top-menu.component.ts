@@ -201,4 +201,8 @@ export class TopMenuComponent implements OnInit {
     this.removeClass('firstli', event)
   }
 
+  menuClicked(data){
+    this._commonDataShareService.headerAdChange.next(data);
+  }
+
 }

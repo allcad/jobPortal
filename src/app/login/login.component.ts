@@ -72,7 +72,6 @@ export class LoginComponent implements OnInit {
             this.errorMsgFlag = true;
             this.succesLoginFlag = false;
             this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
-            //setTimeout(()=>{this.errorMsgFlag = false},1000)
           }
         }
       )

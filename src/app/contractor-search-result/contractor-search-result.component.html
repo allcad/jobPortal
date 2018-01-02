@@ -6,9 +6,9 @@
           <div class="contractor_signup">
             <h2 class="font_capitalizs">Search <span>Results</span></h2>
             <ul class="breadcomb">
-              <li><a href="javascript:void(0)" routerLink="../home">Home</a></li>
+              <li><a href="javascript:void(0)" (click)="changeRoute('home')" >Home</a></li>
               <li class="right_arrow">&gt;</li>
-              <li><a href="javascript:void(0)" routerLink="../jobSearch">ADVANCED SEARCH </a></li>
+              <li><a href="javascript:void(0)" (click)="changeRoute('jobSearch')" >ADVANCED SEARCH </a></li>
               <li class="right_arrow">&gt;</li>
               <li class="active">RESULTS</li>
             </ul>
@@ -37,8 +37,8 @@
           <div class="col-sm-30">
             <div class="pull-right application_sort_by position_relative padding_left_right_15"> <a href="javascript:void(0)" class="dropdown-toggle btn-primary font_capitaliz width_180px hover_white_pluse" (click)="searchClicked = !searchClicked">Search Option <i class="fa fa-angle-down plus_blue font_size_margin" aria-hidden="true"></i></a>
               <ul class="dropdown-menu" style="cursor: pointer;" [ngStyle]="{'display': searchClicked ? 'block' : 'none'}">
-                <li (click)="newSearch()">New Search</li>
-                <li (click)="refineSearch()">Refine Search</li>
+                <li (click)="changeRoute('jobSearch')">New Search</li>
+                <li (click)="changeRoute('lastSearch')">Refine Search</li>
                 <li *ngIf="!isPublic" (click)="showSaveSearchBox = !showSaveSearchBox">Save Search
                   <a href="javascript:void(0)" id="save_search"><i class="fa fa-plus plus_blue text_pink" aria-hidden="true"></i></a>
                   <div class="home_page_inquery">
@@ -129,7 +129,7 @@
               <p class="call-to-view ctvpad" style="float:right;padding-right:10px;">You’ve already applied to this!</p>
             </div>
             <div class="pull-right view_company" *ngIf="isPublic">
-              <p class="call-to-view ctvpad" style="float:right;padding-right:10px;"><a href="javascript:void(0)" (click)="login()">Login</a> or <a href="javascript: void(0)" (click)="signup()">Sign Up</a> to apply </p>
+              <p class="call-to-view ctvpad" style="float:right;padding-right:10px;"><a href="javascript:void(0)" (click)="changeRoute('contractorLogin')">Login</a> or <a href="javascript: void(0)" (click)="changeRoute('contractorSignup')">Sign Up</a> to apply </p>
               <ul>
                 <input type="hidden" name="siteurl_foryoumaylove" id="siteurl-youmaylove" value="https://stage.contractrecruit.co.uk/contractors/">
               </ul>

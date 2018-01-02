@@ -1,1 +1,11 @@
-<div class="header_right_ads"> <a href="javascript:void(0)"> <img src="./assets/images/header-ads.png" alt="ads" title="ads" class="img-responsive"> </a> </div>
+<div class="header_right_ads" *ngIf="add?.google_script=='0'"> 
+	<a [href]="add?.banner_link" target="_blank"> 
+		<img [src]="add?.rotating_banner" onError="this.src='./assets/images/header-ads.png'" alt="ads" title="ads" class="img-responsive">  
+	</a> 
+</div>
+
+<div class="header_right_ads" *ngIf="add?.google_script=='1'">
+	<div [innerHTML]="add?.google_script_code">
+		
+	</div>
+</div>

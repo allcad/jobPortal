@@ -8,11 +8,11 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./contractor-advice-category.component.css']
 })
 export class ContractorAdviceCategoryComponent implements OnInit {
-	adviceCategoryData = [];
-	articleList = [];
+  adviceCategoryData = [];
+  articleList = [];
   latestAdviceArticleList = [];
   articleToShow = [];
-	selectedAdviceCategory;
+  selectedAdviceCategory;
   config: SwiperOptions = {
     //pagination: '.swiper-pagination',
     //  paginationClickable: true,
@@ -25,6 +25,10 @@ export class ContractorAdviceCategoryComponent implements OnInit {
   searchKeyword;
   currentPage = 1;
   totalPage;
+  email;
+  subscriptionFlag;
+  errorMsgFlag;
+  errorMsg;
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
@@ -36,8 +40,8 @@ export class ContractorAdviceCategoryComponent implements OnInit {
     this.getLatestAdviceArticle();
   }
 
-  ngAfterViewInit(){
-   window.scroll(0,0);
+  ngAfterViewInit() {
+    window.scroll(0, 0);
   }
 
   getadviceCategory() {
@@ -72,7 +76,7 @@ export class ContractorAdviceCategoryComponent implements OnInit {
       data => {
         console.log("articleList", data.data)
         this.articleList = data.data;
-        if(this.searchClicked){
+        if (this.searchClicked) {
           this.articleToShow = this.articleList;
         }
       }
@@ -99,30 +103,72 @@ export class ContractorAdviceCategoryComponent implements OnInit {
     console.log(item);
     localStorage.setItem("adviceArticleId", item.id);
     this._commonRequestService.setDataWithoutObserval(item.id, "adviceArticleId");
-    this._router.navigate(['../adviceDetail'], {relativeTo: this._routes});
+    this._router.navigate(['../adviceDetail'], { relativeTo: this._routes });
   }
 
 
-  searchArticle(){
-    if(this.searchKeyword){
+  searchArticle() {
+    if (this.searchKeyword) {
       let input = {
-      page: 1,
-      limit: -1,
-      search : this.searchKeyword
-    }
-    var url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/page/advice/article/search";
-    this._commonRequestService.postData(url, input).subscribe(
-      data => {
-        if(data.status == "TRUE"){
-          this.articleToShow  = data.data;
-        }else if(data.status === "FALSE"){
-          this.articleToShow = [];
+        page: 1,
+        limit: -1,
+        search: this.searchKeyword
+      }
+      var url = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/page/advice/article/search";
+      this._commonRequestService.postData(url, input).subscribe(
+        data => {
+          if (data.status == "TRUE") {
+            this.articleToShow = data.data;
+          } else if (data.status === "FALSE") {
+            this.articleToShow = [];
+          }
+
         }
-        
+      );
+    }
+
+  }
+
+
+  subscribeNewsLetter() {
+    this.errorMsgFlag = false;
+    if (this.email && (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email))) {
+      this._commonRequestService.getData("https://api.ipify.org?format=json")
+        .subscribe(data => {
+          this.callSubscription(data.ip, this.email);
+        })
+    } else {
+      this.errorMsgFlag = true;
+      this.errorMsg = "Please enter valid email";
+      window.scroll(0, 0);
+      setTimeout(() => {
+        this.errorMsgFlag = false;
+      }, 2000)
+    }
+  }
+
+
+  callSubscription(ipAddress, email) {
+    var inputJson = {
+      'email_subscriber': email,
+      'ip': ipAddress
+    }
+    var url = " http://dev.contractrecruit.co.uk/contractor_admin/api/post/newslatter";
+    this._commonRequestService.postData(url, inputJson).subscribe(
+      data => {
+        this.email = "";
+        window.scroll(0, 0);
+        if (data.status == 'TRUE') {
+          this.subscriptionFlag = true;
+          setTimeout(() => { this.subscriptionFlag = false; }, 3000)
+        } else {
+          this.errorMsgFlag = true;
+          this.errorMsg = data.error;
+          setTimeout(() => { this.errorMsgFlag = false; }, 3000)
+        }
+
       }
     );
-    }
-    
   }
 
 

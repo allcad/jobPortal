@@ -8,6 +8,7 @@ export class CommonDataSharedService{
 	advancedSerahcResult = new Subject();
 	loginMessage = new Subject();
 	contractorHubSearch = new Subject();
+	headerAdChange = new Subject();
 }
 
 /*PlanProgressDataService*/
