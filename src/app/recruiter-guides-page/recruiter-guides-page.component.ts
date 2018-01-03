@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonRequestService } from '../common-request.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-recruiter-guides-page',
@@ -9,10 +10,14 @@ import { CommonRequestService } from '../common-request.service';
 export class RecruiterGuidesPageComponent implements OnInit {
  emailValue;
  WSErrorMsg;
-  constructor(public _commonRequestService: CommonRequestService) { }
+ videoUrl;
+  constructor(public _commonRequestService: CommonRequestService, public route: Router) {
+
+	 }
 
   ngOnInit() {
 		//this.shareGuide();
+		this.showGuide();
   }
 
    shareGuide() {
@@ -37,6 +42,31 @@ export class RecruiterGuidesPageComponent implements OnInit {
 	        }
 	    );
 	}
-  }
+	}
+	
+	showGuide() {
+		this.WSErrorMsg = "";
+		window.scroll(0,0);
+		var input = {
+			page:1,
+			limit:3,
+			guide_type: this.route.url == '/public/guides' ? 'Recruiter' : 'Contractor'
+			
+	};
+	console.log("input--", input);
+		var wsUrl="http://dev.contractrecruit.co.uk/contractor_admin/api/post/guide/guide_type";
+				this._commonRequestService.postData(wsUrl,input).subscribe(
+				 data => {
+					 console.log("guide data--", data);
+					 if(data && data.status == 'TRUE') {
+						 this.videoUrl = data.data[0];
+						 this.WSErrorMsg = "";
+					 } else {
+						 this.WSErrorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
+					 }
+					 //this.recruiterNameArray = data.data;
+				 }
+		 );
+ }
 
 }

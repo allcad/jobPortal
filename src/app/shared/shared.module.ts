@@ -54,6 +54,7 @@ import { FindContractorComponent } from '../find-contractor/find-contractor.comp
 import { PayrollComponent } from '../payroll/payroll.component';
 import { ContractorHomeComponent } from '../contractor-home/contractor-home.component';
 import { LeftAdSpaceComponent } from '../left-ad-space/left-ad-space.component';
+import {SafePipe } from '.././safe.pipe';
 
 const sharedModuleList = [
   FindContractHubComponent,
@@ -94,7 +95,8 @@ const sharedModuleList = [
   FindContractorComponent,
   PayrollComponent,
   ContractorHomeComponent,
-  LeftAdSpaceComponent
+  LeftAdSpaceComponent,
+  SafePipe
 ]
 
 @NgModule({

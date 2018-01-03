@@ -97,6 +97,9 @@ const publicRoutes: Routes = [
         "path": "guides",
         "component": RecruiterGuidesPageComponent
     }, {
+        "path": "contractor-guides",
+        "component": RecruiterGuidesPageComponent
+    }, {
         "path": "privacy-policy",
         "component": PrivacyPolicyComponent
     }, {
