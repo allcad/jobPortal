@@ -191,7 +191,7 @@ jobPostingPreviewData;
         data => {
           if(data && data.status == 'TRUE') {
             this.templateData = data.data;
-            this.currentTemplate = this.templateData[0].id;
+            //this.currentTemplate = this.templateData[0].id;
             console.log("templateData--", data);
           }
         }
