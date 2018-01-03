@@ -29,13 +29,17 @@ export class ContactPageComponent implements OnInit {
     nextButton: '.swiper-button-next',
     prevButton: '.swiper-button-prev',
     spaceBetween: 30,
-    autoplay : 3000
+    autoplay : 3000,
+    loop: true
   }
   constructor(private router: Router, public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
   	window.scroll(0,0);
   	this.generate();
+
+    
+    
   }
 
   getRandamValue(max,min){

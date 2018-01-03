@@ -16,6 +16,7 @@ export class TopMenuComponent implements OnInit {
   aboutContractRecruitFlag = false;
   categoryData = [];
   menuList;
+
   constructor(private _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute,
     private _commonDataShareService: CommonDataSharedService, private commonService: CommonService) { }
 

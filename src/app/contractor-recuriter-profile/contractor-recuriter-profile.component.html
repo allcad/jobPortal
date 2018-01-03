@@ -24,13 +24,13 @@
     <div class="recruiter_profile_content_part">
       <div class="row">
         <div class="col-sm-25 col-md-20">
-          <img [src]="companyDetail?.profileimage[0]?.attachment_url + '/' + companyDetail?.profileimage[0]?.attachment_name" alt="" title="" class="img-responsive">
+          <img [src]="companyDetail?.profileimage[0]?.attachment_url + '/' + companyDetail?.profileimage[0]?.attachment_name || './assets/images/no_photo.jpg'" onerror="this.src='./assets/images/no_photo.jpg'" alt="" title="" class="img-responsive">
         </div>
         <div class="col-sm-75 col-md-80">
-          <div class="web_email_content">
-            <p><span>Website</span> {{comapnySocial?.webAddress || 'NA' }} </p>
+          <div class="web_email_content label_box">
+            <p><span >Website</span> {{comapnySocial?.webAddress || 'NA' }} </p>
             <p><span>Email</span> {{comapnySocial?.emailAddress || 'NA'}}</p>
-            <p><span>Size</span> &lt;{{companyDetail?.companyDetails?.companySize ? companyDetail?.companyDetails?.companySize : 'NA'}} Employees</p>
+            <p><span>Size</span> &lt;{{companyDetail?.companyDetails?.companySize ? companyDetail?.companyDetails?.companySize : 'NA'}} {{companyDetail?.companyDetails?.companySize ? 'Employees' : ''}}</p>
             <p><span>Location</span> {{companyDetail?.companyDetails?.companyAddress ? companyDetail?.companyDetails?.companyAddress : 'NA'}}</p>
             <p><span>Description</span> {{companyDetail?.companyDescription ? companyDetail?.companyDescription : 'NA'}}<span class="text_manage"></span></p>
           </div>
@@ -62,7 +62,7 @@
           </div>
           <div (click)="viewCompanyProfile()" style="cursor: pointer;">
           <div class="application_box_contant" routerLink="../contractor_search/{{job.jobid}}">
-            <img style="height: 87px;" [src]="job.profileimage[0]?.attachment_url + '/' + job.profileimage[0]?.attachment_name ||    './assets/images/application1.png'" onError="this.src='./assets/images/application1.png'" alt="ads" title="ads" class="img-responsive">
+            <img style="height: 87px;" [src]="job.profileimage[0]?.attachment_url + '/' + job.profileimage[0]?.attachment_name ||    './assets/images/no_photo.jpg'" onError="this.src='./assets/images/no_photo.jpg'" alt="ads" title="ads" class="img-responsive">
             <h2>{{job.jobTitle}}</h2>
           </div>
           <div class="application_box_contant2" routerLink="../contractor_search/{{job.jobid}}">

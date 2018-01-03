@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { CommonDataSharedService } from '../commonDataSharedService';
 
 @Component({
@@ -54,8 +54,6 @@ export class AboutContractorComponent implements OnInit {
             
           }
         });
-
-
 
     $(document).on('scroll', function() {
       let currentHeight = $(this).height();

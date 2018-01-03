@@ -69,7 +69,7 @@ export class ContractorAdviceCategoryComponent implements OnInit {
       "loginToken": "$2y$10$S.H5i.UJ5CkSBHjinFY.VuWZ2kR8pDEcZGNtRrb1/lNBBNcw7gFBK",
       "category": this.selectedAdviceCategory,
       "page": 1,
-      "limit": 1
+      "limit": -1
 
     }
     this._commonRequestService.postData(url, inputJson).subscribe(

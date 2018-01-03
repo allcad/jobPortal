@@ -37,6 +37,7 @@ export class ContractorJobSearchSavedComponent implements OnInit {
   displayCountry;
   displayLocationName;
   isPublic = false;
+  emailFlag = false;
   constructor(private _commonRequestService: CommonRequestService,private _router: Router, private _routes: ActivatedRoute,  private ngZone: NgZone) { }
 
   ngOnInit() {
@@ -101,6 +102,7 @@ export class ContractorJobSearchSavedComponent implements OnInit {
         "display_town": this.displayTown,
         "display_county": this.displayCountry,
         "display_name": this.displayLocationName ,
+        "contractor_search_email_job_status" : this.emailFlag
       }
       if (this.seletecSearchId) {
         inputJson['contractor_search_id'] = this.seletecSearchId;
@@ -165,6 +167,7 @@ export class ContractorJobSearchSavedComponent implements OnInit {
     this.postDuration = "";
     this.industrySector = [];
     this.seletecSearchId = 0;
+    this.emailFlag = false;
   }
 
   searchSelect(id) {
@@ -195,6 +198,7 @@ export class ContractorJobSearchSavedComponent implements OnInit {
         this.displayLocationName = searchData.display_name;
         this.postDuration = searchData.contractor_search_by_posted_contact_since;
         this.industrySector = searchData.contractor_search_by_industry_sector;
+        this.emailFlag = searchData.contractor_search_email_job_status;
       }
     );
   }
@@ -294,5 +298,10 @@ export class ContractorJobSearchSavedComponent implements OnInit {
   searchBoxBlank(){
     
   }
+
+
+  // changeEmailStatus(){
+  //   this.emailFlag = !this.emailFlag;
+  // }
 
 }

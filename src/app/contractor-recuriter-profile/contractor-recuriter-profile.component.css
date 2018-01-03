@@ -17,3 +17,10 @@
 
 	margin-top: 0px;
 }
+
+.label_box p span{
+	color: #00ccff;
+    display: inline-block;
+    padding-right: 10px;
+    width: 90px;
+}

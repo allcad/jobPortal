@@ -42,14 +42,14 @@
             <div class="errorbox" *ngIf="((saveSearchForm && saveSearchForm.form && saveSearchForm.form.controls && saveSearchForm.form.invalid) || searchNameExist) && saveClicked"><b>The following error(s) occured:</b>
               <br>
               <li *ngIf="saveSearchForm.form.controls.searchName?.hasError( 'required')">Please enter search name</li>
-              <li *ngIf="saveSearchForm.form.controls.jobTitle?.hasError( 'required')">Please enter job title</li>
+              <!-- <li *ngIf="saveSearchForm.form.controls.jobTitle?.hasError( 'required')">Please enter job title</li>
               <li *ngIf="saveSearchForm.form.controls.keywords?.hasError( 'required')">Please enter keywords</li>
               <li *ngIf="saveSearchForm.form.controls.excludingWords?.hasError( 'required')">Please enter excluding words</li>
               <li *ngIf="saveSearchForm.form.controls.distance?.hasError( 'required')">Please enter distance</li>
               <li *ngIf="saveSearchForm.form.controls.location?.hasError( 'required')">Please enter location</li>
               <li *ngIf="saveSearchForm.form.controls.min?.hasError( 'required')">Please enter min rate</li>
               <li *ngIf="saveSearchForm.form.controls.max?.hasError( 'required')">Please enter max rate</li>
-              <li *ngIf="saveSearchForm.form.controls.jobRefNumber?.hasError( 'required')">Please enter job reference number</li>
+              <li *ngIf="saveSearchForm.form.controls.jobRefNumber?.hasError( 'required')">Please enter job reference number</li> -->
              <!--  <li *ngIf="saveSearchForm.form.controls.postedSince?.hasError( 'required')">Please enter post duration</li> -->
               <li *ngIf="searchNameExist">Search already saved with this name</li>
 
@@ -66,7 +66,7 @@
                       <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Saved Search Name" [(ngModel)]="searchName" name="searchName" required>
                       <div class="input-group-addon upto_border_none responsive_width padding_left25">
                         <div class="service_box">
-                          <input id="inlineCheckbox4" value="option4" type="checkbox">
+                          <input id="inlineCheckbox4" value="option4" type="checkbox"   [(ngModel)]="emailFlag" name="email">
                           <label for="inlineCheckbox4" class="padding_right_font"> Email me jobs like this <span></span></label>
                         </div>
                       </div>
@@ -82,7 +82,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/job-title.png" alt="Job Title" title="Job Title" class="img-responsive"></div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Job Title" [(ngModel)]="jobTitle" name="jobTitle" required>
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Job Title" [(ngModel)]="jobTitle" name="jobTitle" >
                     </div>
                   </div>
                 </div>
@@ -92,7 +92,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/Keywords.png" alt="Keywords" title="Keywords" class="img-responsive"></div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Keywords (Boolean Search)" [(ngModel)]="keywords" name="keywords" required>
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Keywords (Boolean Search)" [(ngModel)]="keywords" name="keywords" >
                     </div>
                   </div>
                 </div>
@@ -102,7 +102,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><img src="./assets/images/excluding.png" alt="Excluding" title="Excluding" class="img-responsive"></div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Excluding these words (separate with commas)" [(ngModel)]="excludingWords" name="excludingWords" required>
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Excluding these words (separate with commas)" [(ngModel)]="excludingWords" name="excludingWords" >
                     </div>
                   </div>
                 </div>
@@ -146,7 +146,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon upto_border_none">From</div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Rate Min (£)" [(ngModel)]="minRate" name="min" required>
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Rate Min (£)" [(ngModel)]="minRate" name="min" >
                     </div>
                   </div>
                 </div>
@@ -154,7 +154,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon upto_border_none">To</div>
-                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Rate Max (£)" [(ngModel)]="maxRate" name="max" required>
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Rate Max (£)" [(ngModel)]="maxRate" name="max" >
                     </div>
                   </div>
                 </div>
@@ -191,7 +191,7 @@
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/reference-number.png" alt="Job Reference Number" title="Job Reference Number" class="img-responsive"></div>
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Job Reference Number" [(ngModel)]="jobRefNumber" name="jobRefNumber" required>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Job Reference Number" [(ngModel)]="jobRefNumber" name="jobRefNumber">
                       </div>
                     </div>
                     <div class="form-group">

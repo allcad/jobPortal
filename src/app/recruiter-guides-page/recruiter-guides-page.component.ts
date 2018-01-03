@@ -11,6 +11,7 @@ export class RecruiterGuidesPageComponent implements OnInit {
  emailValue;
  WSErrorMsg;
  videoUrl;
+ type;
   constructor(public _commonRequestService: CommonRequestService, public route: Router) {
 
 	 }
@@ -18,6 +19,9 @@ export class RecruiterGuidesPageComponent implements OnInit {
   ngOnInit() {
 		//this.shareGuide();
 		this.showGuide();
+
+
+		this.type = this.route.url == '/public/guides' ? 'Recruiter' : 'Contractor';
   }
 
    shareGuide() {
