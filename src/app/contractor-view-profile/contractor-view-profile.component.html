@@ -262,13 +262,13 @@
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-addon"><img src="./assets/images/download-icon.png" alt="Download" title="Download" class="img-responsive"></div>
-                        <label *ngIf="profileData" [tooltip]="docFile" class="form-control">{{profileData?.uploadCV[0]?.attachment_name ? profileData?.uploadCV[0]?.attachment_name : 'NA'}}</label>
+                        <label *ngIf="profileData" [tooltip]="docFile" class="form-control">{{preferredCV.attachment_name ? preferredCV.attachment_name : 'NA'}}</label>
                        
                       </div>
                     </div>
                   </div>
                   <div class="col-md-30 col-sm-38">
-                    <div *ngIf="profileData && profileData.uploadCV.length>0" class="current_rate_signup margin_top_10"> <a [href]="profileData?.uploadCV[0]?.attachment_url + '/' + profileData?.uploadCV[0]?.attachment_name" [download]="profileData.uploadCV[0]?.attachment_name" class="btn-primary font_capitaliz hover_white_pluse">Download <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
+                    <div *ngIf="profileData && profileData.uploadCV.length>0" class="current_rate_signup margin_top_10"> <a [href]="preferredCV?.attachment_url + '/' + preferredCV?.attachment_name" [download]="preferredCV?.attachment_name" class="btn-primary font_capitaliz hover_white_pluse">Download <i class="fa fa-plus plus_blue" aria-hidden="true"></i></a> </div>
                   </div>
                 </div>
               </div>

@@ -13,7 +13,7 @@ export class ContractorViewProfileComponent implements OnInit {
   securityClearenceData;
   lat;
   lng;
-
+  preferredCV;
   map;
   constructor(public _commonRequestService: CommonRequestService, ) { }
 
@@ -35,8 +35,8 @@ export class ContractorViewProfileComponent implements OnInit {
     let dataUrl = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/profile/view";
     this._commonRequestService.postData(dataUrl, inputJson).subscribe(
       data => {
-        console.log("profile", data.data)
         this.profileData = data.data;
+        this.preferredCV = this.profileData.uploadCV.filter(item=>{return item.attachment_relation == this.profileData.preffered_cv})[0];
         this.skillArray = (this.profileData['skill&Experience']).split(',');
         console.log("this.skillArray", this.skillArray);
         this._commonRequestService.setDataWithoutObserval(this.profileData, "contractorProfileData");

@@ -147,7 +147,6 @@ export class ContractorProfileComponent implements OnInit {
           for (var i = 0; i < polygon.getPath().getLength(); i++) {
             that.commutablePolygun.push({ 'lat': Number(polygon.getPath().getAt(i).toUrlValue(6).split(',')[0]), 'lng': Number(polygon.getPath().getAt(i).toUrlValue(6).split(',')[1]) });
           }
-          console.log(that.commutablePolygun);
           that.commutablePolygonInst = polygon;
           that.drawingManager1.setMap(null);
         });
@@ -172,8 +171,6 @@ export class ContractorProfileComponent implements OnInit {
           for (var i = 0; i < polygon.getPath().getLength(); i++) {
             that.relocateablePolygun.push({ 'lat': Number(polygon.getPath().getAt(i).toUrlValue(6).split(',')[0]), 'lng': Number(polygon.getPath().getAt(i).toUrlValue(6).split(',')[1]) });
           }
-
-          console.log(that.relocateablePolygun);
           that.relocatablePolygonInst = polygon;
           that.drawingManager2.setMap(null);
         });
@@ -271,10 +268,7 @@ export class ContractorProfileComponent implements OnInit {
   contractorCoverLetterFileChangeEvent(fileInput: any, i) {
     if (!this.checkFileValid(fileInput.target.files[0].name)) {
       this.coverLetterFile = fileInput.target.files[0];
-      //this.uploadedCoverLetter.push(this.coverLetterFile);
-
       this.coverLetterList[i] = { index: i, file: this.coverLetterFile, attachment_name: this.coverLetterFile.name }
-      console.log(this.coverLetterList)
     } else {
       this.coverLetterList.pop();
     }
@@ -284,25 +278,16 @@ export class ContractorProfileComponent implements OnInit {
   contractorCVFileChangeEvent(fileInput, i) {
     if (!this.checkFileValid(fileInput.target.files[0].name)) {
       this.CVFile = fileInput.target.files[0];
-      //this.uploadedCvArray.push({index: i, file: this.CVFile});
-      //this.uploadedCvArray.push(this.CVFile);
       this.contratorCVList[i] = { index: i, file: this.CVFile, attachment_name: this.CVFile.name }
     } else {
       this.contratorCVList.pop();
     }
 
-    // console.log(this.contratorCVList);
+    
 
   }
 
   saveContractorProfile(form: NgForm) {
-    console.log(this.contratorCVList);
-    console.log("id-cv", this.getPreferredCVId(this.contratorCVList));
-    console.log("index-cv", this.getPreferredCVIndex(this.contratorCVList));
-    console.log(" this.uploadedCvArray", this.getPreferredCVIndex(this.contratorCVList).uploadList)
-    console.log("id-cover", this.getPreferredCVId(this.coverLetterList));
-    console.log("index-cover", this.getPreferredCVIndex(this.coverLetterList));
-    console.log("this.uploadedCoverLetter", this.getPreferredCVIndex(this.coverLetterList).uploadList)
     if (form.valid && !this.ErrorMesageFlag && this.postCode.trim().length > 5) {
       this.fd = new FormData();
       this.fd.append('cv_id', this.getPreferredCVId(this.contratorCVList));
@@ -366,17 +351,12 @@ export class ContractorProfileComponent implements OnInit {
       }
       this.fd.append('longitude', this.lng);
       this.fd.append('latitude', this.lat);
-
       this.fd.append('commutablePolygon', this.commutablePolygun && this.commutablePolygun.length > 0 ? JSON.stringify(this.commutablePolygun) : '');
       this.fd.append('relocatablePolygon', this.relocateablePolygun && this.relocateablePolygun.length > 0 ? JSON.stringify(this.relocateablePolygun) : '');
       this.fd.append('display_town', this.displayTown);
       this.fd.append('display_county', this.displayCountry);
       this.fd.append('display_name', this.displayLocationName);
       this.inputUrl = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/profile/submit";
-
-      console.log(this.fd);
-
-
       this._commonRequestService.postData(this.inputUrl, this.fd).subscribe(
         data => {
           this.responseData = data;
@@ -398,10 +378,9 @@ export class ContractorProfileComponent implements OnInit {
             this.ErrorMesageFlag = true;
             window.scroll(0, 0);
             this.errorMsg = typeof (data.error) == 'object' ? data.error[0] : data.error;
-            // this.responseData.status=""
+           
           }
 
-          // console.log("keySkill: ", this.listSignUpData);
         }
       );
     } else {
@@ -437,7 +416,7 @@ export class ContractorProfileComponent implements OnInit {
 
   getPreferredCVId(docList) {
     let prefer = docList.filter(item => { return item.preferred == true });
-    if (prefer && prefer.length>0 && prefer[0]['attachment_relation']) {
+    if (prefer && prefer.length > 0 && prefer[0]['attachment_relation']) {
       return 1;
     } else {
       return 0;
@@ -546,11 +525,8 @@ export class ContractorProfileComponent implements OnInit {
       let dataUrl = "http://dev.contractrecruit.co.uk/contractor_admin/api/post/contractre/profile/view";
       this._commonRequestService.postData(dataUrl, inputJson).subscribe(
         data => {
-          console.log("profiledtaa", data.data)
           this.profileData = data.data;
           this.setProfileData();
-
-          // this.drawExistingMap()
           this._commonRequestService.setDataWithoutObserval(this.profileData, "contractorProfileData")
         }
       );
@@ -607,7 +583,6 @@ export class ContractorProfileComponent implements OnInit {
     this.linkedinWebAdd = this.profileData.linkedinWebAddress && this.profileData.linkedinWebAddress !== 'null' ? this.profileData.linkedinWebAddress : '';
     this.behanceWebAdd = this.profileData.behanceWebAddress && this.profileData.behanceWebAddress !== 'null' ? this.profileData.behanceWebAddress : '';
     this.preferredJobTitleValue = this.profileData.yourPreferredJobTitle && this.profileData.yourPreferredJobTitle !== 'null' ? this.profileData.yourPreferredJobTitle : '';
-    //this.commutable = this.profileData.commutable && (this.profileData.commutable == 'commutable' || this.profileData.commutable == 'relocatable') ? this.profileData.commutable : 'commutable';
     this.commutable = "commutable";
     this.rate1 = this.profileData.rate_min;
     this.rate2 = this.profileData.rate_max;
@@ -617,23 +592,20 @@ export class ContractorProfileComponent implements OnInit {
     this.rate_max_commutable = this.rate2;
     this.rate_min_hr = this.profileData.contractor_rate_min_hour;
     this.rate_max_hr = this.profileData.contractor_rate_max_hr;
-
-    this.commutablePolygun = this.profileData.commutablePolygon ? JSON.parse(this.profileData.commutablePolygon) : [],
-      this.relocateablePolygun = this.profileData.relocatablePolygon ? JSON.parse(this.profileData.relocatablePolygon) : [],
-
-      this.contractor_rate_min_relocatable = this.profileData.contractor_rate_min_relocatable;
+    this.commutablePolygun = this.profileData.commutablePolygon ? JSON.parse(this.profileData.commutablePolygon) : [];
+    this.relocateablePolygun = this.profileData.relocatablePolygon ? JSON.parse(this.profileData.relocatablePolygon) : [];
+    this.contractor_rate_min_relocatable = this.profileData.contractor_rate_min_relocatable;
     this.contractor_rate_min_relocatable_hr = this.profileData.contractor_rate_min_relocatable_hr;
     this.contractor_rate_max_relocatable = this.profileData.contractor_rate_max_relocatable;
     this.contractor_rate_max_relocatable_hr = this.profileData.contractor_rate_max_relocatable_hr;
-
-    //this.dailyHourlyValue = this.profileData.dailyHourlyValue ? this.profileData.dailyHourlyValue : 'daily';
     this.currentJobTitle = this.profileData.currentJobTitle && this.profileData.currentJobTitle !== 'null' ? this.profileData.currentJobTitle : '';
     this.summary = this.profileData.summary && this.profileData.summary !== 'null' ? this.profileData.summary : '';
     this.certification = this.profileData.certification && this.profileData.certification !== 'null' ? this.profileData.certification : '';
     this.qualification = this.profileData.qualification && this.profileData.qualification !== 'null' ? this.profileData.qualification : '';
     this.contratorCVList = (this.profileData.uploadCV && this.profileData.uploadCV.length > 0) ? this.profileData.uploadCV : this.contratorCVList;
-    // this.uploadedCvArray = this.contratorCVList.map(item=>{return item});
+    this.contratorCVList = this.contratorCVList.map(item=>{if(item.attachment_relation == this.profileData.preffered_cv){item.preferred = true;} return item;});
     this.coverLetterList = (this.profileData.uploadCoverLetter && this.profileData.uploadCoverLetter.length > 0) ? this.profileData.uploadCoverLetter : this.coverLetterList;
+    this.coverLetterList = this.coverLetterList.map(item=>{if(item.attachment_relation == this.profileData.preffered_cover_letter){item.preferred = true;} return item;});
     this.industrySector = this.profileData.industrySector;
     this.selectedSkillArray = this.profileData['skill&Experience'].split(',');
     this.lng = Number(this.profileData.longitude);
@@ -651,11 +623,7 @@ export class ContractorProfileComponent implements OnInit {
     var readerByte = new FileReader();
     this.fileUploadForCV = fileInput.target.files[0];
     this.fileUploadForCover = fileInput.target.files[0];
-    // this.fileUpload =fileInput.target.files[0];
     reader.readAsDataURL(fileInput.target.files[0]);
-    console.log(this.fileUploadForCV, this.fileUploadForCover, "file_select2")
-
-
   }
 
   addAnotherCV() {
@@ -667,7 +635,6 @@ export class ContractorProfileComponent implements OnInit {
       this.deleteAttacment(array[index].attachment_relation.toString())
     }
     array.splice(index, 1);
-    console.log(this.contratorCVList);
   }
 
 
@@ -680,7 +647,6 @@ export class ContractorProfileComponent implements OnInit {
     }
     this._commonRequestService.postData(dataUrl, input).subscribe(
       data => {
-        console.log(data.data);
       }
     )
   }
@@ -926,7 +892,6 @@ export class ContractorProfileComponent implements OnInit {
       array[i]['preferred'] = false;
     }
     array[index]['preferred'] = true;
-    console.log(array);
 
   }
 
