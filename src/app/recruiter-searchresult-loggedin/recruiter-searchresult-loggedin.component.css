@@ -260,3 +260,9 @@
     }
     
 }
+
+@media (max-width:767px) {
+    .mobile-slider{
+        padding: 0 25px;
+    }
+}
