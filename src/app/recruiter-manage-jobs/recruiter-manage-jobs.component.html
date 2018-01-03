@@ -26,9 +26,6 @@
                     </div>
                 </div>
 
-                <div class="errorbox" *ngIf="listingData.length === 0 && !loading"><br> 
-                        <li>There is no record.</li>
-                    </div>
                     <div *ngIf="loading" class="row">
                   <img src="./assets/images/bx_loader.gif">
                 </div>
@@ -43,7 +40,7 @@
                                 <span>results per page</span>
                             </div>
                         </div>
-                        <div class="col-sm-50">
+                        <div class="col-sm-50 sort-section">
                             <div class="signup_form_section sort_by_watchdog choose_template responsive_size_widht_auto">
                                 <div class="form-group">
                                     <div class="input-group responsive_width_100">
@@ -62,7 +59,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="errorbox" *ngIf="listingData.length === 0 && !loading"><br> 
+                        <li>There is no record.</li>
+                    </div>
             </div>
+            
             <!--contractor login end-->
             <div class="container" *ngIf="!loading">
                 <div class="row">

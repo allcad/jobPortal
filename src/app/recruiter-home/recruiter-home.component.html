@@ -169,6 +169,11 @@
         <div class="col-sm-55 col-md-50">
           <div class="regional_stats_right">
             <h4>Regional <span class="text_pink">Stats</span></h4>
+           
+            <!-- <img src="./assets/images/regional-stats.jpg" alt="" title="" class="img-responsive"> -->
+            <div id="visualization"> </div>
+            <!-- <chart type="Map" [options]="options"></chart> -->
+
             <div class="graph_listing number_of_application">
               <div class="add_filter margin_bottom_50">
                 <a href="javascript:void(0)" (click)="addMapFlag = !addMapFlag"><img src="./assets/images/add-icon.png" alt="add" title="add"></a>
@@ -210,8 +215,6 @@
                 </div>
               </div>
             </div>
-            <img src="./assets/images/regional-stats.jpg" alt="" title="" class="img-responsive">
-            <!-- <chart type="Map" [options]="options"></chart> -->
           </div>
           <div class="recruiter_add_sub_skills text_color_black"> 
             <a href="javascript:void(0)" *ngFor="let item of defaultArrayForMap;let i=index;">{{item}}<img src="./assets/images/close-box.png" alt="Close" title="Close" (click)="removeMapItem(i)"></a> 

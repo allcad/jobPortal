@@ -10,6 +10,8 @@ import { FormControl } from '@angular/forms';
 // import { MapsAPILoader } from '@agm/core';
 
 declare var require : any;
+declare var google:any;
+declare var googleLoaded:any;
 @Component({
   selector: 'app-recruiter-home',
   templateUrl: './recruiter-home.component.html',
@@ -49,7 +51,7 @@ export class RecruiterHomeComponent implements OnInit {
   userMetricsMapFlag = false;
   timePeriodMapFlag = false;
   loading = true;
-  
+  mapShowFlag = false;
   
   // applicationCountArray = [];
   // jobCountArray = [];
@@ -127,70 +129,31 @@ export class RecruiterHomeComponent implements OnInit {
   constructor(private router: Router, public _commonRequestService: CommonRequestService,
   	private _commonDataSharedService: CommonDataSharedService, private _commonService: CommonService,
     private ngZone: NgZone, private activateRoute: ActivatedRoute) {
-      //const Highcharts = require('highcharts');
-      // this.options = {
-      //   chart: {
-      //     spacingBottom: 20
-      // },
-      // title: {
-      //     text: 'Europe time zones'
-      // },
-  
-      // legend: {
-      //     enabled: true
-      // },
-  
-      // plotOptions: {
-      //     map: {
-      //         allAreas: false,
-      //         joinBy: ['iso-a2', 'code'],
-      //         dataLabels: {
-      //             enabled: true,
-      //             color: '#FFFFFF',
-      //             formatter: function () {
-      //                 if (this.point.properties && this.point.properties.labelrank.toString() < 5) {
-      //                     return this.point.properties['iso-a2'];
-      //                 }
-      //             },
-      //             format: null,
-      //             style: {
-      //                 fontWeight: 'bold'
-      //             }
-      //         },
-      //         mapData: Highcharts.maps['custom/europe'],
-      //         tooltip: {
-      //             headerFormat: '',
-      //             pointFormat: '{point.name}: <b>{series.name}</b>'
-      //         }
-  
-      //     }
-      // },
-  
-      // series: [{
-      //     name: 'UTC',
-      //     data: $.map(['IE', 'IS', 'GB', 'PT'], function (code) {
-      //         return { code: code };
-      //     })
-      // }, {
-      //     name: 'UTC + 1',
-      //     data: $.map(['NO', 'SE', 'DK', 'DE', 'NL', 'BE', 'LU', 'ES', 'FR', 'PL', 'CZ', 'AT', 'CH', 'LI', 'SK', 'HU',
-      //             'SI', 'IT', 'SM', 'HR', 'BA', 'YF', 'ME', 'AL', 'MK'], function (code) {
-      //         return { code: code };
-      //     })
-      // }, {
-      //     name: 'UTC + 2',
-      //     data: $.map(['FI', 'EE', 'LV', 'LT', 'BY', 'UA', 'MD', 'RO', 'BG', 'GR', 'TR', 'CY'], function (code) {
-      //         return { code: code };
-      //     })
-      // }, {
-      //     name: 'UTC + 3',
-      //     data: $.map(['RU'], function (code) {
-      //         return { code: code };
-      //     })
-      // }]
-      // };
+      
 
      }
+
+     drawVisualization() {
+      var data = google.visualization.arrayToDataTable([
+        ['State', 'Population'],
+        ['Scotland', 199581477],
+        ['Northern Ireland', 112372972],
+        ['Wales', 103804637],
+        ['England', 91347736],
+        
+      ]);
+      
+      var opts = {
+        region: 'GB',
+        displayMode: 'regions',
+        resolution: 'provinces',
+        width: 400, 
+        height: 480
+      };
+      var geochart = new google.visualization.GeoChart(
+          document.getElementById('visualization'));
+      geochart.draw(data, opts);
+    };
 
   ngOnInit() {
     window.scroll(0,0);
@@ -510,6 +473,10 @@ export class RecruiterHomeComponent implements OnInit {
          console.log("map data", data);
          if(data && data.status === "TRUE") {
            //this.quickLinkData = data.data;
+           this.mapShowFlag = true;
+          //  google.load('visualization', '1', {'packages': ['geochart']});
+          // google.setOnLoadCallback(this.drawVisualization);
+          google.load('visualization', '1.0', {'packages':['geochart'], callback: this.drawVisualization});
            this.wsError = "";
           } else {
             if(data && data.status === "FALSE") {

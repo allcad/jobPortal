@@ -209,3 +209,16 @@ p.needwatch a, p.needwatch a:visited {
 }
 
 }
+
+:host /deep/ #visualization{
+
+    position: relative;
+   
+}
+
+:host /deep/ #visualization div{
+
+    top: -33px !important;
+    left: -45px !important;
+    position: absolute;
+}

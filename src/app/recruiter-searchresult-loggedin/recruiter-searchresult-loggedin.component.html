@@ -40,6 +40,9 @@
                                 </ion-range-slider>
                                 
                             </div>
+                            <div *ngIf="loading" class="row">
+                                <img src="./assets/images/bx_loader.gif">
+                              </div>
                         </div>
                         <div class="col-sm-30">
                             <div class="your_options_profile margin_top_25">
@@ -77,9 +80,7 @@
                         </div>
                     </div>
                 </div>
-                <div *ngIf="loading" class="row">
-                  <img src="./assets/images/bx_loader.gif">
-                </div>
+                
                 <div class="errorbox" *ngIf="searchNameErrorFlag"><b></b><br> 
                     <li>Please Enter Search Name.</li>
                 </div>

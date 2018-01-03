@@ -12,6 +12,7 @@ export class RecruiterGuidesPageComponent implements OnInit {
   constructor(public _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
+		//this.shareGuide();
   }
 
    shareGuide() {

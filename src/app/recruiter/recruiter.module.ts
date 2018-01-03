@@ -31,7 +31,9 @@ import { RecruiterWatchdogComponent } from '../recruiter-watchdog/recruiter-watc
 //import { ViewContractorProfileComponent } from '../view-contractor-profile/view-contractor-profile.component';
 import { RecuriterSavedWatchDogComponent } from '../recuriter-saved-watch-dog/recuriter-saved-watch-dog.component';
 import { RecruiterHomeComponent } from '../recruiter-home/recruiter-home.component';
-
+// import { ChartModule } from 'angular2-highcharts';
+// import * as Highcharts from 'highcharts/highmaps';
+// declare var require : any;
 @NgModule({
   declarations: [
     RecruiterManagePasswordComponent,
@@ -65,7 +67,11 @@ import { RecruiterHomeComponent } from '../recruiter-home/recruiter-home.compone
 	SharedModule,
 	RecruiterRoutingModule,
 	CommonModule,
-	IonRangeSliderModule
+	IonRangeSliderModule,
+	//ChartModule.forRoot(require('highcharts/highmaps'))
+	// ChartModule.forRoot(
+	// 	Highcharts
+	//   )
   ],
   providers: []
 })
