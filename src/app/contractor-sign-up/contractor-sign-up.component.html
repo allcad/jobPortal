@@ -134,9 +134,9 @@
                       <div class="find_cv_from" style="text-align: right; margin: 2px 0 4px 0; float: right;"><a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" style="color: #fff !important;" aria-haspopup="true" aria-expanded="true">Find CV From<img src="./assets/images/find-cv.png" alt="Find CV" ></a>
                         <ul class="dropdown-menu">
                           <li>
-                            <a href="javascript:void(0)"><img src="./assets/images/mail-box1.png" alt="OneDrive" title="OneDrive" class="img-responsive"></a> 
-                            <a href="javascript:void(0)"><img src="./assets/images/mail-box3.png" alt="GoogleDrive" title="GoogleDrive" class="img-responsive"></a> </li>
-                          <li (click)="chooseFromDropBox()"> <a href="javascript:void(0)"><img src="./assets/images/mail-box2.png" alt="Dropbox" title="Dropbox" class="img-responsive"></a>
+                            <a href="javascript:void(0)" (click)="initializeOneDrive()"><img src="./assets/images/mail-box1.png" alt="OneDrive" title="OneDrive" class="img-responsive"></a> 
+                            <a href="javascript:void(0)" id="pick"><img src="./assets/images/mail-box3.png" alt="GoogleDrive" title="GoogleDrive" class="img-responsive"></a> </li>
+                          <li (click)="initializeDropBox()"> <a href="javascript:void(0)"><img src="./assets/images/mail-box2.png" alt="Dropbox" title="Dropbox" class="img-responsive"></a>
                             <div class="fileUpload">
                               <a href="javascript:void(0)"><img src="./assets/images/mail-box4.png" alt="LocalDrive" title="LocalDrive" class="img-responsive"></a>
                               <input type="file" class="upload" name="" style="height: 55px;" (change)="fileChangeEvent($event);" #myInput accept=".doc, .docx, .pdf, .otd, .rtf">

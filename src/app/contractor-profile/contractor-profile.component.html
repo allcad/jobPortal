@@ -175,6 +175,9 @@
                 </div>
               </div>
             </div>
+            <div class="reset">
+              <a href="javascript:void(0)" (click)="resetMap()" class="btn-primary width_90px hover_white_pluse">Reset Map<i class="fa fa-undo plus_blue img_ioc" aria-hidden="true"></i></a>
+            </div>
             <div class="col-md-70 col-sm-60">
               <div class="profile_map">
                 <div id="profileMap"></div>
@@ -218,7 +221,10 @@
                     </div>
                   </div>
                   <div class="col-md-32 col-sm-55">
-                    <div class="preferred_skip_submit margin_left_10"> <a href="javascript:void(0)" class="btn-primary width_90px hover_white_pluse" (click)="editPolygun()">Edit <i class="fa fa-plus plus_blue img_ioc" aria-hidden="true"></i></a> <a href="javascript:void(0)" (click)="drawPloygon()" class="btn-primary width_90px hover_white_pluse">Draw <i class="fa fa-plus plus_blue img_ioc" aria-hidden="true"></i></a> </div>
+                    <div class="preferred_skip_submit margin_left_10">
+                      <a href="javascript:void(0)" class="btn-primary width_90px hover_white_pluse" (click)="editPolygun()">Edit <i class="fa fa-plus plus_blue img_ioc" aria-hidden="true"></i></a>
+                      <a href="javascript:void(0)" (click)="drawPloygon()" class="btn-primary width_90px hover_white_pluse">Draw <i class="fa fa-plus plus_blue img_ioc" aria-hidden="true"></i></a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -291,10 +297,10 @@
                   <h2>CV &amp; COVER LETTER</h2>
                 </div>
                 <div class="row" *ngFor="let CV of contratorCVList; let i = index">
-                  <!-- <div class="checkbox-inline">
-                    <input type="radio" id="cv_radio{{i}}" name="cv_radio" [checked]="preferredCVId == CV.attachment_relation" (change)="chengePrefernence(CV, i)" >
+                  <div class="checkbox-inline">
+                    <input type="radio" id="cv_radio{{i}}" name="cv_radio" [checked]="CV.preferred" (change)="chengePrefernence(contratorCVList,  i)" [disabled]="!CV.attachment_name">
                     <label for="cv_radio{{i}}" class="radio-inline"><span></span> Prefer </label>
-                  </div> -->
+                  </div>
                   <div class="col-md-59 col-sm-100">
                     <div class="form-group magin_bottomo768">
                       <div *ngIf="!CV?.attachment_name" class="input-group">
@@ -303,7 +309,7 @@
                           <span>Browse From
                               <img alt="search now" src="./assets/images/find-cv.png" title="search now" >
                             </span>
-                          <input type="file" class="upload" (change)="contractorCVFileChangeEvent($event, i)" accept=".doc, .docx, .pdf, .otd, .rtf" />
+                          <input type="file" id="pick" class="upload" (change)="contractorCVFileChangeEvent($event, i)" accept=".doc, .docx, .pdf, .otd, .rtf" />
                         </div>
                       </div>
                       <div *ngIf="CV?.attachment_name" class="input-group">
@@ -319,10 +325,10 @@
                   </div>
                 </div>
                 <div class="row" *ngFor="let coverLetter of coverLetterList; let i = index;">
-                  <!-- <div class="checkbox-inline">
-                    <input type="radio" id="cover_radio_{{i}}" name="cover_radio" checked="{{preferredCVId == coverLetter.attachment_relation}}">
+                   <div class="checkbox-inline">
+                    <input type="radio" id="cover_radio_{{i}}" name="cover_radio"[checked]="coverLetter.preferred" (change)="chengePrefernence(coverLetterList,  i)" [disabled]="!coverLetter.attachment_name">
                     <label for="cover_radio_{{i}}" class="radio-inline"><span></span> Prefer </label>
-                  </div> -->
+                  </div> 
                   <div class="col-md-59 col-sm-100">
                     <div class="form-group magin_bottomo768">
                       <div *ngIf="!coverLetter?.attachment_name" class="input-group">
@@ -331,7 +337,7 @@
                           <span>Browse From
                               <img alt="search now" src="./assets/images/find-cv.png" title="search now" >
                             </span>
-                          <input type="file" class="upload" (change)="contractorCoverLetterFileChangeEvent($event)" accept=".doc, .docx, .pdf, .otd, .rtf" />
+                          <input type="file" class="upload" (change)="contractorCoverLetterFileChangeEvent($event, i)" accept=".doc, .docx, .pdf, .otd, .rtf" />
                         </div>
                       </div>
                       <div *ngIf="coverLetter?.attachment_name" class="input-group">

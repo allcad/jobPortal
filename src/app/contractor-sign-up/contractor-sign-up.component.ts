@@ -4,7 +4,9 @@ import { CommonRequestService } from '../common-request.service';
 import { Router, ActivatedRoute } from '@angular/router';
 //import * as $ from 'jquery';
 declare var $: any;
-
+declare var FilePicker;
+declare var OneDrive;
+declare var Dropbox;
 @Component({
   selector: 'app-contractor-sign-up',
   templateUrl: './contractor-sign-up.component.html',
@@ -70,15 +72,16 @@ export class ContractorSignUpComponent implements OnInit {
   marker;
   defaultDatePickerStatus = false;
 
-  constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { 
-   
+  constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) {
+
   }
 
   ngOnInit() {
     this.getKeySkillData();
     this.getContractorServices();
     this.getNoticePeriodData();
-
+    this.initializeGoogleDrive();
+    // this.initializeOneDrive();
     //$("#datepicker").datepicker();
   }
 
@@ -437,12 +440,12 @@ export class ContractorSignUpComponent implements OnInit {
           if (data && data.status == 'FALSE') {
             this.postalCodeInvalid = true;
             this.contractorInvalid = true;
-          }else{
+          } else {
             this.postcode = this.contractor_post_code;
             this.displayTown = data.data[0].town;
-            this.displayCountry  = data.data[0].county;
-            this.displayLocationName = data.data[0].town +', '+ data.data[0].region + ', ' + data.data[0].county;
-            this.marker = {'lat' : data.data[0].latitude, 'lng' : data.data[0].longitude}
+            this.displayCountry = data.data[0].county;
+            this.displayLocationName = data.data[0].town + ', ' + data.data[0].region + ', ' + data.data[0].county;
+            this.marker = { 'lat': data.data[0].latitude, 'lng': data.data[0].longitude }
 
           }
 
@@ -484,40 +487,57 @@ export class ContractorSignUpComponent implements OnInit {
   }
 
   chooseFromDropBox() {
-    //     let dropbox = new Dropbox({})
-    //    let options = {
 
-    //     // Required. Called when a user selects an item in the Chooser.
-    //     success: function(files) {
-    //         alert("Here's the file link: " + files[0].link)
-    //     },
-
-    //     // Optional. Called when the user closes the dialog without selecting a file
-    //     // and does not include any parameters.
-    //     cancel: function() {
-
-    //     },
-
-    //     // Optional. "preview" (default) is a preview link to the document for sharing,
-    //     // "direct" is an expiring link to download the contents of the file. For more
-    //     // information about link types, see Link types below.
-    //     linkType: "preview", // or "direct"
-
-    //     // Optional. A value of false (default) limits selection to a single file, while
-    //     // true enables multiple file selection.
-    //     multiselect: false, // or true
-
-    //     // Optional. This is a list of file extensions. If specified, the user will
-    //     // only be able to select files with these extensions. You may also specify
-    //     // file types, such as "video" or "images" in the list. For more information,
-    //     // see File types below. By default, all extensions are allowed.
-    //     extensions: ['.pdf', '.doc', '.docx'],
-    // };
+  }
 
 
-    //     Dropbox.choose(options);
+  initializeGoogleDrive() {
+    let that = this;
+    var picker = new FilePicker({
+      apiKey: ' AIzaSyDql2nlkhmrl67SP8M4jL9Cj9jxu3YTvjY ',
+      clientId: "287960632302-ahp18tu7uo332bcgmlep9vn8dsv56b0v",
+      buttonEl: document.getElementById('pick'),
+      onSelect: function(file) {
+        console.log(file.title);
+        that.fileName = file.title;
+      }
+    });
+  }
 
-    // let dbx = new Dropbox({accessToken: 'sp6wj9n6kf6r0ma'})
+  initializeOneDrive() {
+    var odOptions = {
+      clientId: "ac6a73b3-a38d-4045-931e-8f28ca396b76",
+      action: "query",
+      multiSelect: true,
+      advanced: {},
+      redirectUri: "https://login.live.com/oauth20_desktop.srf",
+      success: function(files) { console.log("files", files) },
+      cancel: function() { console.log("cancel", ) },
+      error: function(e) { console.log("error", e) }
+    }
+    OneDrive.open(odOptions);
+  }
+
+  initializeDropBox() {
+    var options = {
+      // Required. Called when a user selects an item in the Chooser.
+    success: function(files) {
+      console.log("file", files);
+        
+    },
+    cancel: function() {
+
+    },
+
+    linkType: "preview", // or "direct"
+    multiselect: false, // or true
+    extensions: ['.pdf', '.doc', '.docx', '.rtf', '.odt'],
+
+   
+    folderselect: false, // or true
+    }
+    Dropbox.choose(options);
+    
   }
 
 

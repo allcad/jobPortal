@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
 declare var google: any;
 declare var $: any;
+
 @Component({
   selector: 'app-contractor-profile',
   templateUrl: './contractor-profile.component.html',
@@ -54,8 +55,8 @@ export class ContractorProfileComponent implements OnInit {
   imageFile;
   CVFile;
   coverLetterFile;
-  contratorCVList = [{ attachment_relation: 0 }];
-  coverLetterList = [{ attachment_relation: 0 }];
+  contratorCVList: any;
+  coverLetterList: any = [{ index: 0 }];
   industrySectorData = [];
   securityClearenceData = [];
   uploadedCvArray = [];
@@ -94,8 +95,8 @@ export class ContractorProfileComponent implements OnInit {
   displayTown;
   displayCountry;
   displayLocationName;
-  preferredCVId=206;
-  preferredCoverId=0;
+  preferredCVId = 206;
+  preferredCoverId = 0;
   constructor(public _commonRequestService: CommonRequestService, private _router: Router, private _routes: ActivatedRoute) { }
 
   ngOnInit() {
@@ -103,6 +104,7 @@ export class ContractorProfileComponent implements OnInit {
     this.getIndustrySector();
     this.getSecurityClearenceData();
     this.getProfileDta();
+
     window.scroll(0, 0);
     this.cropperSettings = new CropperSettings();
     this.cropperSettings.width = 280;
@@ -116,8 +118,10 @@ export class ContractorProfileComponent implements OnInit {
 
   }
 
+
   ngAfterViewInit() {
     window.scroll(0, 0);
+
   }
 
 
@@ -264,10 +268,13 @@ export class ContractorProfileComponent implements OnInit {
     this.fileName = this.imageFile.name;
     reader.readAsDataURL(this.imageFile);
   }
-  contractorCoverLetterFileChangeEvent(fileInput: any) {
+  contractorCoverLetterFileChangeEvent(fileInput: any, i) {
     if (!this.checkFileValid(fileInput.target.files[0].name)) {
       this.coverLetterFile = fileInput.target.files[0];
-      this.uploadedCoverLetter.push(this.coverLetterFile);
+      //this.uploadedCoverLetter.push(this.coverLetterFile);
+
+      this.coverLetterList[i] = { index: i, file: this.coverLetterFile, attachment_name: this.coverLetterFile.name }
+      console.log(this.coverLetterList)
     } else {
       this.coverLetterList.pop();
     }
@@ -278,16 +285,30 @@ export class ContractorProfileComponent implements OnInit {
     if (!this.checkFileValid(fileInput.target.files[0].name)) {
       this.CVFile = fileInput.target.files[0];
       //this.uploadedCvArray.push({index: i, file: this.CVFile});
-      this.uploadedCvArray.push(this.CVFile);
+      //this.uploadedCvArray.push(this.CVFile);
+      this.contratorCVList[i] = { index: i, file: this.CVFile, attachment_name: this.CVFile.name }
     } else {
       this.contratorCVList.pop();
     }
 
+    // console.log(this.contratorCVList);
+
   }
 
   saveContractorProfile(form: NgForm) {
+    console.log(this.contratorCVList);
+    console.log("id-cv", this.getPreferredCVId(this.contratorCVList));
+    console.log("index-cv", this.getPreferredCVIndex(this.contratorCVList));
+    console.log(" this.uploadedCvArray", this.getPreferredCVIndex(this.contratorCVList).uploadList)
+    console.log("id-cover", this.getPreferredCVId(this.coverLetterList));
+    console.log("index-cover", this.getPreferredCVIndex(this.coverLetterList));
+    console.log("this.uploadedCoverLetter", this.getPreferredCVIndex(this.coverLetterList).uploadList)
     if (form.valid && !this.ErrorMesageFlag && this.postCode.trim().length > 5) {
       this.fd = new FormData();
+      this.fd.append('cv_id', this.getPreferredCVId(this.contratorCVList));
+      this.fd.append('cv_index', this.getPreferredCVIndex(this.contratorCVList).index);
+      this.fd.append('cover_id', this.getPreferredCVId(this.coverLetterList));
+      this.fd.append('cover_index', this.getPreferredCVIndex(this.coverLetterList).index);
       this.fd.append('loginToken', (localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).token) ? JSON.parse(localStorage.getItem('loginDetail')).token : "nsakdlallas1232mk123b2k1390iq2ekq");
       this.fd.append('email', (localStorage.getItem('loginDetail') && JSON.parse(localStorage.getItem('loginDetail')).email) ? JSON.parse(localStorage.getItem('loginDetail')).email : "test@gmail.com");
       this.fd.append('contractorProfileUrl', this.imageFile);
@@ -336,21 +357,18 @@ export class ContractorProfileComponent implements OnInit {
 
       this.fd.append('certification', this.certification);
       this.fd.append('qualification', this.qualification);
-      for (let i = 0; i < this.uploadedCvArray.length; i++) {
-        this.fd.append('uploadCV[]', this.uploadedCvArray[i]);
+      for (let i = 0; i < this.getPreferredCVIndex(this.contratorCVList).uploadList.length; i++) {
+        this.fd.append('uploadCV[]', this.getPreferredCVIndex(this.contratorCVList).uploadList[i].file);
       }
 
-      for (let i = 0; i < this.uploadedCoverLetter.length; i++) {
-        this.fd.append('uploadCoverLetter[]', this.uploadedCoverLetter[i]);
+      for (let i = 0; i < this.getPreferredCVIndex(this.coverLetterList).uploadList.length; i++) {
+        this.fd.append('uploadCoverLetter[]', this.getPreferredCVIndex(this.coverLetterList).uploadList[i].file);
       }
-
-
-      //this.fd.append('uploadCoverLetter',this.coverLetterFile);
       this.fd.append('longitude', this.lng);
       this.fd.append('latitude', this.lat);
 
-      this.fd.append('commutablePolygon',this.commutablePolygun && this.commutablePolygun.length > 0 ?  JSON.stringify(this.commutablePolygun) : '');
-      this.fd.append('relocatablePolygon', this.relocateablePolygun && this.relocateablePolygun.length > 0 ?  JSON.stringify(this.relocateablePolygun) : '');
+      this.fd.append('commutablePolygon', this.commutablePolygun && this.commutablePolygun.length > 0 ? JSON.stringify(this.commutablePolygun) : '');
+      this.fd.append('relocatablePolygon', this.relocateablePolygun && this.relocateablePolygun.length > 0 ? JSON.stringify(this.relocateablePolygun) : '');
       this.fd.append('display_town', this.displayTown);
       this.fd.append('display_county', this.displayCountry);
       this.fd.append('display_name', this.displayLocationName);
@@ -387,10 +405,10 @@ export class ContractorProfileComponent implements OnInit {
         }
       );
     } else {
-      if(!this.postCode || this.postCode.trim().length <= 5 || this.ErrorMesageFlag){
+      if (!this.postCode || this.postCode.trim().length <= 5 || this.ErrorMesageFlag) {
         this.ErrorMesageFlag = true;
         this.errorMsg = "Post code invalid";
-      }else{
+      } else {
         this.ErrorMesageFlag = false;
       }
       window.scroll(0, 0);
@@ -399,8 +417,34 @@ export class ContractorProfileComponent implements OnInit {
 
   }
 
+
+  getPreferredCVIndex(docList) {
+    let prefer = docList.filter(item => { return item.preferred == true });
+    let index;
+    let uploadList;
+    uploadList = docList.filter(item => { return item.attachment_name && !item.attachment_relation });
+    if (prefer && prefer.length > 0 && prefer[0]['attachment_relation']) {
+      index = prefer[0]['attachment_relation']
+    } else if (prefer && prefer.length > 0) {
+      index = uploadList.indexOf(docList.filter(item => { return item['preferred'] == true })[0]);
+    } else {
+      index = -1
+    }
+
+    return { index: index, uploadList: uploadList }
+
+  }
+
+  getPreferredCVId(docList) {
+    let prefer = docList.filter(item => { return item.preferred == true });
+    if (prefer && prefer.length>0 && prefer[0]['attachment_relation']) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+
   accountDetailsSave() {
-    // alert(121)
     var accountJson = {
       "email": "you@gmail.com",
       "loginToken": "$2y$10$1T6dX9rw93MoWgTKQmyNSeiyR43jwrXvOdFHYcWuXLD9oASXEx8vi",
@@ -575,9 +619,9 @@ export class ContractorProfileComponent implements OnInit {
     this.rate_max_hr = this.profileData.contractor_rate_max_hr;
 
     this.commutablePolygun = this.profileData.commutablePolygon ? JSON.parse(this.profileData.commutablePolygon) : [],
-    this.relocateablePolygun = this.profileData.relocatablePolygon ? JSON.parse(this.profileData.relocatablePolygon) : [],
+      this.relocateablePolygun = this.profileData.relocatablePolygon ? JSON.parse(this.profileData.relocatablePolygon) : [],
 
-    this.contractor_rate_min_relocatable = this.profileData.contractor_rate_min_relocatable;
+      this.contractor_rate_min_relocatable = this.profileData.contractor_rate_min_relocatable;
     this.contractor_rate_min_relocatable_hr = this.profileData.contractor_rate_min_relocatable_hr;
     this.contractor_rate_max_relocatable = this.profileData.contractor_rate_max_relocatable;
     this.contractor_rate_max_relocatable_hr = this.profileData.contractor_rate_max_relocatable_hr;
@@ -588,6 +632,7 @@ export class ContractorProfileComponent implements OnInit {
     this.certification = this.profileData.certification && this.profileData.certification !== 'null' ? this.profileData.certification : '';
     this.qualification = this.profileData.qualification && this.profileData.qualification !== 'null' ? this.profileData.qualification : '';
     this.contratorCVList = (this.profileData.uploadCV && this.profileData.uploadCV.length > 0) ? this.profileData.uploadCV : this.contratorCVList;
+    // this.uploadedCvArray = this.contratorCVList.map(item=>{return item});
     this.coverLetterList = (this.profileData.uploadCoverLetter && this.profileData.uploadCoverLetter.length > 0) ? this.profileData.uploadCoverLetter : this.coverLetterList;
     this.industrySector = this.profileData.industrySector;
     this.selectedSkillArray = this.profileData['skill&Experience'].split(',');
@@ -614,12 +659,15 @@ export class ContractorProfileComponent implements OnInit {
   }
 
   addAnotherCV() {
-    this.contratorCVList.push({ attachment_relation: this.contratorCVList.length + 1 })
+    this.contratorCVList.push({ index: this.contratorCVList.length, file: {} })
   }
 
   removeElement(array, index) {
-    this.deleteAttacment(array[index].attachment_relation.toString())
+    if (array[index].attachment_relation) {
+      this.deleteAttacment(array[index].attachment_relation.toString())
+    }
     array.splice(index, 1);
+    console.log(this.contratorCVList);
   }
 
 
@@ -638,7 +686,7 @@ export class ContractorProfileComponent implements OnInit {
   }
 
   addAnotherCoverLetter() {
-    this.coverLetterList.push({ attachment_relation: this.coverLetterList.length + 1 })
+    this.coverLetterList.push({ index: this.coverLetterList.length, file: {} })
   }
 
   getIndustrySector() {
@@ -718,15 +766,22 @@ export class ContractorProfileComponent implements OnInit {
   }
 
   editcv(index) {
-    this.deleteAttchmentArray.push(this.contratorCVList[index]['attachment_relation']);
-    console.log(this.deleteAttchmentArray);
-    this.contratorCVList[index] = { 'attachment_relation': index + 1 };
+    if (this.contratorCVList[index].index && this.contratorCVList[index].attachment_name) {
+      this.contratorCVList[index] = { index: index, file: {} };
+    } else if (this.contratorCVList[index].attachment_relation) {
+      this.deleteAttchmentArray.push(this.contratorCVList[index]['attachment_relation']);
+      this.contratorCVList[index] = { index: index, file: {} };
+    }
+
   }
 
   editCover(index) {
-    this.deleteAttchmentArray.push(this.coverLetterList[index]['attachment_relation']);
-    console.log(this.deleteAttchmentArray);
-    this.coverLetterList[index] = { 'attachment_relation': index + 1 };
+    if (this.coverLetterList[index].index && this.coverLetterList[index].attachment_name) {
+      this.coverLetterList[index] = { index: index, file: {} };
+    } else if (this.coverLetterList[index].attachment_relation) {
+      this.deleteAttchmentArray.push(this.coverLetterList[index]['attachment_relation']);
+      this.coverLetterList[index] = { index: index, file: {} };
+    }
   }
 
   applyCrop() {
@@ -855,7 +910,7 @@ export class ContractorProfileComponent implements OnInit {
             this.displayTown = data.data[0].town;
             this.displayCountry = data.data[0].county;
             this.displayLocationName = data.data[0].town + ', ' + data.data[0].region + ', ' + data.data[0].county;
-            this.lat =  data.data[0].latitude;
+            this.lat = data.data[0].latitude;
             this.lng = data.data[0].longitude;
 
           }
@@ -866,11 +921,23 @@ export class ContractorProfileComponent implements OnInit {
   }
 
 
-  chengePrefernence(cv, index){
-      for(let i=0; i<this.uploadedCvArray.length; i++){
-        if(index == this.uploadedCvArray[i].index){
-          console.log("index", i);
-        }
-      }
+  chengePrefernence(array, index) {
+    for (let i = 0; i < array.length; i++) {
+      array[i]['preferred'] = false;
+    }
+    array[index]['preferred'] = true;
+    console.log(array);
+
   }
+
+  resetMap() {
+    this.commutablePolygun = [];
+    this.relocateablePolygun = [];
+    this.commutablePolygonInst.setMap(null);
+    this.relocatablePolygonInst.setMap(null);
+
+  }
+
+
+
 }
