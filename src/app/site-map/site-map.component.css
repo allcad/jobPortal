@@ -1,0 +1,50 @@
+.site-map-class {
+	float: left;
+    width: 28%;
+    box-shadow: 0px 1px 10px 0px #eee;
+    padding: 20px;
+    margin: 10px;
+    margin-bottom: 20px;
+    min-height: 620px;
+}
+.site-map-class:nth-child(4) {
+    min-height: 300px;
+}
+.site-map-class:last-child {
+    min-height: 300px;
+}
+
+
+
+
+
+.signup_form_section {
+    width: auto;
+}
+.site-map-class li h2{	
+	font-size: 16px;
+}
+.site-map-class li a{	
+	font-size: 12px;
+}
+
+@media(max-width: 767px){
+	.site-map-class {
+		float: none;
+	    width: auto;
+	    box-shadow: 0px 1px 10px 0px #eee;
+	    padding: 20px;
+	    margin: 10px;
+	    margin-bottom: 20px;
+	    min-height: auto;
+	}
+	.site-map-class:nth-child(4) {
+    	min-height: auto;
+	}
+	.site-map-class:last-child {
+	    min-height: auto;
+	}
+
+
+
+}

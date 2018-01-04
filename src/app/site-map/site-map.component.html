@@ -22,8 +22,8 @@
 		
 		<div class="signup_form_section">
 			<ul>
-					<li *ngFor="let menu of menuList; let i=index" class="firstli_{{i}}"  [ngClass]="{'color-pink' : i==2}">
-							<a href="javascript:void(0);">{{menu.manu_label}} <span class="caret" [ngClass]="{'pink' : i==2}"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"> </a>
+					<li *ngFor="let menu of menuList; let i=index" class="firstli_{{i}} site-map-class"  [ngClass]="{'color-pink' : i==2}">
+							<a href="javascript:void(0);">{{menu.manu_label}} <!-- <span class="caret" [ngClass]="{'pink' : i==2}"></span> --></a>
 							<ul class="navigation-dropdown">
 								<div class="dropdown-nav-wrap">
 									<li *ngFor="let subMenu of menu.subpages">

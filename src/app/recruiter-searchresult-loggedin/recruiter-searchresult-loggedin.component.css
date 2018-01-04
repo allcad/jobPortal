@@ -266,3 +266,9 @@
         padding: 0 25px;
     }
 }
+
+
+.watch_list_content.recruiter_searchresult_list  p{
+
+    height:50px;
+}
