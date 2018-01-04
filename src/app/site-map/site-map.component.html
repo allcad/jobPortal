@@ -21,7 +21,23 @@
 		
 		
 		<div class="signup_form_section">
-		  <div class="row">
+			<ul>
+					<li *ngFor="let menu of menuList; let i=index" class="firstli_{{i}}"  [ngClass]="{'color-pink' : i==2}">
+							<a href="javascript:void(0);">{{menu.manu_label}} <span class="caret" [ngClass]="{'pink' : i==2}"></span> <img src="./assets/images/nev-right.png" alt="ads" title="ads" class="img-responsive mobile_rightarrow"> </a>
+							<ul class="navigation-dropdown">
+								<div class="dropdown-nav-wrap">
+									<li *ngFor="let subMenu of menu.subpages">
+										<h2 class="hidden-xs">{{subMenu.manu_label}}</h2>
+										<ul>
+											<li *ngFor="let item of subMenu.pages"><a href="javascript:void(0)" routerLink="/{{item.menu_link}}">{{item.manu_label}}</a></li>
+											<hr class="visible-xs">
+										</ul>
+									</li>
+								</div>
+							</ul>
+						</li>
+			</ul>
+		  <!-- <div class="row">
 		    <div class="col-sm-50">
 			  <div class="site_map_contractor">
 			    <h3>ContractRecruit Contractor</h3>
@@ -70,7 +86,7 @@
 				</div>
 			 </div>
 			</div>
-		  </div>
+		  </div> -->
 		</div>
         
       </div>
