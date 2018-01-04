@@ -509,8 +509,6 @@ export class ContractorSignUpComponent implements OnInit {
       clientId: "ac6a73b3-a38d-4045-931e-8f28ca396b76",
       action: "query",
       multiSelect: true,
-      advanced: {},
-      redirectUri: "https://login.live.com/oauth20_desktop.srf",
       success: function(files) { console.log("files", files) },
       cancel: function() { console.log("cancel", ) },
       error: function(e) { console.log("error", e) }
