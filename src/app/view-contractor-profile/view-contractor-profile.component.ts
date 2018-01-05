@@ -205,7 +205,8 @@ export class ViewContractorProfileComponent implements OnInit {
     } else if(this.type === 'watchList') {
       this.router.navigate(['./recruiter/watch-list']);
     } else if(this.type === 'search-result') {
-      this.router.navigate(['./recruiter/searchresult-loggedin']);
+      this.goToSearchResultPage();
+      //this.router.navigate(['./recruiter/searchresult-loggedin']);
     }
   }
 
