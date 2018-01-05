@@ -22,6 +22,7 @@ export class RecruiterPreviewJobComponent implements OnInit {
     private _routes: ActivatedRoute) { }
 
   ngOnInit() {
+    window.scroll(0,0);
     this.loading = true;
   	// this._commonDataSharedService.manageJobsJobId.subscribe(data=> {
   	// 	console.log("data--", data);

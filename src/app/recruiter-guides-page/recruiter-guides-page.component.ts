@@ -17,6 +17,7 @@ export class RecruiterGuidesPageComponent implements OnInit {
 	 }
 
   ngOnInit() {
+  	window.scroll(0,0);
 		//this.shareGuide();
 		this.showGuide();
 

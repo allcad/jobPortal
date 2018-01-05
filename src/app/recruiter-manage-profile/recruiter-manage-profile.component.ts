@@ -95,6 +95,7 @@ WSErrorMsg = "";
    }
 
   ngOnInit() {
+    window.scroll(0,0);
     this.companySizeList();
     this.countryList();
     this.getProfileDta()

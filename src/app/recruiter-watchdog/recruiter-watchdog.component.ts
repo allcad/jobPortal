@@ -31,6 +31,7 @@ export class RecruiterWatchdogComponent implements OnInit {
     private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    window.scroll(0,0);
     this.getSortByData();
   }
 

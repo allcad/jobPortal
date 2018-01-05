@@ -15,6 +15,7 @@ helpCategoryList;
   constructor(private _commonRequestService: CommonRequestService) { }
 
   ngOnInit() {
+    window.scroll(0,0);
     this.getHelpCategory()
   }
 

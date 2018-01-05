@@ -18,6 +18,7 @@ export class RecruiterViewProfileComponent implements OnInit {
   constructor(public _commonRequestService: CommonRequestService, private commonService: CommonService) { }
 
   ngOnInit() {
+    window.scroll(0,0);
   	this.profileViewData();
   }
 
@@ -33,12 +34,20 @@ export class RecruiterViewProfileComponent implements OnInit {
         data => {
           console.log("profile view--", data);
           if(data && data.status == 'TRUE') {
+            var companySocialData
             this.companyProfileView = data.data;
+            if(this.companyProfileView['companySocial'] && this.companyProfileView['companySocial'].length > 0) {
+              console.log("comapny social--", JSON.parse(this.companyProfileView['companySocial']));
+              companySocialData = JSON.parse(this.companyProfileView['companySocial']);
+            }
+            this.companySize =this.companyProfileView['companyDetails'] && this.companyProfileView['companyDetails'].companySize ? this.companyProfileView['companyDetails'].companySize : "";
+            this.webAddress= companySocialData && companySocialData.webAddress ? companySocialData.webAddress : "";
+            this.email= companySocialData && companySocialData.emailAddress ? companySocialData.emailAddress : "";
             this.companySizeList();
-            this.companySize = this.companyProfileView && this.companyProfileView['companyDetails'] && this.companyProfileView['companyDetails'].companySize ? this.companyProfileView['companyDetails'].companySize : '';
-            this.webAddress = this.companyProfileView && this.companyProfileView['companySocial'] && this.companyProfileView['companySocial'].webAddress ? this.companyProfileView['companySocial'].webAddress : '';
-            this.email = this.companyProfileView && this.companyProfileView['companySocial'] && this.companyProfileView['companySocial'].emailAddress ? this.companyProfileView['companySocial'].emailAddress : '';
-            this.companyAdd = this.companyProfileView && this.companyProfileView['companyDetails'] && this.companyProfileView['companyDetails'].companyAddress ? this.companyProfileView['companyDetails'].companyAddress : '';
+            // this.companySize = this.companyProfileView && this.companyProfileView['companyDetails'] && this.companyProfileView['companyDetails'].companySize ? this.companyProfileView['companyDetails'].companySize : '';
+            // this.webAddress = this.companyProfileView && this.companyProfileView['companySocial'] && this.companyProfileView['companySocial'].webAddress ? this.companyProfileView['companySocial'].webAddress : '';
+            // this.email = this.companyProfileView && this.companyProfileView['companySocial'] && this.companyProfileView['companySocial'].emailAddress ? this.companyProfileView['companySocial'].emailAddress : '';
+            // this.companyAdd = this.companyProfileView && this.companyProfileView['companyDetails'] && this.companyProfileView['companyDetails'].companyAddress ? this.companyProfileView['companyDetails'].companyAddress : '';
           }
           //this.countryValueArray = data.data;
           //this.recruiterNameArray = data.data;

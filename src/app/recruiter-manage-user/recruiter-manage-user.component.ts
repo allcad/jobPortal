@@ -33,6 +33,7 @@ export class RecruiterManageUserComponent implements OnInit {
    }
 
   ngOnInit() {
+    window.scroll(0,0);
     this.makeSubUser();
     let localStorageData = localStorage.getItem("loginDetail") ?  JSON.parse(localStorage.getItem("loginDetail")) : ""; 
     this.companyEditableId = localStorageData.isCompanyEditable;

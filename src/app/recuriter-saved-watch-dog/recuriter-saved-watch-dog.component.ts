@@ -54,6 +54,7 @@ export class RecuriterSavedWatchDogComponent implements OnInit, AfterViewInit {
     private ngZone: NgZone, private commonService: CommonService) { }
 
   ngOnInit() {
+    window.scroll(0,0);
     this.getSecurityClearance();
     this.getIndustry();
     this.getTimeLeftData();

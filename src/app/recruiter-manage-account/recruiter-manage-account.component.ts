@@ -27,6 +27,7 @@ export class RecruiterManageAccountComponent implements OnInit, AfterViewInit {
   constructor(public _commonRequestService: CommonRequestService, private commonService: CommonService) { }
 
   ngOnInit() {
+    window.scroll(0,0);
     this.recruiterAccountDetails();
   }
   ngAfterViewInit() {

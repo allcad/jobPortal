@@ -58,7 +58,7 @@
                     <div class="col-sm-50">
                         <div class="recruiter_view_profile_left">
                             <h2>{{currentContractorFirstName}}</h2>
-                            <p><span>PHP</span></p>
+                            <p><span>{{contractorData?.currentJobTitle ? contractorData?.currentJobTitle : 'N/A'}}</span></p>
                             <p><span *ngIf="contractorData?.dailyHourlyValue == 'daily'">£{{contractorData?.rate_min}} - £{{contractorData?.rate_max}}</span>
                             <span *ngIf="contractorData?.dailyHourlyValue == 'hourly'">£{{contractorData?.contractor_rate_min_hour}} - £{{contractorData?.contractor_rate_max_hr}}</span> Commutable <span class="pink_color">|</span> <span *ngIf="contractorData?.contractor_daily_hourly_value_relocatable == 'daily'">£{{contractorData?.contractor_rate_min_relocatable}} - £{{contractorData?.contractor_rate_max_relocatable}}</span> 
                             <span *ngIf="contractorData?.contractor_daily_hourly_value_relocatable == 'hourly'">£{{contractorData?.contractor_rate_min_relocatable_hr}} - £{{contractorData?.contractor_rate_max_relocatable_hr}}</span>

@@ -39,6 +39,7 @@ export class RecruiterSignUpComponent implements OnInit {
     private commonService: CommonService) { }
 
   ngOnInit() {
+    window.scroll(0,0);
   }
 
   

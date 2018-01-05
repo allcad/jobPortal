@@ -22,6 +22,7 @@ export class RecruiterManagePasswordComponent implements OnInit {
   constructor(public _commonRequestService: CommonRequestService, private router: Router, private commonService: CommonService) { }
 
   ngOnInit() {
+    window.scroll(0,0);
   }
 
   savePassword(form: NgForm) {

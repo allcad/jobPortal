@@ -29,6 +29,7 @@ export class RecruiterWatchListComponent implements OnInit {
     private _commonService: CommonService, private router: Router, private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    window.scroll(0,0);
   	this.getSortByData();
   	this.getFilterbyJobData();
   	this.getWatchListData();

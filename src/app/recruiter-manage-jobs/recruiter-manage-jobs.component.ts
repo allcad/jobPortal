@@ -36,6 +36,7 @@ export class RecruiterManageJobsComponent implements OnInit {
     private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    window.scroll(0,0);
   	this.getManageJobsList(9);
     this.getSortByData();
   }

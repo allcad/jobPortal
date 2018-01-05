@@ -71,6 +71,7 @@ freeTextLocationValueRadial = "";
    }
 
   ngOnInit() {
+    window.scroll(0,0);
     this.getSecurityClearance();
     this.getIndustry();
     this.getTimeLeftData();

@@ -17,6 +17,7 @@ export class RecruiterLostPasswordComponent implements OnInit {
     private commonService: CommonService) { }
 
   ngOnInit() {
+    window.scroll(0,0);
   }
 
   submitEmailId() {

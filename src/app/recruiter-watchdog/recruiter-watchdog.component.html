@@ -32,7 +32,7 @@
                                 <span>results per page</span>
                             </div>
                         </div>
-                        <div class="col-sm-50">
+                        <div class="col-sm-50 sort-section">
                             <div class="signup_form_section sort_by_watchdog choose_template">
                                 <div class="form-group">
                                     <div class="input-group responsive_width_100">
@@ -74,7 +74,7 @@
                                         </div>
                                         <div class="col-sm-88">
                                             <div class="search_box_right">
-                                                <span><strong>Job Title:</strong> {{item['params']['recuriter_search_job_title'] ? item['params']['recuriter_search_job_title'] : 'N/A'}}</span> <span class="pink_color_span">|</span> <span><strong>Location:</strong> {{item['params']['recuriter_search_location'] ? item['params']['recuriter_search_location'] : 'N/A'}}</span> <span class="pink_color_span">|</span> <span> <strong>Postcode: </strong>{{item['location']['postcode'] ? item['location']['postcode'] : 'N/A'}} </span> <span class="pink_color_span">| </span> <span><strong>Rate Min:</strong> £{{item['params']['recuriter_search_by_rate_min'] ? item['params']['recuriter_search_by_rate_min'] : 'N/A'}}</span> <span class="pink_color_span">|</span> <span><strong>Rate Max:</strong> £{{item['params']['recuriter_search_by_rate_max'] ? item['params']['recuriter_search_by_rate_max'] : 'N/A'}}</span> <span class="pink_color_span">|</span> <span><strong>Rate Type:</strong> {{item['params']['recuriter_search_by_rate_type'] ? item['params']['recuriter_search_by_rate_type'] : 'N/A'}}</span>
+                                                <span><strong>Job Title:</strong> {{item?.params?.recuriter_search_job_title ? item?.params?.recuriter_search_job_title : 'N/A'}}</span> <span class="pink_color_span">|</span> <span><strong>Location:</strong> {{item?.params?.recuriter_search_location ? item?.params?.recuriter_search_location : 'N/A'}}</span> <span class="pink_color_span">|</span> <span> <strong>Postcode: </strong>{{item?.location?.postcode ? item?.location?.postcode : 'N/A'}} </span> <span class="pink_color_span">| </span> <span><strong>Rate Min:</strong> £{{item?.params?.recuriter_search_by_rate_min ? item?.params?.recuriter_search_by_rate_min : 'N/A'}}</span> <span class="pink_color_span">|</span> <span><strong>Rate Max:</strong> £{{item?.params?.recuriter_search_by_rate_max ? item?.params?.recuriter_search_by_rate_max : 'N/A'}}</span> <span class="pink_color_span">|</span> <span><strong>Rate Type:</strong> {{item?.params?.recuriter_search_by_rate_type ? item?.params?.recuriter_search_by_rate_type : 'N/A'}}</span>
                                             </div>
                                         </div>
                                     </div>
